@@ -1,0 +1,31 @@
+(function() {
+    'use strict';
+
+    //TODO update values when integrating with API
+    
+    var ilApp = angular.module('ilApp'); 
+    ilApp.constant('API_IL', 'http://localhost:8080/connect');
+    ilApp.constant('API_PEOPLE', 'http://localhost:8080/people');
+    ilApp.constant('APP_ID', '1800');
+    ilApp.constant('API_IMAGES', 'http://localhost:8080/images');
+    ilApp.constant('CLIENT_ID', 'd3fcf7217efc');
+    ilApp.constant('API_AUTH', 'http://localhost:8080/auth');
+    ilApp.constant('AUTHORIZE_URL', 'http://localhost:10100/oauth/authorize');
+    ilApp.constant('LOGOUT_URL', 'http://localhost:10100/logout');
+    ilApp.constant('SIGNUP_URL', 'http://localhost:10100/registration/connect');
+    ilApp.constant('FORCED_EVENT_ID', 1);
+
+    ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
+    ilApp.constant('WORLDSKILLS_CLIENT_ID', 'd3fcf7217efc');
+    ilApp.constant('WORLDSKILLS_API_AUTH', 'http://localhost:8080/auth');
+    ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'http://localhost:10100/oauth/authorize');
+
+    ilApp.constant('APP_ROLES', {
+        ADMIN: 'Admin',
+        MANAGER: 'Manager',
+        USER: 'User'        
+    });    
+
+
+
+})();

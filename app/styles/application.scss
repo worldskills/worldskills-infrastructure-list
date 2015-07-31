@@ -1,0 +1,287 @@
+h1, h2{ color: #003d56; }
+
+.well h3 {
+  margin-top: 0;
+}
+
+li.active a {
+  color: #111;
+}
+
+/** NG CLOAK */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/*<div class='featured-event'>
+                    <span>WorldSkills Sao Paulo 2015</span>
+                    <div class='featured-event-image'>
+                        <img src='http://lorempixel.com/250/160/city/' alt='Sao Paulo 2015' />
+                        <span>17 possible connections&nbsp;<span class='glyphicon glyphicon-info-sign'></span>
+                    </div>
+                </div>*/
+
+
+.sidebar{
+	border-left: 1px solid #eee;
+}
+
+.sidebar-right{
+	border-right: 1px solid #eee;
+}
+
+.featured-event{	
+	margin-bottom: 3em;
+}   
+
+
+.badge.red{ background-color: #c9302c; color: #fff; } 
+.featured-event > div{
+	font-size: 85%;
+	margin-bottom: 4px;
+	font-weight: bold;
+}
+
+.featured-event-image{
+	height: auto;
+	width: 100%;
+	position: relative;
+	z-index: 4;
+}
+
+.featured-event-image > span{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 5;
+  border: 1px solid #fff;
+  background-color: #fff;
+  border: 2px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 3px 6px;
+  font-size: 85%;
+}
+
+.video-intro{
+	width: 560px;
+	height: 315px;
+	/*width="560" height="315"*/
+}
+
+.popular-connection{
+	margin-bottom: 2em;
+}
+
+.popular-connection > div{
+	font-size: 90%;
+	margin-bottom: 4px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.popular-connection-image{
+	height: auto;
+	width: 100%;
+}
+
+.popular-connection-image img{ 	margin-bottom: 0; }
+
+.events{ clear: both; }
+
+.cb{ clear: both; }
+
+.event{	
+	margin-bottom: 3em;
+	float: left;
+	margin-right: 2em;	
+	border: 0;
+}   
+
+/*.event:first-of-type{ margin-left:;}*/
+
+.event > div{
+	font-size: 85%;
+	margin-bottom: 4px;
+	font-weight: bold;
+}
+
+.event > div:first-child > a{
+	font-size: 110%;
+}
+
+.event-image{
+/*	height: auto;*/
+	/*width: 100%;*/
+	position: relative;
+	z-index: 4;
+}
+
+.event-image > span{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 5;
+  border: 1px solid #fff;
+  background-color: #fff;
+  border: 2px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 3px 6px;
+  font-size: 85%;
+}
+
+.event-image img{ 	margin-bottom: 0; }
+
+.event-attendance, .event-attendance a{
+	margin-top: .5em;
+	font-size: 85%;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+
+.event-picture{
+	float: right;
+	margin-left: 2em;
+	clear: right;
+}
+
+
+.event-picture-full{
+	width: 100%; height: auto; margin-bottom: 1em;
+}
+
+
+/* copied FROM people */
+.profileImage{ 
+	padding: 0;
+	margin: 0;
+	border: 0;
+	position: relative;
+}
+.uploadWarning, .imageWarning{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #bb0000;
+	cursor: help;
+}
+
+.uploadWarning {
+	/*color: #e9b90f;*/
+	color: #428bca;
+}
+
+.profileImage img{ max-width: 100%; min-height: 100px; }
+.profileImage{ position: relative; text-align: center; }
+
+.profileImageUploadHover{ 
+	padding: 8px;
+	background-color: #fff;
+	border: 2px dashed #dfdfdf;
+}
+
+.uploadProgress{
+	border: 1px dashed #dfdfdf;
+	width: 165px;
+	height: 200px;	
+	background-color: #fafafa;
+}
+
+.uploadProgress > span{
+	height: 200px;
+	color: #003d56;
+	position: relative;
+	top: 94px;
+}
+
+.actions > span{ 
+	position: absolute; bottom: 0; right: 0;
+	width: 100%;
+	background-color: #000;
+	color: #fff;
+	opacity: 0.5;
+	text-align: center;
+	padding: 0.4em;
+	font-size: 85%;
+	display: none;
+	cursor: pointer;	
+}
+
+.actions span:first-child{
+	bottom: 27px;
+}
+
+
+fieldset{ margin-bottom: 3em; }
+legend{ color: #003d56; }
+.contentRow{ padding-bottom: .5em; }
+.contentRow > div:first-child{ text-align: right; font-weight: bold; color: #003d56; }
+.contentRow > div:first-child.checkbox{ text-align: left; font-weight: normal; color: #000; }
+/* copied FROM people */
+
+a.eventLink > .thumbnail .caption{ font-size: 85%; font-weight: normal;}
+a.contactLink > .thumbnail .caption{ font-size: 85%; font-weight: normal;}
+a.eventLink:hover, a.contactLink:hover{ text-decoration: none; }
+.fullWidth{ width: 100%; }
+
+.label-small{
+	font-size: 50%; 
+}
+
+.dropdown-menu a.active{
+	background-color: #337ab7;
+	color: #fff;
+	border-color: #337ab7;
+}
+
+.blue{ color: #337ab7; }
+
+/** popover */
+.popover-content{
+	font-size: 85%;
+}
+
+.listImage{ max-height: 110px; }
+
+
+/** CROPPER **/
+.cropper-container{ position: relative; }
+.cropper-container .docs-toolbar{
+	position: absolute; 
+	top: 10px; 
+	left: 10px; 
+	z-index: 9999;
+}
+
+.cropper-rectangular{
+	width: 150px; height: 200px; overflow: hidden;
+}
+
+.cropper-circle{
+	width: 150px !important; height: 150px !important; overflow: hidden; position: relative;
+}
+
+.cropper-circle img{
+	position: absolute;
+	top: -25px; /* Formula: 150 / 3 / = 25px */
+}
+
+.ch{ cursor: pointer; }

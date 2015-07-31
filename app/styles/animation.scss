@@ -1,0 +1,37 @@
+.app-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+ 
+.app-show-hide.ng-hide-add, .app-show-hide.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+ 
+.app-show-hide.ng-hide-add.ng-hide-add-active,
+.app-show-hide.ng-hide-remove {
+  opacity:0;
+}
+ 
+.app-show-hide.ng-hide-add,
+.app-show-hide.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+
+/** PROFILE IMAGE */
+.profileImage .actions > span{
+    -webkit-transition:all linear 0.2s;
+  -moz-transition:all linear 0.2s;
+  -o-transition:all linear 0.2s;
+  transition:all linear 0.2s;
+  display:block!important;
+  opacity: 0;
+}
+
+.profileImage:hover .actions > span{
+  opacity: 0.5;
+}

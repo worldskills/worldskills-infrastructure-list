@@ -1,0 +1,24 @@
+.media-inbox{
+	border-bottom: 1px solid #eee;
+	padding-bottom: 1em;
+}
+
+.media-inbox .media-body{
+	padding-left: 2em;
+}
+
+.media-inbox .contentRow div:first-child{
+	text-align: left;
+	color: #000;
+}
+
+.media-inbox .contentRow div{ font-size: 85%; }
+
+.media-inbox .media-heading{ margin-bottom: 1em; color: #003d56; }
+
+.inboxActions{
+	margin-top: 1em;
+}
+
+.inboxActions button{ margin-bottom: .5em; }
+.media-heading > a, .media-heading > a:hover{ text-decoration: none; }

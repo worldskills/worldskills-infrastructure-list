@@ -1,0 +1,3 @@
+xdomain.slaves({
+    'http://localhost:8080': '/proxy.html'
+});

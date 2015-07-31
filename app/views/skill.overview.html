@@ -1,0 +1,48 @@
+<fieldset><legend ng-cloak translate>SENT_REQ</legend>
+<p ng-cloak translate>SENT_REQ_TITLE</p>
+<p>&nbsp;</p>
+<ws-spinner class='bigSpinner' ng-show='loading.sent'></ws-spinner>
+<div ng-hide='loading.sent' class="media media-inbox" ng-repeat="connection in user.data.sent.connections">
+	<ws-spinner ng-show='loading.sentItem[connection.id]'></ws-spinner>
+	<div class='row' ng-hide='loading.sentItem[connection.id]'>
+		<div class='col-xs-12 col-sm-10'>
+  			<div class="media-left media-top">
+  			    <a ui-sref='user.profile({userId:connection.to.id})'>
+  			    <img ng-if="connection.to.image" class="listImage media-object" ng-src='{{getProfileImage(connection.to.image, "portrait")}}'  alt="name">  			    
+  			    <img ng-if='!connection.to.image' class="listImage media-object" ng-src='images/user.png' alt="name">
+  			    </a>
+  			</div>
+  			<div class="media-body">
+  			  <h4 class="media-heading"><a ui-sref='user.profile({userId:connection.to.id})'>{{connection.to.first_name + " " + connection.to.last_name}}</a></h4>
+  			  	<div class='row contentRow'>
+					<div class='col-xs-4 col-md-3 col-lg-2'>
+						<strong ng-cloak translate>COMPANY</strong>
+					</div>
+					<div class='col-xs-8 col-md-9 col-lg-10'>
+						{{connection.to.company}}
+					</div>
+				</div>
+				<div class='row contentRow'>
+					<div class='col-xs-4 col-md-3 col-lg-2'>
+						<strong ng-cloak translate>JOB_TITLE</strong>
+					</div>
+					<div class='col-xs-8 col-md-9 col-lg-10'>
+						{{connection.to.job_title}}
+					</div>
+				</div>	
+				<div class='row contentRow'>
+					<div class='col-xs-4 col-md-3 col-lg-2'>
+						<strong ng-cloak translate>COUNTRY</strong>
+					</div>
+					<div class='col-xs-8 col-md-9 col-lg-10'>
+						{{connection.to.country.name.text}}
+					</div>
+				</div>			
+  			</div>
+  		</div>
+  		<div class='inboxActions col-xs-12 col-sm-2'>
+  			<button ng-click="cancelRequest(connection.id, $index);" class='fullWidth btn btn-warning btn-sm' ng-cloak translate>REQUEST_CANCEL</button>
+  		</div>
+  	</div>
+</div>
+</fieldset>

@@ -1,0 +1,35 @@
+{
+  "name": "worldskills-connect",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-animate": "~1.4.1",
+    "angular-aria": "~1.4.1",
+    "angular-cookies": "~1.4.1",
+    "angular-messages": "~1.4.1",
+    "angular-resource": "~1.4.1",
+    "angular-route": "~1.4.1",
+    "angular-sanitize": "~1.4.1",
+    "angular-touch": "~1.4.1",
+    "angular-ui-router": "~0.2.15",
+    "worldskills-bootstrap": "*",
+    "angular-bootstrap": "~0.13.0",
+    "json3": "~3.3.2",
+    "es5-shim": "~4.1.5",
+    "angular-translate": "~2.7.2",
+    "angular-translate-loader-url": "~2.7.2",
+    "angular-translate-storage-local": "~2.7.2",
+    "angular-translate-loader-static-files": "~2.7.2",
+    "angular-worldskills-utils": "~0.0.19",
+    "angular-ui-select": "~0.12.0",
+    "angular-daterangepicker": "~0.1.16",
+    "ng-file-upload-shim": "~1.6.12",
+    "ng-file-upload": "~1.6.12",
+    "xdomain": "~0.6.17"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.1"
+  },
+  "appPath": "app",
+  "moduleName": "ilApp"
+}
