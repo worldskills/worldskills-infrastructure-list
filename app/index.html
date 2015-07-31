@@ -1,0 +1,199 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>WorldSkills Infrastructure Lists</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/worldskills-bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/angular-worldskills-utils/src/spinner.css" />
+    <!-- endbuild -->
+    <!--[if lte IE 9]>
+    <script src="bower_components/xdomain/dist/xdomain.min.js"></script>
+    <script src="xdomain/xdomain.js"></script>
+    <![endif]-->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- bugherd -->
+    <script type='text/javascript'>
+    (function (d, t) {
+      var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      bh.type = 'text/javascript';
+      bh.src = '//www.bugherd.com/sidebarv2.js?apikey=xx7npxad4d2xcvn9ct6tga';
+      s.parentNode.insertBefore(bh, s);
+      })(document, 'script');
+    </script>
+    <!-- /bugherd -->
+  </head>
+  <body ng-app="ilApp" ng-controller="ApplicationCtrl">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="navbar navbar-worldskills navbar-static-top">
+        <div class="cube-container">
+            <div class="cube-right-bottom-blue">&nbsp;</div>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref='home' ng-cloak translate>APP_NAME</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <!-- <ul class="nav navbar-nav">
+                    <li><a ui-sref='personnel'>Personnel</a></li>
+                    <li><a ui-sref='assessment'>Assessment</a></li>
+                    <li class="dropdown active"><a ui-sref='assessmentCriteria.menu' class="dropdown-toggle" data-toggle="dropdown">
+                            Competition <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ui-sref-active="active"><a ui-sref="assessmentCriteria.menu({stepName:'01'})">Skills &amp; Skill Rules</a></li>
+                            <li ui-sref-active="active"><a ui-sref="assessmentCriteria.menu({stepName:'02'})">Assessment Criteria</a></li>
+                        </ul></li>
+                </ul> -->
+                <ul class="nav navbar-nav navbar-right" ng-cloak>                                                    
+                    <li ng-show='auth.loggedIn'><a ng-cloak translate>HOME</a></li>
+                    <li ng-show='auth.loggedIn' class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
+                            {{auth.user.first_name + " " + auth.user.last_name}}&nbsp;<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">                            
+                            <li><a ng-click="logout()" ng-cloak translate>LOGOUT</a></li>                            
+                    </ul></li>                    
+                </ul>
+                <!-- <form class="navbar-form    navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Login / Sign up to search">
+                    </div>
+                    <button type="submit" class="btn btn-default sr-only">Submit</button>
+                </form> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="appContainer" ng-view=""></div> -->    
+    <div class='container' ng-controller='MainCtrl'>
+        <span id="alertScrollAnchor"></span>
+        <alerts></alerts>
+      <div ui-view></div>
+    </div>
+    <div class='container'>
+    <footer>
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    <div class="dropdown" ng-controller="TranslateCtrl">                      
+                      <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="languageSelect" data-toggle="dropdown">
+                        Language: <small class='label'>{{available_languages[selectedLanguage]}}</small>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="languageSelect">
+                        <li 
+                          ng-repeat="(lang_code, lang_name) in available_languages" 
+                          ng-class="{active: lang_code == selectedLanguage}"
+                          role="presentation">
+
+                            <a ng-click="changeLanguage(lang_code);" role="menuitem" tabindex="-1">{{lang_name}}</a>
+                        </li>
+                      </ul>
+                    </div>  
+                </div>                
+                <div class="clearfix visible-sm col-sm-4"></div>
+                <div class="clearfix visible-md col-md-4"></div>
+                <div class="clearfix visible-lg col-lg-4"></div>
+                <div class="col-xs-6 col-sm-4 text-right">
+                    <!-- <small><a ui-sref='terms' ng-cloak translate>TERMS_PRIVACY</a></small>                     -->
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p><small>&copy; 2015 WorldSkills</small></p>
+                </div>
+            </div>
+
+        </footer>
+    </div>
+    <!-- <konami/> -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-2224712-18', 'auto');
+      ga('send', 'pageview'); 
+    </script>
+
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- End your site or application content here -->
+    
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/worldskills-bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-worldskills-utils/src/angular-worldskills-utils.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js"></script>
+    <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/config.js"></script>
+        <script src="scripts/services/user.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/skill.js"></script>
+        <script src="scripts/controllers/skilloverview.js"></script>
+        <script src="scripts/services/language.js"></script>
+        <script src="scripts/controllers/translate.js"></script>    
+        <script src="scripts/directives/konami.js"></script>    
+        <script src="scripts/controllers/application.js"></script>
+        <script src="scripts/services/wsalert.js"></script>
+        <script src="scripts/directives/wsalert.js"></script>        
+        <script src="scripts/services/auth.js"></script>
+        <script src="scripts/controllers/skillcategory.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

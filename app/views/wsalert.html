@@ -1,0 +1,1 @@
+<alert ng-repeat="message in WSAlert.messages" type="{{message.type}}" close="close($index)"><strong ng-show="message.title.length > 0">{{message.title}} </strong>{{message.text}}</alert>

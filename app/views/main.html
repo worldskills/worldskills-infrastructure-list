@@ -1,0 +1,10 @@
+<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false">
+    You don't have the required access role to use this application.
+</div>
+
+<div ng-show='auth.accessToken != null && activeRole !== false'>
+    {{activeRole}}
+    {{access}}
+</div>
