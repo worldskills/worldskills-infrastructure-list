@@ -24,7 +24,8 @@ angular
     'daterangepicker',
     'pascalprecht.translate',
     'worldskills.utils',
-    'angularFileUpload'
+    'angularFileUpload',
+    'ui.sortable'
   ])
   //.config(function ($routeProvider) {
     .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
@@ -57,6 +58,7 @@ angular
           Called when another XHR request returns with
           an error status code.          
         */
+
         if(
             (rejection.status == 400 && rejection.data.code == "2200-1012") ||            
             (rejection.status == 401 && rejection.data.code == "100-101")
@@ -131,9 +133,10 @@ angular
     data: {
       requireLoggedIn: true,
       requiredRoles: [
-          {code: 1800, role: APP_ROLES.ADMIN},
-          {code: 1800, role: APP_ROLES.MANAGER},
-          {code: 1800, role: APP_ROLES.USER}
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER },
+          {code: 2200, role: APP_ROLES.WS_MANAGER },
+          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
         ]
         
       }
@@ -146,9 +149,10 @@ angular
     data: {
       requireLoggedIn: true,
       requiredRoles: [
-          {code: 1800, role: APP_ROLES.ADMIN},
-          {code: 1800, role: APP_ROLES.MANAGER},
-          {code: 1800, role: APP_ROLES.USER}
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER },
+          {code: 2200, role: APP_ROLES.WS_MANAGER },
+          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
         ]
         
       }

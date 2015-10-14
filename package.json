@@ -1,5 +1,5 @@
 {
-  "name": "worldskills-connect",
+  "name": "worldskills-infrastructure",
   "version": "0.0.1",
   "dependencies": {
     "bower": "~1.4.1",
