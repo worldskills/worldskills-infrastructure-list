@@ -25,7 +25,8 @@
     "angular-daterangepicker": "~0.1.16",
     "ng-file-upload-shim": "~1.6.12",
     "ng-file-upload": "~1.6.12",
-    "xdomain": "~0.6.17"
+    "xdomain": "~0.6.17",
+    "angular-ui-sortable": "~0.13.4"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.1"

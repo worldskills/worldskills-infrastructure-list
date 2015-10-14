@@ -21,5 +21,4 @@ angular.module('ilApp')
     	5: { "id": 5, name: "Samples" }
     };
 
-
   });

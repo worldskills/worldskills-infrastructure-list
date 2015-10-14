@@ -1,11 +1,98 @@
 <fieldset><legend>{{selectedCategory.name}}</legend>
 
+<span class='pull-right'>
+	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
+		<span ng-show='sortable'>Sort mode ON</span>
+		<span ng-hide='sortable'>Sort mode OFF</span>
+	</button>
+</span>
+<p><br class='cb'></p>
+	<ul ui-sortable="sortableOptions" ng-model="items" class='sortableContainer list-group mainSortable'>
+		<li class='list-group-item' ng-repeat="item in items">
+			<div class='row'>
+				<div class='col-xs-12 col-sm-8 item_description'>{{item.description.text}}</div>
+				<div class='col-xs-12 col-sm-2'><small>{{item.quantity}} {{getMultiplier(item)}}</small></div>
+				<div class='col-xs-12 col-sm-2 text-right'>
+					<span ng-show='sortable' class='sortHandle btn btn-xs glyphicon glyphicon-align-justify'></span>
+					<span ng-hide='sortable' class='btn btn-xs btn-warning glyphicon glyphicon-edit'></span>
+					<span ng-hide='sortable' class='btn btn-xs btn-danger glyphicon glyphicon-remove'></span>
+				</div>								
+			</div>
+<!-- 				<div id='itemEditor' ng-show="item.id == 3">
+				<hr />
+					<div class='row'>
+	        			<div class="form-group col-xs-12 col-md-8">	        			
+		    			    <label for="description" class="control-label">Description&nbsp;<span class="required">*</span></label>
+		    			    <div class="">
+		    			        <input type="text" class="form-control" placeholder="Printing paper sheets 45x32 cm coated gloss 150gsm" id="description" value="" ng-minlength="2" name="description" required ng-model="tmp_item.description">
+		    			    </div>  		    
+		    			</div>	
+		    			<div class="form-group col-xs-12 col-md-4">	        			
+		    			    <label for="name" class="control-label">Parent item</label>
+		    			    <div class="">
+		    			        <ui-select ng-model="tmp_item.parent" theme="bootstrap">
+		        				  <ui-select-match placeholder="Select a parent, if any...">{{$select.selected.description.text}}</ui-select-match>
+		        				  <ui-select-choices repeat="item in items | filter: $select.search">
+		        				    <div ng-bind-html="item.description.text | highlight: $select.search"></div>
+		        				    <small>#{{item.id | highlight: $select.search}}</small>
+		        				  </ui-select-choices>
+		        				</ui-select>
+		    			    </div>  		    
+		    			</div>	
+		    		</div>	
 
-<ul class="list-group sortable">
-  <li class="list-group-item">This is <a href="http://rubaxa.github.io/Sortable/">Sortable</a></li>
-  <li class="list-group-item">It works with Bootstrap...</li>
-  <li class="list-group-item">...out of the box.</li>
-  <li class="list-group-item">It has support for touch devices.</li>
-  <li class="list-group-item">Just drag some elements around.</li>
-</ul>
+		    		<div class='row'>		    		
+	        			<div class="form-group col-xs-12 col-sm-4">	        			
+		    			    <label for="name" class="control-label">Quantity requested&nbsp;<span class="required">*</span></label>
+		    			    <div class="">
+		    			        <input type="text" class="form-control" placeholder="14" id="quantity" ng-minlength="2" name="quantity" required ng-model="tmp_item.quantity">
+		    			    </div>  		    
+		    			</div>	
+		    			<div class="form-group col-xs-12 col-sm-4">	        			
+		    			    <label for="name" class="control-label">Quantity multiplier&nbsp;<span class="required">*</span></label>
+		    			    <div class="">		    		
+		    			        <ui-select ng-model="tmp_item.multiplier" theme="bootstrap">
+		        				  <ui-select-match placeholder="Select a multiplier">{{$select.selected.name}}</ui-select-match>
+		        				  <ui-select-choices repeat="multiplier in multipliers | filter: $select.search">
+		        				    <div ng-bind-html="multiplier.name | highlight: $select.search"></div>
+		        				  </ui-select-choices>
+		        				</ui-select>
+		    			    </div>  		    
+		    			</div>	
+		    			<div class="form-group col-xs-12 col-sm-4" ng-show="tmp_item.multiplier.x_number_needed">	        					    			
+		    			    <label for="name" class="control-label">X number&nbsp;<span class="required">*</span></label>
+		    			    <div class="">
+		    			        <input type="text" class="form-control" placeholder="2" id="x_number" ng-minlength="2" name="x_number" required ng-model="tmp_item.x_number">
+		    			    </div>  		    
+		    			</div>	
+		    		</div>	
+		    		<div class='row'>
+		    			<div class='form-group col-xs-12'>
+		    				<button class='btn btn-success btn-md'>Save item</button>		    				
+		    				<button class='btn btn-warning btn-md'>Cancel</button>		    				
+		    			</div>
+		    		</div>
+
+		    		<br class='cb' />		   
+	            </div> -->
+			
+			<!-- child items -->
+			<!-- ng-class="{'highlightBox': sortable && item.child_items.length == 0}"  -->			
+			<ul ui-sortable="sortableOptions" ng-model="item.child_items" ng-class="{'highlightBox': sortable && item.child_items.length == 0}" class='sortableContainer list-group'>
+				<li ng-if="item.child_items.length > 0" class='list-group-item' ng-repeat="child_item in item.child_items">
+					<div class='row'>
+						<div class='col-xs-12 col-sm-8 item_description'>{{child_item.description.text}}</div>
+						<div class='col-xs-12 col-sm-2'><small>{{child_item.quantity}} {{getMultiplier(child_item)}}</small></div>
+						<div class='col-xs-12 col-sm-2 text-right'>
+							<span ng-show='sortable' class='sortHandle btn btn-xs glyphicon glyphicon-align-justify'></span>
+							<span ng-hide='sortable' class='btn btn-xs btn-warning glyphicon glyphicon-edit'></span>
+							<span ng-hide='sortable' class='btn btn-xs btn-danger glyphicon glyphicon-remove'></span>
+						</div>								
+					</div>		
+				</li>		
+			</ul>		
+			<!-- /child items -->
+
+		</li>				
+	</ul>
 </fieldset>

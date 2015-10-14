@@ -31,4 +31,12 @@
         ORGANIZER: 12
     });
 
+    ilApp.constant('MULTIPLIERS', [
+        {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
+        {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
+        {"id": "EXPERTS", "name" : "per Expert", "x_number_needed": false },
+        {"id": "PER_NUM_COMPETITORS", "name" : "per every X Competitors", "x_number_needed": true },
+        {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
+    ]);
+
 })();

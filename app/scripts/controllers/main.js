@@ -20,28 +20,30 @@ angular.module('ilApp')
 
     $scope.selectedSkill = {};
 
-    $scope.init = function(){
+    $scope.init = function(){        
         $q.when(auth.user.$promise).then(function(){
             $scope.activeRole = Auth.activeRole();
 
-            switch($scope.activeRole){
-                case 'Workshop Manager':
-                    //get skill
-                    User.getSkill().then(function(result){
-                        $scope.access.skill = result;
-                        $scope.selectedSkill = result;
-                        $state.go('skill.overview', {'skillId': result.id});
-                    });                    
-                break;
-                case 'Sector Manager':
-                break;
-                case 'Organizing Committee':
-                break;
-                case 'Admin':
-                break;
-                default:
-                break;
-            }//switch
+            if($state.current.name == 'home'){
+                switch($scope.activeRole){
+                    case 'Workshop Manager':
+                        //get skill
+                        User.getSkill().then(function(result){
+                            $scope.access.skill = result;
+                            $scope.selectedSkill = result;
+                            $state.go('skill.overview', {'skillId': result.id});
+                        });                    
+                    break;
+                    case 'Sector Manager':
+                    break;
+                    case 'Organizing Committee':
+                    break;
+                    case 'Admin':
+                    break;
+                    default:
+                    break;
+                }//switch
+            }//if
         });
     };
 
