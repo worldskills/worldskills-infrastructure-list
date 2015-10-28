@@ -50,8 +50,6 @@ module.exports = function(config) {
       'bower_components/ng-file-upload-shim/angular-file-upload-shim.js',
       'bower_components/ng-file-upload/angular-file-upload.js',
       'bower_components/xdomain/dist/xdomain.js',
-      'bower_components/jquery-ui/jquery-ui.js',
-      'bower_components/angular-ui-sortable/sortable.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

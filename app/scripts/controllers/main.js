@@ -19,17 +19,35 @@ angular.module('ilApp')
     };
 
     $scope.selectedSkill = {};
+    $scope.skill_id = 
+
+    $scope.reload = function(){
+
+        $scope.selectedSkill = $q.defer();
+
+        $scope.activeRole = Auth.activeRole();
+        User.getSkill().then(function(result){
+            $scope.selectedSkill.resolve(result);
+            $scope.selectedSkill = result;            
+        },
+        function(error){
+            WSAlert.danger(error);
+            $scope.selectedSkill.reject(error);
+        });
+
+        return $scope.selectedSkill.promise;
+    }
 
     $scope.init = function(){        
         $q.when(auth.user.$promise).then(function(){
             $scope.activeRole = Auth.activeRole();
-
             if($state.current.name == 'home'){
+
                 switch($scope.activeRole){
                     case 'Workshop Manager':
                         //get skill
                         User.getSkill().then(function(result){
-                            $scope.access.skill = result;
+                            //$scope.access.skill = result;
                             $scope.selectedSkill = result;
                             $state.go('skill.overview', {'skillId': result.id});
                         });                    
