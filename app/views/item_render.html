@@ -1,0 +1,26 @@
+<div ui-tree-handle class="tree-node tree-node-content">
+   <a class="btn btn-info btn-xs toggler" ng-if="item.child_items && item.child_items.length > 0" data-nodrag ng-click="toggle(this)"><span
+       class="glyphicon"
+       ng-class="{
+         'glyphicon-chevron-right': collapsed,
+         'glyphicon-chevron-down': !collapsed
+       }"></span></a>
+	
+	{{item.description.text}}
+
+	<a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)"><span
+       class="glyphicon glyphicon-remove"></span></a>
+
+	<a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span
+       class="glyphicon glyphicon-plus"></span></a>
+
+  <a class="pull-right btn btn-warning btn-xs" data-nodrag ng-click="editItem(this)" style="margin-right: 8px;"><span
+       class="glyphicon glyphicon-edit"></span></a>
+
+	<small class='pull-right'>Status</small>
+	<small class='pull-right'>Quantity</small>
+</div>
+ <ol ui-tree-nodes="" ng-model="item.child_items" ng-class="{hidden: collapsed}">
+   <li ng-repeat="item in item.child_items" ui-tree-node ng-include="'views/item_render.html'" ng-show="visible(item)">
+   </li>
+ </ol>

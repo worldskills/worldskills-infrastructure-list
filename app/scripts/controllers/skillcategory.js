@@ -17,51 +17,6 @@ angular.module('ilApp')
     $scope.tmp_item = {};
     $scope.items = {};
 
-    //grid options
-    $scope.gridOptions = {
-        columnDefs: [
-            { width: '10%' ,field: 'id', displayName: 'Id' },
-            { width: '60%' ,field: 'description.text', displayName: 'Description' },
-            { width: '15%' ,field: 'quantity', displayName: 'Qty' },
-            { width: '15%' ,field: 'multiplier', displayName: 'Multiplier' }
-        ],
-        enableFiltering: false,
-        enableSorting: true,
-        showTreeExpandNoChildren: false,
-        onRegisterApi: function(gridApi){
-            $scope.gridApi = gridApi;
-            $scope.gridApi.grid.registerRowsProcessor($scope.singleFilter, 200);            
-
-            // $scope.gridApi.treeBase.on.rowExpanded($scope, function(row){
-            //     $interval(function(){
-            //         $scope.nodeLoaded = true;
-            //         console.log("node loaded");
-            //     }, 2000, 1);
-            //     console.log("grid api row expanded");
-            // });
-        }
-    };
-
-    $scope.filter = function(){
-        $scope.gridApi.grid.refresh();
-    };
-
-    $scope.singleFilter = function(renderableRows){
-        var matcher = new RegExp($scope.filterValue, 'i');
-        renderableRows.forEach(function(row){
-            var match = false;            
-            
-            //description
-            if(row.entity.description.text.match(matcher)) match = true;                    
-
-            if(!match)
-                row.visible = false;
-
-
-        });
-
-        return renderableRows;
-    };
 
     $scope.initCategory = function(){
         //check that skill_id and event_id have finished loading
@@ -69,26 +24,6 @@ angular.module('ilApp')
             //get items
             Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id).then(function(result){
                 $scope.items = result;
-
-                var items = [];
-
-                angular.forEach(result, function(val, key){
-                    val.$$treeLevel = 0;
-                    items.push(val);
-
-                    if(typeof val.child_items != 'undefined'){
-                        //scan child items
-                        angular.forEach(val.child_items, function(val2, key2){
-                            //set tree level
-                            val2.$$treeLevel = 1;
-                            items.push(val2);
-                        });                                                
-                    }
-                });                
-
-                //TODO find a better way, perhaps sort differently on server side                
-
-                $scope.gridOptions.data = items;
             },
             function(error){  //or fail
                 WSAlert.danger(error); 
@@ -97,62 +32,35 @@ angular.module('ilApp')
         
     };
 
- $scope.expandAll = function(){
-    console.log($scope.gridApi);
-    $scope.gridApi.treeBase.expandAllRows();
-  };
 
     $scope.initCategory();
-    
-    var beforeSortItems = [];
 
-    $scope.sortableOptions = {
-        handle: '.sortHandle',
-        connectWith: '.sortableContainer',
-        start: function(){
-            beforeSortItems = $scope.items.slice();
-        },
-        stop: function(e, ui) {            
-            //level 0
-            for (var i in $scope.items) {
-                //set sort order
-                $scope.items[i].order = i;
+    $scope.filter = function(){
 
-                //see if any parent id's changed to 0
-                if($scope.items[i].parent_id != 0){
-                    $scope.items[i].parent_id = 0;
-                }
-
-                //level 1
-                for(var k in $scope.items[i].child_items){
-                    //set sort order
-                    $scope.items[i].child_items[k].order = k;
-
-                    //see if any parent id's changed in this level
-                    if($scope.items[i].child_items[k].parent_id != $scope.items[i].id){                        
-                        $scope.items[i].child_items[k].parent_id = $scope.items[i].id;
-                    }//if parent changed
-                }
-            }//for
-
-            $scope.logMe();        
-
-        }//stop
     };
 
-    $scope.logMe = function(){
-        for(var i= 0 ; i < $scope.items.length ; i++){
-            console.log($scope.items[i]);
-            if(typeof $scope.items[i].child_items != 'undefined' && $scope.items[i].child_items.length > 0){                                                                 
-                console.log("--- CHILD ---");
-                for(var k=0; k < $scope.items[i].child_items.length ; k++)
-                    console.log($scope.items[i].child_items[k]);
-                console.log("--- END CHILD ---")
-            }
+    $scope.visible = function(item){        
+        
+        var retval = false;
+
+        var matcher = RegExp($scope.filterValue, 'i');
+        
+        //see if item has child items that match the query     
+        if(typeof item.child_items != 'undefined'){       
+            angular.forEach(item.child_items, function(val, key){
+                retval = !($scope.filterValue && $scope.filterValue.length > 0 && !val.description.text.match(matcher));
+            });
         }
-    };
 
-    $scope.sortable = false;
+        //if my children don't match, or I didn't have any, see if I'm a match myself        
+        if(retval == false){
+            retval = !($scope.filterValue && $scope.filterValue.length > 0 && !item.description.text.match(matcher));
+        }
+
+
+        return retval;
+    };
+    
 
     // $scope.items = [
     //     { "multiply_factor": 2, "order": "1", "id": 1, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 1" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "PER_NUM_COMPETITORS", "price": 13223.21, "skill": { "id": 387 } },

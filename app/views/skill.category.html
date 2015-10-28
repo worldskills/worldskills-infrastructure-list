@@ -15,8 +15,34 @@
 
 		<input type="text" class="form-control" placeholder="Search descriptions" ng-model="filterValue" ng-change="filter()">
 		<br />
-		<button class='btn btn-xs btn-success' ng-click='expandAll()'>exp</button>
-		<div class='gridStyle' ui-grid="gridOptions" ui-grid-tree-view ui-grid-auto-resize></div>
+		
+	
+		<div class="row">
+		  <div class="col-sm-12">
+
+		  	<div class="tree-node tree-node-content tree-header">	
+				Description
+				<small class='pull-right'>Actions</small>
+				<small class='pull-right'>Status</small>
+				<small class='pull-right'>Quantity</small>
+			</div>
+
+		    <div ui-tree id="tree-root" data-max-depth="5">
+		      <ol ui-tree-nodes ng-model="items">
+		        <li ng-repeat="item in items" ui-tree-node ng-include="'views/item_render.html'" ng-show='visible(item)'></li>
+		      </ol>
+		    </div>
+		  </div>
+		
+		  <!-- <div class="col-sm-6">
+		    <div class="info">
+		      {{info}}
+		    </div>
+		    <pre class="code">{{ items | json }}</pre>
+		  </div> -->
+		</div>
+		
+
 
 	<!-- <ul ui-sortable="sortableOptions" ng-model="items" class='sortableContainer list-group mainSortable'>
 		<li class='list-group-item' ng-repeat="item in items">
