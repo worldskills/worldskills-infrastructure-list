@@ -1,13 +1,24 @@
-<fieldset><legend>{{selectedCategory.name}}</legend>
+<fieldset><legend>{{selectedCategory.name.text}}</legend>
 
 <span class='pull-right'>
 	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
 		<span ng-show='sortable'>Sort mode ON</span>
 		<span ng-hide='sortable'>Sort mode OFF</span>
 	</button>
+
+	<button type="button" ng-click="addItem();" class="btn btn-sm btn-success">
+		<i class="glyphicon glyphicon-plus">
+		</i> Add item
+	</button>		
 </span>
-<p><br class='cb'></p>
-	<ul ui-sortable="sortableOptions" ng-model="items" class='sortableContainer list-group mainSortable'>
+<p><br class='cb'></p>		
+
+		<input type="text" class="form-control" placeholder="Search descriptions" ng-model="filterValue" ng-change="filter()">
+		<br />
+		<button class='btn btn-xs btn-success' ng-click='expandAll()'>exp</button>
+		<div class='gridStyle' ui-grid="gridOptions" ui-grid-tree-view ui-grid-auto-resize></div>
+
+	<!-- <ul ui-sortable="sortableOptions" ng-model="items" class='sortableContainer list-group mainSortable'>
 		<li class='list-group-item' ng-repeat="item in items">
 			<div class='row'>
 				<div class='col-xs-12 col-sm-8 item_description'>{{item.description.text}}</div>
@@ -17,7 +28,7 @@
 					<span ng-hide='sortable' class='btn btn-xs btn-warning glyphicon glyphicon-edit'></span>
 					<span ng-hide='sortable' class='btn btn-xs btn-danger glyphicon glyphicon-remove'></span>
 				</div>								
-			</div>
+			</div> -->
 <!-- 				<div id='itemEditor' ng-show="item.id == 3">
 				<hr />
 					<div class='row'>
@@ -78,7 +89,7 @@
 			
 			<!-- child items -->
 			<!-- ng-class="{'highlightBox': sortable && item.child_items.length == 0}"  -->			
-			<ul ui-sortable="sortableOptions" ng-model="item.child_items" ng-class="{'highlightBox': sortable && item.child_items.length == 0}" class='sortableContainer list-group'>
+			<!-- <ul ui-sortable="sortableOptions" ng-model="item.child_items" ng-class="{'highlightBox': sortable && item.child_items.length == 0}" class='sortableContainer list-group'>
 				<li ng-if="item.child_items.length > 0" class='list-group-item' ng-repeat="child_item in item.child_items">
 					<div class='row'>
 						<div class='col-xs-12 col-sm-8 item_description'>{{child_item.description.text}}</div>
@@ -90,9 +101,9 @@
 						</div>								
 					</div>		
 				</li>		
-			</ul>		
+			</ul>		-->
 			<!-- /child items -->
 
-		</li>				
-	</ul>
+		<!--</li>				
+	</ul> -->
 </fieldset>

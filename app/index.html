@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="bower_components/worldskills-bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="bower_components/angular-worldskills-utils/src/spinner.css" />
     <!-- endbuild -->
@@ -25,14 +26,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <!-- bugherd -->
-    <script type='text/javascript'>
-    (function (d, t) {
-      var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      bh.type = 'text/javascript';
-      bh.src = '//www.bugherd.com/sidebarv2.js?apikey=xx7npxad4d2xcvn9ct6tga';
-      s.parentNode.insertBefore(bh, s);
-      })(document, 'script');
-    </script>
+    
     <!-- /bugherd -->
   </head>
   <body ng-app="ilApp" ng-controller="ApplicationCtrl">
@@ -135,6 +129,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     
+        console.log("Check analytics key");
       ga('create', 'UA-2224712-18', 'auto');
       ga('send', 'pageview'); 
     </script>
@@ -178,6 +173,7 @@
     <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -196,6 +192,7 @@
         <script src="scripts/directives/wsalert.js"></script>        
         <script src="scripts/services/auth.js"></script>
         <script src="scripts/controllers/skillcategory.js"></script>
+        <script src="scripts/services/items.js"></script>
         <!-- endbuild -->
 </body>
 </html>

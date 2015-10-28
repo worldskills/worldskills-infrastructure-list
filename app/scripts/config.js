@@ -8,13 +8,13 @@
     ilApp.constant('API_PEOPLE', 'http://localhost:8080/people');
     ilApp.constant('APP_ID', '2200');
     ilApp.constant('API_IMAGES', 'http://localhost:8080/images');
-    ilApp.constant('CLIENT_ID', '778a11aa2b30');
+    ilApp.constant('CLIENT_ID', '36a853ca6fd1');
     ilApp.constant('API_AUTH', 'http://localhost:8080/auth');
     ilApp.constant('AUTHORIZE_URL', 'http://localhost:10100/oauth/authorize');
     ilApp.constant('LOGOUT_URL', 'http://localhost:10100/logout');
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
-    ilApp.constant('WORLDSKILLS_CLIENT_ID', '778a11aa2b30');
+    ilApp.constant('WORLDSKILLS_CLIENT_ID', '36a853ca6fd1');
     ilApp.constant('WORLDSKILLS_API_AUTH', 'http://localhost:8080/auth');
     ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'http://localhost:10100/oauth/authorize');
 

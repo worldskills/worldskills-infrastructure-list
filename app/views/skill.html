@@ -3,14 +3,14 @@
     <!-- <button class="btn btn-info" ui-sref="home"><span ng-cloak translate>Action button if needed?</span></button> -->
 </p>
 </div>
-
+{{selectedSkill}}
 <h1>{{selectedSkill.name.text}}</h1>
 <hr class='cb' />
 <div class='row'>
 	<div class="col-sm-3 col-md-2 sidebar-right">        
          <div ng-hide="myProfile" class="list-group">                                          
             <a ui-sref-active='active' class="list-group-item" ui-sref='skill.overview({skillId: skill_id})' ng-cloak translate>OVERVIEW</a>
-            <a ng-repeat="category in categories" ui-sref-active='active' class="list-group-item" ui-sref='skill.category({skillId: skill_id, categoryId:category.id})' ng-cloak translate>{{category.name}}</a>                                            
+            <a ng-repeat="category in categories" ui-sref-active='active' class="list-group-item" ui-sref='skill.category({skillId: skill_id, categoryId:category.id})' ng-cloak translate>{{category.name.text}}</a>                                            
          </div>
      </div>
 
