@@ -25,10 +25,7 @@ angular
     'pascalprecht.translate',
     'worldskills.utils',
     'angularFileUpload',
-    'ui.sortable',
-    'ui.grid',
-    'ui.grid.treeView',
-    'ui.grid.autoResize'
+    'ui.tree'    
   ])
   //.config(function ($routeProvider) {
     .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
