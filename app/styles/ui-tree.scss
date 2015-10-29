@@ -72,4 +72,15 @@
     border-radius: 0;
 }
 
+.tree-header small.quantity{ padding-right: 5em; }
+.tree-header small.status{ padding-right: 6em; }
+.tree-header small.actions{ padding-right: 3em; }
 .tree-node-content .toggler{ margin-right: .4em;}
+
+.rotate90{
+    -webkit-transform: rotate(180deg); 
+   -moz-transform: rotate(180deg); 
+    -ms-transform: rotate(180deg); 
+     -o-transform: rotate(180deg); 
+        transform: rotate(180deg); 
+}

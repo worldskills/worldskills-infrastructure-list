@@ -195,3 +195,17 @@ a.eventLink:hover, a.contactLink:hover{ text-decoration: none; }
 .ch{ cursor: pointer; }
 
 ul.sortableContainer.highlightBox{ min-height: 25px; border: 1px dashed #dfdfdf; border-radius: 5px; }
+
+.searchContainer{ padding-right: 1em; width: 200px; position: relative; }
+.searchControl{ font-size: 85%; height: 31px;  }
+.searchIcon{     
+	position: absolute;
+    right: 23px;
+    top: 8px;
+    color: #c0c0c0;
+}
+
+.idBadge{
+	font-size: 50%;
+	color: #dfdfdf;
+}

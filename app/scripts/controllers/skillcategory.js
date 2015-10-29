@@ -23,6 +23,13 @@ angular.module('ilApp')
         $q.when($scope.selectedSkill.promise).then(function(){
             //get items
             Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id).then(function(result){
+
+                //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
+                angular.forEach(result, function(val, key){
+                    if(typeof val.child_items == 'undefined')
+                        result[key].child_items = [];
+                });
+
                 $scope.items = result;
             },
             function(error){  //or fail
@@ -38,6 +45,7 @@ angular.module('ilApp')
     $scope.filter = function(){
 
     };
+      
 
     $scope.visible = function(item){        
         
@@ -48,16 +56,28 @@ angular.module('ilApp')
         //see if item has child items that match the query     
         if(typeof item.child_items != 'undefined'){       
             angular.forEach(item.child_items, function(val, key){
-                retval = !($scope.filterValue && $scope.filterValue.length > 0 && !val.description.text.match(matcher));
+                if(!retval){
+                    retval = !($scope.filterValue && $scope.filterValue.length > 0 && !val.description.text.match(matcher));
+    
+                    //id value search
+                    if(retval == false){
+                        retval = (val.id == $scope.filterValue);
+                    }
+                }
             });
         }
 
         //if my children don't match, or I didn't have any, see if I'm a match myself        
         if(retval == false){
             retval = !($scope.filterValue && $scope.filterValue.length > 0 && !item.description.text.match(matcher));
+
+            //id value search
+            if(retval == false){
+                retval = (item.id == $scope.filterValue);
+            }
         }
 
-
+        
         return retval;
     };
     
