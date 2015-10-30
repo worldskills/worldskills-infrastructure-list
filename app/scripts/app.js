@@ -25,7 +25,8 @@ angular
     'pascalprecht.translate',
     'worldskills.utils',
     'angularFileUpload',
-    'ui.tree'    
+    'ui.tree',
+    'ngAside'  
   ])
   //.config(function ($routeProvider) {
     .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
