@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, MULTIPLIERS, Items, WSAlert) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, MULTIPLIERS, Items, WSAlert) {
     
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
@@ -16,6 +16,51 @@ angular.module('ilApp')
     $scope.multipliers = MULTIPLIERS;
     $scope.tmp_item = {};
     $scope.items = {};
+
+    //sidebar
+    // $scope.editItem = function(item){
+    //     var asideInstance = $aside.open({
+    //       templateUrl: 'views/editRequestedItemAside.html',
+    //       controller: 'editRequestedItemCtrl',
+    //       placement: 'left',
+    //       size: 'lg',
+    //       scope: $scope
+    //     });
+    // };
+
+    $scope.asideState = {
+      open: false
+    };
+    
+    $scope.editItem = function(item) {
+      $scope.asideState = {
+        open: true
+      };
+      
+      function postClose() {
+        $scope.asideState.open = false;
+      }
+      
+      $aside.open({
+        templateUrl: 'views/editRequestedItemAside.html',
+        placement: 'right',
+        size: 'md',
+        scope: $scope,
+        backdrop: true,
+        controller: 'editRequestedItemCtrl'
+        // controller: function($scope, $modalInstance) {
+        //   $scope.ok = function(e) {
+        //     $modalInstance.close();
+        //     e.stopPropagation();
+        //   };
+        //   $scope.cancel = function(e) {
+        //     $modalInstance.dismiss();
+        //     e.stopPropagation();
+        //   };
+        // }
+      }).result.then(postClose, postClose);
+  };
+
 
 
     $scope.initCategory = function(){
@@ -113,4 +158,11 @@ angular.module('ilApp')
         return retval;
     };
 
-  });
+  })
+.directive('requested', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: 'views/item_render.html'    
+  }
+});

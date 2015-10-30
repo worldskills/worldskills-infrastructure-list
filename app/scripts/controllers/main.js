@@ -19,16 +19,18 @@ angular.module('ilApp')
     };
 
     $scope.selectedSkill = {};
-    $scope.skill_id = 
+    $scope.skill_id, $scope.event_id;
 
     $scope.reload = function(){
-
         $scope.selectedSkill = $q.defer();
 
         $scope.activeRole = Auth.activeRole();
         User.getSkill().then(function(result){
-            $scope.selectedSkill.resolve(result);
-            $scope.selectedSkill = result;            
+            $scope.selectedSkill.resolve(result);            
+            $scope.selectedSkill = result;       
+
+            $scope.skill_id = $scope.selectedSkill.id;
+            $scope.event_id = $scope.selectedSkill.event.id;     
         },
         function(error){
             WSAlert.danger(error);
@@ -46,11 +48,11 @@ angular.module('ilApp')
                 switch($scope.activeRole){
                     case 'Workshop Manager':
                         //get skill
-                        User.getSkill().then(function(result){
+                        $scope.reload().then(function(result){
                             //$scope.access.skill = result;
                             $scope.selectedSkill = result;
-                            $state.go('skill.overview', {'skillId': result.id});
-                        });                    
+                            $state.go('skill.overview', {'skillId': result.id});                        
+                        });
                     break;
                     case 'Sector Manager':
                     break;

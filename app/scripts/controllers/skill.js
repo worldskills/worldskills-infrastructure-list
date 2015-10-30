@@ -17,8 +17,7 @@ angular.module('ilApp')
     if(!$scope.selectedSkill.id){
         //if empty reload from main.js
         $scope.reload().then(function(selectedSkill){
-            $scope.skill_id = selectedSkill.id;
-            $scope.event_id = selectedSkill.event.id;
+            //no need to do anything
         },
         function(error){
             WSAlert.danger(error);

@@ -17,8 +17,7 @@
 		<p><br class='cb'></p>		
 
 		<br />
-		
-	
+				
 		<div class="row">
 		  <div class="col-sm-12">
 
@@ -30,10 +29,11 @@
 			</div>
 
 		    <div ui-tree id="tree-root" data-max-depth="2">
-		      <ol ui-tree-nodes ng-model="items">
+		      <ol ui-tree-nodes ng-model="items">		      	
 		        <li ng-repeat="item in items" ui-tree-node ng-include="'views/item_render.html'" ng-show='visible(item)'></li>
 		      </ol>
 		    </div>
 		  </div>		
 		</div>
 </fieldset>
+
