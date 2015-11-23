@@ -54,6 +54,7 @@ module.exports = function(config) {
       'bower_components/angular-aside/dist/js/angular-aside.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
       'bower_components/angular-confirm-modal/angular-confirm.min.js',
+      'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
