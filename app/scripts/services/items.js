@@ -21,7 +21,7 @@ angular.module('ilApp')
    			Items.categories = result.data.categories;
    		},
    		function(error){
-   			Items.categories.reject("Could not fetch categories: " + error);
+   			Items.categories.reject("Could not fetch categories: " + error.data.user_msg);
    		});
 
    		return Items.categories.promise;
@@ -35,11 +35,69 @@ angular.module('ilApp')
    			Items.data = result.data.requested_items;
    		},
    		function(error){
-   			Items.data.reject("Could not get items: " + error);   			
+   			Items.data.reject("Could not get items: " + error.data.user_msg);   			
    		});
 
    		return Items.data.promise;
    	};
+
+      Items.saveItem = function(item, eventId){
+         var deferred = $q.defer();
+
+         $http.put(API_IL + "/events/" + eventId + "/requested_items/" + item.id, item).then(function(result){
+            deferred.resolve(result.data);
+         },
+         function(error){
+            deferred.reject("Could not save requested item: " + error.data.user_msg);
+         });
+
+         return deferred.promise;
+      };
+
+      Items.removeItem = function(item, eventId){
+         var deferred = $q.defer();
+
+         //deleting children automatically in API if the parent gets deleted
+         $http.delete(API_IL + "/events/" + eventId + "/requested_items/" + item.id).then(function(result){
+            deferred.resolve(result.data);
+         },
+         function(error){
+            deferred.reject("Could not remove requested item: " + error.data.user_msg);
+         });
+
+         return deferred.promise;
+      };
+
+      Items.addSuppliedItem = function(item){
+// 
+      };
+
+      Items.addItem = function(item, eventId){
+         var deferred = $q.defer();
+
+         $http.post(API_IL + "/events/" + eventId + "/requested_items/", item).then(function(result){
+            deferred.resolve(result.data);
+         },
+         function(error){
+            deferred.reject(error.data.user_msg);
+         });  
+
+         return deferred.promise;
+
+      };
+
+      Items.moveItem = function(eventId, skillId, itemId, parentId, index){
+         var deferred = $q.defer();         
+
+         $http.put(API_IL + "/events/" + eventId + "/requested_items/" + itemId + "/move?skill="+skillId+"&parent="+parentId+"&index="+index, {}).then(function(result){
+            deferred.resolve(result);
+         },
+         function(error){
+            deferred.reject(error.data.user_msg);
+         });
+
+         return deferred.promise;
+      };
 
    	return Items;
 

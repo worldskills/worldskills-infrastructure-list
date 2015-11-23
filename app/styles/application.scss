@@ -210,4 +210,20 @@ ul.sortableContainer.highlightBox{ min-height: 25px; border: 1px dashed #dfdfdf;
 	color: #dfdfdf;
 }
 
-.editForm label{ font-size: 85%; }
+.addForm label, .editForm label{ font-size: 85%; }
+
+.angucomplete-description{ font-size: 85%; font-style: italic; }
+/*.angucomplete-title{ font-size: 90%; font-weight: bold; }*/
+
+hr.edit-divider{ margin-top: 0; margin-bottom: 10px; }
+
+.aside{
+	padding: 2em;
+}
+
+/*.ng-invalid, .ng-invalid-required{
+	background-color: #a94442;
+	color: #a94442;
+}*/
+
+.smallText{ font-size: 75%; }

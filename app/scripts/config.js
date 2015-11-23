@@ -39,4 +39,6 @@
         {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
     ]);
 
+    ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
+
 })();

@@ -1,0 +1,54 @@
+<fieldset><legend>Overview</legend>
+
+<div class='row'>
+	<div class='col col-xs-12 col-sm-6'>
+		<div class='panel panel-default'>
+			<div class='panel-heading'>Contact details</div>
+			<div class='panel-body'>
+				<table class='table table-striped'>
+					<thead>
+						<tr>
+							<th>Position</th>
+							<th>Name</th>
+							<th>Email</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="n in [1, 2, 3, 4, 5] track by $index">
+							<td>Workshop Manager</td>
+							<td>Person {{n}}</td>
+							<td>person_{{n}}@example.com</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>			
+		</div>
+	</div>
+	<div class='col col-xs-12 col-sm-6'>
+		<div class='panel panel-default'>
+			<div class='panel-heading'>Progress</div>
+			<div class='panel-body'>
+				<div class="progress">
+				  <div class="progress-bar progress-bar-success" style="width: 60%">
+				    <span uib-tooltip="Supplied" tooltip-placement="top" tooltip-trigger="mouseenter" class="">Supplied</span>
+				  </div>
+				  <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 25%">
+				    <span uib-tooltip="Confirmed" tooltip-placement="top" tooltip-trigger="mouseenter" class="">Confirmed</span>
+				  </div>
+				  <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: 15%">
+				    <span uib-tooltip="Waiting" tooltip-placement="top" tooltip-trigger="mouseenter" class="">Waiting</span>
+				  </div>
+				</div>
+			</div>			
+		</div>
+
+		<div class='panel panel-default'>
+			<div class='panel-heading'>Reports</div>
+			<div class='panel-body'>
+				Reports...
+			</div>			
+		</div>
+	</div>
+</div>
+
+</fieldset>

@@ -17,22 +17,29 @@
 		<p><br class='cb'></p>		
 
 		<br />
-				
-		<div class="row">
-		  <div class="col-sm-12">
+		
+		<ws-spinner class='bigSpinner' ng-show='loading.addItem'></ws-spinner>
+		<div class="row" ng-hide="loading.addItem">
+
+		  <div class="col-sm-12" ng-hide="items.length > 0">
+		  	<div class='alert alert-warning'>
+		    	<p><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
+		    </div>
+		  </div>
+		  <div class="col-sm-12" ng-show="items.length > 0">
 
 		  	<div class="tree-node tree-node-content tree-header">	
 				Description
 				<small class='actions pull-right'>Actions</small>
-				<small class='status pull-right'>Status</small>
 				<small class='quantity pull-right'>Quantity</small>
+				<small class='status pull-right'>Status</small>
 			</div>
 
-		    <div ui-tree id="tree-root" data-max-depth="2">
+		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="2">
 		      <ol ui-tree-nodes ng-model="items">		      	
-		        <li ng-repeat="item in items" ui-tree-node ng-include="'views/item_render.html'" ng-show='visible(item)'></li>
+		        <li ng-repeat="item in items track by item.id" ui-tree-node ng-include="'views/item_render.html'" ng-if='visible(item)'></li>
 		      </ol>
-		    </div>
+		    </div>		    
 		  </div>		
 		</div>
 </fieldset>
