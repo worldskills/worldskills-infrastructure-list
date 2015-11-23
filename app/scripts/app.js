@@ -28,7 +28,8 @@ angular
     'ui.tree',
     'ngAside',
     'angucomplete-alt',
-    'angular-confirm'
+    'angular-confirm',
+    'infinite-scroll'
   ])
   //.config(function ($routeProvider) {
     .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {

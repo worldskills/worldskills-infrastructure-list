@@ -27,10 +27,10 @@ angular.module('ilApp')
    		return Items.categories.promise;
    	};
 
-   	Items.getItems = function(categoryId, skillId, eventId){
+   	Items.getItems = function(categoryId, skillId, eventId, limit, offset){
    		Items.data = $q.defer();
    		
-   		$http.get(API_IL + "/events/" + eventId + "/skills/" + skillId + "/requested_items?category=" + categoryId).then(function(result){
+   		$http.get(API_IL + "/events/" + eventId + "/skills/" + skillId + "/requested_items?category=" + categoryId + "&limit=" + limit + "&offset=" + offset).then(function(result){
    			Items.data.resolve(result.data.requested_items);
    			Items.data = result.data.requested_items;
    		},

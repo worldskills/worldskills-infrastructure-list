@@ -12,7 +12,11 @@ angular.module('ilApp')
     
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
-    $scope.loading.item = false;
+    $scope.loading = {
+        initial: true,
+        more: false
+    };
+   
 
     $scope.multipliers = MULTIPLIERS;
     $scope.tmp_item = {};
@@ -20,6 +24,8 @@ angular.module('ilApp')
     $scope.activeItem = false;
     $scope.suppliedItem = {};
     $scope.searchAPI = false;
+    $scope.limit = 25;
+    $scope.offset = 0;
 
     $scope.moveItem = function(itemId, parentId, position){
         console.log("item %d, parent %d, position %d", itemId, parentId, position);
@@ -164,7 +170,7 @@ angular.module('ilApp')
             $scope.searchAPI = API_IL + "/events/" + $scope.event_id + "/supplied_items/?search=";
 
             //get items
-            Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id).then(function(result){
+            Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset).then(function(result){
 
                 //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
                 angular.forEach(result, function(val, key){
@@ -173,6 +179,7 @@ angular.module('ilApp')
                 });
 
                 $scope.items = result;
+                $scope.loading.initial = false;
                 deferred.resolve();
             },
             function(error){  //or fail
@@ -183,6 +190,32 @@ angular.module('ilApp')
 
         return deferred.promise;
         
+    };
+
+    $scope.more = function(){
+        //stop if already loading
+
+        if($scope.loading.initial || $scope.loading.more || (Items.data != 'undefined' && typeof Items.data == 'promise'))
+            return;
+
+        $scope.offset += $scope.limit;
+        $scope.loading.more = true;
+
+        Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset).then(function(result){
+            //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
+                angular.forEach(result, function(val, key){
+                    if(typeof val.child_items == 'undefined')
+                        val.child_items = [];
+
+                    $scope.items.push(val);                                        
+                });                                
+                
+                $scope.loading.more = false;
+        },
+        function(error){
+            WSAlert.danger(error);            
+            $scope.loading.more = false;
+        });
     };
 
 
