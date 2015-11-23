@@ -1,0 +1,114 @@
+<div class='aside'>
+	<pre>
+		{{item}}
+		----------
+		{{suppliedItem}}
+		
+	</pre>
+	<fieldset><legend>Add new item</legend>
+		<form name='addForm'>
+		<div class='well'>
+      <div class="form-group addForm">
+        <label class='control-label'>Description</label>
+        <!-- <input type="text" class="input-sm form-control" placeholder="Description" ng-model='item.description.text'> -->
+        <angucomplete-alt id="id"
+                  placeholder="Description of the item"
+                  pause="400"
+                  selected-object="suppliedItem"
+                  remote-url="{{searchAPI}}"
+                  remote-url-request-with-credentials="true"
+                  remote-url-data-field="supplied_items"
+                  title-field="description.text"
+                  description-field="make"
+                  minlength="3"
+                  search-fields="description.text"
+                  disable-input="disableInput"                  
+                  focus-first="true"
+                  override-suggestions="true"
+                  field-required="true"
+                  text-searching="Searching for items in cataloque..."
+                  text-no-results="No existing items, hit return key to add as a new item."  
+                  input-class="form-control form-control-small has-feedback"/>
+      </div>     
+      
+
+      <div class='form-group addForm' ng-if="suppliedItem.originalObject.id">
+      	<div class='panel panel-default'>
+      		<div class='panel-heading smallText'><strong>Supplied Item Details</strong></div>
+      		<div class='panel-body'>
+      			<table class='table smallText'>
+      				<thead>
+      					<tr>
+      						<th>Description</th>
+      						<th>Make</th>
+      						<th>Model</th>
+      						<th>Status</th>
+      					</tr>
+      				</thead>
+      				<tbody>
+      					<tr>
+      						<td>{{suppliedItem.originalObject.description.text}}</td>
+      						<td>{{suppliedItem.originalObject.make}}</td>
+      						<td>{{suppliedItem.originalObject.model}}</td>
+      						<td>{{suppliedItem.originalObject.status.text}}</td>
+      					</tr>
+      				</tbody>
+      			</table>
+      			
+		      	<div class='alert alert-info smallText'>
+		      		This is an item already created by the organizer, or an item already used in another skill.<br />
+		      		If this doesn't match your needs, please use a unique description to create a new item.<br /><br />
+		      		<button ng-show="disableInput" ng-click="rename()" class='btn btn-xs btn-warning'>Rename item</button>
+      			</div>
+      		</div>
+      	</div>
+      	<hr>
+      </div>
+
+      <div class='row'>        
+          <div class='col col-sm-12 col-md-4'>
+            <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
+              <label class='control-label'>Quantity</label>
+              <input name="quantity" type="number" class="input-sm form-control" placeholder="Quantity" ng-model='item.quantity' required="Quantity is missing" ng-required="true">
+              <span ng-if="!addForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
+              <span ng-if="addForm.quantity.$dirty && addForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>        
+            </div>
+          </div>
+          <div class='col col-sm-12 col-md-4'>
+            <div class="form-group addForm has-feedback has-success">
+              <label class='control-label'>Multiplier</label>
+              <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
+              <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
+            </div>
+          </div>          
+          <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(item.multiplier)">
+            <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.multiply_factor.$error.required, 'has-success': !addForm.multiply_factor.$error.required}">
+              <label class='control-label'>Multiply factor</label>
+              <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true">
+              <span ng-if="!addForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
+              <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>        
+            </div>
+          </div>
+    </div>
+    
+    <div class="form-inline">
+      <div class="form-group addForm has-feedback has-success">
+        <label class='sr-only'>Estimated price</label>
+        <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
+        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
+        
+      </div>  
+      <div data-nodrag class="checkbox addForm">
+        <label>
+          <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
+        </label>
+      </div>
+    </div>
+      
+    </div> <!-- well -->
+    <button ng-disabled="addForm.$error.required || !suppliedItem.originalObject" ng-click="addItem();" class='btn btn-sm btn-success'>Add item</button>
+    <button ng-click="cancel();" class='btn btn-sm btn-warning'>Cancel</button>
+    </form>
+
+	</fieldset>
+</div>

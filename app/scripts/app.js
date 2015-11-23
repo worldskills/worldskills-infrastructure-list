@@ -26,7 +26,9 @@ angular
     'worldskills.utils',
     'angularFileUpload',
     'ui.tree',
-    'ngAside'  
+    'ngAside',
+    'angucomplete-alt',
+    'angular-confirm'
   ])
   //.config(function ($routeProvider) {
     .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {

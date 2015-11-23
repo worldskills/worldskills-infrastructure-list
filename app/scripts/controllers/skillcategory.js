@@ -8,31 +8,128 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, MULTIPLIERS, Items, WSAlert) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, MULTIPLIERS, Items, $confirm, WSAlert, API_IL) {
     
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
+    $scope.loading.item = false;
 
     $scope.multipliers = MULTIPLIERS;
     $scope.tmp_item = {};
     $scope.items = {};
+    $scope.activeItem = false;
+    $scope.suppliedItem = {};
+    $scope.searchAPI = false;
 
-    //sidebar
-    // $scope.editItem = function(item){
-    //     var asideInstance = $aside.open({
-    //       templateUrl: 'views/editRequestedItemAside.html',
-    //       controller: 'editRequestedItemCtrl',
-    //       placement: 'left',
-    //       size: 'lg',
-    //       scope: $scope
-    //     });
-    // };
+    $scope.moveItem = function(itemId, parentId, position){
+        console.log("item %d, parent %d, position %d", itemId, parentId, position);
+        Items.moveItem($scope.event_id, $scope.skill_id, itemId, parentId, position).then(function(result){
+            console.log("Item moved!");
+        },
+        function(error){
+            $scope.initCategory();
+            $confirm({
+                title: "Error",
+                text: "We were unable to move the item, we are now reloading the items, please try again.",            
+                ok: "Ok, I'll try again"
+            },
+            {
+               template: '<div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>' +
+                  '<div class="modal-body">{{data.text}}</div>' +
+                  '<div class="modal-footer">' +
+                  '<button class="btn btn-primary" ng-click="ok()">{{data.ok}}</button>' +
+                  '</div>'
+            });
+        });
+    };
+
+    $scope.treeOptions = {       
+        dropped: function(event){
+            console.log(event);
+
+            //find out id of the item in question
+            var itemId = event.source.nodeScope.$modelValue.id;
+            var position = event.dest.index;
+            var parentId = 0;
+
+            //find out if depth changed, and which way
+            //from level 0 to level 1
+            if(event.source.nodesScope.depth() < event.dest.nodesScope.depth()){
+                var parentId = event.dest.nodesScope.$parent.$modelValue.id;
+            }
+            //from level 1 to level 0
+            else if (event.source.nodesScope.depth() > event.dest.nodesScope.depth()){ 
+                //parent id already zero, no need to do anything
+            }
+            //no depth change, just reorder
+            else{                                       
+                //see if the item has a parent
+                if(event.source.nodesScope.depth() != 0){                
+                    var parentId = event.dest.nodesScope.$parent.$modelValue.id;
+                }
+            }
+
+            $scope.moveItem(itemId, parentId, position);
+        }
+    };
+   
 
     $scope.asideState = {
       open: false
     };
+
+    $scope.editItem = function(item, itemIndex){
+        if($scope.activeItem == item.id) $scope.activeItem = false;
+        else{
+            $scope.activeItem = item.id;
+        }
+    };
+
+    $scope.saveItem = function(item, itemIndex){
+        Items.saveItem(item, $scope.event_id).then(function(result){            
+            $scope.activeItem = false;
+        },
+        function(error){
+            WSAlert.danger(error);
+        });
+    };
+
+    $scope.removeItem = function(item, itemScope){
+        
+        //confirm and remove children too
+        $confirm({
+            title: "Delete item",
+            text: "Are you sure, this will also remove any potential child-items?"
+        }).then(function(){
+            Items.removeItem(item, $scope.event_id).then(function(result){
+
+                //remove from scope
+                itemScope.remove();
+                
+                //TODO cleanup old code once proven the above works
+                //check if the item has a parent        
+                // var parent_id = (typeof item.parent_id != 'undefined') ? item.parent_id : false;
+        
+                // if(parent_id > 0){
+                //     angular.forEach($scope.items, function(val, key){
+                //         if(val.id == parent_id){ //corrent parent found                    
+                //             $scope.items[key].child_items.splice(itemIndex, 1);
+                //         }
+                //     });
+                // }
+                // else $scope.items.splice(itemIndex, 1);
+            }),
+            function(error){
+                WSAlert.danger(error);
+            };        
+        });        
+
+
+    };
     
-    $scope.editItem = function(item) {
+    $scope.addItem = function() {
+        //item, itemIndex
+        
       $scope.asideState = {
         open: true
       };
@@ -42,30 +139,30 @@ angular.module('ilApp')
       }
       
       $aside.open({
-        templateUrl: 'views/editRequestedItemAside.html',
+        templateUrl: 'views/addRequestedItemAside.html',
         placement: 'right',
-        size: 'md',
+        size: 'lg',
         scope: $scope,
-        backdrop: true,
-        controller: 'editRequestedItemCtrl'
-        // controller: function($scope, $modalInstance) {
-        //   $scope.ok = function(e) {
-        //     $modalInstance.close();
-        //     e.stopPropagation();
-        //   };
-        //   $scope.cancel = function(e) {
-        //     $modalInstance.dismiss();
-        //     e.stopPropagation();
-        //   };
-        // }
+        backdrop: true,        
+        controller: 'addRequestedItemCtrl'        
       }).result.then(postClose, postClose);
   };
 
 
 
     $scope.initCategory = function(){
+        
+        var deferred = $q.defer();
+
         //check that skill_id and event_id have finished loading
         $q.when($scope.selectedSkill.promise).then(function(){
+
+            //reinitialize category var
+            $scope.selectedCategory = $scope.categories[$scope.categoryId];
+            
+            //init search url
+            $scope.searchAPI = API_IL + "/events/" + $scope.event_id + "/supplied_items/?search=";
+
             //get items
             Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id).then(function(result){
 
@@ -76,11 +173,15 @@ angular.module('ilApp')
                 });
 
                 $scope.items = result;
+                deferred.resolve();
             },
             function(error){  //or fail
                 WSAlert.danger(error); 
+                deferred.reject();
             });
         });
+
+        return deferred.promise;
         
     };
 
@@ -125,43 +226,34 @@ angular.module('ilApp')
         
         return retval;
     };
+
+    $scope.factorNeeded = function(multiplierId){
+      var retval = false;
+
+      angular.forEach($scope.multipliers, function(val){
+        if(val.id == multiplierId && val.x_number_needed === true) retval = true;
+      });
+
+      return retval;
+    };
     
 
-    // $scope.items = [
-    //     { "multiply_factor": 2, "order": "1", "id": 1, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 1" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "PER_NUM_COMPETITORS", "price": 13223.21, "skill": { "id": 387 } },
-    //     { "order": "2", "id": 2, "child_items": [
-    //         { "order": "5", "id": 5, "parent_id": 2, "description": { "lang_code": "en", "text": "Hoverboard 5" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "COMPETITORS", "price": 13223.21, "skill": { "id": 387 } },
-    //         { "multiply_factor": 10, "order": "6", "id": 6, "parent_id": 2, "description": { "lang_code": "en", "text": "Hoverboard 6" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "PER_NUM_COMPETITORS", "price": 13223.21, "skill": { "id": 387 } },
-    //         { "order": "7", "id": 7, "parent_id": 2, "description": { "lang_code": "en", "text": "Hoverboard 7" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //         { "order": "8", "id": 8, "parent_id": 2, "description": { "lang_code": "en", "text": "Hoverboard 8" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     ], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 2" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     { "order": "3", "id": 3, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 3" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } }
-    //     // { "id": 4, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 4" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },        
-    //     // { "id": 9, "child_items": [], "parent_id": 8, "description": { "lang_code": "en", "text": "Hoverboard 9" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 10, "child_items": [], "parent_id": 8, "description": { "lang_code": "en", "text": "Hoverboard 10" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 11, "child_items": [], "parent_id": 8, "description": { "lang_code": "en", "text": "Hoverboard 11" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 12, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 12" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 13, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 13" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 14, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 14" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 15, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 15" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 16, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 16" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 17, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 17" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 18, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 18" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } },
-    //     // { "id": 19, "child_items": [], "parent_id": 0, "description": { "lang_code": "en", "text": "Hoverboard 19" }, "category": { "id": 1 }, "quantity": 4, "multiplier": "SKILL", "price": 13223.21, "skill": { "id": 387 } }
-    // ];
+    $scope.getQuantity = function(item){
+      return "15 per skill";
 
-
-    $scope.getMultiplier = function(item){
-        var retval = "";
-        var multiplier = "";        
-
-        return retval;
+      // if(factorNeeded){
+      //   return "";
+      // }
+      // else{
+      //   return item.quantity + " " + item.multiplier;
+      
     };
 
   })
-.directive('requested', function(){
+.directive('requestedItem', function(){
   return {
-    restrict: 'E',
+    restrict: 'EA',
+    scope: { item: '=item' },
     replace: true,
     templateUrl: 'views/item_render.html'    
   }
