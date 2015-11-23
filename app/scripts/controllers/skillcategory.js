@@ -13,7 +13,7 @@ angular.module('ilApp')
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
     $scope.loading = {
-        initial: true,
+        initial: true,        
         more: false
     };
    
@@ -26,6 +26,7 @@ angular.module('ilApp')
     $scope.searchAPI = false;
     $scope.limit = 25;
     $scope.offset = 0;
+    $scope.canceler = false;
 
     $scope.moveItem = function(itemId, parentId, position){
         console.log("item %d, parent %d, position %d", itemId, parentId, position);
@@ -49,7 +50,10 @@ angular.module('ilApp')
         });
     };
 
-    $scope.treeOptions = {       
+    $scope.treeOptions = {     
+        accept: function(sourceNodeScope, destNodesScope, destIndex){
+            return $scope.movingEnabled;
+        },
         dropped: function(event){
             console.log(event);
 
@@ -160,6 +164,9 @@ angular.module('ilApp')
         
         var deferred = $q.defer();
 
+        if($scope.canceler.promise) $scope.canceler.resolve();
+        $scope.canceler = $q.defer();
+
         //check that skill_id and event_id have finished loading
         $q.when($scope.selectedSkill.promise).then(function(){
 
@@ -170,7 +177,7 @@ angular.module('ilApp')
             $scope.searchAPI = API_IL + "/events/" + $scope.event_id + "/supplied_items/?search=";
 
             //get items
-            Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset).then(function(result){
+            Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function(result){
 
                 //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
                 angular.forEach(result, function(val, key){
@@ -192,16 +199,36 @@ angular.module('ilApp')
         
     };
 
-    $scope.more = function(){
-        //stop if already loading
+    $scope.filter = function(){
+        if($scope.searchAPI = false) return;
+        $scope.loading.initial = true;
+        $scope.initCategory();
+    };
 
-        if($scope.loading.initial || $scope.loading.more || (Items.data != 'undefined' && typeof Items.data == 'promise'))
+    $scope.clearSearchTerms = function(){
+        $scope.filterValue = '';
+        $scope.loading.initial = true;
+        $scope.initCategory();
+    };
+
+    $scope.isLoading = function(){
+        return $scope.loading.initial || $scope.loading.more || (Items.data != 'undefined' && typeof Items.data == 'promise')
+    };
+
+    $scope.more = function(){
+
+        //stop if already loading
+        if($scope.isLoading())
             return;
+
+        //canceler
+        if($scope.canceler.promise) $scope.canceler.resolve();
+            $scope.canceler = $q.defer();
 
         $scope.offset += $scope.limit;
         $scope.loading.more = true;
 
-        Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset).then(function(result){
+        Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, '', $scope.canceler).then(function(result){
             //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
                 angular.forEach(result, function(val, key){
                     if(typeof val.child_items == 'undefined')
@@ -220,45 +247,41 @@ angular.module('ilApp')
 
 
     $scope.initCategory();
-
-    $scope.filter = function(){
-
-    };
       
 
-    $scope.visible = function(item){        
+    // $scope.visible = function(item){        
         
-        var retval = false;
+    //     var retval = false;
 
-        var matcher = RegExp($scope.filterValue, 'i');
+    //     var matcher = RegExp($scope.filterValue, 'i');
         
-        //see if item has child items that match the query     
-        if(typeof item.child_items != 'undefined'){       
-            angular.forEach(item.child_items, function(val, key){
-                if(!retval){
-                    retval = !($scope.filterValue && $scope.filterValue.length > 0 && !val.description.text.match(matcher));
+    //     //see if item has child items that match the query     
+    //     if(typeof item.child_items != 'undefined'){       
+    //         angular.forEach(item.child_items, function(val, key){
+    //             if(!retval){
+    //                 retval = !($scope.filterValue && $scope.filterValue.length > 0 && !val.description.text.match(matcher));
     
-                    //id value search
-                    if(retval == false){
-                        retval = (val.id == $scope.filterValue);
-                    }
-                }
-            });
-        }
+    //                 //id value search
+    //                 if(retval == false){
+    //                     retval = (val.id == $scope.filterValue);
+    //                 }
+    //             }
+    //         });
+    //     }
 
-        //if my children don't match, or I didn't have any, see if I'm a match myself        
-        if(retval == false){
-            retval = !($scope.filterValue && $scope.filterValue.length > 0 && !item.description.text.match(matcher));
+    //     //if my children don't match, or I didn't have any, see if I'm a match myself        
+    //     if(retval == false){
+    //         retval = !($scope.filterValue && $scope.filterValue.length > 0 && !item.description.text.match(matcher));
 
-            //id value search
-            if(retval == false){
-                retval = (item.id == $scope.filterValue);
-            }
-        }
+    //         //id value search
+    //         if(retval == false){
+    //             retval = (item.id == $scope.filterValue);
+    //         }
+    //     }
 
         
-        return retval;
-    };
+    //     return retval;
+    // };
 
     $scope.factorNeeded = function(multiplierId){
       var retval = false;

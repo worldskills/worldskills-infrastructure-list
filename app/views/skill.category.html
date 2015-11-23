@@ -18,16 +18,27 @@
 
 		<br />
 		
-		<ws-spinner class='bigSpinner' ng-show='loading.addItem'></ws-spinner>
+		<ws-spinner class='bigSpinner' ng-if='loading.addItem'></ws-spinner>
+		<ws-spinner class='bigSpinner' ng-if='loading.initial'></ws-spinner>
+		
+		<!-- notifications for no items -->
 		<div class="row" ng-hide="loading.addItem">
-
-		  <div class="col-sm-12" ng-hide="items.length > 0">
+		  <div class="col-sm-12" ng-hide="items.length > 0 && !loading.initial">
 		  	<div class='alert alert-warning'>
-		    	<p><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
+		    	<p ng-if="filterValue.length > 0"><span class='glyphicon glyphicon-info-sign'></span> Search didn't return any results<br /> <a ng-click="clearSearchTerms();">Clear search terms</a></p>
+		    	<p ng-if="filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
 		    </div>
 		  </div>
-		  <div class="col-sm-12" ng-show="items.length > 0">
 
+		  <div class="col-sm-12" ng-if="filterValue.length > 0">
+		  	<div class='alert alert-info'>
+		    	<p><small><span class='glyphicon glyphicon-info-sign'></span> Important: You can't sort items while in search mode. <a ng-click="clearSearchTerms();">Clear search terms</a></small></p>
+		    </div>
+		  </div>
+
+
+		  <!-- tree of items -->
+		  <div class="col-sm-12" ng-show="items.length > 0">
 		  	<div class="tree-node tree-node-content tree-header">	
 				Description
 				<small class='actions pull-right'>Actions</small>
@@ -37,10 +48,10 @@
 
 		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="2">
 		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items' infinite-scroll-distance='1'>		      	
-		        <li ng-repeat="item in items track by item.id" ui-tree-node ng-include="'views/item_render.html'" ng-if='visible(item)'></li>
+		        <li ng-repeat="item in items track by item.id" ui-tree-node ng-include="'views/item_render.html'"></li>
 		      </ol>
 		    </div>		    
-		    <ws-spinner class='bigSpinner' ng-if='loading.more'></ws-spinner>
+		    <ws-spinner ng-if='loading.more'></ws-spinner>
 		  </div>		
 		</div>
 </fieldset>
