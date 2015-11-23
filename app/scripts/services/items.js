@@ -71,18 +71,37 @@ angular.module('ilApp')
       };
 
       Items.addSuppliedItem = function(item){
-// 
       };
 
       Items.addItem = function(item, eventId){
          var deferred = $q.defer();
 
-         $http.post(API_IL + "/events/" + eventId + "/requested_items/", item).then(function(result){
-            deferred.resolve(result.data);
+         var api = API_IL + "/events/" + eventId
+         var supplied_item = {
+            "event": { id: eventId},
+            "status": { id: 1 },             
+            "description": item.description
+         };
+         
+         //add supplied item first
+         $http.post(api + "/supplied_items/", supplied_item).then(function(result){
+            var new_supplied_item = result;
+
+            //set id of the newly created supplied item
+            item.supplied_item = {id: new_supplied_item.data.id};
+
+            $http.post(api + "/requested_items/", item).then(function(result){
+               deferred.resolve(result.data);
+            },
+            function(error){
+               //delete supplied item orphan
+               $http.delete(api + "/supplied_items/" + new_supplied_item.data.id);
+               deferred.reject("Could not create a supplied item, please try again. " + error.data.user_msg);
+            });  
          },
          function(error){
-            deferred.reject(error.data.user_msg);
-         });  
+            deferred.reject("Could not create a requested item: " + error.data.user_msg);
+         });         
 
          return deferred.promise;
 
