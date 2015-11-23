@@ -52,7 +52,7 @@ angular.module('ilApp')
 
     $scope.treeOptions = {     
         accept: function(sourceNodeScope, destNodesScope, destIndex){
-            return $scope.movingEnabled;
+            return (typeof $scope.filterValue == 'undefined' || $scope.filterValue == '') ? true : false;
         },
         dropped: function(event){
             console.log(event);

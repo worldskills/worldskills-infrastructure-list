@@ -28,14 +28,13 @@ angular.module('ilApp')
 
     $scope.addItem = function(){
     	$scope.loading.addItem = true;
-
     	//if supplied item selected - use link together
-    	if(typeof $scope.suppliedItem.title !== 'undefined'){
+    	if(typeof $scope.suppliedItem.originalObject !== 'undefined'){
     		
     		//get description from supplied item
     		$scope.item.description = {
     			'lang_code': $scope.selectedLanguage,
-    			'text': $scope.suppliedItem.originalObject.description.text
+    			'text': $scope.suppliedItem.originalObject
     		};
 
     		//set category
