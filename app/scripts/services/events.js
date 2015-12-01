@@ -36,11 +36,25 @@ angular.module('ilApp')
             deferred.resolve(result.data.skills);
         },
         function(error){
-            deferred.reject("Could not fetch skills");
+            deferred.reject("Could not fetch skills for sector");
         });
 
         return deferred.promise;
     };
+
+    Events.getSkillsForEvent = function(eventId){
+        var deferred = $q.defer();
+        $http.get(API_IL + "/events/skills/" + eventId).then(function(result){
+            Events.skills = result.data.skills;
+            Events.id = eventId;
+            deferred.resolve(result.data.skills);
+        },
+        function(error){
+            deferred.reject("Could not fetch skills for event");
+        });
+
+        return deferred.promise;
+    };    
 
     Events.getSkill = function(skillId){
         var deferred = $q.defer();

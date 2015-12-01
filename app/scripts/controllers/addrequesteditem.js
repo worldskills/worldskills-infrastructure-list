@@ -42,21 +42,18 @@ angular.module('ilApp')
             };
             // $scope.item.description = $scope.suppliedItem.originalObject.description;
 
-            //set category
-            $scope.item.category = $scope.categoryId;
+            //set category or parent depending on if parent exists
+            if($scope.addParent == 0)
+                $scope.item.category = $scope.categoryId;
+            else
+                $scope.item.parent_id = $scope.addParent.id;
 
             //add supplied item id
             $scope.item.supplied_item = { 'id' : $scope.suppliedItem.originalObject.id };           
 
             //add the requested item
             Items.linkItem($scope.item, $scope.event_id).then(function(result){              
-                //Push the new item into the items tree
-                $scope.items.push(result);
-                
-                //clear and dismiss the form
-                $scope.addForm.$setPristine();
-                $uibModalInstance.dismiss();
-                $scope.loading.addItem = false;             
+                $scope.pushItem(result);                
             },
             function(error){
                 WSAlert.danger(error);
@@ -71,18 +68,15 @@ angular.module('ilApp')
                 'text': $scope.suppliedItem.originalObject
             };
 
-            //set category
-            $scope.item.category = $scope.categoryId;
+            //set category or parent depending on if parent exists
+            if($scope.addParent == 0)
+                $scope.item.category = $scope.categoryId;
+            else
+                $scope.item.parent_id = $scope.addParent.id;
 
             //add the requested item
             Items.addItem($scope.item, $scope.event_id).then(function(result){              
-                //Push the new item into the items tree
-                $scope.items.push(result);
-                
-                //clear and dismiss the form
-                $scope.addForm.$setPristine();
-                $uibModalInstance.dismiss();
-                $scope.loading.addItem = false;             
+                $scope.pushItem(result);                
             },
             function(error){
                 WSAlert.danger(error);
@@ -90,6 +84,24 @@ angular.module('ilApp')
                 $scope.loading.addItem = false;
             });
     	}//creating completely new item
+    };
+
+    $scope.pushItem = function(result){
+        //Push the new item into the items tree
+        if($scope.addParent == 0)
+            $scope.items.push(result);
+        else{
+            //add under the correct parent
+            angular.forEach($scope.items, function(val, key){
+                if(val.id == $scope.addParent.id)
+                    $scope.items[key].child_items.push(result);                            
+            });
+        }
+        
+        //clear and dismiss the form
+        $scope.addForm.$setPristine();
+        $uibModalInstance.dismiss();
+        $scope.loading.addItem = false;             
     };
 
     $scope.cancel = function(){

@@ -7,23 +7,23 @@
 
 <ws-spinner ng-if="loading.overview" class='bigSpinner'></ws-spinner>
 
-<div class='row' ng-if="selectedSector.id">
+<div class='row' ng-if="skills.length > 0">
 	<div class='col col-xs-12 col-sm-9'>
 		<div class='panel panel-default'>
 			<div class='panel-heading'>Select a skill</div>
 			<div class='panel-body'>			
 				<div class="list-group">
 				  <a ui-sref="skill.overview({skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
-				    <h4 class="list-group-item-heading">{{skill.name.text}} <span class="badge">{{skill.skill_number}}</span></h4>
+				    <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
 				    	<div class="progress list-group-item-text">
 						  <div class="progress-bar progress-bar-success" style="width: 60%">
-						    <span uib-tooltip="Supplied" tooltip-placement="top" tooltip-trigger="mouseenter" class="">1932</span>
+						    <span uib-tooltip="Supplied" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">1932</span>
 						  </div>
 						  <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 25%">
-						    <span uib-tooltip="Confirmed" tooltip-placement="top" tooltip-trigger="mouseenter" class="">123</span>
+						    <span uib-tooltip="Confirmed" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">123</span>
 						  </div>
 						  <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: 15%">
-						    <span uib-tooltip="Waiting" tooltip-placement="top" tooltip-trigger="mouseenter" class="">2</span>
+						    <span uib-tooltip="Waiting" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">2</span>
 						  </div>
 						</div>
 				    	<!-- <span class='label label-danger'>Requested: 1948</span> -->

@@ -3,6 +3,9 @@
 		<form name='addForm'>
 		<div class='well'>
       <div class="form-group addForm">
+        <div class='well' ng-if="addParent">
+          {{addParent}}
+        </div>
         <label class='control-label'>Description</label>
         <!-- <input type="text" class="input-sm form-control" placeholder="Description" ng-model='item.description.text'> -->
         <angucomplete-alt id="id"

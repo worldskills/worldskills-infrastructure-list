@@ -73,8 +73,8 @@ angular
             //FIXME - figure out a way to redirect to login directly without a refresh
             window.history.go(0); 
           };
-          //redirect to login after 2.5 second timeout
-          $timeout(refreshLogin, 500);
+          //redirect to login after 1 second timeout
+          $timeout(refreshLogin, 1000);
         }
         return $q.reject(rejection);
       }
