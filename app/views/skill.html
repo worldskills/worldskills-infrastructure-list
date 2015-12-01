@@ -10,7 +10,7 @@
 	<div class="col-sm-3 col-md-2 sidebar-right">        
          <div ng-hide="myProfile" class="list-group">                                          
             <a ui-sref-active='active' class="list-group-item" ui-sref='skill.overview({skillId: skill_id})'><small ng-cloak translate>OVERVIEW</small></a>
-            <a ng-repeat="category in categories" ui-sref-active='active' class="list-group-item" ui-sref='skill.category({skillId: skill_id, categoryId:category.id})'><small ng-cloak translate>{{category.name.text}}</small></a>                                            
+            <a ng-repeat="category in categories" ui-sref-active='active' class="list-group-item" ui-sref='skill.category({skillId: skill_id, categoryId:category.id})'><small ng-cloak translate>{{category.category.name.text}}</small></a>                                            
          </div>
      </div>
 

@@ -5,7 +5,6 @@
          'glyphicon-menu-right': collapsed,
          'glyphicon-menu-down': !collapsed
        }"></span></a>
-
   {{item.description.text}}
   <!-- <span class='badge idBadge'>{{item.id}}</span> -->
 
@@ -94,5 +93,5 @@
   <!-- /edit -->
 </div>
  <ol ui-tree-nodes="" ng-model="item.child_items" ng-class="{hidden: collapsed}">
-   <li ng-repeat="item in item.child_items track by item.id" ui-tree-node ng-include="'views/item_render.html'"></li>
+   <li ng-repeat="item in item.child_items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
  </ol>

@@ -23,10 +23,10 @@
 		
 		<!-- notifications for no items -->
 		<div class="row" ng-hide="loading.addItem">
-		  <div class="col-sm-12" ng-hide="items.length > 0 && !loading.initial">
+		  <div class="col-sm-12" ng-show="items.length == 0 && !loading.initial">
 		  	<div class='alert alert-warning'>
 		    	<p ng-if="filterValue.length > 0"><span class='glyphicon glyphicon-info-sign'></span> Search didn't return any results<br /> <a ng-click="clearSearchTerms();">Clear search terms</a></p>
-		    	<p ng-if="filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
+		    	<p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
 		    </div>
 		  </div>
 
@@ -48,9 +48,10 @@
 
 		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="2">
 		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items' infinite-scroll-distance='1'>		      	
-		        <li ng-repeat="item in items track by item.id" ui-tree-node ng-include="'views/item_render.html'"></li>
+		        <li ng-repeat="item in items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
 		      </ol>
-		    </div>		    
+		    </div>		
+		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more'><small>Scroll down to load more... | No more</small></div>    
 		    <ws-spinner ng-if='loading.more'></ws-spinner>
 		  </div>		
 		</div>

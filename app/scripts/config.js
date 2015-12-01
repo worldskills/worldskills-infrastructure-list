@@ -20,14 +20,14 @@
 
     ilApp.constant('APP_ROLES', {
         ADMIN: 'Admin',
-        ORGANIZER: 'Organizing Committee',
+        ORGANIZER: 'Organizer',
         WS_MANAGER: 'Workshop Manager',
-        WS_SECTOR_MANAGER: 'Workshop Sector Manager'
+        WS_SECTOR_MANAGER: 'Sector Manager'
     });    
 
     ilApp.constant('POSITIONS', {
         WS_MANAGER: 10,
-        WS_SECTOR_MANAGER: 11,
+        WS_SECTOR_MANAGER: 55,
         ORGANIZER: 12
     });
 
