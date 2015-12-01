@@ -44,8 +44,7 @@
 				<small class='actions pull-right'>Actions</small>
 				<small class='quantity pull-right'>Quantity</small>
 				<small class='status pull-right'>Status</small>
-			</div>
-
+			</div>			
 		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="2">
 		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items' infinite-scroll-distance='1'>		      	
 		        <li ng-repeat="item in items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
