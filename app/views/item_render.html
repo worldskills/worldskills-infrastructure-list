@@ -8,16 +8,20 @@
   {{item.description.text}}
   <!-- <span class='badge idBadge'>{{item.id}}</span> -->
 
-  <span ng-show="activeItem == item.id">
-    <!-- <small class='pull-right'>Saving...</small> -->
-  </span>
-  <span ng-hide="activeItem == item.id">
-   <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeItem(item, this);"><span
-         class="glyphicon glyphicon-remove"></span></a>
-   <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(item)" style="margin-right: 8px;"><span
-         class="glyphicon glyphicon-share-alt rotate90"></span></a>
-    <a class="pull-right btn btn-warning btn-xs" data-nodrag ng-click="editItem(item, $index);" style="margin-right: 8px;"><span
-         class="glyphicon glyphicon-edit"></span></a>
+  <!-- <span ng-show="activeItem == item.id">
+    <small class='pull-right'>Saving...</small>
+  </span> -->
+  <span ng-hide="activeItem == item.id">       
+    <span ng-if="canEdit(item.status.id)">
+      <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeItem(item, this);" style="margin-right: 8px;"><span
+           class="glyphicon glyphicon-remove"></span></a>
+      <a class="pull-right btn btn-warning btn-xs" data-nodrag ng-click="editItem(item, $index);" style="margin-right: 8px;"><span
+           class="glyphicon glyphicon-edit"></span></a>
+    </span>
+    <div style='width: 64px;' class='pull-right' ng-if="!canEdit(item.status.id)">&nbsp;</div>
+    <a ng-if="item.parent_id == 0" class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(item)" style='margin-right: 8px;'><span
+         class="glyphicon glyphicon-share-alt rotate90"></span></a>        
+    <div style='width: 32px;' class='pull-right' ng-if="item.parent_id > 0">&nbsp;</div>
   </span>
 
   <small class='pull-right'>{{getQuantity(item)}}</small>
@@ -27,7 +31,7 @@
               'label-warning': item.status.id == ITEM_STATUS.YELLOW,
               'label-success': item.status.id == ITEM_STATUS.GREEN}"
     >{{item.status.name.text}}</span>
-  </small>
+  </small>  
   <!-- edit -->
   <div ng-if='item.id == activeItem' class='animate-if'>
     <hr class='edit-divider'/>

@@ -12,7 +12,8 @@ angular.module('ilApp')
 
   		var User = {
             skill: false,
-            sector: false
+            sector: false,
+            event: false
         };
 
   		User.getSkill = function(){
@@ -22,11 +23,11 @@ angular.module('ilApp')
             //wait for auth.user to resolve                    
             $q.when(auth.user.$promise).then(function(){                                
                 $http.get(API_PEOPLE + "/person/" + auth.user.person_id + "/positions").then(function(result){                    
-                    
                     angular.forEach(result.data.person_positions, function(val, key){
-                        if(val.position.id == POSITIONS.WS_MANAGER){
+                        //TODO: Implement base positions and compare to the base position, check for the same entity in position and permission
+                        if(val.position.id == POSITIONS.WS_MANAGER || val.position.id == POSITIONS.WS_MANAGER_ASSISTANT){
                             User.skill = val.skill;
-                        }//if WSM skill
+                        }//if WSM / WSMA skill
                     });
 
                     if(User.skill !== false){ 
@@ -49,6 +50,7 @@ angular.module('ilApp')
             $q.when(auth.user.$promise).then(function(){                                
                 $http.get(API_PEOPLE + "/person/" + auth.user.person_id + "/positions").then(function(result){                    
                     angular.forEach(result.data.person_positions, function(val, key){
+                        //TODO: Implement base positions and compare to the base position, check for the same entity in position and permission
                         if(val.position.id == POSITIONS.WS_SECTOR_MANAGER){
                             User.sector = val.sector;
                         }//if WSM
@@ -64,7 +66,33 @@ angular.module('ilApp')
             });         
 
             return deferred.promise;
-        };                
+        };   
+
+        User.getEvent = function(){
+            
+            var deferred = $q.defer();
+
+            //wait for auth.user to resolve                    
+            $q.when(auth.user.$promise).then(function(){                                
+                $http.get(API_PEOPLE + "/person/" + auth.user.person_id + "/positions").then(function(result){                    
+                    angular.forEach(result.data.person_positions, function(val, key){
+                        //TODO: Implement base positions and compare to the base position, check for the same entity in position and permission
+                        if(val.position.id == POSITIONS.ORGANIZER){
+                            User.event = val.event;
+                        }//if organizer
+                    });
+
+                    if(User.event !== false){ 
+                        deferred.resolve(User.event);
+                    }
+                },
+                function(error){
+                    deferred.reject("Could not fetch user skill: " + error.data.user_msg);
+                })
+            });         
+
+            return deferred.promise;
+        };                        
 
         User.isAdmin = function(){
             var isAdmin = false;

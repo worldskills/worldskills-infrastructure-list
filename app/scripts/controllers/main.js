@@ -21,6 +21,8 @@ angular.module('ilApp')
 
     $scope.selectedSkill = {};
     $scope.selectedSector = {};
+    $scope.selectedEvent = {};
+
     $scope.skill_id, $scope.event_id;
     $scope.loading = { overview: true };    
 
@@ -69,6 +71,32 @@ angular.module('ilApp')
         return $scope.selectedSector.promise;
     };
 
+    $scope.reloadEvent = function(){
+        $scope.selectedEvent = $q.defer();
+
+        $scope.activeRole = Auth.activeRole();
+        User.getEvent().then(function(result){
+            $scope.selectedEvent.resolve(result);            
+            $scope.selectedEvent = result;       
+
+            $scope.event_id = $scope.selectedEvent.id;  
+
+            //load skills in sector for this event
+            Events.getSkillsForEvent($scope.event_id).then(function(result){
+                $scope.skills = result;
+            },
+            function(error){
+                WSAlert.danger(error);
+            });
+        },
+        function(error){
+            WSAlert.danger(error);
+            $scope.selectedEvent.reject(error);
+        });
+
+        return $scope.selectedEvent.promise;
+    };
+
     $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         $scope.init(toState);
     });
@@ -82,7 +110,6 @@ angular.module('ilApp')
             $scope.activeRole = Auth.activeRole();
             if(toState.name == 'home'){
                 $scope.ilRoles = Auth.ilRoles();
-
                 switch($scope.activeRole){
                     case APP_ROLES.WS_MANAGER:
                         //get skill
@@ -99,6 +126,9 @@ angular.module('ilApp')
                         });
                     break;
                     case APP_ROLES.ORGANIZER:
+                        $scope.reloadEvent().then(function(result){
+                            $scope.selectedEvent = result;
+                        });
                     break;
                     case APP_ROLES.ADMIN:
                     break;

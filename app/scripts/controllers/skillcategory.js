@@ -136,8 +136,11 @@ angular.module('ilApp')
 
     };
     
-    $scope.addItem = function() {
+    $scope.addItem = function(parent) {
         //item, itemIndex
+
+        $scope.addParent = parent || 0;
+        var parent = parent || 0;
         
       $scope.asideState = {
         open: true
@@ -155,6 +158,10 @@ angular.module('ilApp')
         backdrop: true,        
         controller: 'addRequestedItemCtrl'        
       }).result.then(postClose, postClose);
+  };
+
+  $scope.newSubItem = function(item){
+    $scope.addItem(item);
   };
 
 
@@ -300,6 +307,12 @@ angular.module('ilApp')
       // else{
       //   return item.quantity + " " + item.multiplier;
       
+    };
+
+    $scope.canEdit = function(statusId){
+
+        //TODO check if User level == organizer, then allow after all
+        return (statusId == ITEM_STATUS.RED) ? true : false;
     };
 
   })
