@@ -29,44 +29,66 @@ angular.module('ilApp')
     $scope.addItem = function(){
     	$scope.loading.addItem = true;
     	//if supplied item selected - use link together
-    	if(typeof $scope.suppliedItem.originalObject !== 'undefined'){
-    		
+    	if(typeof $scope.suppliedItem.originalObject.id !== 'undefined'){
     		//get description from supplied item
-    		$scope.item.description = {
-    			'lang_code': $scope.selectedLanguage,
-    			'text': $scope.suppliedItem.originalObject
-    		};
+            // $scope.item.description = {
+            //     'lang_code': $scope.selectedLanguage,
+            //     'text': $scope.suppliedItem.originalObject
+            // };
 
-    		//set category
-    		$scope.item.category = {
-    			'id': $scope.categoryId
-    		};
+            $scope.item.description = {
+                'lang_code': $scope.selectedLanguage,
+                'text': $scope.suppliedItem.originalObject.description.text
+            };
+            // $scope.item.description = $scope.suppliedItem.originalObject.description;
 
-    		//add supplied item id
-    		$scope.item.supplied_item = { 'id' : $scope.suppliedItem.originalObject.id };    		
+            //set category
+            $scope.item.category = $scope.categoryId;
 
-    		//add skill
-    		$scope.item.skill = { 'id' : $scope.skill_id };
+            //add supplied item id
+            $scope.item.supplied_item = { 'id' : $scope.suppliedItem.originalObject.id };           
 
-    		//add the requested item
-    		Items.addItem($scope.item, $scope.event_id).then(function(result){    			
-    			//Push the new item into the items tree
-    			$scope.items.push(result);
-    			
-    			//clear and dismiss the form
-    			$scope.addForm.$setPristine();
-    			$uibModalInstance.dismiss();
-    			$scope.loading.addItem = false;    			
-    		},
-    		function(error){
-    			WSAlert.danger(error);
-    			$uibModalInstance.dismiss();
-    			$scope.loading.addItem = false;
-    		});
+            //add the requested item
+            Items.linkItem($scope.item, $scope.event_id).then(function(result){              
+                //Push the new item into the items tree
+                $scope.items.push(result);
+                
+                //clear and dismiss the form
+                $scope.addForm.$setPristine();
+                $uibModalInstance.dismiss();
+                $scope.loading.addItem = false;             
+            },
+            function(error){
+                WSAlert.danger(error);
+                $uibModalInstance.dismiss();
+                $scope.loading.addItem = false;
+            });
     	}//if supplied item selected
     	else{
-    		//create supplied item
+    		//get description from supplied item
+            $scope.item.description = {
+                'lang_code': $scope.selectedLanguage,
+                'text': $scope.suppliedItem.originalObject
+            };
 
+            //set category
+            $scope.item.category = $scope.categoryId;
+
+            //add the requested item
+            Items.addItem($scope.item, $scope.event_id).then(function(result){              
+                //Push the new item into the items tree
+                $scope.items.push(result);
+                
+                //clear and dismiss the form
+                $scope.addForm.$setPristine();
+                $uibModalInstance.dismiss();
+                $scope.loading.addItem = false;             
+            },
+            function(error){
+                WSAlert.danger(error);
+                $uibModalInstance.dismiss();
+                $scope.loading.addItem = false;
+            });
     	}//creating completely new item
     };
 

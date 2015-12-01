@@ -15,6 +15,12 @@ angular.module('ilApp')
         return retval;
     },
 
+    ilRoles: function(){
+      return auth.user.roles.filter(function(role){
+        return role.role_application.application_code == APP_ID;
+      });
+    },
+
     getAuthUser: function(pid){
       var User = {};
       var deferred = $q.defer();

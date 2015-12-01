@@ -29,9 +29,9 @@ angular.module('ilApp')
     $scope.canceler = false;
 
     $scope.moveItem = function(itemId, parentId, position){
-        console.log("item %d, parent %d, position %d", itemId, parentId, position);
+        //console.log("item %d, parent %d, position %d", itemId, parentId, position);
         Items.moveItem($scope.event_id, $scope.skill_id, itemId, parentId, position).then(function(result){
-            console.log("Item moved!");
+            //console.log("Item moved!");
         },
         function(error){
             $scope.initCategory();
@@ -55,7 +55,6 @@ angular.module('ilApp')
             return (typeof $scope.filterValue == 'undefined' || $scope.filterValue == '') ? true : false;
         },
         dropped: function(event){
-            console.log(event);
 
             //find out id of the item in question
             var itemId = event.source.nodeScope.$modelValue.id;
@@ -167,22 +166,20 @@ angular.module('ilApp')
         if($scope.canceler.promise) $scope.canceler.resolve();
         $scope.canceler = $q.defer();
 
-        //check that skill_id and event_id have finished loading
-        $q.when($scope.selectedSkill.promise).then(function(){
-
+        //check that skill_id and event_id have finished loading        
+        $q.when($scope.initializing.promise).then(function(){
             //reinitialize category var
             $scope.selectedCategory = $scope.categories[$scope.categoryId];
             
             //init search url
-            $scope.searchAPI = API_IL + "/events/" + $scope.event_id + "/supplied_items/?search=";
+            $scope.searchAPI = API_IL + "/items/" + $scope.event_id + "/supplied_items/?search=";
 
             //get items
             Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function(result){
-
                 //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
                 angular.forEach(result, function(val, key){
                     if(typeof val.child_items == 'undefined')
-                        result[key].child_items = [];
+                        result[key].child_items = [];                
                 });
 
                 $scope.items = result;
