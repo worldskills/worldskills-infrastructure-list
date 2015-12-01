@@ -8,7 +8,7 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('Items', function ($q, $http, API_IL) {
+  .service('Items', function ($q, $http, API_IL, ITEM_STATUS) {
    	
    	var Items = { categories : $q.defer(), $data : $q.defer() }
 
@@ -81,6 +81,8 @@ angular.module('ilApp')
          var deferred = $q.defer();
 
          var api = API_IL + "/items/" + eventId         
+         //add status
+         item.status = {id: ITEM_STATUS.RED};
 
          $http.post(api + "/requested_items/", item).then(function(result){
             deferred.resolve(result.data);
@@ -100,9 +102,12 @@ angular.module('ilApp')
          var api = API_IL + "/items/" + eventId
          var supplied_item = {
             "event": { id: eventId},
-            "status": { id: 1 },             
+            "status": { id: ITEM_STATUS.RED },             
             "description": item.description
          };
+
+         //add status to item
+         item.status = { id: ITEM_STATUS.RED };
          
          //add supplied item first
          $http.post(api + "/supplied_items/", supplied_item).then(function(result){

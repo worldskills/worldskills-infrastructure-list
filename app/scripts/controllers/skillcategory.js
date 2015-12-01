@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, MULTIPLIERS, Items, $confirm, WSAlert, API_IL) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL) {
     
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
@@ -17,7 +17,7 @@ angular.module('ilApp')
         more: false
     };
    
-
+    $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.multipliers = MULTIPLIERS;
     $scope.tmp_item = {};
     $scope.items = {};
