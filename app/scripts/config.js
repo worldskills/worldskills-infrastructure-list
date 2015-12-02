@@ -1,7 +1,6 @@
 (function() {
     'use strict';
 
-    //TODO update values when integrating with API
     
     var ilApp = angular.module('ilApp'); 
     ilApp.constant('API_IL', 'http://localhost:8080/il');
