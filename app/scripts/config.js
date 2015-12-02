@@ -28,20 +28,20 @@
     //TODO implement base positions
 
     //2015
-    ilApp.constant('POSITIONS', {
-        WS_MANAGER: 59,
-        WS_MANAGER_ASSISTANT: 60,
-        WS_SECTOR_MANAGER: 61,
-        ORGANIZER: 81
-    });
+    // ilApp.constant('POSITIONS', {
+    //     WS_MANAGER: 59,
+    //     WS_MANAGER_ASSISTANT: 60,
+    //     WS_SECTOR_MANAGER: 61,
+    //     ORGANIZER: 81
+    // });
 
     //2017
-    // ilApp.constant('POSITIONS', {
-    //     WS_MANAGER: 64,
-    //     WS_MANAGER_ASSISTANT: 65,
-    //     WS_SECTOR_MANAGER: 66,
-    //     ORGANIZER: 63
-    // });
+    ilApp.constant('POSITIONS', {
+        WS_MANAGER: 64,
+        WS_MANAGER_ASSISTANT: 65,
+        WS_SECTOR_MANAGER: 66,
+        ORGANIZER: 82
+    });
 
     ilApp.constant('MULTIPLIERS', [
         {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
