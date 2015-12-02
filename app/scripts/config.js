@@ -26,15 +26,6 @@
     });    
 
     //TODO implement base positions
-
-    //2015
-    // ilApp.constant('POSITIONS', {
-    //     WS_MANAGER: 59,
-    //     WS_MANAGER_ASSISTANT: 60,
-    //     WS_SECTOR_MANAGER: 61,
-    //     ORGANIZER: 81
-    // });
-
     //2017
     ilApp.constant('POSITIONS', {
         WS_MANAGER: 64,

@@ -296,19 +296,7 @@ angular.module('ilApp')
 
       return retval;
     };
-    
-
-    $scope.getQuantity = function(item){
-      return "15 per skill";
-
-      // if(factorNeeded){
-      //   return "";
-      // }
-      // else{
-      //   return item.quantity + " " + item.multiplier;
-      
-    };
-
+        
     $scope.canEdit = function(statusId){
 
         //TODO check if User level == organizer, then allow after all

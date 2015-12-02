@@ -73,10 +73,14 @@
     border-radius: 0;
 }
 
-.tree-header small.quantity{ padding-right: 5em; }
-.tree-header small.status{ padding-right: 6em; }
-.tree-header small.actions{ padding-right: 3em; }
+.tree-header small.quantityHeader{ padding-right: 5em; }
+.tree-header small.statusHeader{ padding-right: 5em; }
+.tree-header small.actionsHeader{ padding-right: 3em; }
 .tree-node-content .toggler{ margin-right: .4em;}
+
+.tree-node small.quantity{ padding-right: 4.5em; }
+.tree-node small.status{ padding-right: 2.5em; }
+.tree-node .actions{ padding-right: 3em; }
 
 .rotate90{
     -webkit-transform: rotate(180deg); 
