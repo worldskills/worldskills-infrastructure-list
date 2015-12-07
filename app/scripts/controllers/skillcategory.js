@@ -52,6 +52,8 @@ angular.module('ilApp')
 
     $scope.treeOptions = {     
         accept: function(sourceNodeScope, destNodesScope, destIndex){
+            //manually check max-depth the default does not work with accept
+            if(destNodesScope.depth() > 1) return false; //don't accept if depth > 1
             return (typeof $scope.filterValue == 'undefined' || $scope.filterValue == '') ? true : false;
         },
         dropped: function(event){
@@ -95,8 +97,11 @@ angular.module('ilApp')
     };
 
     $scope.saveItem = function(item, itemIndex){
-        Items.saveItem(item, $scope.event_id).then(function(result){            
+        Items.saveItem(item, $scope.event_id).then(function(result){                        
             $scope.activeItem = false;
+
+            //set readable quantity as it's coming from API rather than bound to the scope model
+            item.readable_quantity = result.readable_quantity;
         },
         function(error){
             WSAlert.danger(error);
@@ -111,22 +116,8 @@ angular.module('ilApp')
             text: "Are you sure, this will also remove any potential child-items?"
         }).then(function(){
             Items.removeItem(item, $scope.event_id).then(function(result){
-
                 //remove from scope
-                itemScope.remove();
-                
-                //TODO cleanup old code once proven the above works
-                //check if the item has a parent        
-                // var parent_id = (typeof item.parent_id != 'undefined') ? item.parent_id : false;
-        
-                // if(parent_id > 0){
-                //     angular.forEach($scope.items, function(val, key){
-                //         if(val.id == parent_id){ //corrent parent found                    
-                //             $scope.items[key].child_items.splice(itemIndex, 1);
-                //         }
-                //     });
-                // }
-                // else $scope.items.splice(itemIndex, 1);
+                itemScope.remove();                
             }),
             function(error){
                 WSAlert.danger(error);
