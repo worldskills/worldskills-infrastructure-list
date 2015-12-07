@@ -87,8 +87,8 @@ angular
     suffix: '.json'
   });
 
-  $translateProvider.preferredLanguage('en_US');
-  $translateProvider.fallbackLanguage('en_US');
+  $translateProvider.preferredLanguage('en');
+  $translateProvider.fallbackLanguage('en');
   $translateProvider.useLocalStorage();
   $translateProvider.useSanitizeValueStrategy('sanitize');
 
