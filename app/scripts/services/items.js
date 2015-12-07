@@ -37,6 +37,7 @@ angular.module('ilApp')
    			Items.data = result.data.requested_items;
    		},
    		function(error){
+            if(typeof error.data == 'undefined') Items.data.reject("Could not get items, please contact webmaster@worldskills.org");
    			Items.data.reject("Could not get items: " + error.data.user_msg);   			
    		});
 
