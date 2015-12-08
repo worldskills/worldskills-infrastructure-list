@@ -50,7 +50,8 @@
 		        <li ng-repeat="item in items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
 		      </ol>
 		    </div>		
-		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more'><small>Scroll down to load more... | No more</small></div>    
+		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total'><small>Scroll down to load more...</small></div>    
+		    <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
 		    <ws-spinner ng-if='loading.more'></ws-spinner>
 		  </div>		
 		</div>

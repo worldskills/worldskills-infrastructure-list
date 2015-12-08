@@ -27,6 +27,7 @@ angular.module('ilApp')
     $scope.limit = 25;
     $scope.offset = 0;
     $scope.canceler = false;
+    $scope.total = 0;
 
     $scope.moveItem = function(itemId, parentId, position){
         //console.log("item %d, parent %d, position %d", itemId, parentId, position);
@@ -176,6 +177,7 @@ angular.module('ilApp')
             Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function(result){
                 //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
                 angular.forEach(result, function(val, key){
+                    $scope.total++;
                     if(typeof val.child_items == 'undefined')
                         result[key].child_items = [];                
                 });
@@ -215,6 +217,9 @@ angular.module('ilApp')
         //stop if already loading
         if($scope.isLoading())
             return;
+
+        // all loaded already
+        if($scope.limit >= $scope.total || $scope.offset >= $scope.total){ return; }
 
         //canceler
         if($scope.canceler.promise) $scope.canceler.resolve();
