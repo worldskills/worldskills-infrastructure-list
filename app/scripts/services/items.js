@@ -47,6 +47,7 @@ angular.module('ilApp')
       Items.saveItem = function(item, eventId){
          var deferred = $q.defer();
 
+
          $http.put(API_IL + "/items/" + eventId + "/requested_items/" + item.id, item).then(function(result){
             /** check if we should update the supplied items as well
                * only update IF:
