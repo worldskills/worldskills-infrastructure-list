@@ -5,7 +5,7 @@
     var ilApp = angular.module('ilApp'); 
     ilApp.constant('API_IL', 'https://api.worldskills.org/il');
     ilApp.constant('API_PEOPLE', 'https://api.worldskills.org/people');
-    ilApp.constant('APP_ID', '1800');
+    ilApp.constant('APP_ID', '2200');
     ilApp.constant('API_IMAGES', 'https://api.worldskills.org/images');
     ilApp.constant('CLIENT_ID', 'bc9cf785283f');
     ilApp.constant('API_AUTH', 'https://api.worldskills.org/auth');
