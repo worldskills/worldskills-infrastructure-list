@@ -54,6 +54,7 @@ angular.module('ilApp')
     $scope.treeOptions = {     
         accept: function(sourceNodeScope, destNodesScope, destIndex){
             //manually check max-depth the default does not work with accept
+            if(destNodesScope.depth() > 0 && sourceNodeScope.childNodesCount() > 0) return false; //check if the item has children - if so, don't accept - return false;
             if(destNodesScope.depth() > 1) return false; //don't accept if depth > 1
             return (typeof $scope.filterValue == 'undefined' || $scope.filterValue == '') ? true : false;
         },
