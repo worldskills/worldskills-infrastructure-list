@@ -24,10 +24,12 @@ angular.module('ilApp')
     $scope.activeItem = false;
     $scope.suppliedItem = {};
     $scope.searchAPI = false;
+    $scope.searchSupplierAPI = false;
     $scope.limit = 25;
     $scope.offset = 0;
     $scope.canceler = false;
     $scope.total = 0;
+    $scope.supplierValue = false;
 
     $scope.moveItem = function(itemId, parentId, position){
         //console.log("item %d, parent %d, position %d", itemId, parentId, position);
@@ -98,7 +100,23 @@ angular.module('ilApp')
         }
     };
 
+
     $scope.saveItem = function(item, itemIndex){
+        
+        //set supplier from autocomplete
+        if(item.selectedSupplier != void 0 
+            && item.selectedSupplier.originalObject.id != void 0){
+            console.log("1");
+            item.supplier = item.selectedSupplier.originalObject.name;
+        }        
+        else if(item.selectedSupplier != void 0){
+         item.supplier = item.selectedSupplier.originalObject;
+         console.log("2");
+        }
+        else if($scope.supplierValue !== false){
+            item.supplier = $scope.supplierValue;
+        }
+
         Items.saveItem(item, $scope.event_id).then(function(result){                        
             $scope.activeItem = false;
 
@@ -173,6 +191,7 @@ angular.module('ilApp')
             
             //init search url
             $scope.searchAPI = API_IL + "/items/" + $scope.event_id + "/supplied_items/?search=";
+            $scope.searchSupplierAPI = API_IL + "/suppliers/" + $scope.event_id + "/search?q=";
 
             //get items
             Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function(result){
@@ -244,6 +263,10 @@ angular.module('ilApp')
             WSAlert.danger(error);            
             $scope.loading.more = false;
         });
+    };
+
+    $scope.supplierChanged = function(val){
+        $scope.supplierValue = val;
     };
 
 

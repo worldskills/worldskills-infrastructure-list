@@ -33,7 +33,7 @@
   </small>  
   <small class='quantity pull-right'>{{item.readable_quantity}}</small>
   <!-- edit -->
-  <div ng-if='item.id == activeItem' class='animate-if'>
+  <div data-nodrag ng-if='item.id == activeItem' class='animate-if'>
     <hr class='edit-divider'/>
     <!-- <strong><small>Description</small></strong><br />
     <input class='form-control input-sm' ng-model='item.description.text'/> -->
@@ -71,20 +71,50 @@
             </div>
           </div>
         </div>
-    
-    <div class="form-inline">
-      <div class="form-group editForm has-feedback has-success">
-        <label class='sr-only'>Estimated price</label>
-        <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
-        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
-        
-      </div>  
-      <div data-nodrag class="checkbox editForm">
-        <label>
-          <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
-        </label>
+
+
+    <div class='row'>
+      <div class='col col-xs-12 col-sm-6'>      
+        <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.supplier.$error.required, 'has-success': !editForm.supplier.$error.required}">        
+          <label class='control-label'>Potential supplier{{item.supplier}}</label>
+          <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="Potential supplier" ng-model='item.supplier' ng-trim="true"> -->
+          <angucomplete-alt 
+                  id="id"
+                  placeholder="Potential supplier"
+                  pause="400"
+                  selected-object="item.selectedSupplier"
+                  remote-url="{{searchSupplierAPI}}"
+                  remote-url-request-with-credentials="true"
+                  remote-url-data-field="suppliers"
+                  title-field="name"                  
+                  minlength="1"
+                  search-fields="name"
+                  disable-input="disableInputSupplier"                  
+                  focus-first="true"
+                  input-changed="supplierChanged"
+                  override-suggestions="true"
+                  field-required="false"
+                  text-searching="false"
+                  text-no-results="No existing suppliers found."  
+                  initial-value="item.supplier"
+                  input-class="input-sm form-control"/>
+                  <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
+        </div>     
+      </div>           
+      <div class='col col-xs-12 col-sm-6 form-group'>
+          <div class="form-group editForm has-feedback has-success">
+            <label class='control-label'>Estimated price</label>
+            <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>                    
+          </div>  
+          <div data-nodrag class="checkbox editForm form-group has-feedback has-success">
+            <label>
+              <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
+            </label>
+          </div>
       </div>
     </div>
+
       
       </div>
 
