@@ -17,6 +17,9 @@
     ilApp.constant('WORLDSKILLS_API_AUTH', 'https://api.worldskills.org/auth');
     ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://auth.worldskills.org/oauth/authorize');
 
+    ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
+    ilApp.constant('FILTER_AUTH_ROLES', [2200]);
+
         ilApp.constant('APP_ROLES', {
         ADMIN: 'Admin',
         ORGANIZER: 'Organizer',

@@ -186,8 +186,12 @@ angular.module('ilApp')
 
         //check that skill_id and event_id have finished loading        
         $q.when($scope.initializing.promise).then(function(){
+            
             //reinitialize category var
-            $scope.selectedCategory = $scope.categories[$scope.categoryId];
+            angular.forEach($scope.categories, function(val, key){
+                if(val.id == $scope.categoryId) $scope.selectedCategory = val.category;
+            });
+            
             
             //init search url
             $scope.searchAPI = API_IL + "/items/" + $scope.event_id + "/supplied_items/?search=";

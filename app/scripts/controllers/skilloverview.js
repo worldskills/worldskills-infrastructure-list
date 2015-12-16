@@ -8,9 +8,16 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillOverviewCtrl', function ($scope, $q, WSAlert, MULTIPLIERS) {
+  .controller('SkillOverviewCtrl', function ($scope, $q, WSAlert, MULTIPLIERS, Reporting) {
 
     
+    $scope.exportSkill = function(){
+        Reporting.exportRequestedForSkill($scope.event_id, $scope.skill_id);
+    };
+
+    $scope.exportEvent = function(){
+        Reporting.exportRequestedForEvent($scope.event_id);
+    };
 
     /*
     FROM people - to be used to move the item editor in place
