@@ -84,21 +84,50 @@
             </div>
           </div>
     </div>
-    
-    <div class="form-inline">
-      <div class="form-group addForm has-feedback has-success">
-        <label class='sr-only'>Estimated price</label>
-        <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
-        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
-        
-      </div>  
-      <div data-nodrag class="checkbox addForm">
-        <label>
-          <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
-        </label>
+
+    <div class='row'>
+      <div class='col col-xs-12 col-sm-6'>      
+        <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">        
+          <label class='control-label'>Potential supplier{{item.supplier}}</label>
+          <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="Potential supplier" ng-model='item.supplier' ng-trim="true"> -->
+          <angucomplete-alt 
+                  id="id"
+                  placeholder="Potential supplier"
+                  pause="400"
+                  selected-object="item.selectedSupplier"
+                  remote-url="{{searchSupplierAPI}}"
+                  remote-url-request-with-credentials="true"
+                  remote-url-data-field="suppliers"
+                  title-field="name"                  
+                  minlength="1"
+                  search-fields="name"
+                  disable-input="disableInputSupplier"                  
+                  focus-first="true"
+                  input-changed="supplierChangedAdd"
+                  override-suggestions="true"
+                  field-required="false"
+                  text-searching="false"
+                  text-no-results="No existing suppliers found."  
+                  initial-value="item.supplier"
+                  input-class="input-sm form-control"/>
+                  <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
+        </div>     
+      </div>           
+      <div class='col col-xs-12 col-sm-6 form-group'>
+          <div class="form-group addForm has-feedback has-success">
+            <label class='control-label'>Estimated price</label>
+            <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>                    
+          </div>  
+          <div data-nodrag class="checkbox addForm form-group has-feedback has-success">
+            <label>
+              <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
+            </label>
+          </div>
       </div>
     </div>
-      
+    
+
     </div> <!-- well -->
     <button ng-disabled="addForm.$error.required || !suppliedItem.originalObject" ng-click="addItem();" class='btn btn-sm btn-success'>Add item</button>
     <button ng-click="cancel();" class='btn btn-sm btn-warning'>Cancel</button>

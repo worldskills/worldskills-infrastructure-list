@@ -21,6 +21,8 @@ angular.module('ilApp')
     		$scope.disableInput = true;	
     });
 
+    $scope.supplierValueAdd = false;
+
     $scope.rename = function(){
     	$scope.suppliedItem = {};
     	$scope.disableInput = false;
@@ -28,38 +30,32 @@ angular.module('ilApp')
 
     $scope.addItem = function(){
     	$scope.loading.addItem = true;
+
+        //set supplier from autocomplete
+        if($scope.item.selectedSupplier != void 0 
+            && $scope.item.selectedSupplier.originalObject.id != void 0){
+            $scope.item.supplier = $scope.item.selectedSupplier.originalObject.name;
+        }        
+        else if($scope.item.selectedSupplier != void 0)
+         $scope.item.supplier = $scope.item.selectedSupplier.originalObject;        
+        else if($scope.supplierValueAdd != false)
+            $scope.item.supplier = $scope.supplierValueAdd;
+        
+
+        //set category or parent depending on if parent exists
+        if($scope.addParent == 0)
+            $scope.item.category = $scope.categoryId;
+        else
+            $scope.item.parent_id = $scope.addParent.id;
+
+
     	//if supplied item selected - use link together
     	if(typeof $scope.suppliedItem.originalObject.id !== 'undefined'){
     		//get description from supplied item
-            // $scope.item.description = {
-            //     'lang_code': $scope.selectedLanguage,
-            //     'text': $scope.suppliedItem.originalObject
-            // };
-
             $scope.item.description = {
                 'lang_code': $scope.selectedLanguage,
                 'text': $scope.suppliedItem.originalObject.description.text
             };
-            // $scope.item.description = $scope.suppliedItem.originalObject.description;
-
-            //set category or parent depending on if parent exists
-            if($scope.addParent == 0)
-                $scope.item.category = $scope.categoryId;
-            else
-                $scope.item.parent_id = $scope.addParent.id;
-
-            //add supplied item id
-            $scope.item.supplied_item = { 'id' : $scope.suppliedItem.originalObject.id };           
-
-            //add the requested item
-            Items.linkItem($scope.item, $scope.event_id).then(function(result){              
-                $scope.pushItem(result);                
-            },
-            function(error){
-                WSAlert.danger(error);
-                $uibModalInstance.dismiss();
-                $scope.loading.addItem = false;
-            });
     	}//if supplied item selected
     	else{
     		//get description from supplied item
@@ -67,23 +63,17 @@ angular.module('ilApp')
                 'lang_code': $scope.selectedLanguage,
                 'text': $scope.suppliedItem.originalObject
             };
-
-            //set category or parent depending on if parent exists
-            if($scope.addParent == 0)
-                $scope.item.category = $scope.categoryId;
-            else
-                $scope.item.parent_id = $scope.addParent.id;
-
-            //add the requested item
-            Items.addItem($scope.item, $scope.event_id).then(function(result){              
-                $scope.pushItem(result);                
-            },
-            function(error){
-                WSAlert.danger(error);
-                $uibModalInstance.dismiss();
-                $scope.loading.addItem = false;
-            });
     	}//creating completely new item
+
+        //add the requested item
+        Items.addItem($scope.item, $scope.event_id).then(function(result){              
+            $scope.pushItem(result);                
+        },
+        function(error){
+            WSAlert.danger(error);
+            $uibModalInstance.dismiss();
+            $scope.loading.addItem = false;
+        });
     };
 
     $scope.pushItem = function(result){
@@ -106,6 +96,10 @@ angular.module('ilApp')
 
     $scope.cancel = function(){
     	$uibModalInstance.dismiss();
+    };
+
+    $scope.supplierChangedAdd = function(val){
+        $scope.supplierValueAdd = val;
     };
 
   });

@@ -25,7 +25,6 @@ angular.module('ilApp')
 	           
 	        })
 	        .error(function(data, status) {
-	            //console.log("Request failed with status: " + status);
 	            deferred.reject("Could not export to excel");
 	    	});
 
@@ -45,7 +44,6 @@ angular.module('ilApp')
 	           
 	        })
 	        .error(function(data, status) {
-	            //console.log("Request failed with status: " + status);
 	            deferred.reject("Could not export to excel");
 	    	});
 
