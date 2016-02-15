@@ -11,8 +11,8 @@ describe('Service: downloader', function () {
     downloader = _downloader_;
   }));
 
-  it('should do something', function () {
-    expect(!!downloader).toBe(true);
-  });
+  // it('should do something', function () {
+  //   expect(!!downloader).toBe(true);
+  // });
 
 });

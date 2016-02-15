@@ -11,8 +11,8 @@ describe('Service: reporting', function () {
     reporting = _reporting_;
   }));
 
-  it('should do something', function () {
-    expect(!!reporting).toBe(true);
-  });
+  // it('should do something', function () {
+  //   expect(!!reporting).toBe(true);
+  // });
 
 });
