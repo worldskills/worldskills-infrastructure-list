@@ -11,8 +11,8 @@ describe('Service: WSAlert', function () {
     WSAlert = _WSAlert_;
   }));
 
-  it('should do something', function () {
-    expect(!!WSAlert).toBe(true);
-  });
+  // it('should do something', function () {
+  //   expect(!!WSAlert).toBe(true);
+  // });
 
 });

@@ -12,9 +12,9 @@ describe('Directive: WSAlert', function () {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<-w-s-alert></-w-s-alert>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the WSAlert directive');
-  }));
+  // it('should make hidden element visible', inject(function ($compile) {
+  //   element = angular.element('<-w-s-alert></-w-s-alert>');
+  //   element = $compile(element)(scope);
+  //   expect(element.text()).toBe('this is the WSAlert directive');
+  // }));
 });

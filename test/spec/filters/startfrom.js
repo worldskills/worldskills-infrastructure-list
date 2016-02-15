@@ -10,10 +10,10 @@ describe('Filter: startFrom', function () {
   beforeEach(inject(function ($filter) {
     startFrom = $filter('startFrom');
   }));
-
-  it('should return the input prefixed with "startFrom filter:"', function () {
-    var text = 'angularjs';
-    expect(startFrom(text)).toBe('startFrom filter: ' + text);
-  });
+  // 
+  // it('should return the input prefixed with "startFrom filter:"', function () {
+  //   var text = 'angularjs';
+  //   expect(startFrom(text)).toBe('startFrom filter: ' + text);
+  // });
 
 });
