@@ -12,6 +12,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/worldskills-bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-worldskills-utils/src/angular-worldskills-utils.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
@@ -67,14 +68,14 @@
                             <li ui-sref-active="active"><a ui-sref="assessmentCriteria.menu({stepName:'02'})">Assessment Criteria</a></li>
                         </ul></li>
                 </ul> -->
-                <ul class="nav navbar-nav navbar-right" ng-cloak>                                                    
+                <ul class="nav navbar-nav navbar-right" ng-cloak>
                     <li ng-show='auth.loggedIn'><a ng-cloak translate>HOME</a></li>
                     <li ng-show='auth.loggedIn' class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
                             {{auth.user.first_name + " " + auth.user.last_name}}&nbsp;<b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu">                            
-                            <li><a ng-click="logout()" ng-cloak translate>LOGOUT</a></li>                            
-                    </ul></li>                    
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="logout()" ng-cloak translate>LOGOUT</a></li>
+                    </ul></li>
                 </ul>
                 <!-- <form class="navbar-form    navbar-right" role="search">
                     <div class="form-group">
@@ -85,7 +86,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="appContainer" ng-view=""></div> -->    
+    <!-- <div class="appContainer" ng-view=""></div> -->
     <div class='container' ng-controller='MainCtrl'>
         <span id="alertScrollAnchor"></span>
         <alerts></alerts>
@@ -95,22 +96,22 @@
     <footer>
             <div class="row">
                 <div class="col-xs-6 col-sm-4">
-                    <div class="dropdown" ng-controller="TranslateCtrl">                      
+                    <div class="dropdown" ng-controller="TranslateCtrl">
                       <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="languageSelect" data-toggle="dropdown">
                         Language: <small class='label'>{{available_languages[selectedLanguage]}}</small>
                         <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="languageSelect">
-                        <li 
-                          ng-repeat="(lang_code, lang_name) in available_languages" 
+                        <li
+                          ng-repeat="(lang_code, lang_name) in available_languages"
                           ng-class="{active: lang_code == selectedLanguage}"
                           role="presentation">
 
                             <a ng-click="changeLanguage(lang_code);" role="menuitem" tabindex="-1">{{lang_name}}</a>
                         </li>
                       </ul>
-                    </div>  
-                </div>                
+                    </div>
+                </div>
                 <div class="clearfix visible-sm col-sm-4"></div>
                 <div class="clearfix visible-md col-md-4"></div>
                 <div class="clearfix visible-lg col-lg-4"></div>
@@ -137,10 +138,10 @@
     //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     //   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
+
     //     console.log("Check analytics key");
     //   ga('create', 'UA-2224712-18', 'auto');
-    //   ga('send', 'pageview'); 
+    //   ga('send', 'pageview');
     // </script>
 
 
@@ -150,7 +151,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <!-- End your site or application content here -->
-    
+
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -196,11 +197,11 @@
         <script src="scripts/controllers/skill.js"></script>
         <script src="scripts/controllers/skilloverview.js"></script>
         <script src="scripts/services/language.js"></script>
-        <script src="scripts/controllers/translate.js"></script>    
-        <script src="scripts/directives/konami.js"></script>    
+        <script src="scripts/controllers/translate.js"></script>
+        <script src="scripts/directives/konami.js"></script>
         <script src="scripts/controllers/application.js"></script>
         <script src="scripts/services/wsalert.js"></script>
-        <script src="scripts/directives/wsalert.js"></script>        
+        <script src="scripts/directives/wsalert.js"></script>
         <script src="scripts/services/auth.js"></script>
         <script src="scripts/services/events.js"></script>
         <script src="scripts/controllers/skillcategory.js"></script>
@@ -209,5 +210,6 @@
         <script src="scripts/services/reporting.js"></script>
         <script src="scripts/services/downloader.js"></script>
         <!-- endbuild -->
+        <ws-puppet p="auth.user.puppeteer"></ws-puppet>`
 </body>
 </html>
