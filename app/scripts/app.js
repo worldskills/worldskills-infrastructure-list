@@ -33,7 +33,7 @@ angular
   ])
   //.config(function ($routeProvider) {
     .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    
+
     $urlRouterProvider.otherwise('/');
 
       $urlRouterProvider.otherwise(function ($injector, $location) {
@@ -56,22 +56,22 @@ angular
   });
 
     $httpProvider.interceptors.push(['$q', 'WSAlert', '$timeout', function($q, WSAlert, $timeout) {
-    return {        
+    return {
       responseError: function(rejection) {
         /*
           Called when another XHR request returns with
-          an error status code.          
+          an error status code.
         */
 
         if(
-            (rejection.status == 400 && rejection.data.code == "2200-1012") ||            
+            (rejection.status == 400 && rejection.data.code == "2200-1012") ||
             (rejection.status == 401 && rejection.data.code == "100-101")
           )
           {
           WSAlert.danger(rejection.data.user_msg + ". Redirecting to login...");
-          var refreshLogin = function(){ 
+          var refreshLogin = function(){
             //FIXME - figure out a way to redirect to login directly without a refresh
-            window.history.go(0); 
+            window.history.go(0);
           };
           //redirect to login after 1 second timeout
           $timeout(refreshLogin, 1000);
@@ -97,7 +97,7 @@ angular
   // $translateProvider.registerAvailableLanguageKeys(['en', 'pt'], {
   //   'en_US': 'en',
   //   'en_UK': 'en',
-  //   'pt_BR': 'pt'    
+  //   'pt_BR': 'pt'
   // });
 
 
@@ -107,14 +107,59 @@ angular
   // //index
     .state('home', {
       url: '/',
-      templateUrl: 'views/main.html',
-      contoller: 'HomeCtrl',
+      templateUrl: 'views/home.html',
+      controller: 'HomeCtrl',
       data: {
         requireLoggedIn: true
       }
-    })   
+    })
 
-   .state('skill', {
+    .state('event', {
+      url: '/event/{eventId}',
+      templateUrl: 'views/event.html',
+      controller: 'EventCtrl',
+      abstract: true,
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER },
+            {code: 2200, role: APP_ROLES.WS_MANAGER },
+            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          ]
+        }
+    })
+
+    .state('event.overview', {
+      url: '/overview',
+      templateUrl: 'views/event.overview.html',
+      controller: 'EventOverviewCtrl',
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER },
+            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          ]
+        }
+    })
+
+    //event management
+    .state('event.sets', {
+      url: '/sets',
+      templateUrl: 'views/event.sets.html',
+      controller: 'EventSetsCtrl',
+      data: {
+      requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER }
+        ]
+      }
+    })
+
+    //skills
+   .state('event.skill', {
     url: '/skill/{skillId}',
     templateUrl: 'views/skill.html',
     controller: 'SkillCtrl',
@@ -130,7 +175,7 @@ angular
       }
    })
 
-   .state('skill.overview', {
+   .state('event.skill.overview', {
     url: '',
     templateUrl: 'views/skill.overview.html',
     controller: 'SkillOverviewCtrl',
@@ -142,11 +187,11 @@ angular
           {code: 2200, role: APP_ROLES.WS_MANAGER },
           {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
         ]
-        
+
       }
    })
 
-   .state('skill.category', {
+   .state('event.skill.category', {
     url: '/category/{categoryId}',
     templateUrl: 'views/skill.category.html',
     controller: 'SkillCategoryCtrl',
@@ -158,10 +203,38 @@ angular
           {code: 2200, role: APP_ROLES.WS_MANAGER },
           {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
         ]
-        
+
       }
    })
-   ;
+   //
+  //  .state('management', {
+  //   url: '/management',
+  //   controller: 'ManagementCtrl',
+  //   templateUrl: 'views/management.html',
+  //   abstract: true,
+  //   data: {
+  //     requireLoggedIn: true,
+  //       requiredRoles: [
+  //         {code: 2200, role: APP_ROLES.ADMIN },
+  //         {code: 2200, role: APP_ROLES.ORGANIZER }
+  //       ]
+  //     }
+  //  })
+   //
+  //  .state('management.sets', {
+  //   url: '/sets/{eventId}',
+  //   templateUrl: 'views/event.sets.html',
+  //   controller: 'EventSetsCtrl',
+  //   data: {
+  //     requireLoggedIn: true,
+  //     requiredRoles: [
+  //         {code: 2200, role: APP_ROLES.ADMIN },
+  //         {code: 2200, role: APP_ROLES.ORGANIZER }
+  //       ]
+   //
+  //     }
+  //  })
+  //  ;
 
   })
 .run(function($rootScope, $state, $stateParams, auth, WSAlert){
