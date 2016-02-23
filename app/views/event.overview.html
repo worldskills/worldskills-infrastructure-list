@@ -13,7 +13,7 @@
 			<div class='panel-heading'>Select a skill</div>
 			<div class='panel-body'>
 				<div class="list-group">
-				  <a ui-sref="skill.overview({skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
+				  <a ui-sref="event.skill.overview({eventId: event_id, skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
 				    <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
 				    	<!-- progress bar -->
 				    	<div class="progress list-group-item-text">
@@ -50,7 +50,7 @@
 			<div class='panel-body'>
 				<ul>
           <li>
-            <a ui-sref="management.sets({eventId: selectedEvent.id})">Standard sets</a>
+            <a ui-sref="event.sets({eventId: selectedEvent.id})">Standard sets</a>
           </li>
         </ul>
 			</div>
