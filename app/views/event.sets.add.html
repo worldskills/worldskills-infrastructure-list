@@ -1,0 +1,25 @@
+<fieldset>
+  <legend>{{newSet.name}}</legend>
+<ws-spinner class='bigSpinner' ng-show='loading.set'></ws-spinner>
+<div ng-show='!loading.set'>
+
+  <div>
+    <form>
+      <div class="form-group">
+        <label>Set name</label>
+        <input ng-model="newSet.name" type="text" class="form-control" placeholder="Standard set 01">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea ng-model="newSet.description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <button type="submit" ng-click="add();" class="btn btn-success btn-sm">Submit</button>
+      <button type="reset" ng-click="cancel();" class="btn btn-warning btn-sm">Cancel</button>
+    </form>
+  </div>
+
+  <p>&nbsp;</p>
+
+</div>
+  </fieldset>

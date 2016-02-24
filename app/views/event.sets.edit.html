@@ -1,0 +1,99 @@
+<fieldset>
+  <legend>{{selectedSet.name}}&nbsp;&nbsp;<small><a ng-click="editDetails = !editDetails">edit</a></small></legend>
+<ws-spinner ng-show='loading.details'></ws-spinner>
+<ws-spinner class='bigSpinner' ng-show='loading.set'></ws-spinner>
+<div ng-show='!loading.set'>
+
+  <div ng-hide="editDetails">
+    <p ng-bind-html="selectedSet.description | nl2br"></p>
+  </div>
+
+  <div ng-show='editDetails'>
+    <form>
+      <div class="form-group">
+        <label>Set name</label>
+        <input ng-model="selectedSet.name" type="text" class="form-control" placeholder="Standard set 01">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea ng-model="selectedSet.description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <button type="submit" ng-click="saveDetails(selectedSet)" class="btn btn-success btn-sm">Submit</button>
+      <button type="reset" ng-click="editDetails = false" class="btn btn-warning btn-sm">Cancel</button>
+      <button ng-click="deleteSet(selectedSet)" class="btn btn-danger btn-sm">Delete set</button>
+    </form>
+  </div>
+
+<p>&nbsp;</p>
+
+  <fieldset>
+    <legend>
+      Catalogue Items in the set
+    </legend>
+
+    <button type="button"
+      ng-init="addItem = false"
+      ng-class="{'btn-warning': addItem, 'btn-success': !addItem}"
+      ng-click="addItemToSet();" class="btn btn-sm pull-right">
+    	<i class="glyphicon glyphicon-plus"></i>&nbsp;Add item
+    </button>
+    <div class='pull-right searchContainer'><input type="text" class="form-control searchControl" placeholder="Filter..." id='filter' ng-model="filterValue">
+    <span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+  <ws-spinner ng-show='loading.addToSet'></ws-spinner>
+  <div ng-show='addItem' class='well'>
+    <h5>Add item from catalogue</h5>
+    <angucomplete-alt id="id"
+            placeholder="Search from catalogue items..."
+            pause="400"
+            selected-object="addItemSelected"
+            remote-url="{{searchAPI}}"
+            remote-url-request-with-credentials="true"
+            remote-url-data-field="supplied_items"
+            title-field="description.text"
+            description-field="make"
+            minlength="3"
+            search-fields="description.text"
+            disable-input="disableInput"
+            focus-first="true"
+            override-suggestions="true"
+            field-required="true"
+            text-searching="Searching for items in cataloque..."
+            text-no-results="No items found, please try using other search terms."
+            input-class="form-control form-control-small has-feedback"/>
+  </div>
+
+  <div ng-show="!loading.addToSet">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Make</th>
+          <th>Model</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in selectedSet.items | filter: filterValue track by item.id">
+          <td>{{item.item.id}}</td>
+          <td>{{item.item.description.text}}</td>
+          <td>{{item.item.status.name.text}}</td>
+          <td>{{item.item.make}}</td>
+          <td>{{item.item.model}}</td>
+          <td>
+            <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeItem(item, $index);" style="margin-right: 8px;">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </fieldset>
+</div>
+  </fieldset>

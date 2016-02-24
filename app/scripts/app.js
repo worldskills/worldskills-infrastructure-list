@@ -158,6 +158,32 @@ angular
       }
     })
 
+    .state('event.sets.edit', {
+      url: '/edit/{setId}',
+      templateUrl: 'views/event.sets.edit.html',
+      controller: 'EventSetsEditCtrl',
+      data: {
+      requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER }
+        ]
+      }
+    })
+
+    .state('event.sets.add', {
+      url: '/add',
+      templateUrl: 'views/event.sets.add.html',
+      controller: 'EventSetsAddCtrl',
+      data: {
+      requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER }
+        ]
+      }
+    })
+
     //skills
    .state('event.skill', {
     url: '/skill/{skillId}',
