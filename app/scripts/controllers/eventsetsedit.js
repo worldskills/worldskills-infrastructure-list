@@ -80,10 +80,14 @@ angular.module('ilApp')
     };
 
     $scope.addItemToSet = function(){
-      $scope.addItem = true;
-      $timeout(function(){
-        $('#id_value').focus();
-      });
+      $scope.addItem = !$scope.addItem;
+
+      //set focus
+      if($scope.addItem){
+        $timeout(function(){
+          $('#id_value').focus();
+        });
+      }
     };
 
     function addToSet(set, item){
