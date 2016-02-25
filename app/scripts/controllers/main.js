@@ -127,7 +127,7 @@ angular.module('ilApp')
               //get skill
               $scope.reloadSkill().then(function (result) {
                 $scope.selectedSkill = result;
-                $state.go('skill.overview', { skillId: result.id });
+                $state.go('event.skill.overview', { eventId: $scope.selectedSkill.event.id, skillId: result.id });
               });
 
             break;
