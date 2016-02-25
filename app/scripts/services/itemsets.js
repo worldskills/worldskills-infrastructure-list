@@ -22,7 +22,6 @@ angular.module('ilApp')
       },
       function(error){
         ItemSets.event = false; ItemSets.list = false;
-        console.log(error);
         deferred.reject("Could not refresh sets: " + error.data.user_msg);
       });
 

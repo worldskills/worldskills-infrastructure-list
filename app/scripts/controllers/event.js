@@ -14,19 +14,31 @@ angular.module('ilApp')
     $scope.loading.event = true;
     $scope.APP_ROLES = APP_ROLES;
 
-    if(
-      typeof $scope.selectedEvent.id === 'undefined' &&
-      typeof $scope.selectedSector.id === 'undefined' &&
-      typeof $scope.selectedSkill.id === 'undefined'
-    ){
-      $scope.loading.event = true;
-      $scope.reload().then(function(){
-        $scope.loading.event = false;
-      },
-      function(error){
-        WSAlert.danger("Could not load event - please try again!");
-      });
-    }
+    $scope.checkNeedForReload = function(){ //wrapped in function as used in other sub-modules
+
+      var deferred = $q.defer();
+
+      if(
+        typeof $scope.selectedEvent.id === 'undefined' &&
+        typeof $scope.selectedSector.id === 'undefined' &&
+        typeof $scope.selectedSkill.id === 'undefined'
+      ){
+        $scope.loading.event = true;
+        $scope.reload().then(function(){
+          $scope.loading.event = false;
+          deferred.resolve();
+        },
+        function(error){
+          WSAlert.danger("Could not load event - please try again!");
+          deferred.reject("Could not load event - please try again!");
+        });
+      }
+      else deferred.resolve();
+
+      return deferred.promise;
+    };
+
+    $scope.checkNeedForReload();
     // if(typeof $scope.selectedEvent.id === 'undefined'){
     //   //reinit on reload
     //   $scope.event = $scope.reloadEvent().then(function(res){
