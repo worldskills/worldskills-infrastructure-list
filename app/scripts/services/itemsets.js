@@ -22,7 +22,8 @@ angular.module('ilApp')
       },
       function(error){
         ItemSets.event = false; ItemSets.list = false;
-        deferred.reject("Could not refresh sets: " + error.data_user_msg);
+        console.log(error);
+        deferred.reject("Could not refresh sets: " + error.data.user_msg);
       });
 
       return deferred.promise;
@@ -113,12 +114,25 @@ angular.module('ilApp')
 
     ItemSets.addSet = function(set, eventId){
       var deferred = $q.defer();
-      
+
       $http.post(API_IL + "/sets/event/" + eventId, set).then(function(res){
         deferred.resolve(res);
       },
       function(error){
         deferred.reject("Could not create new set: " + error);
+      });
+
+      return deferred.promise;
+    };
+
+    ItemSets.updateQuantities = function(set){
+      var deferred = $q.defer();
+
+      $http.put(API_IL + "/sets/set/" + set.id + "/items", set).then(function(res){
+        deferred.resolve(res);
+      },
+      function(error){
+        deferred.reject("Could not update quantities: " + error.data.user_msg);
       });
 
       return deferred.promise;

@@ -75,6 +75,9 @@
           <th>Status</th>
           <th>Make</th>
           <th>Model</th>
+          <th>Quantity</th>
+          <th>Multiplier</th>
+          <th>Factor</th>
           <th>&nbsp;</th>
         </tr>
       </thead>
@@ -85,14 +88,19 @@
           <td>{{item.item.status.name.text}}</td>
           <td>{{item.item.make}}</td>
           <td>{{item.item.model}}</td>
+          <td><input class='form-control input-sm' type='number' ng-model="item.quantity" /></td>
+          <td><select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select></td>
+          <td><input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true"></td>
           <td>
-            <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeItem(item, $index);" style="margin-right: 8px;">
+            <a class="pull-right btn btn-danger btn-xs" ng-click="removeItem(item, $index);" style="margin-right: 8px;">
               <span class="glyphicon glyphicon-remove"></span>
             </a>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <button ng-click="updateQuantities();" class='btn btn-sm btn-success pull-right'>Update quantities</button>
   </div>
   </fieldset>
 </div>

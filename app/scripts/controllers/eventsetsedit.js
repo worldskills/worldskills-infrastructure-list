@@ -8,12 +8,13 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventSetsEditCtrl', function ($scope, $state, $timeout, ItemSets, WSAlert, $confirm, API_IL) {
+  .controller('EventSetsEditCtrl', function ($scope, $state, $timeout, ItemSets, WSAlert, $confirm, API_IL, MULTIPLIERS, MULTIPLIER_DEFAULT) {
 
     $scope.selectedSet = {}; //selected set details
     $scope.editDetails = false; // shows edit set details form
     $scope.filterValue = ""; //filters items in set
     $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?search='; //search url for autocomplete
+    $scope.multipliers = MULTIPLIERS;
 
     $scope.loading.set = true;
 
@@ -25,6 +26,20 @@ angular.module('ilApp')
       WSAlert.danger(error);
       $scope.loading.set = false;
     });
+
+    $scope.updateQuantities = function(){
+      $scope.loading.set = true;
+
+      ItemSets.updateQuantities($scope.selectedSet).then(function(res){
+        WSAlert.success("Quantities updated!");
+        $scope.selectedSet = res.data;
+        $scope.loading.set = false;
+      },
+      function(error){
+        WSAlert.danger(error);
+        $scope.loading.set = false;
+      });
+    };
 
     $scope.removeItem = function(item, index){
       $confirm({

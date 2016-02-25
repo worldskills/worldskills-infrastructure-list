@@ -11,9 +11,10 @@ angular.module('ilApp')
   .controller('EventSetsCtrl', function ($scope, $state, ItemSets, WSAlert) {
     //permission checks done on server side
 
-    $scope.sets = ItemSets.list;
+    $scope.sets = ItemSets.list;    
 
     function loadSets(eventId){
+      $scope.loading.sets = true;
       ItemSets.init(eventId).then(function(result){
         //sets loaded
         $scope.sets = result;
