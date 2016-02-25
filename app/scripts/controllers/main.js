@@ -117,7 +117,7 @@ angular.module('ilApp')
         $scope.loading.overview = false;
 
         $scope.ilRoles = Auth.ilRoles();
-        
+
         $scope.activeRole = Auth.activeRole();
         if (toState.name == 'home') {
 
@@ -136,6 +136,7 @@ angular.module('ilApp')
               //get sector
               $scope.reloadSector().then(function (result) {
                 $scope.selectedSector = result;
+                $state.go('event.overview', { eventId: $scope.selectedSector.event });
               });
 
             break;
@@ -153,6 +154,36 @@ angular.module('ilApp')
           }//switch
         }//if
       });
+    };
+
+    $scope.reload = function(){
+      var deferred = $q.defer();
+
+      switch($scope.activeRole){
+        case APP_ROLES.WS_MANAGER:
+          $scope.reloadSkill().then(function(result){
+            $scope.selectedSkill = result;
+            deferred.resolve();
+          });
+          break;
+        case APP_ROLES.WS_SECTOR_MANAGER:
+          $scope.reloadSector().then(function(result){
+            $scope.selectedSector = result;
+            deferred.resolve();
+          });
+          break;
+        case APP_ROLES.ADMIN:
+        case APP_ROLES.ORGANIZER:
+          $scope.reloadEvent().then(function(result){
+            $scope.selectedEvent = result;
+            deferred.resolve();
+          });
+          break;
+        default:
+        break;
+      }
+
+      return deferred.promise;
     };
 
   });
