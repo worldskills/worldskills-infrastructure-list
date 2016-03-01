@@ -13,32 +13,36 @@ angular.module('ilApp')
     $scope.event = false;
     $scope.loading.event = true;
     $scope.APP_ROLES = APP_ROLES;
+    $scope.reloadingEvent = false;
 
     $scope.checkNeedForReload = function(){ //wrapped in function as used in other sub-modules
+      //var alreadyReloading = true;
 
-      var deferred = $q.defer();
+      if(typeof $scope.reloadingEvent.promise == 'undefined'){
+        //alreadyReloading = false;
+        $scope.reloadingEvent = $q.defer();
+      }
 
       if(
         typeof $scope.selectedEvent.id === 'undefined' &&
         typeof $scope.selectedSector.id === 'undefined' &&
         typeof $scope.selectedSkill.id === 'undefined'
-      ){
+        //alreadyReloading === false
+      ){      
         $scope.loading.event = true;
         $scope.reload().then(function(){
           $scope.loading.event = false;
-          deferred.resolve();
+          $scope.reloadingEvent.resolve(123);
         },
         function(error){
           WSAlert.danger("Could not load event - please try again!");
           deferred.reject("Could not load event - please try again!");
         });
       }
-      else deferred.resolve();
 
-      return deferred.promise;
+      return $scope.reloadingEvent.promise;
     };
 
-    $scope.checkNeedForReload();
     // if(typeof $scope.selectedEvent.id === 'undefined'){
     //   //reinit on reload
     //   $scope.event = $scope.reloadEvent().then(function(res){

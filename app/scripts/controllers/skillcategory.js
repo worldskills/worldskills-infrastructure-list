@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL) {
 
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
@@ -25,11 +25,13 @@ angular.module('ilApp')
     $scope.suppliedItem = {};
     $scope.searchAPI = false;
     $scope.searchSupplierAPI = false;
+    $scope.searchSetAPI = API_IL + '/sets/event/' + $state.params.eventId + "/?search="; //search url for autocomplete
     $scope.limit = 25;
     $scope.offset = 0;
     $scope.canceler = false;
     $scope.total = 0;
     $scope.supplierValue = false;
+    $scope.standardSetSelector = false;
 
     $scope.moveItem = function (itemId, parentId, position) {
       //console.log("item %d, parent %d, position %d", itemId, parentId, position);
@@ -320,6 +322,43 @@ angular.module('ilApp')
 
       //TODO check if User level == organizer, then allow after all
       return (statusId == ITEM_STATUS.RED) ? true : false;
+    };
+
+    $scope.addStandardSet = function(){
+      $scope.standardSetSelector = !$scope.standardSetSelector;
+
+      //set focus
+      if($scope.standardSetSelector){
+        $timeout(function(){
+          $('#id_value').focus();
+        });
+      }
+    };
+
+
+    $scope.addSelectedSet = function(set){
+      if(typeof set === 'undefined' || typeof set.originalObject === 'undefined' || typeof set.originalObject.id === 'undefined') return false;
+
+      $confirm({
+        title: "Add standard set to the list?",
+        itemset: set
+      },
+    {
+      templateUrl: 'views/add-set-confirm.html'
+    }).then(function(){
+        $scope.loading.initial = true;
+
+        //add the set to the list
+        Items.addSet(set.originalObject.id, $scope.categoryId, $scope.event_id, $scope.skill_id).then(function(res){
+          $scope.standardSetSelector = false;
+          $scope.loading.initial = false;
+          $scope.items = res;
+        },
+        function(error){
+          WSAlert.warning(error);
+          $scope.loading.initial = false;
+        });
+      });
     };
 
   })

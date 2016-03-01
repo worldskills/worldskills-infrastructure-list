@@ -1,59 +1,94 @@
 <fieldset><legend>{{selectedCategory.name.text}}</legend>
+<ws-spinner class='bigSpinner' ng-if='loading.initial'></ws-spinner>
+<div ng-hide="loading.initial">
 
-<span class='pull-right'>
-<!-- 	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
-		<span ng-show='sortable'>Sort mode ON</span>
-		<span ng-hide='sortable'>Sort mode OFF</span>
-	</button> -->
-	
-	<button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
-		<i class="glyphicon glyphicon-plus">
-		</i> Add item
-	</button>				
-	<div class='searchContainer pull-right'><input type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
-	<span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
-</span>
-		
-		<p><br class='cb'></p>		
+  <span class='pull-right'>
+  <!-- 	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
+  		<span ng-show='sortable'>Sort mode ON</span>
+  		<span ng-hide='sortable'>Sort mode OFF</span>
+  	</button> -->
 
-		<br />
-		
-		<ws-spinner class='bigSpinner' ng-if='loading.addItem'></ws-spinner>
-		<ws-spinner class='bigSpinner' ng-if='loading.initial'></ws-spinner>
-		
-		<!-- notifications for no items -->
-		<div class="row" ng-hide="loading.addItem">
-		  <div class="col-sm-12" ng-show="items.length == 0 && !loading.initial">
-		  	<div class='alert alert-warning'>
-		    	<p ng-if="filterValue.length > 0"><span class='glyphicon glyphicon-info-sign'></span> Search didn't return any results<br /> <a ng-click="clearSearchTerms();">Clear search terms</a></p>
-		    	<p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
-		    </div>
-		  </div>
+    <button type="button"
+    ng-click="addStandardSet();"
+    ng-class="{'btn-warning': standardSetSelector}"
+    class="pull-right btn btn-sm btn-default pad-left">
+      <i class="glyphicon glyphicon-th-list">
+      </i> Standard sets
+    </button>
 
-		  <div class="col-sm-12" ng-if="filterValue.length > 0">
-		  	<div class='alert alert-info'>
-		    	<p><small><span class='glyphicon glyphicon-info-sign'></span> Important: You can't sort items while in search mode. <a ng-click="clearSearchTerms();">Clear search terms</a></small></p>
-		    </div>
-		  </div>
+  	<button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
+  		<i class="glyphicon glyphicon-plus">
+  		</i> Add item
+  	</button>
+  	<div class='searchContainer pull-right'><input type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
+  	<span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
+  </span>
+
+  		<p><br class='cb'></p>
+
+  		<br />
+
+  		<ws-spinner class='bigSpinner' ng-if='loading.addItem'></ws-spinner>
 
 
-		  <!-- tree of items -->
-		  <div class="col-sm-12" ng-show="items.length > 0">
-		  	<div class="tree-node tree-node-content tree-header">	
-				Description
-				<small class='actionsHeader pull-right'>Actions</small>
-				<small class='statusHeader pull-right'>Status</small>
-				<small class='quantityHeader pull-right'>Quantity</small>				
-			</div>			
-		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="1">
-		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items' infinite-scroll-distance='1'>		      	
-		        <li ng-repeat="item in items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
-		      </ol>
-		    </div>		
-		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total'><small>Scroll down to load more...</small></div>    
-		    <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
-		    <ws-spinner ng-if='loading.more'></ws-spinner>
-		  </div>		
-		</div>
-</fieldset>
+      <!-- standard sets -->
+      <ws-spinner ng-show='loading.addSet'></ws-spinner>
+      <div ng-show='standardSetSelector' class='well'>
+        <h5>Add standard set</h5>
+        <angucomplete-alt id="id"
+                placeholder="Search from standard sets..."
+                pause="400"
+                selected-object="addSelectedSet"
+                remote-url="{{searchSetAPI}}"
+                remote-url-request-with-credentials="true"
+                remote-url-data-field="sets"
+                title-field="name"
+                description-field="description"
+                minlength="2"
+                search-fields="name"
+                disable-input="disableInput"
+                focus-first="true"
+                override-suggestions="true"
+                field-required="true"
+                text-searching="Searching for standard sets..."
+                text-no-results="No sets found, please try using other search terms."
+                input-class="form-control form-control-small has-feedback"/>
+      </div>
+      <!-- /standard sets -->
 
+  		<!-- notifications for no items -->
+  		<div class="row" ng-hide="loading.addItem">
+  		  <div class="col-sm-12" ng-show="items.length == 0 && !loading.initial">
+  		  	<div class='alert alert-warning'>
+  		    	<p ng-if="filterValue.length > 0"><span class='glyphicon glyphicon-info-sign'></span> Search didn't return any results<br /> <a ng-click="clearSearchTerms();">Clear search terms</a></p>
+  		    	<p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
+  		    </div>
+  		  </div>
+
+  		  <div class="col-sm-12" ng-if="filterValue.length > 0">
+  		  	<div class='alert alert-info'>
+  		    	<p><small><span class='glyphicon glyphicon-info-sign'></span> Important: You can't sort items while in search mode. <a ng-click="clearSearchTerms();">Clear search terms</a></small></p>
+  		    </div>
+  		  </div>
+
+
+  		  <!-- tree of items -->
+  		  <div class="col-sm-12" ng-show="items.length > 0">
+  		  	<div class="tree-node tree-node-content tree-header">
+  				Description
+  				<small class='actionsHeader pull-right'>Actions</small>
+  				<small class='statusHeader pull-right'>Status</small>
+  				<small class='quantityHeader pull-right'>Quantity</small>
+  			</div>
+  		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="1">
+  		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items' infinite-scroll-distance='1'>
+  		        <li ng-repeat="item in items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
+  		      </ol>
+  		    </div>
+  		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total'><small>Scroll down to load more...</small></div>
+  		    <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
+  		    <ws-spinner ng-if='loading.more'></ws-spinner>
+  		  </div>
+  		</div>
+    </div>
+  </fieldset>

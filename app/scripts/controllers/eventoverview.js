@@ -8,6 +8,6 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventOverviewCtrl', function () {
-
+  .controller('EventOverviewCtrl', function ($scope) {
+    $scope.checkNeedForReload();
   });
