@@ -76,7 +76,6 @@ angular.module('ilApp')
 
     $scope.reloadEvent = function () {
       $scope.selectedEvent = $q.defer();
-      
       $scope.activeRole = Auth.activeRole();
       User.getEvent().then(function (result) {
         $scope.selectedEvent.resolve(result);

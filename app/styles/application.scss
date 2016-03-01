@@ -30,12 +30,12 @@ li.active a {
 	border-right: 1px solid #eee;
 }
 
-.featured-event{	
+.featured-event{
 	margin-bottom: 3em;
-}   
+}
 
 
-.badge.red{ background-color: #c9302c; color: #fff; } 
+.badge.red{ background-color: #c9302c; color: #fff; }
 .featured-event > div{
 	font-size: 85%;
 	margin-bottom: 4px;
@@ -91,12 +91,14 @@ li.active a {
 
 .cb{ clear: both; }
 
-.event{	
+.pad-left{ margin-left: 1em; }
+
+.event{
 	margin-bottom: 3em;
 	float: left;
-	margin-right: 2em;	
+	margin-right: 2em;
 	border: 0;
-}   
+}
 
 /*.event:first-of-type{ margin-left:;}*/
 
@@ -173,7 +175,7 @@ a.eventLink:hover, a.contactLink:hover{ text-decoration: none; }
 .fullWidth{ width: 100%; }
 
 .label-small{
-	font-size: 50%; 
+	font-size: 50%;
 }
 
 .dropdown-menu a.active{
@@ -198,7 +200,7 @@ ul.sortableContainer.highlightBox{ min-height: 25px; border: 1px dashed #dfdfdf;
 
 .searchContainer{ padding-right: 1em; width: 200px; position: relative; }
 .searchControl{ font-size: 85%; height: 31px;  }
-.searchIcon{     
+.searchIcon{
 	position: absolute;
     right: 23px;
     top: 8px;

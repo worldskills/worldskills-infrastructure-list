@@ -8,7 +8,7 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('ItemSets', function ($http, $q, API_IL) {
+  .service('ItemSets', function ($http, $q, API_IL, MULTIPLIERS) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var ItemSets = { event: false, list : false };
 
