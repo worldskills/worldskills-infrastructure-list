@@ -16,7 +16,7 @@
     ilApp.constant('FORCED_EVENT_ID', 1);
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
-    ilApp.constant('WORLDSKILLS_CLIENT_ID', '36a853ca6fd1');
+    ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');
     ilApp.constant('WORLDSKILLS_API_AUTH', 'https://staging-api.worldskills.org/auth');
     ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
 
