@@ -1,30 +1,31 @@
 (function() {
     'use strict';
-    
-    var ilApp = angular.module('ilApp'); 
-    ilApp.constant('API_IL', 'http://localhost:8080/il');
-    ilApp.constant('API_PEOPLE', 'http://localhost:8080/people');
+
+
+    var ilApp = angular.module('ilApp');
+    ilApp.constant('API_IL', 'https://staging-api.worldskills.org/il');
+    ilApp.constant('API_PEOPLE', 'https://staging-api.worldskills.org/people');
     ilApp.constant('APP_ID', '2200');
-    ilApp.constant('API_IMAGES', 'http://localhost:8080/images');
-    ilApp.constant('CLIENT_ID', '36a853ca6fd1');
-    ilApp.constant('API_AUTH', 'http://localhost:8080/auth');
-    ilApp.constant('AUTHORIZE_URL', 'http://localhost:10100/oauth/authorize');
-    ilApp.constant('LOGOUT_URL', 'http://localhost:10100/logout');
+    ilApp.constant('API_IMAGES', 'https://staging-api.worldskills.org/images');
+    ilApp.constant('CLIENT_ID', 'bc9cf785283f');
+    ilApp.constant('API_AUTH', 'https://staging-api.worldskills.org/auth');
+    ilApp.constant('AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
+    ilApp.constant('LOGOUT_URL', 'https://staging-auth.worldskills.org/logout');
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
-    ilApp.constant('WORLDSKILLS_CLIENT_ID', '36a853ca6fd1');
-    ilApp.constant('WORLDSKILLS_API_AUTH', 'http://localhost:8080/auth');
-    ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'http://localhost:10100/oauth/authorize');
+    ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');
+    ilApp.constant('WORLDSKILLS_API_AUTH', 'https://staging-api.worldskills.org/auth');
+    ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
 
     ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
 
-    ilApp.constant('APP_ROLES', {
+        ilApp.constant('APP_ROLES', {
         ADMIN: 'Admin',
         ORGANIZER: 'Organizer',
         WS_MANAGER: 'Workshop Manager',
         WS_SECTOR_MANAGER: 'Sector Manager'
-    });    
+    });
 
     //TODO implement base positions
     //2017
