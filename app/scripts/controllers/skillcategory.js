@@ -325,6 +325,7 @@ angular.module('ilApp')
     };
 
     $scope.addStandardSet = function(){
+      $('#id_value').val('');
       $scope.standardSetSelector = !$scope.standardSetSelector;
 
       //set focus
