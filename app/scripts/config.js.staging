@@ -8,7 +8,7 @@
     ilApp.constant('API_PEOPLE', 'https://staging-api.worldskills.org/people');
     ilApp.constant('APP_ID', '2200');
     ilApp.constant('API_IMAGES', 'https://staging-api.worldskills.org/images');
-    ilApp.constant('CLIENT_ID', '36a853ca6fd1');
+    ilApp.constant('CLIENT_ID', 'bc9cf785283f');
     ilApp.constant('API_AUTH', 'https://staging-api.worldskills.org/auth');
     ilApp.constant('AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
     ilApp.constant('LOGOUT_URL', 'https://staging-auth.worldskills.org/logout');
