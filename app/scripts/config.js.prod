@@ -1,8 +1,8 @@
 (function() {
     'use strict';
 
-    
-    var ilApp = angular.module('ilApp'); 
+
+    var ilApp = angular.module('ilApp');
     ilApp.constant('API_IL', 'https://api.worldskills.org/il');
     ilApp.constant('API_PEOPLE', 'https://api.worldskills.org/people');
     ilApp.constant('APP_ID', '2200');
@@ -25,16 +25,8 @@
         ORGANIZER: 'Organizer',
         WS_MANAGER: 'Workshop Manager',
         WS_SECTOR_MANAGER: 'Sector Manager'
-    });    
-
-    //TODO implement base positions
-    //2017
-    ilApp.constant('POSITIONS', {
-        WS_MANAGER: 64,
-        WS_MANAGER_ASSISTANT: 65,
-        WS_SECTOR_MANAGER: 66,
-        ORGANIZER: 82
     });
+
 
     ilApp.constant('MULTIPLIERS', [
         {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },

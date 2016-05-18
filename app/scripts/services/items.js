@@ -13,8 +13,8 @@ angular.module('ilApp')
    	var Items = { categories : $q.defer(), $data : $q.defer() }
 
    	Items.getCategories = function(skillId){
-
-   		if(typeof Items.categories.promise == 'undefined') Items.categories = $q.defer();
+   		//if(typeof Items.categories.promise == 'undefined') Items.categories = $q.defer();
+      Items.categories = $q.defer();
 
    		$http.get(API_IL + "/categories/" + skillId).then(function(result){
    			Items.categories.resolve(result.data.categories);

@@ -68,8 +68,17 @@
                             <li ui-sref-active="active"><a ui-sref="assessmentCriteria.menu({stepName:'02'})">Assessment Criteria</a></li>
                         </ul></li>
                 </ul> -->
+
                 <ul class="nav navbar-nav navbar-right" ng-cloak>
                     <li ng-show='auth.loggedIn'><a ng-cloak translate>HOME</a></li>
+                    <li ng-if="activePositions.length > 1" role="presentation" class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Select role <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li ng-repeat="position in activePositions track by $index"><a ng-click="setActivePosition(position, $event);" ng-class="{active: position.id == activePosition.id}" href="#">{{position.role}} <small><span ng-if="position.target">in {{position.target}} </span>at {{position.event.name.text}}</small></a></li>
+                      </ul>
+                    </li>
                     <li ng-show='auth.loggedIn' class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
                             {{auth.user.first_name + " " + auth.user.last_name}}&nbsp;<b class="caret"></b>
                         </a>
