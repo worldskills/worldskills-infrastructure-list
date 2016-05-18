@@ -229,3 +229,8 @@ hr.edit-divider{ margin-top: 0; margin-bottom: 10px; }
 }*/
 
 .smallText{ font-size: 75%; }
+
+
+.permissionList div{ margin-bottom: 1em; }
+.permissionList div a{ font-weight: normal; }
+.permissionList div.active a{ font-weight: bold; }

@@ -73,7 +73,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
 
         $http.get(API_IL + "/events/skill/" + skillId).then(function(result){
-            Events.id = result.data.event;
+            Events.id = result.data.event.id;
             deferred.resolve(result.data);
         },
         function(error){

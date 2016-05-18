@@ -6,13 +6,13 @@
     ilApp.constant('API_PEOPLE', 'http://localhost:8080/people');
     ilApp.constant('APP_ID', '2200');
     ilApp.constant('API_IMAGES', 'http://localhost:8080/images');
-    ilApp.constant('CLIENT_ID', '36a853ca6fd1');
+    ilApp.constant('CLIENT_ID', 'bc9cf785283f');
     ilApp.constant('API_AUTH', 'http://localhost:8080/auth');
     ilApp.constant('AUTHORIZE_URL', 'http://worldskills-auth.dev/oauth/authorize');
     ilApp.constant('LOGOUT_URL', 'http://worldskills-auth.dev/logout');
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
-    ilApp.constant('WORLDSKILLS_CLIENT_ID', '36a853ca6fd1');
+    ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');
     ilApp.constant('WORLDSKILLS_API_AUTH', 'http://localhost:8080/auth');
     ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'http://worldskills-auth.dev/oauth/authorize');
 
@@ -26,14 +26,8 @@
         WS_SECTOR_MANAGER: 'Sector Manager'
     });
 
-    //TODO implement base positions
-    //2017
-    ilApp.constant('POSITIONS', {
-        WS_MANAGER: 64,
-        WS_MANAGER_ASSISTANT: 65,
-        WS_SECTOR_MANAGER: 66,
-        ORGANIZER: 82
-    });
+    //TODO remove me
+    ilApp.constant('POSITIONS', {});
 
     ilApp.constant('MULTIPLIERS', [
         {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },

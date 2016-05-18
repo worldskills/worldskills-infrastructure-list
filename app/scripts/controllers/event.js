@@ -11,53 +11,36 @@ angular.module('ilApp')
   .controller('EventCtrl', function ($q, $scope, Events, WSAlert, APP_ROLES) {
 
     $scope.event = false;
-    $scope.loading.event = true;
+    //$scope.loading.event = true;
     $scope.APP_ROLES = APP_ROLES;
-    $scope.reloadingEvent = false;
+    //$scope.reloadingEvent = false;
 
     $scope.checkNeedForReload = function(){ //wrapped in function as used in other sub-modules
-      //var alreadyReloading = true;
-
-      if(typeof $scope.reloadingEvent.promise == 'undefined'){
-        //alreadyReloading = false;
-        $scope.reloadingEvent = $q.defer();
-      }
-
-      if(
-        typeof $scope.selectedEvent.id === 'undefined' &&
-        typeof $scope.selectedSector.id === 'undefined' &&
-        typeof $scope.selectedSkill.id === 'undefined'
-        //alreadyReloading === false
-      ){      
-        $scope.loading.event = true;
-        $scope.reload().then(function(){
-          $scope.loading.event = false;
-          $scope.reloadingEvent.resolve(123);
-        },
-        function(error){
-          WSAlert.danger("Could not load event - please try again!");
-          deferred.reject("Could not load event - please try again!");
-        });
-      }
-
-      return $scope.reloadingEvent.promise;
+      // //var alreadyReloading = true;
+      //
+      // if(typeof $scope.reloadingEvent.promise == 'undefined'){
+      //   //alreadyReloading = false;
+      //   $scope.reloadingEvent = $q.defer();
+      // }
+      //
+      // if(
+      //   typeof $scope.selectedEvent.id === 'undefined' &&
+      //   typeof $scope.selectedSector.id === 'undefined' &&
+      //   typeof $scope.selectedSkill.id === 'undefined'
+      //   //alreadyReloading === false
+      // ){
+      //   $scope.loading.event = true;
+      //   $scope.reload().then(function(){
+      //     $scope.loading.event = false;
+      //     //$scope.reloadingEvent.resolve(123);
+      //   },
+      //   function(error){
+      //     WSAlert.danger("Could not load event - please try again!");
+      //     deferred.reject("Could not load event - please try again!");
+      //   });
+      // }
+      //
+      // return $scope.reloadingEvent.promise;
     };
-
-    // if(typeof $scope.selectedEvent.id === 'undefined'){
-    //   //reinit on reload
-    //   $scope.event = $scope.reloadEvent().then(function(res){
-    //     //done loading
-    //     $scope.loading.event = false;
-    //   },
-    //   function(error){
-    //     $scope.event.reject(error);
-    //     WSAlert.danger(error);
-    //     $scope.loading.event = false;
-    //   });
-    // }
-    // else{
-    //    $scope.event = $scope.selectedEvent;
-    //    $scope.loading.event = false;
-    // }
 
   });
