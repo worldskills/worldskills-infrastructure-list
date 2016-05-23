@@ -1,7 +1,6 @@
 (function() {
     'use strict';
 
-    //TODO update values when integrating with API
 
     var ilApp = angular.module('ilApp');
     ilApp.constant('API_IL', 'https://staging-api.worldskills.org/il');
@@ -12,8 +11,6 @@
     ilApp.constant('API_AUTH', 'https://staging-api.worldskills.org/auth');
     ilApp.constant('AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
     ilApp.constant('LOGOUT_URL', 'https://staging-auth.worldskills.org/logout');
-    ilApp.constant('SIGNUP_URL', 'https://staging-auth.worldskills.org/registration/connect');
-    ilApp.constant('FORCED_EVENT_ID', 1);
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
     ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');
