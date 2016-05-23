@@ -49,6 +49,12 @@ angular.module('ilApp')
     };
 
     $scope.$watch('activePosition', function(pos){
+      $scope.redirectToActivePosition(pos, null);
+    });
+
+
+    $scope.redirectToActivePosition = function(pos, $event){
+      if($event !== null) $event.preventDefault();
       $scope.loading.init = true;
 
       //init promise
@@ -74,6 +80,7 @@ angular.module('ilApp')
             });
           });
         }
+        else $scope.loading.init = false; //stop loading to show position selection
       }
       else {
         $scope.selectedSkill = {};
@@ -84,26 +91,28 @@ angular.module('ilApp')
         if($state.current.name == 'home') $scope.redirectNeeded = true;
 
         if (pos.role == APP_ROLES.WS_SECTOR_MANAGER) {
+          $scope.selectedEvent = pos.event;
           $scope.selectedSector = pos.sector;
           $scope.sector_id = pos.sector.id;
           $scope.event_id = pos.sector.event.id;
 
           $scope.reloadSector().then(function(res){
-            $scope.loading.init = false;
-            $scope.appLoaded.resolve();
+              $scope.loading.init = false;
+              $scope.appLoaded.resolve();
 
-            if($scope.redirectNeeded)
-              $state.go('event.overview', {eventId: $scope.selectedSector.event.id});
-          },
-          function(error){
-            WSAlert.danger(error);
-            $scope.appLoaded.reject();
-            $scope.loading.init = false;
-          });
+              if($scope.redirectNeeded)
+                $state.go('event.overview', {eventId: $scope.selectedSector.event.id});
+            },
+            function(error){
+              WSAlert.danger(error);
+              $scope.appLoaded.reject();
+              $scope.loading.init = false;
+            });
         }
         else if (pos.role == APP_ROLES.WS_MANAGER) {
 
           $scope.selectedSkill = pos.skill;
+          $scope.selectedEvent = pos.event;
           $scope.skill_id = pos.skill.id;
           $scope.event_id = pos.skill.event.id;
           $scope.loading.init = false;
@@ -121,19 +130,19 @@ angular.module('ilApp')
           $scope.event_id = $scope.selectedEvent.id;
 
           $scope.reloadEvent().then(function(res){
-            $scope.loading.init = false;
-            $scope.appLoaded.resolve();
+              $scope.loading.init = false;
+              $scope.appLoaded.resolve();
 
-            if($scope.redirectNeeded)
-              $state.go('event.overview', {eventId: $scope.selectedEvent.id});
-          },
-          function(error) {
-            $scope.loading.init = false;
-            WSAlert.danger(error);
-            $scope.appLoaded.reject();
-          });
+              if($scope.redirectNeeded)
+                $state.go('event.overview', {eventId: $scope.selectedEvent.id});
+            },
+            function(error) {
+              $scope.loading.init = false;
+              WSAlert.danger(error);
+              $scope.appLoaded.reject();
+            });
         }
       }
-    });
+    };
 
   });

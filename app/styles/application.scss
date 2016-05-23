@@ -233,4 +233,4 @@ hr.edit-divider{ margin-top: 0; margin-bottom: 10px; }
 
 .permissionList div{ margin-bottom: 1em; }
 .permissionList div a{ font-weight: normal; }
-.permissionList div.active a{ font-weight: bold; }
+.permissionList div.active a, li.permissionList a.active{ font-weight: bold; background-color: #f8f8f8; }
