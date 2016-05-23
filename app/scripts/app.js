@@ -62,20 +62,36 @@ angular
           Called when another XHR request returns with
           an error status code.
         */
+        var times = (sessionStorage.getItem('login_redirect_counter') !== null) ? sessionStorage.getItem('login_redirect_counter') : 1;
+        const MAX_RETRIES = 3;
 
         if(
             (rejection.status == 400 && rejection.data.code == "2200-1012") ||
             (rejection.status == 401 && rejection.data.code == "100-101")
           )
           {
-          WSAlert.danger(rejection.data.user_msg + ". Redirecting to login...");
-          var refreshLogin = function(){
-            //FIXME - figure out a way to redirect to login directly without a refresh
-            window.history.go(0);
-          };
-          //redirect to login after 1 second timeout
-          $timeout(refreshLogin, 1000);
+
+            //if past max retries (3)
+            if(times > MAX_RETRIES){
+              WSAlert.danger("You most likely don't have the required permissions, please contact webmaster@worldskills.org");
+              sessionStorage.setItem('login_redirect_counter', 1);
+            }
+            else{
+              WSAlert.danger(rejection.data.user_msg + ". Redirecting to login... [" + times + "]");
+              var refreshLogin = function () {
+                window.history.go(0);
+              };
+              //redirect to login after 1 second timeout
+              times++;
+              sessionStorage.setItem('login_redirect_counter', times);
+              $timeout(refreshLogin, 1000);
+            }
         }
+        else{
+          //clear timeout
+          sessionStorage.setItem('login_redirect_counter', 1);
+        }
+
         return $q.reject(rejection);
       }
     };

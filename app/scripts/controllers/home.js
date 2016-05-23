@@ -7,4 +7,13 @@ angular.module('ilApp')
     $scope.APP_ROLES = APP_ROLES;
     $scope.selectedLanguage = Language.selectedLanguage;
 
+    $q.when($scope.activePositions.promise).then(function (positions) {
+      //if only one active position, select it
+      if($scope.activePositions.length == 1) {
+        $scope.loadActivePosition($scope.activePositions[0]);
+      }//if
+    },
+    function(error){
+      WSAlert.danger(error);
+    });
   });

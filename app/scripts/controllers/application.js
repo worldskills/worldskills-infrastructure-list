@@ -22,7 +22,11 @@ angular.module('ilApp')
     //go though and see which ones the user has in positions
     $q.when(auth.user.$promise).then(function() {
       User.getActivePositions().then(function(res){
+        $scope.activePositions.resolve(res);
         $scope.activePositions = res;
+      },
+      function(error){
+        $scope.activePositions.reject("Could not get active positions for user: " + error.data.user_msg);
       });
     });
 
@@ -31,7 +35,7 @@ angular.module('ilApp')
     });
 
     $scope.setActivePosition = function(position, $event){
-      $event.preventDefault();
+      if($event !== undefined) $event.preventDefault();
 
       //save in session storage to be read later if needed on refresh
       sessionStorage.setItem('active_position_id', position.id);

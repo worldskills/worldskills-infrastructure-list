@@ -48,21 +48,24 @@ angular.module('ilApp')
 
     };
 
+    //observes the activePosition scope var
     $scope.$watch('activePosition', function(pos){
-      $scope.redirectToActivePosition(pos, null);
+      $scope.loadActivePosition(pos, null);
     });
 
 
-    $scope.redirectToActivePosition = function(pos, $event){
-      if($event !== null) $event.preventDefault();
+    $scope.loadActivePosition = function(pos, $event){
+      if($event !== null && $event !== undefined) $event.preventDefault();
+
       $scope.loading.init = true;
+
+      //if position differs, set a new active position (called from home.html position selector)
+      //not the prettiest solution, but hey...
+      if(pos !== $scope.activePosition) $scope.setActivePosition(pos);
 
       //init promise
       if(!$scope.appLoaded.promise)
         $scope.appLoaded = $q.defer();
-
-      //skip if null (== init)
-      //if(pos.id === undefined || pos === null) return;
 
       //load item from session storage if needed
       if($scope.activePosition.id === undefined && pos.id === undefined){
