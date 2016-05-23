@@ -26,7 +26,7 @@ angular.module('ilApp')
         $scope.activePositions = res;
       },
       function(error){
-        $scope.activePositions.reject("Could not get active positions for user: " + error.data.user_msg);
+        $scope.activePositions.reject("Could not get active positions for user: " + error);
       });
     });
 
