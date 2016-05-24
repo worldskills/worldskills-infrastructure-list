@@ -14,6 +14,7 @@ angular.module('ilApp')
     $scope.activePositions = $q.defer();
     $scope.activePosition = $q.defer();
     $scope.redirectNeeded = false;
+    $scope.loading = { init: true };
 
     $scope.logout = function (e) {
         auth.logout();
@@ -27,6 +28,7 @@ angular.module('ilApp')
       },
       function(error){
         $scope.activePositions.reject("Could not get active positions for user: " + error);
+        $scope.loading.init = false;
       });
     });
 

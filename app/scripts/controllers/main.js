@@ -15,7 +15,6 @@ angular.module('ilApp')
     $scope.appLoaded = $q.defer();
 
     $scope.skill_id, $scope.event_id;
-    $scope.loading = { init: true };
 
     $scope.reloadSector = function () {
       var deferred = $q.defer();
