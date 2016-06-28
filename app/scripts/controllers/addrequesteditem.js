@@ -28,19 +28,7 @@ angular.module('ilApp')
       $scope.disableInput = false;
     };
 
-    $scope.focusOutItem = function(){
-      console.log("OUT");
-
-    };
-
     $scope.addItem = function () {
-
-      console.log("SUP", $scope.suppliedItem);
-      if(typeof $scope.suppliedItem === 'undefined' || typeof $scope.suppliedItem.originalObject === 'undefined'){
-        console.log("HERE");
-        console.log($scope.searchStr);
-        console.log($scope.suppliedItem);
-      }
 
       $scope.loading.addItem = true;
 

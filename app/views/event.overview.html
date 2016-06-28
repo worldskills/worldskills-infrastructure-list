@@ -50,13 +50,12 @@
 			</div>
 		</div>
 
-    <div class='panel panel-default' ng-if="activeRole == APP_ROLES.ORGANIZER || activeRole == APP_ROLES.ADMIN">
-			<div class='panel-heading'>Host views</div>
+    <div class='panel panel-default' ng-if="activePosition.role == APP_ROLES.ORGANIZER || activePosition.role == APP_ROLES.ADMIN">
+			<div class='panel-heading'>Admin views</div>
 			<div class='panel-body'>
 				<ul>
-          <li>
-            <a ui-sref="event.sets({eventId: selectedEvent.id})">Standard sets</a>
-          </li>
+          <li><a ui-sref="event.sets({eventId: selectedEvent.id})">Standard sets</a></li>
+          <li><a>Catalogue editor</a></li>
         </ul>
 			</div>
 		</div>
