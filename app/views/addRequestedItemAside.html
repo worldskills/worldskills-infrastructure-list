@@ -14,17 +14,17 @@
                   remote-url-data-field="supplied_items"
                   title-field="description.text"
                   description-field="make"
+                          focus-out="focusOutItem"
                   minlength="3"
                   search-fields="description.text"
-                  disable-input="disableInput"                  
-                  focus-first="true"
+                  disable-input="disableInput"
                   override-suggestions="true"
                   field-required="true"
                   text-searching="Searching for items in cataloque..."
-                  text-no-results="No existing items, hit return key to add as a new item."  
+                  text-no-results="No existing items, hit return key to add as a new item."
                   input-class="form-control form-control-small has-feedback"/>
-      </div>     
-      
+      </div>
+
 
       <div class='form-group addForm' ng-if="suppliedItem.originalObject.id">
       	<div class='panel panel-default'>
@@ -48,7 +48,7 @@
       					</tr>
       				</tbody>
       			</table>
-      			
+
 		      	<div class='alert alert-info smallText'>
 		      		This is an item already created by the organizer, or an item already used in another skill.<br />
 		      		If this doesn't match your needs, please use a unique description to create a new item.<br /><br />
@@ -59,13 +59,13 @@
       	<hr>
       </div>
 
-      <div class='row'>        
+      <div class='row'>
           <div class='col col-sm-12 col-md-4'>
             <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
               <label class='control-label'>Quantity</label>
               <input name="quantity" type="number" class="input-sm form-control" placeholder="Quantity" ng-model='item.quantity' required="Quantity is missing" ng-required="true">
-              <span ng-if="!addForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
-              <span ng-if="addForm.quantity.$dirty && addForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>        
+              <span ng-if="!addForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span ng-if="addForm.quantity.$dirty && addForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
           <div class='col col-sm-12 col-md-4'>
@@ -74,23 +74,23 @@
               <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
               <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
             </div>
-          </div>          
+          </div>
           <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(item.multiplier)">
             <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.multiply_factor.$error.required, 'has-success': !addForm.multiply_factor.$error.required}">
               <label class='control-label'>Multiply factor</label>
               <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true">
-              <span ng-if="!addForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
-              <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>        
+              <span ng-if="!addForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
     </div>
 
     <div class='row'>
-      <div class='col col-xs-12 col-sm-6'>      
-        <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">        
+      <div class='col col-xs-12 col-sm-6'>
+        <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
           <label class='control-label'>Potential supplier{{item.supplier}}</label>
           <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="Potential supplier" ng-model='item.supplier' ng-trim="true"> -->
-          <angucomplete-alt 
+          <angucomplete-alt
                   id="id"
                   placeholder="Potential supplier"
                   pause="400"
@@ -98,27 +98,27 @@
                   remote-url="{{searchSupplierAPI}}"
                   remote-url-request-with-credentials="true"
                   remote-url-data-field="suppliers"
-                  title-field="name"                  
+                  title-field="name"
                   minlength="1"
                   search-fields="name"
-                  disable-input="disableInputSupplier"                  
+                  disable-input="disableInputSupplier"
                   focus-first="true"
                   input-changed="supplierChangedAdd"
                   override-suggestions="true"
                   field-required="false"
                   text-searching="false"
-                  text-no-results="No existing suppliers found."  
+                  text-no-results="No existing suppliers found."
                   initial-value="item.supplier"
                   input-class="input-sm form-control"/>
                   <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
-        </div>     
-      </div>           
+        </div>
+      </div>
       <div class='col col-xs-12 col-sm-6 form-group'>
           <div class="form-group addForm has-feedback has-success">
             <label class='control-label'>Estimated price</label>
             <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
-            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>                    
-          </div>  
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+          </div>
           <div data-nodrag class="checkbox addForm form-group has-feedback has-success">
             <label>
               <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
@@ -126,10 +126,10 @@
           </div>
       </div>
     </div>
-    
+
 
     </div> <!-- well -->
-    <button ng-disabled="addForm.$error.required || !suppliedItem.originalObject" ng-click="addItem();" class='btn btn-sm btn-success'>Add item</button>
+    <button ng-disabled="addForm.$error.required  || !suppliedItem.originalObject" ng-click="addItem();" class='btn btn-sm btn-success'>Add item</button>
     <button ng-click="cancel();" class='btn btn-sm btn-warning'>Cancel</button>
     </form>
 
