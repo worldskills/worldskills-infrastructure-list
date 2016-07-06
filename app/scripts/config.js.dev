@@ -40,6 +40,12 @@
         'GREEN': 3
     });
 
+    ilApp.constant('ITEM_STATUS_TEXT', {
+        'RED': "Requested",
+        'YELLOW': "Confirmed",
+        'GREEN': "Supplied"
+      });
+
     ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
 
 })();

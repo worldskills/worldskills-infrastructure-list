@@ -53,8 +53,10 @@ module.exports = function(config) {
       'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'bower_components/angular-aside/dist/js/angular-aside.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
-      'bower_components/angular-confirm-modal/angular-confirm.min.js',
+      'bower_components/angular-confirm-modal/angular-confirm.js',
       'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
+      'bower_components/angular-ui-grid/ui-grid.js',
+      'bower_components/angular-hotkeys/build/hotkeys.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

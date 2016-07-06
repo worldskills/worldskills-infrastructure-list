@@ -214,6 +214,7 @@ ul.sortableContainer.highlightBox{ min-height: 25px; border: 1px dashed #dfdfdf;
 
 .addForm label, .editForm label{ font-size: 85%; }
 
+
 .angucomplete-description{ font-size: 85%; font-style: italic; }
 /*.angucomplete-title{ font-size: 90%; font-weight: bold; }*/
 
@@ -222,6 +223,8 @@ hr.edit-divider{ margin-top: 0; margin-bottom: 10px; }
 .aside{
 	padding: 2em;
 }
+
+legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 
 /*.ng-invalid, .ng-invalid-required{
 	background-color: #a94442;
@@ -234,3 +237,18 @@ hr.edit-divider{ margin-top: 0; margin-bottom: 10px; }
 .permissionList div{ margin-bottom: 1em; }
 .permissionList div a{ font-weight: normal; }
 .permissionList div.active a, li.permissionList a.active{ font-weight: bold; }
+.catalogueGrid{ height: 640px; }
+.statusRed{  background-color: #EEB4B4 !important;}
+.statusYellow{ background-color: #FFF68F !important;}
+.statusGreen{  background-color: #CDE472 !important;}
+
+/*.statusRed{  color: #fff; background-color: #d9534f !important;}
+.statusYellow{ color: #fff; background-color: #f0ad4e !important;}
+.statusGreen{  color: #fff; background-color: #449d44 !important;}*/
+
+.ui-grid-cell-contents{ font-size: 90%; }
+.fullscreen{ width: 100% !important; height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999; background-color: #fff; }
+.btnFullscreen{ position: absolute; top: 5px; right: 5px; z-index: 10000; }
+
+/*.editForm .nav > li > a{ padding: 10px; }*/
+.editForm .nav-tabs > li > a { font-size: 100%; }

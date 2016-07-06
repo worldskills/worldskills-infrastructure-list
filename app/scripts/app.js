@@ -29,7 +29,8 @@ angular
     'ngAside',
     'angucomplete-alt',
     'angular-confirm',
-    'infinite-scroll'
+    'infinite-scroll',
+    'ui.grid', 'ui.grid.autoResize', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.pinning', 'ui.grid.rowEdit'
   ])
   //.config(function ($routeProvider) {
     .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
@@ -193,6 +194,20 @@ angular
       controller: 'EventSetsAddCtrl',
       data: {
       requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER }
+        ]
+      }
+    })
+
+    //catalogue
+    .state('event.catalogue', {
+      url: '/catalogue',
+      templateUrl: 'views/event.catalogue.html',
+      controller: 'EventCatalogueCtrl',
+      data: {
+        requireLoggedIn: true,
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.ORGANIZER }

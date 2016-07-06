@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
     <link rel="stylesheet" href="bower_components/angular-aside/dist/css/angular-aside.css" />
     <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <link rel="stylesheet" href="bower_components/angular-hotkeys/build/hotkeys.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="bower_components/angular-worldskills-utils/src/spinner.css" />
     <!-- endbuild -->
@@ -59,7 +61,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                 <ul class="nav navbar-nav navbar-right" ng-cloak>
-                    <li ng-show='auth.loggedIn'><a ng-cloak translate>HOME</a></li>
+                    <li ng-show='auth.loggedIn'><a ui-sref="home" ng-cloak translate>HOME</a></li>
                     <li ng-if="activePositions.length > 1" role="presentation" class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span ng-cloak translate>SWITCH_ROLE</span>&nbsp;<span class="caret"></span>
@@ -176,8 +178,10 @@
     <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
     <script src="bower_components/angular-aside/dist/js/angular-aside.js"></script>
     <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
-    <script src="bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
+    <script src="bower_components/angular-confirm-modal/angular-confirm.js"></script>
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/angular-hotkeys/build/hotkeys.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -209,6 +213,9 @@
         <script src="scripts/services/itemsets.js"></script>
         <script src="scripts/filters/nl2br.js"></script>
         <script src="scripts/controllers/eventsetsadd.js"></script>
+        <script src="scripts/controllers/eventcatalogue.js"></script>
+        <script src="scripts/services/supplieditem.js"></script>
+        <script src="scripts/controllers/editsupplieditem.js"></script>
         <!-- endbuild -->
         <ws-puppet p="auth.user.puppeteer"></ws-puppet>
 </body>

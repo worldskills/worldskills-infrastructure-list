@@ -1,0 +1,29 @@
+<h2>Catalogue</h2>
+
+<div class="pull-left">
+  <button class="btn btn-sm btn-success" ng-click="openItemEditor()"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add new catalogue item</button>
+  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-warning" ng-click="editItem()"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit selected item</button>
+  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-danger" ng-click="removeItem()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item</button>
+  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-info" ng-click="getLinkedItems()"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</button>
+</div>
+<div class="pull-right">
+  <button ng-class="{'btnFullscreen': fullscreen}" class="btn btn-sm btn-primary" ng-click="toggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;<span ng-show="fullscreen">Exit </span>Fullscreen</button>
+</div>
+<div class="clearfix"></div>
+<ws-spinner ng-show="loading.catalogue"></ws-spinner>
+<div>&nbsp;</div>
+
+<div ng-class="{'fullscreen': fullscreen}" id="fullScreenDiv">
+<div class="row">
+  <div class="col col-xs-12">
+    <ws-spinner class="bigSpinner" ng-show="!catalogueLoaded"></ws-spinner>
+    <div ui-if="catalogueLoaded === true" ng-if="catalogueLoaded === true" class='catalogueGrid' ui-grid="gridOptions"
+      ui-grid-auto-resize
+      ui-grid-cellnav
+      ui-grid-edit
+      ui-grid-row-edit
+      ui-grid-pinning></div>
+  </div>
+</div>
+</div>
+<p>&nbsp;</p>

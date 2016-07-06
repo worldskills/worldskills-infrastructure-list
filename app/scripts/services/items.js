@@ -160,6 +160,19 @@ angular.module('ilApp')
         return deferred.promise;
       };
 
+    Items.getCatalogue = function(eventId){
+      var deferred = $q.defer();
+
+      $http.get(API_IL + "/items/" + eventId + "/supplied_items/all").then(function(res){
+        deferred.resolve(res.data);
+      },
+      function(error){
+        deferred.reject("Could not get catalogue items: " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    };
+
    	return Items;
 
   });

@@ -173,8 +173,8 @@ angular.module('ilApp')
     };
 
     $scope.newSubItem = function (item) {
-    $scope.addItem(item);
-  };
+      $scope.addItem(item);
+    };
 
     $scope.initCategory = function () {
 
