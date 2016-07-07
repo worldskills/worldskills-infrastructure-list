@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, WSAlert, API_IL, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem) {
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, WSAlert, API_IL, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, hotkeys) {
 
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
@@ -90,24 +90,28 @@ angular.module('ilApp')
       $scope.loading.catalogue = true;
       //actually save row
       SuppliedItem.saveItem(rowEntity).then(function(res){
-        promise.resolve();
+          promise.resolve();
+          angular.extend(rowEntity, res);
           $scope.loading.catalogue = false;
       },
       function(error){
-        WSAlert.danger("Could not save row: " + error);
+        WSAlert.danger(error);
         promise.reject();
         $scope.loading.catalogue = false;
       });
+
+      return promise.promise;
     };
 
-    $scope.getLinkedItems = function(){
-      var focus = $scope.getCurrentFocus();
-      var item = focus.row.entity;
+    $scope.getLinkedItems = function($event){
+      $event.preventDefault();
+      $event.stopPropagation();
 
-      if(item.linkedItems === false){
-        WSAlert.warning("Item is not used in any skills yet...");
-        return false;
-      }
+      if($scope.fullscreen) return;
+
+      var focus = $scope.getCurrentFocus();
+      if(!focus) return;
+      var item = focus.row.entity;
 
       $scope.loading.catalogue = true;
 
@@ -134,15 +138,15 @@ angular.module('ilApp')
     };
 
 
-    $scope.removeItem = function() {
+    $scope.removeItem = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      if($scope.fullscreen) return;
+
       var focus = $scope.getCurrentFocus();
-
+      if(!focus) return;
       var item = focus.row.entity;
-
-      if(item.linkedItems === true){
-        WSAlert.warning("You can't remove this item as it is already used in one or more skills!");
-        return;
-      }
 
       $confirm({
           title: "Remove item from catalogue?",
@@ -208,20 +212,27 @@ angular.module('ilApp')
     });
 
     //edit item
-    $scope.editItem = function(){
+    $scope.editItem = function($event){
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      if($scope.fullscreen) return;
+
       var focus = $scope.getCurrentFocus();
+      if(!focus) return;
       var item = focus.row.entity;
 
       //scope gets passed to editSuppliedItemCtrl
-      $scope.item = item;
-
       $scope.openItemEditor(item);
     };
 
     $scope.openItemEditor = function(item){
       if(item == void 0)
         $scope.item = {};
-      else $scope.item = item;
+      else {
+        angular.copy(item, $scope.item);
+        $scope.rowItem = item;
+      }
 
       $aside.open({
         templateUrl: 'views/editsupplieditemaside.html',
@@ -247,5 +258,32 @@ angular.module('ilApp')
     function postClose() {
       $scope.asideState.open = false;
     }
+
+
+    //map hotkeys
+    hotkeys.add({
+      combo: 'ctrl+o',
+      description: 'Edit item in full view',
+      callback: $scope.editItem
+    });
+
+    hotkeys.add({
+      combo: 'ctrl+l',
+      description: 'Display linked items',
+      callback: $scope.getLinkedItems
+    });
+
+    hotkeys.add({
+      combo: 'ctrl+backspace',
+      description: 'Remove selected item',
+      callback: $scope.removeItem
+    });
+
+    hotkeys.add({
+      combo: 'ctrl+f',
+      description: 'Fullscreen (toggle)',
+      callback: $scope.toggleFullScreen
+    });
+
 
   });

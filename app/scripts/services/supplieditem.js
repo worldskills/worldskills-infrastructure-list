@@ -9,6 +9,9 @@
  */
 angular.module('ilApp')
   .service('SuppliedItem', function ($q, $http, API_IL) {
+    // TODO
+    //TODO - Status could be handled nicer
+    //TODO - Adding an item should automatically refresh the GRID and highlight the new row
     return {
       saveItem: function(item){
         var deferred = $q.defer();
@@ -19,6 +22,19 @@ angular.module('ilApp')
         function(error){
           deferred.reject("Could not save item: " + error.data.user_msg);
         });
+
+        return deferred.promise;
+      },
+
+      createItem: function(item, eventId){
+        var deferred = $q.defer();
+
+        $http.post(API_IL + "/items/" + eventId + "/supplied_items/", item).then(function(res){
+            deferred.resolve(res.data);
+          },
+          function(error){
+            deferred.reject("Could not save item: " + error.data.user_msg);
+          });
 
         return deferred.promise;
       },

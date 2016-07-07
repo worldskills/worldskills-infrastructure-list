@@ -1,7 +1,11 @@
 <div class='aside'>
+  {{item}}
   <fieldset>
     <legend ng-if="!item.id">Add new item</legend>
     <legend ng-if="item.id">Editing item</legend>
+
+    <alerts></alerts>
+    <ws-spinner ng-if="loading.aside"></ws-spinner>
 
     <form class="editForm" name='editForm'>
         <uib-tabset active="supplied01">
@@ -38,11 +42,21 @@
                     <input type="text" name="part_no" class="input-sm form-control" ng-required="true" placeholder="Part number" ng-model='item.part_no'>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.status.$error.required, 'has-success': !editForm.status.$error.required}">
+                    <label class='control-label'>Status</label>
+                    <select name="status" class="input-sm form-control" ng-required="true"  ng-model='item.status.id' ng-options="option.id.id as option.id.name.text  for option in statusValues">
+                    </select>
+
+                  </div>
+                </div>
               </fieldset>
             </div>
           </uib-tab>
 
           <uib-tab index="1" heading="Host">
+            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset><legend class="aside">Supply / Host Information</legend>
                 <div class="row">
@@ -105,6 +119,7 @@
           </uib-tab>
 
           <uib-tab index="2" heading="Logistics">
+            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <legend class="aside">Logistics Information</legend>
@@ -240,6 +255,7 @@
           </uib-tab>
 
           <uib-tab index="3" heading="Installation">
+            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <legend class="aside">Services / Utilities / Installation Requirements</legend>
@@ -306,6 +322,7 @@
 
 
           <uib-tab index="4" heading="Files">
+            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <legend class="aside">Files and Pictures</legend>
@@ -315,6 +332,7 @@
           </uib-tab>
 
           <uib-tab index="5" heading="Extra">
+            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
@@ -327,10 +345,8 @@
 
         </uib-tabset>
 
-      <button ng-disabled="editForm.$error.required" ng-click="addItem();" class='btn btn-sm btn-success'>
-        <span ng-if="item.id">Save item</span>
-        <span ng-if="!item.id">Add item</span>
-      </button>
+      <button ng-disabled="editForm.$error.required" ng-if="!item.id" ng-click="addItemDetails();" class='btn btn-sm btn-success'>Add item</button>
+      <button ng-disabled="editForm.$error.required" ng-if="item.id" ng-click="saveItemDetails();" class='btn btn-sm btn-success'>Save item</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning'>Cancel</button>
     </form>
 

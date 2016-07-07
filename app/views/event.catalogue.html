@@ -1,10 +1,10 @@
 <h2>Catalogue</h2>
 
 <div class="pull-left">
-  <button class="btn btn-sm btn-success" ng-click="openItemEditor()"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add new catalogue item</button>
-  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-warning" ng-click="editItem()"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit selected item</button>
-  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-danger" ng-click="removeItem()"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item</button>
-  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-info" ng-click="getLinkedItems()"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</button>
+  <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add new catalogue item</button>
+  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-warning" ng-click="editItem($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit selected item</button>
+  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-danger" ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item</button>
+  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-info" ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</button>
 </div>
 <div class="pull-right">
   <button ng-class="{'btnFullscreen': fullscreen}" class="btn btn-sm btn-primary" ng-click="toggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;<span ng-show="fullscreen">Exit </span>Fullscreen</button>
