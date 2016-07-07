@@ -7,6 +7,11 @@
   <button ng-disabled="!itemSelected()" class="btn btn-sm btn-info" ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</button>
 </div>
 <div class="pull-right">
+  <button class="btn btn-sm" ng-click="toggleEditing()"
+          ng-class="{'btn-primary': !allowEditing, 'btn-danger': allowEditing}"><span class="glyphicon glyphicon-edit"></span>&nbsp;
+    <span ng-if="!allowEditing">Allow inline editing</span>
+    <span ng-if="allowEditing">Disable inline editing</span>
+  </button>
   <button ng-class="{'btnFullscreen': fullscreen}" class="btn btn-sm btn-primary" ng-click="toggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;<span ng-show="fullscreen">Exit </span>Fullscreen</button>
 </div>
 <div class="clearfix"></div>
@@ -22,7 +27,8 @@
       ui-grid-cellnav
       ui-grid-edit
       ui-grid-row-edit
-      ui-grid-pinning></div>
+      ui-grid-pinning
+      ></div>
   </div>
 </div>
 </div>

@@ -9,9 +9,6 @@
  */
 angular.module('ilApp')
   .service('SuppliedItem', function ($q, $http, API_IL) {
-    // TODO
-    //TODO - Status could be handled nicer
-    //TODO - Adding an item should automatically refresh the GRID and highlight the new row
     return {
       saveItem: function(item){
         var deferred = $q.defer();

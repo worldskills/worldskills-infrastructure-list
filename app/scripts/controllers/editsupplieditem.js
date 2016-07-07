@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('editSuppliedItemCtrl', function ($scope, SuppliedItem, $uibModalInstance, WSAlert) {
+  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert) {
 
     //close modal aside
     $scope.cancel = function () {
@@ -26,17 +26,20 @@ angular.module('ilApp')
       angular.extend($scope.rowItem, $scope.item);
 
       $scope.saveRow($scope.rowItem).then(function(res){
-        $scope.loading.aside = false;
-        WSAlert.success("Item saved");
-        $uibModalInstance.dismiss();
-      },
-      function (error){
-        //rollback history for rowItem in case of failure
-        angular.extend($scope.rowItem, history);
+        //copying to grid already done in saveRow in eventcatalogue.js
+        //  angular.extend($scope.rowItem, res);
+        //$scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
+          $scope.loading.aside = false;
+          WSAlert.success("Item saved");
+          $uibModalInstance.dismiss();
+        },
+        function (error){
+          //rollback history for rowItem in case of failure
+          angular.extend($scope.rowItem, history);
 
-        $scope.loading.aside = false;
-        //alert already shown in $scope.saveRow()
-      });
+          $scope.loading.aside = false;
+          //alert already shown in $scope.saveRow()
+        });
     };
 
     $scope.addItemDetails = function(){
@@ -45,14 +48,29 @@ angular.module('ilApp')
       $scope.item.event = $scope.selectedEvent;
 
       SuppliedItem.createItem($scope.item, $scope.selectedEvent.id).then(function(res){
-        WSAlert.success("Item saved");
-        $scope.loading.aside = false;
-        $uibModalInstance.dismiss();
-      },
-      function(error){
-        WSAlert.danger(error);
-        $scope.loading.aside = false;
-      })
+          //add to grid - to the top
+          $scope.gridOptions.data.unshift(res);
+
+          //notify data change
+          $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
+
+          //select neewly created row
+          //var lastRow = $scope.gridOptions.data.length - 1;
+
+          //scroll to row and select it
+          $timeout(function() {
+            $scope.gridApi.cellNav.scrollToFocus($scope.gridOptions.data[0], $scope.gridOptions.columnDefs[1]);
+            //$scope.gridApi.selection.selectRow($scope.gridOptions.data[lastRow]);
+          });
+
+          $scope.loading.aside = false;
+          $uibModalInstance.dismiss();
+
+        },
+        function(error){
+          WSAlert.danger(error);
+          $scope.loading.aside = false;
+        })
     };
 
     // $scope.updateStatus = function(item){

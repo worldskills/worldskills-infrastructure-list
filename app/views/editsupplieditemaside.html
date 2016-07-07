@@ -15,7 +15,7 @@
                 <div class="row">
                   <div class="col col-xs-12 form-group has-feedback" ng-class="{'has-error': editForm.description.$error.required, 'has-success': !editForm.description.$error.required}">
                     <label class='control-label'>Description</label>
-                    <input type="text" name="description" class="input-sm form-control" ng-required="true" placeholder="Description" ng-model='item.description.text'>
+                    <input type="text" name="description" autofocus="autofocus" class="input-sm form-control" ng-required="true" placeholder="Description" ng-model='item.description.text'>
                   </div>
                 </div>
 
@@ -34,12 +34,12 @@
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.size.$error.required, 'has-success': !editForm.size.$error.required}">
                     <label class='control-label'>Size</label>
-                    <input type="text" name="size" class="input-sm form-control" ng-required="true" placeholder="Size" ng-model='item.size'>
+                    <input type="text" name="size" class="input-sm form-control" ng-required="false" placeholder="Size" ng-model='item.size'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.part_no.$error.required, 'has-success': !editForm.part_no.$error.required}">
                     <label class='control-label'>Part number</label>
-                    <input type="text" name="part_no" class="input-sm form-control" ng-required="true" placeholder="Part number" ng-model='item.part_no'>
+                    <input type="text" name="part_no" class="input-sm form-control" ng-required="false" placeholder="Part number" ng-model='item.part_no'>
                   </div>
                 </div>
 

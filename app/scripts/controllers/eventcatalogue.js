@@ -16,9 +16,17 @@ angular.module('ilApp')
       {id: {id: ITEM_STATUS.GREEN, name: {text: ITEM_STATUS_TEXT.GREEN}}, value: ITEM_STATUS_TEXT.GREEN}
     ];
 
+
     $scope.fullscreen = false;
     $scope.item = {};
     $scope.loading.catalogue = false;
+    $scope.allowEditing = false;
+
+    $scope.toggleEditing = function(){
+      $scope.allowEditing = !$scope.allowEditing;
+    };
+
+    $scope.canEdit = function(){ return $scope.allowEditing; };
 
     $scope.toggleFullScreen = function(){
       var element = $('#fullScreenDiv').get(0);
@@ -47,9 +55,9 @@ angular.module('ilApp')
       disableCancelFilterButton: false,
       columnDefs: [
         {field: 'id', width: '60', enableCellEdit: false, pinnedLeft: true},
-        {field: 'description.text', name: "Description", width: '250', pinnedLeft: true},
-        {field: 'make', width: '160'},
-        {field: 'model', width: '160'},
+        {field: 'description.text', name: "Description", width: '250', pinnedLeft: true, cellEditableCondition: $scope.canEdit},
+        {field: 'make', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         //status field
         {field: 'status.name.text', name: "Status", width: '120',
           cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex){
@@ -60,6 +68,7 @@ angular.module('ilApp')
           editableCellTemplate: 'ui-grid/dropdownEditor',
           editModelField: 'status',
           editDropdownOptionsArray: $scope.statusValues,
+          type: 'object',
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -67,7 +76,7 @@ angular.module('ilApp')
               {value: ITEM_STATUS_TEXT.YELLOW, label: ITEM_STATUS_TEXT.YELLOW},
               {value: ITEM_STATUS_TEXT.GREEN, label: ITEM_STATUS_TEXT.GREEN}
             ]
-          }
+          }, cellEditableCondition: $scope.canEdit
         },
         //user generated field
         {field: 'user_generated', width: '125', type: 'boolean', enableCellEdit: false,
@@ -90,9 +99,11 @@ angular.module('ilApp')
       $scope.loading.catalogue = true;
       //actually save row
       SuppliedItem.saveItem(rowEntity).then(function(res){
-          promise.resolve();
+          //copy back data from request's response
           angular.extend(rowEntity, res);
+          $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
           $scope.loading.catalogue = false;
+          promise.resolve();
       },
       function(error){
         WSAlert.danger(error);
@@ -161,6 +172,12 @@ angular.module('ilApp')
           $scope.gridOptions.data.splice(i, 1);
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
 
+          //register datachange listener to highlight rows
+          // $scope.gridApi.grid.registerDataChangeCallback(function(data)
+          // {
+          //   $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);
+          // }, [uiGridConstants.dataChange.ROW]);
+
           WSAlert.success("Item removed!");
         },
         function(error) {
@@ -183,6 +200,7 @@ angular.module('ilApp')
     //register api
     $scope.gridOptions.onRegisterApi = function(gridApi){
       $scope.gridApi = gridApi;
+
       gridApi.rowEdit.on.saveRow($scope, $scope.saveRow);
     };
 
@@ -227,8 +245,11 @@ angular.module('ilApp')
     };
 
     $scope.openItemEditor = function(item){
-      if(item == void 0)
-        $scope.item = {};
+      if(item == void 0 || !item.id) {
+        $scope.item = {
+          status: $scope.statusValues[0].id //default to Requested / RED
+        };
+      }
       else {
         angular.copy(item, $scope.item);
         $scope.rowItem = item;
@@ -285,5 +306,16 @@ angular.module('ilApp')
       callback: $scope.toggleFullScreen
     });
 
+    hotkeys.add({
+      combo: 'ctrl+n',
+      description: 'Add new row in full view',
+      callback: $scope.openItemEditor
+    });
+
+    // hotkeys.add({
+    //   combo: 'ctrl+d',
+    //   description: 'Add new row at the end of the grid',
+    //   callback: $scope.editItem
+    // });
 
   });
