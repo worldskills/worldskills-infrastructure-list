@@ -252,3 +252,37 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 
 /*.editForm .nav > li > a{ padding: 10px; }*/
 .editForm .nav-tabs > li > a { font-size: 100%; }
+
+
+/** COLORING FOR TABLE CELLS **/
+.table tbody tr.success > td{
+  background-color: #dff0d8 !important;
+}
+
+.table tbody tr.error > td {
+  background-color: #f2dede !important;
+}
+
+.table tbody tr.warning > td{
+  background-color: #fcf8e3 !important;
+}
+
+.table tbody tr.info > td {
+  background-color: #d9edf7 !important;
+}
+
+.table-hover tbody tr.success:hover > td {
+  background-color: #d0e9c6 !important;
+}
+
+.table-hover tbody tr.error:hover > td {
+  background-color: #ebcccc !important;
+}
+
+.table-hover tbody tr.warning:hover > td {
+  background-color: #faf2cc !important;
+}
+
+.table-hover tbody tr.info:hover > td {
+  background-color: #c4e3f3 !important;
+}

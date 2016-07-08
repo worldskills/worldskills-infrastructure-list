@@ -120,9 +120,8 @@ angular.module('ilApp')
 
       if($scope.fullscreen) return;
 
-      var focus = $scope.getCurrentFocus();
-      if(!focus) return;
-      var item = focus.row.entity;
+      var item = $scope.getOneSelectedItem();
+      if(item === false) return;
 
       $scope.loading.catalogue = true;
 
@@ -148,6 +147,17 @@ angular.module('ilApp')
         });
     };
 
+    $scope.getSelectedItems = function(){
+      var items = $scope.gridApi.selection.getSelectedRows() || [];
+      if(items === false || items.length === 0){
+          var focus = $scope.getCurrentFocus();
+          if(!focus) return false;
+
+          items.push(focus.row.entity);
+      }
+
+      return (items.length > 0) ? items : false;
+    };
 
     $scope.removeItem = function($event) {
       $event.preventDefault();
@@ -155,33 +165,60 @@ angular.module('ilApp')
 
       if($scope.fullscreen) return;
 
-      var focus = $scope.getCurrentFocus();
-      if(!focus) return;
-      var item = focus.row.entity;
+      var items = $scope.getSelectedItems();
+      if(items === false) return;
+
+      var linkedItems = false;
+      var deleteQueue = [];
+      var deletedItems = [];
+
+      //check if any of the items in array contain any linked items
+      angular.forEach(items, function(val){
+        if(val.linkedItems === true) linkedItems = true;
+        else{
+          //add to remove queue if no linked items
+          deleteQueue.push(SuppliedItem.removeItem(val));
+          deletedItems.push(val);
+        }
+      });
 
       $confirm({
-          title: "Remove item from catalogue?",
-          item: item
+          title: "Remove item(s) from catalogue?",
+          items: items,
+          linkedItems: linkedItems,
+          ok: 'Delete'
       },
       {
         templateUrl: 'views/remove-item-confirm.html'
       }).then(function () {
-        SuppliedItem.removeItem(item).then(function(res){
-          //remove item from grid
-          var i = $scope.gridOptions.data.indexOf(item);
-          $scope.gridOptions.data.splice(i, 1);
+
+        if(deleteQueue.length < 1) return;
+        $scope.loading.catalogue = true;
+
+        $q.all(deleteQueue).then(function(res){
+
+          //remove items from grid
+          angular.forEach(deletedItems, function(val){
+            var i = $scope.gridOptions.data.indexOf(val);
+            $scope.gridOptions.data.splice(i, 1);
+          });
+
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
+          WSAlert.success("Item(s) removed!");
 
-          //register datachange listener to highlight rows
-          // $scope.gridApi.grid.registerDataChangeCallback(function(data)
-          // {
-          //   $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);
-          // }, [uiGridConstants.dataChange.ROW]);
-
-          WSAlert.success("Item removed!");
+            $scope.loading.catalogue = false;
+          //
+          // //register datachange listener to highlight rows
+          // // $scope.gridApi.grid.registerDataChangeCallback(function(data)
+          // // {
+          // //   $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);
+          // // }, [uiGridConstants.dataChange.ROW]);
+          //
+          // WSAlert.success("Item removed!");
         },
         function(error) {
           WSAlert.danger(error);
+          $scope.loading.catalogue = false;
         });
       });
     };
@@ -234,14 +271,35 @@ angular.module('ilApp')
       $event.preventDefault();
       $event.stopPropagation();
 
+      //exit if in full screen
       if($scope.fullscreen) return;
 
-      var focus = $scope.getCurrentFocus();
-      if(!focus) return;
-      var item = focus.row.entity;
+      //selection more than one rows
+      var item = $scope.getOneSelectedItem();
+
+      if(item === false) return;
 
       //scope gets passed to editSuppliedItemCtrl
       $scope.openItemEditor(item);
+    };
+
+    $scope.getOneSelectedItem = function(){
+      var item = false;
+
+      if($scope.gridApi.selection.getSelectedRows().length > 1){
+        WSAlert.warning("Please select only one row.");
+        item = false;
+      }
+      else if ($scope.gridApi.selection.getSelectedRows().length == 1){
+        item = $scope.gridApi.selection.getSelectedRows()[0];
+      }
+      else {
+        var focus = $scope.getCurrentFocus();
+        if(!focus) return;
+        var item = focus.row.entity;
+      }
+
+      return item;
     };
 
     $scope.openItemEditor = function(item){

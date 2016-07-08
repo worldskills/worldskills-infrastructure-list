@@ -1,7 +1,7 @@
 <div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>
 <div class="modal-body">
-  <p ng-if="!data.item.linkedItems">Are you sure you want to remove this item?</p>
-  <div ng-if="data.item.linkedItems" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong>Important!</strong> You can't delete this item, as it has already been assigned to a skill.</div>
+  <p ng-if="!data.linkedItems">Are you sure you want to remove these items?</p>
+  <div ng-if="data.linkedItems" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong>Important!</strong> Some of the items can't be deleted, as it they are already been assigned to a skill. Clicking on "delete" will only delete items that are not used in any skills.</div>
   <p>
     &nbsp;
   </p>
@@ -13,20 +13,25 @@
       <th>Manufacturer</th>
       <th>Model</th>
       <th>Status</th>
+      <th ng-if="data.linkedItems">Delete</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>{{data.item.id}}</td>
-      <td>{{data.item.description.text}}</td>
-      <td>{{data.item.make}}</td>
-      <td>{{data.item.model}}</td>
-      <td>{{data.item.status.name.text}}</td>
+    <tr ng-repeat="item in data.items track by $index" ng-class="{'warning': item.linkedItems}">
+      <td>{{item.id}}</td>
+      <td>{{item.description.text}}</td>
+      <td>{{item.make}}</td>
+      <td>{{item.model}}</td>
+      <td>{{item.status.name.text}}</td>
+      <td ng-if="data.linkedItems">
+        <span ng-if="!item.linkedItems">Yes</span>
+        <span ng-if="item.linkedItems">No</span>
+      </td>
     </tr>
     </tbody>
   </table>
 </div>
 <div class="modal-footer">
-  <button ng-if="!data.item.linkedItems" class="btn btn-primary" ng-click="ok()">{{data.ok}}</button>
+  <button ng-if="!data.items.linkedItems" class="btn btn-danger" ng-click="ok()">{{data.ok}}</button>
   <button class="btn btn-default" ng-click="cancel()">{{data.cancel}}</button>
 </div>
