@@ -58,6 +58,27 @@ angular.module('ilApp')
         {field: 'description.text', name: "Description", width: '250', pinnedLeft: true, cellEditableCondition: $scope.canEdit},
         {field: 'make', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         //status field
         {field: 'status.name.text', name: "Status", width: '120',
           cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex){
@@ -206,15 +227,7 @@ angular.module('ilApp')
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
           WSAlert.success("Item(s) removed!");
 
-            $scope.loading.catalogue = false;
-          //
-          // //register datachange listener to highlight rows
-          // // $scope.gridApi.grid.registerDataChangeCallback(function(data)
-          // // {
-          // //   $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]);
-          // // }, [uiGridConstants.dataChange.ROW]);
-          //
-          // WSAlert.success("Item removed!");
+          $scope.loading.catalogue = false;
         },
         function(error) {
           WSAlert.danger(error);
@@ -370,10 +383,10 @@ angular.module('ilApp')
       callback: $scope.openItemEditor
     });
 
-    // hotkeys.add({
-    //   combo: 'ctrl+d',
-    //   description: 'Add new row at the end of the grid',
-    //   callback: $scope.editItem
-    // });
+    hotkeys.add({
+      combo: 'ctrl+k',
+      description: 'Toggle inline editing',
+      callback: $scope.toggleEditing
+    });
 
   });
