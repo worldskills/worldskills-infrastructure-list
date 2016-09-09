@@ -4,14 +4,14 @@
        ng-class="{
          'glyphicon-menu-right': collapsed,
          'glyphicon-menu-down': !collapsed
-       }"></span></a>       
+       }"></span></a>
   {{item.description.text}}
   <!-- <span class='badge idBadge'>{{item.id}}</span> -->
 
   <!-- <span ng-show="activeItem == item.id">
     <small class='pull-right'>Saving...</small>
   </span> -->
-  <span class='actions' ng-hide="activeItem == item.id">       
+  <span class='actions' ng-hide="activeItem == item.id">
     <span ng-if="canEdit(item.status.id)">
       <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeItem(item, this);" style="margin-right: 8px;"><span
            class="glyphicon glyphicon-remove"></span></a>
@@ -20,17 +20,17 @@
     </span>
     <div style='width: 64px;' class='pull-right' ng-if="!canEdit(item.status.id)">&nbsp;</div>
     <a ng-if="item.parent_id == 0" class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(item)" style='margin-right: 8px;'><span
-         class="glyphicon glyphicon-share-alt rotate90"></span></a>        
+         class="glyphicon glyphicon-share-alt rotate90"></span></a>
     <div style='width: 32px;' class='pull-right' ng-if="item.parent_id > 0">&nbsp;</div>
   </span>
-  
+
   <small ng-if='item.status' class='status pull-right'>
     <span class='label'
     ng-class="{'label-danger': item.status.id == ITEM_STATUS.RED,
               'label-warning': item.status.id == ITEM_STATUS.YELLOW,
               'label-success': item.status.id == ITEM_STATUS.GREEN}"
     >{{item.status.name.text}}</span>
-  </small>  
+  </small>
   <small class='quantity pull-right'>{{item.readable_quantity}}</small>
   <!-- edit -->
   <div data-nodrag ng-if='item.id == activeItem' class='animate-if'>
@@ -39,20 +39,20 @@
     <input class='form-control input-sm' ng-model='item.description.text'/> -->
     <form name="editForm">
   <div class='well'>
-      <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.description.$error.required, 'has-success': !editForm.description.$error.required}">        
+      <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.description.$error.required, 'has-success': !editForm.description.$error.required}">
         <label class='control-label'>Description</label>
         <input name="description" type="text" class="input-sm form-control" placeholder="Description" ng-model='item.description.text' required="Description is missing" ng-required="true"  ng-trim="true">
-        <span ng-if="!editForm.description.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
-        <span ng-if="editForm.description.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>        
-      </div>      
-      
-        <div class='row'>        
+        <span ng-if="!editForm.description.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-if="editForm.description.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+      </div>
+
+        <div class='row'>
           <div class='col col-sm-12 col-md-4'>
             <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.quantity.$error.required, 'has-success': !editForm.quantity.$error.required}">
               <label class='control-label'>Quantity</label>
               <input name="quantity" type="number" class="input-sm form-control" placeholder="Quantity" ng-model='item.quantity' required="Quantity is missing" ng-required="true">
-              <span ng-if="!editForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
-              <span ng-if="editForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>        
+              <span ng-if="!editForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span ng-if="editForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
           <div class='col col-sm-12 col-md-4'>
@@ -61,24 +61,24 @@
               <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
               <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
             </div>
-          </div>          
+          </div>
           <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(item.multiplier)">
             <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.multiply_factor.$error.required, 'has-success': !editForm.multiply_factor.$error.required}">
               <label class='control-label'>Multiply factor</label>
               <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true">
-              <span ng-if="!editForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>        
-              <span ng-if="editForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>        
+              <span ng-if="!editForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span ng-if="editForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
           </div>
         </div>
 
 
     <div class='row'>
-      <div class='col col-xs-12 col-sm-6'>      
-        <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.supplier.$error.required, 'has-success': !editForm.supplier.$error.required}">        
+      <div class='col col-xs-12 col-md-4'>
+        <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.supplier.$error.required, 'has-success': !editForm.supplier.$error.required}">
           <label class='control-label'>Potential supplier{{item.supplier}}</label>
           <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="Potential supplier" ng-model='item.supplier' ng-trim="true"> -->
-          <angucomplete-alt 
+          <angucomplete-alt
                   id="id"
                   placeholder="Potential supplier"
                   pause="400"
@@ -86,36 +86,44 @@
                   remote-url="{{searchSupplierAPI}}"
                   remote-url-request-with-credentials="true"
                   remote-url-data-field="suppliers"
-                  title-field="name"                  
+                  title-field="name"
                   minlength="1"
                   search-fields="name"
-                  disable-input="disableInputSupplier"                  
+                  disable-input="disableInputSupplier"
                   focus-first="true"
                   input-changed="supplierChanged"
                   override-suggestions="true"
                   field-required="false"
                   text-searching="false"
-                  text-no-results="No existing suppliers found."  
+                  text-no-results="No existing suppliers found."
                   initial-value="item.supplier"
                   input-class="input-sm form-control"/>
                   <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
-        </div>     
-      </div>           
-      <div class='col col-xs-12 col-sm-6 form-group'>
+        </div>
+      </div>
+      <div class='col col-xs-12 col-md-4 form-group'>
           <div class="form-group editForm has-feedback has-success">
             <label class='control-label'>Estimated price</label>
             <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
-            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>                    
-          </div>  
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+          </div>
           <div data-nodrag class="checkbox editForm form-group has-feedback has-success">
             <label>
               <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
             </label>
           </div>
       </div>
+      <div class='col col-xs-12 col-md-4 form-group'>
+        <div class="form-group addForm has-feedback has-success">
+          <label class='control-label'>Skill Area</label>
+          <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
+          <select class="form-control input-sm" ng-model="item.area.id" ng-options="area.id as area.name for area in skillAreas"></select>
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
     </div>
 
-      
+
       </div>
 
       <div class='form-group editForm'>

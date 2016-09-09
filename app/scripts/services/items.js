@@ -49,12 +49,6 @@ angular.module('ilApp')
 
 
          $http.put(API_IL + "/items/" + eventId + "/requested_items/" + item.id, item).then(function(result){
-            /** check if we should update the supplied items as well
-               * only update IF:
-               * 1) this item is only used in this skill
-               * 2) the supplied item's status is still "RED"
-            */
-            //TODO handle supplied item update
             deferred.resolve(result.data);
          },
          function(error){
@@ -163,7 +157,7 @@ angular.module('ilApp')
     Items.getCatalogue = function(eventId){
       var deferred = $q.defer();
 
-      $http.get(API_IL + "/items/" + eventId + "/supplied_items/all").then(function(res){
+      $http.get(API_IL + "/items/" + eventId + "/supplied_items/").then(function(res){
         deferred.resolve(res.data);
       },
       function(error){

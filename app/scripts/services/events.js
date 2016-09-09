@@ -11,7 +11,7 @@ angular.module('ilApp')
   .factory('Events', function ($q, $http, API_IL) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var Events = { id: false, data: $q.defer(), skills: {} };
+    var Events = { id: false, data: $q.defer(), skills: {}, skillAreas: {}};
 
     Events.init = function(){
         //TODO implement if needed
@@ -81,6 +81,20 @@ angular.module('ilApp')
         });
 
         return deferred.promise;
+    };
+
+    Events.getSkillAreas = function(eventId){
+      var deferred = $q.defer();
+
+      $http.get(API_IL + "/skill_areas/event/" + eventId).then(function(result){
+          Events.skillAreas = result.data.skill_areas;
+          deferred.resolve(Events.skillAreas);
+        },
+        function(error){
+          deferred.reject("Could not fetch skill areas: " + error);
+        });
+
+      return deferred.promise;
     };
 
     return Events;

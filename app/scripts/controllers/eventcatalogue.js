@@ -72,13 +72,6 @@ angular.module('ilApp')
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         //status field
         {field: 'status.name.text', name: "Status", width: '120',
           cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex){

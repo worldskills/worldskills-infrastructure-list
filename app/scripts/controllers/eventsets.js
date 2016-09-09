@@ -31,7 +31,7 @@ angular.module('ilApp')
     if(typeof $scope.selectedEvent.id !== 'undefined')
       loadSets($scope.selectedEvent.id);
     else{
-      $scope.checkNeedForReload().then(function(){
+      $q.when($scope.appLoaded.promise).then(function(){
         loadSets($scope.selectedEvent.id);
       },
       function(error){

@@ -86,7 +86,7 @@
     </div>
 
     <div class='row'>
-      <div class='col col-xs-12 col-sm-6'>
+      <div class='col col-xs-12 col-md-4'>
         <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
           <label class='control-label'>Potential supplier{{item.supplier}}</label>
           <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="Potential supplier" ng-model='item.supplier' ng-trim="true"> -->
@@ -113,7 +113,7 @@
                   <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
         </div>
       </div>
-      <div class='col col-xs-12 col-sm-6 form-group'>
+      <div class='col col-xs-12 col-md-4 form-group'>
           <div class="form-group addForm has-feedback has-success">
             <label class='control-label'>Estimated price</label>
             <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
@@ -124,6 +124,14 @@
               <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
             </label>
           </div>
+      </div>
+      <div class='col col-xs-12 col-md-4 form-group'>
+        <div class="form-group addForm has-feedback has-success">
+          <label class='control-label'>Skill Area</label>
+          <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
+          <select class="form-control input-sm" ng-model="item.area.id" ng-options="area.id as area.name for area in skillAreas"></select>
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </div>
       </div>
     </div>
 

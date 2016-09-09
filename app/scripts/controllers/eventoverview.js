@@ -9,5 +9,4 @@
  */
 angular.module('ilApp')
   .controller('EventOverviewCtrl', function ($scope) {
-    $scope.checkNeedForReload();
   });
