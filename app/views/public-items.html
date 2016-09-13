@@ -1,0 +1,72 @@
+<p>{{ skill.event.name.text }}</p>
+<h1>{{ skill.skill_number }} {{ skill.name.text }}</h1>
+
+<hr/>
+
+<ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
+
+<div ng-hide="loading">
+
+    <div ng-repeat="category in categories">
+
+        <h3>{{ category.category.name.text }}</h3>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-striped">
+                <colgroup>
+                    <col width="30%" />
+                    <col width="20%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="20%" />
+                    <col width="10%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Multiplier</th>
+                        <th>Req. Qty</th>
+                        <th>Supl. Qty</th>
+                        <th>Last modified</th>
+                        <th class="text-center">Confirmed</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="item in category.items">
+                    <tr>
+                        <td>{{ item.description.text }}</td>
+                        <td>{{ item.readable_quantity }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td title="{{ item.status.name.text }}" class="text-center">
+                            <i class="glyphicon glyphicon-ok text-success" ng-show="item.status.id !== 1"></i>
+                            <i class="glyphicon glyphicon-remove text-danger" ng-show="item.status.id === 1"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="childItem in item.child_items">
+                        <td>&nbsp;&nbsp;&nbsp;{{ childItem.description.text }}</td>
+                        <td>{{ childItem.readable_quantity }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td title="{{ item.status.name.text }}" class="text-center">
+                            <i class="glyphicon glyphicon-ok text-success" ng-show="item.status.id !== 1"></i>
+                            <i class="glyphicon glyphicon-remove text-danger" ng-show="item.status.id === 1"></i>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody ng-show="!category.items.length">
+                    <tr>
+                        <td colspan="6">No items</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<p><a href="https://www.worldskills.org/internal/">« Back to worldskills.org</a></p>
+
+<br/>

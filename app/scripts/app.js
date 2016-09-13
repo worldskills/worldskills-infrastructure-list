@@ -264,6 +264,19 @@ angular
 
       }
    })
+
+   .state('publicItems', {
+     url: '/event/{eventId}/skill/{skillId}/public',
+     templateUrl: 'views/public-items.html',
+     controller: 'PublicItemsCtrl',
+     data: {
+       requireLoggedIn: true,
+       requiredRoles: [
+         {code: 2200, role: APP_ROLES.VIEW }
+       ]
+     }
+   })
+
    //
   //  .state('management', {
   //   url: '/management',
