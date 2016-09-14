@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, WSAlert) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, ITEM_STATUS, WSAlert) {
 
     $scope.eventId = $state.params.eventId;
     $scope.skillId = $state.params.skillId;
+
+    $scope.ITEM_STATUS = ITEM_STATUS;
 
     $scope.loading = true;
 
