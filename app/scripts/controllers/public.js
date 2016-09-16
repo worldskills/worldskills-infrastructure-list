@@ -34,7 +34,12 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         Items.getPublicItems($scope.eventId, $scope.skillId)
             .then(function(result) {
                 angular.forEach(result, function (item) {
-                    categoriesIndexed[item.category].items.push(item);
+                    if (typeof categoriesIndexed[item.category] !== 'undefined') {
+                        categoriesIndexed[item.category].items.push(item);
+                        angular.forEach(item.child_items, function (child) {
+                            categoriesIndexed[item.category].items.push(child);
+                        });
+                    }
                 });
                 $scope.loading = false;
             }, function(error) {
