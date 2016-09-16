@@ -315,4 +315,9 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
     .il-public-items-table td {
         padding: 2px 5px !important;
     }
+
+    footer,
+    .il-public-items-back {
+        display: none;
+    }
 }
