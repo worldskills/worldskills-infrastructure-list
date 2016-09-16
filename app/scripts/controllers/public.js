@@ -15,8 +15,6 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     promises.push(Events.getSkill($scope.skillId)
         .then(function(result){
             $scope.skill = result;
-        }, function(error){
-            WSAlert.danger(error);
         }));
 
     promises.push(Items.getCategories($scope.skillId)
@@ -26,8 +24,6 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
                 category.items = [];
                 categoriesIndexed[category.id] = category;
             });
-        }, function(error){
-            WSAlert.danger(error);
         }));
 
     $q.all(promises).then(function () {
@@ -42,8 +38,6 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
                     }
                 });
                 $scope.loading = false;
-            }, function(error) {
-                WSAlert.danger(error);
             });
     });
 
