@@ -288,3 +288,36 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 }
 
 .angucomplete-dropdown{ max-height: 400px; overflow-y: auto; }
+
+.il-public-items-category {
+    page-break-after: always;
+}
+
+.il-public-items-table {
+    font-size: 13px;
+}
+
+.il-public-items-table tbody tr:nth-of-type(odd) {
+    background-color: #f5f5f5;
+}
+
+@media print {
+
+    .container {
+        width: auto !important;
+    }
+
+    .il-public-items-table {
+        font-size: 11px !important;
+    }
+
+    .il-public-items-table th,
+    .il-public-items-table td {
+        padding: 2px 5px !important;
+    }
+
+    footer,
+    .il-public-items-back {
+        display: none;
+    }
+}
