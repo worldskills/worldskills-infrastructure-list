@@ -20,7 +20,7 @@
   		<i class="glyphicon glyphicon-plus">
   		</i> Add item
   	</button>
-  	<div class='searchContainer pull-right'><input type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
+  	<div class='searchContainer pull-right'><input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
   	<span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
   </span>
 
@@ -81,11 +81,11 @@
   				<small class='quantityHeader pull-right'>Quantity</small>
   			</div>
   		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="1">
-  		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items' infinite-scroll-distance='1'>
+  		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items || filterValue.length > 0' infinite-scroll-distance='1'>
   		        <li ng-repeat="item in items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
   		      </ol>
   		    </div>
-  		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total'><small>Scroll down to load more...</small></div>
+  		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total && filterValue.length == 0'><small>Scroll down to load more...</small></div>
   		    <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
   		    <ws-spinner ng-if='loading.more'></ws-spinner>
   		  </div>

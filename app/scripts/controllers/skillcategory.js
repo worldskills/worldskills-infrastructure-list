@@ -221,7 +221,7 @@ angular.module('ilApp')
 
     $scope.filter = function () {
       if ($scope.searchAPI = false) return;
-      $scope.loading.initial = true;
+      //$scope.loading.initial = true;
       $scope.initCategory();
     };
 
@@ -236,7 +236,6 @@ angular.module('ilApp')
     };
 
     $scope.more = function () {
-
       //stop if already loading
       if ($scope.isLoading())
           return;
@@ -262,7 +261,6 @@ angular.module('ilApp')
 
         $scope.loading.more = false;
       },
-
         function (error) {
           WSAlert.danger(error);
           $scope.loading.more = false;
