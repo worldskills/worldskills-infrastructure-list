@@ -177,6 +177,7 @@ angular.module('ilApp')
     };
 
     $scope.initCategory = function () {
+      $scope.offset = 0;
 
       var deferred = $q.defer();
 
@@ -198,13 +199,13 @@ angular.module('ilApp')
         //get items
         Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function (result) {
           //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
-          angular.forEach(result, function (val, key) {
-            $scope.total++;
+          angular.forEach(result.requested_items, function (val, key) {
             if (typeof val.child_items == 'undefined')
-                result[key].child_items = [];
+                result.requested_items[key].child_items = [];
           });
 
-          $scope.items = result;
+          $scope.items = result.requested_items;
+          $scope.total = result.total;
           $scope.loading.initial = false;
           deferred.resolve();
         },
@@ -241,10 +242,11 @@ angular.module('ilApp')
           return;
 
       // all loaded already
+
       if ($scope.limit >= $scope.total || $scope.offset >= $scope.total) { return; }
 
       //canceler
-      if ($scope.canceler.promise) $scope.canceler.resolve();
+      if ($scope.canceler.promise){ $scope.canceler.resolve();}
       $scope.canceler = $q.defer();
 
       $scope.offset += $scope.limit;
@@ -252,13 +254,14 @@ angular.module('ilApp')
 
       Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, '', $scope.canceler).then(function (result) {
         //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
-        angular.forEach(result, function (val, key) {
+        angular.forEach(result.requested_items, function (val, key) {
           if (typeof val.child_items == 'undefined')
               val.child_items = [];
 
           $scope.items.push(val);
         });
 
+        $scope.total = result.total;
         $scope.loading.more = false;
       },
         function (error) {

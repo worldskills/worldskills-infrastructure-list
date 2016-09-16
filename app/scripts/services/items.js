@@ -10,7 +10,7 @@
 angular.module('ilApp')
   .service('Items', function ($q, $http, API_IL, ITEM_STATUS) {
 
-   	var Items = { categories : $q.defer(), $data : $q.defer() }
+   	var Items = { categories : $q.defer(), $data : $q.defer(), total: null };
 
    	Items.getCategories = function(skillId){
    		//if(typeof Items.categories.promise == 'undefined') Items.categories = $q.defer();
@@ -33,8 +33,8 @@ angular.module('ilApp')
          var filterStr = (typeof filter != 'undefined') ? "&filter=" + filter : "";
 
    		$http.get(API_IL + "/items/" + eventId + "/skills/" + skillId + "/requested_items/" + categoryId + "?limit=" + limit + "&offset=" + offset + filterStr, {timeout: canceler.promise}).then(function(result){
-   			Items.data.resolve(result.data.requested_items);
-   			Items.data = result.data.requested_items;
+   			Items.data.resolve(result.data);
+   			Items.data = result.data;
    		},
    		function(error){
             if(typeof error.data == 'undefined') Items.data.reject("Could not get items, please contact webmaster@worldskills.org");
