@@ -65,7 +65,7 @@ angular
           an error status code.
         */
         var times = (sessionStorage.getItem('login_redirect_counter') !== null) ? sessionStorage.getItem('login_redirect_counter') : 1;
-        const MAX_RETRIES = 3;
+        var MAX_RETRIES = 3;
 
         if(
             (rejection.status == 400 && rejection.data.code == "2200-1012") ||
