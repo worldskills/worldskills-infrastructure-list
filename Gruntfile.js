@@ -382,8 +382,8 @@ module.exports = function (grunt) {
             'languages/{,*/}*.json',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*',
-            'template/{,*/}*.html', 
-            'styles/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',      
+            'template/{,*/}*.html',
+            'styles/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             'fonts/*'
           ]
         }, {
@@ -409,7 +409,13 @@ module.exports = function (grunt) {
           cwd: 'bower_components/worldskills-bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
-        }]
+        },
+          { //fonts for ui-grid
+            expand: true,
+            cwd: 'bower_components/angular-ui-grid',
+            src: '*.{ttf,svg,woff,eot}',
+            dest: '<%= yeoman.dist %>/styles'
+          }]
       },
       styles: {
         expand: true,
