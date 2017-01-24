@@ -43,8 +43,8 @@
 
     ilApp.constant('ITEM_STATUS_TEXT', {
         'RED': "Requested",
-        'YELLOW': "Confirmed",
-        'GREEN': "Supplied"
+        'YELLOW': "Pending",
+        'GREEN': "Confirmed"
       });
 
     ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');

@@ -1,27 +1,69 @@
 <h2>Catalogue</h2>
+<div class="actions" ng-show="!loading.catalogue">
+  <div ng-show="showGrid">
+    <div class="pull-left">
+      <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add new catalogue item</button>
+      <button ng-disabled="!itemSelected()" class="btn btn-sm btn-warning" ng-click="editItem($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit selected item</button>
+      <button ng-disabled="!itemSelected()" class="btn btn-sm btn-danger" ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item(s)</button>
+      <button ng-disabled="!itemSelected()" class="btn btn-sm btn-info" ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</button>
+    </div>
 
-<div class="pull-left">
-  <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add new catalogue item</button>
-  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-warning" ng-click="editItem($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit selected item</button>
-  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-danger" ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item(s)</button>
-  <button ng-disabled="!itemSelected()" class="btn btn-sm btn-info" ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</button>
+    <div class="pull-right">
+      <button class="btn btn-sm"
+              ng-click="showFilters = true"
+              ng-class="{'btn-primary': !selectedFilters.active, 'btn-warning': selectedFilters.active}"
+      ><i class="glyphicon glyphicon-filter"></i>&nbsp;Filters<small ng-show="selectedFilters.active">&nbsp;[Skill: {{selectedFilters.skill.skill_number}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.category.name.text}}</span>]</small></button>
+
+      <button class="btn btn-sm" ng-click="toggleEditing()"
+              ng-class="{'btn-primary': !allowEditing, 'btn-danger': allowEditing}"><span class="glyphicon glyphicon-edit"></span>&nbsp;
+        <span ng-if="!allowEditing">Allow inline editing</span>
+        <span ng-if="allowEditing">Disable inline editing</span>
+      </button>
+      <button ng-class="{'btnFullscreen': fullscreen}" class="btn btn-sm btn-primary" ng-click="toggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;<span ng-show="fullscreen">Exit </span>Fullscreen</button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 </div>
-<div class="pull-right">
-  <button class="btn btn-sm" ng-click="toggleEditing()"
-          ng-class="{'btn-primary': !allowEditing, 'btn-danger': allowEditing}"><span class="glyphicon glyphicon-edit"></span>&nbsp;
-    <span ng-if="!allowEditing">Allow inline editing</span>
-    <span ng-if="allowEditing">Disable inline editing</span>
-  </button>
-  <button ng-class="{'btnFullscreen': fullscreen}" class="btn btn-sm btn-primary" ng-click="toggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;<span ng-show="fullscreen">Exit </span>Fullscreen</button>
-</div>
-<div class="clearfix"></div>
 <ws-spinner ng-show="loading.catalogue"></ws-spinner>
+<p>&nbsp;</p>
+<div ng-show="!loading.catalogue && showFilters">
+  <div class="well" ng-if="skills !== false">
+    <h4>Select which data to load<br><small>You can change the filters once the catalogue has loaded</small></h4>
+    <div class="row">
+      <div class="col col-xs-6">
+        <ui-select ng-model="filters.skill" theme="bootstrap" on-select="filterSkillSelected($item, $model)" title="Choose a skill">
+          <ui-select-match placeholder="Choose a skill">{{$select.selected.name.text}} - {{$select.selected.skill_number}}</ui-select-match>
+          <ui-select-choices repeat="skill as skill in (skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+            <div ng-bind-html="skill.name.text"></div>
+            <small>
+              Number: {{skill.skill_number}}
+            </small>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="col col-xs-4">
+        <ui-select ng-model="filters.category" theme="bootstrap" title="Choose a category (optional)" ng-disabled="!filters.skill">
+          <ui-select-match placeholder="Choose a category (optional)">{{$select.selected.category.name.text}}</ui-select-match>
+          <ui-select-choices repeat="cat as cat in (categories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
+            <div ng-bind-html="cat.category.name.text"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="col col-xs-2">
+        <button ng-disabled="filters.skill == null" ng-click="filtersActivate()" class="btn btn-md btn-success">Load</button>
+      </div>
+
+    </div>
+    <hr>
+    <button class="btn btn-md btn-primary" ng-click="loadFullCatalogue()">All data (this can take a while)</button>
+  </div>
+</div>
 <div>&nbsp;</div>
 
-<div ng-class="{'fullscreen': fullscreen}" id="fullScreenDiv">
+<div ng-class="{'fullscreen': fullscreen}" id="fullScreenDiv"">
 <div class="row">
   <div class="col col-xs-12">
-    <ws-spinner class="bigSpinner" ng-show="!catalogueLoaded"></ws-spinner>
+    <ws-spinner class="bigSpinner" ng-show="!catalogueLoaded && loading.catalogue && $scope.fullscreen"></ws-spinner>
     <div ui-if="catalogueLoaded === true" ng-if="catalogueLoaded === true" class='catalogueGrid' ui-grid="gridOptions"
       ui-grid-auto-resize
       ui-grid-cellnav

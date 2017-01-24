@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, WSAlert, API_IL, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, hotkeys) {
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, WSAlert, API_IL, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys) {
 
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
@@ -21,6 +21,18 @@ angular.module('ilApp')
     $scope.item = {};
     $scope.loading.catalogue = false;
     $scope.allowEditing = false;
+    $scope.showFilters = true;
+    $scope.showGrid = false;
+    $scope.skills = false;
+    $scope.categories = {};
+    $scope.filters = {
+      active: false,
+      skill: null,
+      category: null
+    };
+
+    //deep copy of filters in order to show currently selected in UI
+    $scope.selectedFilters = {};
 
     $scope.toggleEditing = function(){
       $scope.allowEditing = !$scope.allowEditing;
@@ -56,8 +68,10 @@ angular.module('ilApp')
       columnDefs: [
         {field: 'id', width: '60', enableCellEdit: false, pinnedLeft: true},
         {field: 'description.text', name: "Description", width: '250', pinnedLeft: true, cellEditableCondition: $scope.canEdit},
-        {field: 'make', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'manufacturer', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'size', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},
         //status field
         {field: 'status.name.text', name: "Status", width: '120',
           cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex){
@@ -159,6 +173,28 @@ angular.module('ilApp')
       return (items.length > 0) ? items : false;
     };
 
+    $scope.filterSkillSelected = function (item, model) {
+      //clear category, as it's different set for each skill
+      $scope.filters.category = null;
+
+      Items.getCategories(item.id).then(function (res) {
+
+        res.unshift({
+          id: 'all',
+          category: {
+            name: {
+              text: "All categories"
+            }
+          }
+        });
+
+        $scope.categories = res
+      },
+      function(error){
+        WSAlert.danger(error);
+      });
+    };
+
     $scope.removeItem = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
@@ -236,26 +272,44 @@ angular.module('ilApp')
     $scope.catalogueLoaded = false;
 
     $scope.loadCatalogue = function(){
+      $scope.loading.catalogue = true;
 
-      Items.getCatalogue($scope.selectedEvent.id).then(function(data){
+      Items.getCatalogue($scope.selectedEvent.id, $scope.filters).then(function(data){
         //init supplier api url
         $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/search?q=';
 
         $scope.gridOptions.data = data.supplied_items;
         $scope.catalogueLoaded = true;
+        $scope.loading.catalogue = false;
+        $scope.showFilters = false;
+        $scope.showGrid = true;
+        angular.copy($scope.filters, $scope.selectedFilters);
       },
       function(error){
         WSAlert.danger(error);
         $scope.catalogueLoaded = false;
+        $scope.loading.catalogue = false;
       });
     };
 
+    $scope.loadFullCatalogue = function(){
+      $scope.filters.active = false;
+      $scope.loadCatalogue();
+    };
+
+    $scope.filtersActivate = function(){
+      if($scope.filters.skill == null) {
+        WSAlert.warning("You have to select at least skill first");
+        return;
+      }
+
+      $scope.filters.active = true;
+      $scope.loadCatalogue();
+    }
+
 
     $q.when($scope.appLoaded.promise).then(function(res){
-      $scope.loadCatalogue();
-    },
-    function(error){
-      WSAlert.danger(error);
+        initCatalogue();
     });
 
     //edit item
@@ -330,6 +384,14 @@ angular.module('ilApp')
       $scope.asideState.open = false;
     }
 
+    function initCatalogue(){
+      Events.getSkillsForEvent($scope.event_id).then(function (res) {
+        $scope.skills = res;
+      }, function (error) {
+        WSAlert.danger(error);
+      });
+    }
+
 
     //map hotkeys
     hotkeys.add({
@@ -369,3 +431,4 @@ angular.module('ilApp')
     });
 
   });
+

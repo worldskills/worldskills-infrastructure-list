@@ -154,10 +154,20 @@ angular.module('ilApp')
         return deferred.promise;
       };
 
-    Items.getCatalogue = function(eventId){
+    Items.getCatalogue = function(eventId, filters){
       var deferred = $q.defer();
 
-      $http.get(API_IL + "/items/" + eventId + "/supplied_items/").then(function(res){
+      var queryParams = "?search=";
+
+      //skill filter
+      if(filters.active && filters.skill && filters.skill.id != 'all')
+        queryParams += "&skill=" + filters.skill.id;
+
+      //category filter
+      if(filters.active && filters.category && filters.category.id != 'all')
+        queryParams += "&category=" + filters.category.id;
+
+      $http.get(API_IL + "/items/" + eventId + "/catalogue/" + queryParams).then(function(res){
         deferred.resolve(res.data);
       },
       function(error){
