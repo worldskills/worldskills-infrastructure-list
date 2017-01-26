@@ -20,9 +20,9 @@
     <tr ng-repeat="item in data.items track by $index" ng-class="{'warning': item.linkedItems}">
       <td>{{item.id}}</td>
       <td>{{item.description.text}}</td>
-      <td>{{item.make}}</td>
+      <td>{{item.manufacturer}}</td>
       <td>{{item.model}}</td>
-      <td>{{item.status.name.text}}</td>
+      <td>{{item.supplied_item.status.name.text}}</td>
       <td ng-if="data.linkedItems">
         <span ng-if="!item.linkedItems">Yes</span>
         <span ng-if="item.linkedItems">No</span>

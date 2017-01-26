@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, WSAlert, API_IL, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys) {
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys) {
 
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
@@ -308,9 +308,9 @@ angular.module('ilApp')
     }
 
 
-    $q.when($scope.appLoaded.promise).then(function(res){
+    //$q.when($scope.appLoaded.promise).then(function(){ //no need to wait for this anymore?
         initCatalogue();
-    });
+    //});
 
     //edit item
     $scope.editItem = function($event){
@@ -385,6 +385,10 @@ angular.module('ilApp')
     }
 
     function initCatalogue(){
+      //set event id from state if not already set
+      if(!$scope.event_id)
+        $scope.event_id = $state.params.eventId;
+
       Events.getSkillsForEvent($scope.event_id).then(function (res) {
         $scope.skills = res;
       }, function (error) {

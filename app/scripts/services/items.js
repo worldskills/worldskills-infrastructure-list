@@ -37,8 +37,7 @@ angular.module('ilApp')
    			Items.data = result.data;
    		},
    		function(error){
-            if(typeof error.data == 'undefined') Items.data.reject("Could not get items, please contact webmaster@worldskills.org");
-   			Items.data.reject("Could not get items: " + error.data.user_msg);
+          if(typeof error.data == 'undefined') Items.data.reject("Could not get items, please contact webmaster@worldskills.org");
    		});
 
    		return Items.data.promise;
@@ -76,8 +75,6 @@ angular.module('ilApp')
          var deferred = $q.defer();
 
          var api = API_IL + "/items/" + eventId
-         //add status
-         item.status = {id: ITEM_STATUS.RED};
 
          $http.post(api + "/requested_items/", item).then(function(result){
             deferred.resolve(result.data);
@@ -101,9 +98,6 @@ angular.module('ilApp')
             "status": { id: ITEM_STATUS.RED },
             "description": item.description
          };
-
-         //add status to item
-         item.status = { id: ITEM_STATUS.RED };
 
          //add supplied item first
          $http.post(api + "/supplied_items/", supplied_item).then(function(result){

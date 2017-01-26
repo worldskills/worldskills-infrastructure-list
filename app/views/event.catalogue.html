@@ -10,7 +10,7 @@
 
     <div class="pull-right">
       <button class="btn btn-sm"
-              ng-click="showFilters = true"
+              ng-click="showFilters = !showFilters"
               ng-class="{'btn-primary': !selectedFilters.active, 'btn-warning': selectedFilters.active}"
       ><i class="glyphicon glyphicon-filter"></i>&nbsp;Filters<small ng-show="selectedFilters.active">&nbsp;[Skill: {{selectedFilters.skill.skill_number}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.category.name.text}}</span>]</small></button>
 
