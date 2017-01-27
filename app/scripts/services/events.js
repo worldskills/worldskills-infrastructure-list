@@ -43,7 +43,7 @@ angular.module('ilApp')
 
     Events.getSkillsForSector = function(sectorId, eventId){
         var deferred = $q.defer();
-        $http.get(API_IL + "/events/skills/" + eventId + "/" + sectorId).then(function(result){
+        $http.get(API_IL + "/events/skills/" + eventId + "/" + sectorId + "?status=true").then(function(result){
             Events.skills = result.data.skills;
             Events.id = eventId;
             deferred.resolve(result.data.skills);
@@ -57,7 +57,7 @@ angular.module('ilApp')
 
     Events.getSkillsForEvent = function(eventId){
         var deferred = $q.defer();
-        $http.get(API_IL + "/events/skills/" + eventId).then(function(result){
+        $http.get(API_IL + "/events/skills/" + eventId + "?status=true").then(function(result){
             Events.skills = result.data.skills;
             Events.id = eventId;
             deferred.resolve(result.data.skills);
@@ -72,7 +72,7 @@ angular.module('ilApp')
     Events.getSkill = function(skillId){
         var deferred = $q.defer();
 
-        $http.get(API_IL + "/events/skill/" + skillId).then(function(result){
+        $http.get(API_IL + "/events/skill/" + skillId + "?status=true").then(function(result){
             Events.id = result.data.event.id;
             deferred.resolve(result.data);
         },

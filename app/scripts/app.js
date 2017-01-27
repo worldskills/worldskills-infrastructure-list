@@ -30,7 +30,7 @@ angular
     'angucomplete-alt',
     'angular-confirm',
     'infinite-scroll',
-    'ui.grid', 'ui.grid.autoResize', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.pinning', 'ui.grid.rowEdit', 'ui.grid.selection',
+    'ui.grid', 'ui.grid.autoResize', 'ui.grid.exporter', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.pinning', 'ui.grid.rowEdit', 'ui.grid.selection',
     'cfp.hotkeys'
   ])
   //.config(function ($routeProvider) {

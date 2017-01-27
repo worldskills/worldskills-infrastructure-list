@@ -32,7 +32,8 @@
     "angular-confirm-modal": "~1.2.3",
     "ngInfiniteScroll": "1.0.0",
     "angular-ui-grid": "^3.1.1",
-    "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0"
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0",
+    "pdfmake": "^0.1.24"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.1"
