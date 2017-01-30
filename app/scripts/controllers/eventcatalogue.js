@@ -33,6 +33,12 @@ angular.module('ilApp')
       category: null
     };
 
+    //prevent accidental navigation
+    $scope.$on('$stateChangeStart', function( event ) {
+      if(!confirm("Are you sure you want to leave this page?"))
+        event.preventDefault();
+    });
+
     //deep copy of filters in order to show currently selected in UI
     $scope.selectedFilters = {};
 
