@@ -98,20 +98,22 @@ angular.module('ilApp')
         {field: 'supply_type', name: 'supply_type', width: '100'},
         {field: 'unit_cost', name: 'unit_cost', width: '100'}, //double
         {field: 'unit', name: 'unit', width: '100'},
-        {field: 'delivery', name: 'delivery', width: '100'}, //datetime
+        {field: 'delivery', name: 'delivery', width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"', filter: {
+          condition: uiGridConstants.filter.STARTS_WITH,
+        }}, //datetime
         {field: 'category', name: 'category', width: '100'},
         {field: 'disposal_category', name: 'disposal_category', width: '100'},
         {field: 'electricity_volts', name: 'electricity_volts', width: '100'},//int
         {field: 'electricity_amps', name: 'electricity_amps', width: '100'},//int
         {field: 'electricity_phase', name: 'electricity_phase', width: '100'},
-        {field: 'water_dupply', name: 'water_supply', width: '100'},
+        {field: 'water_supply', name: 'water_supply', width: '100'},
         {field: 'water_drainage', name: 'water_drainage', width: '100'},
         {field: 'compressed_air', name: 'compressed_air', width: '100'},
         {field: 'ventilation_fume_extraction', name: 'ventilation_fume_extraction', width: '100', type: 'boolean'},//char 1
         {field: 'gas_requirements', name: 'gas_requirements', width: '100', type: 'boolean'},//char 1
         {field: 'anchor_fixing_base_requirements', name: 'anchor_fixing_base_requirements', width: '100'},
         {field: 'extra_details', name: 'extra_details', width: '100'},//mediumtext
-        {field: 'modified', name: "Modified", width: '95', enableCellEdit: false},
+        {field: 'modified', name: "Modified", width: '95', type: 'date', enableCellEdit: false},
         {field: 'user_generated', width: '125', type: 'boolean', enableCellEdit: false,
           filter: {
             type: uiGridConstants.filter.SELECT,
