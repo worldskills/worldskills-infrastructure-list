@@ -24,6 +24,8 @@ angular.module('ilApp')
     $scope.showFilters = true;
     $scope.showGrid = false;
     $scope.skills = false;
+    var supplierValue = "";
+
     $scope.categories = {};
     $scope.filters = {
       active: false,
@@ -73,7 +75,7 @@ angular.module('ilApp')
         {field: 'size', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},
         //status field
-        {field: 'status.name.text', name: "Status", width: '120',
+        {field: 'status.name.text', name: "Status", width: '120', pinnedRight: true,
           cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex){
             if(grid.getCellValue(row, col) === ITEM_STATUS_TEXT.RED){ return 'statusRed'; }
             else if(grid.getCellValue(row, col) === ITEM_STATUS_TEXT.YELLOW){ return 'statusYellow'; }
@@ -92,7 +94,24 @@ angular.module('ilApp')
             ]
           }, cellEditableCondition: $scope.canEdit
         },
-        //user generated field
+        {field: 'supplier', name: 'supplier', width: '100'},
+        {field: 'supply_type', name: 'supply_type', width: '100'},
+        {field: 'unit_cost', name: 'unit_cost', width: '100'}, //double
+        {field: 'unit', name: 'unit', width: '100'},
+        {field: 'delivery', name: 'delivery', width: '100'}, //datetime
+        {field: 'category', name: 'category', width: '100'},
+        {field: 'disposal_category', name: 'disposal_category', width: '100'},
+        {field: 'electricity_volts', name: 'electricity_volts', width: '100'},//int
+        {field: 'electricity_amps', name: 'electricity_amps', width: '100'},//int
+        {field: 'electricity_phase', name: 'electricity_phase', width: '100'},
+        {field: 'water_dupply', name: 'water_supply', width: '100'},
+        {field: 'water_drainage', name: 'water_drainage', width: '100'},
+        {field: 'compressed_air', name: 'compressed_air', width: '100'},
+        {field: 'ventilation_fume_extraction', name: 'ventilation_fume_extraction', width: '100', type: 'boolean'},//char 1
+        {field: 'gas_requirements', name: 'gas_requirements', width: '100', type: 'boolean'},//char 1
+        {field: 'anchor_fixing_base_requirements', name: 'anchor_fixing_base_requirements', width: '100'},
+        {field: 'extra_details', name: 'extra_details', width: '100'},//mediumtext
+        {field: 'modified', name: "Modified", width: '95', enableCellEdit: false},
         {field: 'user_generated', width: '125', type: 'boolean', enableCellEdit: false,
           filter: {
             type: uiGridConstants.filter.SELECT,
@@ -129,6 +148,19 @@ angular.module('ilApp')
     $scope.saveRow = function(rowEntity){
       var promise = $q.defer();
       $scope.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
+
+      //set supplier from autocomplete
+
+      //TODO check this
+      // if ($scope.item.selectedSupplier != void 0 && $scope.item.selectedSupplier.originalObject.id != void 0)
+      //   $scope.item.supplier = $scope.item.selectedSupplier.originalObject.name;
+      // else if ($scope.item.selectedSupplier != void 0)
+      //   $scope.item.supplier = $scope.item.selectedSupplier.originalObject;
+      // else if (supplierValue !== "")
+      //   $scope.item.supplier = supplierValue;
+      //
+      // delete $scope.item.selectedSupplier;
+      // console.log($scope.item.supplier);
 
       $scope.loading.catalogue = true;
       //actually save row
@@ -453,6 +485,10 @@ angular.module('ilApp')
       description: 'Toggle inline editing',
       callback: $scope.toggleEditing
     });
+
+    $scope.supplierChanged = function(val){
+      supplierValue = val;
+    };
 
   });
 

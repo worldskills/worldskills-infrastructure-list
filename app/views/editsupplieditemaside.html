@@ -63,9 +63,9 @@
                     <label class='control-label'>Supplier</label>
                     <angucomplete-alt
                       id="id"
-                      placeholder="Potential supplier"
+                      placeholder="Supplier"
                       pause="400"
-                      selected-object="item.supplier"
+                      selected-object="item.selectedSupplier"
                       remote-url="{{searchSupplierAPI}}"
                       remote-url-request-with-credentials="true"
                       remote-url-data-field="suppliers"
@@ -74,12 +74,13 @@
                       search-fields="name"
                       disable-input="disableInputSupplier"
                       focus-first="true"
+                      input-changed="supplierChanged"
                       override-suggestions="true"
                       field-required="false"
                       text-searching="false"
                       text-no-results="No existing suppliers found."
                       initial-value="item.supplier"
-                      input-class="input-sm form-control"/>
+                      input-class="input-sm form-control angucomplete-overflow"/>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.supply_type.$dirty && editForm.supply_type.$error.required, 'has-success': !editForm.supply_type.$error.required}">
