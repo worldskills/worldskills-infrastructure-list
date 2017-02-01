@@ -15,15 +15,26 @@ angular.module('ilApp')
       $uibModalInstance.dismiss();
     };
 
+    $scope.dateOptions = {
+      startingDay: 1
+    };
+
+    $scope.supplierValueAdd = false;
+
     $scope.saveItemDetails = function(){
       $scope.loading.aside = true;
+
+      $scope.pickSupplier();
 
       //keep history in case saving fails
       var history = {};
       angular.extend(history, $scope.rowItem);
 
       //copy modified data back to rowItem for saving - rowItem contains promise for saving rows, which reflects changes in grid
+      console.log($scope.item);
       angular.extend($scope.rowItem, $scope.item);
+      console.log($scope.item);
+
 
       $scope.saveRow($scope.rowItem).then(function(res){
         //copying to grid already done in saveRow in eventcatalogue.js
@@ -44,6 +55,8 @@ angular.module('ilApp')
 
     $scope.addItemDetails = function(){
       $scope.loading.aside = true;
+
+      $scope.pickSupplier();
 
       $scope.item.event = $scope.selectedEvent;
 
@@ -71,6 +84,25 @@ angular.module('ilApp')
           WSAlert.danger(error);
           $scope.loading.aside = false;
         })
+    };
+
+    $scope.supplierChanged = function (val) {
+      console.log("changed");
+      $scope.supplierValueAdd = val;
+    };
+
+    $scope.pickSupplier = function () {
+      //set supplier from autocomplete
+      if ($scope.item.selectedSupplier != void 0
+        && $scope.item.selectedSupplier.originalObject.id != void 0) {
+        $scope.item.supplier = $scope.item.selectedSupplier.originalObject.name;
+      }      else if ($scope.item.selectedSupplier != void 0)
+        $scope.item.supplier = $scope.item.selectedSupplier.originalObject;
+      else if ($scope.supplierValueAdd != false)
+        $scope.item.supplier = $scope.supplierValueAdd;
+
+      console.log("picker", $scope.item.supplier);
+      delete $scope.item.selectedSupplier;
     };
 
     // $scope.updateStatus = function(item){

@@ -55,7 +55,6 @@
           </uib-tab>
 
           <uib-tab index="1" heading="Host">
-            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset><legend class="aside">Supply / Host Information</legend>
                 <div class="row">
@@ -99,18 +98,18 @@
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.unit_cost.$dirty && editForm.unit_cost.$error.required, 'has-success': !editForm.unit_cost.$error.required}">
                     <label class='control-label'>Unit cost</label>
-                    <input type="text" name="unit_cost" class="input-sm form-control" placeholder="Unit cost" ng-model='item.unit_cost'>
+                    <input type="number" name="unit_cost" class="input-sm form-control" placeholder="Unit cost" ng-model='item.unit_cost'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.unit.$dirty && editForm.unit.$error.required, 'has-success': !editForm.unit.$error.required}">
                     <label class='control-label'>Unit</label>
                     <select name="unit" class="input-sm form-control" ng-model="item.unit">
                         <option value="-"></option>
-                        <option value="sponsor_loan">Sponsor Loan</option>
-                        <option value="sponsor_supply">Sponsor Supply</option>
-                        <option value="loan_lease_hire">Loan / Lease / Hire</option>
-                        <option value="purchase">Purchase</option>
-                        <option value="to_purchase">To Purchase</option>
+                        <option value="pcs">Pieces</option>
+                        <option value="kg">Kilograms</option>
+                        <option value="g">grams</option>
+                        <option value="l">Litres</option>
+                        <option value="other">Other? Please notify WorldSkills</option>
                     </select>
                   </div>
                 </div>
@@ -119,42 +118,53 @@
           </uib-tab>
 
           <uib-tab index="2" heading="Logistics">
-            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <legend class="aside">Logistics Information</legend>
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.delivery_date.$dirty && editForm.delivery_date.$error.required, 'has-success': !editForm.delivery_date.$error.required}">
-                    <label class='control-label'>Delivery date</label>
-
-                    <select name="delivery_date" class="input-sm form-control" ng-model='item.delivery_date'>
-                        <option value="C-09">C-09</option>
-                        <option value="C-08">C-08</option>
-                        <option value="C-07">C-07</option>
-                        <option value="C-06">C-06</option>
-                        <option value="C-05">C-05</option>
-                        <option value="C-04">C-04</option>
-                        <option value="C-03">C-03</option>
-                        <option value="C-02">C-02</option>
-                        <option value="C-01">C-01</option>
-                    </select>
+                  <div class="form-group col col-xs-12 col-sm-6">
+                    <p class='input-group'>
+                      <input type="text" placeholder="Delivery" class="form-control input-sm" uib-datepicker-popup="dd.MM.yyyy" ng-model="item.delivery" is-open="item.delivery_open" datepicker-options="dateOptions" close-text="Close" />
+                      <span class="input-group-btn">
+              			  	<button type="button" class="btn btn-sm btn-default" ng-init="delivery_open = false" ng-click="item.delivery_open = !item.delivery_open"><i class="glyphicon glyphicon-calendar"></i></button>
+              				</span>
+                    </p>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.delivery_time.$dirty && editForm.delivery_time.$error.required, 'has-success': !editForm.delivery_time.$error.required}">
-                    <label class='control-label'>Delivery time</label>
-                    <select name="delivery_time" class="input-sm form-control" ng-model='item.delivery_time'>
-                        <option value="-"></option>
-                        <option value="C-09">C-09</option>
-                        <option value="C-08">C-08</option>
-                        <option value="C-07">C-07</option>
-                        <option value="C-06">C-06</option>
-                        <option value="C-05">C-05</option>
-                        <option value="C-04">C-04</option>
-                        <option value="C-03">C-03</option>
-                        <option value="C-02">C-02</option>
-                        <option value="C-01">C-01</option>
-                    </select>
+                  <div class="form-group col col-xs-12 col-sm-6">
+                    <input type="time" placeholder="Time" class="form-control input-sm" ng-model="item.delivery">
                   </div>
+                  <!--<div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.delivery_date.$dirty && editForm.delivery_date.$error.required, 'has-success': !editForm.delivery_date.$error.required}">-->
+                    <!--<label class='control-label'>Delivery date</label>-->
+
+                    <!--<select name="delivery_date" class="input-sm form-control" ng-model='item.delivery_date'>-->
+                        <!--<option value="C-09">C-09</option>-->
+                        <!--<option value="C-08">C-08</option>-->
+                        <!--<option value="C-07">C-07</option>-->
+                        <!--<option value="C-06">C-06</option>-->
+                        <!--<option value="C-05">C-05</option>-->
+                        <!--<option value="C-04">C-04</option>-->
+                        <!--<option value="C-03">C-03</option>-->
+                        <!--<option value="C-02">C-02</option>-->
+                        <!--<option value="C-01">C-01</option>-->
+                    <!--</select>-->
+                  <!--</div>-->
+
+                  <!--<div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.delivery_time.$dirty && editForm.delivery_time.$error.required, 'has-success': !editForm.delivery_time.$error.required}">-->
+                    <!--<label class='control-label'>Delivery time</label>-->
+                    <!--<select name="delivery_time" class="input-sm form-control" ng-model='item.delivery_time'>-->
+                        <!--<option value="-"></option>-->
+                        <!--<option value="C-09">C-09</option>-->
+                        <!--<option value="C-08">C-08</option>-->
+                        <!--<option value="C-07">C-07</option>-->
+                        <!--<option value="C-06">C-06</option>-->
+                        <!--<option value="C-05">C-05</option>-->
+                        <!--<option value="C-04">C-04</option>-->
+                        <!--<option value="C-03">C-03</option>-->
+                        <!--<option value="C-02">C-02</option>-->
+                        <!--<option value="C-01">C-01</option>-->
+                    <!--</select>-->
+                  <!--</div>-->
                 </div>
 
                 <div class="row">
@@ -255,7 +265,6 @@
           </uib-tab>
 
           <uib-tab index="3" heading="Installation">
-            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <legend class="aside">Services / Utilities / Installation Requirements</legend>
@@ -322,7 +331,6 @@
 
 
           <uib-tab index="4" heading="Files">
-            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <legend class="aside">Files and Pictures</legend>
@@ -332,7 +340,6 @@
           </uib-tab>
 
           <uib-tab index="5" heading="Extra">
-            <div class="alert alert-danger">None of this information is yet saved in the database. Do not edit!</div>
             <div class='well'>
               <fieldset>
                 <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
