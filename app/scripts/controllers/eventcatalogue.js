@@ -57,7 +57,8 @@ angular.module('ilApp')
         $(grid).width($(window).width());
       }
       else{
-        $(grid).height(640); //50 = size of toolbar
+        $(grid).height($(window).height() - 500); //500= size topbar + bottom bar
+        //$(grid).height(500); //50 = size of toolbar
         $(grid).width('100%');
       }
 
@@ -325,6 +326,7 @@ angular.module('ilApp')
     //register api
     $scope.gridOptions.onRegisterApi = function(gridApi){
       $scope.gridApi = gridApi;
+      $scope.gridApi.core.handleWindowResize();
 
       gridApi.rowEdit.on.saveRow($scope, $scope.saveRow);
     };
