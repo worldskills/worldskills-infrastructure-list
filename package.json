@@ -2,7 +2,8 @@
   "name": "worldskills-infrastructure",
   "version": "0.0.1",
   "dependencies": {
-    "bower": "~1.4.1",
+    "bower": "~1.8.0",
+    "graceful-fs": "^4.1.11",
     "grunt-cli": "~0.1.13",
     "imagemin": "^4.0.0"
   },
@@ -38,9 +39,6 @@
     "load-grunt-tasks": "^3.1.0",
     "phantomjs": "^1.9.19",
     "time-grunt": "^1.0.0"
-  },
-  "engines": {
-    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test"
