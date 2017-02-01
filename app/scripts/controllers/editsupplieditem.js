@@ -19,6 +19,8 @@ angular.module('ilApp')
       startingDay: 1
     };
 
+    $scope.item.updateRequested = false;
+
     $scope.supplierValueAdd = false;
 
     $scope.saveItemDetails = function(){
@@ -31,12 +33,9 @@ angular.module('ilApp')
       angular.extend(history, $scope.rowItem);
 
       //copy modified data back to rowItem for saving - rowItem contains promise for saving rows, which reflects changes in grid
-      console.log($scope.item);
       angular.extend($scope.rowItem, $scope.item);
-      console.log($scope.item);
 
-
-      $scope.saveRow($scope.rowItem).then(function(res){
+      $scope.saveRow($scope.rowItem, $scope.item.updateRequested).then(function(res){
         //copying to grid already done in saveRow in eventcatalogue.js
         //  angular.extend($scope.rowItem, res);
         //$scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
@@ -87,7 +86,6 @@ angular.module('ilApp')
     };
 
     $scope.supplierChanged = function (val) {
-      console.log("changed");
       $scope.supplierValueAdd = val;
     };
 
@@ -101,7 +99,6 @@ angular.module('ilApp')
       else if ($scope.supplierValueAdd != false)
         $scope.item.supplier = $scope.supplierValueAdd;
 
-      console.log("picker", $scope.item.supplier);
       delete $scope.item.selectedSupplier;
     };
 

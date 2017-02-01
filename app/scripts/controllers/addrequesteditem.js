@@ -54,6 +54,10 @@ angular.module('ilApp')
           lang_code: $scope.selectedLanguage,
           text: $scope.suppliedItem.originalObject.description.text,
         };
+
+        //copy supplied item from selected object
+        $scope.item.supplied_item = $scope.suppliedItem.originalObject;
+
       }//if supplied item selected
       else {
         //get description from supplied item
@@ -61,6 +65,7 @@ angular.module('ilApp')
           lang_code: $scope.selectedLanguage,
           text: $scope.suppliedItem.originalObject,
         };
+        $scope.item.supplied_item = null;
       }//creating completely new item
 
       //add the requested item

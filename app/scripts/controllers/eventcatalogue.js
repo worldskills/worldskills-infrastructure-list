@@ -154,7 +154,8 @@ angular.module('ilApp')
       exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
     };
 
-    $scope.saveRow = function(rowEntity){
+    $scope.saveRow = function(rowEntity, updateRequested){
+
       var promise = $q.defer();
       $scope.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
 
@@ -173,7 +174,7 @@ angular.module('ilApp')
 
       $scope.loading.catalogue = true;
       //actually save row
-      SuppliedItem.saveItem(rowEntity).then(function(res){
+      SuppliedItem.saveItem(rowEntity, updateRequested).then(function(res){
           //copy back data from request's response
           angular.extend(rowEntity, res);
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);

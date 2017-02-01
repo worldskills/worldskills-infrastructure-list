@@ -353,6 +353,14 @@
         </uib-tabset>
 
       <button ng-disabled="editForm.$error.required" ng-if="!item.id" ng-click="addItemDetails();" class='btn btn-sm btn-success'>Add item</button>
+
+      <div ng-if="item.id">
+        <label style="font-weight: normal;">
+          {{item.updateRequested}}
+          <input type="checkbox" ng-model="item.updateRequested"> Copy description to requested item(s)
+          <span>&nbsp;<i class="glyphicon glyphicon-question-sign" uib-tooltip="Warning! This will update the description in every skill this item is used!" tooltip-placement="top" tooltip-trigger="mouseenter"></i></span>
+        </label>
+      </div>
       <button ng-disabled="editForm.$error.required" ng-if="item.id" ng-click="saveItemDetails();" class='btn btn-sm btn-success'>Save item</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning'>Cancel</button>
     </form>

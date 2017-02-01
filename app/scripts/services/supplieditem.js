@@ -10,10 +10,12 @@
 angular.module('ilApp')
   .service('SuppliedItem', function ($q, $http, API_IL) {
     return {
-      saveItem: function(item){
+      saveItem: function(item, updateRequested){
         var deferred = $q.defer();
 
-        $http.put(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id, item).then(function(res){
+        var forceUpdateRequested = (updateRequested === true) ? "?forceUpdateRequested=1" : "";
+
+        $http.put(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id + forceUpdateRequested, item).then(function(res){
           deferred.resolve(res.data);
         },
         function(error){

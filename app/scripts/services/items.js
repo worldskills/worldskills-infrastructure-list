@@ -88,7 +88,8 @@ angular.module('ilApp')
          return deferred.promise;
       };
 
-      Items.addItem = function(item, eventId){
+
+    Items.addItem = function(item, eventId){
          var deferred = $q.defer();
 
          var api = API_IL + "/items/" + eventId
@@ -99,25 +100,39 @@ angular.module('ilApp')
             "description": item.description
          };
 
-         //add supplied item first
-         $http.post(api + "/supplied_items/", supplied_item).then(function(result){
+         debugger;
+        //add supplied item first if needed
+        if(item.supplied_item === null){
+          $http.post(api + "/supplied_items/", supplied_item).then(function(result){
+            //supplied item created
             var new_supplied_item = result;
 
-            //set id of the newly created supplied item
-            item.supplied_item = {id: new_supplied_item.data.id};
+            //link supplied item
+            item.supplied_item = result.data;
 
             $http.post(api + "/requested_items/", item).then(function(result){
-               deferred.resolve(result.data);
+                deferred.resolve(result.data);
+              },
+              function(error){
+                //delete supplied item orphan
+                $http.delete(api + "/supplied_items/" + new_supplied_item.data.id);
+                deferred.reject("Could not create a requested item, please try again. " + error.data.user_msg);
+              });
+          },
+          function(error){
+            deferred.reject("Could not create a supplied item: " + error.data.user_msg);
+          });
+        }
+        else{
+          //supplied item already created
+          $http.post(api + "/requested_items/", item).then(function(result){
+              deferred.resolve(result.data);
             },
             function(error){
-               //delete supplied item orphan
-               $http.delete(api + "/supplied_items/" + new_supplied_item.data.id);
-               deferred.reject("Could not create a requested item, please try again. " + error.data.user_msg);
+              //no need to delete supplied item orphan - as it already existed
+              deferred.reject("Could not create a requested item, please try again. " + error.data.user_msg);
             });
-         },
-         function(error){
-            deferred.reject("Could not create a supplied item: " + error.data.user_msg);
-         });
+        }
 
          return deferred.promise;
       };
