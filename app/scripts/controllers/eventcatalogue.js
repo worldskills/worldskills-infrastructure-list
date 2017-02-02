@@ -313,6 +313,67 @@ angular.module('ilApp')
       });
     };
 
+    $scope.combineItems = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      if($scope.fullscreen) return;
+
+      var items = $scope.getSelectedItems();
+      if(items === false) return;
+
+      if(items.length < 2){
+        alert("Please select at least 2 items");
+        return;
+      }
+
+      var linkedItems = false;
+      // var updateQueue = [];
+      var updatedItems = [];
+      $scope.masterItem = {};
+
+      //check if any of the items in array contain any linked items
+      angular.forEach(items, function(val){
+        if(val.linkedItems === true) linkedItems = true;
+        updatedItems.push(val);
+      });
+
+      $confirm({
+          title: "Combine items?",
+          items: items,
+          linkedItems: linkedItems,
+          masterItem: false,
+          selectMaster: function(masterItem){
+            $scope.masterItem = masterItem;
+          },
+          ok: 'Combine'
+        },
+        {
+          templateUrl: 'views/combine-items-confirm.html'
+        }).then(function () {
+
+        $scope.loading.catalogue = true;
+
+        SuppliedItem.combineItems(items, $scope.masterItem).then(function(res){
+
+            //remove everything except one marked as master item
+            angular.forEach(updatedItems, function(val){
+              if(val.id != $scope.masterItem.id) {
+                var i = $scope.gridOptions.data.indexOf(val);
+                $scope.gridOptions.data.splice(i, 1);
+              }
+            });
+
+            WSAlert.success("Items combined!");
+            $scope.loading.catalogue = false;
+        },
+        function(error){
+          WSAlert.danger(error);
+          $scope.loading.catalogue = false;
+        });
+      });
+    };
+
 
     $scope.getCurrentFocus = function(){
       if(typeof $scope.gridApi === 'undefined') return false;

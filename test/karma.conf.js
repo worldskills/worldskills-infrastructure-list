@@ -56,6 +56,7 @@ module.exports = function(config) {
       'bower_components/angular-confirm-modal/angular-confirm.js',
       'bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
       'bower_components/angular-ui-grid/ui-grid.js',
+      'bower_components/angular-ui-grid/ui-grid.min.js',
       'bower_components/angular-hotkeys/build/hotkeys.js',
       'bower_components/pdfmake/build/pdfmake.js',
       'bower_components/pdfmake/build/vfs_fonts.js',

@@ -62,6 +62,26 @@ angular.module('ilApp')
         });
 
         return deferred.promise;
+      },
+
+      combineItems: function(items, masterItem){
+        var deferred = $q.defer();
+        
+        var combineStr = "?forceRequestedUpdate=1";
+
+        angular.forEach(items, function(val){
+          if(val.id != masterItem.id)
+            combineStr += "&itemId=" + val.id;
+        });
+
+        $http.post(API_IL + "/items/" + masterItem.event.id + "/supplied_items/" + masterItem.id + "/combine" + combineStr, {}).then(function(res){
+            deferred.resolve(res.data);
+          },
+          function(error){
+            deferred.reject("Could not combine items: " + error.data.user_msg);
+          });
+
+        return deferred.promise;
       }
     };
   });

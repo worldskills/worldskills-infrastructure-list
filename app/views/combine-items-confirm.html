@@ -1,0 +1,44 @@
+<div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>
+<div class="modal-body">
+
+  <p ng-if="data.items">Are you sure you want to combine these items?</p>
+  <div ng-if="data.linkedItems" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong>Important!</strong> One or more of these items is attached toa skill, please note that this action will also overwrite the description of these items.</div>
+  <p>
+    &nbsp;
+  </p>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Keep</th>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Manufacturer</th>
+      <th>Model</th>
+      <th>Status</th>
+      <th ng-if="data.linkedItems">Linked</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in data.items track by $index">
+      <td><button class="btn btn-xs" ng-click="data.selectMaster(item); data.masterItem = item;"
+      ng-class="{'btn-success': item == data.masterItem, 'btn-default': item != data.masterItem}">
+        <span ng-if="item == data.masterItem" class="glyphicon glyphicon-check"></span>
+        <span ng-if="item != data.masterItem" class="glyphicon glyphicon-unchecked"></span>
+      </button></td>
+      <td>{{item.id}}</td>
+      <td>{{item.description.text}}</td>
+      <td>{{item.manufacturer}}</td>
+      <td>{{item.model}}</td>
+      <td>{{item.supplied_item.status.name.text}}</td>
+      <td ng-if="data.linkedItems">
+        <span ng-if="item.linkedItems">Yes</span>
+        <span ng-if="!item.linkedItems">No</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <button ng-if="data.items" ng-disabled="!data.masterItem" class="btn btn-danger" ng-click="ok()">{{data.ok}}</button>
+  <button class="btn btn-default" ng-click="cancel()">{{data.cancel}}</button>
+</div>
