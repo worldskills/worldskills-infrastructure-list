@@ -509,14 +509,17 @@ angular.module('ilApp')
     }
 
     function initCatalogue(){
+      $scope.loading.catalogue = true;
       //set event id from state if not already set
       if(!$scope.event_id)
         $scope.event_id = $state.params.eventId;
 
       Events.getSkillsForEvent($scope.event_id).then(function (res) {
         $scope.skills = res;
+        $scope.loading.catalogue = false;
       }, function (error) {
         WSAlert.danger(error);
+        $scope.loading.catalogue = false;
       });
     }
 
