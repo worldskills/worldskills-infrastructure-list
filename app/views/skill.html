@@ -12,9 +12,9 @@
             <a ng-repeat="category in categories" ui-sref-active='active' class="list-group-item" ui-sref='event.skill.category({eventId: event_id, skillId: skill_id, categoryId:category.id})'><small ng-cloak translate>{{category.category.name.text}}</small></a>
          </div>
 
-        <!--<div class="list-group">-->
-          <!--<a class="list-group-item" ui-sref='event.catalogue({eventId: event_id})'><small ng-cloak translate>CATALOGUE_VIEW</small></a>-->
-        <!--</div>-->
+        <div class="list-group" ng-if="activePosition.role == APP_ROLES.ORGANIZER || activePosition.role == APP_ROLES.ADMIN || activePosition.role == APP_ROLES.WS_SECTOR_MANAGER">
+          <a class="list-group-item" ui-sref='event.catalogue({eventId: event_id})'><small ng-cloak translate>CATALOGUE_VIEW</small></a>
+        </div>
      </div>
 
     <!-- <ws-spinner ng-show='loading.initial'></ws-spinner> -->
