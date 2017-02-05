@@ -6,24 +6,26 @@
   <table class="table table-striped" ng-if="data.items.length > 0">
     <thead>
     <tr>
+      <th>ID</th>
       <th>Requested</th>
       <th>Skill</th>
-      <th>ID</th>
       <th>Category</th>
       <th>Qty</th>
       <th>Supplier (potential)</th>
       <th>Status</th>
+      <th>Edit</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in data.items track by item.id">
+      <td>{{item.id}}</td>
       <td>{{item.description.text}} <span class="label label-info">{{item.description.lang_code}}</span></td>
       <td>{{item.category.list.skill.name.text}}</td>
-      <td>{{item.id}}</td>
       <td>{{item.category.category.name.text}}</td>
       <td>{{item.readable_quantity}}</td>
       <td>{{item.supplier}}</td>
       <td>{{item.supplied_item.status.name.text}}</td>
+      <td><button ng-click="data.editRequestedItem(item)" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i></button></td>
     </tr>
     </tbody>
   </table>

@@ -16,7 +16,6 @@ angular.module('ilApp')
       {id: {id: ITEM_STATUS.GREEN, name: {text: ITEM_STATUS_TEXT.GREEN}}, value: ITEM_STATUS_TEXT.GREEN}
     ];
 
-
     $scope.fullscreen = false;
     $scope.item = {};
     $scope.loading.catalogue = false;
@@ -53,7 +52,11 @@ angular.module('ilApp')
       var grid = $('.catalogueGrid').get(0);
 
       if(!$scope.fullscreen) {
-        $(grid).height($(window).height());
+        if($(window).height() < 500)
+          $(grid).height(500);
+        else
+          $(grid).height($(window).height());
+
         $(grid).width($(window).width());
       }
       else{
@@ -209,6 +212,7 @@ angular.module('ilApp')
         $confirm({
             title: "Linked items",
             items: res.requested_items,
+            editRequestedItem: $scope.editRequestedItem,
             ok: "Close",
           },
           {
@@ -517,11 +521,44 @@ angular.module('ilApp')
       Events.getSkillsForEvent($scope.event_id).then(function (res) {
         $scope.skills = res;
         $scope.loading.catalogue = false;
+
+        //TODO: remove after debug to show filters - these lines should not be deployed
+        $scope.filters = {active: true, skill: {id: 482}, category: null};
+        $scope.loadCatalogue();
+
       }, function (error) {
         WSAlert.danger(error);
         $scope.loading.catalogue = false;
       });
-    }
+    };
+
+    $scope.asideState = {
+      open: false,
+    };
+
+    $scope.editRequestedItem = function(item) {
+
+      //copy item
+      $scope.item = angular.copy(item);
+
+      $scope.editModal = $aside.open({
+        templateUrl: 'views/editRequestedItemAside.html',
+        placement: 'right',
+        size: 'md',
+        scope: $scope,
+        backdrop: true,
+        controller: 'editRequestedItemAsideCtrl'
+      });
+
+      $scope.editModal.result.then(function(res){
+        if(res && res.id === item.id){
+          //copy returned item back to the view
+          angular.extend(item, res);
+          $scope.item = null;
+        }
+        //res === null if close called because of `cancel`
+      });
+    };
 
 
     //map hotkeys
@@ -541,6 +578,12 @@ angular.module('ilApp')
       combo: 'ctrl+backspace',
       description: 'Remove selected item',
       callback: $scope.removeItem
+    });
+
+    hotkeys.add({
+      combo: 'ctrl+m',
+      description: 'Combine selected items',
+      callback: $scope.combineItems
     });
 
     hotkeys.add({

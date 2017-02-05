@@ -43,11 +43,14 @@ angular.module('ilApp')
    		return Items.data.promise;
    	};
 
-      Items.saveItem = function(item, eventId){
+      Items.saveItem = function(item, eventId, _extended){
+
+        //extended view of the item in response
+         var extended = _extended || false;
+
          var deferred = $q.defer();
 
-
-         $http.put(API_IL + "/items/" + eventId + "/requested_items/" + item.id, item).then(function(result){
+         $http.put(API_IL + "/items/" + eventId + "/requested_items/" + item.id + "?extended=" + extended, item).then(function(result){
             deferred.resolve(result.data);
          },
          function(error){
