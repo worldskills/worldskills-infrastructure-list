@@ -522,9 +522,10 @@ angular.module('ilApp')
         $scope.skills = res;
         $scope.loading.catalogue = false;
 
-        //TODO: remove after debug to show filters - these lines should not be deployed
-        $scope.filters = {active: true, skill: {id: 482}, category: null};
-        $scope.loadCatalogue();
+        // comment after debug to show filters - these lines should not be deployed
+        // automatically loads 01 - Polymechanics, to ease up debugging
+        // $scope.filters = {active: true, skill: {id: 482}, category: null};
+        // $scope.loadCatalogue();
 
       }, function (error) {
         WSAlert.danger(error);

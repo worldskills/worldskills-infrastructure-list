@@ -103,7 +103,6 @@ angular.module('ilApp')
             "description": item.description
          };
 
-         debugger;
         //add supplied item first if needed
         if(item.supplied_item === null){
           $http.post(api + "/supplied_items/", supplied_item).then(function(result){
