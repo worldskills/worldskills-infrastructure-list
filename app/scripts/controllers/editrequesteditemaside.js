@@ -8,8 +8,10 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('editRequestedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert) {
+  .controller('editRequestedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS) {
 
+    $scope.multipliers = MULTIPLIERS;
+    
     function closeDialog(){
         $scope.editModal.close(null);
     };

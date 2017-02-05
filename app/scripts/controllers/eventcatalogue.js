@@ -60,7 +60,10 @@ angular.module('ilApp')
         $(grid).width($(window).width());
       }
       else{
-        $(grid).height($(window).height() - 500); //500= size topbar + bottom bar
+        if($(window).height() < 500)
+          $(grid).height(500);
+        else
+          $(grid).height($(window).height() - 400); //400= size topbar + bottom bar
         //$(grid).height(500); //50 = size of toolbar
         $(grid).width('100%');
       }
