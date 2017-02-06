@@ -52,8 +52,8 @@
           </ui-select>
         </div>
         <div class="col col-xs-4">
-          <ui-select ng-model="filters.category" theme="bootstrap" title="Choose a category (optional)" ng-disabled="!filters.skill">
-            <ui-select-match placeholder="Choose a category (optional)">{{$select.selected.category.name.text}}</ui-select-match>
+          <ui-select ng-model="filters.category" theme="bootstrap" title="Choose an Installation Type (optional)" ng-disabled="!filters.skill">
+            <ui-select-match placeholder="Choose an Installation Type (optional)">{{$select.selected.category.name.text}}</ui-select-match>
             <ui-select-choices repeat="cat as cat in (categories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
               <div ng-bind-html="cat.category.name.text"></div>
             </ui-select-choices>

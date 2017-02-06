@@ -21,8 +21,8 @@
         <div class="form-group addForm">
           <label class='control-label'>Installation type</label>
           <!--<input type="text" class="input-sm form-control" placeholder="Installation type" ng-model='categoryId'>-->
-          <ui-select ng-model="newLinkedItem.category" theme="bootstrap" title="Choose a category (optional)" ng-disabled="newLinkedItemCategories.length < 1">
-            <ui-select-match placeholder="Choose a category (optional)">{{$select.selected.category.name.text}}</ui-select-match>
+          <ui-select ng-model="newLinkedItem.category" theme="bootstrap" title="Choose a Installation Type" ng-disabled="newLinkedItemCategories.length < 1">
+            <ui-select-match placeholder="Choose a Installation Type (optional)">{{$select.selected.category.name.text}}</ui-select-match>
             <ui-select-choices repeat="cat as cat in (newLinkedItemCategories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
               <div ng-bind-html="cat.category.name.text"></div>
             </ui-select-choices>
