@@ -203,7 +203,11 @@ angular.module('ilApp')
       if($scope.fullscreen) return;
 
       var item = $scope.getOneSelectedItem();
-      if(item === false) return;
+
+      if(item == void 0 || item === false){
+        alert("You need to select at least one item");
+        return;
+      }
 
       $scope.loading.catalogue = true;
 
@@ -214,6 +218,8 @@ angular.module('ilApp')
         //display linked items
         $confirm({
             title: "Linked items",
+            newLinkedItem: $scope.createNewLinkedItem,
+            suppliedItem: item,
             items: res.requested_items,
             editRequestedItem: $scope.editRequestedItem,
             ok: "Close",
@@ -263,6 +269,23 @@ angular.module('ilApp')
         WSAlert.danger(error);
       });
     };
+
+
+    //used in catalogue for loading new linked items
+    $scope.addLinkedItemSkillSelected = function (item, model) {
+      //clear out so that category selection clears out
+      $scope.newLinkedItemCategories = {};
+      $scope.newLinkedItem.category = {};
+      $scope.categoryId = 0;
+
+      Items.getCategories(item.id).then(function (res) {
+          $scope.newLinkedItemCategories = res
+        },
+        function(error){
+          WSAlert.danger(error);
+        });
+    };
+
 
     $scope.removeItem = function($event) {
       $event.preventDefault();
@@ -327,7 +350,10 @@ angular.module('ilApp')
       if($scope.fullscreen) return;
 
       var items = $scope.getSelectedItems();
-      if(items === false) return;
+      if(items == void 0 || items === false){
+        alert("Please select at least 2 items");
+        return;
+      }
 
       if(items.length < 2){
         alert("Please select at least 2 items");
@@ -454,7 +480,10 @@ angular.module('ilApp')
       //selection more than one rows
       var item = $scope.getOneSelectedItem();
 
-      if(item === false) return;
+      if(item == void 0 || item === false){
+        alert("You need to select at least one item");
+        return;
+      }
 
       //scope gets passed to editSuppliedItemCtrl
       $scope.openItemEditor(item);
@@ -548,7 +577,7 @@ angular.module('ilApp')
       $scope.editModal = $aside.open({
         templateUrl: 'views/editRequestedItemAside.html',
         placement: 'right',
-        size: 'md',
+        size: 'lg',
         scope: $scope,
         backdrop: true,
         controller: 'editRequestedItemAsideCtrl'
@@ -557,12 +586,65 @@ angular.module('ilApp')
       $scope.editModal.result.then(function(res){
         if(res && res.id === item.id){
           //copy returned item back to the view
+          item.updated = true;
           angular.extend(item, res);
           $scope.item = null;
         }
         //res === null if close called because of `cancel`
       });
     };
+
+    $scope.createNewLinkedItem = function(suppliedItem, linkedItemsRef){
+
+      //copy item
+      $scope.suppliedItem = {
+        originalObject: angular.copy(suppliedItem),
+        force: true
+      };
+
+      //set parent to zero = none
+      //needed in order to re-use addrequestedItem.js as a controller
+      $scope.addParent = 0;
+
+      //initialize description of the item for the form
+      $scope.item = {
+        description: suppliedItem.description
+      };
+
+      $scope.newLinkedItem = {};
+
+      //preset filters if exists
+      if($scope.filters && $scope.filters.active === true){
+        //pre-set skill
+        $scope.newLinkedItem.skill = $scope.filters.skill;
+
+        //pre-set category
+        if($scope.filters.category && $scope.filters.category.id != 'all')
+          $scope.newLinkedItem.category = $scope.filters.category;
+
+      }//if
+
+      $scope.newModal = $aside.open({
+        templateUrl: 'views/addRequestedItemAside.html',
+        placement: 'right',
+        size: 'lg',
+        scope: $scope,
+        backdrop: true,
+        controller: 'addRequestedItemCtrl'
+      });
+
+      $scope.newModal.result.then(function(res){
+        res.new = true;
+
+        linkedItemsRef.push(res);
+      });
+
+    };
+
+    //used when called from catalogue view:showLinkedItems:add
+    // $scope.addLinkedItemCategorySelected = function(cat, model){
+    //   $scope.categoryId = cat.id;
+    // };
 
 
     //map hotkeys

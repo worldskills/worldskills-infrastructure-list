@@ -8,11 +8,13 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIER_DEFAULT) {
+  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, MULTIPLIERS, Items, WSAlert, MULTIPLIER_DEFAULT) {
 
-    $scope.item = {
-      multiplier: MULTIPLIER_DEFAULT,
-    };
+    $scope.item = $scope.item || {}; //can be already set if called from catalogue view
+    $scope.item.multiplier = MULTIPLIER_DEFAULT;
+
+    //ensure multipliers are set
+    $scope.multipliers = $scope.multipliers || MULTIPLIERS;
 
     $scope.disableInput = false;
 
@@ -21,7 +23,7 @@ angular.module('ilApp')
         $scope.disableInput = true;
     });
 
-    $scope.supplierValueAdd = false;
+    $scope.supplierValue = false;
 
     $scope.rename = function () {
       $scope.suppliedItem = {};
@@ -36,19 +38,27 @@ angular.module('ilApp')
       if ($scope.item.selectedSupplier != void 0
           && $scope.item.selectedSupplier.originalObject.id != void 0) {
         $scope.item.supplier = $scope.item.selectedSupplier.originalObject.name;
-      }      else if ($scope.item.selectedSupplier != void 0)
+      }
+      else if ($scope.item.selectedSupplier != void 0)
        $scope.item.supplier = $scope.item.selectedSupplier.originalObject;
-      else if ($scope.supplierValueAdd != false)
-          $scope.item.supplier = $scope.supplierValueAdd;
+      else if ($scope.supplierValue != false)
+          $scope.item.supplier = $scope.supplierValue;
+
 
       //set category or parent depending on if parent exists
-      if ($scope.addParent == 0)
+      if($scope.suppliedItem.force === true)
+        $scope.item.category = $scope.newLinkedItem.category.id;
+      else if ($scope.addParent == 0)
           $scope.item.category = $scope.categoryId;
       else
           $scope.item.parent_id = $scope.addParent.id;
 
       //if supplied item selected - use link together
-      if (typeof $scope.suppliedItem.originalObject.id !== 'undefined') {
+      if($scope.suppliedItem.force === true) { //catalogue view
+        $scope.item.description.lang_code = $scope.selectedLanguage;
+        $scope.item.supplied_item = $scope.suppliedItem.originalObject;
+      }
+      else if (typeof $scope.suppliedItem.originalObject.id !== 'undefined') {
         //get description from supplied item
         $scope.item.description = {
           lang_code: $scope.selectedLanguage,
@@ -69,7 +79,7 @@ angular.module('ilApp')
       }//creating completely new item
 
       //add the requested item
-      Items.addItem($scope.item, $scope.event_id).then(function (result) {
+      Items.addItem($scope.item, $scope.event_id, true).then(function (result) {
         $scope.pushItem(result);
       },
 
@@ -82,28 +92,39 @@ angular.module('ilApp')
 
     $scope.pushItem = function (result) {
       //Push the new item into the items tree
-      if ($scope.addParent == 0)
+      if(!$scope.suppliedItem.force) { //normal requested items view
+        if ($scope.addParent == 0)
           $scope.items.push(result);
-      else {
-        //add under the correct parent
-        angular.forEach($scope.items, function (val, key) {
-          if (val.id == $scope.addParent.id)
+        else {
+          //add under the correct parent
+          angular.forEach($scope.items, function (val, key) {
+            if (val.id == $scope.addParent.id)
               $scope.items[key].child_items.push(result);
-        });
-      }
+          });
+        }
 
-      //clear and dismiss the form
-      $scope.addForm.$setPristine();
-      $uibModalInstance.dismiss();
-      $scope.loading.addItem = false;
+        //clear and dismiss the form
+        $scope.addForm.$setPristine();
+        $uibModalInstance.dismiss();
+        $scope.loading.addItem = false;
+      }
+      else if($scope.suppliedItem.force === true){ //in catalogue view
+        //return result via modal so that it can be added to the catalogue view's dialog
+        $scope.newModal.close(result);
+      }
     };
 
     $scope.cancel = function () {
       $uibModalInstance.dismiss();
     };
 
-    $scope.supplierChangedAdd = function (val) {
-      $scope.supplierValueAdd = val;
+
+    //link helper function from items
+    $scope.factorNeeded = Items.factorNeeded;
+
+
+    $scope.supplierChanged = function (val) {
+      $scope.supplierValue = val;
     };
 
   });

@@ -11,13 +11,23 @@ angular.module('ilApp')
   .controller('editRequestedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS) {
 
     $scope.multipliers = MULTIPLIERS;
-    
+
     function closeDialog(){
         $scope.editModal.close(null);
     };
 
     $scope.editItem = function(item, index){
       closeDialog();
+    };
+
+    $scope.factorNeeded = function (multiplierId) {
+      var retval = false;
+
+      angular.forEach($scope.multipliers, function (val) {
+        if (val.id == multiplierId && val.x_number_needed === true) retval = true;
+      });
+
+      return retval;
     };
 
     $scope.saveItem = function (item, itemIndex) {

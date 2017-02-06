@@ -111,9 +111,11 @@ angular.module('ilApp')
       if (item.selectedSupplier != void 0
             && item.selectedSupplier.originalObject.id != void 0) {
         item.supplier = item.selectedSupplier.originalObject.name;
-      }      else if (item.selectedSupplier != void 0) {
+      }
+      else if (item.selectedSupplier != void 0) {
         item.supplier = item.selectedSupplier.originalObject;
-      }      else if ($scope.supplierValue !== false) {
+      }
+      else if ($scope.supplierValue !== false) {
         item.supplier = $scope.supplierValue;
       }
 
@@ -309,18 +311,10 @@ angular.module('ilApp')
     //     return retval;
     // };
 
-    $scope.factorNeeded = function (multiplierId) {
-      var retval = false;
-
-      angular.forEach($scope.multipliers, function (val) {
-        if (val.id == multiplierId && val.x_number_needed === true) retval = true;
-      });
-
-      return retval;
-    };
+    //link helper function from items
+    $scope.factorNeeded = Items.factorNeeded;
 
     $scope.canEdit = function (statusId) {
-
       //TODO check if User level == organizer, then allow after all
       return (statusId == ITEM_STATUS.RED) ? true : false;
     };

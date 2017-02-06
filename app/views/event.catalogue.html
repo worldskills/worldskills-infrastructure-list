@@ -8,10 +8,10 @@
           <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm">Item actions&nbsp;<span class="caret"></span></button>
 
           <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
-            <li role="menuitem"><a ng-disabled="!itemSelected()" ng-click="editItem($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit selected item</a></li>
-            <li role="menuitem"><a ng-disabled="!itemSelected()" ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item(s)</a></li>
-            <li role="menuitem"><a ng-disabled="!itemSelected()" ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</a></li>
-            <li role="menuitem"><a ng-disabled="!itemSelected()" ng-click="combineItems($event)"><span class="glyphicon glyphicon-compressed"></span>&nbsp;Combine items</a></li>
+            <li role="menuitem"><a ng-click="editItem($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;Edit selected item</a></li>
+            <li role="menuitem"><a ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item(s)</a></li>
+            <li role="menuitem"><a ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</a></li>
+            <li role="menuitem"><a ng-click="combineItems($event)"><span class="glyphicon glyphicon-compressed"></span>&nbsp;Combine items</a></li>
           </ul>
         </div>
 

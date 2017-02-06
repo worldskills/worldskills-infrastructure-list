@@ -8,7 +8,7 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('Items', function ($q, $http, API_IL, ITEM_STATUS) {
+  .service('Items', function ($q, $http, API_IL, ITEM_STATUS, MULTIPLIERS) {
 
    	var Items = { categories : $q.defer(), $data : $q.defer(), total: null };
 
@@ -92,8 +92,11 @@ angular.module('ilApp')
       };
 
 
-    Items.addItem = function(item, eventId){
+    Items.addItem = function(item, eventId, _extended){
          var deferred = $q.defer();
+
+        //extended view of the item in response
+        var extended = _extended || false;
 
          var api = API_IL + "/items/" + eventId
          var supplied_item = {
@@ -105,7 +108,7 @@ angular.module('ilApp')
 
         //add supplied item first if needed
         if(item.supplied_item === null){
-          $http.post(api + "/supplied_items/", supplied_item).then(function(result){
+          $http.post(api + "/supplied_items/" + "?extended=" + extended, supplied_item).then(function(result){
             //supplied item created
             var new_supplied_item = result;
 
@@ -127,7 +130,7 @@ angular.module('ilApp')
         }
         else{
           //supplied item already created
-          $http.post(api + "/requested_items/", item).then(function(result){
+          $http.post(api + "/requested_items/" + "?extended=" + extended, item).then(function(result){
               deferred.resolve(result.data);
             },
             function(error){
@@ -198,6 +201,16 @@ angular.module('ilApp')
       });
 
       return deferred.promise;
+    };
+
+    Items.factorNeeded = function (multiplierId) {
+      var retval = false;
+
+      angular.forEach(MULTIPLIERS, function (val) {
+        if (val.id == multiplierId && val.x_number_needed === true) retval = true;
+      });
+
+      return retval;
     };
 
    	return Items;

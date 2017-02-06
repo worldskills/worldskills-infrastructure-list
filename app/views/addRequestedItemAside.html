@@ -2,10 +2,43 @@
 	<fieldset><legend>Add new item</legend>
 		<form name='addForm'>
 		<div class='well'>
+      <!-- catalogue view only -->
+      <div ng-if="suppliedItem.force === true">
+        <div class="form-group addForm">
+          <label class='control-label'>Skill</label>
+          <!--<input type="text" class="input-sm form-control" placeholder="Skill" ng-model='skill'>-->
+          <ui-select ng-model="newLinkedItem.skill" theme="bootstrap" on-select="addLinkedItemSkillSelected($item, $model)" title="Choose a skill">
+            <ui-select-match placeholder="Choose a skill">{{$select.selected.name.text}} - {{$select.selected.skill_number}}</ui-select-match>
+            <ui-select-choices repeat="skill as skill in (skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+              <div ng-bind-html="skill.name.text"></div>
+              <small>
+                Number: {{skill.skill_number}}
+              </small>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+
+        <div class="form-group addForm">
+          <label class='control-label'>Installation type</label>
+          <!--<input type="text" class="input-sm form-control" placeholder="Installation type" ng-model='categoryId'>-->
+          <ui-select ng-model="newLinkedItem.category" theme="bootstrap" title="Choose a category (optional)" ng-disabled="newLinkedItemCategories.length < 1">
+            <ui-select-match placeholder="Choose a category (optional)">{{$select.selected.category.name.text}}</ui-select-match>
+            <ui-select-choices repeat="cat as cat in (newLinkedItemCategories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
+              <div ng-bind-html="cat.category.name.text"></div>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <!-- catalogue view only -->
+
       <div class="form-group addForm">
         <label class='control-label'>Description</label>
-        <!-- <input type="text" class="input-sm form-control" placeholder="Description" ng-model='item.description.text'> -->
-        <angucomplete-alt id="id"
+        <!-- catalogue view only -->
+        <input ng-if="suppliedItem.force === true" type="text" class="input-sm form-control" placeholder="Description" ng-model='item.description.text'>
+        <!-- !catalogue view -->
+        <angucomplete-alt
+                  id="id"
+                  ng-show="suppliedItem.force !== true"
                   placeholder="Description of the item"
                   pause="400"
                   selected-object="suppliedItem"
@@ -14,7 +47,7 @@
                   remote-url-data-field="supplied_items"
                   title-field="description.text"
                   description-field="make"
-                          focus-out="focusOutItem"
+                  focus-out="focusOutItem"
                   minlength="2"
                   search-fields="description.text"
                   disable-input="disableInput"
@@ -49,7 +82,7 @@
       				</tbody>
       			</table>
 
-		      	<div class='alert alert-info smallText'>
+		      	<div class='alert alert-info smallText' ng-if="suppliedItem.force !== true">
 		      		This is an item already created by the organizer, or an item already used in another skill.<br />
 		      		If this doesn't match your needs, please use a unique description to create a new item.<br /><br />
 		      		<button ng-show="disableInput" ng-click="rename()" class='btn btn-xs btn-warning'>Change to another item</button>
