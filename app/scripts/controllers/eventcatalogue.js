@@ -621,6 +621,9 @@ angular.module('ilApp')
         //pre-set category
         if($scope.filters.category && $scope.filters.category.id != 'all')
           $scope.newLinkedItem.category = $scope.filters.category;
+        else{
+          $scope.addLinkedItemSkillSelected($scope.newLinkedItem.skill, false);
+        }
 
       }//if
 

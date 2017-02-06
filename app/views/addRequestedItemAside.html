@@ -29,6 +29,7 @@
           </ui-select>
         </div>
       </div>
+      <div ng-if="(suppliedItem.force === true && !newLinkedItem.category.id)" class="alert alert-warning">You must select the installation type for this item</div>
       <!-- catalogue view only -->
 
       <div class="form-group addForm">
@@ -170,7 +171,7 @@
 
 
     </div> <!-- well -->
-    <button ng-disabled="addForm.$error.required  || !suppliedItem.originalObject" ng-click="addItem();" class='btn btn-sm btn-success'>Add item</button>
+    <button ng-disabled="addForm.$error.required  || !suppliedItem.originalObject || (suppliedItem.force === true && !newLinkedItem.category.id)" ng-click="addItem();" class='btn btn-sm btn-success'>Add item</button>
     <button ng-click="cancel();" class='btn btn-sm btn-warning'>Cancel</button>
     </form>
 
