@@ -18,7 +18,7 @@ angular.module('ilApp')
 
     $scope.fullscreen = false;
     $scope.item = {};
-    $scope.loading.catalogue = false;
+    $scope.loading.catalogue = true;
     $scope.allowEditing = false;
     $scope.showFilters = true;
     $scope.showGrid = false;
@@ -465,9 +465,9 @@ angular.module('ilApp')
     }
 
 
-    //$q.when($scope.appLoaded.promise).then(function(){ //no need to wait for this anymore?
+    $q.when($scope.appLoaded.promise).then(function(){ //still needed to use existing skill list
         initCatalogue();
-    //});
+    });
 
     //edit item
     $scope.editItem = function($event){
@@ -546,23 +546,14 @@ angular.module('ilApp')
 
     function initCatalogue(){
       $scope.loading.catalogue = true;
+
       //set event id from state if not already set
       if(!$scope.event_id)
         $scope.event_id = $state.params.eventId;
 
-      Events.getSkillsForEvent($scope.event_id).then(function (res) {
-        $scope.skills = res;
-        $scope.loading.catalogue = false;
-
-        // comment after debug to show filters - these lines should not be deployed
-        // automatically loads 01 - Polymechanics, to ease up debugging
-        // $scope.filters = {active: true, skill: {id: 482}, category: null};
-        // $scope.loadCatalogue();
-
-      }, function (error) {
-        WSAlert.danger(error);
-        $scope.loading.catalogue = false;
-      });
+      //copy from service, already loaded in main.js
+      $scope.skills = Events.skills;
+      $scope.loading.catalogue = false;
     };
 
     $scope.asideState = {

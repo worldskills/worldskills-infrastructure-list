@@ -41,9 +41,10 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Events.getSkillsForSector = function(sectorId, eventId){
+    Events.getSkillsForSector = function(sectorId, eventId, status){
         var deferred = $q.defer();
-        $http.get(API_IL + "/events/skills/" + eventId + "/" + sectorId + "?status=true").then(function(result){
+        status = status || false;
+        $http.get(API_IL + "/events/skills/" + eventId + "/" + sectorId + "?status=" + status).then(function(result){
             Events.skills = result.data.skills;
             Events.id = eventId;
             deferred.resolve(result.data.skills);
@@ -55,9 +56,11 @@ angular.module('ilApp')
         return deferred.promise;
     };
 
-    Events.getSkillsForEvent = function(eventId){
+    Events.getSkillsForEvent = function(eventId, status){
         var deferred = $q.defer();
-        $http.get(API_IL + "/events/skills/" + eventId + "?status=true").then(function(result){
+      status = status || false;
+
+        $http.get(API_IL + "/events/skills/" + eventId + "?status=" + status).then(function(result){
             Events.skills = result.data.skills;
             Events.id = eventId;
             deferred.resolve(result.data.skills);
@@ -69,10 +72,11 @@ angular.module('ilApp')
         return deferred.promise;
     };
 
-    Events.getSkill = function(skillId){
+    Events.getSkill = function(skillId, status){
         var deferred = $q.defer();
+        status = status || false;
 
-        $http.get(API_IL + "/events/skill/" + skillId + "?status=true").then(function(result){
+        $http.get(API_IL + "/events/skill/" + skillId + "?status=" + status).then(function(result){
             Events.id = result.data.event.id;
             deferred.resolve(result.data);
         },

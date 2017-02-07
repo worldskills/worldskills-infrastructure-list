@@ -20,7 +20,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
 
       //load skills in sector for this event
-      Events.getSkillsForSector($scope.sector_id, $scope.event_id).then(function (result) {
+      Events.getSkillsForSector($scope.sector_id, $scope.event_id, true).then(function (result) {
         $scope.skills = result;
         deferred.resolve();
       },
@@ -35,7 +35,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
 
       //load skills in sector for this event
-      Events.getSkillsForEvent($scope.event_id).then(function (result) {
+      Events.getSkillsForEvent($scope.event_id, true).then(function (result) {
         $scope.skills = result;
         deferred.resolve();
       },
