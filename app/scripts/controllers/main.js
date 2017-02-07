@@ -13,6 +13,8 @@ angular.module('ilApp')
     $scope.selectedSector = {};
     $scope.selectedEvent = {};
     $scope.appLoaded = $q.defer();
+    $scope.loadStatus = true;
+
 
     $scope.skill_id, $scope.event_id;
 
@@ -20,7 +22,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
 
       //load skills in sector for this event
-      Events.getSkillsForSector($scope.sector_id, $scope.event_id, true).then(function (result) {
+      Events.getSkillsForSector($scope.sector_id, $scope.event_id, $scope.loadStatus).then(function (result) {
         $scope.skills = result;
         deferred.resolve();
       },
@@ -35,7 +37,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
 
       //load skills in sector for this event
-      Events.getSkillsForEvent($scope.event_id, true).then(function (result) {
+      Events.getSkillsForEvent($scope.event_id, $scope.loadStatus).then(function (result) {
         $scope.skills = result;
         deferred.resolve();
       },
@@ -91,6 +93,9 @@ angular.module('ilApp')
 
         //redirect if in home
         if($state.current.name == 'home') $scope.redirectNeeded = true;
+
+        if($state.current.name === 'event.catalogue')
+          $scope.loadStatus = false;
 
         if (pos.role == APP_ROLES.WS_SECTOR_MANAGER) {
           $scope.selectedEvent = pos.event;

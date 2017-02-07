@@ -433,7 +433,7 @@ angular.module('ilApp')
 
       Items.getCatalogue($scope.selectedEvent.id, $scope.filters).then(function(data){
         //init supplier api url
-        $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/search?q=';
+        $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/';
 
         $scope.gridOptions.data = data.supplied_items;
         $scope.catalogueLoaded = true;
