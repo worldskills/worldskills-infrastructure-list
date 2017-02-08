@@ -38,6 +38,10 @@ angular.module('ilApp')
         event.preventDefault();
     });
 
+    $scope.toggleFilters = function(){
+      $scope.showFilters = !$scope.showFilters;
+    }
+
     //deep copy of filters in order to show currently selected in UI
     $scope.selectedFilters = {};
 
@@ -578,7 +582,7 @@ angular.module('ilApp')
       $scope.editModal = $aside.open({
         templateUrl: 'views/editRequestedItemAside.html',
         placement: 'right',
-        size: 'lg',
+        size: 'md',
         scope: $scope,
         backdrop: true,
         controller: 'editRequestedItemAsideCtrl'
@@ -649,7 +653,7 @@ angular.module('ilApp')
       $scope.newModal = $aside.open({
         templateUrl: 'views/addRequestedItemAside.html',
         placement: 'right',
-        size: 'lg',
+        size: 'md',
         scope: $scope,
         backdrop: true,
         controller: 'addRequestedItemCtrl'
@@ -710,6 +714,12 @@ angular.module('ilApp')
       combo: 'ctrl+k',
       description: 'Toggle inline editing',
       callback: $scope.toggleEditing
+    });
+
+    hotkeys.add({
+      combo: 'ctrl+t',
+      description: 'Toggle filters dialog',
+      callback: $scope.toggleFilters
     });
 
     $scope.supplierChanged = function(val){
