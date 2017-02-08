@@ -1,5 +1,4 @@
-<p>{{ skill.event.name.text }}</p>
-<h1>{{ skill.skill_number }} {{ skill.name.text }}</h1>
+<h1>{{ skill.skill_number }} {{ skill.name.text }} <small>{{ skill.event.name.text }}</small></h1>
 
 <hr/>
 
@@ -35,15 +34,12 @@
                     <tbody>
                         <tr ng-repeat="item in category.items" ng-class="{'child': !!item.parent_id}">
                             <td class="text-right">
-                                <span>{{ item.quantity }}</span>
-                                <span ng-show="item.multiplier == 'COMPETITORS'">per Competitor</span>
-                                <span ng-show="item.multiplier == 'EXPERTS'">per Expert</span>
-                                <span ng-show="item.multiplier == 'PER_NUM_COMPETITORS'">per {{ item.multiply_factor }} Competitors</span>
-                                <span ng-show="item.multiplier == 'PER_NUM_EXPERTS'">per {{ item.multiply_factor }} Experts</span>
+                                <span>{{ item.readable_quantity }}</span>
                             </td>
                             <td>
                                 <span ng-show="!!item.parent_id">└&nbsp;</span>
-                                <span>{{ item.description.text }}</span>
+                                <span ng-if="!item.supplied_item || item.supplied_item.status.id != ITEM_STATUS.GREEN">{{ item.description.text }}</span>
+                                <span ng-if="item.supplied_item.status.id == ITEM_STATUS.GREEN">{{item.supplied_item.description.text}}</span>
                             </td>
                           <td>
                             <span ng-if="item.supplied_item.modified">{{ item.supplied_item.modified | date:"d MMMM yyyy 'at' HH:ss" }}</span>
@@ -51,10 +47,6 @@
                           </td>
                           <td>
                             <div ng-if="item.supplied_item.status.id == ITEM_STATUS.GREEN">
-                              <div class="row">
-                                <div class="col col xs col-xs-4 supplied-key">Description</div>
-                                <div class="col col xs col-xs-8 supplied-val">{{item.supplied_item.description.text}}</div>
-                              </div>
                               <div class="row" ng-if="item.supplied_item.manufacturer">
                                 <div class="col col xs col-xs-4 supplied-key">Manufacturer</div>
                                 <div class="col col xs col-xs-8 supplied-val">{{item.supplied_item.manufacturer}}</div>

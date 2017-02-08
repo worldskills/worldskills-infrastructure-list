@@ -4,7 +4,7 @@
   <br class="clearfix">
 </div>
 <div class="modal-body">
-
+  <alerts></alerts>
   <div ng-if="data.items.length == 0" class="alert alert-info">This item is not yet used in any skills.</div>
 
   <table class="table table-striped" ng-if="data.items.length > 0">
@@ -17,23 +17,28 @@
       <th>Qty</th>
       <th>Supplier (potential)</th>
       <th>Status</th>
-      <th>Edit</th>
+      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in data.items track by item.id"
     ng-class="{'success': item.new || item.updated}">
-      <td>{{item.id}}<br>
+      <td>{{item.id}}
         <span ng-if="item.new" class="label label-success">new</span>
         <span ng-if="item.updated" class="label label-success">updated</span>
       </td>
-      <td>{{item.description.text}} <span class="label label-info">{{item.description.lang_code}}</span></td>
+      <td>{{item.description.text}}&nbsp;<span class="label label-info">{{item.description.lang_code}}</span></td>
       <td>{{item.category.list.skill.name.text}}</td>
       <td>{{item.category.category.name.text}}</td>
       <td>{{item.readable_quantity}}</td>
       <td>{{item.supplier}}</td>
       <td>{{item.supplied_item.status.name.text}}</td>
-      <td><button ng-click="data.editRequestedItem(item)" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i></button></td>
+      <td>
+        <div style="width: 55px;">
+          <button ng-click="data.editRequestedItem(item)" style="margin-right: .2em" class="pull-right btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
+          <button ng-click="data.unlinkRequestedItem(item, data.items, $index)" style="margin-right: .2em" class="pull-right btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>

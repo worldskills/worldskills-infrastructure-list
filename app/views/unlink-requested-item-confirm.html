@@ -1,0 +1,38 @@
+<div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>
+<div class="modal-body">
+  <p>Are you sure you want to unlink and remove this requested item?</p>
+  <div ng-if="data.item.child_items.length > 0" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong>Important!</strong> This item has child items, these will also be removed!</div>
+  <p>
+    &nbsp;
+  </p>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Requested</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{data.item.id}}</td>
+      <td>{{data.item.description.text}} <span class="label label-info">{{data.item.description.lang_code}}</span></td>
+      <td>{{data.item.supplied_item.status.name.text}}</td>
+    </tr>
+    <tr ng-if="data.item.child_items.length > 0" ng-repeat="child in data.item.child_items">
+      <td>
+        <span ng-show="!!child.parent_id">└&nbsp;</span>
+        {{child.id}}
+      </td>
+      <td>{{child.description.text}} <span class="label label-info">{{child.description.lang_code}}</span></td>
+      <td>{{child.supplied_item.status.name.text}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="ok()">{{data.ok}}</button>
+  <button class="btn btn-default" ng-click="cancel()">{{data.cancel}}</button>
+</div>

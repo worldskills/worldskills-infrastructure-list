@@ -222,6 +222,7 @@ angular.module('ilApp')
             suppliedItem: item,
             items: res.requested_items,
             editRequestedItem: $scope.editRequestedItem,
+            unlinkRequestedItem: $scope.unlinkRequestedItem,
             ok: "Close",
           },
           {
@@ -554,6 +555,15 @@ angular.module('ilApp')
       //copy from service, already loaded in main.js
       $scope.skills = Events.skills;
       $scope.loading.catalogue = false;
+
+      //debug only
+      $scope.filters = {
+        active: true,
+        skill: {
+          id: 483
+        }
+      };
+      $scope.loadCatalogue();
     };
 
     $scope.asideState = {
@@ -583,6 +593,24 @@ angular.module('ilApp')
         }
         //res === null if close called because of `cancel`
       });
+    };
+
+    $scope.unlinkRequestedItem = function(item, linkedItemsRef, index){
+      $confirm({
+          title: "Are you sure?",
+          ok: 'Remove item',
+          item: item
+        },
+        {
+          templateUrl: 'views/unlink-requested-item-confirm.html'
+        }).then(function(){
+          Items.removeItem(item, $scope.event_id).then(function(res){
+            linkedItemsRef.splice(index, 1);
+          },
+          function(error){
+            WSAlert.warning(error);
+          });
+      })
     };
 
     $scope.createNewLinkedItem = function(suppliedItem, linkedItemsRef){
