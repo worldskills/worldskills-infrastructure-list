@@ -64,6 +64,19 @@ angular.module('ilApp')
         return deferred.promise;
       },
 
+      getItem: function(item){
+        var deferred = $q.defer();
+
+        $http.get(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id).then(function(res){
+            deferred.resolve(res.data);
+          },
+          function(error){
+            deferred.reject("Could not get supplied item: " + error.data.user_msg);
+          });
+
+        return deferred.promise;
+      },
+
       combineItems: function(items, masterItem){
         var deferred = $q.defer();
 

@@ -199,6 +199,29 @@ angular.module('ilApp')
 
       return promise.promise;
     };
+    
+    $scope.refreshRow = function(rowEntity){
+      var promise = $q.defer();
+
+      $scope.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
+      $scope.loading.catalogue = true;
+
+      //actually refresh row
+      SuppliedItem.getItem(rowEntity).then(function(res){
+        //copy back data from request's response
+        angular.extend(rowEntity, res);
+        $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
+        $scope.loading.catalogue = false;
+        promise.resolve();
+      },
+      function(error){
+        WSAlert.warning("Error refreshing item, consider refreshing the browser: " + error);
+        promise.reject();
+        $scope.loading.catalogue = false;
+      });
+
+      return promise.promise;
+    };
 
     $scope.getLinkedItems = function($event){
       $event.preventDefault();
@@ -232,8 +255,10 @@ angular.module('ilApp')
           {
             templateUrl: 'views/display-linked-items-confirm.html',
             size: 'lg'
-          });
-
+          }).then(function(error){
+          //update linked item in case any changes were made via editRequestedItem or unlinkRequestedItem
+            $scope.refreshRow(item);
+        });
         },
         function(error){
           WSAlert.danger(error);
@@ -303,15 +328,13 @@ angular.module('ilApp')
 
       var linkedItems = false;
       var deleteQueue = [];
-      var deletedItems = [];
 
       //check if any of the items in array contain any linked items
       angular.forEach(items, function(val){
         if(val.linkedItems === true) linkedItems = true;
         else{
           //add to remove queue if no linked items
-          deleteQueue.push(SuppliedItem.removeItem(val));
-          deletedItems.push(val);
+          deleteQueue.push(val);
         }
       });
 
@@ -324,14 +347,18 @@ angular.module('ilApp')
       {
         templateUrl: 'views/remove-item-confirm.html'
       }).then(function () {
-
         if(deleteQueue.length < 1) return;
         $scope.loading.catalogue = true;
 
-        $q.all(deleteQueue).then(function(res){
+        //create actual delete queue
+        var queue = [];
+        angular.forEach(deleteQueue, function(val){
+          queue.push(SuppliedItem.removeItem(val));
+        });
 
+        $q.all(queue).then(function(){
           //remove items from grid
-          angular.forEach(deletedItems, function(val){
+          angular.forEach(deleteQueue, function(val){
             var i = $scope.gridOptions.data.indexOf(val);
             $scope.gridOptions.data.splice(i, 1);
           });
@@ -513,7 +540,7 @@ angular.module('ilApp')
       return item;
     };
 
-    $scope.openItemEditor = function(item){
+    $scope.openItemEditor  = function(item){
       if(item == void 0 || !item.id) {
         $scope.item = {
           status: $scope.statusValues[0].id //default to Requested / RED
