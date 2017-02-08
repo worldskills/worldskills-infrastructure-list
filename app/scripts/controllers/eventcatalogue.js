@@ -561,13 +561,13 @@ angular.module('ilApp')
       $scope.loading.catalogue = false;
 
       //debug only
-      $scope.filters = {
-        active: true,
-        skill: {
-          id: 483
-        }
-      };
-      $scope.loadCatalogue();
+      // $scope.filters = {
+      //   active: true,
+      //   skill: {
+      //     id: 483
+      //   }
+      // };
+      // $scope.loadCatalogue();
     };
 
     $scope.asideState = {
