@@ -68,6 +68,8 @@
 				<ul>
           <li><a ui-sref="event.sets({eventId: selectedEvent.id})">Standard sets</a></li>
           <li><a ui-sref="event.catalogue({eventId: selectedEvent.id})">Catalogue editor</a></li>
+          <li><ws-spinner class="smallSpinner" ng-if="loading.requested"></ws-spinner><a ng-if="!loading.requested" href="#" ng-click="exportAllRequested($event)">Export all Requested Items</a></li>
+          <li><ws-spinner class="smallSpinner" ng-if="loading.catalogue"></ws-spinner><a ng-if="!loading.catalogue" href="#" ng-click="exportAllCatalogue($event)">Export all Catalogue Items</a></li>
         </ul>
 			</div>
 		</div>

@@ -15,10 +15,6 @@ angular.module('ilApp')
         Reporting.exportRequestedForSkill($scope.event_id, $scope.skill_id);
     };
 
-    $scope.exportEvent = function(){
-        Reporting.exportRequestedForEvent($scope.event_id);
-    };
-
     $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.ITEM_STATUS_TEXT = ITEM_STATUS_TEXT;
 

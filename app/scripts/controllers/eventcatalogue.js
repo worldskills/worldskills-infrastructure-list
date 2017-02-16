@@ -199,7 +199,7 @@ angular.module('ilApp')
 
       return promise.promise;
     };
-    
+
     $scope.refreshRow = function(rowEntity){
       var promise = $q.defer();
 
@@ -465,7 +465,7 @@ angular.module('ilApp')
 
       Items.getCatalogue($scope.selectedEvent.id, $scope.filters).then(function(data){
         //init supplier api url
-        $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/';
+        $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/search/?q=';
 
         $scope.gridOptions.data = data.supplied_items;
         $scope.catalogueLoaded = true;
@@ -550,6 +550,9 @@ angular.module('ilApp')
         angular.copy(item, $scope.item);
         $scope.rowItem = item;
       }
+
+      //fix date object
+      $scope.item.delivery = new Date($scope.item.delivery);
 
       $aside.open({
         templateUrl: 'views/editsupplieditemaside.html',

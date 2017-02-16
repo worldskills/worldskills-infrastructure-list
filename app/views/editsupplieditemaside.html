@@ -172,22 +172,22 @@
                     <label class='control-label'>Category</label>
                     <select name="category" class="input-sm form-control" ng-model='item.category'>
                         <option value="-"></option>
-                        <option value="42_1">1. Catering equipment - Consumable</option>
-                        <option value="42_2">2. Catering equipment - Commodity</option>
-                        <option value="42_3">3. IT Hardware</option>
-                        <option value="42_4">4. IT Software</option>
-                        <option value="42_5">5. Beauty needs - Consumable</option>
-                        <option value="42_6">6. Beauty needs - Commodity</option>
-                        <option value="42_7">7. Builders - Consumable</option>
-                        <option value="42_8">8. Builders – Commodity mechanical</option>
-                        <option value="42_9">9. Builders – Commodity electrical</option>
-                        <option value="42_10">10. Electrical equipment - Consumable</option>
-                        <option value="42_11">11. Electrical equipment  - Commodity</option>
-                        <option value="42_12">12. Automobile / Metal - Consumable</option>
-                        <option value="42_13">13. Automobile / Metal - Commodity</option>
-                        <option value="42_14">14. Landscape Gardening / Decoration - Consumable</option>
-                        <option value="42_15">15. Landscape Gardening / Decoration – Commodity</option>
-                        <option value="42_16">16. Office Equipment</option>
+                        <option value="1. Catering equipment - Consumable">1. Catering equipment - Consumable</option>
+                        <option value="2. Catering equipment - Commodity">2. Catering equipment - Commodity</option>
+                        <option value="3. IT Hardware">3. IT Hardware</option>
+                        <option value="4. IT Software">4. IT Software</option>
+                        <option value="5. Beauty needs - Consumable">5. Beauty needs - Consumable</option>
+                        <option value="6. Beauty needs - Commodity">6. Beauty needs - Commodity</option>
+                        <option value="7. Builders - Consumable">7. Builders - Consumable</option>
+                        <option value="8. Builders – Commodity mechanical">8. Builders – Commodity mechanical</option>
+                        <option value="9. Builders – Commodity electrical">9. Builders – Commodity electrical</option>
+                        <option value="10. Electrical equipment - Consumable">10. Electrical equipment - Consumable</option>
+                        <option value="11. Electrical equipment  - Commodity">11. Electrical equipment  - Commodity</option>
+                        <option value="12. Automobile / Metal - Consumable">12. Automobile / Metal - Consumable</option>
+                        <option value="13. Automobile / Metal - Commodity">13. Automobile / Metal - Commodity</option>
+                        <option value="14. Landscape Gardening / Decoration - Consumable">14. Landscape Gardening / Decoration - Consumable</option>
+                        <option value="15. Landscape Gardening / Decoration – Commodity">15. Landscape Gardening / Decoration – Commodity</option>
+                        <option value="16. Office Equipment">16. Office Equipment</option>
                         <!-- 						<option value='-'></option>
                                                 <option value='1'>Abrasives</option>
                                                 <option value='2'>Air / Gas</option>
@@ -232,9 +232,9 @@
                     </select>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.category_disposal.$dirty && editForm.category_disposal.$error.required, 'has-success': !editForm.category_disposal.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.disposal_category.$dirty && editForm.disposal_category.$error.required, 'has-success': !editForm.disposal_category.$error.required}">
                     <label class='control-label'>Disposal category</label>
-                    <select name="category_disposal" class="input-sm form-control" ng-model='item.category_disposal'>
+                    <select name="disposal_category" class="input-sm form-control" ng-model='item.disposal_category'>
                         <option value="-"></option>
                         <option value="Return_to_Sponsor">Return to Sponsor</option>
                         <option value="Return_to_Supplier">Return to Supplier</option>
@@ -251,12 +251,12 @@
                   <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.lead_time.$dirty && editForm.lead_time.$error.required, 'has-success': !editForm.lead_time.$error.required}">
                     <label class='control-label'>Lead time</label>
                     <select name="lead_time" class="input-sm form-control" ng-model='item.lead_time'>
-                        <option value=">10">&gt; 10 weeks</option>
-                        <option value="8-10">8 - 10 weeks</option>
-                        <option value="6-8">6 - 8 weeks</option>
-                        <option value="4-6">4 - 6 weeks</option>
-                        <option value="2-4">2 - 4 weeks</option>
-                        <option value="<2">&lt; 2 weeks</option>
+                        <option value="> 10 weeks">&gt; 10 weeks</option>
+                        <option value="8 - 10 weeks">8 - 10 weeks</option>
+                        <option value="6 - 8 weeks">6 - 8 weeks</option>
+                        <option value="4 - 6 weeks">4 - 6 weeks</option>
+                        <option value="2 - 4 weeks">2 - 4 weeks</option>
+                        <option value="< 2 weeks">&lt; 2 weeks</option>
                     </select>
                   </div>
                 </div>
@@ -270,21 +270,21 @@
                 <legend class="aside">Services / Utilities / Installation Requirements</legend>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.volts.$dirty && editForm.volts.$error.required, 'has-success': !editForm.volts.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_volts.$dirty && editForm.electricity_volts.$error.required, 'has-success': !editForm.electricity_volts.$error.required}">
                     <label class='control-label'>Electricity - Volts</label>
-                    <input type="text" name="volts" class="input-sm form-control" placeholder="Electricity - Volts" ng-model='item.volts'>
+                    <input type="text" name="electricity_volts" class="input-sm form-control" placeholder="Electricity - Volts" ng-model='item.electricity_volts'>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.amps.$dirty && editForm.amps.$error.required, 'has-success': !editForm.amps.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_amps.$dirty && editForm.electricity_amps.$error.required, 'has-success': !editForm.electricity_amps.$error.required}">
                     <label class='control-label'>Electricity - Amps</label>
-                    <input type="text" name="amps" class="input-sm form-control" placeholder="Electricity - Amps" ng-model='item.amps'>
+                    <input type="text" name="electricity_amps" class="input-sm form-control" placeholder="Electricity - Amps" ng-model='item.electricity_amps'>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.phase.$dirty && editForm.phase.$error.required, 'has-success': !editForm.phase.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.electricity_phase.$dirty && editForm.electricity_phase.$error.required, 'has-success': !editForm.electricity_phase.$error.required}">
                     <label class='control-label'>Electricity Phase</label>
-                    <input type="text" name="phase" class="input-sm form-control" placeholder="Electricity Phase" ng-model='item.phase'>
+                    <input type="text" name="electricity_phase" class="input-sm form-control" placeholder="Electricity Phase" ng-model='item.electricity_phase'>
                   </div>
                 </div>
 
@@ -320,9 +320,9 @@
                     <input type="text" name="gas_requirements" class="input-sm form-control" placeholder="Gas requirements" ng-model='item.gas_requirements'>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.anchor_base_requirements.$dirty && editForm.anchor_base_requirements.$error.required, 'has-success': !editForm.anchor_base_requirements.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.anchor_fixing_base_requirements.$dirty && editForm.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.anchor_fixing_base_requirements.$error.required}">
                     <label class='control-label'>Anchor / Fixing / Base requirements</label>
-                    <input type="text" name="anchor_base_requirements" class="input-sm form-control" placeholder="Anchor / Fixing / Base requirements" ng-model='item.anchor_base_requirements'>
+                    <input type="text" name="anchor_fixing_base_requirements" class="input-sm form-control" placeholder="Anchor / Fixing / Base requirements" ng-model='item.anchor_fixing_base_requirements'>
                   </div>
                 </div>
               </fieldset>

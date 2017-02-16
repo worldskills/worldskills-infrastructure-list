@@ -18,11 +18,11 @@ angular.module('ilApp')
 
 	        $http({url: API_IL + "/reports/requested/skill/" + eventId + "/" + skillId, method: "GET", params: { s: "xlsx" }, responseType : "blob"})
 	        .success( function(data, status, headers) {
-	           
+
 	           var filename = 'report_requested_' + skillId + '.xlsx';
 	           Downloader.handleDownload(data, status, headers, filename);
 	           deferred.resolve();
-	           
+
 	        })
 	        .error(function(data, status) {
 	            deferred.reject("Could not export to excel");
@@ -37,11 +37,11 @@ angular.module('ilApp')
 
 	        $http({url: API_IL + "/reports/requested/event/" + eventId, method: "GET", params: { s: "xlsx" }, responseType : "blob"})
 	        .success( function(data, status, headers) {
-	           
+
 	           var filename = 'report_requested_' + eventId + '.xlsx';
 	           Downloader.handleDownload(data, status, headers, filename);
 	           deferred.resolve();
-	           
+
 	        })
 	        .error(function(data, status) {
 	            deferred.reject("Could not export to excel");
