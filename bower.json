@@ -1,5 +1,5 @@
 {
-  "name": "worldskills-connect",
+  "name": "worldskills-infrastructurelist",
   "version": "0.0.1",
   "dependencies": {
     "angular": "~1.4.1",
@@ -31,7 +31,7 @@
     "angucomplete-alt": "~2.4.0",
     "angular-confirm-modal": "~1.2.3",
     "ngInfiniteScroll": "1.0.0",
-    "angular-ui-grid": "^3.1.1",
+    "angular-ui-grid": "^4.0.2",
     "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0",
     "pdfmake": "^0.1.24"
   },
@@ -39,5 +39,8 @@
     "angular-mocks": "~1.4.1"
   },
   "appPath": "app",
-  "moduleName": "ilApp"
+  "moduleName": "ilApp",
+  "resolutions": {
+    "angular": "~1.4.1"
+  }
 }
