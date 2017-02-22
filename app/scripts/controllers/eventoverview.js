@@ -30,12 +30,15 @@ angular.module('ilApp')
       $scope.loading.requested = true;
       Reporting.exportRequestedForEvent($scope.event_id).then(function(){
         $scope.loading.requested = false;
-      }, function(error){ WSALert.danger(error); $scope.loading.requested = false; });
+      }, function(error){ WSAlert.danger(error); $scope.loading.requested = false; });
     };
 
     $scope.exportAllCatalogue = function(e){
       e.preventDefault();
-      alert("Not yet implemented")
+      $scope.loading.catalogue = true;
+      Reporting.exportCatalogueForEvent($scope.event_id).then(function(){
+        $scope.loading.catalogue = false;
+      }, function(error){ WSAlert.danger(error); $scope.loading.catalogue = false; });
     }
 
 

@@ -50,6 +50,25 @@ angular.module('ilApp')
 	    	return deferred.promise;
 	    };
 
+    Reporting.exportCatalogueForEvent = function(eventId) {
+
+      var deferred = $q.defer();
+
+      $http({url: API_IL + "/reports/catalogue/event/" + eventId, method: "GET", params: { s: "xlsx" }, responseType : "blob"})
+        .success( function(data, status, headers) {
+
+          var filename = 'report_catalogue_' + eventId + '.xlsx';
+          Downloader.handleDownload(data, status, headers, filename);
+          deferred.resolve();
+
+        })
+        .error(function() {
+          deferred.reject("Could not export to excel");
+        });
+
+      return deferred.promise;
+    };
+
 	return Reporting;
 
   });
