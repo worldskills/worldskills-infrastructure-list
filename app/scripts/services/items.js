@@ -60,11 +60,13 @@ angular.module('ilApp')
          return deferred.promise;
       };
 
-      Items.removeItem = function(item, eventId){
+      Items.removeItem = function(item, eventId, leaveOrphan){
          var deferred = $q.defer();
 
+         leaveOrphan == leaveOrphan || false;
+
          //deleting children automatically in API if the parent gets deleted
-         $http.delete(API_IL + "/items/" + eventId + "/requested_items/" + item.id).then(function(result){
+         $http.delete(API_IL + "/items/" + eventId + "/requested_items/" + item.id + "?leave_orphan=" + leaveOrphan).then(function(result){
             deferred.resolve(result.data);
          },
          function(error){

@@ -638,7 +638,7 @@ angular.module('ilApp')
         {
           templateUrl: 'views/unlink-requested-item-confirm.html'
         }).then(function(){
-          Items.removeItem(item, $scope.event_id).then(function(res){
+          Items.removeItem(item, $scope.event_id, true).then(function(res){
             linkedItemsRef.splice(index, 1);
           },
           function(error){
