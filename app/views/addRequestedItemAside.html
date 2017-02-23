@@ -154,11 +154,6 @@
             <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
           </div>
-          <div data-nodrag class="checkbox addForm form-group has-feedback has-success">
-            <label>
-              <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
-            </label>
-          </div>
       </div>
       <div class='col col-xs-12 col-md-4 form-group'>
         <div class="form-group addForm has-feedback has-success">
@@ -168,6 +163,25 @@
           <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-xs-12 col-md-4 form-group">
+        <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.additional_quantity.$error.required, 'has-success': !editForm.additional_quantity.$error.required}">
+          <label class='control-label'>Additional quantity</label>
+          <input name="quantity" type="number" class="input-sm form-control" placeholder="Additional quantity" ng-model='item.additional_quantity' required="Additional quantity is missing" ng-required="false">
+          <span ng-if="!editForm.additional_quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+          <span ng-if="editForm.additional_quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="col col-xs-12 col-md-4 form-group">
+        <div data-nodrag class="checkbox addForm form-group has-feedback has-success" style="margin-top: -25px;">
+          <label>
+            <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
+          </label>
+        </div>
+      </div>
+      <div class="col col-xs-12 col-md-4 form-group"></div>
     </div>
 
 

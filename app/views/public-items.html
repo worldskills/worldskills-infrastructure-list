@@ -35,6 +35,7 @@
                         <tr ng-repeat="item in category.items" ng-class="{'child': !!item.parent_id}">
                             <td class="text-right">
                                 <span>{{ item.readable_quantity }}</span>
+                                <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} additional</span>
                             </td>
                             <td>
                                 <span ng-show="!!item.parent_id">└&nbsp;</span>
