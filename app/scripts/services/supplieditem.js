@@ -51,6 +51,19 @@ angular.module('ilApp')
         return deferred.promise;
       },
 
+      removeFile: function(item, file){
+        var deferred = $q.defer();
+
+        $http.delete(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id + "/files/" + file.id, item).then(function(res){
+            deferred.resolve(res.data);
+          },
+          function(error){
+            deferred.reject(error.data.user_msg);
+          });
+
+        return deferred.promise;
+      },
+
       getLinkedItems: function(item){
         var deferred = $q.defer();
 

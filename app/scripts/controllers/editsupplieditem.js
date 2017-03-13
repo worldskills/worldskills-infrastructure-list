@@ -52,6 +52,14 @@ angular.module('ilApp')
         });
     };
 
+    $scope.removeFile = function(file, index){
+      SuppliedItem.removeFile($scope.item, file).then(function(res){
+        $scope.item.files.splice(index, 1);
+      }, function(error){
+        WSAlert.danger(error);
+      });
+    }
+
     $scope.addItemDetails = function(){
       $scope.loading.aside = true;
 

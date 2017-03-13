@@ -47,8 +47,6 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/bootstrap-daterangepicker/daterangepicker.js',
       'bower_components/angular-daterangepicker/js/angular-daterangepicker.js',
-      'bower_components/ng-file-upload-shim/angular-file-upload-shim.js',
-      'bower_components/ng-file-upload/angular-file-upload.js',
       'bower_components/xdomain/dist/xdomain.js',
       'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
       'bower_components/angular-aside/dist/js/angular-aside.js',
@@ -59,6 +57,7 @@ module.exports = function(config) {
       'bower_components/angular-hotkeys/build/hotkeys.js',
       'bower_components/pdfmake/build/pdfmake.js',
       'bower_components/pdfmake/build/vfs_fonts.js',
+      'bower_components/angular-file-upload/dist/angular-file-upload.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
