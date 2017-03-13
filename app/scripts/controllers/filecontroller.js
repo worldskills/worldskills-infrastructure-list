@@ -47,14 +47,14 @@ angular.module('ilApp')
     //   console.info('onCancelItem', fileItem, response, status, headers);
     // };
     uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem', fileItem, response, status, headers);
+    //  console.info('onCompleteItem', fileItem, response, status, headers);
       //push file and update row
       $scope.item.files.push(response);
       angular.extend($scope.rowItem, $scope.item);
     };
 
     uploader.onCompleteAll = function() {
-      console.info('onCompleteAll');
+//      console.info('onCompleteAll');
       if(uploader.progress == 100) {
         $timeout(function () {
           //reload item
