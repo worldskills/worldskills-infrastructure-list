@@ -350,6 +350,7 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 .public-files li a{
   display: block;
   padding: 4px 0;
+  word-wrap: break-word;
 }
 
 .public-files li a:hover{
@@ -363,5 +364,4 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 .upload-table {
   table-layout: fixed;
   word-wrap: break-word;
-  width: 500px;
 }
