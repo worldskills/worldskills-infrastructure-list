@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, ITEM_STATUS, WSAlert) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, WSAlert, UPLOADS_URL) {
 
     $scope.eventId = $state.params.eventId;
     $scope.skillId = $state.params.skillId;
+    $scope.UPLOADS_URL = UPLOADS_URL;
 
     $scope.ITEM_STATUS = ITEM_STATUS;
 
@@ -40,5 +41,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
                 $scope.loading = false;
             });
     });
+
+    $scope.downloadFile = function(file){
+      Downloader.handleDownload(data, status, headers, filename);
+    };
 
 });

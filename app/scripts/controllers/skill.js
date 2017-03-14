@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCtrl', function ($q, $http, $scope, $upload, $state, $interval, Language, Auth, APP_ROLES, API_IMAGES, $timeout, auth, Items, Events, WSAlert) {
+  .controller('SkillCtrl', function ($q, $http, $scope, $state, $interval, Language, Auth, APP_ROLES, API_IMAGES, $timeout, auth, Items, Events, WSAlert) {
     //$scope.skill_id =
     //$scope.skill_id = $state.params.skillId;
     $scope.categories = {};
