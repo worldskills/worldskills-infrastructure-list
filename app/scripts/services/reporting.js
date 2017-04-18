@@ -8,9 +8,14 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('Reporting', function ($http, $q, API_IL, Downloader) {
+  .service('Reporting', function ($http, $q, $filter, API_IL, Downloader) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var Reporting = {};
+
+      Reporting.dateNow = function(){
+        var now = new Date();
+        return $filter('date')(now, "yyyy-MM-dd-HH-mm-ss");
+      };
 
 	    Reporting.exportRequestedForSkill = function(eventId, skillId) {
 
@@ -18,8 +23,7 @@ angular.module('ilApp')
 
 	        $http({url: API_IL + "/reports/requested/skill/" + eventId + "/" + skillId, method: "GET", params: { s: "xlsx" }, responseType : "blob"})
 	        .success( function(data, status, headers) {
-
-	           var filename = 'report_requested_' + skillId + '.xlsx';
+	           var filename = 'report_requested_' + skillId + '__'  + Reporting.dateNow() + '.xlsx';
 	           Downloader.handleDownload(data, status, headers, filename);
 	           deferred.resolve();
 
@@ -38,7 +42,7 @@ angular.module('ilApp')
 	        $http({url: API_IL + "/reports/requested/event/" + eventId, method: "GET", params: { s: "xlsx" }, responseType : "blob"})
 	        .success( function(data, status, headers) {
 
-	           var filename = 'report_requested_' + eventId + '.xlsx';
+	           var filename = 'report_requested_' + eventId + '__'  + Reporting.dateNow() + '.xlsx';
 	           Downloader.handleDownload(data, status, headers, filename);
 	           deferred.resolve();
 
@@ -57,7 +61,7 @@ angular.module('ilApp')
       $http({url: API_IL + "/reports/catalogue/event/" + eventId, method: "GET", params: { s: "xlsx" }, responseType : "blob"})
         .success( function(data, status, headers) {
 
-          var filename = 'report_catalogue_' + eventId + '.xlsx';
+          var filename = 'report_catalogue_' + eventId + '__'  + Reporting.dateNow() + '.xlsx';
           Downloader.handleDownload(data, status, headers, filename);
           deferred.resolve();
 

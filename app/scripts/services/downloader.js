@@ -11,11 +11,11 @@ angular.module('ilApp')
   .service('Downloader', function ($http, API_IL){
   		 this.handleDownload = function(data, status, headers, defaultFilename) {
   			var octetStreamMime = 'application/octet-stream';
-			
+
 			var rqHeaders = headers();
 			var contentType = rqHeaders['content-type'] || octetStreamMime;
 			var filename = rqHeaders['x-filename'] || defaultFilename;
-			
+
 			var saved = false;
 			try
 	        {
@@ -37,7 +37,7 @@ angular.module('ilApp')
 	            //console.log("saveBlob method failed with the following exception:");
 	            //console.log(ex);
 	        }
-	        
+
 	        if(!saved)
 	        {
 	            // Get the blob url creator
@@ -97,7 +97,7 @@ angular.module('ilApp')
 	                        console.log(ex);
 	                    }
 	                }
-	                
+
 	                if (!saved)
 	                {
 	                	alert('File could not be downloaded with this web browser');

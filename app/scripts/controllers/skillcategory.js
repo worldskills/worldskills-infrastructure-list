@@ -122,6 +122,11 @@ angular.module('ilApp')
       Items.saveItem(item, $scope.event_id).then(function (result) {
         $scope.activeItem = false;
 
+        if(result.category != $scope.categoryId){
+          //category changed, remove from list
+          $scope.items.splice(itemIndex, 1);
+        }
+
         //set readable quantity as it's coming from API rather than bound to the scope model
         item.readable_quantity = result.readable_quantity;
       },
