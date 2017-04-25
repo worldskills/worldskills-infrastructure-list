@@ -17,6 +17,13 @@ angular.module('ilApp')
       more: false,
     };
 
+    $scope.orderProperty = null;//"item_order";
+    $scope.reverse = false;
+    $scope.allowReordering = true;
+
+
+    $scope.deleteMode = false;
+
     $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.multipliers = MULTIPLIERS;
     $scope.tmp_item = {};
@@ -59,6 +66,7 @@ angular.module('ilApp')
     $scope.treeOptions = {
       accept: function (sourceNodeScope, destNodesScope, destIndex) {
         //manually check max-depth the default does not work with accept
+        if($scope.allowReordering === false) return false;
         if (destNodesScope.depth() > 0 && sourceNodeScope.childNodesCount() > 0) return false; //check if the item has children - if so, don't accept - return false;
         if (destNodesScope.depth() > 1) return false; //don't accept if depth > 1
         return (typeof $scope.filterValue == 'undefined' || $scope.filterValue == '') ? true : false;
@@ -361,6 +369,23 @@ angular.module('ilApp')
         });
       });
     };
+
+    $scope.toggleReordering = function(){
+      $scope.allowReordering = !$scope.allowReordering;
+    };
+
+    $scope.clearSorting = function(e){
+      $scope.orderProperty = null;//"item_order";
+      $scope.reverse = false;
+      $scope.allowReordering = true;
+    };
+
+    $scope.sortBy = function(sort){
+      $scope.allowReordering = false;
+      $scope.reverse = ($scope.orderProperty === sort) ? !$scope.reverse : false;
+      $scope.orderProperty = sort;
+    };
+
 
   })
 .directive('requestedItem', function () {

@@ -16,10 +16,23 @@
       </i> Standard sets
     </button>
 
-  	<button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
+
+    <div class="btn-group pull-right" style="margin-left: .5em;" uib-dropdown="actionsDropdown">
+          <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm">Advanced actions&nbsp;<span class="caret"></span></button>
+
+          <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
+            <li role="menuitem"><a ng-click="clearSorting($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;Clear sorting</a></li>
+            <li role="menuitem"><a ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;Remove selected item(s)</a></li>
+            <li role="menuitem"><a ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;See linked items</a></li>
+            <li role="menuitem"><a ng-click="combineItems($event)"><span class="glyphicon glyphicon-compressed"></span>&nbsp;Combine items</a></li>
+          </ul>
+        </div>
+
+    <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
   		<i class="glyphicon glyphicon-plus">
   		</i> Add item
   	</button>
+
   	<div class='searchContainer pull-right'><input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
   	<span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
   </span>
@@ -74,16 +87,27 @@
 
   		  <!-- tree of items -->
   		  <div class="col-sm-12" ng-show="items.length > 0">
+          <div class="alert alert-warning" ng-show="allowReordering === false">Reordering of items disabled while sorting is active, sorting can be cleared under the "<b>Advanced actions</b>" dropdown.</div>
   		  	<div class="tree-node tree-node-content tree-header">
-  				Description
+            <span ng-click="sortBy('description.text');">Description</span>
+            <span class="sortorder" ng-show="orderProperty === 'description.text'" ng-class="{reverse: reverse}"></span>
   				<small class='actionsHeader pull-right'>Actions</small>
-  				<small class='statusHeader pull-right'>Status</small>
-  				<small class='quantityHeader pull-right'>Quantity</small>
-          <small class='areaHeader pull-right'>Skill Area</small>
+  				<small class='statusHeader pull-right'>
+            <span ng-click="sortBy('supplied_item.status.id');">Status</span>
+            <span class="sortorder" ng-show="orderProperty === 'supplied_item.status.id'" ng-class="{reverse: reverse}"></span>
+          </small>
+  				<small class='quantityHeader pull-right'>
+            <span ng-click="sortBy('readable_quantity');">Quantity</span>
+            <span class="sortorder" ng-show="orderProperty === 'readable_quantity'" ng-class="{reverse: reverse}"></span>
+          </small>
+          <small class='areaHeader pull-right'>
+            <span ng-click="sortBy('area.name');">Skill Area</span>
+            <span class="sortorder" ng-show="orderProperty === 'area.name'" ng-class="{reverse: reverse}"></span>
+          </small>
   			</div>
   		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="1">
   		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items || filterValue.length > 0' infinite-scroll-distance='1'>
-  		        <li ng-repeat="item in items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
+  		        <li ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
   		      </ol>
   		    </div>
   		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total && filterValue.length == 0'><small>Scroll down to load more...</small></div>

@@ -365,3 +365,11 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
   table-layout: fixed;
   word-wrap: break-word;
 }
+
+
+.sortorder:after {
+  content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+.sortorder.reverse:after {
+  content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+}
