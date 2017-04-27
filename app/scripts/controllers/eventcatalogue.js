@@ -478,7 +478,7 @@ angular.module('ilApp')
           $timeout(function(){
             var grid = $('.catalogueGrid').get(0);
             $(grid).height($(window).height() - 220); //400= size topbar + bottom bar
-          }, 500);
+          }, 100);
       },
       function(error){
         WSAlert.danger(error);
@@ -553,6 +553,7 @@ angular.module('ilApp')
         };
       }
       else {
+        $scope.item = {};
         angular.copy(item, $scope.item);
         $scope.rowItem = item;
       }
