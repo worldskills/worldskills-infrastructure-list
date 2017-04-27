@@ -31,7 +31,8 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="ilApp" ng-controller="ApplicationCtrl">
+  <div ng-app="ilApp" ng-controller="ApplicationCtrl">
+  <div class="mainContainer">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -76,44 +77,45 @@
         <span id="alertScrollAnchor"></span>
         <alerts></alerts>
       <div ui-view></div>
+
+      <footer ng-show="!hideFooter">
+        <div class="row">
+          <div class="col-xs-6 col-sm-4">
+            <div class="dropdown" ng-controller="TranslateCtrl">
+              <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="languageSelect" data-toggle="dropdown">
+                Language: <small class='label'>{{available_languages[selectedLanguage]}}</small>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="languageSelect">
+                <li
+                  ng-repeat="(lang_code, lang_name) in available_languages"
+                  ng-class="{active: lang_code == selectedLanguage}"
+                  role="presentation">
+
+                  <a ng-click="changeLanguage(lang_code);" role="menuitem" tabindex="-1">{{lang_name}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="clearfix visible-sm col-sm-4"></div>
+          <div class="clearfix visible-md col-md-4"></div>
+          <div class="clearfix visible-lg col-lg-4"></div>
+          <div class="col-xs-6 col-sm-4 text-right">
+            <!-- <small><a ui-sref='terms' ng-cloak translate>TERMS_PRIVACY</a></small>                     -->
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-md-12">
+            <p><small>&copy; 2015 WorldSkills</small></p>
+          </div>
+        </div>
+
+      </footer>
     </div>
-    <div class='container'>
-    <footer>
-            <div class="row">
-                <div class="col-xs-6 col-sm-4">
-                    <div class="dropdown" ng-controller="TranslateCtrl">
-                      <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="languageSelect" data-toggle="dropdown">
-                        Language: <small class='label'>{{available_languages[selectedLanguage]}}</small>
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="languageSelect">
-                        <li
-                          ng-repeat="(lang_code, lang_name) in available_languages"
-                          ng-class="{active: lang_code == selectedLanguage}"
-                          role="presentation">
 
-                            <a ng-click="changeLanguage(lang_code);" role="menuitem" tabindex="-1">{{lang_name}}</a>
-                        </li>
-                      </ul>
-                    </div>
-                </div>
-                <div class="clearfix visible-sm col-sm-4"></div>
-                <div class="clearfix visible-md col-md-4"></div>
-                <div class="clearfix visible-lg col-lg-4"></div>
-                <div class="col-xs-6 col-sm-4 text-right">
-                    <!-- <small><a ui-sref='terms' ng-cloak translate>TERMS_PRIVACY</a></small>                     -->
-                </div>
-            </div>
-
-            <hr />
-
-            <div class="row">
-                <div class="col-md-12">
-                    <p><small>&copy; 2015 WorldSkills</small></p>
-                </div>
-            </div>
-
-        </footer>
     </div>
     <!-- <konami/> -->
 
@@ -216,5 +218,6 @@
         <script src="scripts/controllers/filecontroller.js"></script>
         <script src="scripts/filters/filesize.js"></script>
         <!-- endbuild -->
+  </div>
 </body>
 </html>

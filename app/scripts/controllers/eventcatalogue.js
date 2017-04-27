@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys) {
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL, $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys) {
 
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
@@ -67,7 +67,7 @@ angular.module('ilApp')
         if($(window).height() < 500)
           $(grid).height(500);
         else
-          $(grid).height($(window).height() - 400); //400= size topbar + bottom bar
+          $(grid).height($(window).height() - 220); //400= size topbar + bottom bar
         //$(grid).height(500); //50 = size of toolbar
         $(grid).width('100%');
       }
@@ -473,6 +473,12 @@ angular.module('ilApp')
         $scope.showFilters = false;
         $scope.showGrid = true;
         angular.copy($scope.filters, $scope.selectedFilters);
+
+
+          $timeout(function(){
+            var grid = $('.catalogueGrid').get(0);
+            $(grid).height($(window).height() - 220); //400= size topbar + bottom bar
+          }, 500);
       },
       function(error){
         WSAlert.danger(error);

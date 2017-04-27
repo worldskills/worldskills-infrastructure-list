@@ -15,6 +15,8 @@ angular.module('ilApp')
     $scope.appLoaded = $q.defer();
     $scope.loadStatus = true;
 
+    $scope.hideFooter = false;
+
 
     $scope.skill_id, $scope.event_id;
 
@@ -94,6 +96,7 @@ angular.module('ilApp')
         //redirect if in home
         if($state.current.name == 'home') $scope.redirectNeeded = true;
 
+
         if($state.current.name === 'event.catalogue')
           $scope.loadStatus = false;
 
@@ -151,5 +154,14 @@ angular.module('ilApp')
         }
       }
     };
+
+    $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
+      if(toState.name == 'event.catalogue') $scope.hideFooter = true;
+      else $scope.hideFooter = false;
+      // if (fromState.name === "") {
+      //   // The initial transition comes from "root", which uses the empty string as a name.
+      //   alert("initial state: " + toState.name);
+      // }
+    });
 
   });
