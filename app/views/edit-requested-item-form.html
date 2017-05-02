@@ -19,8 +19,11 @@
       <div class="col col-sm-12 col-md-6">
         <div class="form-group addForm has-feedback has-success">
           <label class='control-label'>Installation type</label>
-          <select class="form-control input-sm" ng-model="item.category" ng-options="category.id as category.category.name.text for category in categories"></select>
-          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+          <div ng-show="item.parent_id != 0" class="alert alert-warning small">You cannot move child items independently, but you can move the parent, which will also move child items.</div>
+          <div ng-show="item.parent_id == 0">
+            <select class="form-control input-sm" ng-model="item.category" ng-options="category.id as category.category.name.text for category in categories"></select>
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+          </div>
         </div>
       </div>
     </div>
