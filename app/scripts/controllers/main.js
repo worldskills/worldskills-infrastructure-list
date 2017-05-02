@@ -44,7 +44,7 @@ angular.module('ilApp')
         deferred.resolve();
       },
       function (error) {
-        deferred.reject("Could not load skills for event: " + error.data.user_msg);
+        deferred.reject("Could not load skills for event: " + error);
       });
 
       return deferred.promise;

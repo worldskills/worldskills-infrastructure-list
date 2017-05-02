@@ -63,6 +63,6 @@ angular.module('ilApp')
       }
     };
 
-    console.info('uploader', uploader);
+    //console.info('uploader', uploader);
 
   });
