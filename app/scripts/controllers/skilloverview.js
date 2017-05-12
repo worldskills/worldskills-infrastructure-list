@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillOverviewCtrl', function ($scope, $q, $state, Status, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, MULTIPLIERS, Reporting) {
+  .controller('SkillOverviewCtrl', function ($scope, $q, $state, Status, Events, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, MULTIPLIERS, Reporting) {
 
 
     $scope.exportSkill = function(){
@@ -20,6 +20,7 @@ angular.module('ilApp')
 
     $scope.totalItems = 0;
     $scope.statusSummary = {};
+    $scope.skillManagement = {};
 
     Status.getSummaryForSkill($state.params.skillId).then(function(res){
       //calculate total for percentage
@@ -32,6 +33,16 @@ angular.module('ilApp')
     function(error){
       WSAlert.warning(error);
     });
+
+    Events.getSkillManagement($state.params.skillId).then(function(res){
+      $scope.skillManagement = res.data.person_positions;
+    }, function(error){
+      WSAlert.warning("Could not get skill management information");
+    });
+
+
+
+
 
 
 

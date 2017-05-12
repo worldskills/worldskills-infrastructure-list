@@ -39,13 +39,15 @@
     ilApp.constant('ITEM_STATUS', {
         'RED': 1,
         'YELLOW': 2,
-        'GREEN': 3
+        'GREEN': 3,
+        'BLACK': 4
     });
 
   ilApp.constant('ITEM_STATUS_TEXT', {
     'RED': "Requested",
     'YELLOW': "Pending",
-    'GREEN': "Confirmed"
+    'GREEN': "Confirmed",
+    'BLACK': "Secret"
   });
 
     ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');

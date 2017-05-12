@@ -248,6 +248,23 @@
                 </div>
 
                 <div class="row">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.category.$dirty && editForm.category.$error.required, 'has-success': !editForm.category.$error.required}">
+                    <label class='control-label'>Location</label>
+                    <select name="location" class="input-sm form-control" ng-model='item.location'>
+                      <option value="-"></option>
+                      <option value="Warehouse">Warehouse</option>
+                      <option value="Venue">Venue</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.disposal_category.$dirty && editForm.disposal_category.$error.required, 'has-success': !editForm.disposal_category.$error.required}">
+                    <label class='control-label'>HS Code</label>
+                    <input type="text" name="hs_code" class="input-sm form-control" placeholder="HS Code" ng-model='item.hs_code'>
+                  </div>
+                </div>
+
+                <div class="row">
                   <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.lead_time.$dirty && editForm.lead_time.$error.required, 'has-success': !editForm.lead_time.$error.required}">
                     <label class='control-label'>Lead time</label>
                     <select name="lead_time" class="input-sm form-control" ng-model='item.lead_time'>

@@ -13,7 +13,7 @@ angular.module('ilApp')
     $scope.selectedSector = {};
     $scope.selectedEvent = {};
     $scope.appLoaded = $q.defer();
-    $scope.loadStatus = false;
+    $scope.loadStatus = true;
 
     $scope.hideFooter = false;
 

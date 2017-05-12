@@ -101,5 +101,21 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
+    Events.getParticipantCounts = function(skillId){
+      var deferred = $q.defer();
+
+      $http.get(API_IL + "/events/skill/" + skillId + "/participants").then(function(res){
+        deferred.resolve(res.data);
+      }, function(error){
+        deferred.reject("Could not get participant numbers: " + error);
+      });
+
+      return deferred.promise;
+    };
+
+    Events.getSkillManagement = function(skillId){
+      return $http.get(API_IL + "/events/skill/" + skillId + "/management");
+    };
+
     return Events;
   });

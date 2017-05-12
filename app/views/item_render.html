@@ -28,6 +28,7 @@
     <span class='label'
     ng-class="{'label-danger': item.supplied_item.status.id == ITEM_STATUS.RED,
               'label-warning': item.supplied_item.status.id == ITEM_STATUS.YELLOW,
+              'label-info': item.supplied_item.status.id == ITEM_STATUS.BLACK,
               'label-success': item.supplied_item.status.id == ITEM_STATUS.GREEN}"
     >{{item.supplied_item.status.name.text}}</span>
   </small>

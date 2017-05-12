@@ -13,7 +13,8 @@ angular.module('ilApp')
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
       {id: {id: ITEM_STATUS.YELLOW, name: {text: ITEM_STATUS_TEXT.YELLOW}}, value: ITEM_STATUS_TEXT.YELLOW},
-      {id: {id: ITEM_STATUS.GREEN, name: {text: ITEM_STATUS_TEXT.GREEN}}, value: ITEM_STATUS_TEXT.GREEN}
+      {id: {id: ITEM_STATUS.GREEN, name: {text: ITEM_STATUS_TEXT.GREEN}}, value: ITEM_STATUS_TEXT.GREEN},
+      {id: {id: ITEM_STATUS.BLACK, name: {text: ITEM_STATUS_TEXT.BLACK}}, value: ITEM_STATUS_TEXT.BLACK},
     ];
 
     $scope.fullscreen = false;
@@ -120,6 +121,9 @@ angular.module('ilApp')
         }}, //datetime
         {field: 'category', name: 'category', width: '100'},
         {field: 'disposal_category', name: 'disposal_category', width: '100'},
+        {field: 'location', name: 'location', width: '100'},
+        {field: 'hs_code', name: 'hs_code', width: '100'},
+        {field: 'lead_time', name: 'lead_time', width: '100'},
         {field: 'electricity_volts', name: 'electricity_volts', width: '100'},//int
         {field: 'electricity_amps', name: 'electricity_amps', width: '100'},//int
         {field: 'electricity_phase', name: 'electricity_phase', width: '100'},
@@ -468,6 +472,7 @@ angular.module('ilApp')
         $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/search/?q=';
 
         $scope.gridOptions.data = data.supplied_items;
+
         $scope.catalogueLoaded = true;
         $scope.loading.catalogue = false;
         $scope.showFilters = false;
@@ -559,7 +564,9 @@ angular.module('ilApp')
       }
 
       //fix date object
-      $scope.item.delivery = new Date($scope.item.delivery);
+
+      //TODO remove hardcoded date
+      $scope.item.delivery = ($scope.item.delivery == null) ? new Date("2017-08-01") : new Date($scope.item.delivery);
 
       $aside.open({
         templateUrl: 'views/editsupplieditemaside.html',

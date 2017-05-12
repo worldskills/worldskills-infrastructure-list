@@ -12,6 +12,7 @@ angular.module('ilApp')
     //$scope.skill_id =
     //$scope.skill_id = $state.params.skillId;
     $scope.categories = {};
+    $scope.participantNumbers = {};
     $scope.initializing = $q.defer();
 
     $scope.initSkill = function(){
@@ -37,31 +38,29 @@ angular.module('ilApp')
 
     };
 
+
     $scope.getCategories = function(){
       //perhaps not needed, but checks if app has fully loaded before getting the categories
       $q.when($scope.appLoaded).then(function() {
-        Items.getCategories($scope.selectedSkill.id).then(function (result) {
-          $scope.categories = result;
+
+        var promises = [];
+        promises.push(Items.getCategories($scope.selectedSkill.id));
+        promises.push(Events.getParticipantCounts($scope.skill_id));
+
+        $q.all(promises).then(function(res){
+
+          $scope.categories = res[0];
+          $scope.participantNumbers = res[1];
+
           $scope.initializing.resolve();
-        },
-        function (error) {
+        }, function(error){
           WSAlert.danger(error);
           $scope.initializing.reject(error);
         });
+
       });
     };
 
-    // if(!$scope.selectedSkill.id){
-    //     //if empty reload from main.js
-    //     $scope.reload().then(function(selectedSkill){
-    //         $scope.initSkill();
-    //         //no need to do anything
-    //     },
-    //     function(error){
-    //         WSAlert.danger(error);
-    //     });
-    // }
-    // else $scope.initSkill();
     $scope.initSkill();
 
   });

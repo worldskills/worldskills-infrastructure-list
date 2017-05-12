@@ -5,6 +5,8 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.eventId = $state.params.eventId;
     $scope.skillId = $state.params.skillId;
     $scope.UPLOADS_URL = UPLOADS_URL;
+    $scope.participantNumbers = {};
+    $scope.skillManagement = {};
 
     $scope.ITEM_STATUS = ITEM_STATUS;
 
@@ -26,6 +28,15 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
                 categoriesIndexed[category.id] = category;
             });
         }));
+
+    promises.push(Events.getSkillManagement($state.params.skillId).then(function(res){
+        $scope.skillManagement = res.data.person_positions;
+      }));
+
+  promises.push(Events.getParticipantCounts($scope.skillId).then(function (res) {
+      $scope.participantNumbers = res;
+    }));
+
 
     $q.all(promises).then(function () {
         Items.getPublicItems($scope.eventId, $scope.skillId)

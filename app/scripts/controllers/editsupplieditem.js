@@ -16,7 +16,8 @@ angular.module('ilApp')
     };
 
     $scope.dateOptions = {
-      startingDay: 1
+      startingDay: 1,
+      initDate: '2017-08-01'
     };
 
     $scope.item.updateRequested = false;

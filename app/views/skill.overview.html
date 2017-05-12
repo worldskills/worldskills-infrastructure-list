@@ -6,25 +6,25 @@
 <div class='row'>
 	<div class='col col-xs-12 col-sm-6'>
 		<div class='panel panel-default'>
-			<div class='panel-heading'>Contact details</div>
+			<div class='panel-heading'>Skill Management</div>
 			<div class='panel-body'>
-				<div class='alert alert-warning'>This is not yet implemented</div>
 				<table class='table table-striped'>
 					<thead>
 						<tr>
 							<th>Position</th>
 							<th>Name</th>
-							<th>Email</th>
+							<!--<th>Email</th>-->
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="n in [1, 2, 3, 4, 5] track by $index">
-							<td>Workshop Manager</td>
-							<td>Person {{n}}</td>
-							<td>person_{{n}}@example.com</td>
+						<tr ng-repeat="pp in skillManagement track by $index">
+							<td>{{pp.position.name.text}}</td>
+							<td>{{pp.person.first_name}} {{pp.person.last_name}}</td>
+							<!--<td>person_{{n}}@example.com</td>-->
 						</tr>
 					</tbody>
 				</table>
+        <p class="small">View all list of people in <a target="_blank" href="https://www.worldskills.org/internal/wiw/?name=&member=&event={{selectedEvent.id}}&position=&skill={{selectedSkill.id}}">who-is-who</a></p>
 			</div>
 		</div>
 	</div>
