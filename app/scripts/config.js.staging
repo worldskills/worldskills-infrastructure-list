@@ -18,7 +18,7 @@
     ilApp.constant('WORLDSKILLS_API_AUTH', 'https://staging-api.worldskills.org/auth');
     ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
 
-    ilApp.constant('LOAD_CHILD_ENTITY_ROLES', true);
+    ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
 
     ilApp.constant('APP_ROLES', {
