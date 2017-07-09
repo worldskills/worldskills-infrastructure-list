@@ -45,7 +45,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
         status = status || false;
         //QUICKFIX
-      // status = true
+       status = true
         $http.get(API_IL + "/events/skills/" + eventId + "/" + sectorId + "?status=" + status).then(function(result){
             Events.skills = result.data.skills;
             Events.id = eventId;
