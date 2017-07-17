@@ -21,7 +21,7 @@ angular.module('ilApp')
 
 	    	var deferred = $q.defer();
 
-	        $http({url: API_IL + "/reports/requested/skill/" + eventId + "/" + skillId, method: "GET", params: { s: "xlsx" }, responseType : "blob"})
+	        $http({url: API_IL + "/reports/requested/skill/" + eventId + "/" + skillId, method: "GET", params: { s: "xlsx" }, responseType : "blob", timeout: 120000})
 	        .success( function(data, status, headers) {
 	           var filename = 'report_requested_' + skillId + '__'  + Reporting.dateNow() + '.xlsx';
 	           Downloader.handleDownload(data, status, headers, filename);
