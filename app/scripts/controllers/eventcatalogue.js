@@ -116,6 +116,7 @@ angular.module('ilApp')
         {field: 'supply_type', name: 'supply_type', width: '100'},
         {field: 'unit_cost', name: 'unit_cost', width: '100'}, //double
         {field: 'unit', name: 'unit', width: '100'},
+        {field: 'po_number', name: 'PO Number', width: '100'},
         {field: 'delivery', name: 'delivery', width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"', filter: {
           condition: uiGridConstants.filter.STARTS_WITH,
         }}, //datetime

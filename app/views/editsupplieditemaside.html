@@ -113,6 +113,13 @@
                     </select>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="form-group col col-xs-12  has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
+                    <label class='control-label'>PO Number</label>
+                    <input name="po_number" class="input-sm form-control" placeholder="PO Number" ng-model='item.po_number'>
+                  </div>
+                </div>
               </fieldset>
             </div>
           </uib-tab>
