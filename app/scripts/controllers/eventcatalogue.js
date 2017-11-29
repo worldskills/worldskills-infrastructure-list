@@ -91,27 +91,7 @@ angular.module('ilApp')
         {field: 'manufacturer', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'size', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},
-        //status field
-        {field: 'status.name.text', name: "Status", width: '120', pinnedRight: true,
-          cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex){
-            if(grid.getCellValue(row, col) === ITEM_STATUS_TEXT.RED){ return 'statusRed'; }
-            else if(grid.getCellValue(row, col) === ITEM_STATUS_TEXT.YELLOW){ return 'statusYellow'; }
-            else if(grid.getCellValue(row, col) === ITEM_STATUS_TEXT.GREEN){ return 'statusGreen'; }
-          },
-          editableCellTemplate: 'ui-grid/dropdownEditor',
-          editModelField: 'status',
-          editDropdownOptionsArray: $scope.statusValues,
-          type: 'object',
-          filter: {
-            type: uiGridConstants.filter.SELECT,
-            selectOptions: [
-              {value: ITEM_STATUS_TEXT.RED, label: ITEM_STATUS_TEXT.RED},
-              {value: ITEM_STATUS_TEXT.YELLOW, label: ITEM_STATUS_TEXT.YELLOW},
-              {value: ITEM_STATUS_TEXT.GREEN, label: ITEM_STATUS_TEXT.GREEN}
-            ]
-          }, cellEditableCondition: $scope.canEdit
-        },
+        {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},        
         {field: 'supplier', name: 'supplier', width: '100'},
         {field: 'supply_type', name: 'supply_type', width: '100'},
         {field: 'unit_cost', name: 'unit_cost', width: '100'}, //double
@@ -554,9 +534,7 @@ angular.module('ilApp')
 
     $scope.openItemEditor  = function(item){
       if(item == void 0 || !item.id) {
-        $scope.item = {
-          status: $scope.statusValues[0].id //default to Requested / RED
-        };
+        $scope.item = {};
       }
       else {
         $scope.item = {};

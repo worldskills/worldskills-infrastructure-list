@@ -12,17 +12,15 @@
       <th>Description</th>
       <th>Manufacturer</th>
       <th>Model</th>
-      <th>Status</th>
       <th ng-if="data.linkedItems">Delete</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in data.items track by $index" ng-class="{'warning': item.linkedItems}">
-      <td>{{item.id}}</td>
+      <td>{{item}}</td>
       <td>{{item.description.text}}</td>
       <td>{{item.manufacturer}}</td>
       <td>{{item.model}}</td>
-      <td>{{item.supplied_item.status.name.text}}</td>
       <td ng-if="data.linkedItems">
         <span ng-if="!item.linkedItems">Yes</span>
         <span ng-if="item.linkedItems">No</span>
