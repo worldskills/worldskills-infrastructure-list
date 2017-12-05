@@ -1,0 +1,10 @@
+{
+	"APP_NAME":"WorldSkills Infrastructure Lists",
+	"LOGIN":"Login",
+	"SWITCH_ROLE":"Switch role",
+	"HOME":"Home",
+	"LOGOUT":"Logout",
+
+	"OVERVIEW": "Overview",
+	"CATALOGUE_VIEW": "Catalogue view"
+}
