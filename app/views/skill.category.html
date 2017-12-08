@@ -13,24 +13,24 @@
     ng-class="{'btn-warning': standardSetSelector}"
     class="pull-right btn btn-sm btn-default pad-left">
       <i class="glyphicon glyphicon-th-list">
-      </i> Standard sets
+      </i> <span translate>STANDARD_SETS</span>
     </button>
 
 
     <div class="btn-group pull-right" style="margin-left: .5em;" uib-dropdown="actionsDropdown">
-          <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm">Advanced actions&nbsp;<span class="caret"></span></button>
+          <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm"><span translate>ADVANCED_ACTIONS</span>&nbsp;<span class="caret"></span></button>
 
           <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
-            <li role="menuitem"><a ng-click="clearSorting($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;Clear sorting</a></li>
+            <li role="menuitem"><a ng-click="clearSorting($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>CLEAR_SORTING</span></a></li>
           </ul>
         </div>
 
     <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
   		<i class="glyphicon glyphicon-plus">
-  		</i> Add item
+  		</i> <span translate>ADD_ITEM</span>
   	</button>
 
-  	<div class='searchContainer pull-right'><input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
+  	<div translate### class='searchContainer pull-right'><input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
   	<span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
   </span>
 
@@ -44,7 +44,7 @@
       <!-- standard sets -->
       <ws-spinner ng-show='loading.addSet'></ws-spinner>
       <div ng-show='standardSetSelector' class='well'>
-        <h5>Add standard set</h5>
+        <h5 translate>ADD_STANDARD_SET</h5>
         <angucomplete-alt id="id"
                 placeholder="Search from standard sets..."
                 pause="400"
@@ -70,35 +70,35 @@
   		<div class="row" ng-hide="loading.addItem">
   		  <div class="col-sm-12" ng-show="items.length == 0 && !loading.initial">
   		  	<div class='alert alert-warning'>
-  		    	<p ng-if="filterValue.length > 0"><span class='glyphicon glyphicon-info-sign'></span> Search didn't return any results<br /> <a ng-click="clearSearchTerms();">Clear search terms</a></p>
-  		    	<p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> This category does not have any items, why don't you add some.</p>
+  		    	<p ng-if="filterValue.length > 0"><span class='glyphicon glyphicon-info-sign'></span> <span translate>SEARCH_NO_RESULTS</span><br /> <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a></p>
+  		    	<p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> <span translate>CATEGORY_NO_ITEMS</span></p>
   		    </div>
   		  </div>
 
   		  <div class="col-sm-12" ng-if="filterValue.length > 0">
   		  	<div class='alert alert-info'>
-  		    	<p><small><span class='glyphicon glyphicon-info-sign'></span> Important: You can't sort items while in search mode. <a ng-click="clearSearchTerms();">Clear search terms</a></small></p>
+  		    	<p><small><span class='glyphicon glyphicon-info-sign'></span> <span translate>IMPORTANT_CANT_SORT</span> <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a></small></p>
   		    </div>
   		  </div>
 
 
   		  <!-- tree of items -->
   		  <div class="col-sm-12" ng-show="items.length > 0">
-          <div class="alert alert-warning" ng-show="allowReordering === false">Reordering of items disabled while sorting is active, sorting can be cleared under the "<b>Advanced actions</b>" dropdown.</div>
+          <div class="alert alert-warning" ng-show="allowReordering === false" translate>REORDER_DISABLED_SORT</div>
   		  	<div class="tree-node tree-node-content tree-header">
-            <span ng-click="sortBy('description.text');">Description</span>
+            <span ng-click="sortBy('description.text');" translate>DESCRIPTION</span>
             <span class="sortorder" ng-show="orderProperty === 'description.text'" ng-class="{reverse: reverse}"></span>
-  				<small class='actionsHeader pull-right'>Actions</small>
+  				<small class='actionsHeader pull-right' translate>ACTIONS</small>
   				<small class='statusHeader pull-right'>
-            <span ng-click="sortBy('supplied_item.status.id');">Status</span>
+            <span ng-click="sortBy('supplied_item.status.id');" translate>STATUS</span>
             <span class="sortorder" ng-show="orderProperty === 'supplied_item.status.id'" ng-class="{reverse: reverse}"></span>
           </small>
   				<small class='quantityHeader pull-right'>
-            <span ng-click="sortBy('readable_quantity');">Quantity</span>
+            <span ng-click="sortBy('readable_quantity');" translate>QUANTITY</span>
             <span class="sortorder" ng-show="orderProperty === 'readable_quantity'" ng-class="{reverse: reverse}"></span>
           </small>
           <small class='areaHeader pull-right'>
-            <span ng-click="sortBy('area.name');">Skill Area</span>
+            <span ng-click="sortBy('area.name');" translate>SKILL_AREA</span>
             <span class="sortorder" ng-show="orderProperty === 'area.name'" ng-class="{reverse: reverse}"></span>
           </small>
   			</div>
@@ -107,7 +107,7 @@
   		        <li ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
   		      </ol>
   		    </div>
-  		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total && filterValue.length == 0'><small>Scroll down to load more...</small></div>
+  		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total && filterValue.length == 0'><small translate>SCROLL_MORE</small></div>
   		    <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
   		    <ws-spinner ng-if='loading.more'></ws-spinner>
   		  </div>

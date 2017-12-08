@@ -1,7 +1,7 @@
 <ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
 
-<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false">
-    You don't have the required access role to use this application.
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>
+    NO_ACCESS_ROLE
 </div>
 
 
@@ -10,7 +10,7 @@
 <div class='row' ng-if="skills.length > 0">
 	<div class='col col-xs-12 col-sm-9'>
 		<div class='panel panel-default'>
-			<div class='panel-heading'>Select a skill</div>
+			<div class='panel-heading' translate>SELECT_SKILL</div>
 			<div class='panel-body'>
 				<div class="list-group">
 				  <a ui-sref="skill.overview({skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
@@ -39,18 +39,18 @@
 	</div>
 	<div class='col col-xs-12 col-sm-3'>
 		<div class='panel panel-default'>
-			<div class='panel-heading'>Permissions</div>
+			<div class='panel-heading' translate>PERMISSIONS</div>
 			<div class='panel-body'>
 				<div ng-repeat="role in ilRoles track by role.id"><b>{{role.name}}</b>,<br /><small><i>{{role.ws_entity.name.text}}</i></small></div>
 			</div>
 		</div>
 
     <div class='panel panel-default'>
-			<div class='panel-heading'>Host views</div>
+			<div class='panel-heading' translate>HOST_VIEW</div>
 			<div class='panel-body'>
 				<ul>
           <li>
-            <a ui-sref="management.sets({eventId: selectedEvent.id})">Standard sets</a>
+            <a ui-sref="management.sets({eventId: selectedEvent.id})" translate>STANDARD_SETS</a>
           </li>
         </ul>
 			</div>

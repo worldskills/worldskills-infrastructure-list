@@ -9,7 +9,7 @@
     <div class="il-public-items-category">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Skill Information</h2>
+          <h2 class="panel-title" translate>SKILL_INFORMATION</h2>
         </div>
 
         <div class="table-responsive">
@@ -72,15 +72,15 @@
           <td class="text-right b" colspan="2">&nbsp;</td>
         </tr>
           <tr>
-            <td class="text-right b">Competitors</td>
+            <td class="text-right b" translate>TH_COMPETITORS</td>
             <td>{{participantNumbers.num_competitors}}</td>
           </tr>
           <tr>
-            <td class="text-right b">Experts</td>
+            <td class="text-right b" translate>TH_EXPERTS</td>
             <td>{{participantNumbers.num_experts}}</td>
           </tr>
           <tr>
-            <td class="text-right b">Interpreters</td>
+            <td class="text-right b" translate>TH_INTERPRETERS</td>
             <td>{{participantNumbers.num_interpreters}}</td>
           </tr>
         </tbody>
@@ -107,18 +107,18 @@
                     </colgroup>
                     <thead>
                         <tr>
-                            <th class="text-right">Quantity</th>
-                            <th>Item</th>
-                            <th>Last modified</th>
-                            <th>Supplied Item</th>
-                            <th>Status</th>
+                            <th class="text-right" translate>TH_QUANTITY</th>
+                            <th translate>TH_ITEM</th>
+                            <th translate>TH_LAST_MODIFIED</th>
+                            <th translated>TH_SUPPLIED_ITEM</th>
+                            <th translate>TH_STATUS</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in category.items" ng-class="{'child': !!item.parent_id}">
                             <td class="text-right">
                                 <span>{{ item.readable_quantity }}</span>
-                                <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} additional</span>
+                                <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} <span translate>ADDITIONAL</span></span>
                             </td>
                             <td>
                                 <span ng-show="!!item.parent_id">└&nbsp;</span>
@@ -132,23 +132,23 @@
                           <td>
                             <div ng-if="item.supplied_item.status.id !== ITEM_STATUS.RED && item.supplied_item.status.id !== ITEM_STATUS.BLACK">
                               <div class="row" ng-if="item.supplied_item.manufacturer">
-                                <div class="col col-xs col-xs-4 supplied-key">Manufacturer</div>
+                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_MANUFACTURER</div>
                                 <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.manufacturer}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.model">
-                                <div class="col col-xs col-xs-4 supplied-key">Model</div>
+                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_MODEL</div>
                                 <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.model}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.size">
-                                <div class="col col-xs col-xs-4 supplied-key">Size</div>
+                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_SIZE</div>
                                 <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.size}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.part_number">
-                                <div class="col col-xs col-xs-4 supplied-key">Part number</div>
+                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_PART_NUM</div>
                                 <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.part_number}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.files.length > 0">
-                                <div class="col col-xs col-xs-4 supplied-key">Files</div>
+                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_FILES</div>
                                 <div class="col col-xs col-xs-8 supplied-val">
                                   <ul class="public-files">
                                     <li ng-repeat="file in item.supplied_item.files">
@@ -170,7 +170,7 @@
                     <tbody ng-show="!category.items.length">
                         <tr>
                             <td></td>
-                            <td colspan="3">No items</td>
+                            <td colspan="3" translate>NO_ITEMS</td>
                         </tr>
                     </tbody>
                 </table>
@@ -183,6 +183,6 @@
 </div>
 
 <div class="il-public-items-back">
-    <p><a href="https://www.worldskills.org/internal/">« Back to worldskills.org</a></p>
+    <p><a href="https://www.worldskills.org/internal/" translate>BACK_TO_HOME</a></p>
     <br/>
 </div>

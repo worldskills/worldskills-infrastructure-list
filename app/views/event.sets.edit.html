@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>{{selectedSet.name}}&nbsp;&nbsp;<small><a ng-click="editDetails = !editDetails">edit</a></small></legend>
+  <legend>{{selectedSet.name}}&nbsp;&nbsp;<small><a ng-click="editDetails = !editDetails" translate>EDIT_DETAILS</a></small></legend>
 <ws-spinner ng-show='loading.details'></ws-spinner>
 <ws-spinner class='bigSpinner' ng-show='loading.set'></ws-spinner>
 <div ng-show='!loading.set'>
@@ -11,42 +11,42 @@
   <div ng-show='editDetails'>
     <form>
       <div class="form-group">
-        <label>Set name</label>
+        <label translate>SET_NAME</label>
         <input ng-model="selectedSet.name" type="text" class="form-control" placeholder="Standard set 01">
       </div>
       <div class="form-group">
-        <label>Description</label>
+        <label translate>DESCRIPTION</label>
         <textarea ng-model="selectedSet.description" class="form-control" rows="3"></textarea>
       </div>
 
-      <button type="submit" ng-click="saveDetails(selectedSet)" class="btn btn-success btn-sm">Submit</button>
-      <button type="reset" ng-click="editDetails = false" class="btn btn-warning btn-sm">Cancel</button>
-      <button ng-click="deleteSet(selectedSet)" class="btn btn-danger btn-sm">Delete set</button>
+      <button type="submit" ng-click="saveDetails(selectedSet)" class="btn btn-success btn-sm" translate>BUTTON_SUBMIT</button>
+      <button type="reset" ng-click="editDetails = false" class="btn btn-warning btn-sm" translate>BUTTON_CANCEL</button>
+      <button ng-click="deleteSet(selectedSet)" class="btn btn-danger btn-sm" translate>BUTTON_DELETE_SET</button>
     </form>
   </div>
 
 <p>&nbsp;</p>
 
   <fieldset>
-    <legend>
-      Catalogue Items in the set
+    <legend translate>
+      CATALOGUE_ITEMS_SET
     </legend>
 
     <button type="button"
       ng-init="addItem = false"
       ng-class="{'btn-warning': addItem, 'btn-success': !addItem}"
       ng-click="addItemToSet();" class="btn btn-sm pull-right">
-    	<i class="glyphicon glyphicon-plus"></i>&nbsp;Add item
+    	<i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>ADD_ITEM</span>
     </button>
-    <div class='pull-right searchContainer'><input type="text" class="form-control searchControl" placeholder="Filter..." id='filter' ng-model="filterValue">
+    <div class='pull-right searchContainer' translate###><input type="text" class="form-control searchControl" placeholder="Filter..." id='filter' ng-model="filterValue">
     <span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
   <ws-spinner ng-show='loading.addToSet'></ws-spinner>
   <div ng-show='addItem' class='well'>
-    <h5>Add item from catalogue</h5>
-    <angucomplete-alt id="id"
+    <h5 translate>ADD_ITEM_FROM_CATALOGUE</h5>
+    <angucomplete-alt id="id" translate###
             placeholder="Search from catalogue items..."
             pause="400"
             selected-object="addItemSelected"
@@ -70,14 +70,14 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Description</th>
-          <th>Make</th>
-          <th>Model</th>
-          <th>Qty</th>
-          <th>Multi</th>
-          <th>Factor</th>
-          <th>&nbsp;</th>
+          <th translate>TH_ID</th>
+          <th translate>TH_DESCRIPTION</th>
+          <th translate>TH_MAKE</th>
+          <th translate>TH_MODEL</th>
+          <th translate>TH_QTY</th>
+          <th translate>TH_MULTI</th>
+          <th translate>TH_FACTOR</th>
+          <th translate>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
@@ -88,7 +88,7 @@
           <td>{{item.item.model}}</td>
           <td><input class='form-control input-sm' type='number' ng-model="item.quantity" /></td>
           <td><select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select></td>
-          <td><input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true"></td>
+          <!-- <td><input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true"></td> -->
           <td>
             <a class="pull-right btn btn-danger btn-xs" ng-click="removeItem(item, $index);" style="margin-right: 8px;">
               <span class="glyphicon glyphicon-remove"></span>
@@ -98,7 +98,7 @@
       </tbody>
     </table>
 
-    <button ng-click="updateQuantities();" class='btn btn-sm btn-success pull-right'>Update quantities</button>
+    <button ng-click="updateQuantities();" class='btn btn-sm btn-success pull-right' translate>UPDATE_QUANTITIES</button>
   </div>
   </fieldset>
 </div>
