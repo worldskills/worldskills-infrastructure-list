@@ -6,16 +6,16 @@
   <div>
     <form>
       <div class="form-group">
-        <label>Set name</label>
+        <label translate>SET_NAME</label>
         <input ng-model="newSet.name" type="text" class="form-control" placeholder="Standard set 01">
       </div>
       <div class="form-group">
-        <label>Description</label>
+        <label translate>DESCRIPTION</label>
         <textarea ng-model="newSet.description" class="form-control" rows="3"></textarea>
       </div>
 
-      <button type="submit" ng-click="add();" class="btn btn-success btn-sm">Submit</button>
-      <button type="reset" ng-click="cancel();" class="btn btn-warning btn-sm">Cancel</button>
+      <button type="submit" ng-click="add();" class="btn btn-success btn-sm" translate>BUTTON_SUBMIT</button>
+      <button type="reset" ng-click="cancel();" class="btn btn-warning btn-sm" translate>BUTTON_CANCEL</button>
     </form>
   </div>
 
