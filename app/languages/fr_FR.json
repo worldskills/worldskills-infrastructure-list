@@ -52,12 +52,10 @@
   "ACTIONS": "Actions",
   "STATUS": "État",
   "QUANTITY": "Quantité",
-  "SKILL_AREA": "Skill Area???",
   "SCROLL_MORE": "Scroll down to load more...",
 
   "WHICH_DATA": "Sélectionnez les données à charger",
   "CHANGE_FILTERS": "Vous pourrez appliquer des filtres une fois le catalogue chargé",
-  "NUMBER:": "Numéro :",
   "LOAD": "Charger",
   "ALL_DATA": "Toutes les données (patienter)",
 

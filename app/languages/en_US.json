@@ -1,11 +1,45 @@
 {
+  "PLACEHOLDER": {
+    "SEARCH":"Rechercher",
+    "SEARCH_FROM_STANDARD":"Search from standard sets...",
+    "SEARCH_FROM_CATALOG":"Search from catalogue items...",
+    "STANDARD_SET":"Standard set 01 {{selectedSet.name}}",
+    "FILTER":"Filter...",
+    "CHOOSE_SKILL":"Choose a skill",
+    "CHOOSE_INSTALLATION_TYPE":"Choose a Installation Type",
+    "CHOOSE_INSTALLATION_TYPE_OPT":"Choose a Installation Type (optional)",
+    "DESCRIPTION":"Description",
+    "DESCRIPTION_OF_THE_ITEM":"Description of the item",
+    "QUANTITY":"Quantity",
+    "X_NUMBER":"X number",
+    "POTENTIAL_SUPPLIER":"Potential supplier",
+    "ESTIMATED_PRICE":"Estimated price",
+    "ADDITIONAL_QUANTITY":"Additional quantity"
+  },
+  "TITLE": {
+    "CHOOSE_SKILL":"Choose a skill"
+  },
+  "TEXT_SEARCHING": {
+    "SEARCH_FOR_STANDARD":"Searching for standard sets...",
+    "SEARCHING_FOR_ITEMS_IN_CATALOGUE":"Searching for items in catalogue..."
+  },
+  "TEXT_NO_RESULTS": {
+    "NO_SETS":"No sets found, please try using other search terms.",
+    "NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM":"No existing items, hit return key to add as a new item.",
+    "NO_EXISTING_SUPPLIERS_FOUND":"No existing suppliers found."
+  },
+  "REQUIRED": {
+    "QUANTITY_IS_MISSING":"Quantity is missing",
+    "MULTIPLY_FACTOR_REQUIRED":"Multiply factor required",
+    "ADDITIONAL_QUANTITY_IS_MISSING":"Additional quantity is missing"
+  },
+
   "APP_NAME":"WorldSkills Infrastructure Lists",
   "LOGIN":"Login",
   "LOGOUT":"Logout",
   "SIGNUP":"Sign up",
   "SWITCH_ROLE":"Switch role",
   "HOME":"Home",
-  "LOGOUT":"Logout",
 
   "SELECT_SKILL": "Select a skill",
   "PERMISSIONS": "Permissions",
@@ -52,12 +86,10 @@
   "ACTIONS": "Actions",
   "STATUS": "Status",
   "QUANTITY": "Quantity",
-  "SKILL_AREA": "Skill Area",
   "SCROLL_MORE": "Scroll down to load more...",
 
   "WHICH_DATA": "Select which data to load",
   "CHANGE_FILTERS": "You can change the filters once the catalogue has loaded",
-  "NUMBER:": "Number:",
   "LOAD": "Load",
   "ALL_DATA": "All data (this can take a while)",
 

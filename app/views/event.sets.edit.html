@@ -12,7 +12,7 @@
     <form>
       <div class="form-group">
         <label translate>SET_NAME</label>
-        <input ng-model="selectedSet.name" type="text" class="form-control" placeholder="Standard set 01">
+        <input ng-model="selectedSet.name" type="text" class="form-control" placeholder="{{ 'PLACEHOLDER.STANDARD_SET' | translate:selectedSet.name }}">
       </div>
       <div class="form-group">
         <label translate>DESCRIPTION</label>
@@ -38,7 +38,7 @@
       ng-click="addItemToSet();" class="btn btn-sm pull-right">
     	<i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>ADD_ITEM</span>
     </button>
-    <div class='pull-right searchContainer' translate###><input type="text" class="form-control searchControl" placeholder="Filter..." id='filter' ng-model="filterValue">
+    <div class='pull-right searchContainer' translate><input type="text" class="form-control searchControl" placeholder="{{ 'PLACEHOLDER.FILTER' | translate }}" id='filter' ng-model="filterValue">
     <span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
@@ -46,8 +46,8 @@
   <ws-spinner ng-show='loading.addToSet'></ws-spinner>
   <div ng-show='addItem' class='well'>
     <h5 translate>ADD_ITEM_FROM_CATALOGUE</h5>
-    <angucomplete-alt id="id" translate###
-            placeholder="Search from catalogue items..."
+    <angucomplete-alt id="id" translate
+            placeholder="{{ 'PLACEHOLDER.SEARCH_FROM_CATALOG' | translate }}"
             pause="400"
             selected-object="addItemSelected"
             remote-url="{{searchAPI}}"

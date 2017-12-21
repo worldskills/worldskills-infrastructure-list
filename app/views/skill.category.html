@@ -1,99 +1,108 @@
-<fieldset><legend>{{selectedCategory.name.text}}</legend>
-<ws-spinner class='bigSpinner' ng-if='loading.initial'></ws-spinner>
-<div ng-hide="loading.initial">
+<fieldset>
+  <legend>{{selectedCategory.name.text}}</legend>
+  <ws-spinner class='bigSpinner' ng-if='loading.initial'></ws-spinner>
+  <div ng-hide="loading.initial">
 
-  <span class='pull-right'>
-  <!-- 	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
-  		<span ng-show='sortable'>Sort mode ON</span>
-  		<span ng-hide='sortable'>Sort mode OFF</span>
-  	</button> -->
+    <span class='pull-right'>
+    <!-- 	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
+        <span ng-show='sortable'>Sort mode ON</span>
+        <span ng-hide='sortable'>Sort mode OFF</span>
+      </button> -->
 
-    <button type="button"
-    ng-click="addStandardSet();"
-    ng-class="{'btn-warning': standardSetSelector}"
-    class="pull-right btn btn-sm btn-default pad-left">
-      <i class="glyphicon glyphicon-th-list">
-      </i> <span translate>STANDARD_SETS</span>
-    </button>
+      <button type="button"
+      ng-click="addStandardSet();"
+      ng-class="{'btn-warning': standardSetSelector}"
+      class="pull-right btn btn-sm btn-default pad-left">
+        <i class="glyphicon glyphicon-th-list">
+        </i> <span translate>STANDARD_SETS</span>
+      </button>
 
+      <div class="btn-group pull-right" style="margin-left: .5em;" uib-dropdown="actionsDropdown">
+        <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm"><span translate>ADVANCED_ACTIONS</span>&nbsp;<span class="caret"></span></button>
 
-    <div class="btn-group pull-right" style="margin-left: .5em;" uib-dropdown="actionsDropdown">
-          <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm"><span translate>ADVANCED_ACTIONS</span>&nbsp;<span class="caret"></span></button>
-
-          <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
-            <li role="menuitem"><a ng-click="clearSorting($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>CLEAR_SORTING</span></a></li>
-          </ul>
-        </div>
-
-    <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
-  		<i class="glyphicon glyphicon-plus">
-  		</i> <span translate>ADD_ITEM</span>
-  	</button>
-
-  	<div translate### class='searchContainer pull-right'><input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="Search..." ng-model="filterValue" ng-change="filter()">
-  	<span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span></div>
-  </span>
-
-  		<p><br class='cb'></p>
-
-  		<br />
-
-  		<ws-spinner class='bigSpinner' ng-if='loading.addItem'></ws-spinner>
-
-
-      <!-- standard sets -->
-      <ws-spinner ng-show='loading.addSet'></ws-spinner>
-      <div ng-show='standardSetSelector' class='well'>
-        <h5 translate>ADD_STANDARD_SET</h5>
-        <angucomplete-alt id="id"
-                placeholder="Search from standard sets..."
-                pause="400"
-                selected-object="addSelectedSet"
-                remote-url="{{searchSetAPI}}"
-                remote-url-request-with-credentials="true"
-                remote-url-data-field="sets"
-                title-field="name"
-                description-field="description"
-                minlength="2"
-                search-fields="name"
-                disable-input="disableInput"
-                focus-first="true"
-                override-suggestions="true"
-                field-required="true"
-                text-searching="Searching for standard sets..."
-                text-no-results="No sets found, please try using other search terms."
-                input-class="form-control form-control-small has-feedback"/>
+        <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
+          <li role="menuitem"><a ng-click="clearSorting($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>CLEAR_SORTING</span></a></li>
+        </ul>
       </div>
-      <!-- /standard sets -->
 
-  		<!-- notifications for no items -->
-  		<div class="row" ng-hide="loading.addItem">
-  		  <div class="col-sm-12" ng-show="items.length == 0 && !loading.initial">
-  		  	<div class='alert alert-warning'>
-  		    	<p ng-if="filterValue.length > 0"><span class='glyphicon glyphicon-info-sign'></span> <span translate>SEARCH_NO_RESULTS</span><br /> <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a></p>
-  		    	<p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> <span translate>CATEGORY_NO_ITEMS</span></p>
-  		    </div>
-  		  </div>
+      <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-plus">
+        </i> <span translate>ADD_ITEM</span>
+      </button>
 
-  		  <div class="col-sm-12" ng-if="filterValue.length > 0">
-  		  	<div class='alert alert-info'>
-  		    	<p><small><span class='glyphicon glyphicon-info-sign'></span> <span translate>IMPORTANT_CANT_SORT</span> <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a></small></p>
-  		    </div>
-  		  </div>
+      <div translate class='searchContainer pull-right'>
+        <input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="{{ 'PLACEHOLDER.SEARCH' | translate }}" ng-model="filterValue" ng-change="filter()">
+        <span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span>
+      </div>
+    </span>
 
+    <p><br class='cb'></p>
 
-  		  <!-- tree of items -->
-  		  <div class="col-sm-12" ng-show="items.length > 0">
-          <div class="alert alert-warning" ng-show="allowReordering === false" translate>REORDER_DISABLED_SORT</div>
-  		  	<div class="tree-node tree-node-content tree-header">
+    <br />
+
+    <ws-spinner class='bigSpinner' ng-if='loading.addItem'></ws-spinner>
+
+    <!-- standard sets -->
+    <ws-spinner ng-show='loading.addSet'></ws-spinner>
+    <div ng-show='standardSetSelector' class='well'>
+      <h5 translate>ADD_STANDARD_SET</h5>
+      <angucomplete-alt id="id"
+        placeholder="{{ 'PLACEHOLDER.SEARCH_FROM_STANDARD' | translate }}"
+        pause="400"
+        selected-object="addSelectedSet"
+        remote-url="{{searchSetAPI}}"
+        remote-url-request-with-credentials="true"
+        remote-url-data-field="sets"
+        title-field="name"
+        description-field="description"
+        minlength="2"
+        search-fields="name"
+        disable-input="disableInput"
+        focus-first="true"
+        override-suggestions="true"
+        field-required="true"
+        text-searching="{{ 'TEXT_SEARCHING.SEARCH_FOR_STANDARD' | translate }}"
+        text-no-results="{{ 'TEXT_NO_RESULTS.NO_SETS' | translate }}"
+        input-class="form-control form-control-small has-feedback"
+      />
+    </div>
+    <!-- /standard sets -->
+
+    <!-- notifications for no items -->
+    <div class="row" ng-hide="loading.addItem">
+      <div class="col-sm-12" ng-show="items.length == 0 && !loading.initial">
+        <div class='alert alert-warning'>
+          <p ng-if="filterValue.length > 0">
+            <span class='glyphicon glyphicon-info-sign'></span> <span translate>SEARCH_NO_RESULTS</span><br />
+            <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a>
+          </p>
+          <p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> <span translate>CATEGORY_NO_ITEMS</span></p>
+        </div>
+      </div>
+
+      <div class="col-sm-12" ng-if="filterValue.length > 0">
+        <div class='alert alert-info'>
+          <p>
+            <small>
+              <span class='glyphicon glyphicon-info-sign'></span> <span translate>IMPORTANT_CANT_SORT</span>
+              <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a>
+            </small>
+          </p>
+        </div>
+      </div>
+
+      <!-- tree of items -->
+      <div class="col-sm-12" ng-show="items.length > 0">
+        <div class="alert alert-warning" ng-show="allowReordering === false" translate>REORDER_DISABLED_SORT</div>
+        <div class="tree-node tree-node-content tree-header">
             <span ng-click="sortBy('description.text');" translate>DESCRIPTION</span>
             <span class="sortorder" ng-show="orderProperty === 'description.text'" ng-class="{reverse: reverse}"></span>
-  				<small class='actionsHeader pull-right' translate>ACTIONS</small>
-  				<small class='statusHeader pull-right'>
+          <small class='actionsHeader pull-right' translate>ACTIONS</small>
+          <small class='statusHeader pull-right'>
             <span ng-click="sortBy('supplied_item.status.id');" translate>STATUS</span>
             <span class="sortorder" ng-show="orderProperty === 'supplied_item.status.id'" ng-class="{reverse: reverse}"></span>
           </small>
-  				<small class='quantityHeader pull-right'>
+          <small class='quantityHeader pull-right'>
             <span ng-click="sortBy('readable_quantity');" translate>QUANTITY</span>
             <span class="sortorder" ng-show="orderProperty === 'readable_quantity'" ng-class="{reverse: reverse}"></span>
           </small>
@@ -101,16 +110,16 @@
             <span ng-click="sortBy('area.name');" translate>SKILL_AREA</span>
             <span class="sortorder" ng-show="orderProperty === 'area.name'" ng-class="{reverse: reverse}"></span>
           </small>
-  			</div>
-  		    <div ui-tree="treeOptions" id="tree-root" data-max-depth="1">
-  		      <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items || filterValue.length > 0' infinite-scroll-distance='1'>
-  		        <li ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
-  		      </ol>
-  		    </div>
-  		    <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total && filterValue.length == 0'><small translate>SCROLL_MORE</small></div>
-  		    <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
-  		    <ws-spinner ng-if='loading.more'></ws-spinner>
-  		  </div>
-  		</div>
+        </div>
+        <div ui-tree="treeOptions" id="tree-root" data-max-depth="1">
+          <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items || filterValue.length > 0' infinite-scroll-distance='1'>
+            <li ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
+          </ol>
+        </div>
+        <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total && filterValue.length == 0'><small translate>SCROLL_MORE</small></div>
+        <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
+        <ws-spinner ng-if='loading.more'></ws-spinner>
+      </div>
     </div>
-  </fieldset>
+  </div>
+</fieldset>

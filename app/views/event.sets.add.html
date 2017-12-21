@@ -1,25 +1,25 @@
 <fieldset>
   <legend>{{newSet.name}}</legend>
-<ws-spinner class='bigSpinner' ng-show='loading.set'></ws-spinner>
-<div ng-show='!loading.set'>
+  <ws-spinner class='bigSpinner' ng-show='loading.set'></ws-spinner>
+  <div ng-show='!loading.set'>
 
-  <div>
-    <form>
-      <div class="form-group">
-        <label translate>SET_NAME</label>
-        <input ng-model="newSet.name" type="text" class="form-control" placeholder="Standard set 01">
-      </div>
-      <div class="form-group">
-        <label translate>DESCRIPTION</label>
-        <textarea ng-model="newSet.description" class="form-control" rows="3"></textarea>
-      </div>
+    <div>
+      <form>
+        <div class="form-group">
+          <label translate>SET_NAME</label>
+          <input ng-model="newSet.name" type="text" class="form-control" placeholder="{{ 'dfdf' | translate }}">
+        </div>
+        <div class="form-group">
+          <label translate>DESCRIPTION</label>
+          <textarea ng-model="newSet.description" class="form-control" rows="3"></textarea>
+        </div>
 
-      <button type="submit" ng-click="add();" class="btn btn-success btn-sm" translate>BUTTON_SUBMIT</button>
-      <button type="reset" ng-click="cancel();" class="btn btn-warning btn-sm" translate>BUTTON_CANCEL</button>
-    </form>
+        <button type="submit" ng-click="add();" class="btn btn-success btn-sm" translate>BUTTON_SUBMIT</button>
+        <button type="reset" ng-click="cancel();" class="btn btn-warning btn-sm" translate>BUTTON_CANCEL</button>
+      </form>
+    </div>
+
+    <p>&nbsp;</p>
+
   </div>
-
-  <p>&nbsp;</p>
-
-</div>
-  </fieldset>
+</fieldset>
