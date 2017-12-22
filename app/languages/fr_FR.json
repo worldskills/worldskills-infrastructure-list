@@ -1,4 +1,220 @@
 {
+  "CONSTANT":{
+    "APP_ROLES":{
+      "ADMIN":"Admin",
+      "ORGANIZER":"Organisateur",
+      "WS_MANAGER":"Responsable d'atelier",
+      "WS_SECTOR_MANAGER":"Responsable de secteur",
+      "VIEW":"Afficher"
+    },
+    "MULTIPLIERS":{
+      "SKILL":"par métier",
+      "COMPETITORS":"par participant",
+      "EXPERTS":"par expert",
+      "PER_NUM_COMPETITORS":"pour X participants",
+      "PER_NUM_EXPERTS":"pour X experts"
+    },
+    "ITEM_STATUS_TEXT":{
+      "RED":"Demandé",
+      "YELLOW":"En attente",
+      "GREEN":"Confirmé",
+      "BLACK":"Secret"
+    }
+  },
+  "JSTEXT": {
+    "ADD_ITEM_TO_THE_SET":{
+      "TITLE":"Ajout d'un item dans le lot",
+      "TEXT":"Êtes-vous certain(e) de vouloir ajouter cet item dans le lot standard : {{item.originalObject.description.text}} ?"
+    },
+    "ARE_YOU_SURE":{
+      "TITLE":"Confirmation",
+      "TEXT":"Êtes-vous certain(e) de vouloir supprimer le lot {{set.name}} - cette action est irréversible !",
+      "OK":"Supprimer l'item"
+    },
+    "DELETE_ITEM_FROM_SET":{
+      "TITLE":"Suppresion d'un item du lot",
+      "TEXT":"Êtes-vous certain(e) ?"
+    },
+    "LINKED_ITEMS":{
+      "TITLE":"Items liés",
+      "OK":"Fermer"
+    },
+    "REMOVE_ITEM_S_FROM_CATALOGUE":{
+      "TITLE":"Supprimer les items du catalogue ?",
+      "OK":"Supprimer"
+    },
+    "COMBINE_ITEMS":{
+      "TITLE":"Combiner les articles ?",
+      "OK":"Combiner"
+    },
+    "HOTKEYS":{
+      "EDIT_ITEM_IN_FULL_VIEW":"Éditer l'item en mode plein-éran",
+      "DISPLAY_LINKED_ITEMS":"Aficher les items liés",
+      "REMOVE_SELECTED_ITEM":"Supprimer l'item sélectionné",
+      "COMBINE_SELECTED_ITEMS":"Combiner les items sélectionnés",
+      "FULLSCREEN_TOGGLE":"Plein-écran (oui/non)",
+      "ADD_NEW_ROW_IN_FULL_VIEW":"Ajouter une nouvelle ligne en plein-écran",
+      "TOGGLE_INLINE_EDITING":"Activer/désactiver l'édition directe",
+      "TOGGLE_FILTERS_DIALOG":"Afficher/masquer les filtres"
+    },
+    "TEXT":{
+      "ALL_CATEGORIES":"Toutes les catégories"
+    },
+    "WSALERT":{
+      "SUCCESS":{
+        "QUANTITIES_UPDATED":"Quantités mises à jour !",
+        "SET_REMOVED_SUCCESSFULLY":"Lot supprimé avec succès !",
+        "ITEM_SAVED":"Item enregistré",
+        "ITEM_S_REMOVED":"Items supprimés !",
+        "ITEMS_COMBINED":"Items combinés !"
+      },
+      "DANGER":{
+        "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !"
+      },
+      "WARNING":{
+        "ERROR_REFRESHING_ITEM":"Mise à jour de l'item impossible, vous devriez envisager d'actualiser la fenêtre de votre navigateur :",
+        "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"Vous devez commencer par sélectionner au moins un métier",
+        "PLEASE_SELECT_ONLY_ONE_ROW":"Merci de ne sélectionner qu'une seule ligne."
+      }
+    },
+    "ALERT":{
+      "YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM":"Vous devez sélectionner au moins un item",
+      "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Merci de sélectionner au moins 2 items"
+    },
+    "ERROR":{
+      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Erreur de récupération des fonctions de l'utilisateur : "
+    },
+    "CONFIRM":{
+      "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Souhaitez-vous vraiment quitter cette page ?"
+    }
+  },
+
+  "YOU_HAVE_MULTIPLE_POSITIONS":"Vous occupez plusieurs fonctions : merci de sélectionner le rôle sous lequel vous souhaitez utiliser l'application.",
+  "SOME_OF_THE_ITEMS_CAN_T_BE_DELETED":"Certains items ne peuvent être supprimés car ils sont rattachés à un métier. Cliquer sur 'Supprimer' ne supprimera que les items qui ne sont rattachés à aucun métier.",
+  "TH_DELETE":"Supprimer",
+  "TH_REQUESTED":"Demandé",
+
+  "ARE_YOU_SURE_YOU_WANT_TO_UNLINK":"Êtes vous certain(e) de vouloir briser la liaison et supprimer l'item demandé ?",
+  "THIS_ITEM_HAS_CHILD_ITEMS":"Cet item possède des items enfants - ceux-ci seront également supprimés !",
+
+  "ELECTRICITY_PHASE":"Phase électrique",
+  "WATER_SUPPLY":"Alimentation en eau",
+  "WATER_DRAINAGE":"Évacuation d'eau",
+  "COMPRESSED_AIR":"Air comprimé",
+  "VENTILATION_FUME_EXTRACTION":"Ventilation / extraction de fumée",
+  "GAS_REQUIREMENTS":"Besoins en gaz",
+  "ANCHOR_FIXING_BASE_REQUIREMENTS":"Ancrage, fixation, autres besoins",
+  "FILES_AND_PICTURES":"Fichiers et images",
+  "TH_NAME":"Nom",
+  "BUTTON_REMOVE":"Supprimer",
+  "DROP_FILES_HERE_TO_UPLOAD":"Glissez ici les fichiers à uploader",
+  "UPLOAD_QUEUE":"File d'attente",
+  "QUEUE_LENGTH:":"Longueur de la file :",
+  "TH_PROGRESS":"Progression",
+  "MB":"Mo",
+  "QUEUE_PROGRESS:":"Progression :",
+  "BUTTON_UPLOAD_ALL":"Tout uploader",
+  "BUTTON_CANCEL_ALL":"Tout annuler",
+  "BUTTON_REMOVE_ALL":"Tout supprimer",
+  "EXTRA_DETAILS_COMMENTS":"Détails complémentaires / Commentaires",
+  "BUTTON_ADD_ITEM":"Ajouter l'item",
+  "COPY_DESCRIPTION_TO_REQUESTED_ITEM_S":"Copier la description aux items demandés",
+  "BUTTON_SAVE_ITEM":"Enregistrer l'item",
+  "IN":"dans",
+  "AT":"à",
+  "SELECTED":"Sélectionné",
+
+  "EDITING_REQUESTED_ITEM_DETAILS_IN":"Édition des informations des items demandés dans",
+
+  "BUTTON_SAVE_CHANGES":"Enregistrer les modifications",
+
+  "CANNOT_CHILD_ITEMS":"Vous ne pouvez pas déplacer un item enfant indépendamment des autres. Vous pouvez déplacer le parent, ce qui aura pour effet de déplacer également ses enfants.",
+
+  "SURE_COMBINE_ITEMS":"Êtes vous certain(e) de vouloir combiner ces items ?",
+  "IMPORTANT!":"Important !",
+  "ITEM_ATTACHED_TO_SKILL":"L'un au moins des items sélectionnés est rattaché à un métier : cette action aura pour effet d'écraser la description de ces items.",
+  "TH_KEEP":"Conserver",
+  "TH_LINKED":"Lié",
+  "YES":"Oui",
+  "NO":"Non",
+
+  "ADD_NEW_LINKED_ITEM":"Ajouter un nouvel item lié",
+  "ITEM_NO_SKILLS":"Cet item n'est encore utilisé par aucun métier.",
+  "TH_REQUESTED":"Demandé",
+  "TH_SKILL":"Métier",
+  "TH_CATEGORY":"Catégorie",
+  "TH_QTY":"Qté",
+  "TH_SUPPLIER_POTENTIAL":"Fournisseur (potentiel)",
+  "TH_ACTIONS":"Actions",
+  "NEW":"nouveau",
+  "UPDATED":"mis à jour",
+
+
+  "PLACEHOLDER": {
+    "SEARCH":"Rechercher...",
+    "SEARCH_FROM_STANDARD":"Rechercher dans les lots standard...",
+    "SEARCH_FROM_CATALOG":"Rechercher dans les items du catalogue...",
+    "STANDARD_SET":"Lot standard",
+    "FILTER":"Filtrer...",
+    "CHOOSE_SKILL":"Choisissez un métier",
+    "CHOOSE_INSTALLATION_TYPE":"Choisissez un type d'installation",
+    "CHOOSE_INSTALLATION_TYPE_OPT":"Choisissez un type d'installation (facultatif)",
+    "DESCRIPTION":"Description",
+    "DESCRIPTION_OF_THE_ITEM":"Description de l'item",
+    "QUANTITY":"Quantité",
+    "X_NUMBER":"Valeur de X",
+    "POTENTIAL_SUPPLIER":"Fournisseur potentiel",
+    "ESTIMATED_PRICE":"Prix estimé",
+    "ADDITIONAL_QUANTITY":"Quantité additionnelle",
+    "MANUFACTURER":"Fabricant",
+    "MODEL":"Modèle",
+    "SIZE":"Taille",
+    "PART_NUMBER":"Référence",
+    "SUPPLIER":"Fournisseur",
+    "UNIT_COST":"Coût unitaire",
+    "PO_NUMBER":"Bon de commande",
+    "DELIVERY":"Livraison",
+    "TIME":"Heure",
+    "HS_CODE":"Code HS",
+    "ELECTRICITY_VOLTS":"Électricité - Volts",
+    "ELECTRICITY_AMPS":"Électricité - Ampères",
+    "ELECTRICITY_PHASE":"Phase électrique",
+    "WATER_SUPPLY":"Alimentation en eau",
+    "WATER_DRAINAGE":"Évacuation d'eau",
+    "COMPRESSED_AIR":"Air comprimé",
+    "VENTILATION_FUME_EXTRACTION":"Ventilation / extraction de fumée",
+    "GAS_REQUIREMENTS":"Besoins en gaz",
+    "ANCHOR_FIXING_BASE_REQUIREMENTS":"Ancrage, fixation, autres besoins",
+    "EXTRA_DETAILS_COMMENTS":"Détails complémentaires / Commentaires",
+    "CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL":"Choisissez un type d'installation (facultatif)",
+    "STANDARD_SET_01":"Lot standard 01"
+  },
+  "TITLE": {
+    "CHOOSE_SKILL":"Sélectionnez un métier",
+    "CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL":"Choisissez un type d'installation (facultatif)"
+  },
+  "TEXT_SEARCHING": {
+    "SEARCH_FOR_STANDARD":"Recherche dans les lots standard...",
+    "SEARCHING_FOR_ITEMS_IN_CATALOGUE":"Recherche dans les items du catalogue..."
+  },
+  "TEXT_NO_RESULTS": {
+    "NO_SETS":"Aucun lot n'a été trouvé : merci de modifier les termes de la recherche.",
+    "NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM":"Aucun item n'a été trouvé : appuyez sur Entrée pour ajouter un nouvel item.",
+    "NO_EXISTING_SUPPLIERS_FOUND":"Aucun fournisseur existant ne correspond.",
+    "NO_ITEMS_FOUND_PLEASE_TRY":"Aucun item n'a été trouvé : merci de modifier les termes de la recherche."
+  },
+  "REQUIRED": {
+    "QUANTITY_IS_MISSING":"La quantité n'a pas été précisée",
+    "MULTIPLY_FACTOR_REQUIRED":"Le coefficient multiplicateur est requis",
+    "ADDITIONAL_QUANTITY_IS_MISSING":"La quantité additionnelle n'a pas été précisée"
+  },
+  "CLOSE_TEXT": {
+    "CLOSE":"Close"
+  },
+  "UIB_TOOLTIP": {
+    "WARNING_UPDATE_DESCRIPTION":"Attention ! Cette opération va remplacer la description de l'item dans tous les métiers où il est utilisé !"
+  },
+
   "APP_NAME":"WorldSkills Infrastructure Lists",
   "LOGIN":"Connexion",
   "LOGOUT":"Déconnexion",
@@ -13,32 +229,32 @@
   "HOST_VIEW": "Vues invité",
   "STANDARD_SETS": "Lots standard",
   "CATALOGUE_EDITOR": "Gestion du catalogue",
-  "EXPORT_REQUESTED_ITEMS": "Exporter les articles demandés",
-  "EXPORT_ALL_ITEMS": "Exporter tous les articles",
-  "TO_EDIT_ITEMS": "Pour éditer des articles, sélectionnez une catégorie dans le menu situé sur la gauche.",
+  "EXPORT_REQUESTED_ITEMS": "Exporter les items demandés",
+  "EXPORT_ALL_ITEMS": "Exporter tous les items",
+  "TO_EDIT_ITEMS": "Pour éditer des items, sélectionnez une catégorie dans le menu situé sur la gauche.",
   "SKILL_MANAGEMENT": "Gestion du métier",
-  "POSITION": "Fonction",
+  "TH_POSITION": "Fonction",
   "NAME": "Nom",
   "VIEW_ALL_LIST": "Voir la liste des personnes présentes dans le",
   "PROGRESS": "Progression",
   "REPORTS": "Rapports",
-  "REPORT_PRINT_VIEW": "Afficher le rapport métier",
-  "REPORT_REQUESTED_ITEMS": "Articles métier demandés",
+  "BUTTON_REPORT_PRINT_VIEW": "Afficher le rapport métier",
+  "BUTTON_REPORT_REQUESTED_ITEMS": "Items métier demandés",
   "EDIT_DETAILS":"Modifier",
   "SET_NAME": "Nom du lot",
   "DESCRIPTION": "Description",
   "BUTTON_SUBMIT": "Enregistrer",
   "BUTTON_CANCEL": "Annuler",
   "BUTTON_DELETE_SET": "Supprimer le lot",
-  "CATALOGUE_ITEMS_SET": "Articles du catalogue dans le lot",
-  "ADD_ITEM": "Ajouter un article",
-  "ADD_ITEM_FROM_CATALOGUE": "Ajouter un article du catalogue",
+  "CATALOGUE_ITEMS_SET": "Items du catalogue dans le lot",
+  "ADD_ITEM": "Ajouter un item",
+  "ADD_ITEM_FROM_CATALOGUE": "Ajouter un item du catalogue",
   "TH_ID": "ID",
   "TH_DESCRIPTION": "Description",
   "TH_MAKE": "Marque",
   "TH_MODEL": "Modèle",
   "TH_QTY": "Qté",
-  "TH_MULTI": "Multi",
+  "TH_MULTI": "Multiplicateur",
   "TH_FACTOR": "Facteur",
   "UPDATE_QUANTITIES": "Mettre à jour les quantités",
   "ADVANCED_ACTIONS": "Actions avancées",
@@ -46,9 +262,9 @@
   "ADD_STANDARD_SET": "Ajouter un lot standard",
   "SEARCH_NO_RESULTS": "La recherche n'a retourné aucun résultat",
   "CLEAR_SEARCH_TERMS": "Réinitialiser la recherche",
-  "CATEGORY_NO_ITEMS": "Cette catégorie ne contient aucun article.",
-  "IMPORTANT_CANT_SORT": "Important : il n'est pas possible de trier les articles quand une recherche est en cours.",
-  "REORDER_DISABLED_SORT": "L'ordonnancement d'articles n'est pas possible quand un tri est actif. Vous pouvez désactiver le tri depuis le menu \"<b>Actions avancées</b>\".",
+  "CATEGORY_NO_ITEMS": "Cette catégorie ne contient aucun item.",
+  "IMPORTANT_CANT_SORT": "Important : il n'est pas possible de trier les items quand une recherche est en cours.",
+  "REORDER_DISABLED_SORT": "L'ordonnancement d'items n'est pas possible quand un tri est actif. Vous pouvez désactiver le tri depuis le menu \"<b>Actions avancées</b>\".",
   "ACTIONS": "Actions",
   "STATUS": "État",
   "QUANTITY": "Quantité",
@@ -64,66 +280,66 @@
   "DISABLE_INLINE_EDIT": "Désactiver l'édition directe",
   "FULLSCREEN": "Plein-écran",
   "EXIT_FULLSCREEN": "Quitter le mode ",
-  "ADD_CATALOGUE_ITEM": "Ajouter un article au catalogue",
-  "ITEM_ACTIONS": "Actions sur les articles",
-  "EDIT_SELECTED_ITEM": "Modifier l'article sélectionné",
-  "REMOVE_SELECTED_ITEMS": "Supprimer les articles sélectionnés",
-  "SEE_LINKED_ITEMS": "Afficher les articles liés",
-  "COMBINE_ITEMS": "Combiner les articles",
+  "ADD_CATALOGUE_ITEM": "Ajouter un item au catalogue",
+  "ITEM_ACTIONS": "Actions sur les items",
+  "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné",
+  "REMOVE_SELECTED_ITEMS": "Supprimer les items sélectionnés",
+  "SEE_LINKED_ITEMS": "Afficher les items liés",
+  "COMBINE_ITEMS": "Combiner les items",
 
   "SKILL_INFORMATION": "Informations métier",
   "TH_COMPETITORS": "Participants",
   "TH_EXPERTS": "Experts",
   "TH_INTERPRETERS": "Interprètes",
   "TH_QUANTITY": "Quantité",
-  "TH_ITEM": "Article",
+  "TH_ITEM": "Item",
   "TH_LAST_MODIFIED": "Modifié le",
-  "TH_SUPPLIED_ITEM": "Article fourni",
+  "TH_SUPPLIED_ITEM": "Item fourni",
   "TH_STATUS": "Statut",
   "TH_MANUFACTURER": "Fabricant",
   "TH_SIZE": "Taille",
   "TH_PART_NUM": "Référence",
   "TH_FILES": "Fichiers",
-  "NO_ITEMS": "Aucun article",
+  "NO_ITEMS": "Aucun item",
   "BACK_TO_HOME": "« Retourner sur worldskills.org",
   "ADDITIONAL": "additionnels",
 
   "NO_SETS_DEFINED": "Aucun lot n'a été défini",
-  "ADD_NEW_SET": "Ajouter un nouveau lot",
+  "BUTTON_ADD_NEW_SET": "Ajouter un nouveau lot",
 
   "ARE_YOU_SURE_ADD": "Souhaitez-vous vraiment ajouter",
   "TO_THE_LIST": "à la liste ?",
-  "ITEMS": "Articles",
+  "ITEMS": "Items",
 
-  "ADD_NEW_ITEM": "Ajouter un article",
+  "ADD_NEW_ITEM": "Ajouter un item",
   "SKILL": "Métier",
   "NUMBER:": "Numéro :",
   "INSTALLATION_TYPE": "Type d'installation",
-  "MUST_SELECT_INSTALLATION_TYPE": "Vous devez spécifier le type d'installation pour cet article",
-  "SUPPLIED_ITEM_DETAILS": "Caractéristiques de l'article fourni",
-  "ITEM_ALREADY_CREATED": "Cet article a déjà été créé par l'organisateur ou est déjà utilisé par un autre métier.",
-  "ITEM_DOESNT_MATCH": "S'il ne correspond pas à vos besoins, saisissez une description unique afin de créer un nouvel article.",
+  "MUST_SELECT_INSTALLATION_TYPE": "Vous devez spécifier le type d'installation pour cet item",
+  "SUPPLIED_ITEM_DETAILS": "Caractéristiques de l'item fourni",
+  "ITEM_ALREADY_CREATED": "Cet item a déjà été créé par l'organisateur ou est déjà utilisé par un autre métier.",
+  "ITEM_DOESNT_MATCH": "S'il ne correspond pas à vos besoins, saisissez une description unique afin de créer un nouvel item.",
   "CHANGE_TO_ANOTHER_ITEM": "Change to another item***",
   "MULTIPLIER": "Multiplicateur",
   "MULTIPLY_FACTOR": "Coefficient multiplicateur",
   "POTENTIAL_SUPPLIER": "Fournisseur potentiel",
   "ESTIMATED_PRICE": "Prix estimé",
-  "SKILL_AREA": "Skill Area***",
-  "ADDITION_QUANTITY": "Quantité additionnelle",
+  "SKILL_AREA": "Métier",
+  "ADDITIONAL_QUANTITY": "Quantité additionnelle",
   "VAT_REFUNDABLE": "TVA récupérable",
-  "BUTTON_ADD_ITEM": "Ajouter l'article",
-  "EDITING_ITEM": "Modifier un article",
+  "BUTTON_ADD_ITEM": "Ajouter l'item",
+  "EDITING_ITEM": "Modifier un item",
 
-  "ITEM_INFORMATION_PUBLISHED": "Informations article visibles dans la liste IL",
+  "ITEM_INFORMATION_PUBLISHED": "Informations visibles dans la liste d'infrastructures",
 
   "SUPPLY_HOST_INFO": "Informations sur le fournisseur ou l'hôte",
   "SUPPLIER": "Fournisseur",
   "SUPPLY_TYPE": "Type de fourniture",
-  "SPONSOR_LOAN": "Sponsor Loan***",
-  "SPONSOR_SUPPLY": "Sponsor Supply***",
-  "LOAN_LEASE_HIRE": "Loan / Lease / Hire***",
+  "SPONSOR_LOAN": "Prêt sponsor",
+  "SPONSOR_SUPPLY": "Fourniture sponsor",
+  "LOAN_LEASE_HIRE": "Prêt / Location",
   "PURCHASE": "Achat",
-  "TO_PURCHASE": "À acheter",
+  "TO_PURCHASE": "Achat requis",
   "UNIT_COST": "Coût unitaire",
   "UNIT": "Unité",
   "UNIT_PIECES": "Pièces",

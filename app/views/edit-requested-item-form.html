@@ -10,16 +10,16 @@
     <div class="row">
       <div class="col col-sm-12 col-md-6">
         <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.description.$error.required, 'has-success': !editForm.description.$error.required}">
-          <label class='control-label'>Description</label>
-          <input name="description" type="text" class="input-sm form-control" placeholder="Description" ng-model='item.description.text' required="Description is missing" ng-required="true"  ng-trim="true">
+          <label class='control-label' translate>DESCRIPTION</label>
+          <input name="description" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}" ng-model='item.description.text' required="{{ 'REQUIRED.QUANTITY_IS_MISSING' | translate }}" ng-required="true"  ng-trim="true">
           <span ng-if="!editForm.description.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
           <span ng-if="editForm.description.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
       <div class="col col-sm-12 col-md-6">
         <div class="form-group addForm has-feedback has-success">
-          <label class='control-label'>Installation type</label>
-          <div ng-show="item.parent_id != 0" class="alert alert-warning small">You cannot move child items independently, but you can move the parent, which will also move child items.</div>
+          <label class='control-label' translate>INSTALLATION_TYPE</label>
+          <div ng-show="item.parent_id != 0" class="alert alert-warning small" translate>CANNOT_CHILD_ITEMS</div>
           <div ng-show="item.parent_id == 0">
             <select class="form-control input-sm" ng-model="item.category" ng-options="category.id as category.category.name.text for category in categories"></select>
             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
@@ -31,23 +31,23 @@
     <div class='row'>
       <div class='col col-sm-12 col-md-4'>
         <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.quantity.$error.required, 'has-success': !editForm.quantity.$error.required}">
-          <label class='control-label'>Quantity</label>
-          <input name="quantity" type="number" class="input-sm form-control" placeholder="Quantity" ng-model='item.quantity' required="Quantity is missing" ng-required="true">
+          <label class='control-label' translate>QUANTITY</label>
+          <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.QUANTITY' | translate }}" ng-model='item.quantity' required="{{ 'REQUIRED.QUANTITY_IS_MISSING' | translate }}" ng-required="true">
           <span ng-if="!editForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
           <span ng-if="editForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
       <div class='col col-sm-12 col-md-4'>
         <div class="form-group editForm has-feedback has-success">
-          <label class='control-label'>Multiplier</label>
+          <label class='control-label' translate>MULTIPLIER</label>
           <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
           <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
         </div>
       </div>
       <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(item.multiplier)">
         <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.multiply_factor.$error.required, 'has-success': !editForm.multiply_factor.$error.required}">
-          <label class='control-label'>Multiply factor</label>
-          <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true">
+          <label class='control-label' translate>MULTIPLY_FACTOR</label>
+          <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.X_NUMBER' | translate }}" ng-model='item.multiply_factor' required="{{ 'REQUIRED.MULTIPLY_FACTOR_REQUIRED' | translate }}" ng-required="true">
           <span ng-if="!editForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
           <span ng-if="editForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
         </div>
@@ -58,11 +58,11 @@
     <div class='row'>
       <div class='col col-xs-12 col-md-4'>
         <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.supplier.$error.required, 'has-success': !editForm.supplier.$error.required}">
-          <label class='control-label'>Potential supplier</label>
-          <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="Potential supplier" ng-model='item.supplier' ng-trim="true"> -->
+          <label class='control-label' translate>POTENTIAL_SUPPLIER</label>
+          <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}" ng-model='item.supplier' ng-trim="true"> -->
           <angucomplete-alt
             id="id"
-            placeholder="Potential supplier"
+            placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}"
             pause="400"
             selected-object="item.selectedSupplier"
             remote-url="{{searchSupplierAPI}}"
@@ -77,7 +77,7 @@
             override-suggestions="true"
             field-required="false"
             text-searching="false"
-            text-no-results="No existing suppliers found."
+            text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
             initial-value="item.supplier"
             input-class="input-sm form-control"/>
           <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
@@ -85,14 +85,14 @@
       </div>
       <div class='col col-xs-12 col-md-4 form-group'>
         <div class="form-group editForm has-feedback has-success">
-          <label class='control-label'>Estimated price</label>
-          <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="Estimated price">
+          <label class='control-label' translate>ESTIMATED_PRICE</label>
+          <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="{{ 'PLACEHOLDER.ESTIMATED_PRICE' | translate }}">
           <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
       <div class='col col-xs-12 col-md-4 form-group'>
         <div class="form-group addForm has-feedback has-success">
-          <label class='control-label'>Skill Area</label>
+          <label class='control-label' translate>SKILL_AREA</label>
           <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
           <select class="form-control input-sm" ng-model="item.area.id" ng-options="area.id as area.name for area in skillAreas"></select>
           <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
@@ -103,8 +103,8 @@
     <div class="row">
       <div class="col col-xs-12 col-md-4 form-group">
         <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.additional_quantity.$error.required, 'has-success': !editForm.additional_quantity.$error.required}">
-          <label class='control-label'>Additional quantity</label>
-          <input name="quantity" type="number" class="input-sm form-control" placeholder="Additional quantity" ng-model='item.additional_quantity' required="Additional quantity is missing" ng-required="false">
+          <label class='control-label' translate>ADDITIONAL_QUANTITY</label>
+          <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ADDITIONAL_QUANTITY' | translate }}" ng-model='item.additional_quantity' required="{{ 'REQUIRED.ADDITIONAL_QUANTITY_IS_MISSING' | translate }}" ng-required="false">
           <span ng-if="!editForm.additional_quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
           <span ng-if="editForm.additional_quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
         </div>
@@ -112,7 +112,7 @@
       <div class="col col-xs-12 col-md-4 form-group">
         <div data-nodrag class="checkbox editForm form-group has-feedback has-success" style="margin-top: -25px;">
           <label>
-            <input type="checkbox" ng-model="item.vat_refund"> VAT Refundable
+            <input type="checkbox" ng-model="item.vat_refund"> <span translate>VAT_REFUNDABLE</span>
           </label>
         </div>
       </div>
@@ -123,7 +123,7 @@
   </div>
 
   <div class='form-group editForm'>
-    <a data-nodrag ng-disabled="editForm.$error.required" ng-click="saveItem(item, $index);" class='btn btn-sm btn-success'>Save changes</a>
-    <a data-nodrag ng-click="editItem(item, $index);" class='btn btn-sm btn-warning'>cancel</a>
+    <a data-nodrag ng-disabled="editForm.$error.required" ng-click="saveItem(item, $index);" class='btn btn-sm btn-success' translate>BUTTON_SAVE_CHANGES</a>
+    <a data-nodrag ng-click="editItem(item, $index);" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</a>
   </div>
 </form>

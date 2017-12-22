@@ -35,6 +35,7 @@ angular.module('ilApp')
 
     //prevent accidental navigation
     $scope.$on('$stateChangeStart', function( event ) {
+      // JSTEXT.CONFIRM.ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE
       if(!confirm("Are you sure you want to leave this page?"))
         event.preventDefault();
     });
@@ -220,6 +221,7 @@ angular.module('ilApp')
         promise.resolve();
       },
       function(error){
+        // JSTEXT.WSALERT.WARNING.ERROR_REFRESHING_ITEM
         WSAlert.warning("Error refreshing item, consider refreshing the browser: " + error);
         promise.reject();
         $scope.loading.catalogue = false;
@@ -237,6 +239,7 @@ angular.module('ilApp')
       var item = $scope.getOneSelectedItem();
 
       if(item == void 0 || item === false){
+        // JSTEXT.ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM
         alert("You need to select at least one item");
         return;
       }
@@ -248,6 +251,7 @@ angular.module('ilApp')
         $scope.loading.catalogue = false;
 
         //display linked items
+        // JSTEXT.LINKED_ITEMS
         $confirm({
             title: "Linked items",
             newLinkedItem: $scope.createNewLinkedItem,
@@ -288,7 +292,7 @@ angular.module('ilApp')
       $scope.filters.category = null;
 
       Items.getCategories(item.id).then(function (res) {
-
+        // JSTEXT.TEXT.ALL_CATEGORIES
         res.unshift({
           id: 'all',
           category: {
@@ -342,7 +346,7 @@ angular.module('ilApp')
           deleteQueue.push(val);
         }
       });
-
+      // JSTEXT.REMOVE_ITEM_S_FROM_CATALOGUE
       $confirm({
           title: "Remove item(s) from catalogue?",
           items: items,
@@ -369,6 +373,7 @@ angular.module('ilApp')
           });
 
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
+          // JSTEXT.WSALERT.SUCCESS.ITEM_S_REMOVED
           WSAlert.success("Item(s) removed!");
 
           $scope.loading.catalogue = false;
@@ -388,11 +393,13 @@ angular.module('ilApp')
 
       var items = $scope.getSelectedItems();
       if(items == void 0 || items === false){
+        // JSTEXT.ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS
         alert("Please select at least 2 items");
         return;
       }
 
       if(items.length < 2){
+        // JSTEXT.ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS
         alert("Please select at least 2 items");
         return;
       }
@@ -408,6 +415,7 @@ angular.module('ilApp')
         updatedItems.push(val);
       });
 
+      // JSTEXT.COMBINE_ITEMS
       $confirm({
           title: "Combine items?",
           items: items,
@@ -433,7 +441,7 @@ angular.module('ilApp')
                 $scope.gridOptions.data.splice(i, 1);
               }
             });
-
+            // JSTEXT.WSALERT.SUCCESS.ITEMS_COMBINED
             WSAlert.success("Items combined!");
             $scope.loading.catalogue = false;
         },
@@ -500,6 +508,7 @@ angular.module('ilApp')
 
     $scope.filtersActivate = function(){
       if($scope.filters.skill == null) {
+        // JSTEXT.WSALERT.WARNING.YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST
         WSAlert.warning("You have to select at least skill first");
         return;
       }
@@ -525,6 +534,7 @@ angular.module('ilApp')
       var item = $scope.getOneSelectedItem();
 
       if(item == void 0 || item === false){
+        // JSTEXT.ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM
         alert("You need to select at least one item");
         return;
       }
@@ -537,6 +547,7 @@ angular.module('ilApp')
       var item = false;
 
       if($scope.gridApi.selection.getSelectedRows().length > 1){
+        // JSTEXT.WSALERT.WARNING.PLEASE_SELECT_ONLY_ONE_ROW
         WSAlert.warning("Please select only one row.");
         item = false;
       }
@@ -645,6 +656,7 @@ angular.module('ilApp')
     };
 
     $scope.unlinkRequestedItem = function(item, linkedItemsRef, index){
+      // JSTEXT.ARE_YOU_SURE
       $confirm({
           title: "Are you sure?",
           ok: 'Remove item',
@@ -719,48 +731,56 @@ angular.module('ilApp')
 
 
     //map hotkeys
+    // JSTEXT.HOTKEYS.EDIT_ITEM_IN_FULL_VIEW
     hotkeys.add({
       combo: 'ctrl+o',
       description: 'Edit item in full view',
       callback: $scope.editItem
     });
 
+    // JSTEXT.HOTKEYS.DISPLAY_LINKED_ITEMS
     hotkeys.add({
       combo: 'ctrl+l',
       description: 'Display linked items',
       callback: $scope.getLinkedItems
     });
 
+    // JSTEXT.HOTKEYS.REMOVE_SELECTED_ITEM
     hotkeys.add({
       combo: 'ctrl+backspace',
       description: 'Remove selected item',
       callback: $scope.removeItem
     });
 
+    // JSTEXT.HOTKEYS.COMBINE_SELECTED_ITEMS
     hotkeys.add({
       combo: 'ctrl+m',
       description: 'Combine selected items',
       callback: $scope.combineItems
     });
 
+    // JSTEXT.HOTKEYS.FULLSCREEN_TOGGLE
     hotkeys.add({
       combo: 'ctrl+f',
       description: 'Fullscreen (toggle)',
       callback: $scope.toggleFullScreen
     });
 
+    // JSTEXT.HOTKEYS.ADD_NEW_ROW_IN_FULL_VIEW
     hotkeys.add({
       combo: 'ctrl+n',
       description: 'Add new row in full view',
       callback: $scope.openItemEditor
     });
 
+    // JSTEXT.HOTKEYS.TOGGLE_INLINE_EDITING
     hotkeys.add({
       combo: 'ctrl+k',
       description: 'Toggle inline editing',
       callback: $scope.toggleEditing
     });
 
+    // JSTEXT.HOTKEYS.TOGGLE_FILTERS_DIALOG
     hotkeys.add({
       combo: 'ctrl+t',
       description: 'Toggle filters dialog',
@@ -772,4 +792,3 @@ angular.module('ilApp')
     };
 
   });
-

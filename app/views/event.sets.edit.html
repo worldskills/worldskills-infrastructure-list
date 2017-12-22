@@ -12,7 +12,7 @@
     <form>
       <div class="form-group">
         <label translate>SET_NAME</label>
-        <input ng-model="selectedSet.name" type="text" class="form-control" placeholder="{{ 'PLACEHOLDER.STANDARD_SET' | translate:selectedSet.name }}">
+        <input ng-model="selectedSet.name" type="text" class="form-control" placeholder="{{ 'PLACEHOLDER.STANDARD_SET' | translate }}">
       </div>
       <div class="form-group">
         <label translate>DESCRIPTION</label>
@@ -46,7 +46,7 @@
   <ws-spinner ng-show='loading.addToSet'></ws-spinner>
   <div ng-show='addItem' class='well'>
     <h5 translate>ADD_ITEM_FROM_CATALOGUE</h5>
-    <angucomplete-alt id="id" translate
+    <angucomplete-alt id="id"
             placeholder="{{ 'PLACEHOLDER.SEARCH_FROM_CATALOG' | translate }}"
             pause="400"
             selected-object="addItemSelected"
@@ -61,8 +61,8 @@
             focus-first="true"
             override-suggestions="true"
             field-required="true"
-            text-searching="Searching for items in cataloque..."
-            text-no-results="No items found, please try using other search terms."
+            text-searching="{{ 'TEXT_SEARCHING.SEARCHING_FOR_ITEMS_IN_CATALOGUE' | translate }}"
+            text-no-results="{{ 'TEXT_NO_RESULTS.NO_ITEMS_FOUND_PLEASE_TRY' | translate }}"
             input-class="form-control form-control-small has-feedback"/>
   </div>
 

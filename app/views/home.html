@@ -1,6 +1,6 @@
 <ws-spinner ng-show="loading.init" class='bigSpinner'></ws-spinner>
 <div ng-show="!loading.init && auth.user.roles.length > 1">
-  <h4>You have multiple positions, please select a role to use the application as</h4>
+  <h4 translate>YOU_HAVE_MULTIPLE_POSITIONS</h4>
 
   <div class="list-group">
     <button class="list-group-item"
@@ -9,7 +9,7 @@
             ng-click="loadActivePosition(position, $event)">
       <!--<a ng-if="position.id != activePosition.id" href="#" ng-click="setActivePosition(position, $event);">{{position.role}} <span ng-if="position.target">in {{position.target}} </span>at {{position.event.name.text}}</a>-->
       <!--<a ng-if="position.id == activePosition.id" href="#" ng-click="redirectToActivePosition(position, $event);">{{position.role}} <span ng-if="position.target">in {{position.target}} </span>at {{position.event.name.text}}</a>-->
-      {{position.role}} <span ng-if="position.target">in {{position.target}} </span>at {{position.event.name.text}}<span ng-if="position.id == activePosition.id" style='margin-left: 2em;' class="label label-info">Selected</span>
+      {{position.role}} <span ng-if="position.target"><span translate>IN</span> {{position.target}} </span><span translate>AT</span> {{position.event.name.text}}<span ng-if="position.id == activePosition.id" style='margin-left: 2em;' class="label label-info" translate>SELECTED</span>
     </button>
   </div>
   <p>&nbsp;</p>

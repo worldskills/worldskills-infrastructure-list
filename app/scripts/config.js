@@ -21,6 +21,7 @@
   ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
   ilApp.constant('FILTER_AUTH_ROLES', [2200]);
 
+  // JSTEXT.CONSTANT.APP_ROLES
   ilApp.constant('APP_ROLES', {
     ADMIN: 'Admin',
     ORGANIZER: 'Organizer',
@@ -29,6 +30,7 @@
     VIEW: 'View'
   });
 
+  // JSTEXT.CONSTANT.MULTIPLIERS
   ilApp.constant('MULTIPLIERS', [
     {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
     {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
@@ -44,6 +46,7 @@
     'BLACK': 4
   });
 
+  // JSTEXT.CONSTANT.ITEM_STATUS_TEXT
   ilApp.constant('ITEM_STATUS_TEXT', {
     'RED': "Requested",
     'YELLOW': "Pending",

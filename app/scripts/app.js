@@ -108,7 +108,7 @@ angular
   $translateProvider.preferredLanguage('en');
   $translateProvider.fallbackLanguage('en');
   $translateProvider.useLocalStorage();
-  $translateProvider.useSanitizeValueStrategy('sanitize');
+  $translateProvider.useSanitizeValueStrategy('escape');
 
   //language negotiation
   //http://angular-translate.github.io/docs/#/guide/09_language-negotiation

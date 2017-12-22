@@ -31,6 +31,7 @@ angular.module('ilApp')
       $scope.loading.set = true;
 
       ItemSets.updateQuantities($scope.selectedSet).then(function(res){
+        // JSTEXT.WSALERT.SUCCESS.QUANTITIES_UPDATED
         WSAlert.success("Quantities updated!");
         $scope.selectedSet = res.data;
         $scope.loading.set = false;
@@ -41,6 +42,7 @@ angular.module('ilApp')
       });
     };
 
+    // JSTEXT.DELETE_ITEM_FROM_SET
     $scope.removeItem = function(item, index){
       $confirm({
         title: 'Delete item from set',
@@ -50,6 +52,7 @@ angular.module('ilApp')
           $scope.selectedSet.items.splice(index, 1);
         },
         function(error){
+          // JSTEX.WSALERT.DANGER.ITEM_COULD_NOT_BE_REMOVED_FROM_SET
           WSAlert.danger("Item could not be removed from set, please try again!");
         });
       });
@@ -72,7 +75,7 @@ angular.module('ilApp')
     $scope.addItemSelected = function(item){
       if(typeof item === 'undefined') return false;
 
-
+      //JSTEXT.ADD_ITEM_TO_THE_SET
       $confirm({
         title: "Add item to the set",
         text: 'Are you sure you want to add "' + item.originalObject.description.text + '" to the standard set?'
@@ -85,6 +88,7 @@ angular.module('ilApp')
       });
     };
 
+    //JSTEXT.ARE_YOU_SURE
     $scope.deleteSet = function(set){
       $confirm({
         title: "Are you sure?",
@@ -123,6 +127,7 @@ angular.module('ilApp')
       $scope.loading.set = true;
 
       ItemSets.removeSet(setId).then(function(res){
+        // JSTEXT.WSALERT.SUCCESS.SET_REMOVED_SUCCESSFULLY
         WSAlert.success("Set removed successfully!");
         $state.go('event.sets', {eventId: $state.params.eventId});
 

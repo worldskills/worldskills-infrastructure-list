@@ -1,9 +1,160 @@
 {
+  "JSTEXT": {
+    "CONSTANT":{
+      "APP_ROLES":{
+        "ADMIN":"Admin",
+        "ORGANIZER":"Organizer",
+        "WS_MANAGER":"Workshop Manager",
+        "WS_SECTOR_MANAGER":"Sector Manager",
+        "VIEW":"View"
+      },
+      "MULTIPLIERS":{
+        "SKILL":"per Skill",
+        "COMPETITORS":"per Competitor",
+        "EXPERTS":"per Expert",
+        "PER_NUM_COMPETITORS":"per every X Competitors",
+        "PER_NUM_EXPERTS":"per every X Experts"
+      },
+      "ITEM_STATUS_TEXT":{
+        "RED":"Requested",
+        "YELLOW":"Pending",
+        "GREEN":"Confirmed",
+        "BLACK":"Secret"
+      }
+    },
+    "ADD_ITEM_TO_THE_SET":{
+      "TITLE":"Add item to the set",
+      "TEXT":"Are you sure you want to add {{item.originalObject.description.text}} to the standard set?"
+    },
+    "ARE_YOU_SURE":{
+      "TITLE":"Are you sure?",
+      "TEXT":"Are you sure you want to delete the set {{set.name}} - this cannot be undone!",
+      "OK":"Remove item"
+    },
+    "DELETE_ITEM_FROM_SET":{
+      "TITLE":"Delete item from set",
+      "TEXT":"Are you sure?"
+    },
+    "LINKED_ITEMS":{
+      "TITLE":"Linked items",
+      "OK":"Close"
+    },
+    "REMOVE_ITEM_S_FROM_CATALOGUE":{
+      "TITLE":"Remove item(s) from catalogue?",
+      "OK":"Delete"
+    },
+    "COMBINE_ITEMS":{
+      "TITLE":"Combine items?",
+      "OK":"Combine"
+    },
+    "HOTKEYS":{
+      "EDIT_ITEM_IN_FULL_VIEW":"Edit item in full view",
+      "DISPLAY_LINKED_ITEMS":"Display linked items",
+      "REMOVE_SELECTED_ITEM":"Remove selected item",
+      "COMBINE_SELECTED_ITEMS":"Combine selected items",
+      "FULLSCREEN_TOGGLE":"Fullscreen (toggle)",
+      "ADD_NEW_ROW_IN_FULL_VIEW":"Add new row in full view",
+      "TOGGLE_INLINE_EDITING":"Toggle inline editing",
+      "TOGGLE_FILTERS_DIALOG":"Toggle filters dialog"
+    },
+    "TEXT":{
+      "ALL_CATEGORIES":"All categories"
+    },
+    "WSALERT":{
+      "SUCCESS":{
+        "QUANTITIES_UPDATED":"Quantities updated!",
+        "SET_REMOVED_SUCCESSFULLY":"Set removed successfully!",
+        "ITEM_SAVED":"Item saved",
+        "ITEM_S_REMOVED":"Item(s) removed!",
+        "ITEMS_COMBINED":"Items combined!"
+      },
+      "DANGER":{
+        "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"Item could not be removed from set, please try again!"
+      },
+      "WARNING":{
+        "ERROR_REFRESHING_ITEM":"Error refreshing item, consider refreshing the browser:",
+        "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"You have to select at least skill first",
+        "PLEASE_SELECT_ONLY_ONE_ROW":"Please select only one row."
+      }
+    },
+    "ALERT":{
+      "YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM":"You need to select at least one item",
+      "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Please select at least 2 items"
+    },
+    "ERROR":{
+      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Could not get active positions for user: "
+    },
+    "CONFIRM":{
+      "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Are you sure you want to leave this page?"
+    }
+  },
+
+  "YOU_HAVE_MULTIPLE_POSITIONS":"You have multiple positions, please select a role to use the application as",
+  "SOME_OF_THE_ITEMS_CAN_T_BE_DELETED":"Some of the items can't be deleted, as it they are already been assigned to a skill. Clicking on 'delete' will only delete items that are not used in any skills.",
+  "TH_DELETE":"Delete",
+  "TH_REQUESTED":"Requested",
+
+  "ARE_YOU_SURE_YOU_WANT_TO_UNLINK":"Are you sure you want to unlink and remove this requested item?",
+  "THIS_ITEM_HAS_CHILD_ITEMS":"This item has child items, these will also be removed!",
+
+  "ELECTRICITY_PHASE":"Electricity Phase",
+  "WATER_SUPPLY":"Water supply",
+  "WATER_DRAINAGE":"Water drainage",
+  "COMPRESSED_AIR":"Compressed air",
+  "VENTILATION_FUME_EXTRACTION":"Ventilation / Fume extraction",
+  "GAS_REQUIREMENTS":"Gas requirements",
+  "ANCHOR_FIXING_BASE_REQUIREMENTS":"Anchor / Fixing / Base requirements",
+  "FILES_AND_PICTURES":"Files and Pictures",
+  "TH_NAME":"Name",
+  "BUTTON_REMOVE":"Supprimer",
+  "DROP_FILES_HERE_TO_UPLOAD":"Drop files here to upload",
+  "UPLOAD_QUEUE":"Upload queue",
+  "QUEUE_LENGTH:":"Queue length:",
+  "TH_PROGRESS":"Progress",
+  "MB":"MB",
+  "QUEUE_PROGRESS:":"Queue progress:",
+  "BUTTON_UPLOAD_ALL":"Upload all",
+  "BUTTON_CANCEL_ALL":"Cancel all",
+  "BUTTON_REMOVE_ALL":"Remove all",
+  "EXTRA_DETAILS_COMMENTS":"Extra details / Comments",
+  "BUTTON_ADD_ITEM":"Add item",
+  "COPY_DESCRIPTION_TO_REQUESTED_ITEM_S":"Copy description to requested item(s)",
+  "BUTTON_SAVE_ITEM":"Save item",
+  "IN":"in",
+  "AT":"at",
+  "SELECTED":"Selected",
+
+  "EDITING_REQUESTED_ITEM_DETAILS_IN":"Editing requested item details in",
+
+  "BUTTON_SAVE_CHANGES":"Save changes",
+
+  "CANNOT_CHILD_ITEMS":"You cannot move child items independently, but you can move the parent, which will also move child items.",
+
+  "SURE_COMBINE_ITEMS":"Are you sure you want to combine these items?",
+  "IMPORTANT!":"Important!",
+  "ITEM_ATTACHED_TO_SKILL":"One or more of these items is attached to a skill, please note that this action will also overwrite the description of these items.",
+  "TH_KEEP":"Keep",
+  "TH_LINKED":"Linked",
+  "YES":"Yes",
+  "NO":"No",
+
+  "ADD_NEW_LINKED_ITEM":"Add new linked item",
+  "ITEM_NO_SKILLS":"This item is not yet used in any skills.",
+  "TH_REQUESTED":"Requested",
+  "TH_SKILL":"Skill",
+  "TH_CATEGORY":"Category",
+  "TH_QTY":"Qty",
+  "TH_SUPPLIER_POTENTIAL":"Supplier (potential)",
+  "TH_ACTIONS":"Actions",
+  "NEW":"new",
+  "UPDATED":"updated",
+
+
   "PLACEHOLDER": {
-    "SEARCH":"Rechercher",
+    "SEARCH":"Search",
     "SEARCH_FROM_STANDARD":"Search from standard sets...",
     "SEARCH_FROM_CATALOG":"Search from catalogue items...",
-    "STANDARD_SET":"Standard set 01 {{selectedSet.name}}",
+    "STANDARD_SET":"Standard set",
     "FILTER":"Filter...",
     "CHOOSE_SKILL":"Choose a skill",
     "CHOOSE_INSTALLATION_TYPE":"Choose a Installation Type",
@@ -14,10 +165,33 @@
     "X_NUMBER":"X number",
     "POTENTIAL_SUPPLIER":"Potential supplier",
     "ESTIMATED_PRICE":"Estimated price",
-    "ADDITIONAL_QUANTITY":"Additional quantity"
+    "ADDITIONAL_QUANTITY":"Additional quantity",
+    "MANUFACTURER":"Manufacturer",
+    "MODEL":"Model",
+    "SIZE":"Size",
+    "PART_NUMBER":"Part number",
+    "SUPPLIER":"Supplier",
+    "UNIT_COST":"Unit cost",
+    "PO_NUMBER":"PO Number",
+    "DELIVERY":"Delivery",
+    "TIME":"Time",
+    "HS_CODE":"HS Code",
+    "ELECTRICITY_VOLTS":"Electricity - Volts",
+    "ELECTRICITY_AMPS":"Electricity - Amps",
+    "ELECTRICITY_PHASE":"Electricity Phase",
+    "WATER_SUPPLY":"Water supply",
+    "WATER_DRAINAGE":"Water drainage",
+    "COMPRESSED_AIR":"Compressed air",
+    "VENTILATION_FUME_EXTRACTION":"Ventilation / Fume extraction",
+    "GAS_REQUIREMENTS":"Gas requirements",
+    "ANCHOR_FIXING_BASE_REQUIREMENTS":"Anchor / Fixing / Base requirements",
+    "EXTRA_DETAILS_COMMENTS":"Extra details / Comments",
+    "CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL":"Choose an Installation Type (optional)",
+    "STANDARD_SET_01":"Standard set 01"
   },
   "TITLE": {
-    "CHOOSE_SKILL":"Choose a skill"
+    "CHOOSE_SKILL":"Choose a skill",
+    "CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL":"Choose an Installation Type (optional)"
   },
   "TEXT_SEARCHING": {
     "SEARCH_FOR_STANDARD":"Searching for standard sets...",
@@ -26,12 +200,19 @@
   "TEXT_NO_RESULTS": {
     "NO_SETS":"No sets found, please try using other search terms.",
     "NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM":"No existing items, hit return key to add as a new item.",
-    "NO_EXISTING_SUPPLIERS_FOUND":"No existing suppliers found."
+    "NO_EXISTING_SUPPLIERS_FOUND":"No existing suppliers found.",
+    "NO_ITEMS_FOUND_PLEASE_TRY":"No items found, please try using other search terms."
   },
   "REQUIRED": {
     "QUANTITY_IS_MISSING":"Quantity is missing",
     "MULTIPLY_FACTOR_REQUIRED":"Multiply factor required",
     "ADDITIONAL_QUANTITY_IS_MISSING":"Additional quantity is missing"
+  },
+  "CLOSE_TEXT": {
+    "CLOSE":"Close"
+  },
+  "UIB_TOOLTIP": {
+    "WARNING_UPDATE_DESCRIPTION":"Warning! This will update the description in every skill this item is used!"
   },
 
   "APP_NAME":"WorldSkills Infrastructure Lists",
@@ -40,6 +221,7 @@
   "SIGNUP":"Sign up",
   "SWITCH_ROLE":"Switch role",
   "HOME":"Home",
+  "PROFILE": "Profile",
 
   "SELECT_SKILL": "Select a skill",
   "PERMISSIONS": "Permissions",
@@ -51,13 +233,13 @@
   "EXPORT_ALL_ITEMS": "Export all Catalogue Items",
   "TO_EDIT_ITEMS": "To edit items, select a category from the menu on your left.",
   "SKILL_MANAGEMENT": "Skill Management",
-  "POSITION": "Position",
-  "NAME": "Name",
+  "TH_POSITION": "Position",
+  "TH_NAME": "Name",
   "VIEW_ALL_LIST": "View all list of people in",
   "PROGRESS": "Progress",
   "REPORTS": "Reports",
-  "PRINT_VIEW": "Print view",
-  "REPORT_REQUESTED_ITEMS": "Requested Items for skill",
+  "BUTTON_REPORT_PRINT_VIEW": "Print view",
+  "BUTTON_REPORT_REQUESTED_ITEMS": "Requested Items for skill",
   "EDIT_DETAILS":"edit",
   "SET_NAME": "Set name",
   "DESCRIPTION": "Description",
@@ -123,7 +305,7 @@
   "ADDITIONAL": "additional",
 
   "NO_SETS_DEFINED": "No sets defined",
-  "ADD_NEW_SET": "Add new set",
+  "BUTTON_ADD_NEW_SET": "Add new set",
 
   "ARE_YOU_SURE_ADD": "Are you sure you want to add",
   "TO_THE_LIST": "to the list?",
@@ -143,7 +325,7 @@
   "POTENTIAL_SUPPLIER": "Potential supplier",
   "ESTIMATED_PRICE": "Estimated price",
   "SKILL_AREA": "Skill Area",
-  "ADDITION_QUANTITY": "Additional quantity",
+  "ADDITIONAL_QUANTITY": "Additional quantity",
   "VAT_REFUNDABLE": "VAT Refundable",
   "BUTTON_ADD_ITEM": "Add item",
   "EDITING_ITEM": "Editing item",

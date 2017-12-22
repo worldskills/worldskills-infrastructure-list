@@ -1,19 +1,19 @@
 <div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>
 <div class="modal-body">
   <p ng-if="!data.linkedItems">Are you sure you want to remove these items?</p>
-  <div ng-if="data.linkedItems" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong>Important!</strong> Some of the items can't be deleted, as it they are already been assigned to a skill. Clicking on "delete" will only delete items that are not used in any skills.</div>
+  <div ng-if="data.linkedItems" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong translate>IMPORTANT!</strong> <span translate>SOME_OF_THE_ITEMS_CAN_T_BE_DELETED</span></div>
   <p>
     &nbsp;
   </p>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Description</th>
-      <th>Manufacturer</th>
-      <th>Model</th>
-      <th>Status</th>
-      <th ng-if="data.linkedItems">Delete</th>
+      <th translate>TH_ID</th>
+      <th translate>TH_DESCRIPTION</th>
+      <th translate>TH_MANUFACTURER</th>
+      <th translate>TH_MODEL</th>
+      <th translate>TH_STATUS</th>
+      <th ng-if="data.linkedItems" translate>TH_DELETE</th>
     </tr>
     </thead>
     <tbody>
@@ -24,8 +24,8 @@
       <td>{{item.model}}</td>
       <td>{{item.supplied_item.status.name.text}}</td>
       <td ng-if="data.linkedItems">
-        <span ng-if="!item.linkedItems">Yes</span>
-        <span ng-if="item.linkedItems">No</span>
+        <span ng-if="!item.linkedItems" translate>YES</span>
+        <span ng-if="item.linkedItems" translate>NO</span>
       </td>
     </tr>
     </tbody>

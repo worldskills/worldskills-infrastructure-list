@@ -125,7 +125,7 @@
         <div class='col col-xs-12 col-md-4'>
           <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
             <label class='control-label' translate>POTENTIAL_SUPPLIER</label>
-            <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="Potential supplier" ng-model='item.supplier' ng-trim="true"> -->
+            <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}" ng-model='item.supplier' ng-trim="true"> -->
             <angucomplete-alt
               id="id"
               placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}"
@@ -170,7 +170,7 @@
       <div class="row">
         <div class="col col-xs-12 col-md-4 form-group">
           <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.additional_quantity.$error.required, 'has-success': !editForm.additional_quantity.$error.required}">
-            <label class='control-label' translate>ADDITION_QUANTITY</label>
+            <label class='control-label' translate>ADDITIONAL_QUANTITY</label>
             <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ADDITIONAL_QUANTITY' | translate }}" ng-model='item.additional_quantity' required="{{ 'REQUIRED.ADDITIONAL_QUANTITY_IS_MISSING' | translate }}" ng-required="false">
             <span ng-if="!editForm.additional_quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
             <span ng-if="editForm.additional_quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
@@ -187,7 +187,7 @@
       </div>
 
       </div> <!-- well -->
-      <button ng-disabled="addForm.$error.required  || !suppliedItem.originalObject || (suppliedItem.force === true && !newLinkedItem.category.id)" ng-click="addItem();" class='btn btn-sm btn-success' translae>BUTTON_ADD_ITEM</button>
+      <button ng-disabled="addForm.$error.required  || !suppliedItem.originalObject || (suppliedItem.force === true && !newLinkedItem.category.id)" ng-click="addItem();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>
   </fieldset>

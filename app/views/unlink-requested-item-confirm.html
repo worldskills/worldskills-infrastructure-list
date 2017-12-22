@@ -1,7 +1,7 @@
 <div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>
 <div class="modal-body">
-  <p>Are you sure you want to unlink and remove this requested item?</p>
-  <div ng-if="data.item.child_items.length > 0" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong>Important!</strong> This item has child items, these will also be removed!</div>
+  <p translate>ARE_YOU_SURE_YOU_WANT_TO_UNLINK</p>
+  <div ng-if="data.item.child_items.length > 0" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong translate>IMPORTANT!</strong> <span translate>THIS_ITEM_HAS_CHILD_ITEMS</span></div>
   <p>
     &nbsp;
   </p>
@@ -9,9 +9,9 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Requested</th>
-      <th>Status</th>
+      <th translate>TH_ID</th>
+      <th translate>TH_REQUESTED</th>
+      <th translate>TH_STATUS</th>
     </tr>
     </thead>
     <tbody>
