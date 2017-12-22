@@ -384,12 +384,12 @@
   "LOC_OTHER": "Autre",
 
   "LEAD_TIME": "Délai de disponibilité",
-  "LEAD_10_WEEKS": "&gt; 10 semaines",
+  "LEAD_10_WEEKS": "> 10 semaines",
   "LEAD_8-10_WEEKS": "8 - 10 semaines",
   "LEAD_6-8_WEEKS": "6 - 8 semaines",
   "LEAD_4-6_WEEKS": "4 - 6 semaines",
   "LEAD_2-4_WEEKS": "2 - 4 semaines",
-  "LEAD_2_WEEKS": "&lt; 2 semaines",
+  "LEAD_2_WEEKS": "< 2 semaines",
 
   "SERVICES_UTILITIES_INSTALLATION": "Besoins en électricité, eau, gaz, fixation...",
   "REQ_ELECTRICITY_V": "Électricité - Volts",
