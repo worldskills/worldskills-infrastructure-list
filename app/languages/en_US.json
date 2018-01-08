@@ -92,7 +92,6 @@
   "YOU_HAVE_MULTIPLE_POSITIONS":"You have multiple positions, please select a role to use the application as",
   "SOME_OF_THE_ITEMS_CAN_T_BE_DELETED":"Some of the items can't be deleted, as it they are already been assigned to a skill. Clicking on 'delete' will only delete items that are not used in any skills.",
   "TH_DELETE":"Delete",
-  "TH_REQUESTED":"Requested",
 
   "ARE_YOU_SURE_YOU_WANT_TO_UNLINK":"Are you sure you want to unlink and remove this requested item?",
   "THIS_ITEM_HAS_CHILD_ITEMS":"This item has child items, these will also be removed!",
@@ -143,7 +142,6 @@
   "TH_REQUESTED":"Requested",
   "TH_SKILL":"Skill",
   "TH_CATEGORY":"Category",
-  "TH_QTY":"Qty",
   "TH_SUPPLIER_POTENTIAL":"Supplier (potential)",
   "TH_ACTIONS":"Actions",
   "NEW":"new",
@@ -235,7 +233,6 @@
   "TO_EDIT_ITEMS": "To edit items, select a category from the menu on your left.",
   "SKILL_MANAGEMENT": "Skill Management",
   "TH_POSITION": "Position",
-  "TH_NAME": "Name",
   "VIEW_ALL_LIST": "View all list of people in",
   "PROGRESS": "Progress",
   "REPORTS": "Reports",
@@ -328,7 +325,6 @@
   "SKILL_AREA": "Skill Area",
   "ADDITIONAL_QUANTITY": "Additional quantity",
   "VAT_REFUNDABLE": "VAT Refundable",
-  "BUTTON_ADD_ITEM": "Add item",
   "EDITING_ITEM": "Editing item",
 
   "ITEM_INFORMATION_PUBLISHED": "Item information published in the IL list",
