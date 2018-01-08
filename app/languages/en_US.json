@@ -150,6 +150,7 @@
   "UPDATED":"updated",
 
 
+  "POSITION_EVENT_NAME_TEXT": "at {{position}}",
   "PLACEHOLDER": {
     "SEARCH":"Search",
     "SEARCH_FROM_STANDARD":"Search from standard sets...",

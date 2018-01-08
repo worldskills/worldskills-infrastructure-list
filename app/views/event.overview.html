@@ -59,8 +59,7 @@
         <div class="permissionList">
         <div ng-repeat="position in activePositions track by $index" ng-class="{active: position.id == activePosition.id}" >
           <a ng-click="setActivePosition(position, $event);" href="#">{{position.role}}
-            {{position.event.name.text}}
-            <small><span ng-if="position.target"><span translate>IN</span> {{position.target}} </span><span translate>AT</span> {{position.event.name.text}}</small></a></div>
+            <small><span ng-if="position.target" translate###>in {{position.target}} </span>{{ 'POSITION_EVENT_NAME_TEXT' | translate:{ position: position.event.name.text} }}</small></a></div>
         </div>
         <!--<div ng-repeat="role in ilRoles track by role.id"><b>{{role.name}}</b>,<br /><small><i>{{role.ws_entity.name.text}}</i></small></div>-->
       </div>
