@@ -150,6 +150,8 @@
   "UPDATED":"mis à jour",
 
 
+  "POSITION_EVENT_NAME_TEXT": "de {{position}}",
+
   "PLACEHOLDER": {
     "SEARCH":"Rechercher...",
     "SEARCH_FROM_STANDARD":"Rechercher dans les lots standard...",
