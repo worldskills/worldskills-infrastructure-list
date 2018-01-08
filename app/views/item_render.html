@@ -12,25 +12,25 @@
     <small class='pull-right'>Saving...</small>
   </span> -->
   <span class='actions' ng-hide="activeItem == item.id">
-    <span ng-if="canEdit(item.supplied_item.status.id)">
+    <span ng-if="canEdit(item.status.id)">
       <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeItem(item, this);" style="margin-right: 8px;"><span
            class="glyphicon glyphicon-remove"></span></a>
       <a class="pull-right btn btn-warning btn-xs" data-nodrag ng-click="editItem(item, $index);" style="margin-right: 8px;"><span
            class="glyphicon glyphicon-edit"></span></a>
     </span>
-    <div style='width: 64px;' class='pull-right' ng-if="!canEdit(item.supplied_item.status.id)">&nbsp;</div>
+    <div style='width: 64px;' class='pull-right' ng-if="!canEdit(item.status.id)">&nbsp;</div>
     <a ng-if="item.parent_id == 0" class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(item)" style='margin-right: 8px;'><span
          class="glyphicon glyphicon-share-alt rotate90"></span></a>
     <div style='width: 32px;' class='pull-right' ng-if="item.parent_id > 0">&nbsp;</div>
   </span>
 
-  <small ng-if='item.supplied_item && item.supplied_item.status' class='status pull-right'>
+  <small ng-if='item.status' class='status pull-right'>
     <span class='label'
-    ng-class="{'label-danger': item.supplied_item.status.id == ITEM_STATUS.RED,
-              'label-warning': item.supplied_item.status.id == ITEM_STATUS.YELLOW,
-              'label-info': item.supplied_item.status.id == ITEM_STATUS.BLACK,
-              'label-success': item.supplied_item.status.id == ITEM_STATUS.GREEN}"
-    >{{item.supplied_item.status.name.text}}</span>
+    ng-class="{'label-danger': item.status.id == ITEM_STATUS.RED,
+              'label-warning': item.status.id == ITEM_STATUS.YELLOW,
+              'label-info': item.status.id == ITEM_STATUS.BLACK,
+              'label-success': item.status.id == ITEM_STATUS.GREEN}"
+    >{{item.status.name.text}}</span>
   </small>
   <small class='quantity pull-right'>{{item.readable_quantity}}</small>
   <small class='skill-area pull-right'>{{item.area.name}}</small>

@@ -92,6 +92,7 @@
   "YOU_HAVE_MULTIPLE_POSITIONS":"You have multiple positions, please select a role to use the application as",
   "SOME_OF_THE_ITEMS_CAN_T_BE_DELETED":"Some of the items can't be deleted, as it they are already been assigned to a skill. Clicking on 'delete' will only delete items that are not used in any skills.",
   "TH_DELETE":"Delete",
+  "TH_DETAILS":"Details",
 
   "ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THESE_ITEMS":"Are you sure you want to remove these items?",
   "ARE_YOU_SURE_YOU_WANT_TO_UNLINK":"Are you sure you want to unlink and remove this requested item?",

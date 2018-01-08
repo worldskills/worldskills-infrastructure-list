@@ -42,14 +42,6 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.status.$error.required, 'has-success': !editForm.status.$error.required}">
-                    <label class='control-label' translate>TH_STATUS</label>
-                    <select name="status" class="input-sm form-control" ng-required="true"  ng-model='item.status.id' ng-options="option.id.id as option.id.name.text  for option in statusValues">
-                    </select>
-
-                  </div>
-                </div>
               </fieldset>
             </div>
           </uib-tab>

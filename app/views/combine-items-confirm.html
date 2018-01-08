@@ -14,7 +14,6 @@
       <th translate>TH_DESCRIPTION</th>
       <th translate>TH_MANUFACTURER</th>
       <th translate>TH_MODEL</th>
-      <th translate>TH_STATUS</th>
       <th ng-if="data.linkedItems" translate>TH_LINKED</th>
     </tr>
     </thead>
@@ -29,7 +28,6 @@
       <td>{{item.description.text}}</td>
       <td>{{item.manufacturer}}</td>
       <td>{{item.model}}</td>
-      <td>{{item.supplied_item.status.name.text}}</td>
       <td ng-if="data.linkedItems">
         <span ng-if="item.linkedItems" translate>YES</span>
         <span ng-if="!item.linkedItems" translate>NO</span>

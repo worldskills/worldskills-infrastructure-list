@@ -93,7 +93,7 @@ angular.module('ilApp')
       combineItems: function(items, masterItem){
         var deferred = $q.defer();
 
-        var combineStr = "?forceRequestedUpdate=1";
+        var combineStr = "?forceRequestedUpdate=0";
 
         angular.forEach(items, function(val){
           if(val.id != masterItem.id)

@@ -109,28 +109,24 @@
                         <tr>
                             <th class="text-right" translate>TH_QUANTITY</th>
                             <th translate>TH_ITEM</th>
+                            <th translate>TH_DETAILS</th>
                             <th translate>TH_LAST_MODIFIED</th>
-                            <th translate>TH_SUPPLIED_ITEM</th>
                             <th translate>TH_STATUS</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in category.items" ng-class="{'child': !!item.parent_id}">
-                            <td class="text-right">
-                                <span>{{ item.readable_quantity }}</span>
-                                <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} <span translate>ADDITIONAL</span></span>
-                            </td>
-                            <td>
-                                <span ng-show="!!item.parent_id">└&nbsp;</span>
-                                <span ng-if="!item.supplied_item || item.supplied_item.status.id === ITEM_STATUS.RED || item.supplied_item.status.id === ITEM_STATUS.BLACK">{{ item.description.text }}</span>
-                                <span ng-if="item.supplied_item.status.id !== ITEM_STATUS.RED && item.supplied_item.status.id !== ITEM_STATUS.BLACK">{{item.supplied_item.description.text}}</span>
-                            </td>
-                          <td>
-                            <span ng-if="item.supplied_item.modified">{{ item.supplied_item.modified | date:"d MMMM yyyy 'at' HH:ss" }}</span>
-                            <span ng-if="!item.supplied_item.modified">{{ item.modified | date:"d MMMM yyyy 'at' HH:ss" }}</span>
+                          <td class="text-right">
+                              <span>{{ item.readable_quantity }}</span>
+                              <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} <span translate>ADDITIONAL</span></span>
                           </td>
                           <td>
-                            <div ng-if="item.supplied_item.status.id !== ITEM_STATUS.RED && item.supplied_item.status.id !== ITEM_STATUS.BLACK">
+                              <span ng-show="!!item.parent_id">└&nbsp;</span>
+                              <span ng-if="item.status.id === ITEM_STATUS.RED || item.status.id === ITEM_STATUS.BLACK">{{ item.description.text }}</span>
+                              <span ng-if="item.status.id !== ITEM_STATUS.RED && item.status.id !== ITEM_STATUS.BLACK">{{item.supplied_item.description.text}}</span>
+                          </td>
+                          <td>
+                            <div ng-if="item.status.id !== ITEM_STATUS.RED && item.status.id !== ITEM_STATUS.BLACK">
                               <div class="row" ng-if="item.supplied_item.manufacturer">
                                 <div class="col col-xs col-xs-4 supplied-key" translate>TH_MANUFACTURER</div>
                                 <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.manufacturer}}</div>
@@ -159,12 +155,16 @@
                               </div>
                             </div>
                           </td>
-                            <td>
-                                <span ng-show="item.supplied_item.status.id == ITEM_STATUS.RED" class="label label-danger">{{ item.supplied_item.status.name.text }}</span>
-                                <span ng-show="item.supplied_item.status.id == ITEM_STATUS.YELLOW" class="label label-warning">{{ item.supplied_item.status.name.text }}</span>
-                                <span ng-show="item.supplied_item.status.id == ITEM_STATUS.BLACK" class="label label-info">{{ item.supplied_item.status.name.text }}</span>
-                                <span ng-show="item.supplied_item.status.id == ITEM_STATUS.GREEN" class="label label-success">{{ item.supplied_item.status.name.text }}</span>
-                            </td>
+                          <td>
+                            <span ng-if="item.supplied_item.modified">{{ item.supplied_item.modified | date:"d MMMM yyyy 'at' HH:ss" }}</span>
+                            <span ng-if="!item.supplied_item.modified">{{ item.modified | date:"d MMMM yyyy 'at' HH:ss" }}</span>
+                          </td>
+                          <td>
+                              <span ng-show="item.status.id == ITEM_STATUS.RED" class="label label-danger">{{ item.status.name.text }}</span>
+                              <span ng-show="item.status.id == ITEM_STATUS.YELLOW" class="label label-warning">{{ item.status.name.text }}</span>
+                              <span ng-show="item.status.id == ITEM_STATUS.BLACK" class="label label-info">{{ item.status.name.text }}</span>
+                              <span ng-show="item.status.id == ITEM_STATUS.GREEN" class="label label-success">{{ item.status.name.text }}</span>
+                          </td>
                         </tr>
                     </tbody>
                     <tbody ng-show="!category.items.length">

@@ -17,7 +17,7 @@ angular.module('ilApp')
 
     $scope.dateOptions = {
       startingDay: 1,
-      initDate: '2017-08-01'
+      initDate: '2017-08-01' //TODO configure from event
     };
 
     $scope.item.updateRequested = false;
@@ -112,10 +112,5 @@ angular.module('ilApp')
       delete $scope.item.selectedSupplier;
     };
 
-    // $scope.updateStatus = function(item){
-    //   angular.forEach($scope.statusValues, function(val){
-    //     if(item.status.id == val.id.id) item.status.name.text = val.id.name.text;
-    //   });
-    // };
 
   });

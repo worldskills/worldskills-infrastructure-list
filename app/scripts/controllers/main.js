@@ -39,6 +39,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
 
       //load skills in sector for this event
+      console.log($scope.loadStatus);
       Events.getSkillsForEvent($scope.event_id, $scope.loadStatus).then(function (result) {
         $scope.skills = result;
         deferred.resolve();
