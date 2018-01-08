@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventSetsEditCtrl', function ($scope, $state, $timeout, ItemSets, WSAlert, $confirm, API_IL, MULTIPLIERS, MULTIPLIER_DEFAULT) {
+  .controller('EventSetsEditCtrl', function ($scope, $state, $timeout, ItemSets, WSAlert, $confirm, API_IL, MULTIPLIERS, MULTIPLIER_DEFAULT, $translate) {
 
     $scope.selectedSet = {}; //selected set details
     $scope.editDetails = false; // shows edit set details form
@@ -31,8 +31,7 @@ angular.module('ilApp')
       $scope.loading.set = true;
 
       ItemSets.updateQuantities($scope.selectedSet).then(function(res){
-        // JSTEXT.WSALERT.SUCCESS.QUANTITIES_UPDATED
-        WSAlert.success("Quantities updated!");
+        WSAlert.success($translate.instant('JSTEXT.WSALERT.SUCCESS.QUANTITIES_UPDATED'));
         $scope.selectedSet = res.data;
         $scope.loading.set = false;
       },
@@ -42,18 +41,16 @@ angular.module('ilApp')
       });
     };
 
-    // JSTEXT.DELETE_ITEM_FROM_SET
     $scope.removeItem = function(item, index){
       $confirm({
-        title: 'Delete item from set',
-        text: 'Are you sure?',
+        title: $translate.instant('JSTEXT.DELETE_ITEM_FROM_SET.TITLE'),
+        text: $translate.instant('JSTEXT.DELETE_ITEM_FROM_SET.TEXT'),
       }).then(function () {
         ItemSets.removeFromSet($scope.selectedSet.id, item.id).then(function(res){
           $scope.selectedSet.items.splice(index, 1);
         },
         function(error){
-          // JSTEX.WSALERT.DANGER.ITEM_COULD_NOT_BE_REMOVED_FROM_SET
-          WSAlert.danger("Item could not be removed from set, please try again!");
+          WSAlert.danger($translate.instant('JSTEX.WSALERT.DANGER.ITEM_COULD_NOT_BE_REMOVED_FROM_SET'));
         });
       });
     }
@@ -77,6 +74,8 @@ angular.module('ilApp')
 
       //JSTEXT.ADD_ITEM_TO_THE_SET
       $confirm({
+        title: $translate.instant('JSTEXT.ADD_ITEM_TO_THE_SET.TITLE'),
+        text: $translate.instant('JSTEXT.ADD_ITEM_TO_THE_SET.TEXT', { text: item.originalObject.description.text }),
         title: "Add item to the set",
         text: 'Are you sure you want to add "' + item.originalObject.description.text + '" to the standard set?'
       }).then(function(){

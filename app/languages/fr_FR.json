@@ -24,7 +24,7 @@
     },
     "ADD_ITEM_TO_THE_SET":{
       "TITLE":"Ajout d'un item dans le lot",
-      "TEXT":"Êtes-vous certain(e) de vouloir ajouter cet item dans le lot standard : {{item.originalObject.description.text}} ?"
+      "TEXT":"Êtes-vous certain(e) de vouloir ajouter cet item dans le lot standard : {{text}} ?"
     },
     "ARE_YOU_SURE":{
       "TITLE":"Confirmation",

@@ -24,7 +24,7 @@
     },
     "ADD_ITEM_TO_THE_SET":{
       "TITLE":"Add item to the set",
-      "TEXT":"Are you sure you want to add {{item.originalObject.description.text}} to the standard set?"
+      "TEXT":"Are you sure you want to add {{text}} to the standard set?"
     },
     "ARE_YOU_SURE":{
       "TITLE":"Are you sure?",
