@@ -72,12 +72,9 @@ angular.module('ilApp')
     $scope.addItemSelected = function(item){
       if(typeof item === 'undefined') return false;
 
-      //JSTEXT.ADD_ITEM_TO_THE_SET
       $confirm({
         title: $translate.instant('JSTEXT.ADD_ITEM_TO_THE_SET.TITLE'),
         text: $translate.instant('JSTEXT.ADD_ITEM_TO_THE_SET.TEXT', { text: item.originalObject.description.text }),
-        title: "Add item to the set",
-        text: 'Are you sure you want to add "' + item.originalObject.description.text + '" to the standard set?'
       }).then(function(){
         //add item to set
         addToSet($scope.selectedSet, item);
@@ -87,11 +84,10 @@ angular.module('ilApp')
       });
     };
 
-    //JSTEXT.ARE_YOU_SURE
     $scope.deleteSet = function(set){
       $confirm({
-        title: "Are you sure?",
-        text: "Are you sure you want to delete the set \"" + set.name + "\" - this cannot be undone!"
+        title: $translate.instant('JSTEXT.ARE_YOU_SURE.TITLE'),
+        text: $translate.instant('JSTEXT.ARE_YOU_SURE.TEXT', {text: set.name})
       }).then(function(){
         deleteSet(set.id);
       })
@@ -126,8 +122,7 @@ angular.module('ilApp')
       $scope.loading.set = true;
 
       ItemSets.removeSet(setId).then(function(res){
-        // JSTEXT.WSALERT.SUCCESS.SET_REMOVED_SUCCESSFULLY
-        WSAlert.success("Set removed successfully!");
+        WSAlert.success($translate.instant('JSTEXT.WSALERT.SUCCESS.SET_REMOVED_SUCCESSFULLY'));
         $state.go('event.sets', {eventId: $state.params.eventId});
 
         //remove from sets

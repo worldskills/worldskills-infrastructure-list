@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ApplicationCtrl', function ($q, Auth, User, $scope, $state, auth, WSAlert) {
+  .controller('ApplicationCtrl', function ($q, Auth, User, $scope, $state, auth, WSAlert, $translate) {
 
     $scope.auth = auth;
     $scope.activePositions = $q.defer();
@@ -27,8 +27,7 @@ angular.module('ilApp')
         $scope.activePositions = res;
       },
       function(error){
-        // JSTEXT.ERROR.COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER
-        $scope.activePositions.reject("Could not get active positions for user: " + error);
+        $scope.activePositions.reject($translate.instant('JSTEXT.ERROR.COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER', {error: error}));
         $scope.loading.init = false;
       });
     });

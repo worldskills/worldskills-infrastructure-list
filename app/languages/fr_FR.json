@@ -28,7 +28,7 @@
     },
     "ARE_YOU_SURE":{
       "TITLE":"Confirmation",
-      "TEXT":"Êtes-vous certain(e) de vouloir supprimer le lot {{set.name}} - cette action est irréversible !",
+      "TEXT":"Êtes-vous certain(e) de vouloir supprimer le lot {{text}} - cette action est irréversible !",
       "OK":"Supprimer l'item"
     },
     "DELETE_ITEM_FROM_SET":{
@@ -72,7 +72,7 @@
         "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !"
       },
       "WARNING":{
-        "ERROR_REFRESHING_ITEM":"Mise à jour de l'item impossible, vous devriez envisager d'actualiser la fenêtre de votre navigateur :",
+        "ERROR_REFRESHING_ITEM":"Mise à jour de l'item impossible, vous devriez envisager d'actualiser la fenêtre de votre navigateur : {{error}}",
         "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"Vous devez commencer par sélectionner au moins un métier",
         "PLEASE_SELECT_ONLY_ONE_ROW":"Merci de ne sélectionner qu'une seule ligne."
       }
@@ -82,7 +82,7 @@
       "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Merci de sélectionner au moins 2 items"
     },
     "ERROR":{
-      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Erreur de récupération des fonctions de l'utilisateur : "
+      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Erreur de récupération des fonctions de l'utilisateur : {{error}}"
     },
     "CONFIRM":{
       "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Souhaitez-vous vraiment quitter cette page ?"

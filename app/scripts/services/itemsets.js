@@ -118,7 +118,8 @@ angular.module('ilApp')
         deferred.resolve(res);
       },
       function(error){
-        deferred.reject("Could not create new set: " + error);
+        console.log(error);
+        deferred.reject("Could not create new set: " + error.data.user_msg);
       });
 
       return deferred.promise;

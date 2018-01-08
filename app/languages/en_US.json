@@ -28,7 +28,7 @@
     },
     "ARE_YOU_SURE":{
       "TITLE":"Are you sure?",
-      "TEXT":"Are you sure you want to delete the set {{set.name}} - this cannot be undone!",
+      "TEXT":"Are you sure you want to delete the set {{text}} - this cannot be undone!",
       "OK":"Remove item"
     },
     "DELETE_ITEM_FROM_SET":{
@@ -72,7 +72,7 @@
         "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"Item could not be removed from set, please try again!"
       },
       "WARNING":{
-        "ERROR_REFRESHING_ITEM":"Error refreshing item, consider refreshing the browser:",
+        "ERROR_REFRESHING_ITEM":"Error refreshing item, consider refreshing the browser: {{error}}",
         "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"You have to select at least skill first",
         "PLEASE_SELECT_ONLY_ONE_ROW":"Please select only one row."
       }
@@ -82,7 +82,7 @@
       "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Please select at least 2 items"
     },
     "ERROR":{
-      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Could not get active positions for user: "
+      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Could not get active positions for user: {{error}}"
     },
     "CONFIRM":{
       "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Are you sure you want to leave this page?"

@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert) {
+  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert, $translate) {
 
     //close modal aside
     $scope.cancel = function () {
@@ -41,8 +41,7 @@ angular.module('ilApp')
         //  angular.extend($scope.rowItem, res);
         //$scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
           $scope.loading.aside = false;
-          // JSTEXT.WSALERT.SUCCESS.ITEM_SAVED
-          WSAlert.success("Item saved");
+          WSAlert.success($translate.instant('JSTEXT.WSALERT.SUCCESS.ITEM_SAVED'));
           $uibModalInstance.dismiss();
         },
         function (error){
