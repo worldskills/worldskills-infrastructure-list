@@ -1,27 +1,27 @@
 {
-  "CONSTANT":{
-    "APP_ROLES":{
-      "ADMIN":"Admin",
-      "ORGANIZER":"Organisateur",
-      "WS_MANAGER":"Responsable d'atelier",
-      "WS_SECTOR_MANAGER":"Responsable de secteur",
-      "VIEW":"Afficher"
-    },
-    "MULTIPLIERS":{
-      "SKILL":"par métier",
-      "COMPETITORS":"par participant",
-      "EXPERTS":"par expert",
-      "PER_NUM_COMPETITORS":"pour X participants",
-      "PER_NUM_EXPERTS":"pour X experts"
-    },
-    "ITEM_STATUS_TEXT":{
-      "RED":"Demandé",
-      "YELLOW":"En attente",
-      "GREEN":"Confirmé",
-      "BLACK":"Secret"
-    }
-  },
   "JSTEXT": {
+    "CONSTANT":{
+      "APP_ROLES":{
+        "ADMIN":"Admin",
+        "ORGANIZER":"Organisateur",
+        "WS_MANAGER":"Responsable d'atelier",
+        "WS_SECTOR_MANAGER":"Responsable de secteur",
+        "VIEW":"Afficher"
+      },
+      "MULTIPLIERS":{
+        "SKILL":"par métier",
+        "COMPETITORS":"par participant",
+        "EXPERTS":"par expert",
+        "PER_NUM_COMPETITORS":"pour X participants",
+        "PER_NUM_EXPERTS":"pour X experts"
+      },
+      "ITEM_STATUS_TEXT":{
+        "RED":"Demandé",
+        "YELLOW":"En attente",
+        "GREEN":"Confirmé",
+        "BLACK":"Secret"
+      }
+    },
     "ADD_ITEM_TO_THE_SET":{
       "TITLE":"Ajout d'un item dans le lot",
       "TEXT":"Êtes-vous certain(e) de vouloir ajouter cet item dans le lot standard : {{item.originalObject.description.text}} ?"

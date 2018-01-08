@@ -106,7 +106,7 @@
   "ANCHOR_FIXING_BASE_REQUIREMENTS":"Anchor / Fixing / Base requirements",
   "FILES_AND_PICTURES":"Files and Pictures",
   "TH_NAME":"Name",
-  "BUTTON_REMOVE":"Supprimer",
+  "BUTTON_REMOVE":"Delete",
   "DROP_FILES_HERE_TO_UPLOAD":"Drop files here to upload",
   "UPLOAD_QUEUE":"Upload queue",
   "QUEUE_LENGTH:":"Queue length:",
@@ -393,6 +393,7 @@
 
   "SERVICES_UTILITIES_INSTALLATION": "Services / Utilities / Installation Requirements",
   "REQ_ELECTRICITY_V": "Electricity - Volts",
+  "REQ_ELECTRICITY_A": "Electricity - Amps",
 
   "NO_ACCESS_ROLE": "You don't have the required access role to use this application.",
   "OVERVIEW": "Overview",
