@@ -94,7 +94,7 @@
   "TH_DELETE":"Supprimer",
   "TH_DETAILS":"Détails",
 
-
+  "ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THESE_ITEMS":"Êtes-vous certain(e) de vouloir supprimer ces items ?",
   "ARE_YOU_SURE_YOU_WANT_TO_UNLINK":"Êtes vous certain(e) de vouloir briser la liaison et supprimer l'item demandé ?",
   "THIS_ITEM_HAS_CHILD_ITEMS":"Cet item possède des items enfants - ceux-ci seront également supprimés !",
 
@@ -148,8 +148,6 @@
   "TH_ACTIONS":"Actions",
   "NEW":"nouveau",
   "UPDATED":"mis à jour",
-
-
   "POSITION_EVENT_NAME_TEXT": "de {{position}}",
 
   "PLACEHOLDER": {

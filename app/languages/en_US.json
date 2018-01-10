@@ -148,9 +148,8 @@
   "TH_ACTIONS":"Actions",
   "NEW":"new",
   "UPDATED":"updated",
-
-
   "POSITION_EVENT_NAME_TEXT": "at {{position}}",
+
   "PLACEHOLDER": {
     "SEARCH":"Search",
     "SEARCH_FROM_STANDARD":"Search from standard sets...",
@@ -235,6 +234,7 @@
   "TO_EDIT_ITEMS": "To edit items, select a category from the menu on your left.",
   "SKILL_MANAGEMENT": "Skill Management",
   "TH_POSITION": "Position",
+  "NAME": "Name",
   "VIEW_ALL_LIST": "View all list of people in",
   "PROGRESS": "Progress",
   "REPORTS": "Reports",
