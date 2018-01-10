@@ -312,7 +312,7 @@ angular
 .run(function($rootScope, $state, $stateParams, auth, WSAlert, $templateCache){
   //DEVELOPMENT API URL
   //$rootScope.available_languages = {"en_US":"English"};
-  $rootScope.available_languages = {"en_US":"English", "pt_BR":"Portuguese (Brazil)", "fr_FR":"Français (Metz)"};
+  $rootScope.available_languages = {"en_US":"English", "pt_BR":"Portuguese (Brazil)", "fr_FR":"Français"};
 
   //PRODUCTION API URL
   //$rootScope.api_url = "http://beuk.worldskills.org/glossary/";
