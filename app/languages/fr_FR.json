@@ -211,7 +211,7 @@
     "ADDITIONAL_QUANTITY_IS_MISSING":"La quantité additionnelle n'a pas été précisée"
   },
   "CLOSE_TEXT": {
-    "CLOSE":"Close"
+    "CLOSE":"Fermer"
   },
   "UIB_TOOLTIP": {
     "WARNING_UPDATE_DESCRIPTION":"Attention ! Cette opération va remplacer la description de l'item dans tous les métiers où il est utilisé !"
@@ -270,7 +270,7 @@
   "ACTIONS": "Actions",
   "STATUS": "État",
   "QUANTITY": "Quantité",
-  "SCROLL_MORE": "Scroll down to load more...",
+  "SCROLL_MORE": "Faire défiler pour afficher plus de résultats...",
 
   "WHICH_DATA": "Sélectionnez les données à charger",
   "CHANGE_FILTERS": "Vous pourrez appliquer des filtres une fois le catalogue chargé",
@@ -321,7 +321,7 @@
   "SUPPLIED_ITEM_DETAILS": "Caractéristiques de l'item fourni",
   "ITEM_ALREADY_CREATED": "Cet item a déjà été créé par l'organisateur ou est déjà utilisé par un autre métier.",
   "ITEM_DOESNT_MATCH": "S'il ne correspond pas à vos besoins, saisissez une description unique afin de créer un nouvel item.",
-  "CHANGE_TO_ANOTHER_ITEM": "Change to another item***",
+  "CHANGE_TO_ANOTHER_ITEM": "Remplacer par un autre item",
   "MULTIPLIER": "Multiplicateur",
   "MULTIPLY_FACTOR": "Coefficient multiplicateur",
   "POTENTIAL_SUPPLIER": "Fournisseur potentiel",
