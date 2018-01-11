@@ -88,7 +88,7 @@
           <td>{{item.item.model}}</td>
           <td><input class='form-control input-sm' type='number' ng-model="item.quantity" /></td>
           <td><select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select></td>
-          <!-- <td><input name='multiply_factor' type="number" class="input-sm form-control" placeholder="X number" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true"></td> -->
+          <td><input name='multiply_factor' type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.X_NUMBER' | translate }}" ng-model='item.multiply_factor' required="Multiply factor required" ng-required="true"></td>
           <td>
             <a class="pull-right btn btn-danger btn-xs" ng-click="removeItem(item, $index);" style="margin-right: 8px;">
               <span class="glyphicon glyphicon-remove"></span>

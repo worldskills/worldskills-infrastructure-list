@@ -27,7 +27,7 @@ angular.module('ilApp')
         $scope.activePositions = res;
       },
       function(error){
-        $scope.activePositions.reject($translate.instant('JSTEXT.ERROR.COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER', {error: error}));
+        $scope.activePositions.reject($translate.instant('ERROR.COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER', {error: error}));
         $scope.loading.init = false;
       });
     });

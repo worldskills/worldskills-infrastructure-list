@@ -35,7 +35,7 @@ angular.module('ilApp')
 
     //prevent accidental navigation
     $scope.$on('$stateChangeStart', function( event ) {
-      if(!confirm($translate.instant('JSTEXT.CONFIRM.ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE')))
+      if(!confirm($translate.instant('CONFIRM.ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE')))
         event.preventDefault();
     });
 
@@ -200,7 +200,7 @@ angular.module('ilApp')
         promise.resolve();
       },
       function(error){
-        WSAlert.warning($translate.instant('JSTEXT.WSALERT.WARNING.ERROR_REFRESHING_ITEM', {error: error}));
+        WSAlert.warning($translate.instant('WSALERT.WARNING.ERROR_REFRESHING_ITEM', {error: error}));
         promise.reject();
         $scope.loading.catalogue = false;
       });
@@ -217,7 +217,7 @@ angular.module('ilApp')
       var item = $scope.getOneSelectedItem();
 
       if(item == void 0 || item === false){
-        alert($translate.instant('JSTEXT.ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM'));
+        alert($translate.instant('ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM'));
         return;
       }
 
@@ -229,13 +229,13 @@ angular.module('ilApp')
 
         //display linked items
         $confirm({
-            title: $translate.instant('JSTEXT.LINKED_ITEMS.TITLE'),
+            title: $translate.instant('LINKED_ITEMS.TITLE'),
             newLinkedItem: $scope.createNewLinkedItem,
             suppliedItem: item,
             items: res.requested_items,
             editRequestedItem: $scope.editRequestedItem,
             unlinkRequestedItem: $scope.unlinkRequestedItem,
-            ok: $translate.instant("JSTEXT.LINKED_ITEMS.OK"),
+            ok: $translate.instant("LINKED_ITEMS.OK"),
           },
           {
             templateUrl: 'views/display-linked-items-confirm.html',
@@ -272,7 +272,7 @@ angular.module('ilApp')
           id: 'all',
           category: {
             name: {
-              text: $translate.instant('JSTEXT.TEXT.ALL_CATEGORIES')
+              text: $translate.instant('TEXT.ALL_CATEGORIES')
             }
           }
         });
@@ -322,10 +322,10 @@ angular.module('ilApp')
         }
       });
       $confirm({
-          title: $translate.instant('JSTEXT.REMOVE_ITEM_S_FROM_CATALOGUE.TITLE'),
+          title: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.TITLE'),
           items: items,
           linkedItems: linkedItems,
-          ok: $translate.instant('JSTEXT.REMOVE_ITEM_S_FROM_CATALOGUE.OK')
+          ok: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.OK')
       },
       {
         templateUrl: 'views/remove-item-confirm.html'
@@ -348,7 +348,7 @@ angular.module('ilApp')
 
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
 
-          WSAlert.success($translate.instant('JSTEXT.WSALERT.SUCCESS.ITEM_S_REMOVED'));
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_S_REMOVED'));
 
           $scope.loading.catalogue = false;
         },
@@ -367,12 +367,12 @@ angular.module('ilApp')
 
       var items = $scope.getSelectedItems();
       if(items == void 0 || items === false){
-        alert($translate.instant('JSTEXT.ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
+        alert($translate.instant('ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
         return;
       }
 
       if(items.length < 2){
-        alert($translate.instant('JSTEXT.ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
+        alert($translate.instant('ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
         return;
       }
 
@@ -388,14 +388,14 @@ angular.module('ilApp')
       });
 
       $confirm({
-          title: $translate.instant("JSTEXT.COMBINE_ITEMS.TITLE"),
+          title: $translate.instant("JSTEXT_COMBINE_ITEMS.TITLE"),
           items: items,
           linkedItems: linkedItems,
           masterItem: false,
           selectMaster: function(masterItem){
             $scope.masterItem = masterItem;
           },
-          ok: $translate.instant("JSTEXT.COMBINE_ITEMS.OK")
+          ok: $translate.instant("JSTEXT_COMBINE_ITEMS.OK")
         },
         {
           templateUrl: 'views/combine-items-confirm.html'
@@ -412,7 +412,7 @@ angular.module('ilApp')
                 $scope.gridOptions.data.splice(i, 1);
               }
             });
-            WSAlert.success($translate.instant("JSTEXT.WSALERT.SUCCESS.ITEMS_COMBINED"));
+            WSAlert.success($translate.instant("WSALERT.SUCCESS.ITEMS_COMBINED"));
             $scope.loading.catalogue = false;
         },
         function(error){
@@ -478,7 +478,7 @@ angular.module('ilApp')
 
     $scope.filtersActivate = function(){
       if($scope.filters.skill == null) {
-        WSAlert.warning($translate.instant("JSTEXT.WSALERT.WARNING.YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST"));
+        WSAlert.warning($translate.instant("WSALERT.WARNING.YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST"));
         return;
       }
 
@@ -503,7 +503,7 @@ angular.module('ilApp')
       var item = $scope.getOneSelectedItem();
 
       if(item == void 0 || item === false){
-        alert($translate.instant("JSTEXT.ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
+        alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
         return;
       }
 
@@ -515,7 +515,7 @@ angular.module('ilApp')
       var item = false;
 
       if($scope.gridApi.selection.getSelectedRows().length > 1){
-        WSAlert.warning($translate.instant("JSTEXT.WSALERT.WARNING.PLEASE_SELECT_ONLY_ONE_ROW"));
+        WSAlert.warning($translate.instant("WSALERT.WARNING.PLEASE_SELECT_ONLY_ONE_ROW"));
         item = false;
       }
       else if ($scope.gridApi.selection.getSelectedRows().length == 1){
@@ -622,8 +622,8 @@ angular.module('ilApp')
 
     $scope.unlinkRequestedItem = function(item, linkedItemsRef, index){
       $confirm({
-          title: $translate.instant("JSTEXT.ARE_YOU_SURE.TITLE"),
-          ok: $translate.instant("JSTEXT.ARE_YOU_SURE.OK"),
+          title: $translate.instant("ARE_YOU_SURE.TITLE"),
+          ok: $translate.instant("ARE_YOU_SURE.OK"),
           item: item
         },
         {
@@ -697,49 +697,49 @@ angular.module('ilApp')
     //map hotkeys
     hotkeys.add({
       combo: 'ctrl+o',
-      description: $translate.instant("JSTEXT.HOTKEYS.EDIT_ITEM_IN_FULL_VIEW"),
+      description: $translate.instant("HOTKEYS.EDIT_ITEM_IN_FULL_VIEW"),
       callback: $scope.editItem
     });
 
     hotkeys.add({
       combo: 'ctrl+l',
-      description: $translate.instant("JSTEXT.HOTKEYS.DISPLAY_LINKED_ITEMS"),
+      description: $translate.instant("HOTKEYS.DISPLAY_LINKED_ITEMS"),
       callback: $scope.getLinkedItems
     });
 
     hotkeys.add({
       combo: 'ctrl+backspace',
-      description: $translate.instant("JSTEXT.HOTKEYS.REMOVE_SELECTED_ITEM"),
+      description: $translate.instant("HOTKEYS.REMOVE_SELECTED_ITEM"),
       callback: $scope.removeItem
     });
 
     hotkeys.add({
       combo: 'ctrl+m',
-      description: $translate.instant("JSTEXT.HOTKEYS.COMBINE_SELECTED_ITEMS"),
+      description: $translate.instant("HOTKEYS.COMBINE_SELECTED_ITEMS"),
       callback: $scope.combineItems
     });
 
     hotkeys.add({
       combo: 'ctrl+f',
-      description: $translate.instant("JSTEXT.HOTKEYS.FULLSCREEN_TOGGLE"),
+      description: $translate.instant("HOTKEYS.FULLSCREEN_TOGGLE"),
       callback: $scope.toggleFullScreen
     });
 
     hotkeys.add({
       combo: 'ctrl+n',
-      description: $translate.instant("JSTEXT.HOTKEYS.ADD_NEW_ROW_IN_FULL_VIEW"),
+      description: $translate.instant("HOTKEYS.ADD_NEW_ROW_IN_FULL_VIEW"),
       callback: $scope.openItemEditor
     });
 
     hotkeys.add({
       combo: 'ctrl+k',
-      description: $translate.instant("JSTEXT.HOTKEYS.TOGGLE_INLINE_EDITING"),
+      description: $translate.instant("HOTKEYS.TOGGLE_INLINE_EDITING"),
       callback: $scope.toggleEditing
     });
 
     hotkeys.add({
       combo: 'ctrl+t',
-      description: $translate.instant("JSTEXT.HOTKEYS.TOGGLE_FILTERS_DIALOG"),
+      description: $translate.instant("HOTKEYS.TOGGLE_FILTERS_DIALOG"),
       callback: $scope.toggleFilters
     });
 

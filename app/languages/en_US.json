@@ -1,92 +1,90 @@
 {
-  "JSTEXT": {
-    "CONSTANT":{
-      "APP_ROLES":{
-        "ADMIN":"Admin",
-        "ORGANIZER":"Organizer",
-        "WS_MANAGER":"Workshop Manager",
-        "WS_SECTOR_MANAGER":"Sector Manager",
-        "VIEW":"View"
-      },
-      "MULTIPLIERS":{
-        "SKILL":"per Skill",
-        "COMPETITORS":"per Competitor",
-        "EXPERTS":"per Expert",
-        "PER_NUM_COMPETITORS":"per every X Competitors",
-        "PER_NUM_EXPERTS":"per every X Experts"
-      },
-      "ITEM_STATUS_TEXT":{
-        "RED":"Requested",
-        "YELLOW":"Pending",
-        "GREEN":"Confirmed",
-        "BLACK":"Secret"
-      }
+  "CONSTANT":{
+    "APP_ROLES":{
+      "ADMIN":"Admin",
+      "ORGANIZER":"Organizer",
+      "WS_MANAGER":"Workshop Manager",
+      "WS_SECTOR_MANAGER":"Sector Manager",
+      "VIEW":"View"
     },
-    "ADD_ITEM_TO_THE_SET":{
-      "TITLE":"Add item to the set",
-      "TEXT":"Are you sure you want to add {{text}} to the standard set?"
+    "MULTIPLIERS":{
+      "SKILL":"per Skill",
+      "COMPETITORS":"per Competitor",
+      "EXPERTS":"per Expert",
+      "PER_NUM_COMPETITORS":"per every X Competitors",
+      "PER_NUM_EXPERTS":"per every X Experts"
     },
-    "ARE_YOU_SURE":{
-      "TITLE":"Are you sure?",
-      "TEXT":"Are you sure you want to delete the set {{text}} - this cannot be undone!",
-      "OK":"Remove item"
-    },
-    "DELETE_ITEM_FROM_SET":{
-      "TITLE":"Delete item from set",
-      "TEXT":"Are you sure?"
-    },
-    "LINKED_ITEMS":{
-      "TITLE":"Linked items",
-      "OK":"Close"
-    },
-    "REMOVE_ITEM_S_FROM_CATALOGUE":{
-      "TITLE":"Remove item(s) from catalogue?",
-      "OK":"Delete"
-    },
-    "COMBINE_ITEMS":{
-      "TITLE":"Combine items?",
-      "OK":"Combine"
-    },
-    "HOTKEYS":{
-      "EDIT_ITEM_IN_FULL_VIEW":"Edit item in full view",
-      "DISPLAY_LINKED_ITEMS":"Display linked items",
-      "REMOVE_SELECTED_ITEM":"Remove selected item",
-      "COMBINE_SELECTED_ITEMS":"Combine selected items",
-      "FULLSCREEN_TOGGLE":"Fullscreen (toggle)",
-      "ADD_NEW_ROW_IN_FULL_VIEW":"Add new row in full view",
-      "TOGGLE_INLINE_EDITING":"Toggle inline editing",
-      "TOGGLE_FILTERS_DIALOG":"Toggle filters dialog"
-    },
-    "TEXT":{
-      "ALL_CATEGORIES":"All categories"
-    },
-    "WSALERT":{
-      "SUCCESS":{
-        "QUANTITIES_UPDATED":"Quantities updated!",
-        "SET_REMOVED_SUCCESSFULLY":"Set removed successfully!",
-        "ITEM_SAVED":"Item saved",
-        "ITEM_S_REMOVED":"Item(s) removed!",
-        "ITEMS_COMBINED":"Items combined!"
-      },
-      "DANGER":{
-        "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"Item could not be removed from set, please try again!"
-      },
-      "WARNING":{
-        "ERROR_REFRESHING_ITEM":"Error refreshing item, consider refreshing the browser: {{error}}",
-        "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"You have to select at least skill first",
-        "PLEASE_SELECT_ONLY_ONE_ROW":"Please select only one row."
-      }
-    },
-    "ALERT":{
-      "YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM":"You need to select at least one item",
-      "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Please select at least 2 items"
-    },
-    "ERROR":{
-      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Could not get active positions for user: {{error}}"
-    },
-    "CONFIRM":{
-      "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Are you sure you want to leave this page?"
+    "ITEM_STATUS_TEXT":{
+      "RED":"Requested",
+      "YELLOW":"Pending",
+      "GREEN":"Confirmed",
+      "BLACK":"Secret"
     }
+  },
+  "ADD_ITEM_TO_THE_SET":{
+    "TITLE":"Add item to the set",
+    "TEXT":"Are you sure you want to add {{text}} to the standard set?"
+  },
+  "ARE_YOU_SURE":{
+    "TITLE":"Are you sure?",
+    "TEXT":"Are you sure you want to delete the set {{text}} - this cannot be undone!",
+    "OK":"Remove item"
+  },
+  "DELETE_ITEM_FROM_SET":{
+    "TITLE":"Delete item from set",
+    "TEXT":"Are you sure?"
+  },
+  "LINKED_ITEMS":{
+    "TITLE":"Linked items",
+    "OK":"Close"
+  },
+  "REMOVE_ITEM_S_FROM_CATALOGUE":{
+    "TITLE":"Remove item(s) from catalogue?",
+    "OK":"Delete"
+  },
+  "JSTEXT_COMBINE_ITEMS":{
+    "TITLE":"Combine items?",
+    "OK":"Combine"
+  },
+  "HOTKEYS":{
+    "EDIT_ITEM_IN_FULL_VIEW":"Edit item in full view",
+    "DISPLAY_LINKED_ITEMS":"Display linked items",
+    "REMOVE_SELECTED_ITEM":"Remove selected item",
+    "COMBINE_SELECTED_ITEMS":"Combine selected items",
+    "FULLSCREEN_TOGGLE":"Fullscreen (toggle)",
+    "ADD_NEW_ROW_IN_FULL_VIEW":"Add new row in full view",
+    "TOGGLE_INLINE_EDITING":"Toggle inline editing",
+    "TOGGLE_FILTERS_DIALOG":"Toggle filters dialog"
+  },
+  "TEXT":{
+    "ALL_CATEGORIES":"All categories"
+  },
+  "WSALERT":{
+    "SUCCESS":{
+      "QUANTITIES_UPDATED":"Quantities updated!",
+      "SET_REMOVED_SUCCESSFULLY":"Set removed successfully!",
+      "ITEM_SAVED":"Item saved",
+      "ITEM_S_REMOVED":"Item(s) removed!",
+      "ITEMS_COMBINED":"Items combined!"
+    },
+    "DANGER":{
+      "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"Item could not be removed from set, please try again!"
+    },
+    "WARNING":{
+      "ERROR_REFRESHING_ITEM":"Error refreshing item, consider refreshing the browser: {{error}}",
+      "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"You have to select at least skill first",
+      "PLEASE_SELECT_ONLY_ONE_ROW":"Please select only one row."
+    }
+  },
+  "ALERT":{
+    "YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM":"You need to select at least one item",
+    "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Please select at least 2 items"
+  },
+  "ERROR":{
+    "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Could not get active positions for user: {{error}}"
+  },
+  "CONFIRM":{
+    "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Are you sure you want to leave this page?"
   },
 
   "YOU_HAVE_MULTIPLE_POSITIONS":"You have multiple positions, please select a role to use the application as",

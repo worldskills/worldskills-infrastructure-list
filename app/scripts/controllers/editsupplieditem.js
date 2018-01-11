@@ -41,7 +41,7 @@ angular.module('ilApp')
         //  angular.extend($scope.rowItem, res);
         //$scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
           $scope.loading.aside = false;
-          WSAlert.success($translate.instant('JSTEXT.WSALERT.SUCCESS.ITEM_SAVED'));
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED'));
           $uibModalInstance.dismiss();
         },
         function (error){

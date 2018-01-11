@@ -31,7 +31,7 @@ angular.module('ilApp')
       $scope.loading.set = true;
 
       ItemSets.updateQuantities($scope.selectedSet).then(function(res){
-        WSAlert.success($translate.instant('JSTEXT.WSALERT.SUCCESS.QUANTITIES_UPDATED'));
+        WSAlert.success($translate.instant('WSALERT.SUCCESS.QUANTITIES_UPDATED'));
         $scope.selectedSet = res.data;
         $scope.loading.set = false;
       },
@@ -43,8 +43,8 @@ angular.module('ilApp')
 
     $scope.removeItem = function(item, index){
       $confirm({
-        title: $translate.instant('JSTEXT.DELETE_ITEM_FROM_SET.TITLE'),
-        text: $translate.instant('JSTEXT.DELETE_ITEM_FROM_SET.TEXT'),
+        title: $translate.instant('DELETE_ITEM_FROM_SET.TITLE'),
+        text: $translate.instant('DELETE_ITEM_FROM_SET.TEXT'),
       }).then(function () {
         ItemSets.removeFromSet($scope.selectedSet.id, item.id).then(function(res){
           $scope.selectedSet.items.splice(index, 1);
@@ -73,8 +73,8 @@ angular.module('ilApp')
       if(typeof item === 'undefined') return false;
 
       $confirm({
-        title: $translate.instant('JSTEXT.ADD_ITEM_TO_THE_SET.TITLE'),
-        text: $translate.instant('JSTEXT.ADD_ITEM_TO_THE_SET.TEXT', { text: item.originalObject.description.text }),
+        title: $translate.instant('ADD_ITEM_TO_THE_SET.TITLE'),
+        text: $translate.instant('ADD_ITEM_TO_THE_SET.TEXT', { text: item.originalObject.description.text }),
       }).then(function(){
         //add item to set
         addToSet($scope.selectedSet, item);
@@ -86,8 +86,8 @@ angular.module('ilApp')
 
     $scope.deleteSet = function(set){
       $confirm({
-        title: $translate.instant('JSTEXT.ARE_YOU_SURE.TITLE'),
-        text: $translate.instant('JSTEXT.ARE_YOU_SURE.TEXT', {text: set.name})
+        title: $translate.instant('ARE_YOU_SURE.TITLE'),
+        text: $translate.instant('ARE_YOU_SURE.TEXT', {text: set.name})
       }).then(function(){
         deleteSet(set.id);
       })
@@ -122,7 +122,7 @@ angular.module('ilApp')
       $scope.loading.set = true;
 
       ItemSets.removeSet(setId).then(function(res){
-        WSAlert.success($translate.instant('JSTEXT.WSALERT.SUCCESS.SET_REMOVED_SUCCESSFULLY'));
+        WSAlert.success($translate.instant('WSALERT.SUCCESS.SET_REMOVED_SUCCESSFULLY'));
         $state.go('event.sets', {eventId: $state.params.eventId});
 
         //remove from sets

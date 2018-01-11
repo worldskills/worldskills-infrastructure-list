@@ -1,92 +1,90 @@
 {
-  "JSTEXT": {
-    "CONSTANT":{
-      "APP_ROLES":{
-        "ADMIN":"Admin",
-        "ORGANIZER":"Organisateur",
-        "WS_MANAGER":"Responsable d'atelier",
-        "WS_SECTOR_MANAGER":"Responsable de secteur",
-        "VIEW":"Afficher"
-      },
-      "MULTIPLIERS":{
-        "SKILL":"par métier",
-        "COMPETITORS":"par participant",
-        "EXPERTS":"par expert",
-        "PER_NUM_COMPETITORS":"pour X participants",
-        "PER_NUM_EXPERTS":"pour X experts"
-      },
-      "ITEM_STATUS_TEXT":{
-        "RED":"Demandé",
-        "YELLOW":"En attente",
-        "GREEN":"Confirmé",
-        "BLACK":"Secret"
-      }
+  "CONSTANT":{
+    "APP_ROLES":{
+      "ADMIN":"Admin",
+      "ORGANIZER":"Organisateur",
+      "WS_MANAGER":"Responsable d'atelier",
+      "WS_SECTOR_MANAGER":"Responsable de secteur",
+      "VIEW":"Afficher"
     },
-    "ADD_ITEM_TO_THE_SET":{
-      "TITLE":"Ajout d'un item dans le lot",
-      "TEXT":"Êtes-vous certain(e) de vouloir ajouter cet item dans le lot standard : {{text}} ?"
+    "MULTIPLIERS":{
+      "SKILL":"par métier",
+      "COMPETITORS":"par participant",
+      "EXPERTS":"par expert",
+      "PER_NUM_COMPETITORS":"pour X participants",
+      "PER_NUM_EXPERTS":"pour X experts"
     },
-    "ARE_YOU_SURE":{
-      "TITLE":"Confirmation",
-      "TEXT":"Êtes-vous certain(e) de vouloir supprimer le lot {{text}} - cette action est irréversible !",
-      "OK":"Supprimer l'item"
-    },
-    "DELETE_ITEM_FROM_SET":{
-      "TITLE":"Suppresion d'un item du lot",
-      "TEXT":"Êtes-vous certain(e) ?"
-    },
-    "LINKED_ITEMS":{
-      "TITLE":"Items liés",
-      "OK":"Fermer"
-    },
-    "REMOVE_ITEM_S_FROM_CATALOGUE":{
-      "TITLE":"Supprimer les items du catalogue ?",
-      "OK":"Supprimer"
-    },
-    "COMBINE_ITEMS":{
-      "TITLE":"Combiner les articles ?",
-      "OK":"Combiner"
-    },
-    "HOTKEYS":{
-      "EDIT_ITEM_IN_FULL_VIEW":"Éditer l'item en mode plein-éran",
-      "DISPLAY_LINKED_ITEMS":"Aficher les items liés",
-      "REMOVE_SELECTED_ITEM":"Supprimer l'item sélectionné",
-      "COMBINE_SELECTED_ITEMS":"Combiner les items sélectionnés",
-      "FULLSCREEN_TOGGLE":"Plein-écran (oui/non)",
-      "ADD_NEW_ROW_IN_FULL_VIEW":"Ajouter une nouvelle ligne en plein-écran",
-      "TOGGLE_INLINE_EDITING":"Activer/désactiver l'édition directe",
-      "TOGGLE_FILTERS_DIALOG":"Afficher/masquer les filtres"
-    },
-    "TEXT":{
-      "ALL_CATEGORIES":"Toutes les catégories"
-    },
-    "WSALERT":{
-      "SUCCESS":{
-        "QUANTITIES_UPDATED":"Quantités mises à jour !",
-        "SET_REMOVED_SUCCESSFULLY":"Lot supprimé avec succès !",
-        "ITEM_SAVED":"Item enregistré",
-        "ITEM_S_REMOVED":"Items supprimés !",
-        "ITEMS_COMBINED":"Items combinés !"
-      },
-      "DANGER":{
-        "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !"
-      },
-      "WARNING":{
-        "ERROR_REFRESHING_ITEM":"Mise à jour de l'item impossible, vous devriez envisager d'actualiser la fenêtre de votre navigateur : {{error}}",
-        "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"Vous devez commencer par sélectionner au moins un métier",
-        "PLEASE_SELECT_ONLY_ONE_ROW":"Merci de ne sélectionner qu'une seule ligne."
-      }
-    },
-    "ALERT":{
-      "YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM":"Vous devez sélectionner au moins un item",
-      "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Merci de sélectionner au moins 2 items"
-    },
-    "ERROR":{
-      "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Erreur de récupération des fonctions de l'utilisateur : {{error}}"
-    },
-    "CONFIRM":{
-      "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Souhaitez-vous vraiment quitter cette page ?"
+    "ITEM_STATUS_TEXT":{
+      "RED":"Demandé",
+      "YELLOW":"En attente",
+      "GREEN":"Confirmé",
+      "BLACK":"Secret"
     }
+  },
+  "ADD_ITEM_TO_THE_SET":{
+    "TITLE":"Ajout d'un item dans le lot",
+    "TEXT":"Êtes-vous certain(e) de vouloir ajouter cet item dans le lot standard : {{text}} ?"
+  },
+  "ARE_YOU_SURE":{
+    "TITLE":"Confirmation",
+    "TEXT":"Êtes-vous certain(e) de vouloir supprimer le lot {{text}} - cette action est irréversible !",
+    "OK":"Supprimer l'item"
+  },
+  "DELETE_ITEM_FROM_SET":{
+    "TITLE":"Suppresion d'un item du lot",
+    "TEXT":"Êtes-vous certain(e) ?"
+  },
+  "LINKED_ITEMS":{
+    "TITLE":"Items liés",
+    "OK":"Fermer"
+  },
+  "REMOVE_ITEM_S_FROM_CATALOGUE":{
+    "TITLE":"Supprimer les items du catalogue ?",
+    "OK":"Supprimer"
+  },
+  "JSTEXT_COMBINE_ITEMS":{
+    "TITLE":"Combiner les articles ?",
+    "OK":"Combiner"
+  },
+  "HOTKEYS":{
+    "EDIT_ITEM_IN_FULL_VIEW":"Éditer l'item en mode plein-éran",
+    "DISPLAY_LINKED_ITEMS":"Aficher les items liés",
+    "REMOVE_SELECTED_ITEM":"Supprimer l'item sélectionné",
+    "COMBINE_SELECTED_ITEMS":"Combiner les items sélectionnés",
+    "FULLSCREEN_TOGGLE":"Plein-écran (oui/non)",
+    "ADD_NEW_ROW_IN_FULL_VIEW":"Ajouter une nouvelle ligne en plein-écran",
+    "TOGGLE_INLINE_EDITING":"Activer/désactiver l'édition directe",
+    "TOGGLE_FILTERS_DIALOG":"Afficher/masquer les filtres"
+  },
+  "TEXT":{
+    "ALL_CATEGORIES":"Toutes les catégories"
+  },
+  "WSALERT":{
+    "SUCCESS":{
+      "QUANTITIES_UPDATED":"Quantités mises à jour !",
+      "SET_REMOVED_SUCCESSFULLY":"Lot supprimé avec succès !",
+      "ITEM_SAVED":"Item enregistré",
+      "ITEM_S_REMOVED":"Items supprimés !",
+      "ITEMS_COMBINED":"Items combinés !"
+    },
+    "DANGER":{
+      "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !"
+    },
+    "WARNING":{
+      "ERROR_REFRESHING_ITEM":"Mise à jour de l'item impossible, vous devriez envisager d'actualiser la fenêtre de votre navigateur : {{error}}",
+      "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST":"Vous devez commencer par sélectionner au moins un métier",
+      "PLEASE_SELECT_ONLY_ONE_ROW":"Merci de ne sélectionner qu'une seule ligne."
+    }
+  },
+  "ALERT":{
+    "YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM":"Vous devez sélectionner au moins un item",
+    "PLEASE_SELECT_AT_LEAST_2_ITEMS":"Merci de sélectionner au moins 2 items"
+  },
+  "ERROR":{
+    "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER":"Erreur de récupération des fonctions de l'utilisateur : {{error}}"
+  },
+  "CONFIRM":{
+    "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE":"Souhaitez-vous vraiment quitter cette page ?"
   },
 
   "YOU_HAVE_MULTIPLE_POSITIONS":"Vous occupez plusieurs fonctions : merci de sélectionner le rôle sous lequel vous souhaitez utiliser l'application.",
