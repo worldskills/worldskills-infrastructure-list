@@ -46,6 +46,11 @@ Starting a new project
 	# start the project
 	$ grunt serve
 	
+	## Troubleshooting
+	If you are in windows environnement, you have to install Ruby & Compass
+	https://rubyinstaller.org/downloads/ => Install ruby with this installer
+	Install compass => In a fresh terminal `gem install compass`
+
 	# to build for distribution
 	$ grunt build
 

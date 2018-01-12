@@ -108,7 +108,7 @@ angular
   $translateProvider.preferredLanguage('en');
   $translateProvider.fallbackLanguage('en');
   $translateProvider.useLocalStorage();
-  $translateProvider.useSanitizeValueStrategy('sanitize');
+  $translateProvider.useSanitizeValueStrategy('escape');
 
   //language negotiation
   //http://angular-translate.github.io/docs/#/guide/09_language-negotiation
@@ -311,8 +311,8 @@ angular
   })
 .run(function($rootScope, $state, $stateParams, auth, WSAlert, $templateCache){
   //DEVELOPMENT API URL
-  $rootScope.available_languages = {"en_US":"English"};
-  //$rootScope.available_languages = {"en_US":"English", "pt_BR":"Portuguese (Brazil)"};
+  //$rootScope.available_languages = {"en_US":"English"};
+  $rootScope.available_languages = {"en_US":"English", "pt_BR":"Portuguese (Brazil)", "fr_FR":"Français"};
 
   //PRODUCTION API URL
   //$rootScope.api_url = "http://beuk.worldskills.org/glossary/";

@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL, $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys) {
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL, $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys, $translate) {
 
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
@@ -35,7 +35,7 @@ angular.module('ilApp')
 
     //prevent accidental navigation
     $scope.$on('$stateChangeStart', function( event ) {
-      if(!confirm("Are you sure you want to leave this page?"))
+      if(!confirm($translate.instant('CONFIRM.ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE')))
         event.preventDefault();
     });
 
@@ -91,7 +91,7 @@ angular.module('ilApp')
         {field: 'manufacturer', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'size', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},        
+        {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'supplier', name: 'supplier', width: '100'},
         {field: 'supply_type', name: 'supply_type', width: '100'},
         {field: 'unit_cost', name: 'unit_cost', width: '100'}, //double
@@ -200,7 +200,7 @@ angular.module('ilApp')
         promise.resolve();
       },
       function(error){
-        WSAlert.warning("Error refreshing item, consider refreshing the browser: " + error);
+        WSAlert.warning($translate.instant('WSALERT.WARNING.ERROR_REFRESHING_ITEM', {error: error}));
         promise.reject();
         $scope.loading.catalogue = false;
       });
@@ -217,7 +217,7 @@ angular.module('ilApp')
       var item = $scope.getOneSelectedItem();
 
       if(item == void 0 || item === false){
-        alert("You need to select at least one item");
+        alert($translate.instant('ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM'));
         return;
       }
 
@@ -229,13 +229,13 @@ angular.module('ilApp')
 
         //display linked items
         $confirm({
-            title: "Linked items",
+            title: $translate.instant('LINKED_ITEMS.TITLE'),
             newLinkedItem: $scope.createNewLinkedItem,
             suppliedItem: item,
             items: res.requested_items,
             editRequestedItem: $scope.editRequestedItem,
             unlinkRequestedItem: $scope.unlinkRequestedItem,
-            ok: "Close",
+            ok: $translate.instant("LINKED_ITEMS.OK"),
           },
           {
             templateUrl: 'views/display-linked-items-confirm.html',
@@ -268,12 +268,11 @@ angular.module('ilApp')
       $scope.filters.category = null;
 
       Items.getCategories(item.id).then(function (res) {
-
         res.unshift({
           id: 'all',
           category: {
             name: {
-              text: "All categories"
+              text: $translate.instant('TEXT.ALL_CATEGORIES')
             }
           }
         });
@@ -322,12 +321,11 @@ angular.module('ilApp')
           deleteQueue.push(val);
         }
       });
-
       $confirm({
-          title: "Remove item(s) from catalogue?",
+          title: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.TITLE'),
           items: items,
           linkedItems: linkedItems,
-          ok: 'Delete'
+          ok: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.OK')
       },
       {
         templateUrl: 'views/remove-item-confirm.html'
@@ -349,7 +347,8 @@ angular.module('ilApp')
           });
 
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
-          WSAlert.success("Item(s) removed!");
+
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_S_REMOVED'));
 
           $scope.loading.catalogue = false;
         },
@@ -368,12 +367,12 @@ angular.module('ilApp')
 
       var items = $scope.getSelectedItems();
       if(items == void 0 || items === false){
-        alert("Please select at least 2 items");
+        alert($translate.instant('ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
         return;
       }
 
       if(items.length < 2){
-        alert("Please select at least 2 items");
+        alert($translate.instant('ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
         return;
       }
 
@@ -389,14 +388,14 @@ angular.module('ilApp')
       });
 
       $confirm({
-          title: "Combine items?",
+          title: $translate.instant("JSTEXT_COMBINE_ITEMS.TITLE"),
           items: items,
           linkedItems: linkedItems,
           masterItem: false,
           selectMaster: function(masterItem){
             $scope.masterItem = masterItem;
           },
-          ok: 'Combine'
+          ok: $translate.instant("JSTEXT_COMBINE_ITEMS.OK")
         },
         {
           templateUrl: 'views/combine-items-confirm.html'
@@ -413,8 +412,7 @@ angular.module('ilApp')
                 $scope.gridOptions.data.splice(i, 1);
               }
             });
-
-            WSAlert.success("Items combined!");
+            WSAlert.success($translate.instant("WSALERT.SUCCESS.ITEMS_COMBINED"));
             $scope.loading.catalogue = false;
         },
         function(error){
@@ -480,7 +478,7 @@ angular.module('ilApp')
 
     $scope.filtersActivate = function(){
       if($scope.filters.skill == null) {
-        WSAlert.warning("You have to select at least skill first");
+        WSAlert.warning($translate.instant("WSALERT.WARNING.YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST"));
         return;
       }
 
@@ -505,7 +503,7 @@ angular.module('ilApp')
       var item = $scope.getOneSelectedItem();
 
       if(item == void 0 || item === false){
-        alert("You need to select at least one item");
+        alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
         return;
       }
 
@@ -517,7 +515,7 @@ angular.module('ilApp')
       var item = false;
 
       if($scope.gridApi.selection.getSelectedRows().length > 1){
-        WSAlert.warning("Please select only one row.");
+        WSAlert.warning($translate.instant("WSALERT.WARNING.PLEASE_SELECT_ONLY_ONE_ROW"));
         item = false;
       }
       else if ($scope.gridApi.selection.getSelectedRows().length == 1){
@@ -624,8 +622,8 @@ angular.module('ilApp')
 
     $scope.unlinkRequestedItem = function(item, linkedItemsRef, index){
       $confirm({
-          title: "Are you sure?",
-          ok: 'Remove item',
+          title: $translate.instant("ARE_YOU_SURE.TITLE"),
+          ok: $translate.instant("ARE_YOU_SURE.OK"),
           item: item
         },
         {
@@ -699,49 +697,49 @@ angular.module('ilApp')
     //map hotkeys
     hotkeys.add({
       combo: 'ctrl+o',
-      description: 'Edit item in full view',
+      description: $translate.instant("HOTKEYS.EDIT_ITEM_IN_FULL_VIEW"),
       callback: $scope.editItem
     });
 
     hotkeys.add({
       combo: 'ctrl+l',
-      description: 'Display linked items',
+      description: $translate.instant("HOTKEYS.DISPLAY_LINKED_ITEMS"),
       callback: $scope.getLinkedItems
     });
 
     hotkeys.add({
       combo: 'ctrl+backspace',
-      description: 'Remove selected item',
+      description: $translate.instant("HOTKEYS.REMOVE_SELECTED_ITEM"),
       callback: $scope.removeItem
     });
 
     hotkeys.add({
       combo: 'ctrl+m',
-      description: 'Combine selected items',
+      description: $translate.instant("HOTKEYS.COMBINE_SELECTED_ITEMS"),
       callback: $scope.combineItems
     });
 
     hotkeys.add({
       combo: 'ctrl+f',
-      description: 'Fullscreen (toggle)',
+      description: $translate.instant("HOTKEYS.FULLSCREEN_TOGGLE"),
       callback: $scope.toggleFullScreen
     });
 
     hotkeys.add({
       combo: 'ctrl+n',
-      description: 'Add new row in full view',
+      description: $translate.instant("HOTKEYS.ADD_NEW_ROW_IN_FULL_VIEW"),
       callback: $scope.openItemEditor
     });
 
     hotkeys.add({
       combo: 'ctrl+k',
-      description: 'Toggle inline editing',
+      description: $translate.instant("HOTKEYS.TOGGLE_INLINE_EDITING"),
       callback: $scope.toggleEditing
     });
 
     hotkeys.add({
       combo: 'ctrl+t',
-      description: 'Toggle filters dialog',
+      description: $translate.instant("HOTKEYS.TOGGLE_FILTERS_DIALOG"),
       callback: $scope.toggleFilters
     });
 
@@ -750,4 +748,3 @@ angular.module('ilApp')
     };
 
   });
-

@@ -1,31 +1,31 @@
 <div class="modal-header">
   <h3 class="modal-title pull-left">{{data.title}}</h3>
-  <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add new linked item</button></span>
+  <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>ADD_NEW_LINKED_ITEM</span></button></span>
   <br class="clearfix">
 </div>
 <div class="modal-body">
   <alerts></alerts>
-  <div ng-if="data.items.length == 0" class="alert alert-info">This item is not yet used in any skills.</div>
+  <div ng-if="data.items.length == 0" class="alert alert-info" translate>ITEM_NO_SKILLS</div>
 
   <table class="table table-striped" ng-if="data.items.length > 0">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Requested</th>
-      <th>Skill</th>
-      <th>Category</th>
-      <th>Qty</th>
-      <th>Supplier (potential)</th>
-      <th>Status</th>
-      <th>Actions</th>
+      <th translate>TH_ID</th>
+      <th translate>TH_REQUESTED</th>
+      <th translate>TH_SKILL</th>
+      <th translate>TH_CATEGORY</th>
+      <th translate>TH_QTY</th>
+      <th translate>TH_SUPPLIER_POTENTIAL</th>
+      <th translate>TH_STATUS</th>
+      <th translate>TH_ACTIONS</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in data.items track by item.id"
     ng-class="{'success': item.new || item.updated}">
       <td>{{item.id}}
-        <span ng-if="item.new" class="label label-success">new</span>
-        <span ng-if="item.updated" class="label label-success">updated</span>
+        <span ng-if="item.new" class="label label-success" translate>NEW</span>
+        <span ng-if="item.updated" class="label label-success" translate>UPDATED</span>
       </td>
       <td>{{item.description.text}}&nbsp;<span class="label label-info">{{item.description.lang_code}}</span></td>
       <td>{{item.category.list.skill.name.text}}</td>

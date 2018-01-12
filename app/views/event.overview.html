@@ -1,80 +1,82 @@
 <ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
 
-<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false">
-    You don't have the required access role to use this application.
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>
+    NO_ACCESS_ROLE
 </div>
 
 
 <ws-spinner ng-if="loading.init" class='bigSpinner'></ws-spinner>
 
 <div class='row' ng-if="skills.length > 0">
-	<div class='col col-xs-12 col-sm-9'>
-		<div class='panel panel-default'>
-			<div class='panel-heading'>Select a skill</div>
-			<div class='panel-body'>
-				<div class="list-group">
-				  <a ui-sref="event.skill.overview({eventId: event_id, skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
-				    <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
+  <div class='col col-xs-12 col-sm-9'>
+    <div class='panel panel-default'>
+      <div class='panel-heading' translate>SELECT_SKILL</div>
+      <div class='panel-body'>
+        <div class="list-group">
+          <a ui-sref="event.skill.overview({eventId: event_id, skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
+            <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
             <div class="progress list-group-item-text"> <!-- second class needed? -->
               <div
                 ng-repeat="status in skill.status_summary.summaries"
                 ng-class="{
-            'progress-bar-success': status.status.id == ITEM_STATUS.GREEN,
-            'progress-bar-warning': status.status.id == ITEM_STATUS.YELLOW,
-            'progress-bar-info': status.status.id == ITEM_STATUS.BLACK,
-            'progress-bar-danger': status.status.id == ITEM_STATUS.RED
-            }"
-                class="progress-bar" style="width: {{status.count / totalCount(skill.status_summary.summaries) * 100}}%">
+                  'progress-bar-success': status.status.id == ITEM_STATUS.GREEN,
+                  'progress-bar-warning': status.status.id == ITEM_STATUS.YELLOW,
+                  'progress-bar-info': status.status.id == ITEM_STATUS.BLACK,
+                  'progress-bar-danger': status.status.id == ITEM_STATUS.RED
+                }"
+                class="progress-bar"
+                style="width: {{status.count / totalCount(skill.status_summary.summaries) * 100}}%"
+              >
                 <span uib-tooltip="{{status.status.name.text}}" tooltip-placement="top" tooltip-trigger="mouseenter" class="">{{status.count}}</span>
               </div>
             </div>
-				    	 <!--progress bar-->
-				    	<!--<div class="progress list-group-item-text">-->
-						  <!--<div class="progress-bar progress-bar-success" style="width: 60%">-->
-						    <!--<span uib-tooltip="Confirmed" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">1932</span>-->
-						  <!--</div>-->
-						  <!--<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 25%">-->
-						    <!--<span uib-tooltip="Pending" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">123</span>-->
-						  <!--</div>-->
-						  <!--<div class="progress-bar progress-bar-danger progress-bar-striped" style="width: 15%">-->
-						    <!--<span uib-tooltip="Requested" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">2</span>-->
-						  <!--</div>-->
-						<!--</div>-->
-						 <!--/progress bar-->
+               <!--progress bar-->
+              <!--<div class="progress list-group-item-text">-->
+              <!--<div class="progress-bar progress-bar-success" style="width: 60%">-->
+                <!--<span uib-tooltip="Confirmed" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">1932</span>-->
+              <!--</div>-->
+              <!--<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 25%">-->
+                <!--<span uib-tooltip="Pending" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">123</span>-->
+              <!--</div>-->
+              <!--<div class="progress-bar progress-bar-danger progress-bar-striped" style="width: 15%">-->
+                <!--<span uib-tooltip="Requested" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">2</span>-->
+              <!--</div>-->
+            <!--</div>-->
+             <!--/progress bar-->
 
-				    	<!-- <span class='label label-danger'>Requested: 1948</span> -->
-				    	<!-- <span class='label label-warning'>Pending: 123</span> -->
-				    	<!-- <span class='label label-success'>Confirmed: 0</span> -->
-				  </a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class='col col-xs-12 col-sm-3'>
-		<div class='panel panel-default'>
-			<div class='panel-heading'>Permissions</div>
-			<div class='panel-body'>
+              <!-- <span class='label label-danger'>Requested: 1948</span> -->
+              <!-- <span class='label label-warning'>Pending: 123</span> -->
+              <!-- <span class='label label-success'>Confirmed: 0</span> -->
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col col-xs-12 col-sm-3'>
+    <div class='panel panel-default'>
+      <div class='panel-heading' translate>PERMISSIONS</div>
+      <div class='panel-body'>
         <div class="permissionList">
         <div ng-repeat="position in activePositions track by $index" ng-class="{active: position.id == activePosition.id}" >
           <a ng-click="setActivePosition(position, $event);" href="#">{{position.role}}
-            <small><span ng-if="position.target">in {{position.target}} </span>at {{position.event.name.text}}</small></a></div>
+            <small><span ng-if="position.target" translate###>in {{position.target}} </span>{{ 'POSITION_EVENT_NAME_TEXT' | translate:{ position: position.event.name.text} }}</small></a></div>
         </div>
-				<!--<div ng-repeat="role in ilRoles track by role.id"><b>{{role.name}}</b>,<br /><small><i>{{role.ws_entity.name.text}}</i></small></div>-->
-			</div>
-		</div>
+        <!--<div ng-repeat="role in ilRoles track by role.id"><b>{{role.name}}</b>,<br /><small><i>{{role.ws_entity.name.text}}</i></small></div>-->
+      </div>
+    </div>
 
     <div class='panel panel-default' ng-if="activePosition.role == APP_ROLES.ORGANIZER || activePosition.role == APP_ROLES.ADMIN || activePosition.role == APP_ROLES.WS_SECTOR_MANAGER">
-			<div class='panel-heading'>Admin views</div>
-			<div class='panel-body'>
-				<ul>
-          <li><a ui-sref="event.sets({eventId: selectedEvent.id})">Standard sets</a></li>
-          <li><a ui-sref="event.catalogue({eventId: selectedEvent.id})">Catalogue editor</a></li>
-          <li><ws-spinner class="smallSpinner" ng-if="loading.requested"></ws-spinner><a ng-if="!loading.requested" href="#" ng-click="exportAllRequested($event)">Export all Requested Items</a></li>
-          <li><ws-spinner class="smallSpinner" ng-if="loading.catalogue"></ws-spinner><a ng-if="!loading.catalogue" href="#" ng-click="exportAllCatalogue($event)">Export all Catalogue Items</a></li>
+      <div class='panel-heading' translate>ADMIN_VIEWS</div>
+      <div class='panel-body'>
+        <ul>
+          <li><a ui-sref="event.sets({eventId: selectedEvent.id})" translate>STANDARD_SETS</a></li>
+          <li><a ui-sref="event.catalogue({eventId: selectedEvent.id})" translate>CATALOGUE_EDITOR</a></li>
+          <li><ws-spinner class="smallSpinner" ng-if="loading.requested"></ws-spinner><a ng-if="!loading.requested" href="#" ng-click="exportAllRequested($event)" translate>EXPORT_REQUESTED_ITEMS</a></li>
+          <li><ws-spinner class="smallSpinner" ng-if="loading.catalogue"></ws-spinner><a ng-if="!loading.catalogue" href="#" ng-click="exportAllCatalogue($event)" translate>EXPORT_ALL_ITEMS</a></li>
         </ul>
-			</div>
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 
 </div>
 

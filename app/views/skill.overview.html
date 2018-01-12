@@ -1,18 +1,18 @@
 <ws-spinner class="bigSpinner" ng-if="loading.init"></ws-spinner>
-<fieldset ng-show="!loading.init"><legend>Overview</legend>
+<fieldset ng-show="!loading.init"><legend translate>OVERVIEW</legend>
 
-<p>To edit items, select a category from the menu on your left.</p>
+<p translate>TO_EDIT_ITEMS</p>
 <p>&nbsp;</p>
 <div class='row'>
 	<div class='col col-xs-12 col-sm-6'>
 		<div class='panel panel-default'>
-			<div class='panel-heading'>Skill Management</div>
+			<div class='panel-heading' translate>SKILL_MANAGEMENT</div>
 			<div class='panel-body'>
 				<table class='table table-striped'>
 					<thead>
 						<tr>
-							<th>Position</th>
-							<th>Name</th>
+							<th translate>TH_POSITION</th>
+							<th translate>TH_NAME</th>
 							<!--<th>Email</th>-->
 						</tr>
 					</thead>
@@ -24,13 +24,13 @@
 						</tr>
 					</tbody>
 				</table>
-        <p class="small">View all list of people in <a target="_blank" href="https://www.worldskills.org/internal/wiw/?name=&member=&event={{selectedEvent.id}}&position=&skill={{selectedSkill.id}}">who-is-who</a></p>
+        <p class="small"><span translate>VIEW_ALL_LIST</span> <a target="_blank" href="https://www.worldskills.org/internal/wiw/?name=&member=&event={{selectedEvent.id}}&position=&skill={{selectedSkill.id}}">who-is-who</a></p>
 			</div>
 		</div>
 	</div>
 	<div class='col col-xs-12 col-sm-6'>
 		<div class='panel panel-default'>
-			<div class='panel-heading'>Progress</div>
+			<div class='panel-heading' translate>PROGRESS</div>
 			<div class='panel-body'>
 				<div class="progress">
 				  <div
@@ -48,10 +48,10 @@
 		</div>
 
 		<div class='panel panel-default'>
-			<div class='panel-heading'>Reports</div>
+			<div class='panel-heading' translate>REPORTS</div>
 			<div class='panel-body'>
-				<button type="button" ui-sref="publicItems({eventId: event_id, skillId: skill_id})" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-download-alt"></i> Print view</button>
-				<button type="button" ng-click="exportSkill();" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-download-alt"></i> Requested Items for skill</button>
+				<button type="button" ui-sref="publicItems({eventId: event_id, skillId: skill_id})" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-download-alt"></i> <span translate>BUTTON_REPORT_PRINT_VIEW</span></button>
+				<button type="button" ng-click="exportSkill();" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-download-alt"></i> <span translate>BUTTON_REPORT_REQUESTED_ITEMS</span></button>
 			</div>
 		</div>
 	</div>

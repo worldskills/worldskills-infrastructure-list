@@ -8,8 +8,8 @@
 <div class='row'>
 	<div class="col-sm-4 col-md-3 sidebar-right">
     <div class="list-group">
-      <div ng-show="sets.length < 1">
-        No sets defined
+      <div ng-show="sets.length < 1" translate>
+        NO_SETS_DEFINED
       </div>
       <a ng-show="sets.length > 0" ui-sref-active ui-sref="event.sets.edit({eventId: selectedEvent.id, setId: set.id})" class="list-group-item" ng-repeat="set in sets track by set.id">
         {{set.name}}
@@ -19,7 +19,7 @@
 
 
     <button class='btn btn-sm btn-success' ng-click="addNewSet();">
-      <i class="glyphicon glyphicon-plus"></i>&nbsp;Add new set
+      <i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>BUTTON_ADD_NEW_SET</span>
     </button>
   </div>
 
