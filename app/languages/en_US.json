@@ -394,5 +394,12 @@
 
   "NO_ACCESS_ROLE": "You don't have the required access role to use this application.",
   "OVERVIEW": "Overview",
-  "CATALOGUE_VIEW": "Catalogue view"
+  "CATALOGUE_VIEW": "Catalogue view",
+
+  "TH_ITEM_CATEGORY": "Category",
+  "ADD_CATEGORY":"Add category",
+  "ADD_SUB_CATEGORY":"Add sub category",
+  "ITEM_CATEGORY": "Category",
+  "ITEM_SUB_CATEGORY": "Sub category",
+  "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and sub category item"
 }

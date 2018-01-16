@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT) {
 
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
@@ -39,6 +39,16 @@ angular.module('ilApp')
     $scope.total = 0;
     $scope.supplierValue = false;
     $scope.standardSetSelector = false;
+
+     //Defining status values for status dropdown in edition form
+     $scope.statusValues = [
+      {id: {id: ITEM_STATUS.RED, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.RED'}}, value: ITEM_STATUS_TEXT.RED},
+      {id: {id: ITEM_STATUS.YELLOW, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.YELLOW'}}, value: ITEM_STATUS_TEXT.YELLOW},
+      {id: {id: ITEM_STATUS.GREEN, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.GREEN'}}, value: ITEM_STATUS_TEXT.GREEN},
+      {id: {id: ITEM_STATUS.BLACK, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.BLACK'}}, value: ITEM_STATUS_TEXT.BLACK},
+    ];
+
+    console.log(MULTIPLIERS);
 
     $scope.moveItem = function (itemId, parentId, position) {
       //console.log("item %d, parent %d, position %d", itemId, parentId, position);

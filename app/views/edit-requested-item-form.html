@@ -41,7 +41,7 @@
         <div class="form-group editForm has-feedback has-success">
           <label class='control-label' translate>MULTIPLIER</label>
           <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
-          <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
+          <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as ('CONSTANT.MULTIPLIERS.' + multi.id) | translate for multi in multipliers"></select>
         </div>
       </div>
       <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(item.multiplier)">
@@ -50,6 +50,12 @@
           <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.X_NUMBER' | translate }}" ng-model='item.multiply_factor' required="{{ 'REQUIRED.MULTIPLY_FACTOR_REQUIRED' | translate }}" ng-required="true">
           <span ng-if="!editForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
           <span ng-if="editForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class='col col-sm-12 col-md-4'>
+        <div class="form-group editForm has-feedback has-success">
+          <label class='control-label' translate>STATUS</label>
+          <select class="form-control input-sm" ng-model="item.status" ng-options="status.id as status.id.name.text | translate for status in statusValues"></select>
         </div>
       </div>
     </div>

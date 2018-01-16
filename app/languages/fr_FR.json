@@ -394,5 +394,12 @@
 
   "NO_ACCESS_ROLE": "Vous ne disposez pas des droits d'accès requis pour utiliser cette application.",
   "OVERVIEW": "Vue d'ensemble",
-  "CATALOGUE_VIEW": "Catalogue"
+  "CATALOGUE_VIEW": "Catalogue",
+
+  "TH_ITEM_CATEGORY": "Super famille",
+  "ADD_CATEGORY":"Ajouter une super famille",
+  "ADD_SUB_CATEGORY":"Ajouter une famille",
+  "ITEM_CATEGORY": "Super famille",
+  "ITEM_SUB_CATEGORY": "Famille",
+  "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles"
 }
