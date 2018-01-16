@@ -31,8 +31,16 @@
     "OK":"Supprimer l'item"
   },
   "DELETE_ITEM_FROM_SET":{
-    "TITLE":"Suppresion d'un item du lot",
+    "TITLE":"Suppression d'un item du lot",
     "TEXT":"Êtes-vous certain(e) ?"
+  },
+  "DELETE_ITEM_CATEGORY":{
+    "TITLE":"Suppression d'une super famille",
+    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la super famille : {{text}}?"
+  },
+  "DELETE_ITEM_SUB_CATEGORY":{
+    "TITLE":"Suppression d'une famille",
+    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la famille : {{text}}?"
   },
   "LINKED_ITEMS":{
     "TITLE":"Items liés",
@@ -396,6 +404,11 @@
   "OVERVIEW": "Vue d'ensemble",
   "CATALOGUE_VIEW": "Catalogue",
 
+  "COULD_NOT_FETCH_ITEM_CATEGORIES": "Impossible de récupérer la liste des super familles d'items",
+  "COULD_NOT_REMOVE_ITEM_CATEGORY_IN_USE": "Impossible de supprimer la super famille car elle est utilisée par au moins une famille",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY_IN_USE": "Impossible de supprimer la famille car elle est utilisée par au moins un item du catalogue",
+  "COULD_NOT_REMOVE_ITEM_CATEGORY": "Impossible de supprimer la super famille : {{error}}",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY": "Impossible de supprimer la famille : {{error}}",
   "TH_ITEM_CATEGORY": "Super famille",
   "ADD_CATEGORY":"Ajouter une super famille",
   "ADD_SUB_CATEGORY":"Ajouter une famille",

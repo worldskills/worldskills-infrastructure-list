@@ -34,6 +34,14 @@
     "TITLE":"Delete item from set",
     "TEXT":"Are you sure?"
   },
+  "DELETE_ITEM_CATEGORY":{
+    "TITLE":"Delete item category",
+    "TEXT":"Are you sure you want to delete the item category : {{text}} ?"
+  },
+  "DELETE_ITEM_SUB_CATEGORY":{
+    "TITLE":"Delete item sub category",
+    "TEXT":"Are you sure you want to delete the item sub category  : {{text}} ?"
+  },
   "LINKED_ITEMS":{
     "TITLE":"Linked items",
     "OK":"Close"
@@ -396,6 +404,11 @@
   "OVERVIEW": "Overview",
   "CATALOGUE_VIEW": "Catalogue view",
 
+  "COULD_NOT_FETCH_ITEM_CATEGORIES": "Could not fetch item categories",
+  "COULD_NOT_REMOVE_ITEM_CATEGORY_IN_USE": "Cannot delete category as it is used by at least one sub category",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY_IN_USE": "Cannot delete sub category as it is used by at least one item",
+  "COULD_NOT_REMOVE_ITEM_CATEGORY": "Cannot delete category: {{error}}",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY": "Cannot delete sub category: {{error}}",
   "TH_ITEM_CATEGORY": "Category",
   "ADD_CATEGORY":"Add category",
   "ADD_SUB_CATEGORY":"Add sub category",

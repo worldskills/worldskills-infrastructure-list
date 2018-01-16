@@ -28,7 +28,7 @@
               <td>{{item.description.text}}</td>
               <td>{{item.parent.name.text}}</td>
               <td class="actions">
-                  <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                  <a class="btn btn-danger btn-xs"  ng-click="removeItemCategory(item, false)"><span class="glyphicon glyphicon-remove"></span></a>
                   <a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modNewSubCategory"><span class="glyphicon glyphicon-edit"></span></a>
               </td>
           </tr>
@@ -61,7 +61,7 @@
               <td>{{item.name.text}}</td>
               <td>{{item.description.text}}</td>
               <td class="actions">
-                  <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                  <a class="btn btn-danger btn-xs" ng-click="removeItemCategory(item, true)"><span class="glyphicon glyphicon-remove"></span></a>
                   <a class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modNewCategory"><span class="glyphicon glyphicon-edit"></span></a>
               </td>
           </tr>
