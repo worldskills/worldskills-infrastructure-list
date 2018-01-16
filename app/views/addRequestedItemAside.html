@@ -119,6 +119,12 @@
                 <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
               </div>
             </div>
+            <div class='col col-sm-12 col-md-4'>
+              <div class="form-group editForm has-feedback has-success">
+                <label class='control-label' translate>STATUS</label>
+                <select class="form-control input-sm" ng-model="item.status" ng-options="status.id as status.id.name.text | translate for status in statusValues"></select>
+              </div>
+            </div>
       </div>
 
       <div class='row'>
