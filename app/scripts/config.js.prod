@@ -54,5 +54,6 @@ ilApp.constant('ITEM_STATUS', {
   });
 
     ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
+    ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
 
 })();
