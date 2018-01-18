@@ -8,7 +8,10 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL, $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys, $translate) {
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
+    $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
+    SuppliedItem, Events, hotkeys, $translate, ItemCategory
+  ) {
 
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
@@ -539,6 +542,13 @@ angular.module('ilApp')
         angular.copy(item, $scope.item);
         $scope.rowItem = item;
       }
+
+      $scope.categories = ItemCategory.getAllSubCategory($state.params.eventId)
+      .then(function(res){
+        $scope.subCategories = res.categories;
+      }).catch(function(error){
+        WSAlert.danger(error);
+      });
 
       //fix date object
 
