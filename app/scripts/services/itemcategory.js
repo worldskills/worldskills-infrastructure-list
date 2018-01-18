@@ -14,7 +14,9 @@ angular.module('ilApp')
     var ItemCategory = { id: false, data: $q.defer(), itemCategories: {}, itemSubCategories: {}};
 
     ItemCategory.init = function(){
-        if(typeof ItemCategory.data.promise == 'undefined') ItemCategory.data = $q.defer();
+        if(typeof ItemCategory.data.promise == 'undefined') {
+          ItemCategory.data = $q.defer();
+        }
 
         $http.get(API_IL + "/item-category")
           .then(function(result){
@@ -28,6 +30,33 @@ angular.module('ilApp')
 
         return ItemCategory.data.promise;
     };
+
+    ItemCategory.createItem = function(item, eventId){
+      var deferred = $q.defer();
+
+      $http.post(API_IL + "/event/" + eventId + "/item-category/", item)
+        .then(function(res){
+          deferred.resolve(res.data);
+        })
+        .catch(function(error){
+          deferred.reject("Could not save item: " + error.data.user_msg);
+        });
+
+      return deferred.promise;
+    },
+
+    ItemCategory.saveItem = function(item, eventId){
+      var deferred = $q.defer();
+
+      $http.put(API_IL + "/item-category/" + item.id, item).then(function(res){
+        deferred.resolve(res.data);
+      },
+      function(error){
+        deferred.reject("Could not save item: " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    },
 
     ItemCategory.getAll = function(eventId, level){
       var deferred = $q.defer();
@@ -67,11 +96,11 @@ angular.module('ilApp')
           deferred.resolve(res.data);
         })
         .catch(function(error){
-          var itemType = item.parent == null ? 'CATEGORY' : 'SUB_CATEGORY';
+          var entityCode = item.parent == null ? 'CATEGORY' : 'SUB_CATEGORY';
           if(error.status === 304){
-            deferred.reject($translate.instant("COULD_NOT_REMOVE_ITEM_"+itemType+"_IN_USE"));
+            deferred.reject($translate.instant("COULD_NOT_REMOVE_ITEM_"+entityCode+"_IN_USE"));
           } else {
-            deferred.reject($translate.instant("COULD_NOT_REMOVE_ITEM_"+itemType, {error: error.data.user_msg}));
+            deferred.reject($translate.instant("COULD_NOT_REMOVE_ITEM_"+entityCode, {error: error.data.user_msg}));
           }
         })
       ;

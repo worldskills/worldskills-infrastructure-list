@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $confirm, $translate, ItemCategory, WSAlert, APP_ROLES) {
+  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $confirm, $translate, $aside, ItemCategory, WSAlert, APP_ROLES) {
 
     $scope.event = false;
     $scope.data = {};
@@ -36,19 +36,42 @@ angular.module('ilApp')
       });
     });
 
-    $scope.removeItemCategory = function (itemCategory, isCategory) {
-      var title;
-      var text;
-      if(isCategory){
-        title = $translate.instant('DELETE_ITEM_CATEGORY.TITLE');
-        text = $translate.instant('DELETE_ITEM_CATEGORY.TEXT', {text: itemCategory.name.text});
+    $scope.asideState = {
+      open: true,
+    };
+
+    function postClose() {
+      $scope.asideState.open = false;
+    }
+
+    $scope.openItemEditor = function(item, isCategory, index){
+      if(item == void 0 || !item.id) {
+        $scope.item = {};
       } else {
-        title = $translate.instant('DELETE_ITEM_SUB_CATEGORY.TITLE');
-        text = $translate.instant('DELETE_ITEM_SUB_CATEGORY.TEXT', {text: itemCategory.name.text});
+        $scope.item = {};
+        angular.copy(item, $scope.item);
+        $scope.rowItem = item;
       }
+
+      $scope.isCategory = isCategory;
+      $scope.index = index;
+
+      $aside.open({
+        templateUrl: 'views/edititemcategoryaside.html',
+        placement: 'right',
+        size: 'md',
+        scope: $scope,
+        backdrop: true,
+        controller: 'ItemCategoryModalCtrl',
+      }).result.then(postClose, postClose);
+    };
+
+    $scope.removeItemCategory = function (itemCategory, isCategory) {
+      var entityCode = isCategory ? 'CATEGORY' : 'SUB_CATEGORY';
+
       $confirm({
-        title: title,
-        text: text,
+        title: $translate.instant('DELETE_ITEM_'+entityCode+'.TITLE'),
+        text: $translate.instant('DELETE_ITEM_'+entityCode+'.TEXT', {text: itemCategory.name.text}),
       }).then(function () {
         return ItemCategory.removeItemCategory(itemCategory);
       }).then(function (result) {

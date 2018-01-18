@@ -36,11 +36,11 @@
   },
   "DELETE_ITEM_CATEGORY":{
     "TITLE":"Delete item category",
-    "TEXT":"Are you sure you want to delete the item category : {{text}} ?"
+    "TEXT":"Are you sure you want to delete the item category: {{text}} ?"
   },
   "DELETE_ITEM_SUB_CATEGORY":{
-    "TITLE":"Delete item sub category",
-    "TEXT":"Are you sure you want to delete the item sub category  : {{text}} ?"
+    "TITLE":"Delete item subcategory",
+    "TEXT":"Are you sure you want to delete the item subcategory: {{text}} ?"
   },
   "LINKED_ITEMS":{
     "TITLE":"Linked items",
@@ -157,6 +157,11 @@
   "POSITION_EVENT_NAME_TEXT": "at {{position}}",
 
   "PLACEHOLDER": {
+    "ITEM_CATEGORY_NAME": "Category name",
+    "ITEM_SUBCATEGORY_NAME": "Subcategory name",
+    "ITEM_CATEGORY_DESCRIPTION": "Category description",
+    "ITEM_SUBCATEGORY_DESCRIPTION": "Subcategory description",
+    "CHOOSE_ITEM_CATEGORY": "Please select a category",
     "SEARCH":"Search",
     "SEARCH_FROM_STANDARD":"Search from standard sets...",
     "SEARCH_FROM_CATALOG":"Search from catalogue items...",
@@ -404,15 +409,23 @@
   "OVERVIEW": "Overview",
   "CATALOGUE_VIEW": "Catalogue view",
 
+  "SAVE": "Save",
+  "CANCEL": "Cancel",
+  "ITEM_CATEGORY_PROPERTY": "Category properties",
+  "ITEM_SUBCATEGORY_PROPERTY": "Subcategory properties",
+  "ITEM_CATEGORY_NAME": "Category name",
+  "ITEM_SUBCATEGORY_NAME": "Subcategory name",
+  "ITEM_CATEGORY_DESCRIPTION": "Category description",
+  "ITEM_SUBCATEGORY_DESCRIPTION": "Subcategory description",
   "COULD_NOT_FETCH_ITEM_CATEGORIES": "Could not fetch item categories",
-  "COULD_NOT_REMOVE_ITEM_CATEGORY_IN_USE": "Cannot delete category as it is used by at least one sub category",
-  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY_IN_USE": "Cannot delete sub category as it is used by at least one item",
+  "COULD_NOT_REMOVE_ITEM_CATEGORY_IN_USE": "Cannot delete category as it is used by at least one subcategory",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY_IN_USE": "Cannot delete subcategory as it is used by at least one item",
   "COULD_NOT_REMOVE_ITEM_CATEGORY": "Cannot delete category: {{error}}",
-  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY": "Cannot delete sub category: {{error}}",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY": "Cannot delete subcategory: {{error}}",
   "TH_ITEM_CATEGORY": "Category",
   "ADD_CATEGORY":"Add category",
-  "ADD_SUB_CATEGORY":"Add sub category",
+  "ADD_SUB_CATEGORY":"Add subcategory",
   "ITEM_CATEGORY": "Category",
-  "ITEM_SUB_CATEGORY": "Sub category",
-  "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and sub category item"
+  "ITEM_SUB_CATEGORY": "Subcategory",
+  "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and subcategory item"
 }
