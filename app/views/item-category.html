@@ -1,0 +1,73 @@
+<h2 translate>ITEM_CATEGORY_AND_SUBCATEGORY</h2>
+
+<uib-tabset>
+  <uib-tab index="0" heading="{{ 'ITEM_SUB_CATEGORY' | translate }}">
+    <div class="actions">
+      <div>
+        <div class="pull-left">
+            <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, false)">
+              <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_SUB_CATEGORY</span>
+            </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="table-responsive mt-3">
+      <table class="table table-striped vmiddle">
+        <thead>
+          <tr>
+            <th translate>TH_NAME</th>
+            <th translate>TH_DESCRIPTION</th>
+            <th translate>TH_ITEM_CATEGORY</th>
+            <th class="actions" translate>TH_ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in data.subCategories">
+              <td>{{item.name.text}}</td>
+              <td>{{item.description.text}}</td>
+              <td>{{item.parent.name.text}}</td>
+              <td class="actions">
+                  <a class="btn btn-danger btn-xs"  ng-click="removeItemCategory(item, false)"><span class="glyphicon glyphicon-remove"></span></a>
+                  <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, false, $index)"><span class="glyphicon glyphicon-edit"></span></a>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </uib-tab>
+  <uib-tab index="1" heading="{{ 'ITEM_CATEGORY' | translate }}">
+    <div class="actions">
+      <div>
+        <div class="pull-left">
+            <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, true)">
+              <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_CATEGORY</span>
+            </button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="table-responsive mt-3">
+      <table class="table table-striped vmiddle">
+        <thead>
+          <tr>
+              <th translate>TH_NAME</th>
+              <th translate>TH_DESCRIPTION</th>
+              <th class="actions" translate>TH_ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in data.categories">
+              <td>{{item.name.text}}</td>
+              <td>{{item.description.text}}</td>
+              <td class="actions">
+                  <a class="btn btn-danger btn-xs" ng-click="removeItemCategory(item, true)"><span class="glyphicon glyphicon-remove"></span></a>
+                  <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, true, $index)"><span class="glyphicon glyphicon-edit"></span></a>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </uib-tab>
+</uib-tabset>
+

@@ -1,0 +1,43 @@
+<div class="aside ng-scope">
+  <fieldset>
+    <legend class="ng-scope" ng-if="isCategory" translate>ITEM_CATEGORY_PROPERTY</legend>
+    <legend class="ng-scope" ng-if="!isCategory" translate>ITEM_SUBCATEGORY_PROPERTY</legend>
+    <alerts></alerts>
+    <ws-spinner ng-if="loading.aside"></ws-spinner>
+    <form name="addForm">
+      <div class="well">
+        <div class="form-group addForm">
+            <label class="control-label" ng-if="isCategory" translate>ITEM_CATEGORY_NAME</label>
+            <label class="control-label" ng-if="!isCategory" translate>ITEM_SUBCATEGORY_NAME</label>
+            <input type="text" class="form-control form-control-small has-feedback" placeholder="{{'PLACEHOLDER.ITEM_CATEGORY_NAME' | translate}}"
+              ng-if="isCategory" ng-required="true" ng-model="item.name.text">
+            <input type="text" class="form-control form-control-small has-feedback" placeholder="{{'PLACEHOLDER.ITEM_SUBCATEGORY_NAME' | translate}}"
+              ng-if="!isCategory" ng-required="true" ng-model="item.name.text">
+        </div>
+
+        <div class="form-group addForm">
+            <label class="control-label" translate>DESCRIPTION</label>
+            <input type="text" class="form-control" name="description" autofocus="autofocus" placeholder="{{ 'PLACEHOLDER.ITEM_CATEGORY_DESCRIPTION' | translate }}"
+              ng-if="isCategory" ng-model='item.description.text'>
+            <input type="text" class="form-control" name="description" autofocus="autofocus" placeholder="{{ 'PLACEHOLDER.ITEM_SUBCATEGORY_DESCRIPTION' | translate }}"
+              ng-if="!isCategory" ng-model='item.description.text'>
+        </div>
+
+        <div class="form-group addForm" ng-if="!isCategory">
+            <label class="control-label" translate>ITEM_CATEGORY</label>
+            <ui-select ng-required="true" ng-model="item.parent" theme="bootstrap">
+              <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_ITEM_CATEGORY' | translate }}">{{item.parent.name.text}}</ui-select-match>
+              <ui-select-choices repeat="category as category in (categories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                <div ng-bind-html="category.name.text"></div>
+                <small>
+                  {{category.description.text}}
+                </small>
+              </ui-select-choices>
+            </ui-select>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-success" ng-click="saveItemCategory(index)" ng-disabled="addForm.$error.required" translate>SAVE</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel();" translate>CANCEL</button>
+    </form>
+  </fieldset>
+</div>

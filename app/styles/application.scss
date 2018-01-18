@@ -389,3 +389,46 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 .b{
   font-weight:bold;
 }
+
+$brand-primary: #003d56;
+
+table.vmiddle > tbody > tr > td {
+    vertical-align: middle;
+}
+.tab-content {
+    padding-top: 15px;
+}
+
+th, td {
+    &.actions {
+        text-align: right;
+    }
+}
+
+.panel-body ul {
+    padding-left: 15px;
+}
+
+.badge.smallText {
+    font-size: 75%;
+    padding-top: 4px;
+    padding-bottom: 1px;
+}
+
+.addForm.ml-3 label {
+    font-weight: normal;
+}
+
+th.select, td.select {
+    min-width: 60px;
+    text-align: center;
+    label {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 700px;
+    }
+}
