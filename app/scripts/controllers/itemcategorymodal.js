@@ -45,7 +45,7 @@ angular.module('ilApp')
           .catch(function(error){
             WSAlert.danger(error);
             $scope.loading.aside = false;
-          })
+          });
       } else {
         ItemCategory.saveItem($scope.item, $state.params.eventId)
           .then(function(res){
@@ -66,7 +66,7 @@ angular.module('ilApp')
           .catch(function(error){
             WSAlert.danger(error);
             $scope.loading.aside = false;
-          })
+          });
       }
 
     };

@@ -75,9 +75,9 @@ angular.module('ilApp')
       }).then(function () {
         return ItemCategory.removeItemCategory(itemCategory);
       }).then(function (result) {
-        var data = isCategory ? $scope.data.categories : $scope.data.subCategories;
-        var index = data.indexOf(itemCategory);
-        data.splice(index, 1);
+        var entities = isCategory ? $scope.data.categories : $scope.data.subCategories;
+        var index = entities.indexOf(itemCategory);
+        entities.splice(index, 1);
       }).catch(function (error) {
         WSAlert.danger(error);
       });
