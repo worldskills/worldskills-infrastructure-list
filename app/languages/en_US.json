@@ -36,11 +36,11 @@
   },
   "DELETE_ITEM_CATEGORY":{
     "TITLE":"Delete item category",
-    "TEXT":"Are you sure you want to delete the item category: {{text}} ?"
+    "TEXT":"Are you sure you want to delete the item category: {{text}}?"
   },
   "DELETE_ITEM_SUB_CATEGORY":{
     "TITLE":"Delete item subcategory",
-    "TEXT":"Are you sure you want to delete the item subcategory: {{text}} ?"
+    "TEXT":"Are you sure you want to delete the item subcategory: {{text}}?"
   },
   "LINKED_ITEMS":{
     "TITLE":"Linked items",

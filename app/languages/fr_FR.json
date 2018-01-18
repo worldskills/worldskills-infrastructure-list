@@ -36,11 +36,11 @@
   },
   "DELETE_ITEM_CATEGORY":{
     "TITLE":"Suppression d'une super famille",
-    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la super famille : {{text}}?"
+    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la super famille : {{text}} ?"
   },
   "DELETE_ITEM_SUB_CATEGORY":{
     "TITLE":"Suppression d'une famille",
-    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la famille : {{text}}?"
+    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la famille : {{text}} ?"
   },
   "LINKED_ITEMS":{
     "TITLE":"Items liés",
