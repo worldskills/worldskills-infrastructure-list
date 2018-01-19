@@ -18,7 +18,7 @@ angular.module('ilApp')
           ItemCategory.data = $q.defer();
         }
 
-        $http.get(API_IL + "/item-category")
+        $http.get(API_IL + "/item-categories")
           .then(function(result){
             ItemCategory.data.resolve(result.data.connect_events);
             ItemCategory.data = result.data.connect_events;
@@ -34,7 +34,7 @@ angular.module('ilApp')
     ItemCategory.createItem = function(item, eventId){
       var deferred = $q.defer();
 
-      $http.post(API_IL + "/event/" + eventId + "/item-category/", item)
+      $http.post(API_IL + "/event/" + eventId + "/item-categories/", item)
         .then(function(res){
           deferred.resolve(res.data);
         })
@@ -48,7 +48,7 @@ angular.module('ilApp')
     ItemCategory.saveItem = function(item, eventId){
       var deferred = $q.defer();
 
-      $http.put(API_IL + "/item-category/" + item.id, item).then(function(res){
+      $http.put(API_IL + "/item-categories/" + item.id, item).then(function(res){
         deferred.resolve(res.data);
       },
       function(error){
@@ -61,7 +61,7 @@ angular.module('ilApp')
     ItemCategory.getAll = function(eventId, level){
       var deferred = $q.defer();
 
-      var url = API_IL + "/event/" + eventId + "/item-category";
+      var url = API_IL + "/event/" + eventId + "/item-categories";
 
       if(typeof level !== 'undefined'){
         url += "?level="+level;
@@ -91,7 +91,7 @@ angular.module('ilApp')
     ItemCategory.removeItemCategory = function(item){
       var deferred = $q.defer();
 
-      $http.delete(API_IL + "/item-category/" + item.id, item)
+      $http.delete(API_IL + "/item-categories/" + item.id, item)
         .then(function(res){
           deferred.resolve(res.data);
         })
