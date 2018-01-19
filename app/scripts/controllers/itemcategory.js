@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $confirm, $translate, $aside, ItemCategory, WSAlert, APP_ROLES) {
+  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $confirm, $translate, $aside, Language, ItemCategory, WSAlert, APP_ROLES) {
 
     $scope.event = false;
     $scope.data = {};
@@ -46,7 +46,10 @@ angular.module('ilApp')
 
     $scope.openItemEditor = function(item, isCategory, index){
       if(item == void 0 || !item.id) {
-        $scope.item = {};
+        $scope.item = {
+          name: {text: '', lang_code: Language.selectedLanguage},
+          description: {text: '', lang_code: Language.selectedLanguage}
+        };
       } else {
         $scope.item = {};
         angular.copy(item, $scope.item);
