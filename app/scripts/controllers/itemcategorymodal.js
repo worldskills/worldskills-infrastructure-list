@@ -13,7 +13,6 @@ angular.module('ilApp')
     $scope.event = false;
     $scope.data = {};
     $scope.APP_ROLES = APP_ROLES;
-    $scope.loadingEvent = $q.defer();
 
     $scope.asideState = {
       open: true,
