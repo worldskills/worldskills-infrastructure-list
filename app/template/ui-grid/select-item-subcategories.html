@@ -1,0 +1,6 @@
+<div>
+  <select ng-model="row.entity.item_category" ui-grid-edit-dropdown
+    data-ng-options="d as d.name.text for d in grid.appScope.subCategories track by d.id"
+  >
+  </select>
+</div>
