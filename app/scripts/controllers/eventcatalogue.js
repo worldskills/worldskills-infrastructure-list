@@ -90,38 +90,39 @@ angular.module('ilApp')
       disableCancelFilterButton: false,
       columnDefs: [
         {field: 'id', width: '60', enableCellEdit: false, pinnedLeft: true},
-        {field: 'description.text', name: "Description", width: '250', pinnedLeft: true, cellEditableCondition: $scope.canEdit},
-        {field: 'manufacturer', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'size', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'item_category.name.text', name: 'item_category', width: '160', cellEditableCondition: $scope.canEdit,
+        {field: 'description.text', name: $translate.instant("TH_DESCRIPTION"), width: '250', pinnedLeft: true, cellEditableCondition: $scope.canEdit},
+        {field: 'manufacturer', name: $translate.instant("TH_MANUFACTURER"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', name: $translate.instant("TH_MODEL"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'size', name: $translate.instant("TH_SIZE"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'part_number', name: $translate.instant("TH_PART_NUM"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'item_category.name.text', name: $translate.instant('TH_ITEM_SUBCATEGORY'), width: '160', cellEditableCondition: $scope.canEdit,
           editableCellTemplate: '../../template/ui-grid/select-item-subcategories.html', editType: 'dropdown'},
-        {field: 'supplier', name: 'supplier', width: '100'},
-        {field: 'supply_type', name: 'supply_type', width: '100'},
-        {field: 'unit_cost', name: 'unit_cost', width: '100'}, //double
-        {field: 'unit', name: 'unit', width: '100'},
-        {field: 'po_number', name: 'PO Number', width: '100'},
-        {field: 'delivery', name: 'delivery', width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"', filter: {
+        {field: 'supplier', name: $translate.instant('TH_SUPPLIER'), width: '100'},
+        {field: 'supply_type', name: $translate.instant('TH_SUPPLY_TYPE'), width: '100'},
+        {field: 'unit_cost', name: $translate.instant('TH_UNIT_COST'), width: '100'}, //double
+        {field: 'unit', name: $translate.instant('TH_UNIT'), width: '100'},
+        {field: 'po_number', name: $translate.instant('TH_PO_NUMBER'), width: '100'},
+        {field: 'priority', name: $translate.instant('TH_PRIORITY'), width: '100'},
+        {field: 'delivery', name: $translate.instant('TH_DELIVERY'), width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"', filter: {
           condition: uiGridConstants.filter.STARTS_WITH,
         }}, //datetime
-        {field: 'category', name: 'category', width: '100'},
-        {field: 'disposal_category', name: 'disposal_category', width: '100'},
-        {field: 'location', name: 'location', width: '100'},
-        {field: 'hs_code', name: 'hs_code', width: '100'},
-        {field: 'lead_time', name: 'lead_time', width: '100'},
-        {field: 'electricity_volts', name: 'electricity_volts', width: '100'},//int
-        {field: 'electricity_amps', name: 'electricity_amps', width: '100'},//int
-        {field: 'electricity_phase', name: 'electricity_phase', width: '100'},
-        {field: 'water_supply', name: 'water_supply', width: '100'},
-        {field: 'water_drainage', name: 'water_drainage', width: '100'},
-        {field: 'compressed_air', name: 'compressed_air', width: '100'},
-        {field: 'ventilation_fume_extraction', name: 'ventilation_fume_extraction', width: '100', type: 'boolean'},//char 1
-        {field: 'gas_requirements', name: 'gas_requirements', width: '100', type: 'boolean'},//char 1
-        {field: 'anchor_fixing_base_requirements', name: 'anchor_fixing_base_requirements', width: '100'},
-        {field: 'extra_details', name: 'extra_details', width: '100'},//mediumtext
-        {field: 'modified', name: "Modified", width: '95', type: 'date', enableCellEdit: false},
-        {field: 'user_generated', width: '125', type: 'boolean', enableCellEdit: false,
+        {field: 'category', name: $translate.instant('TH_CATEGORY'), width: '100'},
+        {field: 'disposal_category', name: $translate.instant('TH_DISPOSAL_CATEGORY'), width: '100'},
+        {field: 'location', name: $translate.instant('TH_LOCATION'), width: '100'},
+        {field: 'hs_code', name: $translate.instant('TH_HS_CODE'), width: '100'},
+        {field: 'lead_time', name: $translate.instant('TH_LEAD_TIME'), width: '100'},
+        {field: 'electricity_volts', name: $translate.instant('TH_ELECTRICITY_VOLTS'), width: '100'},//int
+        {field: 'electricity_amps', name: $translate.instant('TH_ELECTRICITY_AMPS'), width: '100'},//int
+        {field: 'electricity_phase', name: $translate.instant('TH_ELECTRICITY_PHASE'), width: '100'},
+        {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100'},
+        {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100'},
+        {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100'},
+        {field: 'ventilation_fume_extraction', name: $translate.instant('TH_VENTILATION_FUME_EXTRACTION'), width: '100', type: 'boolean'},//char 1
+        {field: 'gas_requirements', name: $translate.instant('TH_GAS_REQUIREMENTS'), width: '100', type: 'boolean'},//char 1
+        {field: 'anchor_fixing_base_requirements', name: $translate.instant('TH_ANCHOR_FIXING_BASE_REQUIREMENTS'), width: '100'},
+        {field: 'extra_details', name: $translate.instant('TH_EXTRA_DETAILS'), width: '100'},//mediumtext
+        {field: 'modified', name: $translate.instant("TH_MODIFIED"), width: '95', type: 'date', enableCellEdit: false},
+        {field: 'user_generated', name: $translate.instant("TH_USER_GENERATED"), width: '125', type: 'boolean', enableCellEdit: false,
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -130,7 +131,7 @@ angular.module('ilApp')
             ]
           }
         },
-        {field: 'linkedItems', name: "Linked", width: '95', type: 'boolean', enableCellEdit: false},
+        {field: 'linkedItems', name: $translate.instant("TH_LINKED"), width: '95', type: 'boolean', enableCellEdit: false},
       ],
       //exporter
       enableGridMenu: true,

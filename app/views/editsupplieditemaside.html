@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback"
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback"
                     ng-class="{'has-error': editForm.item_category.$error.required, 'has-success': !editForm.item_category.$error.required}"
                   >
                     <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
@@ -55,6 +55,10 @@
                         </small>
                       </ui-select-choices>
                     </ui-select>
+                  </div>
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.priority.$error.required, 'has-success': !editForm.priority.$error.required}">
+                    <label class='control-label' translate>TH_PRIORITY</label>
+                    <input type="text" name="priority" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.PRIORITY' | translate }}" ng-model='item.priority'>
                   </div>
                 </div>
 
@@ -123,7 +127,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12  has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
                     <label class='control-label' translate>PO_NUMBER</label>
                     <input name="po_number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.PO_NUMBER' | translate }}" ng-model='item.po_number'>
                   </div>
