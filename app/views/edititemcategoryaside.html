@@ -9,17 +9,17 @@
         <div class="form-group addForm">
             <label class="control-label" ng-if="isCategory" translate>ITEM_CATEGORY_NAME</label>
             <label class="control-label" ng-if="!isCategory" translate>ITEM_SUBCATEGORY_NAME</label>
-            <input type="text" class="form-control form-control-small has-feedback" placeholder="{{'PLACEHOLDER.ITEM_CATEGORY_NAME' | translate}}"
+            <input type="text" class="form-control form-control-small has-feedback" autofocus="autofocus" placeholder="{{'PLACEHOLDER.ITEM_CATEGORY_NAME' | translate}}"
               ng-if="isCategory" ng-required="true" ng-model="item.name.text">
-            <input type="text" class="form-control form-control-small has-feedback" placeholder="{{'PLACEHOLDER.ITEM_SUBCATEGORY_NAME' | translate}}"
+            <input type="text" class="form-control form-control-small has-feedback" autofocus="autofocus" placeholder="{{'PLACEHOLDER.ITEM_SUBCATEGORY_NAME' | translate}}"
               ng-if="!isCategory" ng-required="true" ng-model="item.name.text">
         </div>
 
         <div class="form-group addForm">
             <label class="control-label" translate>DESCRIPTION</label>
-            <input type="text" class="form-control" name="description" autofocus="autofocus" placeholder="{{ 'PLACEHOLDER.ITEM_CATEGORY_DESCRIPTION' | translate }}"
+            <input type="text" class="form-control" name="description" placeholder="{{ 'PLACEHOLDER.ITEM_CATEGORY_DESCRIPTION' | translate }}"
               ng-if="isCategory" ng-model='item.description.text'>
-            <input type="text" class="form-control" name="description" autofocus="autofocus" placeholder="{{ 'PLACEHOLDER.ITEM_SUBCATEGORY_DESCRIPTION' | translate }}"
+            <input type="text" class="form-control" name="description" placeholder="{{ 'PLACEHOLDER.ITEM_SUBCATEGORY_DESCRIPTION' | translate }}"
               ng-if="!isCategory" ng-model='item.description.text'>
         </div>
 
