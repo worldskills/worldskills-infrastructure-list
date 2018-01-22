@@ -22,7 +22,7 @@
             <th class="actions" translate>TH_ACTIONS</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-show="data.subCategories.length">
           <tr ng-repeat="item in data.subCategories">
               <td>{{item.name.text}}</td>
               <td>{{item.description.text}}</td>
@@ -32,6 +32,11 @@
                   <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, false, $index)"><span class="glyphicon glyphicon-edit"></span></a>
               </td>
           </tr>
+        </tbody>
+        <tbody ng-show="!data.subCategories.length">
+            <tr>
+                <td colspan="4" class="text-center" translate>NO_SUBCATEGORIES</td>
+            </tr>
         </tbody>
       </table>
     </div>
@@ -56,7 +61,7 @@
               <th class="actions" translate>TH_ACTIONS</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-show="data.categories.length">
           <tr ng-repeat="item in data.categories">
               <td>{{item.name.text}}</td>
               <td>{{item.description.text}}</td>
@@ -65,6 +70,11 @@
                   <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, true, $index)"><span class="glyphicon glyphicon-edit"></span></a>
               </td>
           </tr>
+        </tbody>
+        <tbody ng-show="!data.categories.length">
+            <tr>
+                <td colspan="3" class="text-center" translate>NO_CATEGORIES</td>
+            </tr>
         </tbody>
       </table>
     </div>

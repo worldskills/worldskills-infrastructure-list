@@ -427,5 +427,7 @@
   "ADD_SUB_CATEGORY":"Add subcategory",
   "ITEM_CATEGORY": "Category",
   "ITEM_SUB_CATEGORY": "Subcategory",
-  "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and subcategory item"
+  "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and subcategory item",
+  "NO_CATEGORIES": "No categories found",
+  "NO_SUBCATEGORIES": "No subcategories found"
 }

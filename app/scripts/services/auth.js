@@ -5,6 +5,17 @@ angular.module('ilApp')
 
     return {
 
+      hasRole: function(role)
+      {
+        var hasRole = false;
+        angular.forEach(auth.user.roles, function (val, key) {
+          if (val.name == role) {
+            hasRole = true;
+          }
+        });
+        return hasRole;
+      },
+
       activeRole: function () {
         var retval = false;
         angular.forEach(auth.user.roles, function (val, key) {

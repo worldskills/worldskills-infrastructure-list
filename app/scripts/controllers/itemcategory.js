@@ -60,7 +60,7 @@ angular.module('ilApp')
       $scope.index = index;
 
       $aside.open({
-        templateUrl: 'views/edititemcategoryaside.html',
+        templateUrl: 'views/item-category-aside.html',
         placement: 'right',
         size: 'md',
         scope: $scope,

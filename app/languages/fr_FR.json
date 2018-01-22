@@ -427,5 +427,7 @@
   "ADD_SUB_CATEGORY":"Ajouter une famille",
   "ITEM_CATEGORY": "Super famille",
   "ITEM_SUB_CATEGORY": "Famille",
-  "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles"
+  "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles",
+  "NO_CATEGORIES": "Aucune super famille trouvée",
+  "NO_SUBCATEGORIES": "Aucune famille trouvée"
 }
