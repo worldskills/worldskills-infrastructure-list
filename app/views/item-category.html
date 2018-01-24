@@ -22,6 +22,7 @@
             <th class="actions" translate>TH_ACTIONS</th>
           </tr>
         </thead>
+        <tfoot><tr><td colspan="4"></td></tr></tfoot>
         <tbody ng-show="data.subCategories.length">
           <tr ng-repeat="item in data.subCategories">
               <td>{{item.name.text}}</td>
@@ -61,6 +62,7 @@
               <th class="actions" translate>TH_ACTIONS</th>
           </tr>
         </thead>
+        <tfoot><tr><td colspan="3"></td></tr></tfoot>
         <tbody ng-show="data.categories.length">
           <tr ng-repeat="item in data.categories">
               <td>{{item.name.text}}</td>
