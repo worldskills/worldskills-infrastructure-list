@@ -69,6 +69,7 @@
       <div class='panel-heading' translate>ADMIN_VIEWS</div>
       <div class='panel-body'>
         <ul>
+          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.EDIT_ITEM_CATEGORIES)"><a ui-sref="itemCategory({eventId: selectedEvent.id})" translate>ITEM_CATEGORY_AND_SUBCATEGORY</a></li>
           <li><a ui-sref="event.sets({eventId: selectedEvent.id})" translate>STANDARD_SETS</a></li>
           <li><a ui-sref="event.catalogue({eventId: selectedEvent.id})" translate>CATALOGUE_EDITOR</a></li>
           <li><ws-spinner class="smallSpinner" ng-if="loading.requested"></ws-spinner><a ng-if="!loading.requested" href="#" ng-click="exportAllRequested($event)" translate>EXPORT_REQUESTED_ITEMS</a></li>

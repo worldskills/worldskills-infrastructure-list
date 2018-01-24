@@ -278,6 +278,19 @@ angular
      }
    })
 
+   .state('itemCategory', {
+    url: '/event/{eventId}/item-category',
+    templateUrl: 'views/item-category.html',
+    controller: 'ItemCategoryCtrl',
+    data: {
+      requireLoggedIn: true,
+      requiredRoles: [
+        {code: 2200, role: APP_ROLES.ADMIN },
+        {code: 2200, role: APP_ROLES.EDIT_ITEM_CATEGORIES }
+      ]
+    }
+   });
+
    //
   //  .state('management', {
   //   url: '/management',
