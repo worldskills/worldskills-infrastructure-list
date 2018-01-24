@@ -15,21 +15,21 @@ angular.module('ilApp')
     $scope.APP_ROLES = APP_ROLES;
     $scope.loading = true;
 
-    $q.when($scope.appLoaded.promise).then(function(){
+    $q.when($scope.appLoaded.promise).then(function () {
       //load item sub categories
-      ItemCategory.getAllSubCategory($state.params.eventId).then(function(res){
+      ItemCategory.getAllSubCategory($state.params.eventId).then(function (res) {
         $scope.data.subCategories = res.categories;
         $scope.loading = false;
       },
-      function(error){
+      function (error) {
         WSAlert.danger(error);
         $scope.loading = false;
       });
       //load item categories
-      ItemCategory.getAllCategory($state.params.eventId).then(function(res){
+      ItemCategory.getAllCategory($state.params.eventId).then(function (res) {
         $scope.data.categories = res.categories;
       },
-      function(error){
+      function (error) {
         WSAlert.danger(error);
       });
     });
@@ -42,8 +42,8 @@ angular.module('ilApp')
       $scope.asideState.open = false;
     }
 
-    $scope.openItemEditor = function(item, isCategory, index){
-      if(item == void 0 || !item.id) {
+    $scope.openItemEditor = function (item, isCategory, index) {
+      if (item == undefined || !item.id) {
         $scope.item = {
           name: {text: '', lang_code: Language.selectedLanguage},
           description: {text: '', lang_code: Language.selectedLanguage}
