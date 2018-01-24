@@ -11,25 +11,7 @@ angular.module('ilApp')
   .factory('ItemCategory', function ($q, $http, API_IL, $translate) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var ItemCategory = { id: false, data: $q.defer(), itemCategories: {}, itemSubCategories: {}};
-
-    ItemCategory.init = function(){
-        if(typeof ItemCategory.data.promise == 'undefined') {
-          ItemCategory.data = $q.defer();
-        }
-
-        $http.get(API_IL + "/item-categories")
-          .then(function(result){
-            ItemCategory.data.resolve(result.data.connect_events);
-            ItemCategory.data = result.data.connect_events;
-          })
-          .catch(function(error){
-            ItemCategory.data.reject($translate.instant("COULD_NOT_FETCH_ITEM_CATEGORIES"));
-          })
-        ;
-
-        return ItemCategory.data.promise;
-    };
+    var ItemCategory = {};
 
     ItemCategory.createItem = function(item, eventId){
       var deferred = $q.defer();
