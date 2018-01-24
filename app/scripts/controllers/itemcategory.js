@@ -13,14 +13,17 @@ angular.module('ilApp')
     $scope.event = false;
     $scope.data = {};
     $scope.APP_ROLES = APP_ROLES;
+    $scope.loading = true;
 
     $q.when($scope.appLoaded.promise).then(function(){
       //load item sub categories
       ItemCategory.getAllSubCategory($state.params.eventId).then(function(res){
         $scope.data.subCategories = res.categories;
+        $scope.loading = false;
       },
       function(error){
         WSAlert.danger(error);
+        $scope.loading = false;
       });
       //load item categories
       ItemCategory.getAllCategory($state.params.eventId).then(function(res){

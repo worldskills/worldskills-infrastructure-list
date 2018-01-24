@@ -22,8 +22,8 @@
             <th class="actions" translate>TH_ACTIONS</th>
           </tr>
         </thead>
-        <tfoot><tr><td colspan="4"></td></tr></tfoot>
-        <tbody ng-show="data.subCategories.length">
+        <tfoot><tr ng-show="!loading"><td colspan="4"></td></tr></tfoot>
+        <tbody>
           <tr ng-repeat="item in data.subCategories">
               <td>{{item.name.text}}</td>
               <td>{{item.description.text}}</td>
@@ -33,11 +33,12 @@
                   <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, false, $index)"><span class="glyphicon glyphicon-edit"></span></a>
               </td>
           </tr>
-        </tbody>
-        <tbody ng-show="!data.subCategories.length">
-            <tr>
-                <td colspan="4" translate>NO_SUBCATEGORIES</td>
-            </tr>
+          <tr ng-show="!loading && !data.subCategories.length">
+              <td colspan="4" translate>NO_SUBCATEGORIES</td>
+          </tr>
+          <tr ng-show="loading">
+              <td colspan="4"><ws-spinner></ws-spinner></td>
+          </tr>
         </tbody>
       </table>
     </div>
