@@ -390,8 +390,6 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
   font-weight:bold;
 }
 
-$brand-primary: #003d56;
-
 table.vmiddle > tbody > tr > td {
     vertical-align: middle;
 }
@@ -432,3 +430,6 @@ th.select, td.select {
         width: 700px;
     }
 }
+
+$spacer-3: 15px;
+.mt-3 {margin-top:     $spacer-3 !important;}

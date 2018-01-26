@@ -20,6 +20,10 @@ angular.module('ilApp')
         auth.logout();
     };
 
+    $scope.hasRole = function (role){
+      return Auth.hasRole(role);
+    }
+
     //go though and see which ones the user has in positions
     $q.when(auth.user.$promise).then(function() {
       User.getActivePositions().then(function(res){

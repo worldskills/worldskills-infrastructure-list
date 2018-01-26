@@ -11,30 +11,12 @@ angular.module('ilApp')
   .factory('ItemCategory', function ($q, $http, API_IL, $translate) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var ItemCategory = { id: false, data: $q.defer(), itemCategories: {}, itemSubCategories: {}};
-
-    ItemCategory.init = function(){
-        if(typeof ItemCategory.data.promise == 'undefined') {
-          ItemCategory.data = $q.defer();
-        }
-
-        $http.get(API_IL + "/item-category")
-          .then(function(result){
-            ItemCategory.data.resolve(result.data.connect_events);
-            ItemCategory.data = result.data.connect_events;
-          })
-          .catch(function(error){
-            ItemCategory.data.reject($translate.instant("COULD_NOT_FETCH_ITEM_CATEGORIES"));
-          })
-        ;
-
-        return ItemCategory.data.promise;
-    };
+    var ItemCategory = {};
 
     ItemCategory.createItem = function(item, eventId){
       var deferred = $q.defer();
 
-      $http.post(API_IL + "/event/" + eventId + "/item-category/", item)
+      $http.post(API_IL + "/event/" + eventId + "/item-categories/", item)
         .then(function(res){
           deferred.resolve(res.data);
         })
@@ -48,7 +30,7 @@ angular.module('ilApp')
     ItemCategory.saveItem = function(item, eventId){
       var deferred = $q.defer();
 
-      $http.put(API_IL + "/item-category/" + item.id, item).then(function(res){
+      $http.put(API_IL + "/item-categories/" + item.id, item).then(function(res){
         deferred.resolve(res.data);
       },
       function(error){
@@ -61,7 +43,7 @@ angular.module('ilApp')
     ItemCategory.getAll = function(eventId, level){
       var deferred = $q.defer();
 
-      var url = API_IL + "/event/" + eventId + "/item-category";
+      var url = API_IL + "/event/" + eventId + "/item-categories";
 
       if(typeof level !== 'undefined'){
         url += "?level="+level;
@@ -91,7 +73,7 @@ angular.module('ilApp')
     ItemCategory.removeItemCategory = function(item){
       var deferred = $q.defer();
 
-      $http.delete(API_IL + "/item-category/" + item.id, item)
+      $http.delete(API_IL + "/item-categories/" + item.id, item)
         .then(function(res){
           deferred.resolve(res.data);
         })

@@ -13,7 +13,6 @@ angular.module('ilApp')
     $scope.event = false;
     $scope.data = {};
     $scope.APP_ROLES = APP_ROLES;
-    $scope.loadingEvent = $q.defer();
 
     $scope.asideState = {
       open: true,
@@ -24,17 +23,17 @@ angular.module('ilApp')
       $uibModalInstance.dismiss();
     };
 
-    if(!$scope.isCategory){
+    if (!$scope.isCategory) {
       $scope.categories = $scope.$parent.data.categories;
     }
 
-    $scope.saveItemCategory = function(index){
+    $scope.saveItemCategory = function (index) {
       $scope.loading.aside = true;
 
-      if($scope.item.id == null){
+      if ($scope.item.id == null) {
         ItemCategory.createItem($scope.item, $state.params.eventId)
-          .then(function(res){
-            if(res.parent == null){
+          .then(function (res) {
+            if (res.parent == null) {
               $scope.$parent.data.categories.push(res);
             } else {
               $scope.$parent.data.subCategories.push(res);
@@ -42,14 +41,14 @@ angular.module('ilApp')
             $scope.loading.aside = false;
             $uibModalInstance.dismiss();
           })
-          .catch(function(error){
+          .catch(function (error) {
             WSAlert.danger(error);
             $scope.loading.aside = false;
           });
       } else {
         ItemCategory.saveItem($scope.item, $state.params.eventId)
-          .then(function(res){
-            if(res.parent == null){
+          .then(function (res) {
+            if (res.parent == null) {
               $scope.$parent.data.categories[index] = res;
               var linkedSubCategories = $filter('filter')($scope.$parent.data.subCategories, function (item) {
                 return item.parent.id === res.id;
@@ -63,7 +62,7 @@ angular.module('ilApp')
             $scope.loading.aside = false;
             $uibModalInstance.dismiss();
           })
-          .catch(function(error){
+          .catch(function (error) {
             WSAlert.danger(error);
             $scope.loading.aside = false;
           });
