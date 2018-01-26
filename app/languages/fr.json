@@ -31,8 +31,16 @@
     "OK":"Supprimer l'item"
   },
   "DELETE_ITEM_FROM_SET":{
-    "TITLE":"Suppresion d'un item du lot",
+    "TITLE":"Suppression d'un item du lot",
     "TEXT":"Êtes-vous certain(e) ?"
+  },
+  "DELETE_ITEM_CATEGORY":{
+    "TITLE":"Suppression d'une super famille",
+    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la super famille : {{text}} ?"
+  },
+  "DELETE_ITEM_SUB_CATEGORY":{
+    "TITLE":"Suppression d'une famille",
+    "TEXT":"Êtes-vous certain(e) de vouloir supprimer la famille : {{text}} ?"
   },
   "LINKED_ITEMS":{
     "TITLE":"Items liés",
@@ -149,6 +157,11 @@
   "POSITION_EVENT_NAME_TEXT": "de {{position}}",
 
   "PLACEHOLDER": {
+    "ITEM_CATEGORY_NAME": "Nom de la super famille",
+    "ITEM_SUBCATEGORY_NAME": "Nom de la famille",
+    "ITEM_CATEGORY_DESCRIPTION": "Description de la super famille",
+    "ITEM_SUBCATEGORY_DESCRIPTION": "Description de la famille",
+    "CHOOSE_ITEM_CATEGORY": "Merci de sélectionner une super famille",
     "SEARCH":"Rechercher...",
     "SEARCH_FROM_STANDARD":"Rechercher dans les lots standard...",
     "SEARCH_FROM_CATALOG":"Rechercher dans les items du catalogue...",
@@ -396,10 +409,25 @@
   "OVERVIEW": "Vue d'ensemble",
   "CATALOGUE_VIEW": "Catalogue",
 
+  "SAVE": "Enregistrer",
+  "CANCEL": "Annuler",
+  "ITEM_CATEGORY_PROPERTY": "Propriétés de la super famille",
+  "ITEM_SUBCATEGORY_PROPERTY": "Propriétés de la famille",
+  "ITEM_CATEGORY_NAME": "Nom de la super famille",
+  "ITEM_SUBCATEGORY_NAME": "Nom de la famille",
+  "ITEM_CATEGORY_DESCRIPTION": "Description de la super famille",
+  "ITEM_SUBCATEGORY_DESCRIPTION": "Description de la famille",
+  "COULD_NOT_FETCH_ITEM_CATEGORIES": "Impossible de récupérer la liste des super familles d'items",
+  "COULD_NOT_REMOVE_ITEM_CATEGORY_IN_USE": "Impossible de supprimer la super famille car elle est utilisée par au moins une famille",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY_IN_USE": "Impossible de supprimer la famille car elle est utilisée par au moins un item du catalogue",
+  "COULD_NOT_REMOVE_ITEM_CATEGORY": "Impossible de supprimer la super famille : {{error}}",
+  "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY": "Impossible de supprimer la famille : {{error}}",
   "TH_ITEM_CATEGORY": "Super famille",
   "ADD_CATEGORY":"Ajouter une super famille",
   "ADD_SUB_CATEGORY":"Ajouter une famille",
   "ITEM_CATEGORY": "Super famille",
   "ITEM_SUB_CATEGORY": "Famille",
-  "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles"
+  "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles",
+  "NO_CATEGORIES": "Aucune super famille trouvée",
+  "NO_SUBCATEGORIES": "Aucune famille trouvée"
 }

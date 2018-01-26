@@ -17,7 +17,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in data.items track by $index" ng-class="{'warning': item.linkedItems}">
-      <td>{{item}}</td>
+      <td>{{item.id}}</td>
       <td>{{item.description.text}}</td>
       <td>{{item.manufacturer}}</td>
       <td>{{item.model}}</td>

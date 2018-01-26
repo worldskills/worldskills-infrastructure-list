@@ -12,7 +12,7 @@ angular.module('ilApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
         // AngularJS will instantiate a singleton by calling "new" on this function
 	    var LanguageService = {
-				selectedLanguage: 'en_US'	//defaults to en_US
+				selectedLanguage: 'en'	//defaults to en
 	    };
 	
 	    return LanguageService;
