@@ -8,31 +8,29 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $confirm, $translate, $aside, ItemCategory, WSAlert, APP_ROLES) {
+  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $confirm, $translate, $aside, Language, ItemCategory, WSAlert, APP_ROLES) {
 
     $scope.event = false;
     $scope.data = {};
     $scope.APP_ROLES = APP_ROLES;
-    $scope.loadingEvent = $q.defer();
+    $scope.loading.subCategories = true;
 
-    $q.when($scope.appLoaded.promise).then(function(){
+    $q.when($scope.appLoaded.promise).then(function () {
       //load item sub categories
-      ItemCategory.getAllSubCategory($state.params.eventId).then(function(res){
+      ItemCategory.getAllSubCategory($state.params.eventId).then(function (res) {
         $scope.data.subCategories = res.categories;
-        $scope.loadingEvent.resolve();
+        $scope.loading.subCategories = false;
       },
-      function(error){
+      function (error) {
         WSAlert.danger(error);
-        $scope.loadingEvent.reject();
+        $scope.loading.subCategories = false;
       });
       //load item categories
-      ItemCategory.getAllCategory($state.params.eventId).then(function(res){
+      ItemCategory.getAllCategory($state.params.eventId).then(function (res) {
         $scope.data.categories = res.categories;
-        $scope.loadingEvent.resolve();
       },
-      function(error){
+      function (error) {
         WSAlert.danger(error);
-        $scope.loadingEvent.reject();
       });
     });
 
@@ -44,9 +42,12 @@ angular.module('ilApp')
       $scope.asideState.open = false;
     }
 
-    $scope.openItemEditor = function(item, isCategory, index){
-      if(item == void 0 || !item.id) {
-        $scope.item = {};
+    $scope.openItemEditor = function (item, isCategory, index) {
+      if (item == undefined || !item.id) {
+        $scope.item = {
+          name: {text: '', lang_code: Language.selectedLanguage},
+          description: {text: '', lang_code: Language.selectedLanguage}
+        };
       } else {
         $scope.item = {};
         angular.copy(item, $scope.item);
@@ -57,7 +58,7 @@ angular.module('ilApp')
       $scope.index = index;
 
       $aside.open({
-        templateUrl: 'views/edititemcategoryaside.html',
+        templateUrl: 'views/item-category-aside.html',
         placement: 'right',
         size: 'md',
         scope: $scope,

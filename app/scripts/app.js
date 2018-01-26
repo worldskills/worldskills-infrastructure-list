@@ -109,14 +109,11 @@ angular
   $translateProvider.fallbackLanguage('en');
   $translateProvider.useLocalStorage();
   $translateProvider.useSanitizeValueStrategy('escape');
-
-  //language negotiation
-  //http://angular-translate.github.io/docs/#/guide/09_language-negotiation
-  // $translateProvider.registerAvailableLanguageKeys(['en', 'pt'], {
-  //   'en_US': 'en',
-  //   'en_UK': 'en',
-  //   'pt_BR': 'pt'
-  // });
+  $translateProvider.registerAvailableLanguageKeys(['en', 'fr'], {
+    'en_*': 'en',
+    'fr_*': 'fr',
+    '*': 'en'
+  });
 
 
 //routes
@@ -286,9 +283,7 @@ angular
       requireLoggedIn: true,
       requiredRoles: [
         {code: 2200, role: APP_ROLES.ADMIN },
-        {code: 2200, role: APP_ROLES.ORGANIZER },
-        {code: 2200, role: APP_ROLES.WS_MANAGER },
-        {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+        {code: 2200, role: APP_ROLES.EDIT_ITEM_CATEGORIES }
       ]
     }
    });
@@ -325,9 +320,8 @@ angular
 
   })
 .run(function($rootScope, $state, $stateParams, auth, WSAlert, $templateCache){
-  //DEVELOPMENT API URL
-  //$rootScope.available_languages = {"en_US":"English"};
-  $rootScope.available_languages = {"en_US":"English", "pt_BR":"Portuguese (Brazil)", "fr_FR":"Français"};
+
+  $rootScope.available_languages = {"en":"English", "fr":"Français"};
 
   //PRODUCTION API URL
   //$rootScope.api_url = "http://beuk.worldskills.org/glossary/";
