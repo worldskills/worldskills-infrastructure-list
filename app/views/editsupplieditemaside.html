@@ -41,6 +41,22 @@
                     <input type="text" name="part_number" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.PART_NUMBER' | translate }}" ng-model='item.part_number'>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="form-group col col-xs-12 has-feedback"
+                    ng-class="{'has-error': editForm.item_category.$error.required, 'has-success': !editForm.item_category.$error.required}"
+                  >
+                    <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
+                    <ui-select ng-required="false" ng-model="item.item_category" theme="bootstrap">
+                      <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_ITEM_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
+                      <ui-select-choices repeat="category as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                        <div ng-bind-html="category.name.text"></div>
+                        <small>
+                          {{category.description.text}}
+                        </small>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div>
 
               </fieldset>
             </div>
