@@ -116,7 +116,7 @@ angular.module('ilApp')
 
     $scope.editItem = function (item, itemIndex) {
       //defining canEditItemStatus here because roles is undefined at start for an unknown reason
-      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
 
       if ($scope.activeItem == item.id) $scope.activeItem = false;
       else {

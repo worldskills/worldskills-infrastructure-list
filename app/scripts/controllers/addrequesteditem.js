@@ -35,7 +35,7 @@ angular.module('ilApp')
 
     $scope.supplierValue = false;
 
-    $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+    $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
 
     $scope.rename = function () {
       $scope.suppliedItem = {};
