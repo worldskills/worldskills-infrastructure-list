@@ -25,6 +25,7 @@
         ORGANIZER: 'Organizer',
         WS_MANAGER: 'Workshop Manager',
         WS_SECTOR_MANAGER: 'Sector Manager',
+        EDIT_ITEM_CATEGORIES: 'EditItemCategories',
         RECOMMEND: 'Recommend',
         VIEW: 'View'
     });
