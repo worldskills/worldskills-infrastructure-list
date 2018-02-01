@@ -8,7 +8,10 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL, $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT, SuppliedItem, Events, hotkeys, $translate) {
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
+    $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
+    SuppliedItem, Events, hotkeys, $translate, ItemCategory
+  ) {
 
     $scope.statusValues = [
       {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
@@ -92,6 +95,8 @@ angular.module('ilApp')
         {field: 'model', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'size', width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'part_number', width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'item_category.name.text', name: 'item_category', width: '160', cellEditableCondition: $scope.canEdit,
+          editableCellTemplate: '../../template/ui-grid/select-item-subcategories.html', editType: 'dropdown'},
         {field: 'supplier', name: 'supplier', width: '100'},
         {field: 'supply_type', name: 'supply_type', width: '100'},
         {field: 'unit_cost', name: 'unit_cost', width: '100'}, //double
@@ -148,6 +153,13 @@ angular.module('ilApp')
       exporterPdfMaxGridWidth: 640,
       exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
     };
+
+    ItemCategory.getAllSubCategory($state.params.eventId)
+      .then(function(res){
+        $scope.subCategories = res.categories;
+      }).catch(function(error){
+        WSAlert.danger(error);
+      });
 
     $scope.saveRow = function(rowEntity, updateRequested){
 
