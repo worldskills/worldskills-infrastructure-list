@@ -55,7 +55,12 @@
       <div class='col col-sm-12 col-md-4' ng-if="canEditItemStatus">
         <div class="form-group editForm has-feedback has-success">
           <label class='control-label' translate>STATUS</label>
-          <select class="form-control input-sm" ng-model="item.status" ng-options="status.id as status.id.name.text | translate for status in statusValues"></select>
+          <ui-select ng-model="item.status" theme="bootstrap">
+            <ui-select-match placeholder="{{ 'PLACEHOLDER.SELECT_STATUS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+            <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
+              <div ng-bind-html="status.name.text"></div>
+            </ui-select-choices>
+          </ui-select>
         </div>
       </div>
     </div>

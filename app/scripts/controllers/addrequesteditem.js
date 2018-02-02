@@ -14,18 +14,7 @@ angular.module('ilApp')
     $scope.item.multiplier = MULTIPLIER_DEFAULT;
 
     //ensure multipliers are set
-    $scope.multipliers = $scope.multipliers || MULTIPLIERS;
-
-    //Defining status values for status dropdown in edition form
-    $scope.statusValues = [
-      {id: {id: ITEM_STATUS.RED, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.RED'}}, value: ITEM_STATUS_TEXT.RED},
-      {id: {id: ITEM_STATUS.YELLOW, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.YELLOW'}}, value: ITEM_STATUS_TEXT.YELLOW},
-      {id: {id: ITEM_STATUS.GREEN, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.GREEN'}}, value: ITEM_STATUS_TEXT.GREEN},
-      {id: {id: ITEM_STATUS.BLACK, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.BLACK'}}, value: ITEM_STATUS_TEXT.BLACK},
-    ];
-    
-    $scope.item.status = $scope.statusValues[ITEM_STATUS_DEFAULT];
-
+    $scope.multipliers = $scope.multipliers || MULTIPLIERS;  
     $scope.disableInput = false;
 
     $scope.$watch('suppliedItem', function (val1, val2) {
