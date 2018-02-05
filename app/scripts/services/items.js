@@ -193,6 +193,34 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
+    Items.getItemsByEvent = function(eventId, itemPerPage, page, filters){
+      var deferred = $q.defer();
+
+      var params = {
+        limit: itemPerPage,
+        offset: itemPerPage * (page-1),
+        status: filters.status ? filters.status.id : null,
+        description: filters.description || null,
+        skill: filters.skill ? filters.skill.id : null,
+        item_category: filters.item_category ? filters.item_category.id : null,
+        item_subcategory: filters.item_subcategory ? filters.item_subcategory.id : null,
+        category: filters.category ? filters.category.id : null,
+        supplier: filters.supplier || null,
+        energy: filters.energy || null,
+        air: filters.air || null,
+        water: filters.water || null,
+        electricity: filters.electricity || null
+      }
+
+      $http.get(API_IL + '/items/' + eventId, {params: params}).then(function(result) {
+        deferred.resolve(result.data);
+      }, function(error) {
+        deferred.reject(error.data);
+      });
+
+      return deferred.promise;
+    };
+
     Items.getPublicItems = function(eventId, skillId){
       var deferred = $q.defer();
 

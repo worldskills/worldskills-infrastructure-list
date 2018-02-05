@@ -215,13 +215,13 @@ angular
     })
 
     //skills
-   .state('event.skill', {
-    url: '/skill/{skillId}',
-    templateUrl: 'views/skill.html',
-    controller: 'SkillCtrl',
-    abstract: true,
-    data: {
-      requireLoggedIn: true,
+    .state('event.skill', {
+      url: '/skill/{skillId}',
+      templateUrl: 'views/skill.html',
+      controller: 'SkillCtrl',
+      abstract: true,
+      data: {
+        requireLoggedIn: true,
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.ORGANIZER },
@@ -229,64 +229,77 @@ angular
           {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
         ]
       }
-   })
+    })
 
-   .state('event.skill.overview', {
-    url: '',
-    templateUrl: 'views/skill.overview.html',
-    controller: 'SkillOverviewCtrl',
-    data: {
-      requireLoggedIn: true,
-      requiredRoles: [
+    .state('event.skill.overview', {
+      url: '',
+      templateUrl: 'views/skill.overview.html',
+      controller: 'SkillOverviewCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER },
+            {code: 2200, role: APP_ROLES.WS_MANAGER },
+            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          ]
+        }
+    })
+
+    .state('event.skill.category', {
+      url: '/category/{categoryId}',
+      templateUrl: 'views/skill.category.html',
+      controller: 'SkillCategoryCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER },
+            {code: 2200, role: APP_ROLES.WS_MANAGER },
+            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          ]
+        }
+    })
+
+    .state('publicItems', {
+      url: '/event/{eventId}/skill/{skillId}/public',
+      templateUrl: 'views/public-items.html',
+      controller: 'PublicItemsCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.VIEW }
+        ]
+      }
+    })
+
+    .state('requestedItems', {
+      url: '/event/{eventId}/requested-items',
+      templateUrl: 'views/requested-items.html',
+      controller: 'RequestedItemCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_MANAGER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          {code: 2200, role: APP_ROLES.WS_MANAGER }
         ]
-
       }
-   })
+    })
 
-   .state('event.skill.category', {
-    url: '/category/{categoryId}',
-    templateUrl: 'views/skill.category.html',
-    controller: 'SkillCategoryCtrl',
-    data: {
-      requireLoggedIn: true,
-      requiredRoles: [
+    .state('itemCategory', {
+      url: '/event/{eventId}/item-category',
+      templateUrl: 'views/item-category.html',
+      controller: 'ItemCategoryCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_MANAGER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          {code: 2200, role: APP_ROLES.EDIT_ITEM_CATEGORIES }
         ]
-
       }
-   })
-
-   .state('publicItems', {
-     url: '/event/{eventId}/skill/{skillId}/public',
-     templateUrl: 'views/public-items.html',
-     controller: 'PublicItemsCtrl',
-     data: {
-       requireLoggedIn: true,
-       requiredRoles: [
-         {code: 2200, role: APP_ROLES.VIEW }
-       ]
-     }
-   })
-
-   .state('itemCategory', {
-    url: '/event/{eventId}/item-category',
-    templateUrl: 'views/item-category.html',
-    controller: 'ItemCategoryCtrl',
-    data: {
-      requireLoggedIn: true,
-      requiredRoles: [
-        {code: 2200, role: APP_ROLES.ADMIN },
-        {code: 2200, role: APP_ROLES.EDIT_ITEM_CATEGORIES }
-      ]
-    }
-   });
+    })
+  ;
 
    //
   //  .state('management', {

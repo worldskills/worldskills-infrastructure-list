@@ -157,6 +157,11 @@
   "POSITION_EVENT_NAME_TEXT": "de {{position}}",
 
   "PLACEHOLDER": {
+    "ALL_CATEGORY": "Toutes",
+    "ALL_ITEM_CATEGORY": "Toutes",
+    "ALL_ITEM_SUBCATEGORY": "Toutes",
+    "ALL_STATUSES": "Tous",
+    "ALL_SKILL": "Tous",
     "ITEM_CATEGORY_NAME": "Nom de la super famille",
     "ITEM_SUBCATEGORY_NAME": "Nom de la famille",
     "ITEM_CATEGORY_DESCRIPTION": "Description de la super famille",
@@ -172,6 +177,7 @@
     "CHOOSE_INSTALLATION_TYPE_OPT":"Choisissez un type d'installation (facultatif)",
     "DESCRIPTION":"Description",
     "DESCRIPTION_OF_THE_ITEM":"Description de l'item",
+    "NAME_OF_THE_ITEM":"Nom de l'item",
     "QUANTITY":"Quantité",
     "X_NUMBER":"Valeur de X",
     "POTENTIAL_SUPPLIER":"Fournisseur potentiel",
@@ -211,6 +217,7 @@
   "TEXT_NO_RESULTS": {
     "NO_SETS":"Aucun lot n'a été trouvé : merci de modifier les termes de la recherche.",
     "NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM":"Aucun item n'a été trouvé : appuyez sur Entrée pour ajouter un nouvel item.",
+    "NO_EXISTING_ITEMS_HIT":"Aucun item n'a été trouvé.",
     "NO_EXISTING_SUPPLIERS_FOUND":"Aucun fournisseur existant ne correspond.",
     "NO_ITEMS_FOUND_PLEASE_TRY":"Aucun item n'a été trouvé : merci de modifier les termes de la recherche."
   },
@@ -429,5 +436,16 @@
   "ITEM_SUB_CATEGORY": "Famille",
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles",
   "NO_CATEGORIES": "Aucune super famille trouvée",
-  "NO_SUBCATEGORIES": "Aucune famille trouvée"
+  "NO_SUBCATEGORIES": "Aucune famille trouvée",
+  "ENERGY_NEEDED": "Besoin d'énergie",
+  "AIR_NEEDED": "Besoin d'air",
+  "WATER_NEEDED": "Besoin d'eau",
+  "ELECTRICITY_NEEDED": "Besoin d'électricité",
+  "TH_SKILL_SECTOR": "Pôle métier",
+  "TH_SUPPLIER": "Partenaire",
+  "TH_EXTRA_DETAILS": "Remarques",
+  "TH_UNIT_COST": "Coût unitaire",
+  "TH_UNIT": "Unité",
+  "TH_TOTAL_PRICE": "Prix total",
+  "REQUESTED_ITEMS": "Lignes d'infrastructure"
 }
