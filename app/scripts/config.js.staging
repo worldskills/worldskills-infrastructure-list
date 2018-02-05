@@ -27,6 +27,7 @@
         WS_MANAGER: 'Workshop Manager',
         WS_SECTOR_MANAGER: 'Sector Manager',
         EDIT_ITEM_CATEGORIES: 'EditItemCategories',
+        EDIT_ITEM_STATUS: 'EditItemStatus',
         RECOMMEND: 'Recommend',
         VIEW: 'View'
     });
@@ -39,22 +40,21 @@
         {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
     ]);
 
-ilApp.constant('ITEM_STATUS', {
+    ilApp.constant('ITEM_STATUS', {
         'RED': 1,
         'YELLOW': 2,
         'GREEN': 3,
         'BLACK': 4
     });
 
-  ilApp.constant('ITEM_STATUS_TEXT', {
-    'RED': "Requested",
-    'YELLOW': "Pending",
-    'GREEN': "Confirmed",
-    'BLACK': "Secret"
-  });
+    ilApp.constant('ITEM_STATUS_TEXT', {
+        'RED': "Requested",
+        'YELLOW': "Pending",
+        'GREEN': "Confirmed",
+        'BLACK': "Secret"
+    });
+
+    ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
 
     ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
-
-
-
 })();

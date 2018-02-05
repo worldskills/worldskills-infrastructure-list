@@ -119,6 +119,17 @@
                 <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
               </div>
             </div>
+            <div class='col col-sm-12 col-md-4' ng-if='canEditItemStatus'>
+              <div class="form-group editForm has-feedback has-success">
+                <label class='control-label' translate>STATUS</label>
+                <ui-select ng-model="item.status" theme="bootstrap">
+                  <ui-select-match placeholder="{{ 'PLACEHOLDER.SELECT_STATUS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                  <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
+                    <div ng-bind-html="status.name.text"></div>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
       </div>
 
       <div class='row'>
