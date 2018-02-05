@@ -41,7 +41,7 @@
   </small>
   <small data-nodrag ng-if='item.id == statusEditionItemId' class="status pull-right form-group-sm">
     <ui-select ng-model="item.status" theme="bootstrap" on-select="saveStatus(item, itemIndex);" style="width: 100px">
-      <ui-select-match placeholder="{{ 'PLACEHOLDER.ALL_STATUSES' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+      <ui-select-match placeholder="{{ 'PLACEHOLDER.SELECT_STATUS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
       <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
         <div ng-bind-html="status.name.text"></div>
       </ui-select-choices>
