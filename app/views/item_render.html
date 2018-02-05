@@ -39,7 +39,7 @@
               'label-success': item.status.id == ITEM_STATUS.GREEN}"
     translate>{{item.status.name.text}}</span>
   </small>
-  <small data-nodrag ng-if='item.id == statusEditionItemId' class="status pull-right">
+  <small data-nodrag ng-if='item.id == statusEditionItemId' class="status pull-right form-group-sm">
     <ui-select ng-model="item.status" theme="bootstrap" on-select="saveStatus(item, itemIndex);" style="width: 100px">
       <ui-select-match placeholder="{{ 'PLACEHOLDER.ALL_STATUSES' | translate }}">{{$select.selected.name.text}}</ui-select-match>
       <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
