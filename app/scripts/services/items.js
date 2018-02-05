@@ -200,16 +200,16 @@ angular.module('ilApp')
         limit: itemPerPage,
         offset: itemPerPage * (page-1),
         status: filters.status ? filters.status.id : null,
-        description: filters.description ? filters.description : null,
+        description: filters.description || null,
         skill: filters.skill ? filters.skill.id : null,
         item_category: filters.item_category ? filters.item_category.id : null,
         item_subcategory: filters.item_subcategory ? filters.item_subcategory.id : null,
         category: filters.category ? filters.category.id : null,
-        supplier: filters.supplier ? filters.supplier : null,
-        energy: filters.energy ? filters.energy : null,
-        air: filters.air ? filters.air : null,
-        water: filters.water ? filters.water : null,
-        electricity: filters.electricity ? filters.electricity : null
+        supplier: filters.supplier || null,
+        energy: filters.energy || null,
+        air: filters.air || null,
+        water: filters.water || null,
+        electricity: filters.electricity || null
       }
 
       $http.get(API_IL + '/items/' + eventId, {params: params}).then(function(result) {
