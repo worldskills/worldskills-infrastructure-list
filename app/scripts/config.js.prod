@@ -32,7 +32,6 @@
         VIEW: 'View'
     });
 
-
     ilApp.constant('MULTIPLIERS', [
         {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
         {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
@@ -54,7 +53,6 @@
         'GREEN': "Confirmed",
         'BLACK': "Secret"
     });
-
 
     ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
 
