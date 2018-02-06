@@ -40,14 +40,6 @@ angular.module('ilApp')
     $scope.standardSetSelector = false;
     $scope.statusEditionItemId = -1; // starting at -1 as no item should be considered in edition mode on page start
 
-     //Defining status values for status dropdown in edition form
-     $scope.statusValues = [
-      {id: {id: ITEM_STATUS.RED, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.RED'}}, value: ITEM_STATUS_TEXT.RED},
-      {id: {id: ITEM_STATUS.YELLOW, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.YELLOW'}}, value: ITEM_STATUS_TEXT.YELLOW},
-      {id: {id: ITEM_STATUS.GREEN, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.GREEN'}}, value: ITEM_STATUS_TEXT.GREEN},
-      {id: {id: ITEM_STATUS.BLACK, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.BLACK'}}, value: ITEM_STATUS_TEXT.BLACK},
-    ];
-
     $scope.moveItem = function (itemId, parentId, position) {
       //console.log("item %d, parent %d, position %d", itemId, parentId, position);
       Items.moveItem($scope.event_id, $scope.skill_id, itemId, parentId, position).then(function (result) {
