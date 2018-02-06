@@ -25,6 +25,8 @@
         ORGANIZER: 'Organizer',
         WS_MANAGER: 'Workshop Manager',
         WS_SECTOR_MANAGER: 'Sector Manager',
+        EDIT_ITEM_CATEGORIES: 'EditItemCategories',
+        EDIT_ITEM_STATUS: 'EditItemStatus',
         RECOMMEND: 'Recommend',
         VIEW: 'View'
     });
@@ -44,12 +46,14 @@
         'BLACK': 4
     });
 
-  ilApp.constant('ITEM_STATUS_TEXT', {
-    'RED': "Requested",
-    'YELLOW': "Pending",
-    'GREEN': "Confirmed",
-    'BLACK': "Secret"
-  });
+    ilApp.constant('ITEM_STATUS_TEXT', {
+        'RED': "Requested",
+        'YELLOW': "Pending",
+        'GREEN': "Confirmed",
+        'BLACK': "Secret"
+    });
+
+
     ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
 
     ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');

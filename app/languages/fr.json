@@ -199,7 +199,8 @@
     "EXTRA_DETAILS_COMMENTS":"Détails complémentaires / Commentaires",
     "CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL":"Choisissez un type d'installation (facultatif)",
     "STANDARD_SET_01":"Lot standard 01",
-    "PRIORITY": "Priorité"
+    "PRIORITY": "Priorité",
+    "SELECT_STATUS":"État"
   },
   "TITLE": {
     "CHOOSE_SKILL":"Sélectionnez un métier",

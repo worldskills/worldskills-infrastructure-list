@@ -8,7 +8,8 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT) {
+
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT, Auth, APP_ROLES, $translate, Status) {
 
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
@@ -20,7 +21,6 @@ angular.module('ilApp')
     $scope.orderProperty = null;//"item_order";
     $scope.reverse = false;
     $scope.allowReordering = true;
-
 
     $scope.deleteMode = false;
 
@@ -39,6 +39,7 @@ angular.module('ilApp')
     $scope.total = 0;
     $scope.supplierValue = false;
     $scope.standardSetSelector = false;
+    $scope.statusEditionItemId = -1; // starting at -1 as no item should be considered in edition mode on page start
 
      //Defining status values for status dropdown in edition form
      $scope.statusValues = [
@@ -47,8 +48,6 @@ angular.module('ilApp')
       {id: {id: ITEM_STATUS.GREEN, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.GREEN'}}, value: ITEM_STATUS_TEXT.GREEN},
       {id: {id: ITEM_STATUS.BLACK, name: {text: 'CONSTANT.ITEM_STATUS_TEXT.BLACK'}}, value: ITEM_STATUS_TEXT.BLACK},
     ];
-
-    console.log(MULTIPLIERS);
 
     $scope.moveItem = function (itemId, parentId, position) {
       //console.log("item %d, parent %d, position %d", itemId, parentId, position);
@@ -117,11 +116,26 @@ angular.module('ilApp')
     };
 
     $scope.editItem = function (item, itemIndex) {
+      //defining canEditItemStatus here because roles is undefined at start for an unknown reason
+      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+
       if ($scope.activeItem == item.id) $scope.activeItem = false;
       else {
         $scope.activeItem = item.id;
       }
     };
+
+    $scope.editItemStatus = function (item)
+    {
+      $scope.statusEditionItemId = item.id;
+    }
+
+    $scope.saveStatus = function (item, itemIndex)
+    {
+      $scope.saveItem(item, itemIndex);
+      $scope.statusEditionItemId = -1;
+      WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED'));
+    }
 
     $scope.saveItem = function (item, itemIndex) {
 
@@ -245,6 +259,10 @@ angular.module('ilApp')
 
     };
 
+    Status.getAllStatuses().then(function (result) {  
+      $scope.statuses = result;
+    });
+
     $scope.filter = function () {
       if ($scope.searchAPI = false) return;
       //$scope.loading.initial = true;
@@ -338,9 +356,20 @@ angular.module('ilApp')
     $scope.factorNeeded = Items.factorNeeded;
 
     $scope.canEdit = function (statusId) {
-      //TODO check if User level == organizer, then allow after all
+      if(Auth.hasRole(APP_ROLES.ORGANIZER)) {
+        return true;
+      }
       return (statusId == ITEM_STATUS.RED) ? true : false;
     };
+
+    $scope.canEditStatus = function ()
+    {
+      return Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+    }
+
+    $scope.canDelete = function (statusId) {
+      return (statusId == ITEM_STATUS.RED) ? true : false;
+    }
 
     $scope.addStandardSet = function(){
       $('#id_value').val('');

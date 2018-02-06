@@ -199,7 +199,8 @@
     "EXTRA_DETAILS_COMMENTS":"Extra details / Comments",
     "CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL":"Choose an Installation Type (optional)",
     "STANDARD_SET_01":"Standard set 01",
-    "PRIORITY": "Priority"
+    "PRIORITY": "Priority",
+    "SELECT_STATUS":"Status"
   },
   "TITLE": {
     "CHOOSE_SKILL":"Choose a skill",

@@ -12,14 +12,7 @@ angular.module('ilApp')
     $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory
   ) {
-
-    $scope.statusValues = [
-      {id: {id: ITEM_STATUS.RED, name: {text: ITEM_STATUS_TEXT.RED}}, value: ITEM_STATUS_TEXT.RED},
-      {id: {id: ITEM_STATUS.YELLOW, name: {text: ITEM_STATUS_TEXT.YELLOW}}, value: ITEM_STATUS_TEXT.YELLOW},
-      {id: {id: ITEM_STATUS.GREEN, name: {text: ITEM_STATUS_TEXT.GREEN}}, value: ITEM_STATUS_TEXT.GREEN},
-      {id: {id: ITEM_STATUS.BLACK, name: {text: ITEM_STATUS_TEXT.BLACK}}, value: ITEM_STATUS_TEXT.BLACK},
-    ];
-
+    
     $scope.fullscreen = false;
     $scope.item = {};
     $scope.loading.catalogue = true;

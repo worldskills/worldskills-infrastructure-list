@@ -39,7 +39,17 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-
+    Status.getAllStatuses = function(){
+      var deferred = $q.defer();
+      $http.get(API_IL + "/statuses").then(function(result){
+        deferred.resolve(result.data.statuses);
+      },
+      function(error){
+        deferred.reject("Could not fetch statuses");
+      });
+ 
+      return deferred.promise;
+    };
 
    	return Status;
 
