@@ -119,10 +119,11 @@
   </div>
 
   <div class="text-right mt-2">
-    <button class="btn btn-sm btn-default" ng-click="clear()">Réinitialiser</button>
-    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#skillArticleEdit"><span class="glyphicon glyphicon-pencil"></span> Édition multiple</button>
-    <button class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-save"></span> Extraire les résultats</button>
-    <button class="btn btn-sm btn-primary hidden"><span class="glyphicon glyphicon-eye-open"></span> Afficher les résultats</button>
+    <button class="btn btn-sm btn-default" ng-click="clear()" translate>CLEAR</button>
+    <button class="btn btn-sm btn-primary" ng-disabled="numberItemSelected < 1" ng-click="openMultipleItemEditor()" translate>
+      <span class="glyphicon glyphicon-pencil"></span> MULTIPLE_EDITION
+    </button>
+    <button class="btn btn-sm btn-primary" translate><span class="glyphicon glyphicon-save"></span> EXTRACT_RESULTS</button>
   </div>
 
   <div class="clearfix"></div>
@@ -132,7 +133,7 @@
   <table class="table table-striped vmiddle">
     <thead>
       <tr>
-        <th class="select"><label for=""><input type="checkbox"></label></th>
+        <th class="select"><input type="checkbox" ng-model="allSelected" ng-click="selectAll()"></th>
         <th translate>TH_SKILL_SECTOR</th>
         <th translate>TH_SKILL</th>
         <th translate>TH_NAME</th>
@@ -147,9 +148,9 @@
       </tr>
     </thead>
     <tbody ng-show="items.length && !loading.items">
-      <tr ng-repeat="item in items">
+      <tr ng-repeat="item in items"  ng-class="{'warning': item.selected}">
         <td class="select">
-          <label for=""><input type="checkbox"></label>
+          <label for=""><input type="checkbox" ng-model="item.selected" ng-click="selectItem(item)"></label>
         </td>
         <td>{{item.category.list.skill.sector.name.text}}</td>
         <td>{{item.category.list.skill.name.text}}</td>

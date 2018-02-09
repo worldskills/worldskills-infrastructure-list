@@ -1,0 +1,83 @@
+<div class="aside">
+  <fieldset>
+    <legend translate>REQUESTED_ITEMS_PROPERTIES</legend>
+    <form name="editForm">
+
+      <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tabItems" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Lignes d'infrastructure</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="tabItems">
+          <div class="well">
+            <fieldset>
+              <legend>Informations générales</legend>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label" translate>STATUS</label>
+                    <ui-select name="status" ng-model="editedItem.status" theme="bootstrap">
+                      <ui-select-match allow-clear="true" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.ALL_STATUSES' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                      <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
+                        <div ng-bind-html="status.name.text | highlight: $select.selected.name.text"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group editForm">
+                    <label class='control-label' translate>SUPPLIER</label>
+                    <angucomplete-alt
+                      input-name="supplier"
+                      id="supplier"
+                      placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}"
+                      pause="400"
+                      selected-object="editedItem.supplier"
+                      remote-url="{{searchSupplierAPI}}"
+                      remote-url-request-with-credentials="true"
+                      remote-url-data-field="suppliers"
+                      title-field="name"
+                      minlength="1"
+                      search-fields="name"
+                      disable-input="disableInputSupplier"
+                      focus-first="true"
+                      input-changed="supplierChanged"
+                      override-suggestions="true"
+                      field-required="false"
+                      text-searching="false"
+                      text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
+                      initial-value="editedItem.supplier"
+                      input-class="form-control angucomplete-overflow"/>
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group editForm">
+                        <label class="control-label">Prix</label>
+                        <div class="input-group">
+                            <input type="number" name="price" class="form-control" ng-model="editedItem.price" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.PRICE' | translate }}">
+                            <span class="input-group-addon">€</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="control-label" translate>CATEGORY</label>
+                  <ui-select name="category" ng-model="editedItem.category" theme="bootstrap" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
+                    <ui-select-match allow-clear="true" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.ALL_CATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                    <ui-select-choices repeat="category in categories | orderBy:'name.text'">
+                      <div ng-bind-html="category.name.text | highlight: $select.selected.name.text"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-sm btn-success" ng-click="saveItems()">Mettre à jour les lignes</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel();" translate>CANCEL</button>
+    </form>
+  </fieldset>
+</div>

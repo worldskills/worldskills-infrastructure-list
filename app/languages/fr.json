@@ -447,5 +447,10 @@
   "TH_UNIT_COST": "Coût unitaire",
   "TH_UNIT": "Unité",
   "TH_TOTAL_PRICE": "Prix total",
-  "REQUESTED_ITEMS": "Lignes d'infrastructure"
+  "REQUESTED_ITEMS": "Lignes d'infrastructure",
+  "CLEAR": "Réinitialiser",
+  "MULTIPLE_EDITION":"Édition multiple",
+  "EXTRACT_RESULTS": "Extraire les résultats",
+  "REQUESTED_ITEMS_PROPERTIES": "Propriétés des lignes d'infrastructure",
+  "MULTIPLE_VALUES_DETECTED": "Plusieurs valeurs détectées"
 }
