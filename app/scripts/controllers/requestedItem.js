@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items, ITEM_STATUS, ItemCategory, Category, Status, API_IL) {
+  .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items, ITEM_STATUS, ItemCategory, Category, Status, API_IL, $aside) {
 
     $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?search='; //search url for autocomplete
@@ -16,8 +16,49 @@ angular.module('ilApp')
     $scope.filters = {};
 
     $scope.current_page = 1;
-    $scope.items_per_page = 5;
+    $scope.items_per_page = 50;
 
+    $scope.selectAll = function() {
+      angular.forEach($scope.items, function(v, k) {
+        v.selected = $scope.allSelected;
+        $scope.numberItemSelected = $scope.allSelected ? $scope.items.length : 0;
+      });
+    };
+
+    $scope.selectItem = function(item) {
+      if(item.selected){
+        ++$scope.numberItemSelected;
+      } else {
+        --$scope.numberItemSelected;
+      }
+      if($scope.numberItemSelected < 1){
+        $scope.allSelected = false;
+      }
+      if($scope.numberItemSelected == $scope.items_per_page){
+        $scope.allSelected = true;
+      }
+    };
+
+    $scope.numberItemSelected = 0;
+
+    $scope.asideState = {
+      open: true,
+    };
+
+    function postClose() {
+      $scope.asideState.open = false;
+    }
+
+    $scope.openMultipleItemEditor = function(){
+      $aside.open({
+        templateUrl: 'views/requested-items-aside.html',
+        placement: 'right',
+        size: 'md',
+        scope: $scope,
+        backdrop: true,
+        controller: 'RequestedItemModalCtrl',
+      }).result.then(postClose, postClose);
+    };
     $scope.changePage = function(page)
     {
       $scope.loading.items = true;

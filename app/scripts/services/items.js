@@ -8,23 +8,23 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('Items', function ($q, $http, API_IL, ITEM_STATUS, MULTIPLIERS) {
+  .service('Items', function ($q, $http, API_IL, ITEM_STATUS, MULTIPLIERS, Language) {
 
    	var Items = { categories : $q.defer(), $data : $q.defer(), total: null };
 
    	Items.getCategories = function(skillId){
    		//if(typeof Items.categories.promise == 'undefined') Items.categories = $q.defer();
-      Items.categories = $q.defer();
+      var deferred = $q.defer();
 
    		$http.get(API_IL + "/categories/" + skillId).then(function(result){
-   			Items.categories.resolve(result.data.categories);
+   			deferred.resolve(result.data.categories);
    			Items.categories = result.data.categories;
    		},
    		function(error){
-   			Items.categories.reject("Could not fetch categories: " + error.data.user_msg);
+        deferred.reject("Could not fetch categories: " + error.data.user_msg);
    		});
 
-   		return Items.categories.promise;
+   		return deferred.promise;
    	};
 
    	Items.getItems = function(categoryId, skillId, eventId, limit, offset, filter, canceler){
@@ -197,6 +197,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
 
       var params = {
+        l: Language.selectedLanguage,
         limit: itemPerPage,
         offset: itemPerPage * (page-1),
         status: filters.status ? filters.status.id : null,
