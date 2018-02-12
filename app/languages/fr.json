@@ -452,5 +452,8 @@
   "MULTIPLE_EDITION":"Édition multiple",
   "EXTRACT_RESULTS": "Extraire les résultats",
   "REQUESTED_ITEMS_PROPERTIES": "Propriétés des lignes d'infrastructure",
-  "MULTIPLE_VALUES_DETECTED": "Plusieurs valeurs détectées"
+  "MULTIPLE_VALUES_DETECTED": "Plusieurs valeurs détectées",
+  "GENERAL_INFORMATION": "Informations générales",
+  "UPDATE_REQUESTED_ITEMS": "Mettre à jour les lignes",
+  "PRICE": "Prix"
 }
