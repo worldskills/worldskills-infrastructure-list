@@ -16,7 +16,7 @@ angular.module('ilApp')
     $scope.filters = {};
 
     $scope.current_page = 1;
-    $scope.items_per_page = 5;
+    $scope.items_per_page = 50;
 
     $scope.selectAll = function() {
       angular.forEach($scope.items, function(v, k) {
@@ -27,12 +27,15 @@ angular.module('ilApp')
 
     $scope.selectItem = function(item) {
       if(item.selected){
-        $scope.numberItemSelected += 1;
+        ++$scope.numberItemSelected;
       } else {
-        $scope.numberItemSelected -= 1;
+        --$scope.numberItemSelected;
       }
       if($scope.numberItemSelected < 1){
         $scope.allSelected = false;
+      }
+      if($scope.numberItemSelected == $scope.items_per_page){
+        $scope.allSelected = true;
       }
     };
 
