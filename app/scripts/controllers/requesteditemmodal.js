@@ -59,6 +59,10 @@ angular.module('ilApp')
       }
     });
 
+    $scope.supplierChanged = function (val) {
+      $scope.editedItem.supplier = val;
+    };
+
     $scope.saveItems = function(){
       var tasks = [];
       var extendedCategory;
