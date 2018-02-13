@@ -1,5 +1,9 @@
 <h2 ng-show="!hideFooter" class="ng-binding ng-scope" aria-hidden="false" translate>REQUESTED_ITEMS</h2>
 <hr class="cb">
+<div class="alert alert-info text-center" ng-if="loading.download">
+  <span translate>DOWNLOADING_FILE</span>
+  <ws-spinner></ws-spinner>
+</div>
 <div class="well">
   <div class="row">
     <div class="col-sm-3">
@@ -120,10 +124,10 @@
 
   <div class="text-right mt-2">
     <button class="btn btn-sm btn-default" ng-click="clear()" translate>CLEAR</button>
-    <button class="btn btn-sm btn-primary" ng-disabled="numberItemSelected < 1" ng-click="openMultipleItemEditor()" translate>
-      <span class="glyphicon glyphicon-pencil"></span> MULTIPLE_EDITION
+    <button class="btn btn-sm btn-primary" ng-disabled="numberItemSelected < 1" ng-click="openMultipleItemEditor()">
+      <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate>MULTIPLE_EDITION</span>
     </button>
-    <button class="btn btn-sm btn-primary" translate><span class="glyphicon glyphicon-save"></span> EXTRACT_RESULTS</button>
+    <button class="btn btn-sm btn-primary" ng-click="downloadCsv()"><span class="glyphicon glyphicon-save"></span>&nbsp;<span translate>EXTRACT_RESULTS</span></button>
   </div>
 
   <div class="clearfix"></div>
