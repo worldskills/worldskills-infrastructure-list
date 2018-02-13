@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, WSAlert, UPLOADS_URL) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, UPLOADS_URL) {
 
     $scope.eventId = $state.params.eventId;
     $scope.skillId = $state.params.skillId;
@@ -9,6 +9,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.skillManagement = {};
 
     $scope.ITEM_STATUS = ITEM_STATUS;
+    $scope.ITEM_STATUS_TEXT = ITEM_STATUS_TEXT;
 
     $scope.loading = true;
 

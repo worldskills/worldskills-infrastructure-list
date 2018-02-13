@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('editRequestedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS) {
+  .controller('editRequestedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS, ITEM_STATUS, ITEM_STATUS_TEXT) {
 
     $scope.multipliers = MULTIPLIERS;
 
