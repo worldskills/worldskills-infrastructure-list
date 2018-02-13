@@ -455,5 +455,6 @@
   "MULTIPLE_VALUES_DETECTED": "Multiple values detected",
   "GENERAL_INFORMATION": "General information",
   "UPDATE_REQUESTED_ITEMS": "Update items",
-  "PRICE": "Price"
+  "PRICE": "Price",
+  "DOWNLOADING_FILE": "Downloading file"
 }

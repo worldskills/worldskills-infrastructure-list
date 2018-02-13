@@ -455,5 +455,6 @@
   "MULTIPLE_VALUES_DETECTED": "Plusieurs valeurs détectées",
   "GENERAL_INFORMATION": "Informations générales",
   "UPDATE_REQUESTED_ITEMS": "Mettre à jour les lignes",
-  "PRICE": "Prix"
+  "PRICE": "Prix",
+  "DOWNLOADING_FILE": "Fichier en cours de téléchargement"
 }

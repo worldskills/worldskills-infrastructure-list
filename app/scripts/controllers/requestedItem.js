@@ -8,7 +8,8 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items, ITEM_STATUS, ItemCategory, Category, Status, API_IL, $aside) {
+  .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items, ITEM_STATUS,
+    ItemCategory, Category, Status, API_IL, $aside, Reporting) {
 
     $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?search='; //search url for autocomplete
@@ -70,6 +71,18 @@ angular.module('ilApp')
     $scope.changeFilters = function(){
       $scope.current_page = 1;
       $scope.loadData();
+    };
+
+    $scope.downloadCsv = function() {
+      $scope.loading.download = true;
+      Reporting.exportRequestedForEvent($state.params.eventId, $scope.filters, false)
+      .then(function(){
+        $scope.loading.download = false;
+      })
+      .catch(function (error) {
+        WSAlert.danger(error);
+        $scope.loading.download = false;
+      });
     };
 
     $scope.loadData = function(){
