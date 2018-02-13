@@ -433,7 +433,7 @@
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles",
   "NO_CATEGORIES": "Aucune super famille trouvée",
   "NO_SUBCATEGORIES": "Aucune famille trouvée",
-  "LANGUAGE": "Langage",
+  "LANGUAGE": "Langage : ",
   "true": "Oui",
   "false": "Non"
 }

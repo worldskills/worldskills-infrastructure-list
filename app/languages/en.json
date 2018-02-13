@@ -433,7 +433,7 @@
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and subcategory item",
   "NO_CATEGORIES": "No categories found",
   "NO_SUBCATEGORIES": "No subcategories found",
-  "LANGUAGE": "Language",
+  "LANGUAGE": "Language: ",
   "true": "True",
   "false": "False"
 }
