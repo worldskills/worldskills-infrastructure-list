@@ -394,6 +394,8 @@
   "LOC_VENUE": "Venue",
   "LOC_OTHER": "Other",
 
+  "HS_CODE":"HS Code",
+
   "LEAD_TIME": "Lead time",
   "LEAD_10_WEEKS": "&gt; 10 weeks",
   "LEAD_8-10_WEEKS": "8 - 10 weeks",
@@ -430,5 +432,8 @@
   "ITEM_SUB_CATEGORY": "Subcategory",
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and subcategory item",
   "NO_CATEGORIES": "No categories found",
-  "NO_SUBCATEGORIES": "No subcategories found"
+  "NO_SUBCATEGORIES": "No subcategories found",
+  "LANGUAGE": "Language: ",
+  "true": "True",
+  "false": "False"
 }
