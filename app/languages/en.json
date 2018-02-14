@@ -430,5 +430,9 @@
   "ITEM_SUB_CATEGORY": "Subcategory",
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and subcategory item",
   "NO_CATEGORIES": "No categories found",
-  "NO_SUBCATEGORIES": "No subcategories found"
+  "NO_SUBCATEGORIES": "No subcategories found",
+
+  "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",
+  "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Leave fields empty to use registration numbers (if available).",
+  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants"
 }
