@@ -1,40 +1,78 @@
-'use strict';
+(function() {
+  'use strict';
 
-/**
- * @ngdoc overview
- * @name ilApp
- * @description
- * # ilApp
- *
- * Main module of the application.
- */
-angular
-  .module('ilApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ui.select',
-    'ngTouch',
-    'ui.router',
-    'ui.bootstrap',
-    'daterangepicker',
-    'pascalprecht.translate',
-    'worldskills.utils',
-    'angularFileUpload',
-    'ui.tree',
-    'ngAside',
-    'angucomplete-alt',
-    'angular-confirm',
-    'infinite-scroll',
-    'ui.grid', 'ui.grid.autoResize', 'ui.grid.exporter', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.grid.cellNav', 'ui.grid.pinning', 'ui.grid.rowEdit', 'ui.grid.selection',
-    'cfp.hotkeys'
-  ])
-  //.config(function ($routeProvider) {
-    .config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+  /**
+   * @ngdoc overview
+   * @name ilApp
+   * @description
+   * # ilApp
+   *
+   * Main module of the application.
+   */
+  var ilApp = angular
+    .module('ilApp', [
+      'ngAnimate',
+      'ngAria',
+      'ngCookies',
+      'ngMessages',
+      'ngResource',
+      'ngRoute',
+      'ngSanitize',
+      'ui.select',
+      'ngTouch',
+      'ui.router',
+      'ui.bootstrap',
+      'daterangepicker',
+      'pascalprecht.translate',
+      'worldskills.utils',
+      'angularFileUpload',
+      'ui.tree',
+      'ngAside',
+      'angucomplete-alt',
+      'angular-confirm',
+      'infinite-scroll',
+      'ui.grid', 'ui.grid.autoResize', 'ui.grid.exporter', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.grid.cellNav', 'ui.grid.pinning', 'ui.grid.rowEdit', 'ui.grid.selection',
+      'cfp.hotkeys'
+    ]);
+
+  ilApp.constant('APP_ROLES', {
+      ADMIN: 'Admin',
+      ORGANIZER: 'Organizer',
+      WS_MANAGER: 'Workshop Manager',
+      WS_SECTOR_MANAGER: 'Sector Manager',
+      EDIT_ITEM_CATEGORIES: 'EditItemCategories',
+      EDIT_ITEM_STATUS: 'EditItemStatus',
+      RECOMMEND: 'Recommend',
+      VIEW: 'View'
+  });
+
+  ilApp.constant('MULTIPLIERS', [
+      {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
+      {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
+      {"id": "EXPERTS", "name" : "per Expert", "x_number_needed": false },
+      {"id": "PER_NUM_COMPETITORS", "name" : "per every X Competitors", "x_number_needed": true },
+      {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
+  ]);
+
+  ilApp.constant('ITEM_STATUS', {
+      'RED': 1,
+      'YELLOW': 2,
+      'GREEN': 3,
+      'BLACK': 4
+  });
+
+  ilApp.constant('ITEM_STATUS_TEXT', {
+      'RED': "Requested",
+      'YELLOW': "Pending",
+      'GREEN': "Confirmed",
+      'BLACK': "Secret"
+  });
+
+  ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
+
+  ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
+
+  ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
 
@@ -318,19 +356,22 @@ angular
   //  })
   //  ;
 
-  })
-.run(function($rootScope, $state, $stateParams, auth, WSAlert, $templateCache){
+  });
 
-  $rootScope.available_languages = {"en":"English", "fr":"Français"};
+  ilApp.run(function($rootScope, $state, $stateParams, auth, WSAlert, $templateCache){
 
-  //PRODUCTION API URL
-  //$rootScope.api_url = "http://beuk.worldskills.org/glossary/";
-  $rootScope.closeAlert = WSAlert.closeAlert;
+    $rootScope.available_languages = {"en":"English", "fr":"Français"};
 
-  // It's very handy to add references to $state and $stateParams to the $rootScope
-  // so that you can access them from any scope within your applications.For example,
-  // <li ng-class='{ active: $state.includes('contacts.list') }'> will set the <li>
-  // to active whenever 'contacts.list' or one of its decendents is active.
-  $rootScope.$state = $state;
-  $rootScope.$stateParams = $stateParams;
-});
+    //PRODUCTION API URL
+    //$rootScope.api_url = "http://beuk.worldskills.org/glossary/";
+    $rootScope.closeAlert = WSAlert.closeAlert;
+
+    // It's very handy to add references to $state and $stateParams to the $rootScope
+    // so that you can access them from any scope within your applications.For example,
+    // <li ng-class='{ active: $state.includes('contacts.list') }'> will set the <li>
+    // to active whenever 'contacts.list' or one of its decendents is active.
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+  });
+
+})();
