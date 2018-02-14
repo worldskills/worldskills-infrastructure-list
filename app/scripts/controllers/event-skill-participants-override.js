@@ -1,19 +1,19 @@
 (function() {
   'use strict';
 
-  angular.module('ilApp').controller('EventSkillNumbersCtrl', function ($scope, $q, $translate, $state, WSAlert, SkillNumbers) {
+  angular.module('ilApp').controller('EventSkillParticipantsOverrideCtrl', function ($scope, $q, $translate, $state, WSAlert, SkillParticipantsOverride) {
     
     $q.when($scope.appLoaded.promise).then(function(){
 
       angular.forEach($scope.skills, function (skill) {
-        skill.numbers = SkillNumbers.get({skillId: skill.id});
+        skill.numbers = SkillParticipantsOverride.get({skillId: skill.id});
       });
 
     });
 
     $scope.save = function () {
 
-      $scope.loading.saveSkillNumbers = true;
+      $scope.loading.saveSkillParticipantsOverride = true;
 
       var promises = [];
 
@@ -22,11 +22,11 @@
       });
 
       $q.all(promises).then(function() {
-        $scope.loading.saveSkillNumbers = false;
+        $scope.loading.saveSkillParticipantsOverride = false;
         WSAlert.success($translate.instant('Skill Numbers successfully saved.'));
         $state.go('event.overview', {eventId: $scope.selectedEvent.id});
       }, function (error) {
-        $scope.loading.saveSkillNumbers = false;
+        $scope.loading.saveSkillParticipantsOverride = false;
         WSAlert.danger(error.data.user_msg);
       });
 

@@ -432,7 +432,7 @@
   "NO_CATEGORIES": "No categories found",
   "NO_SUBCATEGORIES": "No subcategories found",
 
-  "SKILL_NUMBERS": "Skill Numbers",
-  "SKILL_NUMBER_EMPTY_HINT": "Leave fields empty to use registration numbers (if available).",
-  "SKILL_NUMBERS_SAVE": "Save Skill numbers"
+  "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",
+  "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Leave fields empty to use registration numbers (if available).",
+  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants"
 }

@@ -326,10 +326,10 @@
       ]
     }
    })
-  .state('event.skill-numbers', {
-   url: '/skill-numbers',
-   templateUrl: 'views/event-skill-numbers.html',
-   controller: 'EventSkillNumbersCtrl',
+  .state('event.skill-participants-override', {
+   url: '/skill-participants-override',
+   templateUrl: 'views/event-skill-particpants-override.html',
+   controller: 'EventSkillParticipantsOverrideCtrl',
    data: {
      requireLoggedIn: true,
      requiredRoles: [
