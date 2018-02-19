@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ItemCategoryModalCtrl', function ($q, $scope, $state, $confirm, $translate,uiGridConstants, $uibModalInstance, $filter, $aside, ItemCategory, WSAlert, APP_ROLES) {
+  .controller('ItemCategoryModalCtrl', function ($q, $scope, $state, $confirm, $translate,uiGridConstants, $uibModalInstance, $filter, $aside, ItemCategory, WSAlert, APP_ROLES, Language) {
 
     $scope.event = false;
     $scope.data = {};
@@ -29,6 +29,7 @@ angular.module('ilApp')
 
     $scope.saveItemCategory = function (index) {
       $scope.loading.aside = true;
+      $scope.item.name.lang_code = Language.selectedLanguage;
 
       if ($scope.item.id == null) {
         ItemCategory.createItem($scope.item, $state.params.eventId)
