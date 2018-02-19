@@ -10,7 +10,7 @@
 angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
-    SuppliedItem, Events, hotkeys, $translate, ItemCategory
+    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService
   ) {
 
     $scope.fullscreen = false;
@@ -71,6 +71,9 @@ angular.module('ilApp')
 
       $scope.fullscreen = !$scope.fullscreen;
     };
+
+    //i18Service is provided from ui grid plugin
+    i18nService.setCurrentLang($translate.use());
 
     $scope.gridOptions = {
       enableSorting: true,
