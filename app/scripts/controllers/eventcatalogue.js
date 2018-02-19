@@ -10,9 +10,9 @@
 angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
-    SuppliedItem, Events, hotkeys, $translate, ItemCategory
+    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService
   ) {
-    
+
     $scope.fullscreen = false;
     $scope.item = {};
     $scope.loading.catalogue = true;
@@ -72,6 +72,9 @@ angular.module('ilApp')
       $scope.fullscreen = !$scope.fullscreen;
     };
 
+    //i18Service is provided from ui grid plugin
+    i18nService.setCurrentLang($translate.use());
+
     $scope.gridOptions = {
       enableSorting: true,
       enableFiltering: true,
@@ -108,13 +111,15 @@ angular.module('ilApp')
         {field: 'electricity_phase', name: 'electricity_phase', width: '100'},
         {field: 'water_supply', name: 'water_supply', width: '100'},
         {field: 'water_drainage', name: 'water_drainage', width: '100'},
-        {field: 'compressed_air', name: 'compressed_air', width: '100'},
-        {field: 'ventilation_fume_extraction', name: 'ventilation_fume_extraction', width: '100', type: 'boolean'},//char 1
-        {field: 'gas_requirements', name: 'gas_requirements', width: '100', type: 'boolean'},//char 1
+        {field: 'compressed_air', name: 'compressed_air', width: '100', cellTemplate: "<div translate>{{row.entity.compressed_air}}</div>"},
+        {field: 'ventilation_fume_extraction', name: 'ventilation_fume_extraction', width: '100', type: 'boolean', cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction}}</div>"},//char 1
+        {field: 'gas_requirements', name: 'gas_requirements', width: '100'},
         {field: 'anchor_fixing_base_requirements', name: 'anchor_fixing_base_requirements', width: '100'},
         {field: 'extra_details', name: 'extra_details', width: '100'},//mediumtext
         {field: 'modified', name: "Modified", width: '95', type: 'date', enableCellEdit: false},
-        {field: 'user_generated', width: '125', type: 'boolean', enableCellEdit: false,
+        {field: 'user_generated', width: '125', type: 'boolean',
+          enableCellEdit: false,
+          cellTemplate: "<div translate>{{row.entity.user_generated}}</div>" ,
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -123,7 +128,7 @@ angular.module('ilApp')
             ]
           }
         },
-        {field: 'linkedItems', name: "Linked", width: '95', type: 'boolean', enableCellEdit: false},
+        {field: 'linkedItems', name: "Linked", width: '95', type: 'boolean', enableCellEdit: false, cellTemplate: "<div translate>{{row.entity.linkedItems}}</div>"},
       ],
       //exporter
       enableGridMenu: true,

@@ -29,7 +29,7 @@
     "angucomplete-alt": "~2.4.0",
     "angular-confirm-modal": "~1.2.3",
     "ngInfiniteScroll": "1.0.0",
-    "angular-ui-grid": "^4.0.2",
+    "angular-ui-grid": "4.2.3",
     "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0",
     "pdfmake": "^0.1.24",
     "angular-file-upload": "^2.5.0"

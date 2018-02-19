@@ -125,13 +125,13 @@
   "BUTTON_REMOVE_ALL":"Tout supprimer",
   "EXTRA_DETAILS_COMMENTS":"Détails complémentaires / Commentaires",
   "BUTTON_ADD_ITEM":"Ajouter l'item",
-  "COPY_DESCRIPTION_TO_REQUESTED_ITEM_S":"Copier la description aux items demandés",
+  "COPY_DESCRIPTION_TO_REQUESTED_ITEM_S":"Copier la description aux lignes d'infrastructure",
   "BUTTON_SAVE_ITEM":"Enregistrer l'item",
   "IN":"dans",
   "AT":"à",
   "SELECTED":"Sélectionné",
 
-  "EDITING_REQUESTED_ITEM_DETAILS_IN":"Édition des informations des items demandés dans",
+  "EDITING_REQUESTED_ITEM_DETAILS_IN":"Édition des informations des lignes d'infrastructure dans",
 
   "BUTTON_SAVE_CHANGES":"Enregistrer les modifications",
 
@@ -248,7 +248,7 @@
   "HOST_VIEW": "Vues invité",
   "STANDARD_SETS": "Lots standard",
   "CATALOGUE_EDITOR": "Gestion du catalogue",
-  "EXPORT_REQUESTED_ITEMS": "Exporter les items demandés",
+  "EXPORT_REQUESTED_ITEMS": "Exporter les lignes d'infrastructure",
   "EXPORT_ALL_ITEMS": "Exporter tous les items",
   "TO_EDIT_ITEMS": "Pour éditer des items, sélectionnez une catégorie dans le menu situé sur la gauche.",
   "SKILL_MANAGEMENT": "Gestion du métier",
@@ -401,6 +401,8 @@
   "LOC_VENUE": "Lieu de l'événement",
   "LOC_OTHER": "Autre",
 
+  "HS_CODE": "Code HS",
+
   "LEAD_TIME": "Délai de disponibilité",
   "LEAD_10_WEEKS": "> 10 semaines",
   "LEAD_8-10_WEEKS": "8 - 10 semaines",
@@ -458,4 +460,7 @@
   "UPDATE_REQUESTED_ITEMS": "Mettre à jour les lignes",
   "PRICE": "Prix",
   "DOWNLOADING_FILE": "Fichier en cours de téléchargement"
+  "LANGUAGE": "Langage : ",
+  "true": "Oui",
+  "false": "Non"
 }

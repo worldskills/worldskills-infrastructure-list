@@ -401,6 +401,8 @@
   "LOC_VENUE": "Venue",
   "LOC_OTHER": "Other",
 
+  "HS_CODE":"HS Code",
+
   "LEAD_TIME": "Lead time",
   "LEAD_10_WEEKS": "&gt; 10 weeks",
   "LEAD_8-10_WEEKS": "8 - 10 weeks",
@@ -458,4 +460,10 @@
   "UPDATE_REQUESTED_ITEMS": "Update items",
   "PRICE": "Price",
   "DOWNLOADING_FILE": "Downloading file"
+  "LANGUAGE": "Language: ",
+  "true": "True",
+  "false": "False",
+  "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",
+  "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Leave fields empty to use registration numbers (if available).",
+  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants"
 }

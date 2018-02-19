@@ -42,6 +42,7 @@
       WS_SECTOR_MANAGER: 'Sector Manager',
       EDIT_ITEM_CATEGORIES: 'EditItemCategories',
       EDIT_ITEM_STATUS: 'EditItemStatus',
+      EDIT_CONFIG: 'EditConfig',
       RECOMMEND: 'Recommend',
       VIEW: 'View'
   });
@@ -337,7 +338,19 @@
         ]
       }
     })
-  ;
+
+    .state('event.skill-participants-override', {
+     url: '/skill-participants-override',
+     templateUrl: 'views/event-skill-particpants-override.html',
+     controller: 'EventSkillParticipantsOverrideCtrl',
+     data: {
+       requireLoggedIn: true,
+       requiredRoles: [
+           {code: 2200, role: APP_ROLES.ADMIN },
+           {code: 2200, role: APP_ROLES.EDIT_CONFIG }
+         ]
+       }
+    });
 
    //
   //  .state('management', {
