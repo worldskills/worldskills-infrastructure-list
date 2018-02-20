@@ -33,6 +33,7 @@
     "angular-hotkeys": "chieffancypants/angular-hotkeys#^1.7.0",
     "pdfmake": "^0.1.24",
     "angular-file-upload": "^2.5.0",
+    "moment": "^2.20.1",
     "angular-moment": "^1.2.0"
   },
   "devDependencies": {
