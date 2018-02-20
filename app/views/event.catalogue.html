@@ -29,9 +29,9 @@
 
           <ul class="dropdown-menu" role="menu" aria-labelledby="languageSelect">
             <li
-            ng-repeat="(lang_code, lang_name) in available_languages"
-            ng-class="{active: lang_code == selectedLanguage}"
-            role="presentation">
+              ng-repeat="(lang_code, lang_name) in available_languages"
+              ng-class="{active: lang_code == selectedLanguage}"
+              role="presentation">
             <a ng-click="changeLanguage(lang_code);" role="menuitem" tabindex="-1">{{lang_name}}</a>
             </li>
           </ul>
