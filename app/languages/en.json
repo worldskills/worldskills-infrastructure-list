@@ -438,5 +438,16 @@
   "false": "False",
   "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",
   "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Leave fields empty to use registration numbers (if available).",
-  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants"
+  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants",
+  "ITEM_READABLE_QUANTITY_SKILL": "{{quantity}} per skill",
+  "ITEM_READABLE_QUANTITY_COMPETITORS": "{{quantity}} per competitor",
+  "ITEM_READABLE_QUANTITY_EXPERTS": "{{quantity}} per expert",
+  "ITEM_READABLE_QUANTITY_PER_NUM_COMPETITORS": "{{quantity}} by {{factor}} competitors",
+  "ITEM_READABLE_QUANTITY_PER_NUM_EXPERTS": "{{quantity}} by {{factor}} experts",
+  "DATE_TIME_AT": "{{date}} at {{time}}",
+  "DATEPICKER": {
+    "CLOSE": "Close",
+    "TODAY": "Today",
+    "CLEAR": "Clear"
+  }
 }

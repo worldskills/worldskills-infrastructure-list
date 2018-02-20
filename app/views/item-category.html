@@ -5,9 +5,9 @@
     <div class="actions">
       <div>
         <div class="pull-left">
-            <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, false)">
-              <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_SUB_CATEGORY</span>
-            </button>
+          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, false)">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_SUB_CATEGORY</span>
+          </button>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -25,19 +25,19 @@
         <tfoot><tr ng-show="!loading.subCategories"><td colspan="4"></td></tr></tfoot>
         <tbody>
           <tr ng-repeat="item in data.subCategories">
-              <td>{{item.name.text}}</td>
-              <td>{{item.description.text}}</td>
-              <td>{{item.parent.name.text}}</td>
-              <td class="actions">
-                  <a class="btn btn-danger btn-xs"  ng-click="removeItemCategory(item, false)"><span class="glyphicon glyphicon-remove"></span></a>
-                  <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, false, $index)"><span class="glyphicon glyphicon-edit"></span></a>
-              </td>
+            <td>{{item.name.text}}</td>
+            <td>{{item.description.text}}</td>
+            <td>{{item.parent.name.text}}</td>
+            <td class="actions">
+              <a class="btn btn-danger btn-xs"  ng-click="removeItemCategory(item, false)"><span class="glyphicon glyphicon-remove"></span></a>
+              <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, false, $index)"><span class="glyphicon glyphicon-edit"></span></a>
+            </td>
           </tr>
           <tr ng-show="!loading.subCategories && !data.subCategories.length">
-              <td colspan="4" translate>NO_SUBCATEGORIES</td>
+            <td colspan="4" translate>NO_SUBCATEGORIES</td>
           </tr>
           <tr ng-show="loading.subCategories">
-              <td colspan="4"><ws-spinner></ws-spinner></td>
+            <td colspan="4"><ws-spinner></ws-spinner></td>
           </tr>
         </tbody>
       </table>
@@ -47,9 +47,9 @@
     <div class="actions">
       <div>
         <div class="pull-left">
-            <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, true)">
-              <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_CATEGORY</span>
-            </button>
+          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, true)">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_CATEGORY</span>
+          </button>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -58,26 +58,26 @@
       <table class="table table-striped vmiddle">
         <thead>
           <tr>
-              <th translate>TH_NAME</th>
-              <th translate>TH_DESCRIPTION</th>
-              <th class="actions" translate>TH_ACTIONS</th>
+            <th translate>TH_NAME</th>
+            <th translate>TH_DESCRIPTION</th>
+            <th class="actions" translate>TH_ACTIONS</th>
           </tr>
         </thead>
         <tfoot><tr><td colspan="3"></td></tr></tfoot>
         <tbody ng-show="data.categories.length">
           <tr ng-repeat="item in data.categories">
-              <td>{{item.name.text}}</td>
-              <td>{{item.description.text}}</td>
-              <td class="actions">
-                  <a class="btn btn-danger btn-xs" ng-click="removeItemCategory(item, true)"><span class="glyphicon glyphicon-remove"></span></a>
-                  <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, true, $index)"><span class="glyphicon glyphicon-edit"></span></a>
-              </td>
+            <td>{{item.name.text}}</td>
+            <td>{{item.description.text}}</td>
+            <td class="actions">
+                <a class="btn btn-danger btn-xs" ng-click="removeItemCategory(item, true)"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, true, $index)"><span class="glyphicon glyphicon-edit"></span></a>
+            </td>
           </tr>
         </tbody>
         <tbody ng-show="!data.categories.length">
-            <tr>
-                <td colspan="3" translate>NO_CATEGORIES</td>
-            </tr>
+          <tr>
+            <td colspan="3" translate>NO_CATEGORIES</td>
+          </tr>
         </tbody>
       </table>
     </div>

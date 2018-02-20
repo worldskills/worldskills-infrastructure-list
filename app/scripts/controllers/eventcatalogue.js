@@ -75,6 +75,8 @@ angular.module('ilApp')
     //i18Service is provided from ui grid plugin
     i18nService.setCurrentLang($translate.use());
 
+    $scope.selectedLanguage = $translate.use();
+
     $scope.gridOptions = {
       enableSorting: true,
       enableFiltering: true,
@@ -179,6 +181,7 @@ angular.module('ilApp')
 
       $scope.loading.catalogue = true;
       //actually save row
+      rowEntity.description.lang_code = $translate.use();
       SuppliedItem.saveItem(rowEntity, updateRequested).then(function(res){
           //copy back data from request's response
           angular.extend(rowEntity, res);

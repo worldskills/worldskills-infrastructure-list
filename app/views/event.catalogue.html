@@ -2,11 +2,14 @@
   <div class="actions" ng-show="!loading.catalogue">
     <div ng-show="showGrid">
       <div class="pull-left">
-          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)"><span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_CATALOGUE_ITEM</span></button>
+        <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)">
+          <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_CATALOGUE_ITEM</span>
+        </button>
 
         <div class="btn-group" uib-dropdown="actionsDropdown">
-          <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm"><span translate>ITEM_ACTIONS</span>&nbsp;<span class="caret"></span></button>
-
+          <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm">
+            <span translate>ITEM_ACTIONS</span>&nbsp;<span class="caret"></span>
+          </button>
           <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
             <li role="menuitem"><a ng-click="editItem($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>EDIT_SELECTED_ITEM</span></a></li>
             <li role="menuitem"><a ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;<span translate>REMOVE_SELECTED_ITEMS</span></a></li>
@@ -18,6 +21,21 @@
       </div>
 
       <div class="pull-right">
+        <div class="btn-group dropdown" ng-controller="TranslateCtrl">
+          <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="languageSelect" data-toggle="dropdown">
+            <span translate>LANGUAGE</span><small class='label'>{{available_languages[selectedLanguage]}}</small>
+            <span class="caret"></span>
+          </button>
+
+          <ul class="dropdown-menu" role="menu" aria-labelledby="languageSelect">
+            <li
+              ng-repeat="(lang_code, lang_name) in available_languages"
+              ng-class="{active: lang_code == selectedLanguage}"
+              role="presentation">
+            <a ng-click="changeLanguage(lang_code);" role="menuitem" tabindex="-1">{{lang_name}}</a>
+            </li>
+          </ul>
+        </div>
         <button class="btn btn-sm"
                 ng-click="showFilters = !showFilters"
                 ng-class="{'btn-primary': !selectedFilters.active, 'btn-warning': selectedFilters.active}"
