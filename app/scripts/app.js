@@ -36,42 +36,49 @@
     ]);
 
   ilApp.constant('APP_ROLES', {
-      ADMIN: 'Admin',
-      ORGANIZER: 'Organizer',
-      WS_MANAGER: 'Workshop Manager',
-      WS_SECTOR_MANAGER: 'Sector Manager',
-      EDIT_ITEM_CATEGORIES: 'EditItemCategories',
-      EDIT_ITEM_STATUS: 'EditItemStatus',
-      EDIT_CONFIG: 'EditConfig',
-      RECOMMEND: 'Recommend',
-      VIEW: 'View'
+    ADMIN: 'Admin',
+    ORGANIZER: 'Organizer',
+    WS_MANAGER: 'Workshop Manager',
+    WS_SECTOR_MANAGER: 'Sector Manager',
+    EDIT_ITEM_CATEGORIES: 'EditItemCategories',
+    EDIT_ITEM_STATUS: 'EditItemStatus',
+    EDIT_CONFIG: 'EditConfig',
+    RECOMMEND: 'Recommend',
+    VIEW: 'View'
   });
 
   ilApp.constant('MULTIPLIERS', [
-      {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
-      {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
-      {"id": "EXPERTS", "name" : "per Expert", "x_number_needed": false },
-      {"id": "PER_NUM_COMPETITORS", "name" : "per every X Competitors", "x_number_needed": true },
-      {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
+    {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
+    {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
+    {"id": "EXPERTS", "name" : "per Expert", "x_number_needed": false },
+    {"id": "PER_NUM_COMPETITORS", "name" : "per every X Competitors", "x_number_needed": true },
+    {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
   ]);
 
   ilApp.constant('ITEM_STATUS', {
-      'RED': 1,
-      'YELLOW': 2,
-      'GREEN': 3,
-      'BLACK': 4
+    'RED': 1,
+    'YELLOW': 2,
+    'GREEN': 3,
+    'BLACK': 4
   });
 
   ilApp.constant('ITEM_STATUS_TEXT', {
-      'RED': "Requested",
-      'YELLOW': "Pending",
-      'GREEN': "Confirmed",
-      'BLACK': "Secret"
+    'RED': "Requested",
+    'YELLOW': "Pending",
+    'GREEN': "Confirmed",
+    'BLACK': "Secret"
   });
 
   ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
 
   ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
+
+  ilApp.constant('SUPPLIED_ITEM_PRIORITIES', [
+    'CRITICAL',
+    'HIGH',
+    'NORMAL',
+    'LOW'
+  ]);
 
   ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
 

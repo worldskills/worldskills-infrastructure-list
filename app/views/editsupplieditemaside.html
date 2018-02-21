@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback"
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback"
                     ng-class="{'has-error': editForm.item_category.$error.required, 'has-success': !editForm.item_category.$error.required}"
                   >
                     <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
@@ -53,6 +53,15 @@
                         <small>
                           {{category.description.text}}
                         </small>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.priority.$error.required, 'has-success': !editForm.priority.$error.required}">
+                    <label class='control-label' translate>TH_PRIORITY</label>
+                    <ui-select ng-required="false" ng-model="item.priority" theme="bootstrap">
+                      <ui-select-match>{{item.priority | translate}}</ui-select-match>
+                      <ui-select-choices repeat="priority in priorities">
+                        <div translate>{{priority}}</div>
                       </ui-select-choices>
                     </ui-select>
                   </div>
@@ -123,7 +132,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12  has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
                     <label class='control-label' translate>PO_NUMBER</label>
                     <input name="po_number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.PO_NUMBER' | translate }}" ng-model='item.po_number'>
                   </div>
