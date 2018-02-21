@@ -10,7 +10,7 @@
 angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
-    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService
+    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES
   ) {
 
     $scope.fullscreen = false;
@@ -75,6 +75,14 @@ angular.module('ilApp')
     //i18Service is provided from ui grid plugin
     i18nService.setCurrentLang($translate.use());
 
+    var supplied_item_priorities = [];
+    SUPPLIED_ITEM_PRIORITIES.forEach(element => {
+      supplied_item_priorities.push({
+        value: element,
+        label: $translate.instant(element)
+      });
+    });
+
     $scope.gridOptions = {
       enableSorting: true,
       enableFiltering: true,
@@ -98,10 +106,19 @@ angular.module('ilApp')
         {field: 'unit_cost', name: $translate.instant('TH_UNIT_COST'), width: '100'}, //double
         {field: 'unit', name: $translate.instant('TH_UNIT'), width: '100'},
         {field: 'po_number', name: $translate.instant('TH_PO_NUMBER'), width: '100'},
-        {field: 'priority', name: $translate.instant('TH_PRIORITY'), width: '100'},
-        {field: 'delivery', name: $translate.instant('TH_DELIVERY'), width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"', filter: {
-          condition: uiGridConstants.filter.STARTS_WITH,
-        }}, //datetime
+        {field: 'priority', name: $translate.instant('TH_PRIORITY'), width: '100',
+          enableCellEdit: false,
+          cellTemplate: "<div translate ng-show='row.entity.priority'>{{row.entity.priority}}</div>",
+          filter: {
+            type: uiGridConstants.filter.SELECT,
+            selectOptions: supplied_item_priorities
+          }
+        },
+        {field: 'delivery', name: $translate.instant('TH_DELIVERY'), width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"',
+          filter: {
+            condition: uiGridConstants.filter.STARTS_WITH,
+          }
+        }, //datetime
         {field: 'category', name: $translate.instant('TH_CATEGORY'), width: '100'},
         {field: 'disposal_category', name: $translate.instant('TH_DISPOSAL_CATEGORY'), width: '100'},
         {field: 'location', name: $translate.instant('TH_LOCATION'), width: '100'},
@@ -113,7 +130,9 @@ angular.module('ilApp')
         {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100'},
         {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100'},
         {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100', cellTemplate: "<div translate>{{row.entity.compressed_air}}</div>"},
-        {field: 'ventilation_fume_extraction', name: $translate.instant('TH_VENTILATION_FUME_EXTRACTION'), width: '100', type: 'boolean', cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction}}</div>"},//char 1
+        {field: 'ventilation_fume_extraction', name: $translate.instant('TH_VENTILATION_FUME_EXTRACTION'), width: '100', type: 'boolean',
+          cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction}}</div>"
+        },//char 1
         {field: 'gas_requirements', name: $translate.instant('TH_GAS_REQUIREMENTS'), width: '100', type: 'boolean'},//char 1
         {field: 'anchor_fixing_base_requirements', name: $translate.instant('TH_ANCHOR_FIXING_BASE_REQUIREMENTS'), width: '100'},
         {field: 'extra_details', name: $translate.instant('TH_EXTRA_DETAILS'), width: '100'},//mediumtext
@@ -124,12 +143,15 @@ angular.module('ilApp')
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
-              { value: 'true', label: 'true'},
-              { value: 'false', label: 'false'},
+              { value: 'true', label: $translate.instant('true')},
+              { value: 'false', label: $translate.instant('false')},
             ]
           }
         },
-        {field: 'linkedItems', name: $translate.instant("TH_LINKED"), width: '95', type: 'boolean', enableCellEdit: false, cellTemplate: "<div translate>{{row.entity.linkedItems}}</div>"},
+        {field: 'linkedItems', name: $translate.instant("TH_LINKED"), width: '95', type: 'boolean',
+          enableCellEdit: false,
+          cellTemplate: "<div translate>{{row.entity.linkedItems}}</div>"
+        },
       ],
       //exporter
       enableGridMenu: true,

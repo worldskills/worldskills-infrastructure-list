@@ -460,5 +460,9 @@
   "NO_SUBCATEGORIES": "Aucune famille trouvée",
   "LANGUAGE": "Langage : ",
   "true": "Oui",
-  "false": "Non"
+  "false": "Non",
+  "CRITICAL": "Critique",
+  "HIGH": "Important",
+  "NORMAL": "Normal",
+  "LOW": "Faible"
 }

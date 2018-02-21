@@ -461,6 +461,10 @@
   "LANGUAGE": "Language: ",
   "true": "True",
   "false": "False",
+  "CRITICAL": "Critical",
+  "HIGH": "High",
+  "NORMAL": "Normal",
+  "LOW": "Low",
   "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",
   "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Leave fields empty to use registration numbers (if available).",
   "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants"
