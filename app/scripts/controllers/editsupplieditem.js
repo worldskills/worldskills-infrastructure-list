@@ -8,7 +8,9 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert, $translate) {
+  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert, $translate, SUPPLIED_ITEM_PRIORITIES) {
+
+    $scope.priorities = SUPPLIED_ITEM_PRIORITIES;
 
     //close modal aside
     $scope.cancel = function () {
