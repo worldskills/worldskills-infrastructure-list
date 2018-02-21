@@ -76,7 +76,7 @@ angular.module('ilApp')
     i18nService.setCurrentLang($translate.use());
 
     var supplied_item_priorities = [];
-    SUPPLIED_ITEM_PRIORITIES.forEach(element => {
+    angular.forEach(SUPPLIED_ITEM_PRIORITIES, function (element) {
       supplied_item_priorities.push({
         value: element,
         label: $translate.instant(element)
