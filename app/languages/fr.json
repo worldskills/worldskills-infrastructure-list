@@ -461,6 +461,10 @@
   "LANGUAGE": "Langage : ",
   "true": "Oui",
   "false": "Non",
+  "CRITICAL": "Critique",
+  "HIGH": "Important",
+  "NORMAL": "Normal",
+  "LOW": "Faible",
   "SKILL_PARTICIPANTS_OVERRIDE": "Remplacer la liste des participants",
   "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Laissez les champs vides pour utiliser les numéros d'enregistrement (si disponibles).",
   "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Enregistrer les participants",
@@ -474,9 +478,5 @@
     "CLOSE": "Fermer",
     "TODAY": "Aujourd'hui",
     "CLEAR": "Effacer"
-  },
-  "CRITICAL": "Critique",
-  "HIGH": "Important",
-  "NORMAL": "Normal",
-  "LOW": "Faible"
+  }
 }
