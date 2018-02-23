@@ -467,5 +467,8 @@
   "LOW": "Low",
   "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",
   "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Leave fields empty to use registration numbers (if available).",
-  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants"
+  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants",
+
+  "SUGGEST_ADDITION": "Suggest an addition",
+  "SUGGEST_MODIFICATION": "Suggest a modification"
 }

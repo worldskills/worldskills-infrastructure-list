@@ -1,0 +1,231 @@
+<div class='aside'>
+  <fieldset>
+    <legend ng-if="!item.id" translate>SUGGEST_ADDITION</legend>
+    <legend ng-if="item.id" translate>SUGGEST_MODIFICATION</legend>
+
+    <alerts></alerts>
+    <ws-spinner ng-if="loading.aside"></ws-spinner>
+
+    <form class="addForm" name='addForm'>
+        <uib-tabset active="recommended01">
+          <uib-tab index="0" heading="General">
+            <div class="form-group addForm">
+              <label class='control-label' translate>DESCRIPTION</label>
+              <angucomplete-alt
+                id="id"
+                ng-show="suppliedItem.force !== true"
+                placeholder="{{ 'PLACEHOLDER.DESCRIPTION_OF_THE_ITEM' | translate }}"
+                pause="400"
+                selected-object="suppliedItem"
+                remote-url="{{searchAPI}}"
+                remote-url-request-with-credentials="true"
+                remote-url-data-field="supplied_items"
+                title-field="description.text"
+                description-field="make"
+                focus-out="focusOutItem"
+                minlength="2"
+                search-fields="description.text"
+                disable-input="disableInput"
+                override-suggestions="true"
+                field-required="true"
+                text-searching="{{ 'TEXT_SEARCHING.SEARCHING_FOR_ITEMS_IN_CATALOGUE' | translate }}"
+                text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM' | translate }}"
+                input-class="form-control form-control-small has-feedback"
+              />
+            </div>
+            <div class='row'>
+                <div class='col col-sm-12 col-md-4'>
+                  <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
+                    <label class='control-label' translate>QUANTITY</label>
+                    <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.QUANTITY' | translate }}" ng-model='item.quantity' required="{{ 'REQUIRED.QUANTITY_IS_MISSING' | translate }}" ng-required="true">
+                    <span ng-if="!addForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span ng-if="addForm.quantity.$dirty && addForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class='col col-sm-12 col-md-4'>
+                  <div class="form-group addForm has-feedback has-success">
+                    <label class='control-label' translate>MULTIPLIER</label>
+                    <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
+                    <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
+                  </div>
+                </div>
+                <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(item.multiplier)">
+                  <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.multiply_factor.$error.required, 'has-success': !addForm.multiply_factor.$error.required}">
+                    <label class='control-label' translate>MULTIPLY_FACTOR</label>
+                    <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.X_NUMBER' | translate }}" ng-model='item.multiply_factor' required="{{ 'REQUIRED.MULTIPLY_FACTOR_REQUIRED' | translate }}" ng-required="true">
+                    <span ng-if="!addForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                  </div>
+                </div>
+          </div>
+    
+          <div class='row'>
+            <div class='col col-xs-12 col-md-4'>
+              <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
+                <label class='control-label' translate>POTENTIAL_SUPPLIER</label>
+                <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}" ng-model='item.supplier' ng-trim="true"> -->
+                <angucomplete-alt
+                  id="id"
+                  placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}"
+                  pause="400"
+                  selected-object="item.selectedSupplier"
+                  remote-url="{{searchSupplierAPI}}"
+                  remote-url-request-with-credentials="true"
+                  remote-url-data-field="suppliers"
+                  title-field="name"
+                  minlength="1"
+                  search-fields="name"
+                  disable-input="disableInputSupplier"
+                  focus-first="true"
+                  input-changed="supplierChanged"
+                  override-suggestions="true"
+                  field-required="false"
+                  text-searching="false"
+                  text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
+                  initial-value="item.supplier"
+                  input-class="input-sm form-control angucomplete-overflow"
+                />
+                <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
+              </div>
+            </div>
+            <div class='col col-xs-12 col-md-4 form-group'>
+                <div class="form-group addForm has-feedback has-success">
+                  <label class='control-label' translate>ESTIMATED_PRICE</label>
+                  <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="{{ 'PLACEHOLDER.ESTIMATED_PRICE' | translate }}">
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col col-xs-12 col-md-4 form-group">
+              <div data-nodrag class="checkbox addForm form-group has-feedback has-success" style="">
+                <label>
+                  <input type="checkbox" ng-model="item.wrongSuppliedItem"> <span translate>WRONG_SUPPLIED_ITEM</span>
+                </label>
+              </div>
+            </div>
+            <div class="col col-xs-12 col-md-4 form-group"></div>
+          </div>
+          </uib-tab>
+
+          <uib-tab index="1" heading="Files">
+            <div class='well'>
+              <fieldset>
+                <legend class="aside" translate>FILES_AND_PICTURES</legend>
+
+                <div ng-show="item.files.length > 0">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th width="50%" translate>TH_NAME</th>
+                      <th>Size</th>
+                      <th style="text-align: right;" translate>TH_ACTIONS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="file in item.files">
+                        <td>{{file.file.filenameOriginal}}</td>
+                        <td>{{file.file.size}}</td>
+                        <td style="text-align: right;">
+                          <button type="button" class="btn btn-danger btn-xs" ng-click="removeFile(file, $index)">
+                            <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div ng-controller="FileCtrl" ng-file-drop="" uploader="uploader" filters="">
+
+                  <!-- drop zone -->
+                  <style>
+                    .my-drop-zone { border: dotted 3px lightgray; }
+                    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+                    .another-file-over-class { border: dotted 3px green; }
+                  </style>
+                  <div ng-show="uploader.isHTML5">
+                    <div nv-file-drop="" uploader="uploader">
+                      <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone" translate>
+                        DROP_FILES_HERE_TO_UPLOAD
+                      </div>
+                    </div>
+                  </div>
+                  <!-- drop zone -->
+                <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple  />
+
+                  <!-- queue -->
+                  <div class="well" style='background-color: #fff;' ng-show="uploader.queue.length > 0">
+                    <h4><span translate>UPLOAD_QUEUE</span>&nbsp;<small><span translate>QUEUE_LENGTH:</span> {{ uploader.queue.length }}</small></h4>
+
+                    <table class="table upload-table">
+                      <thead>
+                      <tr >
+                        <th translate>TH_NAME</th>
+                        <th ng-show="uploader.isHTML5" translate>TH_SIZE</th>
+                        <th ng-show="uploader.isHTML5" translate>TH_PROGRESS</th>
+                        <th translate>TH_ACTIONS</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr ng-repeat="item in uploader.queue">
+                        <td>
+                          <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                          <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                          <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>&nbsp;<strong>{{ item.file.name }}</strong></td>
+                        <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} <span translate>MB</span></td>
+                        <td ng-show="uploader.isHTML5">
+                          <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                          </div>
+                        </td>
+                        <td nowrap>
+                          <!--<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">-->
+                            <!--<span class="glyphicon glyphicon-upload"></span> Upload-->
+                          <!--</button>-->
+                          <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">-->
+                            <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
+                          <!--</button>-->
+                          <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
+                          </button>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- queue -->
+
+                  <!-- progress -->
+                   <div ng-show="uploader.queue.length > 0">
+                        <div>
+                            <span translate>QUEUE_PROGRESS:</span>
+                            <div class="progress" style="">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                            <span class="glyphicon glyphicon-upload"></span> <span translate>BUTTON_UPLOAD_ALL</span>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> <span translate>BUTTON_CANCEL_ALL</span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                            <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE_ALL</span>
+                        </button>
+                    </div>
+
+                  <!-- progress -->
+
+
+              </fieldset>
+            </div>
+          </uib-tab>
+        </uib-tabset>
+      
+      <button ng-disabled="addForm.$error.required" ng-click="saveItem(item);" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
+      <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
+    </form>
+
+  </fieldset>
+</div>

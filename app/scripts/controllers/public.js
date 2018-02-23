@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, UPLOADS_URL) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, UPLOADS_URL, Auth, APP_ROLES, $aside) {
 
     $scope.eventId = $state.params.eventId;
     $scope.skillId = $state.params.skillId;
@@ -57,5 +57,55 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.downloadFile = function(file){
       Downloader.handleDownload(data, status, headers, filename);
     };
+
+    $scope.canRecommend = function() {
+        return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
+    }
+
+    $scope.suggestAddition = function (parent) {  
+        $scope.addParent = parent || 0;
+        var parent = parent || 0;
+  
+        $scope.asideState = {
+          open: true,
+        };
+  
+        function postClose() {
+          $scope.asideState.open = false;
+        }
+  
+        $aside.open({
+          templateUrl: 'views/recommendedItemAside.html',
+          placement: 'right',
+          size: 'lg',
+          scope: $scope,
+          backdrop: true,
+          controller: 'recommendedItemAsideCtrl',
+        }).result.then(postClose, postClose);
+      };
+
+      $scope.suggestModification = function (parent, item) {  
+        $scope.addParent = parent || 0;
+        var parent = parent || 0;
+
+        $scope.item = item;
+  
+        $scope.asideState = {
+          open: true,
+        };
+  
+        function postClose() {
+          $scope.asideState.open = false;
+        }
+  
+        $aside.open({
+          templateUrl: 'views/recommendedItemAside.html',
+          placement: 'right',
+          size: 'lg',
+          scope: $scope,
+          backdrop: true,
+          controller: 'recommendedItemAsideCtrl',
+        }).result.then(postClose, postClose);
+      };
 
 });

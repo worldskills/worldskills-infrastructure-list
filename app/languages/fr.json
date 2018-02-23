@@ -464,5 +464,7 @@
   "CRITICAL": "Critique",
   "HIGH": "Important",
   "NORMAL": "Normal",
-  "LOW": "Faible"
+  "LOW": "Faible",
+  "SUGGEST_ADDITION": "Suggérer un ajout",
+  "SUGGEST_MODIFICATION": "Suggérer une modification"
 }

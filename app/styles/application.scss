@@ -425,6 +425,26 @@ th.select, td.select {
     }
 }
 
+.panel-heading-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-with-actions {
+    td:last-child {
+        display: flex;
+        align-items: center;
+        border-left: 0;
+        a:first-child {
+            margin-left: 8px;
+        }
+    }
+    th:last-child {
+        text-align: center;
+    }
+}
+
 @media (min-width: 768px) {
     .modal-dialog {
         width: 700px;
