@@ -8,13 +8,13 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, MULTIPLIERS, Items, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES) {
+  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, MULTIPLIERS, Items, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES, $translate) {
 
     $scope.item = $scope.item || {}; //can be already set if called from catalogue view
     $scope.item.multiplier = MULTIPLIER_DEFAULT;
 
     //ensure multipliers are set
-    $scope.multipliers = $scope.multipliers || MULTIPLIERS;  
+    $scope.multipliers = $scope.multipliers || MULTIPLIERS;
 
     $scope.disableInput = false;
 
@@ -22,6 +22,8 @@ angular.module('ilApp')
       if (typeof val1 !== 'undefined' && typeof val1.title !== 'undefined')
         $scope.disableInput = true;
     });
+
+    $scope.selectedLanguage = $translate.use();
 
     $scope.supplierValue = false;
 
@@ -54,7 +56,7 @@ angular.module('ilApp')
           $scope.item.category = $scope.categoryId;
       else
           $scope.item.parent_id = $scope.addParent.id;
-      
+
       //if supplied item selected - use link together
       if($scope.suppliedItem.force === true) { //catalogue view
         $scope.item.description.lang_code = $scope.selectedLanguage;

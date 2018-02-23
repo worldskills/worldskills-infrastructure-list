@@ -47,7 +47,10 @@
       </ui-select-choices>
     </ui-select>
   </small>
-  <small class='quantity pull-right'>{{item.readable_quantity}}</small>
+  <small class='quantity pull-right'>
+    {{'ITEM_READABLE_QUANTITY_' + item.multiplier |
+      translate: {quantity: item.quantity, factor: item.multiply_factor} }}
+  </small>
   <small class='skill-area pull-right'>{{item.area.name}}</small>
   <!-- edit -->
   <div data-nodrag ng-if='item.id == activeItem' class='animate-if'>
