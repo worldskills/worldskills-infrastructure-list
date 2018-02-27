@@ -425,11 +425,5 @@ th.select, td.select {
     }
 }
 
-@media (min-width: 768px) {
-    .modal-dialog {
-        width: 700px;
-    }
-}
-
 $spacer-3: 15px;
 .mt-3 {margin-top:     $spacer-3 !important;}

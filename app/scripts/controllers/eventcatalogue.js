@@ -640,7 +640,7 @@ angular.module('ilApp')
       $scope.editModal = $aside.open({
         templateUrl: 'views/editRequestedItemAside.html',
         placement: 'right',
-        size: 'md',
+        size: 'lg',
         scope: $scope,
         backdrop: true,
         controller: 'editRequestedItemAsideCtrl'
