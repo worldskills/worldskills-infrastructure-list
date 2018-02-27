@@ -711,7 +711,7 @@ angular.module('ilApp')
       $scope.newModal = $aside.open({
         templateUrl: 'views/addRequestedItemAside.html',
         placement: 'right',
-        size: 'md',
+        size: 'lg',
         scope: $scope,
         backdrop: true,
         controller: 'addRequestedItemCtrl'
