@@ -478,9 +478,7 @@
     "CLOSE": "Close",
     "TODAY": "Today",
     "CLEAR": "Clear"
-  }
-  "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Save Skill Participants",
-
+  },
   "SUGGEST_ADDITION": "Suggest an addition",
   "SUGGEST_MODIFICATION": "Suggest a modification"
 }
