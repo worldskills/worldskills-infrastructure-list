@@ -46,7 +46,6 @@ angular.module('ilApp')
       if (item == undefined || !item.id) {
         $scope.item = {
           name: {text: '', lang_code: Language.selectedLanguage},
-          description: {text: '', lang_code: Language.selectedLanguage}
         };
       } else {
         $scope.item = {};

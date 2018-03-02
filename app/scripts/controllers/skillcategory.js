@@ -142,6 +142,8 @@ angular.module('ilApp')
         item.supplier = $scope.supplierValue;
       }
 
+      item.description.lang_code = $translate.use(); // Ensure lang_code are the same as the user
+
       Items.saveItem(item, $scope.event_id).then(function (result) {
         $scope.activeItem = false;
 
@@ -250,7 +252,7 @@ angular.module('ilApp')
 
     };
 
-    Status.getAllStatuses().then(function (result) {  
+    Status.getAllStatuses().then(function (result) {
       $scope.statuses = result;
     });
 

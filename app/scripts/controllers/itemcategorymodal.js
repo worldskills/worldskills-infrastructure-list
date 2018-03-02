@@ -29,6 +29,7 @@ angular.module('ilApp')
 
     $scope.saveItemCategory = function (index) {
       $scope.loading.aside = true;
+      $scope.item.name.lang_code = $translate.use();
 
       if ($scope.item.id == null) {
         ItemCategory.createItem($scope.item, $state.params.eventId)

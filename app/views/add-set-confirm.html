@@ -30,7 +30,8 @@
         <td>{{item.item.description.text}}</td>
         <td>{{item.item.make}}</td>
         <td>{{item.item.model}}</td>
-        <td>{{item.readable_quantity}}</td>
+        <td>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
+            translate: {quantity: item.quantity, factor: item.multiply_factor} }}</td>
       </tr>
     </tbody>
   </table>

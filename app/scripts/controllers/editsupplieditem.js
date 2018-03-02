@@ -23,6 +23,10 @@ angular.module('ilApp')
     };
 
     $scope.item.updateRequested = false;
+    if ($scope.item == undefined || !$scope.item.id) {
+      $scope.item.description = {};
+    }
+    $scope.item.description.lang_code = $translate.use(); // Ensure lang_code are the same as the user
 
     $scope.supplierValueAdd = false;
 

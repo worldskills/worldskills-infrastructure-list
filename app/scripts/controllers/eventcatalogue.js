@@ -75,6 +75,9 @@ angular.module('ilApp')
     //i18Service is provided from ui grid plugin
     i18nService.setCurrentLang($translate.use());
 
+
+    $scope.selectedLanguage = $translate.use();
+  
     var supplied_item_priorities = [];
     angular.forEach(SUPPLIED_ITEM_PRIORITIES, function (element) {
       supplied_item_priorities.push({
@@ -202,6 +205,7 @@ angular.module('ilApp')
 
       $scope.loading.catalogue = true;
       //actually save row
+      rowEntity.description.lang_code = $translate.use();
       SuppliedItem.saveItem(rowEntity, updateRequested).then(function(res){
           //copy back data from request's response
           angular.extend(rowEntity, res);
@@ -636,7 +640,7 @@ angular.module('ilApp')
       $scope.editModal = $aside.open({
         templateUrl: 'views/editRequestedItemAside.html',
         placement: 'right',
-        size: 'md',
+        size: 'lg',
         scope: $scope,
         backdrop: true,
         controller: 'editRequestedItemAsideCtrl'
@@ -707,7 +711,7 @@ angular.module('ilApp')
       $scope.newModal = $aside.open({
         templateUrl: 'views/addRequestedItemAside.html',
         placement: 'right',
-        size: 'md',
+        size: 'lg',
         scope: $scope,
         backdrop: true,
         controller: 'addRequestedItemCtrl'

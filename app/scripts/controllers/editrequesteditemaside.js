@@ -36,6 +36,9 @@ angular.module('ilApp')
       var category = angular.copy(item.category); //keep a copy for safekeeping
       item.category = item.category.id;
 
+      //Ensure local of description is sync with selectedLanguage
+      item.description.lang_code = $translate.use();
+
       //set supplier from autocomplete
       if (item.selectedSupplier != void 0
         && item.selectedSupplier.originalObject.id != void 0) {
