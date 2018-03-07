@@ -140,6 +140,7 @@
   "SURE_COMBINE_ITEMS":"Are you sure you want to combine these items?",
   "IMPORTANT!":"Important!",
   "ITEM_ATTACHED_TO_SKILL":"One or more of these items is attached to a skill, please note that this action will also overwrite the description of these items.",
+  "ITEM_ATTACHED_TO_MULTIPLE_SKILLS": "This supplied item is linked to multiple skills. These changes will apply to all skills.",
   "TH_KEEP":"Keep",
   "TH_LINKED":"Linked",
   "YES":"Yes",
