@@ -227,8 +227,8 @@
   },
   "UIB_TOOLTIP": {
     "WARNING_UPDATE_DESCRIPTION":"Warning! This will update the description in every skill this item is used!",
-    "CATEGORY_CONTAINS_SUBCATEGORY": "Cette superfamille contient des familles",
-    "SUBCATEGORY_CONTAINS_ITEMS": "Cette famille contient des items"
+    "CATEGORY_CONTAINS_SUBCATEGORY": "This item category contains subcategories",
+    "SUBCATEGORY_CONTAINS_ITEMS": "This subcategory contains items"
   },
 
   "APP_NAME":"WorldSkills Infrastructure Lists",
