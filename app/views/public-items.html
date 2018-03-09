@@ -117,7 +117,8 @@
                     <tbody>
                         <tr ng-repeat="item in category.items" ng-class="{'child': !!item.parent_id}">
                           <td class="text-right">
-                              <span>{{ item.readable_quantity }}</span>
+                              <span>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
+                                  translate: {quantity: item.quantity, factor: item.multiply_factor} }}</span>
                               <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} <span translate>ADDITIONAL</span></span>
                           </td>
                           <td>
@@ -156,8 +157,14 @@
                             </div>
                           </td>
                           <td>
-                            <span ng-if="item.supplied_item.modified">{{ item.supplied_item.modified | date:"d MMMM yyyy 'at' HH:ss" }}</span>
-                            <span ng-if="!item.supplied_item.modified">{{ item.modified | date:"d MMMM yyyy 'at' HH:ss" }}</span>
+                            <span ng-if="item.supplied_item.modified">
+                              {{ 'DATE_TIME_AT' |
+                                translate: {date: (item.supplied_item.modified | amDateFormat: 'LL'), time: (item.supplied_item.modified | amDateFormat: 'LT')} }}
+                            </span>
+                            <span ng-if="!item.supplied_item.modified">
+                              {{ 'DATE_TIME_AT' |
+                                translate: {date: (item.modified | amDateFormat: 'LL'), time: (item.modified | amDateFormat: 'LT')} }}
+                            </span>
                           </td>
                           <td>
                               <span ng-show="item.status.id == ITEM_STATUS.RED" class="label label-danger">{{ item.status.name.text }}</span>

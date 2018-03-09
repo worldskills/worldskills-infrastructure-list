@@ -8,7 +8,9 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert, $translate) {
+  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert, $translate, SUPPLIED_ITEM_PRIORITIES) {
+
+    $scope.priorities = SUPPLIED_ITEM_PRIORITIES;
 
     //close modal aside
     $scope.cancel = function () {
@@ -21,6 +23,10 @@ angular.module('ilApp')
     };
 
     $scope.item.updateRequested = false;
+    if ($scope.item == undefined || !$scope.item.id) {
+      $scope.item.description = {};
+    }
+    $scope.item.description.lang_code = $translate.use(); // Ensure lang_code are the same as the user
 
     $scope.supplierValueAdd = false;
 

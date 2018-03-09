@@ -31,53 +31,62 @@
       'angucomplete-alt',
       'angular-confirm',
       'infinite-scroll',
+      'angularMoment',
+      'tmh.dynamicLocale',
       'ui.grid', 'ui.grid.autoResize', 'ui.grid.exporter', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.grid.cellNav', 'ui.grid.pinning', 'ui.grid.rowEdit', 'ui.grid.selection',
       'cfp.hotkeys'
     ]);
 
   ilApp.constant('APP_ROLES', {
-      ADMIN: 'Admin',
-      ORGANIZER: 'Organizer',
-      WS_MANAGER: 'Workshop Manager',
-      WS_SECTOR_MANAGER: 'Sector Manager',
-      EDIT_ITEM_CATEGORIES: 'EditItemCategories',
-      EDIT_ITEM_STATUS: 'EditItemStatus',
-      EDIT_CONFIG: 'EditConfig',
-      RECOMMEND: 'Recommend',
-      VIEW: 'View'
+    ADMIN: 'Admin',
+    ORGANIZER: 'Organizer',
+    WS_MANAGER: 'Workshop Manager',
+    WS_SECTOR_MANAGER: 'Sector Manager',
+    EDIT_ITEM_CATEGORIES: 'EditItemCategories',
+    EDIT_ITEM_STATUS: 'EditItemStatus',
+    EDIT_CONFIG: 'EditConfig',
+    RECOMMEND: 'Recommend',
+    VIEW: 'View'
   });
 
   ilApp.constant('MULTIPLIERS', [
-      {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
-      {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
-      {"id": "EXPERTS", "name" : "per Expert", "x_number_needed": false },
-      {"id": "PER_NUM_COMPETITORS", "name" : "per every X Competitors", "x_number_needed": true },
-      {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
+    {"id": "SKILL", "name" : "per Skill", "x_number_needed": false },
+    {"id": "COMPETITORS", "name" : "per Competitor", "x_number_needed": false },
+    {"id": "EXPERTS", "name" : "per Expert", "x_number_needed": false },
+    {"id": "PER_NUM_COMPETITORS", "name" : "per every X Competitors", "x_number_needed": true },
+    {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
   ]);
 
   ilApp.constant('ITEM_STATUS', {
-      'RED': 1,
-      'YELLOW': 2,
-      'GREEN': 3,
-      'BLACK': 4
+    'RED': 1,
+    'YELLOW': 2,
+    'GREEN': 3,
+    'BLACK': 4
   });
 
   ilApp.constant('ITEM_STATUS_TEXT', {
-      'RED': "Requested",
-      'YELLOW': "Pending",
-      'GREEN': "Confirmed",
-      'BLACK': "Secret"
+    'RED': "Requested",
+    'YELLOW': "Pending",
+    'GREEN': "Confirmed",
+    'BLACK': "Secret"
   });
 
   ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
 
   ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
 
-  ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+  ilApp.constant('SUPPLIED_ITEM_PRIORITIES', [
+    'CRITICAL',
+    'HIGH',
+    'NORMAL',
+    'LOW'
+  ]);
+
+  ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, tmhDynamicLocaleProvider) {
 
     $urlRouterProvider.otherwise('/');
 
-      $urlRouterProvider.otherwise(function ($injector, $location) {
+    $urlRouterProvider.otherwise(function ($injector, $location) {
       // check for existing redirect
       var $state = $injector.get('$state');
       var redirectToState = sessionStorage.getItem('redirect_to_state');
@@ -85,80 +94,80 @@
       sessionStorage.removeItem('redirect_to_state');
       sessionStorage.removeItem('redirect_to_params');
       if (redirectToState) {
-          if (redirectToParams) {
-              redirectToParams = angular.fromJson(redirectToParams);
-          } else {
-              redirectToParams = {};
-          }
-          $state.go(redirectToState, redirectToParams);
+        if (redirectToParams) {
+          redirectToParams = angular.fromJson(redirectToParams);
+        } else {
+          redirectToParams = {};
+        }
+        $state.go(redirectToState, redirectToParams);
       } else {
-          $state.go('home');
+        $state.go('home');
       }
-  });
+    });
 
     $httpProvider.interceptors.push(['$q', 'WSAlert', '$timeout', function($q, WSAlert, $timeout) {
-    return {
-      responseError: function(rejection) {
-        /*
-          Called when another XHR request returns with
-          an error status code.
-        */
-        var times = (sessionStorage.getItem('login_redirect_counter') !== null) ? sessionStorage.getItem('login_redirect_counter') : 1;
-        var MAX_RETRIES = 3;
+      return {
+        responseError: function(rejection) {
+          /*
+            Called when another XHR request returns with
+            an error status code.
+          */
+          var times = (sessionStorage.getItem('login_redirect_counter') !== null) ? sessionStorage.getItem('login_redirect_counter') : 1;
+          var MAX_RETRIES = 3;
 
-        if(
-            (rejection.status == 400 && rejection.data.code == "2200-1012") ||
-            (rejection.status == 401 && rejection.data.code == "100-101")
-          )
-          {
+          if(
+              (rejection.status == 400 && rejection.data.code == "2200-1012") ||
+              (rejection.status == 401 && rejection.data.code == "100-101")
+            )
+            {
 
-            //if past max retries (3)
-            if(times > MAX_RETRIES){
-              WSAlert.danger("You most likely don't have the required permissions, please contact webmaster@worldskills.org");
-              sessionStorage.setItem('login_redirect_counter', 1);
-            }
-            else{
-              WSAlert.danger(rejection.data.user_msg + ". Redirecting to login... [" + times + "]");
-              var refreshLogin = function () {
-                window.history.go(0);
-              };
-              //redirect to login after 1 second timeout
-              times++;
-              sessionStorage.setItem('login_redirect_counter', times);
-              $timeout(refreshLogin, 1000);
-            }
+              //if past max retries (3)
+              if(times > MAX_RETRIES){
+                WSAlert.danger("You most likely don't have the required permissions, please contact webmaster@worldskills.org");
+                sessionStorage.setItem('login_redirect_counter', 1);
+              }
+              else{
+                WSAlert.danger(rejection.data.user_msg + ". Redirecting to login... [" + times + "]");
+                var refreshLogin = function () {
+                  window.history.go(0);
+                };
+                //redirect to login after 1 second timeout
+                times++;
+                sessionStorage.setItem('login_redirect_counter', times);
+                $timeout(refreshLogin, 1000);
+              }
+          }
+          else{
+            //clear timeout
+            sessionStorage.setItem('login_redirect_counter', 1);
+          }
+
+          return $q.reject(rejection);
         }
-        else{
-          //clear timeout
-          sessionStorage.setItem('login_redirect_counter', 1);
-        }
+      };
+    }]);
 
-        return $q.reject(rejection);
-      }
-    };
-  }]);
+    tmhDynamicLocaleProvider.localeLocationPattern('/bower_components/angular-i18n/angular-locale_{{locale}}.js');
 
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'languages/',
+      suffix: '.json'
+    });
 
-  $translateProvider.useStaticFilesLoader({
-    prefix: 'languages/',
-    suffix: '.json'
-  });
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.fallbackLanguage('en');
+    $translateProvider.useLocalStorage();
+    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.registerAvailableLanguageKeys(['en', 'fr'], {
+      'en_*': 'en',
+      'fr_*': 'fr',
+      '*': 'en'
+    });
 
-  $translateProvider.preferredLanguage('en');
-  $translateProvider.fallbackLanguage('en');
-  $translateProvider.useLocalStorage();
-  $translateProvider.useSanitizeValueStrategy('escape');
-  $translateProvider.registerAvailableLanguageKeys(['en', 'fr'], {
-    'en_*': 'en',
-    'fr_*': 'fr',
-    '*': 'en'
-  });
+    //routes
+    $stateProvider
 
-
-//routes
-  $stateProvider
-
-  // //index
+    //index
     .state('home', {
       url: '/',
       templateUrl: 'views/home.html',
@@ -384,9 +393,30 @@
 
   });
 
-  ilApp.run(function($rootScope, $state, $stateParams, auth, WSAlert, $templateCache){
+  ilApp.run(function($rootScope, $state,$timeout, $stateParams, auth, WSAlert, $templateCache, $translate, $http, amMoment, tmhDynamicLocale, uibDatepickerPopupConfig){
 
     $rootScope.available_languages = {"en":"English", "fr":"Français"};
+
+    var activeLanguage = $translate.use() ||
+      $translate.storage().get($translate.storageKey()) ||
+      $translate.preferredLanguage();
+
+    $http.defaults.headers.common["Accept-Language"] = activeLanguage;
+    tmhDynamicLocale.set(activeLanguage);
+
+    //Set global translations of to uiboostrapDatepicker
+    $rootScope.$on('$translateChangeSuccess', function () {
+      $translate(['DATEPICKER.CLOSE', 'DATEPICKER.TODAY', 'DATEPICKER.CLEAR'])
+      .then(function (translations) {
+        uibDatepickerPopupConfig.closeText = translations['DATEPICKER.CLOSE'];
+        uibDatepickerPopupConfig.currentText = translations['DATEPICKER.TODAY'];
+        uibDatepickerPopupConfig.clearText = translations['DATEPICKER.CLEAR'];
+      }).catch(function (translationsId) {
+        uibDatepickerPopupConfig.closeText = translationsId['DATEPICKER.CLOSE'];
+        uibDatepickerPopupConfig.currentText = translationsId['DATEPICKER.TODAY'];
+        uibDatepickerPopupConfig.clearText = translationsId['DATEPICKER.CLEAR'];
+      });
+    });
 
     //PRODUCTION API URL
     //$rootScope.api_url = "http://beuk.worldskills.org/glossary/";

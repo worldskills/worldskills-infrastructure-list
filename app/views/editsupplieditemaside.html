@@ -6,6 +6,8 @@
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>
 
+    <div ng-if="item.multiple_linked_items" class="alert alert-warning"><span translate>ITEM_ATTACHED_TO_MULTIPLE_SKILLS</span></div>
+
     <form class="editForm" name='editForm'>
         <uib-tabset active="supplied01">
           <uib-tab index="0" heading="General">
@@ -42,7 +44,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback"
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback"
                     ng-class="{'has-error': editForm.item_category.$error.required, 'has-success': !editForm.item_category.$error.required}"
                   >
                     <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
@@ -53,6 +55,15 @@
                         <small>
                           {{category.description.text}}
                         </small>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.priority.$error.required, 'has-success': !editForm.priority.$error.required}">
+                    <label class='control-label' translate>TH_PRIORITY</label>
+                    <ui-select ng-required="false" ng-model="item.priority" theme="bootstrap">
+                      <ui-select-match>{{item.priority | translate}}</ui-select-match>
+                      <ui-select-choices repeat="priority in priorities">
+                        <div translate>{{priority}}</div>
                       </ui-select-choices>
                     </ui-select>
                   </div>
@@ -123,7 +134,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12  has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
                     <label class='control-label' translate>PO_NUMBER</label>
                     <input name="po_number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.PO_NUMBER' | translate }}" ng-model='item.po_number'>
                   </div>
@@ -139,7 +150,7 @@
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6">
                     <p class='input-group'>
-                      <input type="text" placeholder="{{ 'PLACEHOLDER.DELIVERY' | translate }}" class="form-control input-sm" uib-datepicker-popup="dd.MM.yyyy" ng-model="item.delivery" is-open="item.delivery_open" datepicker-options="dateOptions" close-text="{{ 'CLOSE_TEXT.CLOSE' | translate }}" />
+                      <input type="text" placeholder="{{ 'PLACEHOLDER.DELIVERY' | translate }}" class="form-control input-sm" uib-datepicker-popup="dd.MM.yyyy" ng-model="item.delivery" is-open="item.delivery_open" datepicker-options="dateOptions" />
                       <span class="input-group-btn">
               			  	<button type="button" class="btn btn-sm btn-default" ng-init="delivery_open = false" ng-click="item.delivery_open = !item.delivery_open"><i class="glyphicon glyphicon-calendar"></i></button>
               				</span>
@@ -491,12 +502,6 @@
 
       <button ng-disabled="editForm.$error.required" ng-if="!item.id" ng-click="addItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
 
-      <div ng-if="item.id">
-        <label style="font-weight: normal;">
-          <input type="checkbox" ng-model="item.updateRequested"> <span translate>COPY_DESCRIPTION_TO_REQUESTED_ITEM_S</span>
-          <span>&nbsp;<i class="glyphicon glyphicon-question-sign" uib-tooltip="{{ 'UIB_TOOLTIP.WARNING_UPDATE_DESCRIPTION' | translate }}" tooltip-placement="top" tooltip-trigger="mouseenter"></i></span>
-        </label>
-      </div>
       <button ng-disabled="editForm.$error.required" ng-if="item.id" ng-click="saveItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>

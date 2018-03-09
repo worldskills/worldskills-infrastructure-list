@@ -3,123 +3,10 @@
     <legend translate>ADD_NEW_ITEM</legend>
     <alerts></alerts>
     <form name='addForm'>
-      <div class='well'>
-        <!-- catalogue view only -->
-        <div ng-if="suppliedItem.force === true">
-          <div class="form-group addForm">
-            <label class='control-label' translate>SKILL</label>
-            <!--<input type="text" class="input-sm form-control" placeholder="Skill" ng-model='skill'>-->
-            <ui-select ng-model="newLinkedItem.skill" theme="bootstrap" on-select="addLinkedItemSkillSelected($item, $model)" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
-              <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_SKILL' | translate }}">{{$select.selected.name.text}} - {{$select.selected.skill_number}}</ui-select-match>
-              <ui-select-choices repeat="skill as skill in (skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
-                <div ng-bind-html="skill.name.text"></div>
-                <small>
-                  <span translate>NUMBER:</span> {{skill.skill_number}}
-                </small>
-              </ui-select-choices>
-            </ui-select>
-          </div>
-
-          <div class="form-group addForm">
-            <label class='control-label' translate>INSTALLATION_TYPE</label>
-            <!--<input type="text" class="input-sm form-control" placeholder="Installation type" ng-model='categoryId'>-->
-            <ui-select ng-model="newLinkedItem.category" theme="bootstrap" title="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE' | translate }}" ng-disabled="newLinkedItemCategories.length < 1">
-              <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE_OPT' | translate }}">{{$select.selected.category.name.text}}</ui-select-match>
-              <ui-select-choices repeat="cat as cat in (newLinkedItemCategories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
-                <div ng-bind-html="cat.category.name.text"></div>
-              </ui-select-choices>
-            </ui-select>
-          </div>
-        </div>
-        <div ng-if="(suppliedItem.force === true && !newLinkedItem.category.id)" class="alert alert-warning" translate>MUST_SELECT_INSTALLATION_TYPE</div>
-        <!-- catalogue view only -->
-
-        <div class="form-group addForm">
-          <label class='control-label' translate>DESCRIPTION</label>
-          <!-- catalogue view only -->
-          <input ng-if="suppliedItem.force === true" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}" ng-model='item.description.text'>
-          <!-- !catalogue view -->
-          <angucomplete-alt
-            id="id"
-            ng-show="suppliedItem.force !== true"
-            placeholder="{{ 'PLACEHOLDER.DESCRIPTION_OF_THE_ITEM' | translate }}"
-            pause="400"
-            selected-object="suppliedItem"
-            remote-url="{{searchAPI}}"
-            remote-url-request-with-credentials="true"
-            remote-url-data-field="supplied_items"
-            title-field="description.text"
-            description-field="make"
-            focus-out="focusOutItem"
-            minlength="2"
-            search-fields="description.text"
-            disable-input="disableInput"
-            override-suggestions="true"
-            field-required="true"
-            text-searching="{{ 'TEXT_SEARCHING.SEARCHING_FOR_ITEMS_IN_CATALOGUE' | translate }}"
-            text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM' | translate }}"
-            input-class="form-control form-control-small has-feedback"
-          />
-        </div>
-
-        <div class='form-group addForm' ng-if="suppliedItem.originalObject.id">
-          <div class='panel panel-default'>
-            <div class='panel-heading smallText'><strong translate>SUPPLIED_ITEM_DETAILS</strong></div>
-            <div class='panel-body'>
-              <table class='table smallText'>
-                <thead>
-                  <tr>
-                    <th translate>TH_DESCRIPTION</th>
-                    <th translate>TH_MANUFACTURER</th>
-                    <th translate>TH_MODEL</th>
-                    <th translate>TH_SIZE</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{suppliedItem.originalObject.description.text}}</td>
-                    <td>{{suppliedItem.originalObject.manufacturer}}</td>
-                    <td>{{suppliedItem.originalObject.model}}</td>
-                    <td>{{suppliedItem.originalObject.size}}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class='alert alert-info smallText' ng-if="suppliedItem.force !== true">
-                <span translate>ITEM_ALREADY_CREATED</span><br />
-                <span translate>ITEM_DOESNT_MATCH</span><br /><br />
-                <button ng-show="disableInput" ng-click="rename()" class='btn btn-xs btn-warning' translate>CHANGE_TO_ANOTHER_ITEM</button>
-              </div>
-            </div>
-          </div>
-          <hr>
-        </div>
-
-        <div class='row'>
-            <div class='col col-sm-12 col-md-4'>
-              <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
-                <label class='control-label' translate>QUANTITY</label>
-                <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.QUANTITY' | translate }}" ng-model='item.quantity' required="{{ 'REQUIRED.QUANTITY_IS_MISSING' | translate }}" ng-required="true">
-                <span ng-if="!addForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span ng-if="addForm.quantity.$dirty && addForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-              </div>
-            </div>
-            <div class='col col-sm-12 col-md-4'>
-              <div class="form-group addForm has-feedback has-success">
-                <label class='control-label' translate>MULTIPLIER</label>
-                <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
-                <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
-              </div>
-            </div>
-            <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(item.multiplier)">
-              <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.multiply_factor.$error.required, 'has-success': !addForm.multiply_factor.$error.required}">
-                <label class='control-label' translate>MULTIPLY_FACTOR</label>
-                <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.X_NUMBER' | translate }}" ng-model='item.multiply_factor' required="{{ 'REQUIRED.MULTIPLY_FACTOR_REQUIRED' | translate }}" ng-required="true">
-                <span ng-if="!addForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-              </div>
-            </div>
-            <div class='col col-sm-12 col-md-4' ng-if='canEditItemStatus'>
+      <div class="row">
+        <div class="col col-sm-12 col-md-6">
+          <div class='well'>
+            <div ng-if='canEditItemStatus'>
               <div class="form-group editForm has-feedback has-success">
                 <label class='control-label' translate>STATUS</label>
                 <ui-select ng-model="item.status" theme="bootstrap">
@@ -130,74 +17,179 @@
                 </ui-select>
               </div>
             </div>
-      </div>
 
-      <div class='row'>
-        <div class='col col-xs-12 col-md-4'>
-          <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
-            <label class='control-label' translate>POTENTIAL_SUPPLIER</label>
-            <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}" ng-model='item.supplier' ng-trim="true"> -->
-            <angucomplete-alt
-              id="id"
-              placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}"
-              pause="400"
-              selected-object="item.selectedSupplier"
-              remote-url="{{searchSupplierAPI}}"
-              remote-url-request-with-credentials="true"
-              remote-url-data-field="suppliers"
-              title-field="name"
-              minlength="1"
-              search-fields="name"
-              disable-input="disableInputSupplier"
-              focus-first="true"
-              input-changed="supplierChanged"
-              override-suggestions="true"
-              field-required="false"
-              text-searching="false"
-              text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
-              initial-value="item.supplier"
-              input-class="input-sm form-control angucomplete-overflow"
-            />
-            <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
-          </div>
-        </div>
-        <div class='col col-xs-12 col-md-4 form-group'>
-            <div class="form-group addForm has-feedback has-success">
-              <label class='control-label' translate>ESTIMATED_PRICE</label>
-              <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="{{ 'PLACEHOLDER.ESTIMATED_PRICE' | translate }}">
-              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <!-- catalogue view only -->
+            <div ng-if="suppliedItem.force === true">
+              <div class="form-group addForm">
+                <label class='control-label' translate>SKILL</label>
+                <!--<input type="text" class="input-sm form-control" placeholder="Skill" ng-model='skill'>-->
+                <ui-select ng-model="newLinkedItem.skill" theme="bootstrap" on-select="addLinkedItemSkillSelected($item, $model)" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
+                  <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_SKILL' | translate }}">{{$select.selected.name.text}} - {{$select.selected.skill_number}}</ui-select-match>
+                  <ui-select-choices repeat="skill as skill in (skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                    <div ng-bind-html="skill.name.text"></div>
+                    <small>
+                      <span translate>NUMBER:</span> {{skill.skill_number}}
+                    </small>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+
+              <div class="form-group addForm">
+                <label class='control-label' translate>INSTALLATION_TYPE</label>
+                <!--<input type="text" class="input-sm form-control" placeholder="Installation type" ng-model='categoryId'>-->
+                <ui-select ng-model="newLinkedItem.category" theme="bootstrap" title="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE' | translate }}" ng-disabled="newLinkedItemCategories.length < 1">
+                  <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE_OPT' | translate }}">{{$select.selected.category.name.text}}</ui-select-match>
+                  <ui-select-choices repeat="cat as cat in (newLinkedItemCategories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
+                    <div ng-bind-html="cat.category.name.text"></div>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
             </div>
+            <div ng-if="(suppliedItem.force === true && !newLinkedItem.category.id)" class="alert alert-warning" translate>MUST_SELECT_INSTALLATION_TYPE</div>
+            <!-- catalogue view only -->
+
+            <div class="form-group addForm">
+              <label class='control-label' translate>DESCRIPTION</label>
+              <!-- catalogue view only -->
+              <input ng-if="suppliedItem.force === true" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}" ng-model='item.description.text'>
+              <!-- !catalogue view -->
+              <angucomplete-alt
+                id="id"
+                ng-show="suppliedItem.force !== true"
+                placeholder="{{ 'PLACEHOLDER.DESCRIPTION_OF_THE_ITEM' | translate }}"
+                pause="400"
+                selected-object="suppliedItem"
+                remote-url="{{searchAPI}}"
+                remote-url-request-with-credentials="true"
+                remote-url-data-field="supplied_items"
+                title-field="description.text"
+                description-field="make"
+                focus-out="focusOutItem"
+                minlength="2"
+                search-fields="description.text"
+                disable-input="disableInput"
+                override-suggestions="true"
+                field-required="true"
+                text-searching="{{ 'TEXT_SEARCHING.SEARCHING_FOR_ITEMS_IN_CATALOGUE' | translate }}"
+                text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM' | translate }}"
+                input-class="form-control form-control-small has-feedback"
+              />
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
+                  <label class='control-label' translate>QUANTITY</label>
+                  <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.QUANTITY' | translate }}" ng-model='item.quantity' required="{{ 'REQUIRED.QUANTITY_IS_MISSING' | translate }}" ng-required="true">
+                  <span ng-if="!addForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  <span ng-if="addForm.quantity.$dirty && addForm.quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group addForm has-feedback has-success">
+                  <label class='control-label' translate>MULTIPLIER</label>
+                  <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
+                  <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div ng-if="factorNeeded(item.multiplier)">
+                  <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.multiply_factor.$error.required, 'has-success': !addForm.multiply_factor.$error.required}">
+                    <label class='control-label' translate>MULTIPLY_FACTOR</label>
+                    <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.X_NUMBER' | translate }}" ng-model='item.multiply_factor' required="{{ 'REQUIRED.MULTIPLY_FACTOR_REQUIRED' | translate }}" ng-required="true">
+                    <span ng-if="!addForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span ng-if="addForm.multiply_factor.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.additional_quantity.$error.required, 'has-success': !editForm.additional_quantity.$error.required}">
+              <label class='control-label' translate>ADDITIONAL_QUANTITY</label>
+              <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ADDITIONAL_QUANTITY' | translate }}" ng-model='item.additional_quantity' required="{{ 'REQUIRED.ADDITIONAL_QUANTITY_IS_MISSING' | translate }}" ng-required="false">
+              <span ng-if="!editForm.additional_quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span ng-if="editForm.additional_quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+            </div>
+
+              <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
+                <label class='control-label' translate>POTENTIAL_SUPPLIER</label>
+                <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}" ng-model='item.supplier' ng-trim="true"> -->
+                <angucomplete-alt
+                  id="id"
+                  placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}"
+                  pause="400"
+                  selected-object="item.selectedSupplier"
+                  remote-url="{{searchSupplierAPI}}"
+                  remote-url-request-with-credentials="true"
+                  remote-url-data-field="suppliers"
+                  title-field="name"
+                  minlength="1"
+                  search-fields="name"
+                  disable-input="disableInputSupplier"
+                  focus-first="true"
+                  input-changed="supplierChanged"
+                  override-suggestions="true"
+                  field-required="false"
+                  text-searching="false"
+                  text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
+                  initial-value="item.supplier"
+                  input-class="input-sm form-control angucomplete-overflow"
+                />
+                <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
+              </div>
+                <div class="form-group addForm has-feedback has-success">
+                  <label class='control-label' translate>ESTIMATED_PRICE</label>
+                  <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="{{ 'PLACEHOLDER.ESTIMATED_PRICE' | translate }}">
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+              <div class="form-group addForm has-feedback has-success">
+                <label class='control-label' translate>SKILL_AREA</label>
+                <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
+                <select class="form-control input-sm" ng-model="item.area.id" ng-options="area.id as area.name for area in skillAreas"></select>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              </div>
+              <div data-nodrag class="checkbox addForm form-group has-feedback has-success">
+                <label>
+                  <input type="checkbox" ng-model="item.vat_refund"> <span translate>VAT_REFUNDABLE</span>
+                </label>
+              </div>
+
+          </div> <!-- well -->
         </div>
-        <div class='col col-xs-12 col-md-4 form-group'>
-          <div class="form-group addForm has-feedback has-success">
-            <label class='control-label' translate>SKILL_AREA</label>
-            <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
-            <select class="form-control input-sm" ng-model="item.area.id" ng-options="area.id as area.name for area in skillAreas"></select>
-            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <div class="col col-sm-12 col-md-6">
+          <div class='form-group addForm' ng-if="suppliedItem.originalObject.id">
+            <div class='panel panel-default'>
+              <div class='panel-heading smallText'><strong translate>SUPPLIED_ITEM_DETAILS</strong></div>
+              <div class='panel-body'>
+                <table class='table smallText'>
+                  <thead>
+                    <tr>
+                      <th translate>TH_DESCRIPTION</th>
+                      <th translate>TH_MANUFACTURER</th>
+                      <th translate>TH_MODEL</th>
+                      <th translate>TH_SIZE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{suppliedItem.originalObject.description.text}}</td>
+                      <td>{{suppliedItem.originalObject.manufacturer}}</td>
+                      <td>{{suppliedItem.originalObject.model}}</td>
+                      <td>{{suppliedItem.originalObject.size}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class='alert alert-info smallText' ng-if="suppliedItem.force !== true">
+                  <span translate>ITEM_ALREADY_CREATED</span><br />
+                  <span translate>ITEM_DOESNT_MATCH</span><br /><br />
+                  <button ng-show="disableInput" ng-click="rename()" class='btn btn-xs btn-warning' translate>CHANGE_TO_ANOTHER_ITEM</button>
+                </div>
+              </div>
+            </div>
+            <hr>
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col col-xs-12 col-md-4 form-group">
-          <div class="form-group editForm has-feedback"  ng-class="{'has-error': editForm.additional_quantity.$error.required, 'has-success': !editForm.additional_quantity.$error.required}">
-            <label class='control-label' translate>ADDITIONAL_QUANTITY</label>
-            <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ADDITIONAL_QUANTITY' | translate }}" ng-model='item.additional_quantity' required="{{ 'REQUIRED.ADDITIONAL_QUANTITY_IS_MISSING' | translate }}" ng-required="false">
-            <span ng-if="!editForm.additional_quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-            <span ng-if="editForm.additional_quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-          </div>
-        </div>
-        <div class="col col-xs-12 col-md-4 form-group">
-          <div data-nodrag class="checkbox addForm form-group has-feedback has-success" style="margin-top: -25px;">
-            <label>
-              <input type="checkbox" ng-model="item.vat_refund"> <span translate>VAT_REFUNDABLE</span>
-            </label>
-          </div>
-        </div>
-        <div class="col col-xs-12 col-md-4 form-group"></div>
-      </div>
-
-      </div> <!-- well -->
       <button ng-disabled="addForm.$error.required  || !suppliedItem.originalObject || (suppliedItem.force === true && !newLinkedItem.category.id)" ng-click="addItem();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>
