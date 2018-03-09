@@ -283,6 +283,11 @@
   "STATUS": "Status",
   "QUANTITY": "Quantity",
   "SCROLL_MORE": "Scroll down to load more...",
+  "EDIT_SUPPLIED_ITEM": "Edit Supplied Item",
+  "SWITCH_SUPPLIED_ITEM": "Switch Supplied Item",
+  "BUTTON_SEARCH": "Search",
+  "PLEASE_TYPE_SEARCH_TERM": "Please type in a search term above and click search.",
+  "NO_ITEMS_FOUND_PLEASE_RETYPE": "No items found, type in a different search term above and click search.",
 
   "WHICH_DATA": "Select which data to load",
   "CHANGE_FILTERS": "You can change the filters once the catalogue has loaded",

@@ -460,6 +460,36 @@ angular.module('ilApp')
 
     };
 
+    $scope.switchSuppliedItem = function(item) {
+
+      // create new scope with item for aside
+      var scope = $scope.$new();
+      scope.item = item;
+
+      // open aside
+      var aside = $aside.open({
+        templateUrl: 'views/switchSuppliedItemAside.html',
+        placement: 'right',
+        size: 'md',
+        scope: scope,
+        backdrop: true,
+        controller: 'switchSuppliedItemCtrl',
+      });
+
+      // update supplied item on aside close
+      aside.result.then(function (suppliedItem) {
+
+        item.supplied_item = suppliedItem;
+
+        Items.saveItemSuppliedItem(item, $scope.event_id).then(function (result) {
+          // supplied item updated
+        }, function (error) {
+          WSAlert.danger(error);
+        });
+
+      });
+
+    };
   })
 .directive('requestedItem', function () {
   return {
