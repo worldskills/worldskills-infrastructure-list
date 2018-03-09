@@ -18,6 +18,7 @@
           <th translate>TH_MANUFACTURER</th>
           <th translate>TH_MODEL</th>
           <th translate>TH_SIZE</th>
+          <th translate>TH_SUPPLIER</th>
         </tr>
       </thead>
       <tbody>
@@ -26,12 +27,13 @@
           <td>{{suppliedItem.manufacturer}}</td>
           <td>{{suppliedItem.model}}</td>
           <td>{{suppliedItem.size}}</td>
+          <td>{{suppliedItem.supplier}}</td>
         </tr>
         <tr ng-show="!searchResults">
-          <td colspan="4" translate>PLEASE_TYPE_SEARCH_TERM</td>
+          <td colspan="5" translate>PLEASE_TYPE_SEARCH_TERM</td>
         </tr>
         <tr ng-show="searchResults.supplied_items.length == 0">
-          <td colspan="4" translate>NO_ITEMS_FOUND_PLEASE_RETYPE</td>
+          <td colspan="5" translate>NO_ITEMS_FOUND_PLEASE_RETYPE</td>
         </tr>
       </tbody>
     </table>
