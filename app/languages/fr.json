@@ -225,7 +225,9 @@
     "CLOSE":"Fermer"
   },
   "UIB_TOOLTIP": {
-    "WARNING_UPDATE_DESCRIPTION":"Attention ! Cette opération va remplacer la description de l'item dans tous les métiers où il est utilisé !"
+    "WARNING_UPDATE_DESCRIPTION":"Attention ! Cette opération va remplacer la description de l'item dans tous les métiers où il est utilisé !",
+    "CATEGORY_CONTAINS_SUBCATEGORY": "Cette superfamille contient des familles",
+    "SUBCATEGORY_CONTAINS_ITEMS": "Cette famille contient des items"
   },
 
   "APP_NAME":"WorldSkills Infrastructure Lists",

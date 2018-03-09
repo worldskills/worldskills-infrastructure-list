@@ -226,7 +226,9 @@
     "CLOSE":"Close"
   },
   "UIB_TOOLTIP": {
-    "WARNING_UPDATE_DESCRIPTION":"Warning! This will update the description in every skill this item is used!"
+    "WARNING_UPDATE_DESCRIPTION":"Warning! This will update the description in every skill this item is used!",
+    "CATEGORY_CONTAINS_SUBCATEGORY": "This item category contains subcategories",
+    "SUBCATEGORY_CONTAINS_ITEMS": "This subcategory contains items"
   },
 
   "APP_NAME":"WorldSkills Infrastructure Lists",
@@ -456,7 +458,7 @@
   "ADD_SUB_CATEGORY":"Add subcategory",
   "ITEM_CATEGORY": "Category",
   "ITEM_SUB_CATEGORY": "Subcategory",
-  "ITEM_CATEGORY_AND_SUBCATEGORY": "Category and subcategory item",
+  "ITEM_CATEGORY_AND_SUBCATEGORY": "Item categories and subcategories",
   "NO_CATEGORIES": "No categories found",
   "NO_SUBCATEGORIES": "No subcategories found",
   "LANGUAGE": "Language: ",
