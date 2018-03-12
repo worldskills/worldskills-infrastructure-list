@@ -1,0 +1,43 @@
+<div class="aside">
+  <fieldset>
+    <legend translate>SWITCH_SUPPLIED_ITEM</legend>
+    <alerts></alerts>
+    <form name="form" ng-submit="search()">
+      <div class="input-group">
+        <input type="text" class="input-sm form-control" name="term" ng-model="searchTerm" autofocus autocomplete="off">
+          <span class="input-group-btn">
+            <button class="btn btn-primary btn-sm" type="button" ng-click="search()" translate>BUTTON_SEARCH</button>
+          </span>
+      </div>
+    </form>
+    <br>
+    <table class="table smallText">
+      <thead>
+        <tr>
+          <th translate>TH_DESCRIPTION</th>
+          <th translate>TH_MANUFACTURER</th>
+          <th translate>TH_MODEL</th>
+          <th translate>TH_SIZE</th>
+          <th translate>TH_SUPPLIER</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="suppliedItem in searchResults.supplied_items">
+          <td><a href ng-click="selectSuppliedItem(suppliedItem)">{{suppliedItem.description.text}}</a></td>
+          <td>{{suppliedItem.manufacturer}}</td>
+          <td>{{suppliedItem.model}}</td>
+          <td>{{suppliedItem.size}}</td>
+          <td>{{suppliedItem.supplier}}</td>
+        </tr>
+        <tr ng-show="!searchResults">
+          <td colspan="5" translate>PLEASE_TYPE_SEARCH_TERM</td>
+        </tr>
+        <tr ng-show="searchResults.supplied_items.length == 0">
+          <td colspan="5" translate>NO_ITEMS_FOUND_PLEASE_RETYPE</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <button ng-click="cancel()" class="btn btn-sm btn-warning" translate>BUTTON_CANCEL</button>
+  </fieldset>
+</div>

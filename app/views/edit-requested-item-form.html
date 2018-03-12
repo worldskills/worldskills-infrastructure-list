@@ -140,6 +140,10 @@
           <div class="col col-xs col-xs-8">{{item.supplied_item.part_number || '-'}}</div>
         </div>
         <div class="row">
+          <div class="col col-xs col-xs-4" translate>TH_SUPPLIER</div>
+          <div class="col col-xs col-xs-8">{{ item.supplied_item.supplier || '-' }}</div>
+        </div>
+        <div class="row">
           <div class="col col-xs col-xs-4" translate>TH_FILES</div>
           <div class="col col-xs col-xs-8">
             <div ng-show="item.supplied_item.files.length == 0">-</div>
@@ -150,7 +154,8 @@
         </div>
         <br>
         <div class="form-group">
-          <a data-nodrag class='btn btn-sm btn-primary' ng-if="canEditSuppliedItem" ng-click="editSuppliedItem(item)" translate>Edit Supplied Item</a>
+          <a data-nodrag class='btn btn-sm btn-primary' ng-if="canEditSuppliedItem" ng-click="editSuppliedItem(item)" translate>EDIT_SUPPLIED_ITEM</a>
+          <a data-nodrag class='btn btn-sm btn-info' ng-click="switchSuppliedItem(item)" translate>SWITCH_SUPPLIED_ITEM</a>
         </div>
       </div>
     </div>

@@ -60,6 +60,19 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
+    Items.saveItemSuppliedItem = function (item, eventId) {
+
+      var deferred = $q.defer();
+
+      $http.put(API_IL + '/items/' + eventId + '/requested_items/' + item.id + '/supplied_item/' + item.supplied_item.id).then(function (result) {
+        deferred.resolve(result.data);
+      }, function (error) {
+        deferred.reject("Could not save requested item: " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    };
+
     Items.removeItem = function(item, eventId, leaveOrphan){
       var deferred = $q.defer();
 
