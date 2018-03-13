@@ -8,15 +8,29 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('RecommendedItem', function ($q, $http, API_IL) {
+  .service('RecommendedItems', function ($q, $http, API_IL) {
 
     var RecommendedItems = { $data : $q.defer(), total: null };
 
-    RecommendedItems.updateItem = function(item, eventId, _extended){
+    RecommendedItems.suggestOnItem = function(item, eventId, skillId){
 
       var deferred = $q.defer();
 
-      $http.put(API_IL + "/recommended_items/" + eventId + "/requested_item/" + item.id, item).then(function(result){
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId, item).then(function(result){
+        deferred.resolve(result.data);
+      },
+      function(error){
+        deferred.reject("Could not update recommended item: " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    };
+
+    RecommendedItems.suggestNew = function(item, eventId, skillId){
+
+      var deferred = $q.defer();
+
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId, item).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
@@ -26,17 +40,6 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    RecommendedItems.addItem = function(item, eventId, _extended){
+    return RecommendedItems;
 
-      var deferred = $q.defer();
-
-      $http.put(API_IL + "/recommended_items/" + eventId, item).then(function(result){
-        deferred.resolve(result.data);
-      },
-      function(error){
-        deferred.reject("Could not save recommended item: " + error.data.user_msg);
-      });
-
-      return deferred.promise;
-    };
   });

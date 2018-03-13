@@ -73,7 +73,9 @@
       "SET_REMOVED_SUCCESSFULLY":"Lot supprimé avec succès !",
       "ITEM_SAVED":"Item enregistré",
       "ITEM_S_REMOVED":"Items supprimés !",
-      "ITEMS_COMBINED":"Items combinés !"
+      "ITEMS_COMBINED":"Items combinés !",
+      "RECOMMEND_ADD": "Votre suggestion d'ajout a été soumise avec succès et sera traitée prochainement.",
+      "RECOMMEND_EDIT": "Votre suggestion de modification a été soumise avec succès et sera traitée prochainement."
     },
     "DANGER":{
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !"
@@ -480,5 +482,7 @@
     "CLEAR": "Effacer"
   },
   "SUGGEST_ADDITION": "Suggérer un ajout",
-  "SUGGEST_MODIFICATION": "Suggérer une modification"
+  "SUGGEST_MODIFICATION": "Suggérer une modification",
+  "WRONG_SUPPLIED_ITEM": "Item de catalogue incorrect",
+  "CONFIRM_DELETION_SUGGESTION": "Souhaitez-vous vraiment suggérer la suppression de cet item ? Vous pouvez spécifier une raison dans le champ ci-dessous (optionnel)"
 }

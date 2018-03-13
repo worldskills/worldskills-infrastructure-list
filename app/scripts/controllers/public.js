@@ -63,6 +63,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     }
 
     $scope.suggestAddition = function (parent) {  
+
+        $scope.item = {};
+
         $scope.addParent = parent || 0;
         var parent = parent || 0;
   

@@ -73,7 +73,10 @@
       "SET_REMOVED_SUCCESSFULLY":"Set removed successfully!",
       "ITEM_SAVED":"Item saved",
       "ITEM_S_REMOVED":"Item(s) removed!",
-      "ITEMS_COMBINED":"Items combined!"
+      "ITEMS_COMBINED":"Items combined!",
+      "RECOMMEND_ADD": "Your adding suggestion has been successfully submitted and will be reviewed shortly.",
+      "RECOMMEND_EDIT": "Your modification suggestion has been successfully submitted and will be reviewed shortly."
+
     },
     "DANGER":{
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"Item could not be removed from set, please try again!"
@@ -480,5 +483,7 @@
     "CLEAR": "Clear"
   },
   "SUGGEST_ADDITION": "Suggest an addition",
-  "SUGGEST_MODIFICATION": "Suggest a modification"
+  "SUGGEST_MODIFICATION": "Suggest a modification",
+  "WRONG_SUPPLIED_ITEM": "Wrong supplied item",
+  "CONFIRM_DELETION_SUGGESTION": "Do you really wish to suggest this item's deletion ? You can provide a reason in the section below (optional)"
 }
