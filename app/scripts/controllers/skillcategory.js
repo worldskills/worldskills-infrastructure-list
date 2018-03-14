@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT, Auth, APP_ROLES, $translate, Status) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT, Auth, APP_ROLES, $translate, Status) {
 
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
@@ -109,6 +109,7 @@ angular.module('ilApp')
     $scope.editItem = function (item, itemIndex) {
       //defining canEditItemStatus here because roles is undefined at start for an unknown reason
       $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+      $scope.canEditSuppliedItem = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.ORGANIZER);
 
       if ($scope.activeItem == item.id) $scope.activeItem = false;
       else {
@@ -418,7 +419,77 @@ angular.module('ilApp')
       $scope.orderProperty = sort;
     };
 
+    // edit supplied item
+    $scope.editSuppliedItem = function(item) {
 
+      var scope = $scope.$new();
+      scope.rowItem = item.supplied_item;
+      scope.rowItem.event = {id: $scope.event_id};
+
+      $scope.saveRow = function (rowEntity, updateRequested){
+
+        var promise = $q.defer();
+
+        rowEntity.description.lang_code = $translate.use();
+
+        SuppliedItem.saveItem(rowEntity, updateRequested).then(function(res){
+          // copy back data from request's response
+          angular.extend(rowEntity, res);
+          promise.resolve();
+        }, function(error){
+          WSAlert.danger(error);
+          promise.reject();
+        });
+
+        return promise.promise;
+      };
+
+      // load full supplied item
+      SuppliedItem.getItem(scope.rowItem).then(function(res) {
+        scope.item = angular.copy(res);
+
+        $aside.open({
+          templateUrl: 'views/editsupplieditemaside.html',
+          placement: 'right',
+          size: 'md',
+          scope: scope,
+          backdrop: true,
+          controller: 'editSuppliedItemCtrl',
+        });
+      });
+
+    };
+
+    $scope.switchSuppliedItem = function(item) {
+
+      // create new scope with item for aside
+      var scope = $scope.$new();
+      scope.item = item;
+
+      // open aside
+      var aside = $aside.open({
+        templateUrl: 'views/switchSuppliedItemAside.html',
+        placement: 'right',
+        size: 'md',
+        scope: scope,
+        backdrop: true,
+        controller: 'switchSuppliedItemCtrl',
+      });
+
+      // update supplied item on aside close
+      aside.result.then(function (suppliedItem) {
+
+        item.supplied_item = suppliedItem;
+
+        Items.saveItemSuppliedItem(item, $scope.event_id).then(function (result) {
+          // supplied item updated
+        }, function (error) {
+          WSAlert.danger(error);
+        });
+
+      });
+
+    };
   })
 .directive('requestedItem', function () {
   return {

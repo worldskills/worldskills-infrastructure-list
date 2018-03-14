@@ -6,6 +6,8 @@
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>
 
+    <div ng-if="item.multiple_linked_items" class="alert alert-warning"><span translate>ITEM_ATTACHED_TO_MULTIPLE_SKILLS</span></div>
+
     <form class="editForm" name='editForm'>
         <uib-tabset active="supplied01">
           <uib-tab index="0" heading="General">
@@ -500,12 +502,6 @@
 
       <button ng-disabled="editForm.$error.required" ng-if="!item.id" ng-click="addItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
 
-      <div ng-if="item.id">
-        <label style="font-weight: normal;">
-          <input type="checkbox" ng-model="item.updateRequested"> <span translate>COPY_DESCRIPTION_TO_REQUESTED_ITEM_S</span>
-          <span>&nbsp;<i class="glyphicon glyphicon-question-sign" uib-tooltip="{{ 'UIB_TOOLTIP.WARNING_UPDATE_DESCRIPTION' | translate }}" tooltip-placement="top" tooltip-trigger="mouseenter"></i></span>
-        </label>
-      </div>
       <button ng-disabled="editForm.$error.required" ng-if="item.id" ng-click="saveItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>
