@@ -54,6 +54,10 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
             });
     });
 
+    function postClose() {
+      $scope.asideState.open = false;
+    }
+
     $scope.downloadFile = function(file){
       Downloader.handleDownload(data, status, headers, filename);
     };
@@ -62,86 +66,55 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
     }
 
-    $scope.suggestAddition = function (parent) {  
 
-        $scope.item = {};
+    $scope.openSuggestModalAside = function (parent, item) {  
+      $scope.item = item || {};
 
-        $scope.addParent = parent || 0;
-        var parent = parent || 0;
-  
-        $scope.asideState = {
-          open: true,
-        };
-  
-        function postClose() {
-          $scope.asideState.open = false;
-        }
-  
-        $aside.open({
-          templateUrl: 'views/recommendedItemAside.html',
-          placement: 'right',
-          size: 'lg',
-          scope: $scope,
-          backdrop: true,
-          controller: 'recommendedItemAsideCtrl',
-        }).result.then(postClose, postClose);
+      $scope.asideState = {
+        open: true,
       };
 
-      $scope.suggestModification = function (parent, item) {  
-        $scope.addParent = parent || 0;
-        var parent = parent || 0;
+      $aside.open({
+        templateUrl: 'views/recommendedItemAside.html',
+        placement: 'right',
+        size: 'lg',
+        scope: $scope,
+        backdrop: true,
+        controller: 'recommendedItemAsideCtrl',
+      }).result.then(postClose, postClose);
+    };
 
-        $scope.item = item;
-  
-        $scope.asideState = {
-          open: true,
-        };
-  
-        function postClose() {
-          $scope.asideState.open = false;
+    $scope.suggestDeletion = function (parent, item) {
+      $scope.recommendedItem = {
+        requestedItemId : item.id,
+        description : item.description,
+        quantity : item.quantity,
+        multiplier : item.multiplier,
+        multiplyFactor : item.multiply_factor,
+        potentialSupplier :item.supplier,
+        price: item.price,
+        wrongSuppliedItem : false,
+        comment: null,
+        deletionSuggestion: true,
+        rejected: false,
+        person: {
+          id: auth.user.id
         }
-  
-        $aside.open({
-          templateUrl: 'views/recommendedItemAside.html',
-          placement: 'right',
-          size: 'lg',
-          scope: $scope,
-          backdrop: true,
-          controller: 'recommendedItemAsideCtrl',
-        }).result.then(postClose, postClose);
       };
 
-      $scope.suggestDeletion = function (parent, item) {
-        $scope.recommendedItem = {
-          requestedItemId : item.id,
-          description : item.description,
-          quantity : item.quantity,
-          multiplier : item.multiplier,
-          multiplyFactor : item.multiply_factor,
-          potentialSupplier :item.supplier,
-          price: item.price,
-          wrongSuppliedItem : false,
-          comment: "",
-          deletionSuggestion: true,
-          rejected: false,
-          person: {
-            id: auth.user.id
-          }
-        };
-
-        $confirm({
-            recommendedItem: $scope.recommendedItem,
-            ok: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.OK')
-        },
-        {
-          templateUrl: 'views/suggestDeletionModal.html'
-        }).then(function() {
-          $scope.recommendedItem.comment = $('#comment').val();
-          RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.skillId).then(function(result) {
-            WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
-          }, function(error) {
-            WSAlert.danger(error);    
-          });
+      $confirm({
+          recommendedItem: $scope.recommendedItem,
+          ok: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.OK')
+      },
+      {
+        templateUrl: 'views/suggestDeletionModal.html'
+      }).then(function() {
+        $scope.recommendedItem.comment = $('#comment').val();
+        RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.skillId).then(function(result) {
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
+        }, function(error) {
+          WSAlert.danger(error);    
         });
-      }
+      });
+    }
 });

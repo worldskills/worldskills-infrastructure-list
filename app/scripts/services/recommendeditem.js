@@ -10,7 +10,7 @@
 angular.module('ilApp')
   .service('RecommendedItems', function ($q, $http, API_IL) {
 
-    var RecommendedItems = { $data : $q.defer(), total: null };
+    var RecommendedItems = { };
 
     RecommendedItems.suggestOnItem = function(item, eventId, skillId){
 

@@ -94,7 +94,7 @@
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-btn">
               <h2 class="panel-title">{{ category.category.name.text }}</h2>
-              <button type="button" ng-click="suggestAddition(parent);" data-target="" class="btn btn-xs btn-primary">
+              <button type="button" ng-click="openSuggestModalAside(parent);" data-target="" class="btn btn-xs btn-primary">
                 <span translate><i class="fas fa-plus-circle"></i>SUGGEST_ADDITION</span>
               </button>
             </div>
@@ -177,7 +177,7 @@
                               <span ng-show="item.status.id == ITEM_STATUS.GREEN" class="label label-success">{{ item.status.name.text }}</span>
                           </td>
                           <td ng-if="canRecommend()">
-                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-warning btn-xs" ng-click="suggestModification(parent, item)" style="margin-right:8px;"><span
+                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)" style="margin-right:8px;"><span
                                 class="glyphicon glyphicon-edit"></span></a>
                               <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(parent, item)" style="margin-right:8px;"><span
                               class="glyphicon glyphicon-remove"></span></a>

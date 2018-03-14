@@ -1,7 +1,7 @@
 <div class='aside'>
   <fieldset>
-    <legend ng-if="!recommendedItem.id" translate>SUGGEST_ADDITION</legend>
-    <legend ng-if="recommendedItem.id" translate>SUGGEST_MODIFICATION</legend>
+    <legend ng-if="!item.id" translate>SUGGEST_ADDITION</legend>
+    <legend ng-if="item.id" translate>SUGGEST_MODIFICATION</legend>
 
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>

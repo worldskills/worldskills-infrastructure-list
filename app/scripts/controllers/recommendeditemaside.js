@@ -39,22 +39,14 @@ angular.module('ilApp')
       };
     }
 
-    $scope.supplierValue = false;
+    $scope.supplierValue = null;
     
     $scope.supplierChanged = function (val) {
       if(val == "") {
-        $scope.supplierValue = false;
+        $scope.supplierValue = null;
       } else {
         $scope.supplierValue = val;
       }
-    };
-
-    function closeDialog(){
-        $scope.editModal.close(null);
-    };
-
-    $scope.editItem = function(item, index){
-      closeDialog();
     };
 
     $scope.factorNeeded = function (multiplierId) {
@@ -69,15 +61,15 @@ angular.module('ilApp')
 
     $scope.saveItem = function () {
 
-
-
       //Set recommended item name from autocomplete
+      //First case : description set by clicking a suggestion from catalogue
       if($scope.recommendedItem.description.originalObject &&
         $scope.recommendedItem.description.originalObject.description) {
         $scope.recommendedItem.description = {
           lang_code: $scope.selectedLanguage,
           text: $scope.recommendedItem.description.originalObject.description.text
         }
+      //Second case : description only set from written text in field
       } else if ($scope.recommendedItem.description.originalObject) {
         $scope.recommendedItem.description = {
           lang_code: $scope.selectedLanguage,
@@ -86,6 +78,7 @@ angular.module('ilApp')
       }
 
       //Set potential supplier from autocomplete
+      //First case : supplier chosen by clicking a suggestion
       if ($scope.recommendedItem.potentialSupplier != void 0
         && $scope.recommendedItem.potentialSupplier.originalObject != void 0
         && $scope.recommendedItem.potentialSupplier.originalObject.id != void 0) {
@@ -96,9 +89,11 @@ angular.module('ilApp')
           $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.originalObject;
 
         }
-      else if ($scope.supplierValue != false) {
+      //Second case : supplier set from text written in field
+      else if ($scope.supplierValue != null) {
         $scope.recommendedItem.potentialSupplier = $scope.supplierValue;
       }
+      //Third case : field auto-filled with previous data and untouched by user
       else if ($scope.recommendedItem.potentialSupplier.name) {
         $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.name;
       }
