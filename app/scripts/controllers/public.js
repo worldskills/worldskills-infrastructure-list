@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, UPLOADS_URL, Auth, APP_ROLES, $aside) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
 
     $scope.eventId = $state.params.eventId;
     $scope.skillId = $state.params.skillId;
@@ -29,7 +29,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
                 categoriesIndexed[category.id] = category;
             });
         }));
-
+ 
     promises.push(Events.getSkillManagement($state.params.skillId).then(function(res){
         $scope.skillManagement = res.data.person_positions;
       }));
@@ -111,4 +111,37 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         }).result.then(postClose, postClose);
       };
 
+      $scope.suggestDeletion = function (parent, item) {
+        $scope.recommendedItem = {
+          requestedItemId : item.id,
+          description : item.description,
+          quantity : item.quantity,
+          multiplier : item.multiplier,
+          multiplyFactor : item.multiply_factor,
+          potentialSupplier :item.supplier,
+          price: item.price,
+          wrongSuppliedItem : false,
+          comment: "",
+          deletionSuggestion: true,
+          rejected: false,
+          person: {
+            id: auth.user.id
+          }
+        };
+
+        $confirm({
+            recommendedItem: $scope.recommendedItem,
+            ok: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.OK')
+        },
+        {
+          templateUrl: 'views/suggestDeletionModal.html'
+        }).then(function() {
+          $scope.recommendedItem.comment = $('#comment').val();
+          RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.skillId).then(function(result) {
+            WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
+          }, function(error) {
+            WSAlert.danger(error);    
+          });
+        });
+      }
 });

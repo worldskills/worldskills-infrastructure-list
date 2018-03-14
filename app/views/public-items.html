@@ -179,7 +179,7 @@
                           <td ng-if="canRecommend()">
                               <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-warning btn-xs" ng-click="suggestModification(parent, item)" style="margin-right:8px;"><span
                                 class="glyphicon glyphicon-edit"></span></a>
-                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-danger btn-xs" data-toggle="modal" data-target=".modal-rejection" style="margin-right:8px;"><span
+                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(parent, item)" style="margin-right:8px;"><span
                               class="glyphicon glyphicon-remove"></span></a>
                           </td>
                         </tr>
@@ -199,19 +199,4 @@
 <div class="il-public-items-back">
     <p><a href="https://www.worldskills.org/internal/" translate>BACK_TO_HOME</a></p>
     <br/>
-</div>
-
-<div class="modal fade modal-rejection" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body text-center">
-        <div translate style="margin-bottom: 32px;">CONFIRM_DELETION_SUGGESTION</div>
-          <textarea rows="10" name="extra_details" class="form-control" placeholder="{{ 'PLACEHOLDER.EXTRA_DETAILS_COMMENTS' | translate }}"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" translate>BUTTON_CANCEL</button>
-        <button type="button" class="btn btn-primary" translate>BUTTON_SUBMIT</button>
-      </div>
-    </div>
-  </div>
 </div>

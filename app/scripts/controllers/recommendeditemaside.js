@@ -105,9 +105,6 @@ angular.module('ilApp')
 
 
       if($scope.recommendedItem.requestedItemId) {
-
-        console.log($scope.recommendedItem);
-
         RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
           $uibModalInstance.dismiss();
           WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_EDIT'));

@@ -40,6 +40,20 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
+    RecommendedItems.suggestDeletion = function(item, eventId, skillId) {
+      
+      var deferred = $q.defer();
+
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId + "/suggest-delete", item).then(function(result) {
+        deferred.resolve(result.data);
+      },
+      function(error) {
+        deferred.reject("Could not suggest delete for item : " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    };
+
     return RecommendedItems;
 
   });
