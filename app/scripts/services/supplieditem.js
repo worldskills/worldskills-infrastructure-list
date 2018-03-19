@@ -102,6 +102,18 @@ angular.module('ilApp')
         return deferred.promise;
       },
 
+      cloneItem: function(item, eventId){
+        var deferred = $q.defer();
+
+        $http.post(API_IL + '/items/' + eventId + '/supplied_items/' + item.id + '/clone').then(function(res){
+            deferred.resolve(res.data);
+        }, function(error){
+            deferred.reject("Could not clone item: " + error.data.user_msg);
+        });
+
+        return deferred.promise;
+      },
+
       combineItems: function(items, masterItem){
         var deferred = $q.defer();
 
