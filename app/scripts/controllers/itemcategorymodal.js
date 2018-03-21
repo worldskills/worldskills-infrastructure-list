@@ -38,6 +38,11 @@ angular.module('ilApp')
               $scope.$parent.data.categories.push(res);
             } else {
               $scope.$parent.data.subCategories.push(res);
+              for(var i=0;i<$scope.$parent.data.categories.length;i++) {
+                if(res.parent.id === $scope.$parent.data.categories[i].id) {
+                  $scope.$parent.data.categories[i].used = true;
+                }
+              }
             }
             $scope.loading.aside = false;
             $uibModalInstance.dismiss();
