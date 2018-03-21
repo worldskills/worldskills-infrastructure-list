@@ -94,11 +94,7 @@ angular.module('ilApp')
         $scope.loading.items = false;
       })
       .catch(function (error) {
-        if(error.code == "2200-700"){
-          $scope.items = {};
-        } else {
-          WSAlert.danger(error);
-        }
+        WSAlert.danger(error);
         $scope.loading.items = false;
       });
     }

@@ -25,7 +25,10 @@ angular.module('ilApp')
       $uibModalInstance.dismiss();
     };
 
-    $scope.itemsSelected = $scope.items.filter(item => item.selected);
+    $scope.itemsSelected = $scope.items.filter(function (item) {
+      return item.selected;
+    });
+
     //Edition are available only if at least 1 item is selected
     //We can consider the first element of the array as a reference
     $scope.editedItem = {};
