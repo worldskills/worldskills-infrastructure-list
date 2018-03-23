@@ -490,6 +490,32 @@ angular.module('ilApp')
       });
 
     };
+
+    // split supplied item
+    $scope.splitSuppliedItem = function(item) {
+
+      $confirm({
+        title: 'Split Supplied Item',
+        text: 'Create a copy of the supplied item and link it to the requested item?',
+      }).then(function () {
+
+        SuppliedItem.cloneItem(item.supplied_item, $scope.event_id).then(function (res) {
+
+          item.supplied_item = res;
+
+          Items.saveItemSuppliedItem(item, $scope.event_id).then(function (result) {
+            // supplied item updated
+          }, function (error) {
+            WSAlert.danger(error);
+          });
+
+        }, function (error) {
+          WSAlert.danger(error);
+        });
+      });
+
+    };
+
   })
 .directive('requestedItem', function () {
   return {
