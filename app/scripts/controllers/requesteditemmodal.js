@@ -83,7 +83,9 @@ angular.module('ilApp')
       return Items.getCategories(v.category.list.skill.id)
         .then(function(categories){
           if($scope.editForm.category.$dirty){
-            var cat = categories.filter(cat => cat.category.id == $scope.editedItem.category.id);
+            var cat = categories.filter(function (cat) {
+              return cat.category.id == $scope.editedItem.category.id
+            });
             if(cat.length > 0){
               v.category = cat[0];
             }
