@@ -54,6 +54,20 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
+    RecommendedItems.getRecommendations = function(eventId) {
+      
+      var deferred = $q.defer();
+
+      $http.get(API_IL + "/recommended-items/event/" + eventId + "/recommendations").then(function(result) {
+        deferred.resolve(result.data);
+      },
+      function(error) {
+        deferred.reject("Could not get recommendations : " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    }
+
     return RecommendedItems;
 
   });

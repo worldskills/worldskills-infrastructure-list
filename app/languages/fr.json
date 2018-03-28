@@ -488,5 +488,8 @@
   "SUGGEST_MODIFICATION": "Suggérer une modification",
   "WRONG_SUPPLIED_ITEM": "Item de catalogue incorrect",
   "CONFIRM_DELETION_SUGGESTION": "Souhaitez-vous vraiment suggérer la suppression de cet item ? Vous pouvez spécifier une raison dans le champ ci-dessous (optionnel)",
-  "SUGGEST_DELETE": "Suggérer la suppression"
+  "SUGGEST_DELETE": "Suggérer la suppression",
+  "RECOMMENDATIONS": "Recommandations",
+  "TH_ITEM_APPLICANT": "Demandeur",
+  "TH_ITEM_DATE_AND_TIME": "Date et heure"
 }

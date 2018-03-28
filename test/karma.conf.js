@@ -60,6 +60,7 @@ module.exports = function(config) {
       'bower_components/angular-file-upload/dist/angular-file-upload.min.js',
       'bower_components/angular-moment/angular-moment.js',
       'bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js',
+      'bower_components/lightgallery.js/dist/js/lightgallery.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

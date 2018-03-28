@@ -98,7 +98,6 @@ angular.module('ilApp')
         $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.name;
       }
 
-
       if($scope.recommendedItem.requestedItemId) {
         RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
           $uibModalInstance.dismiss();
@@ -107,6 +106,10 @@ angular.module('ilApp')
           WSAlert.danger(error);
         });
       } else {    
+        $scope.recommendedItem.person = {
+          id: auth.user.id
+        };
+
         RecommendedItems.suggestNew($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
           $uibModalInstance.dismiss();
           WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ADD'));
