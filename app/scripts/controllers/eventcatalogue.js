@@ -122,7 +122,6 @@ angular.module('ilApp')
             condition: uiGridConstants.filter.STARTS_WITH,
           }
         }, //datetime
-        {field: 'category', name: $translate.instant('TH_CATEGORY'), width: '100'},
         {field: 'disposal_category', name: $translate.instant('TH_DISPOSAL_CATEGORY'), width: '100'},
         {field: 'location', name: $translate.instant('TH_LOCATION'), width: '100'},
         {field: 'hs_code', name: $translate.instant('TH_HS_CODE'), width: '100'},
