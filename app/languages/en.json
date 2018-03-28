@@ -193,7 +193,6 @@
     "PO_NUMBER":"PO Number",
     "DELIVERY":"Delivery",
     "TIME":"Time",
-    "HS_CODE":"HS Code",
     "ELECTRICITY_VOLTS":"Electricity - Volts",
     "ELECTRICITY_AMPS":"Electricity - Amps",
     "ELECTRICITY_PHASE":"Electricity Phase",
@@ -411,8 +410,6 @@
   "LOC_VENUE": "Venue",
   "LOC_OTHER": "Other",
 
-  "HS_CODE":"HS Code",
-
   "LEAD_TIME": "Lead time",
   "LEAD_10_WEEKS": "&gt; 10 weeks",
   "LEAD_8-10_WEEKS": "8 - 10 weeks",
@@ -450,7 +447,6 @@
   "TH_PRIORITY":"Priority",
   "TH_DISPOSAL_CATEGORY": "Disposal category",
   "TH_LOCATION": "Location",
-  "TH_HS_CODE":"HS Code",
   "TH_LEAD_TIME": "Lead time",
   "TH_ELECTRICITY_VOLTS":"Electricity - Volts",
   "TH_ELECTRICITY_AMPS":"Electricity - Amps",

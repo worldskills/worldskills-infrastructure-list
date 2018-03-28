@@ -208,9 +208,7 @@
                         <option value="Donate" translate>CAT_RETAIN</option>
                     </select>
                   </div>
-                </div>
 
-                <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.category.$dirty && editForm.category.$error.required, 'has-success': !editForm.category.$error.required}">
                     <label class='control-label' translate>LOCATION</label>
                     <select name="location" class="input-sm form-control" ng-model='item.location'>
@@ -219,11 +217,6 @@
                       <option value="Venue" translate>LOC_VENUE</option>
                       <option value="Other" translate>LOC_OTHER</option>
                     </select>
-                  </div>
-
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.disposal_category.$dirty && editForm.disposal_category.$error.required, 'has-success': !editForm.disposal_category.$error.required}">
-                    <label class='control-label' translate>HS_CODE</label>
-                    <input type="text" name="hs_code" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.HS_CODE' | translate }}" ng-model='item.hs_code'>
                   </div>
                 </div>
 

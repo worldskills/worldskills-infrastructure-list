@@ -192,7 +192,6 @@
     "PO_NUMBER":"Bon de commande",
     "DELIVERY":"Livraison",
     "TIME":"Heure",
-    "HS_CODE":"Code HS",
     "ELECTRICITY_VOLTS":"Électricité - Volts",
     "ELECTRICITY_AMPS":"Électricité - Ampères",
     "ELECTRICITY_PHASE":"Phase électrique",
@@ -404,8 +403,6 @@
   "LOC_VENUE": "Lieu de l'événement",
   "LOC_OTHER": "Autre",
 
-  "HS_CODE": "Code HS",
-
   "LEAD_TIME": "Délai de disponibilité",
   "LEAD_10_WEEKS": "> 10 semaines",
   "LEAD_8-10_WEEKS": "8 - 10 semaines",
@@ -446,7 +443,6 @@
   "TH_PRIORITY":"Priorité",
   "TH_DISPOSAL_CATEGORY": "Catégorie de restitution",
   "TH_LOCATION": "Stockage",
-  "TH_HS_CODE":"Code HS",
   "TH_LEAD_TIME": "Délai de disponibilité",
   "TH_ELECTRICITY_VOLTS":"Électricité - Volts",
   "TH_ELECTRICITY_AMPS":"Électricité - Ampères",
