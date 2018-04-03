@@ -109,6 +109,16 @@
               <span ng-if="!editForm.additional_quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               <span ng-if="editForm.additional_quantity.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             </div>
+            <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.unit.$dirty && editForm.unit.$error.required, 'has-success': !editForm.unit.$error.required}">
+              <label class='control-label' translate>UNIT</label>
+              <select name="unit" class="input-sm form-control" ng-model="item.unit">
+                  <option value=""></option>
+                  <option value="pcs" translate>UNIT_PIECES</option>
+                  <option value="kg" translate>UNIT_KILOGRAMS</option>
+                  <option value="g" translate>UNIT_GRAMS</option>
+                  <option value="l" translate>UNIT_LITRES</option>
+              </select>
+            </div>
 
               <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
                 <label class='control-label' translate>POTENTIAL_SUPPLIER</label>

@@ -147,7 +147,6 @@
         <th translate>TH_SUPPLIER</th>
         <th translate>TH_EXTRA_DETAILS</th>
         <th translate>TH_UNIT_COST</th>
-        <th translate>TH_UNIT</th>
         <th translate>TH_TOTAL_PRICE</th>
       </tr>
     </thead>
@@ -173,19 +172,18 @@
         <td>{{item.supplier}}</td>
         <td>{{item.supplied_item.extra_details}}</td>
         <td>{{item.supplied_item.unit_cost}}</td>
-        <td>{{item.supplied_item.unit}}</td>
         <td>{{item.price}}</td>
       </tr>
     </tbody>
     <tbody ng-show="!items.length || loading.items">
       <tr>
-        <td ng-if="loading.items" colspan="12"><ws-spinner></ws-spinner></td>
-        <td ng-if="!loading.items" colspan="12" class="text-center" translate>NO_ITEMS</td>
+        <td ng-if="loading.items" colspan="11"><ws-spinner></ws-spinner></td>
+        <td ng-if="!loading.items" colspan="11" class="text-center" translate>NO_ITEMS</td>
       </tr>
     </tbody>
     <tfoot ng-if="items.length && !loading.items">
       <tr>
-        <td colspan="12" class="text-center">
+        <td colspan="11" class="text-center">
           <uib-pagination total-items="items_total_count" ng-model="current_page"
             items-per-page='items_per_page' class="pagination-small"
             boundary-links="true" rotate="false" max-size="5"
