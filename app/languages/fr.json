@@ -15,8 +15,8 @@
       "PER_NUM_EXPERTS":"pour X experts"
     },
     "ITEM_STATUS_TEXT":{
-      "RED":"Demandé",
-      "YELLOW":"En attente",
+      "RED":"A rechercher",
+      "YELLOW":"En cours",
       "GREEN":"Confirmé",
       "BLACK":"Secret"
     }
