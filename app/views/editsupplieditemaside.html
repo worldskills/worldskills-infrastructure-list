@@ -10,7 +10,7 @@
 
     <form class="editForm" name='editForm'>
         <uib-tabset active="supplied01">
-          <uib-tab index="0" heading="{{'SUPPLIED_ITEM.GENERAL' | translate}}">
+          <uib-tab index="0" heading="{{'SUPPLIED_ITEM_TAB.GENERAL' | translate}}">
             <div class='well'>
               <fieldset><legend class="aside" translate>ITEM_INFORMATION_PUBLISHED</legend>
                 <div class="row">
@@ -73,7 +73,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="1" heading="{{'SUPPLIED_ITEM.HOST' | translate}}">
+          <uib-tab index="1" heading="{{'SUPPLIED_ITEM_TAB.HOST' | translate}}">
             <div class='well'>
               <fieldset><legend class="aside" translate>SUPPLY_HOST_INFO</legend>
                 <div class="row">
@@ -131,7 +131,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="2" heading="{{'SUPPLIED_ITEM.LOGISTICS' | translate}}">
+          <uib-tab index="2" heading="{{'SUPPLIED_ITEM_TAB.LOGISTICS' | translate}}">
             <div class='well'>
               <fieldset>
                 <legend class="aside" translate>LOGISTICS_INFORMATION</legend>
@@ -225,7 +225,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="3" heading="{{'SUPPLIED_ITEM.INSTALLATION' | translate}}">
+          <uib-tab index="3" heading="{{'SUPPLIED_ITEM_TAB.INSTALLATION' | translate}}">
             <div class='well'>
               <fieldset>
                 <legend class="aside" translate>SERVICES_UTILITIES_INSTALLATION</legend>
@@ -291,7 +291,7 @@
           </uib-tab>
 
 
-          <uib-tab index="4" heading="{{'SUPPLIED_ITEM.FILES' | translate}}">
+          <uib-tab index="4" heading="{{'SUPPLIED_ITEM_TAB.FILES' | translate}}">
             <div class='well'>
               <fieldset>
                 <legend class="aside" translate>FILES_AND_PICTURES</legend>
@@ -404,7 +404,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="5" heading="{{'SUPPLIED_ITEM.EXTRA' | translate}}">
+          <uib-tab index="5" heading="{{'SUPPLIED_ITEM_TAB.EXTRA' | translate}}">
             <div class='well'>
               <fieldset>
                 <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
