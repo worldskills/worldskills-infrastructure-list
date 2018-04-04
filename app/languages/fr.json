@@ -21,7 +21,7 @@
       "BLACK":"Secret"
     }
   },
-  "SUPPLIED_ITEM":{
+  "SUPPLIED_ITEM_TAB":{
     "GENERAL":"Général",
     "HOST":"Hôte",
     "LOGISTICS":"Logistique",
@@ -493,7 +493,9 @@
   "AIR_NEEDED": "Besoin d'air",
   "WATER_NEEDED": "Besoin d'eau",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
+  "REQUESTED_ITEM": "Ligne d'infrastructure",
   "REQUESTED_ITEMS": "Recherche et extraction d'items",
+  "SUPPLIED_ITEM": "Item",
   "CLEAR": "Réinitialiser",
   "MULTIPLE_EDITION":"Édition multiple",
   "EXTRACT_RESULTS": "Extraire les résultats",
