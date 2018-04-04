@@ -70,6 +70,7 @@
       <div class='panel-body'>
         <ul>
           <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.EDIT_ITEM_CATEGORIES)"><a ui-sref="itemCategory({eventId: selectedEvent.id})" translate>ITEM_CATEGORY_AND_SUBCATEGORY</a></li>
+          <li><a ui-sref="requestedItems({eventId: selectedEvent.id})" translate>REQUESTED_ITEMS</a></li>
           <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.EDIT_CONFIG)"><a ui-sref="event.skill-participants-override({eventId: selectedEvent.id})" translate>SKILL_PARTICIPANTS_OVERRIDE</a></li>
           <li><a ui-sref="event.catalogue({eventId: selectedEvent.id})" translate>CATALOGUE_EDITOR</a></li>
           <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER)"><a ui-sref="recommendations({eventId: selectedEvent.id})" translate>RECOMMENDATIONS</a></li>
