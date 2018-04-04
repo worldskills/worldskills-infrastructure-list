@@ -523,11 +523,23 @@
     "CLOSE": "Close",
     "TODAY": "Today",
     "CLEAR": "Clear"
+<<<<<<< HEAD
+  }
+=======
   },
   "PAGER":{
     "FIRST":"First",
     "PREVIOUS":"Previous",
     "NEXT":"Next",
     "LAST":"Last"
-  }
+  },
+  "SUGGEST_ADDITION": "Recommend an addition",
+  "SUGGEST_MODIFICATION": "Recommend a modification",
+  "WRONG_SUPPLIED_ITEM": "Wrong supplied item",
+  "CONFIRM_DELETION_SUGGESTION": "Do you really wish to recommend this item's deletion? You can provide a reason in the section below (optional)",
+  "SUGGEST_DELETE": "Recommend item deletion",
+  "RECOMMENDATIONS": "Recommendations",
+  "TH_ITEM_APPLICANT": "Applicant",
+  "TH_ITEM_DATE_AND_TIME": "Date and time"
+>>>>>>> 3f249eb... Translations fixes
 }

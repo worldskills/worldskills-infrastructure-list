@@ -458,6 +458,7 @@
   "COULD_NOT_REMOVE_ITEM_SUB_CATEGORY": "Impossible de supprimer la famille : {{error}}",
   "TH_ITEM_CATEGORY": "Super famille",
   "TH_ITEM_SUBCATEGORY": "Famille",
+  "TH_SUPPLIER":"Fournisseur",
   "TH_SUPPLY_TYPE": "Type de fourniture",
   "TH_UNIT_COST": "Coût unitaire",
   "TH_UNIT": "Unité",
@@ -476,12 +477,9 @@
   "TH_VENTILATION_FUME_EXTRACTION":"Ventilation / extraction de fumée",
   "TH_GAS_REQUIREMENTS":"Besoins en gaz",
   "TH_ANCHOR_FIXING_BASE_REQUIREMENTS":"Ancrage, fixation, autres besoins",
+  "TH_EXTRA_DETAILS":"Détails complémentaires / Commentaires",
   "TH_MODIFIED": "Modifié",
   "TH_USER_GENERATED": "Utilisateur généré",
-  "TH_SKILL_SECTOR": "Pôle métier",
-  "TH_SUPPLIER": "Partenaire",
-  "TH_EXTRA_DETAILS": "Remarques",
-  "TH_TOTAL_PRICE": "Prix total",
   "ADD_CATEGORY":"Ajouter une super famille",
   "ADD_SUB_CATEGORY":"Ajouter une famille",
   "ITEM_CATEGORY": "Super famille",
@@ -493,6 +491,12 @@
   "AIR_NEEDED": "Besoin d'air",
   "WATER_NEEDED": "Besoin d'eau",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
+  "TH_SKILL_SECTOR": "Pôle métier",
+  "TH_SUPPLIER": "Partenaire",
+  "TH_EXTRA_DETAILS": "Remarques",
+  "TH_UNIT_COST": "Coût unitaire",
+  "TH_UNIT": "Unité",
+  "TH_TOTAL_PRICE": "Prix total",
   "REQUESTED_ITEMS": "Recherche et extraction d'items",
   "CLEAR": "Réinitialiser",
   "MULTIPLE_EDITION":"Édition multiple",
@@ -523,11 +527,23 @@
     "CLOSE": "Fermer",
     "TODAY": "Aujourd'hui",
     "CLEAR": "Effacer"
+<<<<<<< HEAD
+  }
+=======
   },
   "PAGER":{
     "FIRST":"Premier",
     "PREVIOUS":"Précédent",
     "NEXT":"Suivant",
     "LAST":"Dernier"
-  }
+  },
+  "SUGGEST_ADDITION": "Suggérer un ajout",
+  "SUGGEST_MODIFICATION": "Suggérer une modification",
+  "WRONG_SUPPLIED_ITEM": "Item de catalogue incorrect",
+  "CONFIRM_DELETION_SUGGESTION": "Souhaitez-vous vraiment suggérer la suppression de cet item ? Vous pouvez spécifier une raison dans le champ ci-dessous (optionnel)",
+  "SUGGEST_DELETE": "Suggérer la suppression",
+  "RECOMMENDATIONS": "Recommandations",
+  "TH_ITEM_APPLICANT": "Demandeur",
+  "TH_ITEM_DATE_AND_TIME": "Date et heure"
+>>>>>>> 3f249eb... Translations fixes
 }

@@ -184,10 +184,21 @@
     <tfoot ng-if="items.length && !loading.items">
       <tr>
         <td colspan="11" class="text-center">
-          <uib-pagination total-items="items_total_count" ng-model="current_page"
-            items-per-page='items_per_page' class="pagination-small"
-            boundary-links="true" rotate="false" max-size="5"
-            ng-change="changePage(current_page)"></uib-pagination>
+          <uib-pagination
+            total-items="items_total_count"
+            ng-model="current_page"
+            items-per-page='items_per_page'
+            class="pagination-small"
+            boundary-links="true"
+            rotate="false"
+            max-size="5"
+            ng-change="changePage(current_page)"
+            first-text="{{'PAGER.FIRST' | translate}}"
+            previous-text="{{'PAGER.PREVIOUS' | translate}}"
+            next-text="{{'PAGER.NEXT' | translate}}"
+            last-text="{{'PAGER.LAST' | translate}}"
+            >
+          </uib-pagination>
         </td>
       </tr>
     </tfoot>
