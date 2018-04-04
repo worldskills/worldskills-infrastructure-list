@@ -290,6 +290,12 @@
   "STATUS": "État",
   "QUANTITY": "Quantité",
   "SCROLL_MORE": "Faire défiler pour afficher plus de résultats...",
+  "EDIT_SUPPLIED_ITEM": "Edit Supplied Item",
+  "SWITCH_SUPPLIED_ITEM": "Switch Supplied Item",
+  "SPLIT_SUPPLIED_ITEM": "Split Supplied Item",
+  "BUTTON_SEARCH": "Search",
+  "PLEASE_TYPE_SEARCH_TERM": "Please type in a search term above and click search.",
+  "NO_ITEMS_FOUND_PLEASE_RETYPE": "No items found, type in a different search term above and click search.",
 
   "WHICH_DATA": "Sélectionnez les données à charger",
   "CHANGE_FILTERS": "Vous pourrez appliquer des filtres une fois le catalogue chargé",
