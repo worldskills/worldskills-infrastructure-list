@@ -6,6 +6,7 @@
       <div class="row">
         <div class="col col-sm-12 col-md-6">
           <div class='well'>
+            <h5 translate>REQUESTED_ITEM</h5>
             <div ng-if='canEditItemStatus'>
               <div class="form-group editForm has-feedback has-success">
                 <label class='control-label' translate>STATUS</label>
@@ -206,6 +207,39 @@
               </div>
             </div>
             <hr>
+          </div>
+          <div class="form-group addForm" ng-if="suppliedItem.originalObject && !suppliedItem.originalObject.id">
+            <div class="well">
+              <h5 translate>SUPPLIED_ITEM</h5>
+              <div class="form-group addForm">
+                <label class="control-label" translate>DESCRIPTION</label>
+                <input disabled="disabled" type="text" class="input-sm form-control" ng-model="suppliedItem.originalObject">
+              </div>
+              <div ng-if="subCategories.length > 0" class="form-group has-feedback">
+                <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
+                <ui-select ng-required="false" ng-model="item.item_category" theme="bootstrap">
+                  <ui-select-match placeholder="{{ 'ITEM_SUB_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
+                  <ui-select-choices repeat="category as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                    <div ng-bind-html="category.name.text"></div>
+                    <small>
+                      {{category.description.text}}
+                    </small>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="compressed_air" placeholder="{{ 'PLACEHOLDER.COMPRESSED_AIR' | translate }}" ng-model='item.compressed_air'/>
+                  <span translate>COMPRESSED_AIR</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="ventilation_fume_extraction" placeholder="{{ 'PLACEHOLDER.VENTILATION_FUME_EXTRACTION' | translate }}" ng-model='item.ventilation_fume_extraction'/>
+                  <span translate>VENTILATION_FUME_EXTRACTION</span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
