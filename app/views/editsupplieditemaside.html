@@ -49,7 +49,7 @@
                   >
                     <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
                     <ui-select ng-required="false" ng-model="item.item_category" theme="bootstrap">
-                      <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_ITEM_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
+                      <ui-select-match placeholder="{{ 'ITEM_SUB_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
                       <ui-select-choices repeat="category as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
                         <div ng-bind-html="category.name.text"></div>
                         <small>
@@ -61,7 +61,7 @@
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.priority.$error.required, 'has-success': !editForm.priority.$error.required}">
                     <label class='control-label' translate>TH_PRIORITY</label>
                     <ui-select ng-required="false" ng-model="item.priority" theme="bootstrap">
-                      <ui-select-match>{{item.priority | translate}}</ui-select-match>
+                      <ui-select-match placeholder="{{ 'TH_PRIORITY' | translate }}">{{item.priority | translate}}</ui-select-match>
                       <ui-select-choices repeat="priority in priorities">
                         <div translate>{{priority}}</div>
                       </ui-select-choices>
