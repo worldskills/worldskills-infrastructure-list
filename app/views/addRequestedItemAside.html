@@ -89,7 +89,8 @@
                 <div class="form-group addForm has-feedback has-success">
                   <label class='control-label' translate>MULTIPLIER</label>
                   <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
-                  <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
+                  <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as ('CONSTANT.MULTIPLIERS.' + multi.id) | translate for multi in multipliers"></select>
+
                 </div>
               </div>
               <div class="col-md-4">
