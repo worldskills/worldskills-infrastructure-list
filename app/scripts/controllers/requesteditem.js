@@ -151,6 +151,6 @@ angular.module('ilApp')
       });
 
       $scope.groupBySector = function(item){
-          return item.sector.name.text;
+          return item.sector && item.sector.name.text;
       }
   });

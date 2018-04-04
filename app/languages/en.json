@@ -21,6 +21,14 @@
       "BLACK":"Secret"
     }
   },
+  "SUPPLIED_ITEM":{
+    "GENERAL":"General",
+    "HOST":"Host",
+    "LOGISTICS":"Logistics",
+    "INSTALLATION":"Installation",
+    "FILES":"Files",
+    "EXTRA":"Extra"
+  },
   "ADD_ITEM_TO_THE_SET":{
     "TITLE":"Add item to the set",
     "TEXT":"Are you sure you want to add {{text}} to the standard set?"
@@ -183,6 +191,7 @@
     "X_NUMBER":"X number",
     "POTENTIAL_SUPPLIER":"Potential supplier",
     "ESTIMATED_PRICE":"Estimated price",
+    "PRICE":"Price",
     "ADDITIONAL_QUANTITY":"Additional quantity",
     "MANUFACTURER":"Manufacturer",
     "MODEL":"Model",
@@ -514,5 +523,11 @@
     "CLOSE": "Close",
     "TODAY": "Today",
     "CLEAR": "Clear"
+  },
+  "PAGER":{
+    "FIRST":"First",
+    "PREVIOUS":"Previous",
+    "NEXT":"Next",
+    "LAST":"Last"
   }
 }
