@@ -21,7 +21,7 @@
       "BLACK":"Secret"
     }
   },
-  "SUPPLIED_ITEM":{
+  "SUPPLIED_ITEM_TAB":{
     "GENERAL":"General",
     "HOST":"Host",
     "LOGISTICS":"Logistics",
@@ -493,7 +493,9 @@
   "TH_UNIT_COST": "Unit cost",
   "TH_UNIT": "Unit",
   "TH_TOTAL_PRICE": "Total price",
+  "REQUESTED_ITEM": "Requested item",
   "REQUESTED_ITEMS": "Requested items",
+  "SUPPLIED_ITEM": "Supplied items",
   "CLEAR": "Clear",
   "MULTIPLE_EDITION":"Edit Selected",
   "EXTRACT_RESULTS": "Download results",
