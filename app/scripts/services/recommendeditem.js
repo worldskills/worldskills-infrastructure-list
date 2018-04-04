@@ -41,7 +41,7 @@ angular.module('ilApp')
     };
 
     RecommendedItems.suggestDeletion = function(item, eventId, skillId) {
-      
+
       var deferred = $q.defer();
 
       $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId + "/suggest-delete", item).then(function(result) {
@@ -55,7 +55,7 @@ angular.module('ilApp')
     };
 
     RecommendedItems.getRecommendations = function(eventId) {
-      
+
       var deferred = $q.defer();
 
       $http.get(API_IL + "/recommended-items/event/" + eventId + "/recommendations").then(function(result) {
@@ -63,6 +63,18 @@ angular.module('ilApp')
       },
       function(error) {
         deferred.reject("Could not get recommendations : " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    }
+
+    RecommendedItems.acceptRecommendation = function(item, eventId) {
+      var deferred = $q.defer();
+      $http.get(API_IL + "/recommended-items/event/" + eventId + "/accept/" + item.id).then(function(result) {
+        deferred.resolve(result.data);
+      },
+      function(error) {
+        deferred.reject("Could not accep recommendations : " + error.data.user_msg);
       });
 
       return deferred.promise;

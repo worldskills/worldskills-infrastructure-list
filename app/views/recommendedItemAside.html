@@ -58,7 +58,7 @@
                   </div>
                 </div>
           </div>
-    
+
           <div class='row'>
             <div class='col col-xs-12 col-md-4'>
               <div class="form-group addForm has-feedback" ng-class="{'has-error': addForm.supplier.$error.required, 'has-success': !addForm.supplier.$error.required}">
@@ -93,7 +93,7 @@
                 </div>
             </div>
           </div>
-    
+
           <div class="row">
             <div class="col col-xs-12 col-md-4 form-group">
               <div data-nodrag class="checkbox addForm form-group has-feedback has-success" style="margin-top: -20px;">
@@ -106,7 +106,7 @@
               <label class='control-label' translate>EXTRA_DETAILS_COMMENTS</label>
               <textarea rows="10" name="extra_details" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.EXTRA_DETAILS_COMMENTS' | translate }}" ng-model='recommendedItem.comment'></textarea>
             </div>
-          </div>           
+          </div>
         </uib-tab>
 
         <uib-tab index="1" heading="Files">
@@ -200,7 +200,7 @@
                   <div ng-show="uploader.queue.length > 0">
                       <div>
                           <span translate>QUEUE_PROGRESS:</span>
-                          <div class="progress" style="">
+                          <div class="progress">
                               <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                           </div>
                       </div>
@@ -222,7 +222,7 @@
             </div>
           </uib-tab>
         </uib-tabset>
-      
+
       <button ng-disabled="addForm.$error.required" ng-click="saveItem();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>

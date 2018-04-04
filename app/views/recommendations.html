@@ -75,7 +75,7 @@
                             </td>
                             <td rowspan="2" class="text-center" translate>
                                 {{item.wrongSuppliedItem}}
-                                </td>
+                            </td>
                             <td rowspan="2" class="description">
                                 {{item.comment}}
                             </td>
@@ -120,7 +120,7 @@
                 </table>
 
                 <div class="button-group">
-                    <button type="button" class="pull-right btn btn-sm btn-success">
+                    <button type="button" ng-click="accept(item);" class="pull-right btn btn-sm btn-success">
                         <span>Accept</span>
                     </button>
 

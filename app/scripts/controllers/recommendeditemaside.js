@@ -8,16 +8,18 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('recommendedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS, ITEM_STATUS, ITEM_STATUS_TEXT, API_IL, RecommendedItems, $translate, auth) {
+  .controller('recommendedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS, MULTIPLIER_DEFAULT, ITEM_STATUS, ITEM_STATUS_TEXT, API_IL, RecommendedItems, $translate, auth) {
 
     $scope.multipliers = MULTIPLIERS;
 
     $scope.selectedLanguage = $translate.use();
 
-    $scope.recommendedItem = {};
+    $scope.recommendedItem = {
+      multiplier: MULTIPLIER_DEFAULT
+    };
     $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.event_id + '/search?q=';
     $scope.searchAPI = API_IL + '/items/' + $scope.event_id + '/supplied_items/?search=';
-    
+
     if($scope.item && $scope.item.id) {
       $scope.recommendedItem = {
         requestedItemId : $scope.item.id,
@@ -40,7 +42,7 @@ angular.module('ilApp')
     }
 
     $scope.supplierValue = null;
-    
+
     $scope.supplierChanged = function (val) {
       if(val == "") {
         $scope.supplierValue = null;
@@ -65,6 +67,7 @@ angular.module('ilApp')
       //First case : description set by clicking a suggestion from catalogue
       if($scope.recommendedItem.description.originalObject &&
         $scope.recommendedItem.description.originalObject.description) {
+        $scope.recommendedItem.suppliedItem = $scope.recommendedItem.description.originalObject;
         $scope.recommendedItem.description = {
           lang_code: $scope.selectedLanguage,
           text: $scope.recommendedItem.description.originalObject.description.text
@@ -94,7 +97,7 @@ angular.module('ilApp')
         $scope.recommendedItem.potentialSupplier = $scope.supplierValue;
       }
       //Third case : field auto-filled with previous data and untouched by user
-      else if ($scope.recommendedItem.potentialSupplier.name) {
+      else if ($scope.recommendedItem.potentialSupplier != void 0) {
         $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.name;
       }
 
@@ -105,7 +108,7 @@ angular.module('ilApp')
         }, function(error) {
           WSAlert.danger(error);
         });
-      } else {    
+      } else {
         $scope.recommendedItem.person = {
           id: auth.user.id
         };
