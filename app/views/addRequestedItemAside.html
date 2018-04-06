@@ -113,19 +113,19 @@
             <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.unit.$dirty && editForm.unit.$error.required, 'has-success': !editForm.unit.$error.required}">
               <label class='control-label' translate>UNIT</label>
               <select name="unit" class="input-sm form-control" ng-model="item.unit">
-                  <option value=""></option>
-                  <option value="pcs" translate>UNIT_PIECES</option>
-                  <option value="kg" translate>UNIT_KILOGRAMS</option>
-                  <option value="g" translate>UNIT_GRAMS</option>
-                  <option value="l" translate>UNIT_LITRES</option>
-                  <option value="boxes" translate>UNIT_BOXES</option>
-                  <option value="boots" translate>UNIT_BOOTS</option>
-                  <option value="bottles" translate>UNIT_BOTTLES</option>
-                  <option value="sheets" translate>UNIT_SHEETS</option>
-                  <option value="kits" translate>UNIT_KITS</option>
-                  <option value="m" translate>UNIT_METRES</option>
-                  <option value="m2" translate>UNIT_SQUARE_METRES</option>
-                  <option value="m3" translate>UNIT_CUBIC_METRES</option>
+                <option value=""></option>
+                <option value="pcs" translate="{{UNITS['pcs']}}"></option>
+                <option value="kg" translate="{{UNITS['kg']}}"></option>
+                <option value="g" translate="{{UNITS['g']}}"></option>
+                <option value="l" translate="{{UNITS['l']}}"></option>
+                <option value="boxes" translate="{{UNITS['boxes']}}"></option>
+                <option value="boots" translate="{{UNITS['boots']}}"></option>
+                <option value="bottles" translate="{{UNITS['bottles']}}"></option>
+                <option value="sheets" translate="{{UNITS['sheets']}}"></option>
+                <option value="kits" translate="{{UNITS['kits']}}"></option>
+                <option value="m" translate="{{UNITS['m']}}"></option>
+                <option value="m2" translate="{{UNITS['m2']}}"></option>
+                <option value="m3" translate="{{UNITS['m3']}}"></option>
               </select>
             </div>
 

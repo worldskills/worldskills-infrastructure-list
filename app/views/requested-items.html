@@ -6,85 +6,109 @@
 </div>
 <div class="well">
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
+      <div class="form-group addForm">
+        <label class='control-label' translate>SKILL_SECTOR</label>
+        <ui-select ui-disable-choice="value.status == 'inactive'" ng-model="filters.sector" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL_SECTOR' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_SKILL_SECTORS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+          <ui-select-choices repeat="sector in sectors | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
+            <div ng-bind-html="sector.name.text"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class='control-label' translate>SKILL</label>
         <ui-select ui-disable-choice="value.status == 'inactive'" ng-model="filters.skill" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
           <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_SKILL' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices group-by="groupBySector" repeat="skill in skills">
+          <ui-select-choices repeat="skill in skills | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="skill.name.text"></div>
           </ui-select-choices>
         </ui-select>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class="control-label" translate>ITEM_CATEGORY</label>
-        <ui-select ng-model="filters.item_category" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
+        <ui-select ng-model="filters.item_category" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_ITEM_CATEGORY' | translate }}">
           <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_ITEM_CATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices repeat="category in itemCategories | orderBy:'name.text'">
+          <ui-select-choices repeat="category in itemCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="category.name.text"></div>
           </ui-select-choices>
         </ui-select>
+
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
-        <ui-select ng-model="filters.item_subcategory" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
+        <ui-select ng-model="filters.item_subcategory" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_ITEM_SUBCATEGORY' | translate }}">
           <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_ITEM_SUBCATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices repeat="subcategory in subcategories | orderBy:'name.text'">
+          <ui-select-choices repeat="subcategory in subcategories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="subcategory.name.text"></div>
           </ui-select-choices>
         </ui-select>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class="control-label" translate>NAME</label>
         <div class="input-group">
-          <input type="text" class="form-control" ng-model="filters.description"  ng-model-options='{ debounce: 300 }' ng-change="changeFilters()" placeholder="{{ 'PLACEHOLDER.NAME_OF_THE_ITEM' | translate }}">
+          <input
+            type="text"
+            class="form-control"
+            ng-model="filters.description"
+            ng-model-options='{ debounce: 300 }'
+            ng-change="changeFilters()"
+            title="{{'TITLE.CHOOSE_NAME_OF_THE_ITEM' | translate}}"
+            placeholder="{{ 'PLACEHOLDER.NAME_OF_THE_ITEM' | translate }}"
+            >
           <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class="control-label" translate>CATEGORY</label>
-        <ui-select ng-model="filters.category" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
+        <ui-select ng-model="filters.category" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_CATEGORY' | translate }}">
           <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_CATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices repeat="category in categories | orderBy:'name.text'">
+          <ui-select-choices repeat="category in categories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="category.name.text"></div>
           </ui-select-choices>
         </ui-select>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class="control-label" translate>STATUS</label>
-        <ui-select ng-model="filters.status" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
+        <ui-select ng-model="filters.status" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_STATUS' | translate }}">
           <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_STATUSES' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
+          <ui-select-choices repeat="status in statuses | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="status.name.text"></div>
           </ui-select-choices>
         </ui-select>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class="control-label" translate>SUPPLIER</label>
         <div class="input-group">
-          <input type="text" class="form-control" ng-model="filters.supplier" ng-change="changeFilters()" placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}">
+          <input
+            type="text"
+            class="form-control"
+            ng-model="filters.supplier"
+            ng-change="changeFilters()"
+            title="{{'TITLE.CHOOSE_SUPPLIER' | translate}}"
+            placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}"
+            >
           <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
         </div>
       </div>
     </div>
-    <div class="col-sm-3"></div>
   </div>
   <div class="row mt-2">
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
         <label for="swEnergy" class="control-label" translate>ENERGY_NEEDED</label>
         <div class="material-switch">
@@ -93,7 +117,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
         <label for="swAir" class="control-label" translate>AIR_NEEDED</label>
         <div class="material-switch">
@@ -102,7 +126,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
         <label for="swWater" class="control-label" translate>WATER_NEEDED</label>
         <div class="material-switch">
@@ -111,7 +135,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
         <label for="swElectricity" class="control-label" translate>ELECTRICITY_NEEDED</label>
         <div class="material-switch">
@@ -124,7 +148,7 @@
 
   <div class="text-right mt-2">
     <button class="btn btn-sm btn-default" ng-click="clear()" translate>CLEAR</button>
-    <button class="btn btn-sm btn-primary" ng-disabled="numberItemSelected < 1" ng-click="openMultipleItemEditor()">
+    <button class="btn btn-sm btn-primary" ng-disabled="selectedItemsCount() < 1" ng-click="openMultipleItemEditor()">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate>MULTIPLE_EDITION</span>
     </button>
     <button class="btn btn-sm btn-primary" ng-click="downloadCsv()"><span class="glyphicon glyphicon-save"></span>&nbsp;<span translate>EXTRACT_RESULTS</span></button>
@@ -137,7 +161,9 @@
   <table class="table table-striped vmiddle">
     <thead>
       <tr>
-        <th class="select"><input type="checkbox" ng-model="allSelected" ng-click="selectAll()"></th>
+        <th class="select">
+          <input type="checkbox" ng-model="allSelected" ng-click="selectAll()">
+        </th>
         <th translate>TH_SKILL_SECTOR</th>
         <th translate>TH_SKILL</th>
         <th translate>TH_NAME</th>
@@ -146,44 +172,49 @@
         <th translate>TH_STATUS</th>
         <th translate>TH_SUPPLIER</th>
         <th translate>TH_EXTRA_DETAILS</th>
-        <th translate>TH_UNIT_COST</th>
-        <th translate>TH_TOTAL_PRICE</th>
+        <th translate>TH_ENERGY_NEEDS</th>
+        <th translate>TH_UNIT</th>
+        <th translate width="90px">TH_UNIT_COST</th>
+        <th translate width="90px">TOTAL_PRICE</th>
       </tr>
     </thead>
     <tbody ng-show="items.length && !loading.items">
-      <tr ng-repeat="item in items"  ng-class="{'warning': item.selected}">
+      <tr ng-repeat="item in items"  ng-class="{'warning': item.selected}" ng-click="toggleItem(item)">
         <td class="select">
-          <label for=""><input type="checkbox" ng-model="item.selected" ng-click="selectItem(item)"></label>
+          <input type="checkbox" ng-checked="item.selected"/>
         </td>
         <td>{{item.category.list.skill.sector.name.text}}</td>
         <td>{{item.category.list.skill.name.text}}</td>
         <td>{{item.description.text}}</td>
-        <td>{{item.quantity}}</td>
+        <td>{{item.quantity}} {{'CONSTANT.MULTIPLIERS.' + item.multiplier | translate}}</td>
         <td>{{item.supplied_item.part_number}}</td>
         <td>
-          <span class="label" ng-class="{'label-danger': item.status.id == ITEM_STATUS.RED,
-          'label-warning': item.status.id == ITEM_STATUS.YELLOW,
-          'label-info': item.status.id == ITEM_STATUS.BLACK,
-          'label-success': item.status.id == ITEM_STATUS.GREEN}"
-          >
+          <span class="label" ng-class="{
+            'label-danger': item.status.id == ITEM_STATUS.RED,
+            'label-warning': item.status.id == ITEM_STATUS.YELLOW,
+            'label-info': item.status.id == ITEM_STATUS.BLACK,
+            'label-success': item.status.id == ITEM_STATUS.GREEN
+          }">
             {{item.status.name.text}}
           </span>
         </td>
         <td>{{item.supplier}}</td>
         <td>{{item.supplied_item.extra_details}}</td>
+        <td>{{item.supplied_item.needs_energy | translate}}</td>
+        <td>{{UNITS[item.unit] | translate}}</td>
         <td>{{item.supplied_item.unit_cost}}</td>
         <td>{{item.price}}</td>
       </tr>
     </tbody>
     <tbody ng-show="!items.length || loading.items">
       <tr>
-        <td ng-if="loading.items" colspan="11"><ws-spinner></ws-spinner></td>
-        <td ng-if="!loading.items" colspan="11" class="text-center" translate>NO_ITEMS</td>
+        <td ng-if="loading.items" colspan="13"><ws-spinner></ws-spinner></td>
+        <td ng-if="!loading.items" colspan="13" class="text-center" translate>NO_ITEMS</td>
       </tr>
     </tbody>
     <tfoot ng-if="items.length && !loading.items">
       <tr>
-        <td colspan="11" class="text-center">
+        <td colspan="13" class="text-center">
           <uib-pagination
             total-items="items_total_count"
             ng-model="current_page"

@@ -214,6 +214,7 @@ angular.module('ilApp')
         status: filters.status ? filters.status.id : null,
         description: filters.description || null,
         skill: filters.skill ? filters.skill.id : null,
+        sector: filters.sector ? filters.sector.id : null,
         item_category: filters.item_category ? filters.item_category.id : null,
         item_subcategory: filters.item_subcategory ? filters.item_subcategory.id : null,
         category: filters.category ? filters.category.id : null,

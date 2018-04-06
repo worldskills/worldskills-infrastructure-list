@@ -10,9 +10,11 @@
 angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
-    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES
+    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
+    UNITS
   ) {
 
+    $scope.UNITS = UNITS;
     $scope.fullscreen = false;
     $scope.item = {};
     $scope.loading.catalogue = true;
@@ -77,7 +79,7 @@ angular.module('ilApp')
 
 
     $scope.selectedLanguage = $translate.use();
-  
+
     var supplied_item_priorities = [];
     angular.forEach(SUPPLIED_ITEM_PRIORITIES, function (element) {
       supplied_item_priorities.push({
