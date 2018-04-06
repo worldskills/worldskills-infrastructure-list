@@ -330,7 +330,7 @@
   "REMOVE_SELECTED_ITEMS": "Remove selected item(s)",
   "REORDER_DISABLED_SORT": "Reordering of items disabled while sorting is active, sorting can be cleared under the \"<b>Advanced actions</b>\" dropdown.",
   "REPORTS": "Reports",
-  "REQUESTED_ITEM": "Requested item",
+  "REQUESTED_ITEM": "Requested Item",
   "REQUESTED_ITEMS": "Requested items",
   "REQUESTED_ITEMS_PROPERTIES": "Requested items properties",
   "REQUIRED": {
@@ -363,7 +363,7 @@
   "SPONSOR_SUPPLY": "Sponsor Supply",
   "STANDARD_SETS": "Standard sets",
   "STATUS": "Status",
-  "SUPPLIED_ITEM": "Supplied items",
+  "SUPPLIED_ITEM": "Supplied Item",
   "SUPPLIED_ITEM_DETAILS": "Supplied Item Details",
   "SUPPLIED_ITEM_TAB": {
     "EXTRA": "Extra",
