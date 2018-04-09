@@ -82,6 +82,21 @@
     'LOW'
   ]);
 
+  ilApp.constant('UNITS', {
+    "pcs": "UNIT_PIECES",
+    "kg": "UNIT_KILOGRAMS",
+    "g": "UNIT_GRAMS",
+    "l": "UNIT_LITRES",
+    "boxes": "UNIT_BOXES",
+    "boots": "UNIT_BOOTS",
+    "bottles": "UNIT_BOTTLES",
+    "sheets": "UNIT_SHEETS",
+    "kits": "UNIT_KITS",
+    "m": "UNIT_METRES",
+    "m2": "UNIT_SQUARE_METRES",
+    "m3": "UNIT_CUBIC_METRES",
+  });
+
   ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, tmhDynamicLocaleProvider) {
 
     $urlRouterProvider.otherwise('/');

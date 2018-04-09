@@ -8,10 +8,11 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, MULTIPLIERS, Items, ItemCategory, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES, $translate) {
+  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, MULTIPLIERS, Items, ItemCategory, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES, UNITS, $translate) {
 
     $scope.item = $scope.item || {}; //can be already set if called from catalogue view
     $scope.item.multiplier = MULTIPLIER_DEFAULT;
+    $scope.UNITS = UNITS;
 
     //ensure multipliers are set
     $scope.multipliers = $scope.multipliers || MULTIPLIERS;
