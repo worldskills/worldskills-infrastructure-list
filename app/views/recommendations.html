@@ -10,8 +10,8 @@
                         <th class="col-15" translate>TH_ITEM_SUBCATEGORY</th>
                         <th class="col-15" translate>TH_ITEM_APPLICANT</th>
                         <th class="col-20" translate>TH_ITEM_DATE_AND_TIME</th>
-                        <th class="col-15" translate>PLACEHOLDER.QUANTITY</th>
                         <th class="col-15" translate>NAME</th>
+                        <th class="col-15" translate>ACTION</th>
                         <th class="col-5"><i class="fa fa-info-circle warning"></i></th>
                     </tr>
                 </thead>
@@ -36,8 +36,12 @@
                                 <span class="ng-binding ng-scope" ng-if="item.recommendedAt">{{ 'DATE_TIME_AT' |
                                         translate: {date: (item.recommendedAt | amDateFormat: 'LL'), time: (item.recommendedAt | amDateFormat: 'LT')} }}</span>
                             </td>
-                            <td class="col-15">{{item.quantity}}</td>
                             <td class="col-15">{{item.description.text}}</td>
+                            <td class="col-15">
+                              <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
+                              <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>
+                              <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+                            </td>
                             <td class="button col-5" data-toggle="collapse" data-parent="#accordion" href="#validation{{item.id}}" aria-expanded="true" aria-controls="collapseOne">
                                 <i class="fas fa-chevron-down"></i>
                             </td>

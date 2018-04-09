@@ -44,20 +44,14 @@ angular.module('ilApp')
         templateUrl: 'views/recommendationsRejectModal.html'
       }).then(function() {
         $scope.recommendedItem.rejectionReason = $('#comment').val();
-        console.log($scope.recommendedItem);
-        RecommendedItems.rejectRecommendation($scope.recommendedItem, $scope.eventId, $scope.skillId).then(function(result) {
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
+        RecommendedItems.rejectRecommendation($scope.recommendedItem, $state.params.eventId, $scope.skillId).then(function(result) {
+          var index = $scope.recommendedItems.indexOf(item);
+          $scope.recommendedItems.splice(index, 1);
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'));
         }, function(error) {
           WSAlert.danger(error);
         });
       });
     }
-
-
-    // $scope.reject = function(item) {
-
-    //   console.log(item);
-    //   WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'));
-    // };
 
   });

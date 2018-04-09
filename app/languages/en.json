@@ -527,5 +527,10 @@
   "SUGGEST_DELETE": "Recommend item deletion",
   "RECOMMENDATIONS": "Recommendations",
   "TH_ITEM_APPLICANT": "Applicant",
-  "TH_ITEM_DATE_AND_TIME": "Date and time"
+  "TH_ITEM_DATE_AND_TIME": "Date and time",
+  "ACTION": "Action",
+  "TD_ITEM_CURRENT": "Item current",
+  "TD_ITEM_REPLACE_WITH": "Replace",
+  "TD_ITEM_ADDITION": "Addition",
+  "TD_ITEM_DELETION": "Deletion"
 }

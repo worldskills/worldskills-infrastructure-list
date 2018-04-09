@@ -82,7 +82,7 @@ angular.module('ilApp')
 
     RecommendedItems.rejectRecommendation = function(item, eventId) {
       var deferred = $q.defer();
-      $http.get(API_IL + "/recommended-items/event/" + eventId + "/reject/" + item.id).then(function(result) {
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/reject/" + item.id, item).then(function(result) {
         deferred.resolve(result.data);
       },
       function(error) {

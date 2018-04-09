@@ -123,4 +123,8 @@ angular.module('ilApp')
         });
       }
     };
+
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss();
+    };
   });

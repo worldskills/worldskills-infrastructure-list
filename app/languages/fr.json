@@ -530,5 +530,10 @@
   "SUGGEST_DELETE": "Suggérer la suppression",
   "RECOMMENDATIONS": "Recommandations",
   "TH_ITEM_APPLICANT": "Demandeur",
-  "TH_ITEM_DATE_AND_TIME": "Date et heure"
+  "TH_ITEM_DATE_AND_TIME": "Date et heure",
+  "ACTION": "Action",
+  "TD_ITEM_CURRENT": "Item current",
+  "TD_ITEM_REPLACE_WITH": "Replacement",
+  "TD_ITEM_ADDITION": "Ajout",
+  "TD_ITEM_DELETION": "Suppression"
 }
