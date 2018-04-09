@@ -1,3 +1,5 @@
+<h1 translate>RECOMMENDATIONS</h1>
+
 <div class="container">
     <div class="panel panel-validation-view" style="margin-top:20px;">
         <div class="table-responsive table-validation bordered">
@@ -124,28 +126,12 @@
                         <span>Accept</span>
                     </button>
 
-                    <button type="button" class="pull-right btn btn-sm btn-danger" data-toggle="modal" data-target=".modal-rejection">
+                    <button type="button" class="pull-right btn btn-sm btn-danger"  ng-click="reject(item);" ><!--data-toggle="modal" data-target=".modal-rejection">-->
                         <span>Reject</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
-        <!-- Modal -->
-    <div class="modal fade modal-rejection" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-
-            <div class="modal-body text-center">
-            Do you want to reject this suggestion ?<br><br>
-                <textarea class="form-control" rows="3"></textarea>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary">Yes</button>
-            </div>
-        </div>
-        </div>
-    </div>
 </div>
+<br/>

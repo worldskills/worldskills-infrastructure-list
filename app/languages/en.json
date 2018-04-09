@@ -76,8 +76,9 @@
       "ITEMS_COMBINED":"Items combined!",
       "RECOMMEND_ADD": "Your addition recommendation has been successfully submitted and will be reviewed shortly.",
       "RECOMMEND_EDIT": "Your modification recommendation has been successfully submitted and will be reviewed shortly.",
-      "RECOMMEND_DELETE": "Your deletion recommendation has been successfully submitted and will be reviewed shortly."
-
+      "RECOMMEND_DELETE": "Your deletion recommendation has been successfully submitted and will be reviewed shortly.",
+      "RECOMMEND_ACCEPT": "The recommendation has been accepted.",
+      "RECOMMEND_REJECT": "The recommendation has been rejected."
     },
     "DANGER":{
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"Item could not be removed from set, please try again!"

@@ -101,6 +101,8 @@ angular.module('ilApp')
         $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.name;
       }
 
+      $scope.recommendedItem.listCategoryId = $scope.$parent.listCategoryId;
+
       if($scope.recommendedItem.requestedItemId) {
         RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
           $uibModalInstance.dismiss();

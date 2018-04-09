@@ -76,7 +76,9 @@
       "ITEMS_COMBINED":"Items combinés !",
       "RECOMMEND_ADD": "Votre suggestion d'ajout a été soumise avec succès et sera traitée prochainement.",
       "RECOMMEND_EDIT": "Votre suggestion de modification a été soumise avec succès et sera traitée prochainement.",
-      "RECOMMEND_DELETE": "Votre suggestion de suppression a été soumise avec succès et sera traitée prochainement."
+      "RECOMMEND_DELETE": "Votre suggestion de suppression a été soumise avec succès et sera traitée prochainement.",
+      "RECOMMEND_ACCEPT": "La recommandation a été acceptée.",
+      "RECOMMEND_REJECT": "La recommandation a été rejetée."
     },
     "DANGER":{
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET":"L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !"

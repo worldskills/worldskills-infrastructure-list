@@ -81,7 +81,7 @@
     'NORMAL',
     'LOW'
   ]);
-  
+
   ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, tmhDynamicLocaleProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -309,8 +309,8 @@
       }
     })
 
-    .state('publicItems', {
-      url: '/event/{eventId}/skill/{skillId}/public',
+    .state('event.skill.publicItems', {
+      url: '/public',
       templateUrl: 'views/public-items.html',
       controller: 'PublicItemsCtrl',
       data: {
@@ -346,7 +346,7 @@
         ]
       }
     })
-    
+
     .state('recommendations', {
       url: '/event/{eventId}/recommendations',
       templateUrl: 'views/recommendations.html',

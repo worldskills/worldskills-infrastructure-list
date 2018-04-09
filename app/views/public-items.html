@@ -94,7 +94,7 @@
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-btn">
               <h2 class="panel-title">{{ category.category.name.text }}</h2>
-              <button type="button" ng-if="canRecommend()" ng-click="openSuggestModalAside(parent);" data-target="" class="btn btn-xs btn-primary">
+              <button type="button" ng-if="canRecommend()" ng-click="openSuggestModalAside(category.id);" data-target="" class="btn btn-xs btn-primary">
                 <span translate><i class="fas fa-plus-circle"></i>SUGGEST_ADDITION</span>
               </button>
             </div>

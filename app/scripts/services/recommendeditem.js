@@ -29,7 +29,7 @@ angular.module('ilApp')
     RecommendedItems.suggestNew = function(item, eventId, skillId){
 
       var deferred = $q.defer();
-
+      console.log(item);
       $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId, item).then(function(result){
         deferred.resolve(result.data);
       },
@@ -74,7 +74,19 @@ angular.module('ilApp')
         deferred.resolve(result.data);
       },
       function(error) {
-        deferred.reject("Could not accep recommendations : " + error.data.user_msg);
+        deferred.reject("Could not accept recommendation : " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    }
+
+    RecommendedItems.rejectRecommendation = function(item, eventId) {
+      var deferred = $q.defer();
+      $http.get(API_IL + "/recommended-items/event/" + eventId + "/reject/" + item.id).then(function(result) {
+        deferred.resolve(result.data);
+      },
+      function(error) {
+        deferred.reject("Could not reject recommendation : " + error.data.user_msg);
       });
 
       return deferred.promise;
