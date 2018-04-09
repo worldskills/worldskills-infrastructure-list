@@ -102,8 +102,18 @@ angular.module('ilApp')
         {field: 'model', name: $translate.instant("TH_MODEL"), width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'size', name: $translate.instant("TH_SIZE"), width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'part_number', name: $translate.instant("TH_PART_NUM"), width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'item_category.name.text', name: $translate.instant('TH_ITEM_SUBCATEGORY'), width: '160', cellEditableCondition: $scope.canEdit,
-          editableCellTemplate: '../../template/ui-grid/select-item-subcategories.html', editType: 'dropdown'},
+        {
+          field: 'item_category.name.text',
+          name: $translate.instant('TH_ITEM_SUBCATEGORY'),
+          width: '160',
+          cellEditableCondition: false,
+        },
+        {
+          field: 'item_category.parent.name.text',
+          name: $translate.instant('TH_ITEM_CATEGORY'),
+          width: '160',
+          cellEditableCondition: false
+        },
         {field: 'supplier', name: $translate.instant('TH_SUPPLIER'), width: '100'},
         {field: 'supply_type', name: $translate.instant('TH_SUPPLY_TYPE'), width: '100'},
         {field: 'unit_cost', name: $translate.instant('TH_UNIT_COST'), width: '100'}, //double
