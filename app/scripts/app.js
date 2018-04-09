@@ -286,12 +286,12 @@
       data: {
         requireLoggedIn: true,
         requiredRoles: [
-          {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_MANAGER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
-        ]
-      }
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER },
+            {code: 2200, role: APP_ROLES.WS_MANAGER },
+            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          ]
+        }
     })
 
     .state('event.skill.category', {
@@ -301,12 +301,12 @@
       data: {
         requireLoggedIn: true,
         requiredRoles: [
-          {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_MANAGER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
-        ]
-      }
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER },
+            {code: 2200, role: APP_ROLES.WS_MANAGER },
+            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          ]
+        }
     })
 
     .state('event.skill.publicItems', {
@@ -317,6 +317,20 @@
         requireLoggedIn: true,
         requiredRoles: [
           {code: 2200, role: APP_ROLES.VIEW }
+        ]
+      }
+    })
+
+    .state('requestedItems', {
+      url: '/event/{eventId}/requested-items',
+      templateUrl: 'views/requested-items.html',
+      controller: 'RequestedItemCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER },
+          {code: 2200, role: APP_ROLES.WS_MANAGER }
         ]
       }
     })
