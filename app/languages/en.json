@@ -509,5 +509,9 @@
   "YES": "Yes",
   "YOU_HAVE_MULTIPLE_POSITIONS": "You have multiple positions, please select a role to use the application as",
   "false": "False",
-  "true": "True"
+  "true": "True",
+  "EDIT_REQUESTS": "Edition requests",
+  "DELETION_REQUESTS": "Deletion requests",
+  "X_ADDITIONS_FOR_CATEGORY": "There is {{count}} item addition requests for this category.",
+  "HANDLE_RECOMMENDATIONS": "Handle recommendations"
 }

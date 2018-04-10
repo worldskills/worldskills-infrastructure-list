@@ -682,4 +682,16 @@ $spacer-3: 15px;
     transition: transform 0.15s ease 0s;
     transition: transform 0.15s ease 0s, -webkit-transform 0.15s ease 0s;
   }
+
+  .icon-circled {
+    background: #7c9eb2;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    vertical-align: middle;
+    color: white;
+    //padding: 6px;
+  }
   

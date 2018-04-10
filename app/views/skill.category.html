@@ -113,6 +113,13 @@
         <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
         <ws-spinner ng-if='loading.more'></ws-spinner>
       </div>
+      <div style="top: 30px;" class="col-sm-12" ng-if="additionRecommendationsCount > 0">
+        <span class="fa fa-plus icon-circled"></span> 
+        <span style="color: #7c9eb2;">{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: additionRecommendationsCount } }}</span>
+      </div>
+      <div style="top: 60px;" class="col-sm-12" ng-if="additionRecommendationsCount > 0">
+        <a ui-sref="recommendations({eventId: selectedEvent.id})" translate>HANDLE_RECOMMENDATIONS</a>
+      </div>
     </div>
   </div>
 </fieldset>

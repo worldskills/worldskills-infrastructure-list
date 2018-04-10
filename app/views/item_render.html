@@ -5,7 +5,9 @@
          'glyphicon-menu-right': collapsed,
          'glyphicon-menu-down': !collapsed
        }"></span></a>
-  {{item.description.text}}
+    <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
+    <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
+    {{item.description.text}}
   <!-- <span class='badge idBadge'>{{item.id}}</span> -->
 
   <!-- <span ng-show="activeItem == item.id">
