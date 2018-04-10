@@ -29,7 +29,7 @@ angular.module('ilApp')
     RecommendedItems.suggestNew = function(item, eventId, skillId){
 
       var deferred = $q.defer();
-      console.log(item);
+
       $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId, item).then(function(result){
         deferred.resolve(result.data);
       },

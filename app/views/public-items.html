@@ -179,7 +179,7 @@
                           <td ng-if="canRecommend()">
                               <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)" style="margin-right:8px;"><span
                                 class="glyphicon glyphicon-edit"></span></a>
-                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(parent, item)" style="margin-right:8px;"><span
+                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(item)" style="margin-right:8px;"><span
                               class="glyphicon glyphicon-remove"></span></a>
                               <span ng-if="item.status.id == ITEM_STATUS.GREEN">&nbsp;</span>
                           </td>

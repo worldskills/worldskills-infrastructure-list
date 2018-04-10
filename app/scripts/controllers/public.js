@@ -90,7 +90,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     }).result.then(postClose, postClose);
   };
 
-  $scope.suggestDeletion = function (listCategoryId, item) {
+  $scope.suggestDeletion = function (item) {
     $scope.recommendedItem = {
       requestedItemId : item.id,
       description : item.description,
@@ -115,7 +115,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     {
       templateUrl: 'views/suggestDeletionModal.html'
     }).then(function() {
-      $scope.recommendedItem.comment = $('#comment').val();
+      $scope.recommendedItem.comment = $scope.comment;
       RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.skillId).then(function(result) {
         WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
       }, function(error) {

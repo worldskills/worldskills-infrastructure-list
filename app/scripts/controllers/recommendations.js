@@ -43,7 +43,7 @@ angular.module('ilApp')
       {
         templateUrl: 'views/recommendationsRejectModal.html'
       }).then(function() {
-        $scope.recommendedItem.rejectionReason = $('#comment').val();
+        $scope.recommendedItem.rejectionReason = $scope.comment;
         RecommendedItems.rejectRecommendation($scope.recommendedItem, $state.params.eventId, $scope.skillId).then(function(result) {
           var index = $scope.recommendedItems.indexOf(item);
           $scope.recommendedItems.splice(index, 1);
