@@ -307,8 +307,8 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="file in item.files">
-                        <td>{{file.filename_original}}</td>
-                        <td>{{file.size}}</td>
+                        <td>{{file.file.filename_original}}</td>
+                        <td>{{file.file.size}}</td>
                         <td style="text-align: right;">
                           <button type="button" class="btn btn-danger btn-xs" ng-click="removeFile(file, $index)">
                             <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>

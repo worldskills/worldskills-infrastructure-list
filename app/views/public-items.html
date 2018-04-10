@@ -89,22 +89,25 @@
       </div>
     </div>
 
-    <div ng-repeat="category in categories" ng-if="category.items.length" class="il-public-items-category">
+    <div ng-repeat="category in categories" class="il-public-items-category">
 
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h2 class="panel-title">{{ category.category.name.text }}</h2>
+            <div class="panel-heading panel-heading-btn">
+              <h2 class="panel-title">{{ category.category.name.text }}</h2>
+              <button type="button" ng-if="canRecommend()" ng-click="openSuggestModalAside(category.id);" data-target="" class="btn btn-xs btn-primary">
+                <span translate><i class="fas fa-plus-circle"></i>SUGGEST_ADDITION</span>
+              </button>
             </div>
 
-            <div class="table-responsive">
-                <table class="table table-condensed table-bordered il-public-items-table">
+            <div class="table-responsive" ng-if="category.items.length" >
+                <table class="table table-condensed table-bordered il-public-items-table table-with-actions">
                     <colgroup>
                         <col width="15%" />
                         <col width="25%" />
                         <col width="25%" />
                         <col width="25%" />
-                        <col width="10%" />
-                    </colgroup>
+                        <col ng-if="canRecommend()" width="10%" />
+                      </colgroup>
                     <thead>
                         <tr>
                             <th class="text-right" translate>TH_QUANTITY</th>
@@ -112,6 +115,7 @@
                             <th translate>TH_DETAILS</th>
                             <th translate>TH_LAST_MODIFIED</th>
                             <th translate>TH_STATUS</th>
+                            <th ng-if="canRecommend()" translate>TH_ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -172,6 +176,13 @@
                               <span ng-show="item.status.id == ITEM_STATUS.BLACK" class="label label-info">{{ item.status.name.text }}</span>
                               <span ng-show="item.status.id == ITEM_STATUS.GREEN" class="label label-success">{{ item.status.name.text }}</span>
                           </td>
+                          <td ng-if="canRecommend()">
+                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)" style="margin-right:8px;"><span
+                                class="glyphicon glyphicon-edit"></span></a>
+                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(item)" style="margin-right:8px;"><span
+                              class="glyphicon glyphicon-remove"></span></a>
+                              <span ng-if="item.status.id == ITEM_STATUS.GREEN">&nbsp;</span>
+                          </td>
                         </tr>
                     </tbody>
                     <tbody ng-show="!category.items.length">
@@ -182,9 +193,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-
     </div>
-
 </div>

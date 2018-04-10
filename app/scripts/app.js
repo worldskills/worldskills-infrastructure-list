@@ -309,8 +309,8 @@
         }
     })
 
-    .state('publicItems', {
-      url: '/event/{eventId}/skill/{skillId}/public',
+    .state('event.skill.publicItems', {
+      url: '/public',
       templateUrl: 'views/public-items.html',
       controller: 'PublicItemsCtrl',
       data: {
@@ -349,16 +349,30 @@
     })
 
     .state('event.skill-participants-override', {
-     url: '/skill-participants-override',
-     templateUrl: 'views/event-skill-particpants-override.html',
-     controller: 'EventSkillParticipantsOverrideCtrl',
-     data: {
-       requireLoggedIn: true,
-       requiredRoles: [
-           {code: 2200, role: APP_ROLES.ADMIN },
-           {code: 2200, role: APP_ROLES.EDIT_CONFIG }
-         ]
-       }
+      url: '/skill-participants-override',
+      templateUrl: 'views/event-skill-particpants-override.html',
+      controller: 'EventSkillParticipantsOverrideCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.EDIT_CONFIG }
+        ]
+      }
+    })
+
+    .state('recommendations', {
+      url: '/event/{eventId}/recommendations',
+      templateUrl: 'views/recommendations.html',
+      controller: 'RecommendationsCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.ORGANIZER },
+          {code: 2200, role: APP_ROLES.WS_MANAGER }
+        ]
+      }
     });
 
    //
