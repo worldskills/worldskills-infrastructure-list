@@ -105,7 +105,8 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       rejected: false,
       person: {
         id: auth.user.id
-      }
+      },
+      listCategoryId : item.category
     };
 
     $confirm({
