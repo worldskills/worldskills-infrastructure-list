@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <div ng-repeat="category in categories" class="il-public-items-category">
+    <div ng-repeat="category in categories" class="il-public-items-category"  ng-if="category.items.length || canRecommend()" >
 
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-btn">

@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th class="col-15" translate>SKILL</th>
-                        <th class="col-15" translate>TH_ITEM_SUBCATEGORY</th>
+                        <th class="col-15" translate>TH_CATEGORY</th>
                         <th class="col-15" translate>TH_ITEM_APPLICANT</th>
                         <th class="col-20" translate>TH_ITEM_DATE_AND_TIME</th>
                         <th class="col-15" translate>NAME</th>
@@ -29,7 +29,7 @@
                                 <span class="ng-binding">{{item.skill.name.text}}</span>
                             </td>
                             <td class="col-15">
-                                <span ng-if="item.requestedItem" class="ng-binding ng-scope">{{item.requestedItem.supplied_item.item_category}}</span>
+                                <span class="ng-binding ng-scope">{{ item.listCategory.category.name.text }}</span>
                             </td>
                             <td class="col-15">{{item.person.first_name}} {{item.person.last_name}}</td>
                             <td class="col-20">
@@ -56,12 +56,12 @@
                     <thead>
                         <tr>
                             <th class="col-10"></th>
-                            <th class="col-15">Description</th>
-                            <th class="col-10 text-right">Quantity</th>
-                            <th class="col-15">Potential supplier</th>
-                            <th class="col-10 text-center">Wrong supplied item</th>
-                            <th class="col-20">Comment</th>
-                            <th class="col-20 text-center">Images</th>
+                            <th class="col-15" translate>DESCRIPTION</th>
+                            <th class="col-10 text-right" translate>QUANTITY</th>
+                            <th class="col-15" translate>POTENTIAL_SUPPLIER</th>
+                            <th class="col-10 text-center" translate>WRONG_SUPPLIED_ITEM</th>
+                            <th class="col-20" translate>COMMENT</th>
+                            <th class="col-20 text-center" translate>PICTURES</th>
                         </tr>
                     </thead>
                     <tbody>

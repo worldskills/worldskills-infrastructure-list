@@ -1,5 +1,5 @@
 {
-  "ACCEPT": "Acceptée",
+  "ACCEPT": "Accepter",
   "ACTION": "Action",
   "ACTIONS": "Actions",
   "ADDITIONAL": "additionnels",
@@ -91,6 +91,7 @@
     "CLOSE": "Fermer"
   },
   "COMBINE_ITEMS": "Combiner les items",
+  "COMMENT": "Commentaire",
   "COMPRESSED_AIR": "Air comprimé",
   "CONFIRM": {
     "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE": "Souhaitez-vous vraiment quitter cette page ?"
@@ -190,6 +191,7 @@
   "ITEMS": "Items",
   "ITEM_ACTIONS": "Actions sur les items",
   "ITEM_ALREADY_CREATED": "Cet item a déjà été créé par l'organisateur ou est déjà utilisé par un autre métier.",
+  "ITEM_ATTACHED_TO_MULTIPLE_SKILLS": "Cet item est lié à plusieurs métiers. Les modifications sur cet item seront appliquées au métier.",
   "ITEM_ATTACHED_TO_SKILL": "L'un au moins des items sélectionnés est rattaché à un métier : cette action aura pour effet d'écraser la description de ces items.",
   "ITEM_CATEGORY": "Super famille",
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles",
@@ -253,6 +255,7 @@
   "NUMBER:": "Numéro :",
   "OVERVIEW": "Vue d'ensemble",
   "PERMISSIONS": "Autorisations",
+  "PICTURES": "Images",
   "PLACEHOLDER": {
     "ADDITIONAL_QUANTITY": "Quantité additionnelle",
     "ALL_CATEGORY": "Toutes",
@@ -316,8 +319,8 @@
   "QUEUE_LENGTH:": "Longueur de la file :",
   "QUEUE_PROGRESS:": "Progression :",
   "RECOMMENDATIONS": "Suggestions",
-  "REJECT": "Rejetée",
-  "RECOMMENDATIONS_WANT_REJECT": "Voulez-vous rejetée la suggestion ?",
+  "RECOMMENDATIONS_WANT_REJECT": "Voulez-vous rejeter la suggestion ?",
+  "REJECT": "Rejeter",
   "REMOVE_ITEM_S_FROM_CATALOGUE": {
     "OK": "Supprimer",
     "TITLE": "Supprimer les items du catalogue ?"
@@ -345,6 +348,7 @@
   "SIGNUP": "Inscription",
   "SKILL": "Métier",
   "SKILL_AREA": "Métier",
+  "SKILL_COLON": "Métier :",
   "SKILL_INFORMATION": "Informations métier",
   "SKILL_MANAGEMENT": "Gestion du métier",
   "SKILL_PARTICIPANTS_OVERRIDE": "Remplacer la liste des participants",

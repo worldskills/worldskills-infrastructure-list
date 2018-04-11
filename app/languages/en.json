@@ -91,6 +91,7 @@
     "CLOSE": "Close"
   },
   "COMBINE_ITEMS": "Combine items",
+  "COMMENT": "Commentaire",
   "COMPRESSED_AIR": "Compressed air",
   "CONFIRM": {
     "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE": "Are you sure you want to leave this page?"
@@ -254,6 +255,7 @@
   "NUMBER:": "Number:",
   "OVERVIEW": "Overview",
   "PERMISSIONS": "Permissions",
+  "PICTURES": "Pictures",
   "PLACEHOLDER": {
     "ADDITIONAL_QUANTITY": "Additional quantity",
     "ALL_CATEGORY": "All",
@@ -346,6 +348,7 @@
   "SIGNUP": "Sign up",
   "SKILL": "Skill",
   "SKILL_AREA": "Skill Area",
+  "SKILL_COLON": "Skill:",
   "SKILL_INFORMATION": "Skill Information",
   "SKILL_MANAGEMENT": "Skill Management",
   "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",

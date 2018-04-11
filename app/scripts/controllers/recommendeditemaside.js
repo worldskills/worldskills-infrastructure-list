@@ -26,6 +26,9 @@ angular.module('ilApp')
         description : $scope.item.description,
         quantity : $scope.item.quantity,
         multiplier : $scope.item.multiplier,
+        listCategory : {
+          id: $scope.item.category
+        },
         multiplyFactor : $scope.item.multiply_factor,
         potentialSupplier : {
           name: $scope.item.supplier
@@ -102,10 +105,8 @@ angular.module('ilApp')
         $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.name;
       }
 
-      if(!$scope.recommendedItem.listCategoryId) {
-        $scope.recommendedItem.listCategoryId = $scope.$parent.listCategoryId;
-      }
-      
+      $scope.recommendedItem.listCategory = $scope.recommendedItem.listCategory || $scope.$parent.item.listCategory;
+
       if($scope.recommendedItem.requestedItemId) {
         RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
           $uibModalInstance.dismiss();
