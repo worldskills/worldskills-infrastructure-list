@@ -86,7 +86,7 @@
 
       <!-- tree of items -->
       <div class="col-sm-12" ng-show="items.length > 0">
-        <div class="alert alert-warning" ng-show="allowReordering === false" translate>REORDER_DISABLED_SORT</div> 
+        <div class="alert alert-warning" ng-show="allowReordering === false" translate>REORDER_DISABLED_SORT</div>
         <div class="tree-node tree-node-content tree-header">
             <span ng-click="sortBy('description.text');" translate>DESCRIPTION</span>
             <span class="sortorder" ng-show="orderProperty === 'description.text'" ng-class="{reverse: reverse}"></span>
@@ -114,10 +114,10 @@
         <ws-spinner ng-if='loading.more'></ws-spinner>
       </div>
       <div style="top: 30px;" class="col-sm-12" ng-if="additionRecommendationsCount > 0">
-        <span class="fa fa-plus icon-circled"></span> 
+        <span class="fa fa-plus icon-circled"></span>
         <span style="color: #7c9eb2;">{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: additionRecommendationsCount } }}</span>
       </div>
-      <div style="top: 60px;" class="col-sm-12" ng-if="additionRecommendationsCount > 0">
+      <div style="top: 60px;" class="col-sm-12" ng-if="canRecommend()">
         <a ui-sref="recommendations({eventId: selectedEvent.id})" translate>HANDLE_RECOMMENDATIONS</a>
       </div>
     </div>
