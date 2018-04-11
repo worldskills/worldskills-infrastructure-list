@@ -144,6 +144,7 @@
     "TEXT": "Are you sure you want to delete the item subcategory: {{text}}?",
     "TITLE": "Delete item subcategory"
   },
+  "DELETION_REQUESTS": "Deletion requests",
   "DESCRIPTION": "Description",
   "DISABLE_INLINE_EDIT": "Disable inline editing",
   "DISPOSAL_CATEGORY": "Disposal category",
@@ -152,6 +153,7 @@
   "EDITING_ITEM": "Editing item",
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Editing requested item details in",
   "EDIT_DETAILS": "edit",
+  "EDIT_REQUESTS": "Edition requests",
   "EDIT_SELECTED_ITEM": "Edit selected item",
   "EDIT_SUPPLIED_ITEM": "Edit Supplied Item",
   "ELECTRICITY_NEEDED": "Electricity required",
@@ -171,6 +173,7 @@
   "FULLSCREEN": "Fullscreen",
   "GAS_REQUIREMENTS": "Gas requirements",
   "GENERAL_INFORMATION": "General information",
+  "HANDLE_RECOMMENDATIONS": "Manage recommendations",
   "HIGH": "High",
   "HOME": "Home",
   "HOST_VIEW": "Host views",
@@ -509,12 +512,9 @@
       "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST": "You have to select at least skill first"
     }
   },
+  "X_ADDITIONS_FOR_CATEGORY": "There are {{count}} item addition requests for this category.",
   "YES": "Yes",
   "YOU_HAVE_MULTIPLE_POSITIONS": "You have multiple positions, please select a role to use the application as",
   "false": "False",
-  "true": "True",
-  "EDIT_REQUESTS": "Edition requests",
-  "DELETION_REQUESTS": "Deletion requests",
-  "X_ADDITIONS_FOR_CATEGORY": "There are {{count}} item addition requests for this category.",
-  "HANDLE_RECOMMENDATIONS": "Manage recommendations"
+  "true": "True"
 }

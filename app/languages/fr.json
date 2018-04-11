@@ -144,6 +144,7 @@
     "TEXT": "Êtes-vous certain(e) de vouloir supprimer la famille : {{text}} ?",
     "TITLE": "Suppression d'une famille"
   },
+  "DELETION_REQUESTS": "Demandes de suppression",
   "DESCRIPTION": "Description",
   "DISABLE_INLINE_EDIT": "Désactiver l'édition directe",
   "DISPOSAL_CATEGORY": "Catégorie de restitution",
@@ -152,6 +153,7 @@
   "EDITING_ITEM": "Modifier un item",
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Édition des informations des lignes d'infrastructure dans",
   "EDIT_DETAILS": "Modifier",
+  "EDIT_REQUESTS": "Demandes de modification",
   "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné",
   "EDIT_SUPPLIED_ITEM": "Edit Supplied Item",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
@@ -171,6 +173,7 @@
   "FULLSCREEN": "Plein-écran",
   "GAS_REQUIREMENTS": "Besoins en gaz",
   "GENERAL_INFORMATION": "Informations générales",
+  "HANDLE_RECOMMENDATIONS": "Traiter les suggestions",
   "HIGH": "Important",
   "HOME": "Accueil",
   "HOST_VIEW": "Vues invité",
@@ -509,12 +512,9 @@
       "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST": "Vous devez commencer par sélectionner au moins un métier"
     }
   },
+  "X_ADDITIONS_FOR_CATEGORY": "Il y a {{count}} demandes d'ajout d'item pour cette catégorie.",
   "YES": "Oui",
   "YOU_HAVE_MULTIPLE_POSITIONS": "Vous occupez plusieurs fonctions : merci de sélectionner le rôle sous lequel vous souhaitez utiliser l'application.",
   "false": "Non",
-  "true": "Oui",
-  "EDIT_REQUESTS": "Demandes de modification",
-  "DELETION_REQUESTS": "Demandes de suppression",
-  "X_ADDITIONS_FOR_CATEGORY": "Il y a {{count}} demandes d'ajout d'item pour cette catégorie.",
-  "HANDLE_RECOMMENDATIONS": "Traiter les suggestions"
+  "true": "Oui"
 }
