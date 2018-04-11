@@ -8,11 +8,27 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('RequestedItemModalCtrl', function ($q, $scope, $state, $confirm, $translate, uiGridConstants,
-      $uibModalInstance, $filter, $aside, ItemCategory, WSAlert, APP_ROLES, API_IL, Items
+  .controller('RequestedItemModalCtrl', function (
+    $q,
+    $scope,
+    $state,
+    $confirm,
+    $translate,
+    uiGridConstants,
+    $uibModalInstance,
+    $filter,
+    $aside,
+    ItemCategory,
+    WSAlert,
+    Auth,
+    APP_ROLES,
+    API_IL,
+    Items
   ) {
 
     $scope.APP_ROLES = APP_ROLES;
+
+    $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
 
     $scope.asideState = {
       open: true,
@@ -29,7 +45,7 @@ angular.module('ilApp')
       return item.selected;
     });
 
-    //Edition are available only if at least 1 item is selected
+    //Edition is available only if at least 1 item is selected
     //We can consider the first element of the array as a reference
     $scope.editedItem = {};
     $scope.editedItem.status = $scope.itemsSelected[0].status;
@@ -69,46 +85,50 @@ angular.module('ilApp')
     $scope.saveItems = function(){
       var tasks = [];
 
-      angular.forEach($scope.itemsSelected, function(v, k) {
-        var task = $scope.saveItem(v);
+      angular.forEach($scope.itemsSelected, function(i, k) {
+        var task = $scope.saveItem(i);
         tasks.push(task);
       });
 
-      Promise.all(tasks).then(WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED')));
+      Promise
+        .all(tasks)
+        .then(WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED')));
     }
 
-    $scope.saveItem = function(v) {
+    $scope.saveItem = function(modifiedItem) {
       var extendedCategory;
+      var list = modifiedItem.category.list;
 
-      return Items.getCategories(v.category.list.skill.id)
+      return Items.getCategories(modifiedItem.category.list.skill.id)
         .then(function(categories){
           if($scope.editForm.category.$dirty){
             var cat = categories.filter(function (cat) {
               return cat.category.id == $scope.editedItem.category.id
             });
             if(cat.length > 0){
-              v.category = cat[0];
+              modifiedItem.category = cat[0];
             }
           }
 
           if($scope.editForm.status.$dirty){
-            v.status = $scope.editedItem.status;
+            modifiedItem.status = $scope.editedItem.status;
           }
 
           if($scope.editForm.price.$dirty){
-            v.price = $scope.editedItem.price;
+            modifiedItem.price = $scope.editedItem.price;
           }
 
           if($scope.editForm.supplier.$dirty){
-            v.supplier = $scope.editedItem.supplier;
+            modifiedItem.supplier = $scope.editedItem.supplier && $scope.editedItem.supplier.title;
           }
-          extendedCategory = v.category;
-          v.category = v.category.id;
+          extendedCategory = modifiedItem.category;
+          extendedCategory.list = list;
+          modifiedItem.category = modifiedItem.category.id;
 
-          return Items.saveItem(v, $state.params.eventId);
+          return Items.saveItem(modifiedItem, $state.params.eventId);
         })
         .then(function(res){
-          v.category = extendedCategory;
+          modifiedItem.category = extendedCategory;
           $uibModalInstance.dismiss();
         })
         .catch(function(err){

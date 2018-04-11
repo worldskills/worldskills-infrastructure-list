@@ -10,7 +10,7 @@
 
     <form class="editForm" name='editForm'>
         <uib-tabset active="supplied01">
-          <uib-tab index="0" heading="General">
+          <uib-tab index="0" heading="{{'SUPPLIED_ITEM_TAB.GENERAL' | translate}}">
             <div class='well'>
               <fieldset><legend class="aside" translate>ITEM_INFORMATION_PUBLISHED</legend>
                 <div class="row">
@@ -49,19 +49,16 @@
                   >
                     <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
                     <ui-select ng-required="false" ng-model="item.item_category" theme="bootstrap">
-                      <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_ITEM_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
+                      <ui-select-match placeholder="{{ 'ITEM_SUB_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
                       <ui-select-choices repeat="category as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
-                        <div ng-bind-html="category.name.text"></div>
-                        <small>
-                          {{category.description.text}}
-                        </small>
+                        {{category.name.text}} <small> / {{category.parent.name.text}}</small>
                       </ui-select-choices>
                     </ui-select>
                   </div>
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.priority.$error.required, 'has-success': !editForm.priority.$error.required}">
                     <label class='control-label' translate>TH_PRIORITY</label>
                     <ui-select ng-required="false" ng-model="item.priority" theme="bootstrap">
-                      <ui-select-match>{{item.priority | translate}}</ui-select-match>
+                      <ui-select-match placeholder="{{ 'TH_PRIORITY' | translate }}">{{item.priority | translate}}</ui-select-match>
                       <ui-select-choices repeat="priority in priorities">
                         <div translate>{{priority}}</div>
                       </ui-select-choices>
@@ -73,7 +70,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="1" heading="Host">
+          <uib-tab index="1" heading="{{'SUPPLIED_ITEM_TAB.HOST' | translate}}">
             <div class='well'>
               <fieldset><legend class="aside" translate>SUPPLY_HOST_INFO</legend>
                 <div class="row">
@@ -131,7 +128,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="2" heading="Logistics">
+          <uib-tab index="2" heading="{{'SUPPLIED_ITEM_TAB.LOGISTICS' | translate}}">
             <div class='well'>
               <fieldset>
                 <legend class="aside" translate>LOGISTICS_INFORMATION</legend>
@@ -225,7 +222,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="3" heading="Installation">
+          <uib-tab index="3" heading="{{'SUPPLIED_ITEM_TAB.INSTALLATION' | translate}}">
             <div class='well'>
               <fieldset>
                 <legend class="aside" translate>SERVICES_UTILITIES_INSTALLATION</legend>
@@ -291,7 +288,7 @@
           </uib-tab>
 
 
-          <uib-tab index="4" heading="Files">
+          <uib-tab index="4" heading="{{'SUPPLIED_ITEM_TAB.FILES' | translate}}">
             <div class='well'>
               <fieldset>
                 <legend class="aside" translate>FILES_AND_PICTURES</legend>
@@ -404,7 +401,7 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="5" heading="Extra">
+          <uib-tab index="5" heading="{{'SUPPLIED_ITEM_TAB.EXTRA' | translate}}">
             <div class='well'>
               <fieldset>
                 <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">

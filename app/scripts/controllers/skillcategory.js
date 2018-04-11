@@ -8,8 +8,9 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT, Auth, APP_ROLES, $translate, Status) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT, Auth, APP_ROLES, UNITS, $translate, Status) {
 
+    $scope.UNITS = UNITS;
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
     $scope.loading = {
@@ -518,10 +519,10 @@ angular.module('ilApp')
     };
 
   })
-.directive('requestedItem', function () {
+.directive('requestedItem', function (UNITS) {
   return {
     restrict: 'EA',
-    scope: { item: '=item' },
+    scope: { item: '=item', UNITS: UNITS },
     replace: true,
     templateUrl: 'views/item_render.html',
   };

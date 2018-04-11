@@ -9,9 +9,10 @@
  */
 angular.module('ilApp')
   .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items, ITEM_STATUS,
-    ItemCategory, Category, Status, API_IL, $aside, Reporting) {
+    ItemCategory, Category, Status, API_IL, $aside, Reporting, UNITS) {
 
     $scope.ITEM_STATUS = ITEM_STATUS;
+    $scope.UNITS = UNITS;
     $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?search='; //search url for autocomplete
     $scope.loading.items = true;
     $scope.filters = {};
@@ -26,22 +27,23 @@ angular.module('ilApp')
       });
     };
 
-    $scope.selectItem = function(item) {
-      if(item.selected){
-        ++$scope.numberItemSelected;
-      } else {
-        --$scope.numberItemSelected;
-      }
-      if($scope.numberItemSelected < 1){
+    $scope.selectedItems = function(){
+      return $scope.items.filter(function(item){ return item.selected; });
+    }
+
+    $scope.selectedItemsCount = function(){
+      return $scope.selectedItems().length;
+    }
+
+    $scope.toggleItem = function(item) {
+      item.selected = !item.selected;
+      if($scope.selectedItemsCount() < 1){
         $scope.allSelected = false;
       }
-      if($scope.numberItemSelected == $scope.items_per_page){
+      if($scope.selectedItemsCount() == $scope.items_per_page){
         $scope.allSelected = true;
       }
     };
-
-    $scope.numberItemSelected = 0;
-
     $scope.asideState = {
       open: true,
     };
@@ -87,7 +89,12 @@ angular.module('ilApp')
 
     $scope.loadData = function(){
       $scope.loading.items = true;
-      return Items.getItemsByEvent($state.params.eventId, $scope.items_per_page, $scope.current_page, $scope.filters)
+      return Items.getItemsByEvent(
+        $state.params.eventId,
+        $scope.items_per_page,
+        $scope.current_page,
+        $scope.filters
+      )
       .then(function(res) {
         $scope.items = res.requested_items;
         $scope.items_total_count = res.total;
@@ -111,12 +118,30 @@ angular.module('ilApp')
     $scope.changePage($scope.current_page);
 
     $q.when($scope.appLoaded.promise)
-      .then(function(){
+      .then(function(res){
+        $scope.sectors = res;
         //Load skills and sectors
         return Events.getSkillsForEvent($state.params.eventId);
       })
       .then(function(res){
         $scope.skills = res;
+
+        // get unique sectors from skills
+        var sectors = [];
+        $scope
+        .skills
+        .map(function(skill){return skill.sector;})
+        .forEach(function(sector){
+          var newSector = sectors.filter(function(sectorToTest){
+            return sectorToTest.id === sector.id;
+          }).length === 0;
+          if(newSector){
+            sectors.push(sector);
+          }
+        })
+
+        $scope.sectors = sectors;
+
         //Load item category
         return ItemCategory.getAllCategory($state.params.eventId);
       })
@@ -128,7 +153,12 @@ angular.module('ilApp')
       .then(function (res) {
         $scope.subcategories = res.categories;
         //Load requested items
-        return Items.getItemsByEvent($state.params.eventId, $scope.items_per_page, $scope.current_page, $scope.filters);
+        return Items.getItemsByEvent(
+          $state.params.eventId,
+          $scope.items_per_page,
+          $scope.current_page,
+          $scope.filters
+        );
       })
       .then(function(res){
         $scope.items = res.requested_items;
@@ -151,6 +181,6 @@ angular.module('ilApp')
       });
 
       $scope.groupBySector = function(item){
-          return item.sector.name.text;
+          return item.sector && item.sector.name.text;
       }
   });

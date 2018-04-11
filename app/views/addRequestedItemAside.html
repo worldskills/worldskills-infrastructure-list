@@ -6,6 +6,7 @@
       <div class="row">
         <div class="col col-sm-12 col-md-6">
           <div class='well'>
+            <h5 translate>REQUESTED_ITEM</h5>
             <div ng-if='canEditItemStatus'>
               <div class="form-group editForm has-feedback has-success">
                 <label class='control-label' translate>STATUS</label>
@@ -89,7 +90,8 @@
                 <div class="form-group addForm has-feedback has-success">
                   <label class='control-label' translate>MULTIPLIER</label>
                   <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
-                  <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
+                  <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multi.id as ('CONSTANT.MULTIPLIERS.' + multi.id) | translate for multi in multipliers"></select>
+
                 </div>
               </div>
               <div class="col-md-4">
@@ -112,19 +114,19 @@
             <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.unit.$dirty && editForm.unit.$error.required, 'has-success': !editForm.unit.$error.required}">
               <label class='control-label' translate>UNIT</label>
               <select name="unit" class="input-sm form-control" ng-model="item.unit">
-                  <option value=""></option>
-                  <option value="pcs" translate>UNIT_PIECES</option>
-                  <option value="kg" translate>UNIT_KILOGRAMS</option>
-                  <option value="g" translate>UNIT_GRAMS</option>
-                  <option value="l" translate>UNIT_LITRES</option>
-                  <option value="boxes" translate>UNIT_BOXES</option>
-                  <option value="boots" translate>UNIT_BOOTS</option>
-                  <option value="bottles" translate>UNIT_BOTTLES</option>
-                  <option value="sheets" translate>UNIT_SHEETS</option>
-                  <option value="kits" translate>UNIT_KITS</option>
-                  <option value="m" translate>UNIT_METRES</option>
-                  <option value="m2" translate>UNIT_SQUARE_METRES</option>
-                  <option value="m3" translate>UNIT_CUBIC_METRES</option>
+                <option value=""></option>
+                <option value="pcs" translate="{{UNITS['pcs']}}"></option>
+                <option value="kg" translate="{{UNITS['kg']}}"></option>
+                <option value="g" translate="{{UNITS['g']}}"></option>
+                <option value="l" translate="{{UNITS['l']}}"></option>
+                <option value="boxes" translate="{{UNITS['boxes']}}"></option>
+                <option value="boots" translate="{{UNITS['boots']}}"></option>
+                <option value="bottles" translate="{{UNITS['bottles']}}"></option>
+                <option value="sheets" translate="{{UNITS['sheets']}}"></option>
+                <option value="kits" translate="{{UNITS['kits']}}"></option>
+                <option value="m" translate="{{UNITS['m']}}"></option>
+                <option value="m2" translate="{{UNITS['m2']}}"></option>
+                <option value="m3" translate="{{UNITS['m3']}}"></option>
               </select>
             </div>
 
@@ -205,6 +207,39 @@
               </div>
             </div>
             <hr>
+          </div>
+          <div class="form-group addForm" ng-if="suppliedItem.originalObject && !suppliedItem.originalObject.id">
+            <div class="well">
+              <h5 translate>SUPPLIED_ITEM</h5>
+              <div class="form-group addForm">
+                <label class="control-label" translate>DESCRIPTION</label>
+                <input disabled="disabled" type="text" class="input-sm form-control" ng-model="suppliedItem.originalObject">
+              </div>
+              <div ng-if="subCategories.length > 0" class="form-group has-feedback">
+                <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
+                <ui-select ng-required="false" ng-model="item.item_category" theme="bootstrap">
+                  <ui-select-match placeholder="{{ 'ITEM_SUB_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
+                  <ui-select-choices repeat="category as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                    <div ng-bind-html="category.name.text"></div>
+                    <small>
+                      {{category.description.text}}
+                    </small>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="compressed_air" placeholder="{{ 'PLACEHOLDER.COMPRESSED_AIR' | translate }}" ng-model='item.compressed_air'/>
+                  <span translate>COMPRESSED_AIR</span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="ventilation_fume_extraction" placeholder="{{ 'PLACEHOLDER.VENTILATION_FUME_EXTRACTION' | translate }}" ng-model='item.ventilation_fume_extraction'/>
+                  <span translate>VENTILATION_FUME_EXTRACTION</span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>

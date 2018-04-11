@@ -10,9 +10,11 @@
 angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm, ITEM_STATUS, ITEM_STATUS_TEXT,
-    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES
+    SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
+    UNITS
   ) {
 
+    $scope.UNITS = UNITS;
     $scope.fullscreen = false;
     $scope.item = {};
     $scope.loading.catalogue = true;
@@ -77,7 +79,7 @@ angular.module('ilApp')
 
 
     $scope.selectedLanguage = $translate.use();
-  
+
     var supplied_item_priorities = [];
     angular.forEach(SUPPLIED_ITEM_PRIORITIES, function (element) {
       supplied_item_priorities.push({
@@ -102,8 +104,18 @@ angular.module('ilApp')
         {field: 'model', name: $translate.instant("TH_MODEL"), width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'size', name: $translate.instant("TH_SIZE"), width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'part_number', name: $translate.instant("TH_PART_NUM"), width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'item_category.name.text', name: $translate.instant('TH_ITEM_SUBCATEGORY'), width: '160', cellEditableCondition: $scope.canEdit,
-          editableCellTemplate: '../../template/ui-grid/select-item-subcategories.html', editType: 'dropdown'},
+        {
+          field: 'item_category.name.text',
+          name: $translate.instant('TH_ITEM_SUBCATEGORY'),
+          width: '160',
+          cellEditableCondition: false,
+        },
+        {
+          field: 'item_category.parent.name.text',
+          name: $translate.instant('TH_ITEM_CATEGORY'),
+          width: '160',
+          cellEditableCondition: false
+        },
         {field: 'supplier', name: $translate.instant('TH_SUPPLIER'), width: '100'},
         {field: 'supply_type', name: $translate.instant('TH_SUPPLY_TYPE'), width: '100'},
         {field: 'unit_cost', name: $translate.instant('TH_UNIT_COST'), width: '100'}, //double

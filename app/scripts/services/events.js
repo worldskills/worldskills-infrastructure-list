@@ -58,7 +58,7 @@ angular.module('ilApp')
 
     Events.getSkillsForEvent = function(eventId, status){
         var deferred = $q.defer();
-      status = status || false;
+        status = status || false;
 
         $http.get(API_IL + "/events/skills/" + eventId + "?status=" + status).then(function(result){
             Events.skills = result.data.skills;
