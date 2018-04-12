@@ -17,7 +17,7 @@ angular.module('ilApp')
 
     $scope.canRecommend = function() {
       return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
-    }
+    };
 
     $scope.initSkill = function(){
         if(typeof $scope.selectedSkill.id == 'undefined'){

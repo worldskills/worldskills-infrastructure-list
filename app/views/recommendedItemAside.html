@@ -45,7 +45,6 @@
                 <div class='col col-sm-12 col-md-4'>
                   <div class="form-group addForm has-feedback has-success">
                     <label class='control-label' translate>MULTIPLIER</label>
-                    <!-- <select class="form-control input-sm" ng-model="item.multiplier" ng-options="multiplier.name for multiplier in multipliers track by multiplier.id"></select>             -->
                     <select class="form-control input-sm" ng-model="recommendedItem.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
                   </div>
                 </div>
@@ -95,10 +94,10 @@
           </div>
 
           <div class="row">
-            <div class="col col-xs-12 col-md-4 form-group">
+            <div ng-if="item.id" class="col col-xs-12 col-md-4 form-group">
               <div data-nodrag class="checkbox addForm form-group has-feedback has-success" style="margin-top: -20px;">
                 <label>
-                  <input type="checkbox" ng-model="recommendedItem.wrongSuppliedItem"> <span translate>WRONG_SUPPLIED_ITEM</span></input>
+                  <input type="checkbox" ng-model="recommendedItem.wrongSuppliedItem"> <span translate>WRONG_SUPPLIED_ITEM </span></input>
                 </label>
               </div>
             </div>
@@ -137,13 +136,7 @@
                 </table>
               </div>
               <div ng-controller="FileCtrl" ng-file-drop="" uploader="uploader" filters="">
-
                 <!-- drop zone -->
-                <style>
-                  .my-drop-zone { border: dotted 3px lightgray; }
-                  .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
-                  .another-file-over-class { border: dotted 3px green; }
-                </style>
                 <div ng-show="uploader.isHTML5">
                   <div nv-file-drop="" uploader="uploader">
                     <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone" translate>
@@ -152,7 +145,7 @@
                   </div>
                 </div>
                 <!-- drop zone -->
-              <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple  />
+                <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple  />
 
                 <!-- queue -->
                 <div class="well" style='background-color: #fff;' ng-show="uploader.queue.length > 0">
@@ -180,12 +173,6 @@
                         </div>
                       </td>
                       <td nowrap>
-                        <!--<button type="button" class="btn btn-success btn-xs" ng-click="recommendedItem.upload()" ng-disabled="recommendedItem.isReady || recommendedItem.isUploading || recommendedItem.isSuccess">-->
-                          <!--<span class="glyphicon glyphicon-upload"></span> Upload-->
-                        <!--</button>-->
-                        <!--<button type="button" class="btn btn-warning btn-xs" ng-click="recommendedItem.cancel()" ng-disabled="!recommendedItem.isUploading">-->
-                          <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
-                        <!--</button>-->
                         <button type="button" class="btn btn-danger btn-xs" ng-click="recommendedItem.remove()">
                           <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
                         </button>

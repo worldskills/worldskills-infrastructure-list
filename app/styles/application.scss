@@ -349,10 +349,6 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 
 
 /* public files */
-
-.filelist{
-
-}
 .public-files, .public-files li{
   list-style-type: none;
   margin-left: 0;
@@ -432,23 +428,32 @@ th.select, td.select {
 }
 
 .table-with-actions {
-    td:last-child {
-        display: flex;
-        align-items: center;
-        border-left: 0;
-        a:first-child {
-            margin-left: 8px;
-        }
+  th {
+    &.status,
+    &.canRecommend {
+      text-align: center;
     }
-    th:last-child {
-        text-align: center;
+  }
+  td {
+    &.status {
+      text-align: center;
     }
+    &.canRecommend {
+      display: flex;
+      align-items: center;
+      border-left: 0;
+      border-bottom: 0;
+      a:first-child {
+        margin-left: 8px;
+      }
+    }
+  }
 }
 
 @media (min-width: 768px) {
-    .modal-dialog {
-        width: 700px;
-    }
+  .modal-dialog {
+    width: 700px;
+  }
 }
 
 $spacer-3: 15px;
@@ -456,241 +461,253 @@ $spacer-3: 15px;
 
 .panel-validation {
     margin-top: 50px;
-  }
-  
-  .panel-validation table tr td {
-    vertical-align: middle;
-  }
-  
-  .panel-validation table tr th {
-    vertical-align: middle;
-  }
-  
-  .panel-validation table tr th:last-child {
-    text-align: center;
-  }
-  
-  .panel-validation table tr td.button {
-    cursor: pointer;
-    text-align: center;
-    padding: 0 10px;
-  }
-  
-  .panel-validation table tr td.button a {
-    color: #000000;
-  }
-  
-  .panel-validation-view {
-    -webkit-box-shadow: none;
-            box-shadow: none;
-    margin-bottom: 0;
-  }
-  
-  .panel-validation-view .panel-heading {
-    padding: 0;
-    border-bottom: 0;
-  }
-  
-  .panel-validation-view .panel-body {
-    padding: 0;
-    background-color: #f9f9f9;
-  }
-  
-  .panel-validation-view .table-validation table {
-    margin-bottom: 0;
-  }
-  
-  .panel-validation-view .table-validation table th:last-child, .panel-validation-view .table-validation table td:last-child {
-    text-align: center !important;
-  }
-  
-  .panel-validation-view .table-validation table .col-5 {
-    width: 5%;
-  }
-  
-  .panel-validation-view .table-validation table .col-10 {
-    width: 10%;
-  }
-  
-  .panel-validation-view .table-validation table .col-15 {
-    width: 15%;
-  }
-  
-  .panel-validation-view .table-validation table .col-20 {
-    width: 20%;
-  }
-  
-  .panel-validation-view .table-validation table .col-25 {
-    width: 25%;
-  }
-  
-  .panel-validation-view .table-validation table td {
-    padding: 15px 8px;
-  }
-  
-  .panel-validation-view .table-validation .button {
-    cursor: pointer;
-  }
-  
-  .panel-validation-view .table-validation.bordered {
-    border: solid 1px #ddd;
-  }
-  
-  .panel-validation-view table.table-in-validation {
-    margin: 0;
-  }
-  
-  .panel-validation-view table.table-in-validation .col-5 {
-    width: 5%;
-  }
-  
-  .panel-validation-view table.table-in-validation .col-10 {
-    width: 10%;
-  }
-  
-  .panel-validation-view table.table-in-validation .col-15 {
-    width: 15%;
-  }
-  
-  .panel-validation-view table.table-in-validation .col-20 {
-    width: 20%;
-  }
-  
-  .panel-validation-view table.table-in-validation .col-30 {
-    width: 30%;
-  }
-  
-  .panel-validation-view table.table-in-validation .description {
-    width: 30%;
-  }
-  
-  .panel-validation-view table.table-in-validation td {
-    background: white;
-    padding: 10px;
-    vertical-align: middle;
-  }
-  
-  .panel-validation-view table.table-in-validation th {
-    background-color: #f5f5f5;
-  }
-  
-  .panel-validation-view table.table-in-validation tr.actuel td.change {
-    font-weight: 600;
-    background-color: #f5f5f5;
-  }
-  
-  .panel-validation-view table.table-in-validation tr.actuel td:first-child {
-    text-align: center;
-    font-weight: 600;
-  }
-  
-  .panel-validation-view table.table-in-validation tr.remplace td.change-warning {
-    color: #f0ad4e;
-    font-weight: 500;
-    background-color: #f5f5f5;
-  }
-  
-  .panel-validation-view table.table-in-validation tr.remplace td:first-child {
-    text-align: center;
-    border: none !important;
-    color: #f0ad4e;
-    font-weight: 500;
-  }
-  
-  .panel-validation-view table.table-in-validation .image {
-    position: relative;
-  }
-  
-  .panel-validation-view table.table-in-validation .image img {
-    width: 100%;
-  }
-  
-  .panel-validation-view .table-container {
-    padding: 15px;
-  }
-  
-  .panel-validation-view .table-container .button-group {
-    margin-top: 15px;
-  }
-  
-  .panel-validation-view .table-container .button-group button {
-    margin-left: 10px;
-  }
-  
-  .modal-rejection .modal-body {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .modal-rejection .modal-footer {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  
-  .lightgallery-validation.lightgallery .hover-effect img.zoom {
-    width: 20px !important;
-    opacity: 0;
-    -webkit-transition: opacity .15s ease-in-out;
-    -o-transition: opacity .15s ease-in-out;
-    transition: opacity .15s ease-in-out;
-  }
-  
-  .lightgallery-validation.lightgallery:hover .hover-effect img.zoom {
-    opacity: 1;
-  }
-  
-  .lightgallery-validation.lightgallery .hover-effect {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    -webkit-transition: background-color 0.15s ease 0s;
-    -o-transition: background-color 0.15s ease 0s;
-    transition: background-color 0.15s ease 0s;
-  }
-  
-  .lightgallery-validation.lightgallery:hover .hover-effect {
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-transition: background-color 0.50s ease 0s;
-    -o-transition: background-color 0.50s ease 0s;
-    transition: background-color 0.50s ease 0s;
-  }
-  
-  .lightgallery-validation.lightgallery:hover img {
-    -webkit-transform: scale3d(1.1, 1.1, 1.1);
-            transform: scale3d(1.1, 1.1, 1.1);
-  }
-  
-  .lightgallery-validation.lightgallery img {
-    -webkit-transition: -webkit-transform 0.15s ease 0s;
-    transition: -webkit-transform 0.15s ease 0s;
-    -o-transition: transform 0.15s ease 0s;
-    transition: transform 0.15s ease 0s;
-    transition: transform 0.15s ease 0s, -webkit-transform 0.15s ease 0s;
-  }
+}
 
-  .icon-circled {
-    background: #7c9eb2;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 18px;
-    vertical-align: middle;
-    color: white;
-  }
-  
+.panel-validation table tr td {
+  vertical-align: middle;
+}
+
+.panel-validation table tr th {
+  vertical-align: middle;
+}
+
+.panel-validation table tr th:last-child {
+  text-align: center;
+}
+
+.panel-validation table tr td.button {
+  cursor: pointer;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.panel-validation table tr td.button a {
+  color: #000000;
+}
+
+.panel-validation-view {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  margin-bottom: 0;
+}
+
+.panel-validation-view .panel-heading {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.panel-validation-view .panel-body {
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.panel-validation-view .table-validation table {
+  margin-bottom: 0;
+}
+
+.panel-validation-view .table-validation table th:last-child, .panel-validation-view .table-validation table td:last-child {
+  text-align: center !important;
+}
+
+.panel-validation-view .table-validation table .col-5 {
+  width: 5%;
+}
+
+.panel-validation-view .table-validation table .col-10 {
+  width: 10%;
+}
+
+.panel-validation-view .table-validation table .col-15 {
+  width: 15%;
+}
+
+.panel-validation-view .table-validation table .col-20 {
+  width: 20%;
+}
+
+.panel-validation-view .table-validation table .col-25 {
+  width: 25%;
+}
+
+.panel-validation-view .table-validation table td {
+  padding: 15px 8px;
+}
+
+.panel-validation-view .table-validation .button {
+  cursor: pointer;
+}
+
+.panel-validation-view .table-validation.bordered {
+  border: solid 1px #ddd;
+}
+
+.panel-validation-view table.table-in-validation {
+  margin: 0;
+}
+
+.panel-validation-view table.table-in-validation .col-5 {
+  width: 5%;
+}
+
+.panel-validation-view table.table-in-validation .col-10 {
+  width: 10%;
+}
+
+.panel-validation-view table.table-in-validation .col-15 {
+  width: 15%;
+}
+
+.panel-validation-view table.table-in-validation .col-20 {
+  width: 20%;
+}
+
+.panel-validation-view table.table-in-validation .col-30 {
+  width: 30%;
+}
+
+.panel-validation-view table.table-in-validation .description {
+  width: 30%;
+}
+
+.panel-validation-view table.table-in-validation td {
+  background: white;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.panel-validation-view table.table-in-validation th {
+  background-color: #f5f5f5;
+}
+
+.panel-validation-view table.table-in-validation tr.actuel td.change {
+  font-weight: 600;
+  background-color: #f5f5f5;
+}
+
+.panel-validation-view table.table-in-validation tr.actuel td:first-child {
+  text-align: center;
+  font-weight: 600;
+}
+
+.panel-validation-view table.table-in-validation tr.remplace td.change-warning {
+  color: #f0ad4e;
+  font-weight: 500;
+  background-color: #f5f5f5;
+}
+
+.panel-validation-view table.table-in-validation tr.remplace td:first-child {
+  text-align: center;
+  border: none !important;
+  color: #f0ad4e;
+  font-weight: 500;
+}
+
+.panel-validation-view table.table-in-validation .image {
+  position: relative;
+}
+
+.panel-validation-view table.table-in-validation .image img {
+  width: 100%;
+}
+
+.panel-validation-view .table-container {
+  padding: 15px;
+}
+
+.panel-validation-view .table-container .button-group {
+  margin-top: 15px;
+}
+
+.panel-validation-view .table-container .button-group button {
+  margin-left: 10px;
+}
+
+.modal-rejection .modal-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-rejection .modal-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.lightgallery-validation.lightgallery .hover-effect img.zoom {
+  width: 20px !important;
+  opacity: 0;
+  -webkit-transition: opacity .15s ease-in-out;
+  -o-transition: opacity .15s ease-in-out;
+  transition: opacity .15s ease-in-out;
+}
+
+.lightgallery-validation.lightgallery:hover .hover-effect img.zoom {
+  opacity: 1;
+}
+
+.lightgallery-validation.lightgallery .hover-effect {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transition: background-color 0.15s ease 0s;
+  -o-transition: background-color 0.15s ease 0s;
+  transition: background-color 0.15s ease 0s;
+}
+
+.lightgallery-validation.lightgallery:hover .hover-effect {
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: background-color 0.50s ease 0s;
+  -o-transition: background-color 0.50s ease 0s;
+  transition: background-color 0.50s ease 0s;
+}
+
+.lightgallery-validation.lightgallery:hover img {
+  -webkit-transform: scale3d(1.1, 1.1, 1.1);
+          transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.lightgallery-validation.lightgallery img {
+  -webkit-transition: -webkit-transform 0.15s ease 0s;
+  transition: -webkit-transform 0.15s ease 0s;
+  -o-transition: transform 0.15s ease 0s;
+  transition: transform 0.15s ease 0s;
+  transition: transform 0.15s ease 0s, -webkit-transform 0.15s ease 0s;
+}
+
+.icon-circled {
+  background: #7c9eb2;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  vertical-align: middle;
+  color: white;
+}
+
+.my-drop-zone {
+  border: dotted 3px lightgray;
+}
+
+/* Default class applied to drop zones on over */
+.nv-file-over {
+  border: dotted 3px red;
+}
+
+.another-file-over-class {
+  border: dotted 3px green;
+}

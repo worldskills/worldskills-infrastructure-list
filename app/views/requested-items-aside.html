@@ -33,7 +33,7 @@
                     <angucomplete-alt
                       input-name="supplier"
                       id="supplier"
-                      placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}"
+                      placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}"
                       pause="400"
                       selected-object="editedItem.supplier"
                       remote-url="{{searchSupplierAPI}}"
@@ -41,7 +41,6 @@
                       remote-url-data-field="suppliers"
                       title-field="name"
                       minlength="1"
-                      search-fields="name"
                       disable-input="disableInputSupplier"
                       focus-first="true"
                       input-changed="supplierChanged"
@@ -60,7 +59,7 @@
                   <div class="form-group">
                     <label class="control-label" translate>TOTAL_PRICE</label>
                     <div class="input-group">
-                        <input type="number" name="price" class="form-control" ng-model="editedItem.price" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.PRICE' | translate }}">
+                        <input type="number" name="price" class="form-control" ng-model="editedItem.price" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'TOTAL_PRICE' | translate }}">
                         <span class="input-group-addon">€</span>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, Events, Items, Downloader, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Downloader, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
   $scope.skillId = $state.params.skillId;
@@ -62,7 +62,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
   function postClose() {
     $scope.asideState.open = false;
-  }
+  };
 
   $scope.downloadFile = function(file){
     Downloader.handleDownload(data, status, headers, filename);
@@ -70,7 +70,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
   $scope.canRecommend = function() {
       return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
-  }
+  };
 
 
   $scope.openSuggestModalAside = function (listCategoryId, item) {
@@ -111,19 +111,19 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       listCategoryId : item.category
     };
 
-    $confirm({
-      recommendedItem: $scope.recommendedItem,
-      ok: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.OK')
-    },
-    {
-      templateUrl: 'views/suggestDeletionModal.html'
-    }).then(function() {
-      $scope.recommendedItem.comment = $scope.comment;
+    var self = this;
+    var modalInstance = $uibModal.open({
+      templateUrl: 'views/suggestDeletionModal.html',
+      controller: 'ModalCtrl'
+    });
+
+    modalInstance.result.then(function (modalScope) {
+      $scope.recommendedItem.comment = modalScope.comment;
       RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.skillId).then(function(result) {
         WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
       }, function(error) {
         WSAlert.danger(error);
       });
     });
-  }
+  };
 });

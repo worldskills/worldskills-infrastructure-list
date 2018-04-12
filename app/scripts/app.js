@@ -324,8 +324,8 @@
         }
     })
 
-    .state('event.skill.publicItems', {
-      url: '/public',
+    .state('publicItems', {
+      url: '/event/{eventId}/skill/{skillId}/public',
       templateUrl: 'views/public-items.html',
       controller: 'PublicItemsCtrl',
       data: {
