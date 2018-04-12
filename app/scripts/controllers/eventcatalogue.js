@@ -140,8 +140,8 @@ angular.module('ilApp')
         {field: 'electricity_volts', name: $translate.instant('TH_ELECTRICITY_VOLTS'), width: '100'},//int
         {field: 'electricity_amps', name: $translate.instant('TH_ELECTRICITY_AMPS'), width: '100'},//int
         {field: 'electricity_phase', name: $translate.instant('TH_ELECTRICITY_PHASE'), width: '100'},
-        {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100'},
-        {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100'},
+        {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100', cellTemplate: "<div translate>{{row.entity.water_supply}}</div>"},
+        {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100', cellTemplate: "<div translate>{{row.entity.water_drainage}}</div>"},
         {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100', cellTemplate: "<div translate>{{row.entity.compressed_air}}</div>"},
         {field: 'ventilation_fume_extraction', name: $translate.instant('TH_VENTILATION_FUME_EXTRACTION'), width: '100', type: 'boolean',
           cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction}}</div>"

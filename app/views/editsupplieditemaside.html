@@ -251,12 +251,12 @@
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.water_supply.$dirty && editForm.water_supply.$error.required, 'has-success': !editForm.water_supply.$error.required}">
                     <label class='control-label' translate>WATER_SUPPLY</label>
-                    <input type="text" name="water_supply" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_SUPPLY' | translate }}" ng-model='item.water_supply'>
+                    <input type="checkbox" name="water_supply" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_SUPPLY' | translate }}" ng-model='item.water_supply'/>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.water_drainage.$dirty && editForm.water_drainage.$error.required, 'has-success': !editForm.water_drainage.$error.required}">
                     <label class='control-label' translate>WATER_DRAINAGE</label>
-                    <input type="text" name="water_drainage" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_DRAINAGE' | translate }}" ng-model='item.water_drainage'>
+                    <input type="checkbox" name="water_drainage" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_DRAINAGE' | translate }}" ng-model='item.water_drainage'/>
                   </div>
                 </div>
 
