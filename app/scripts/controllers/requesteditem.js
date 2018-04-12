@@ -13,7 +13,7 @@ angular.module('ilApp')
 
     $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.UNITS = UNITS;
-    $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?search='; //search url for autocomplete
+    $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?limit=100&search='; //search url for autocomplete
     $scope.loading.items = true;
     $scope.filters = {};
 
