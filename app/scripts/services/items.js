@@ -118,6 +118,9 @@ angular.module('ilApp')
         "event": { id: eventId},
         "status": { id: ITEM_STATUS.RED },
         "description": item.description,
+        "electricity": item.electricity,
+        "water_supply": item.water_supply,
+        "water_drainage": item.water_drainage,
         "compressed_air": item.compressed_air,
         "ventilation_fume_extraction": item.ventilation_fume_extraction,
         "item_category": item.item_category
