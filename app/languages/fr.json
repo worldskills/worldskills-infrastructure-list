@@ -545,6 +545,6 @@
   "X_ADDITIONS_FOR_CATEGORY": "Il y a {{count}} demandes d'ajout d'item pour cette catégorie.",
   "YES": "Oui",
   "YOU_HAVE_MULTIPLE_POSITIONS": "Vous occupez plusieurs fonctions : merci de sélectionner le rôle sous lequel vous souhaitez utiliser l'application.",
-  "false": "Non",
-  "true": "Oui"
+  "falseLabel": "Non",
+  "trueLabel": "Oui"
 }

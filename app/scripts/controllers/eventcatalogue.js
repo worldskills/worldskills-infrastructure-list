@@ -33,6 +33,7 @@ angular.module('ilApp')
     $scope.asideState = {
       open: false,
     };
+
     //deep copy of filters in order to show currently selected in UI
     $scope.selectedFilters = {};
     $scope.selectedLanguage = $translate.use();
@@ -146,22 +147,22 @@ angular.module('ilApp')
         {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100', cellTemplate: "<div translate>{{row.entity.water_supply}}</div>"},
         {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100', cellTemplate: "<div translate>{{row.entity.water_drainage}}</div>"},
         {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100',
-          cellTemplate: "<div translate>{{row.entity.compressed_air}}</div>",
+          cellTemplate: "<div translate>{{row.entity.compressed_air + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
-              { value: 'true', label: $translate.instant('true')},
-              { value: 'false', label: $translate.instant('false')},
+              { value: 'true', label: $translate.instant('trueLabel')},
+              { value: 'false', label: $translate.instant('falseLabel')},
             ]
           }
         },
         {field: 'ventilation_fume_extraction', name: $translate.instant('TH_VENTILATION_FUME_EXTRACTION'), width: '100', type: 'boolean',
-          cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction}}</div>",
+          cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
-              { value: 'true', label: $translate.instant('true')},
-              { value: 'false', label: $translate.instant('false')},
+              { value: 'true', label: $translate.instant('trueLabel')},
+              { value: 'false', label: $translate.instant('falseLabel')},
             ]
           }
         },//char 1
@@ -172,23 +173,23 @@ angular.module('ilApp')
         {field: 'modified', name: $translate.instant("TH_MODIFIED"), width: '95', type: 'date', enableCellEdit: false},
         {field: 'user_generated', name: $translate.instant("TH_USER_GENERATED"), width: '125', type: 'boolean',
           enableCellEdit: false,
-          cellTemplate: "<div translate>{{row.entity.user_generated}}</div>" ,
+          cellTemplate: "<div translate>{{row.entity.user_generated + 'Label'}}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
-              { value: 'true', label: $translate.instant('true')},
-              { value: 'false', label: $translate.instant('false')},
+              { value: 'true', label: $translate.instant('trueLabel')},
+              { value: 'false', label: $translate.instant('falseLabel')},
             ]
           }
         },
         {field: 'linkedItems', name: $translate.instant("TH_LINKED"), width: '95', type: 'boolean',
           enableCellEdit: false,
-          cellTemplate: "<div translate>{{row.entity.linkedItems}}</div>",
+          cellTemplate: "<div translate>{{row.entity.linkedItems + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
-              { value: 'true', label: $translate.instant('true')},
-              { value: 'false', label: $translate.instant('false')},
+              { value: 'true', label: $translate.instant('trueLabel')},
+              { value: 'false', label: $translate.instant('falseLabel')},
             ]
           }
         },

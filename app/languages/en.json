@@ -545,6 +545,6 @@
   "X_ADDITIONS_FOR_CATEGORY": "There are {{count}} item addition requests for this category.",
   "YES": "Yes",
   "YOU_HAVE_MULTIPLE_POSITIONS": "You have multiple positions, please select a role to use the application as",
-  "false": "False",
-  "true": "True"
+  "falseLabel": "False",
+  "trueLabel": "True"
 }
