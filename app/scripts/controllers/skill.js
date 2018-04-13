@@ -15,6 +15,10 @@ angular.module('ilApp')
     $scope.participantNumbers = {};
     $scope.initializing = $q.defer();
 
+    $scope.canRecommend = function() {
+      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
+    };
+
     $scope.initSkill = function(){
         if(typeof $scope.selectedSkill.id == 'undefined'){
                 $scope.skill_id = $state.params.skillId;

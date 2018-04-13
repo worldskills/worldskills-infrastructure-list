@@ -1,4 +1,6 @@
 {
+  "ACCEPT": "Accept",
+  "ACTION": "Action",
   "ACTIONS": "Actions",
   "ADDITIONAL": "additional",
   "ADDITIONAL_QUANTITY": "Additional quantity",
@@ -89,10 +91,12 @@
     "CLOSE": "Close"
   },
   "COMBINE_ITEMS": "Combine items",
+  "COMMENT": "Comment",
   "COMPRESSED_AIR": "Compressed air",
   "CONFIRM": {
     "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE": "Are you sure you want to leave this page?"
   },
+  "CONFIRM_DELETION_SUGGESTION": "Do you really wish to recommend this item's deletion? You can provide a reason in the section below (optional)",
   "CONSTANT": {
     "APP_ROLES": {
       "ADMIN": "Admin",
@@ -140,6 +144,7 @@
     "TEXT": "Are you sure you want to delete the item subcategory: {{text}}?",
     "TITLE": "Delete item subcategory"
   },
+  "DELETION_REQUESTS": "Deletion requests",
   "DESCRIPTION": "Description",
   "DISABLE_INLINE_EDIT": "Disable inline editing",
   "DISPOSAL_CATEGORY": "Disposal category",
@@ -148,6 +153,7 @@
   "EDITING_ITEM": "Editing item",
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Editing requested item details in",
   "EDIT_DETAILS": "edit",
+  "EDIT_REQUESTS": "Edit requests",
   "EDIT_SELECTED_ITEM": "Edit selected item",
   "EDIT_SUPPLIED_ITEM": "Edit Supplied Item",
   "ELECTRICITY_NEEDED": "Electricity required",
@@ -167,6 +173,7 @@
   "FULLSCREEN": "Fullscreen",
   "GAS_REQUIREMENTS": "Gas requirements",
   "GENERAL_INFORMATION": "General information",
+  "HANDLE_RECOMMENDATIONS": "Manage recommendations",
   "HIGH": "High",
   "HOME": "Home",
   "HOST_VIEW": "Host views",
@@ -258,6 +265,7 @@
     "PREVIOUS": "Previous"
   },
   "PERMISSIONS": "Permissions",
+  "PICTURES": "Pictures",
   "PLACEHOLDER": {
     "ADDITIONAL_QUANTITY": "Additional quantity",
     "ALL_CATEGORY": "All",
@@ -272,7 +280,6 @@
     "CHOOSE_INSTALLATION_TYPE_OPT": "Choose a Installation Type (optional)",
     "CHOOSE_ITEM_CATEGORY": "Please select a category",
     "CHOOSE_SKILL": "Choose a skill",
-    "CHOOSE_SKILL_SECTOR": "Choose a skill sector",
     "COMPRESSED_AIR": "Compressed air",
     "DELIVERY": "Delivery",
     "DESCRIPTION": "Description",
@@ -323,6 +330,9 @@
   "QUANTITY": "Quantity",
   "QUEUE_LENGTH:": "Queue length:",
   "QUEUE_PROGRESS:": "Queue progress:",
+  "RECOMMENDATIONS": "Recommendations",
+  "RECOMMENDATIONS_WANT_REJECT": "Do you want to reject this suggestion ?",
+  "REJECT": "Reject",
   "REMOVE_ITEM_S_FROM_CATALOGUE": {
     "OK": "Delete",
     "TITLE": "Remove item(s) from catalogue?"
@@ -330,7 +340,7 @@
   "REMOVE_SELECTED_ITEMS": "Remove selected item(s)",
   "REORDER_DISABLED_SORT": "Reordering of items disabled while sorting is active, sorting can be cleared under the \"<b>Advanced actions</b>\" dropdown.",
   "REPORTS": "Reports",
-  "REQUESTED_ITEM": "Requested Item",
+  "REQUESTED_ITEM": "Requested item",
   "REQUESTED_ITEMS": "Requested items",
   "REQUESTED_ITEMS_PROPERTIES": "Requested items properties",
   "REQUIRED": {
@@ -351,6 +361,7 @@
   "SIGNUP": "Sign up",
   "SKILL": "Skill",
   "SKILL_AREA": "Skill Area",
+  "SKILL_COLON": "Skill:",
   "SKILL_INFORMATION": "Skill Information",
   "SKILL_MANAGEMENT": "Skill Management",
   "SKILL_PARTICIPANTS_OVERRIDE": "Skill Participants Override",
@@ -363,7 +374,10 @@
   "SPONSOR_SUPPLY": "Sponsor Supply",
   "STANDARD_SETS": "Standard sets",
   "STATUS": "Status",
-  "SUPPLIED_ITEM": "Supplied Item",
+  "SUGGEST_ADDITION": "Recommend an addition",
+  "SUGGEST_DELETE": "Recommend item deletion",
+  "SUGGEST_MODIFICATION": "Recommend a modification",
+  "SUPPLIED_ITEM": "Supplied items",
   "SUPPLIED_ITEM_DETAILS": "Supplied Item Details",
   "SUPPLIED_ITEM_TAB": {
     "EXTRA": "Extra",
@@ -379,6 +393,10 @@
   "SURE_COMBINE_ITEMS": "Are you sure you want to combine these items?",
   "SWITCH_ROLE": "Switch role",
   "SWITCH_SUPPLIED_ITEM": "Switch Supplied Item",
+  "TD_ITEM_ADDITION": "Addition",
+  "TD_ITEM_CURRENT": "Item current",
+  "TD_ITEM_DELETION": "Deletion",
+  "TD_ITEM_REPLACE_WITH": "Replace",
   "TEXT": {
     "ALL_CATEGORIES": "All categories"
   },
@@ -416,7 +434,9 @@
   "TH_ID": "ID",
   "TH_INTERPRETERS": "Interpreters",
   "TH_ITEM": "Item",
+  "TH_ITEM_APPLICANT": "Applicant",
   "TH_ITEM_CATEGORY": "Category",
+  "TH_ITEM_DATE_AND_TIME": "Date and time",
   "TH_ITEM_SUBCATEGORY": "Subcategory",
   "TH_KEEP": "Keep",
   "TH_LAST_MODIFIED": "Last modified",
@@ -445,8 +465,9 @@
   "TH_SUPPLIER": "Supplier",
   "TH_SUPPLIER_POTENTIAL": "Supplier (potential)",
   "TH_SUPPLY_TYPE": "Supply type",
+  "TH_TOTAL_PRICE": "Total price",
   "TH_UNIT": "Unit",
-  "TH_UNIT_COST": "Unit cost (€)",
+  "TH_UNIT_COST": "Unit cost",
   "TH_USER_GENERATED": "User generated",
   "TH_VENTILATION_FUME_EXTRACTION": "Ventilation / Fume extraction",
   "TH_WATER_DRAINAGE": "Water drainage",
@@ -475,7 +496,7 @@
   "UNIT_BOOTS": "Boots",
   "UNIT_BOTTLES": "Bottles",
   "UNIT_BOXES": "Boxes",
-  "UNIT_COST": "Unit cost (€)",
+  "UNIT_COST": "Unit cost",
   "UNIT_CUBIC_METRES": "Cubic Metres",
   "UNIT_GRAMS": "Grams",
   "UNIT_KILOGRAMS": "Kilograms",
@@ -497,6 +518,7 @@
   "WATER_NEEDED": "Water required",
   "WATER_SUPPLY": "Water supply",
   "WHICH_DATA": "Select which data to load",
+  "WRONG_SUPPLIED_ITEM": "Wrong supplied item",
   "WSALERT": {
     "DANGER": {
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET": "Item could not be removed from set, please try again!"
@@ -506,6 +528,11 @@
       "ITEM_SAVED": "Item saved",
       "ITEM_S_REMOVED": "Item(s) removed!",
       "QUANTITIES_UPDATED": "Quantities updated!",
+      "RECOMMEND_ACCEPT": "The recommendation has been accepted.",
+      "RECOMMEND_ADD": "Your addition recommendation has been successfully submitted and will be reviewed shortly.",
+      "RECOMMEND_DELETE": "Your deletion recommendation has been successfully submitted and will be reviewed shortly.",
+      "RECOMMEND_EDIT": "Your modification recommendation has been successfully submitted and will be reviewed shortly.",
+      "RECOMMEND_REJECT": "The recommendation has been rejected.",
       "SET_REMOVED_SUCCESSFULLY": "Set removed successfully!"
     },
     "WARNING": {
@@ -514,6 +541,7 @@
       "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST": "You have to select at least skill first"
     }
   },
+  "X_ADDITIONS_FOR_CATEGORY": "There are {{count}} item addition requests for this category.",
   "YES": "Yes",
   "YOU_HAVE_MULTIPLE_POSITIONS": "You have multiple positions, please select a role to use the application as",
   "false": "False",

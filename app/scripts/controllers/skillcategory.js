@@ -240,6 +240,7 @@ angular.module('ilApp')
 
           $scope.items = result.requested_items;
           $scope.total = result.total;
+          $scope.additionRecommendationsCount = result.additionRecommendationsCount;
           $scope.loading.initial = false;
           deferred.resolve();
         },

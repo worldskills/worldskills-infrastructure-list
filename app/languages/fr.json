@@ -1,4 +1,6 @@
 {
+  "ACCEPT": "Accepter",
+  "ACTION": "Action",
   "ACTIONS": "Actions",
   "ADDITIONAL": "additionnels",
   "ADDITIONAL_QUANTITY": "Quantité additionnelle",
@@ -89,10 +91,12 @@
     "CLOSE": "Fermer"
   },
   "COMBINE_ITEMS": "Combiner les items",
+  "COMMENT": "Commentaire",
   "COMPRESSED_AIR": "Air comprimé",
   "CONFIRM": {
     "ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE": "Souhaitez-vous vraiment quitter cette page ?"
   },
+  "CONFIRM_DELETION_SUGGESTION": "Souhaitez-vous vraiment suggérer la suppression de cet item ? Vous pouvez spécifier une raison dans le champ ci-dessous (optionnel)",
   "CONSTANT": {
     "APP_ROLES": {
       "ADMIN": "Admin",
@@ -140,6 +144,7 @@
     "TEXT": "Êtes-vous certain(e) de vouloir supprimer la famille : {{text}} ?",
     "TITLE": "Suppression d'une famille"
   },
+  "DELETION_REQUESTS": "Demandes de suppression",
   "DESCRIPTION": "Description",
   "DISABLE_INLINE_EDIT": "Désactiver l'édition directe",
   "DISPOSAL_CATEGORY": "Condition de retour",
@@ -148,6 +153,7 @@
   "EDITING_ITEM": "Modifier un item",
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Édition des informations des lignes d'infrastructure dans",
   "EDIT_DETAILS": "Modifier",
+  "EDIT_REQUESTS": "Demandes de modification",
   "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné",
   "EDIT_SUPPLIED_ITEM": "Modifier l'item",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
@@ -167,6 +173,7 @@
   "FULLSCREEN": "Plein-écran",
   "GAS_REQUIREMENTS": "Besoins en gaz",
   "GENERAL_INFORMATION": "Informations générales",
+  "HANDLE_RECOMMENDATIONS": "Traiter les suggestions",
   "HIGH": "Important",
   "HOME": "Accueil",
   "HOST_VIEW": "Vues invité",
@@ -258,6 +265,7 @@
     "PREVIOUS": "Précédent"
   },
   "PERMISSIONS": "Autorisations",
+  "PICTURES": "Images",
   "PLACEHOLDER": {
     "ADDITIONAL_QUANTITY": "Quantité additionnelle",
     "ALL_CATEGORY": "Toutes",
@@ -272,7 +280,6 @@
     "CHOOSE_INSTALLATION_TYPE_OPT": "Choisissez un type d'installation (facultatif)",
     "CHOOSE_ITEM_CATEGORY": "Merci de sélectionner une super famille",
     "CHOOSE_SKILL": "Choisissez un métier",
-    "CHOOSE_SKILL_SECTOR": "Choisissez un pôle métier",
     "COMPRESSED_AIR": "Air comprimé",
     "DELIVERY": "Livraison",
     "DESCRIPTION": "Description",
@@ -312,7 +319,7 @@
     "WATER_SUPPLY": "Alimentation en eau",
     "X_NUMBER": "Valeur de X"
   },
-  "PLEASE_TYPE_SEARCH_TERM": "Saisir un terme de recherche ci-dessus et cliquer sur rechercher",
+  "PLEASE_TYPE_SEARCH_TERM": "Saisir un terme de recherche ci-dessus et cliquer sur rechercher.",
   "POSITION_EVENT_NAME_TEXT": "de {{position}}",
   "POTENTIAL_SUPPLIER": "Fournisseur potentiel",
   "PO_NUMBER": "Numéro de bon de commande",
@@ -323,6 +330,9 @@
   "QUANTITY": "Quantité",
   "QUEUE_LENGTH:": "Longueur de la file :",
   "QUEUE_PROGRESS:": "Progression :",
+  "RECOMMENDATIONS": "Suggestions",
+  "RECOMMENDATIONS_WANT_REJECT": "Voulez-vous rejeter la suggestion ?",
+  "REJECT": "Rejeter",
   "REMOVE_ITEM_S_FROM_CATALOGUE": {
     "OK": "Supprimer",
     "TITLE": "Supprimer les items du catalogue ?"
@@ -350,19 +360,23 @@
   "SET_NAME": "Nom du lot",
   "SIGNUP": "Inscription",
   "SKILL": "Métier",
-  "SKILL_AREA": "Zone dans l'espace métier",
+  "SKILL_AREA": "Métier",
+  "SKILL_COLON": "Métier :",
   "SKILL_INFORMATION": "Informations métier",
-  "SKILL_MANAGEMENT": "Contact du métier",
+  "SKILL_MANAGEMENT": "Gestion du métier",
   "SKILL_PARTICIPANTS_OVERRIDE": "Remplacer la liste des participants",
   "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Laissez les champs vides pour utiliser les numéros d'enregistrement (si disponibles).",
   "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Enregistrer les participants",
   "SKILL_SECTOR": "Pôle métier",
   "SOME_OF_THE_ITEMS_CAN_T_BE_DELETED": "Certains items ne peuvent être supprimés car ils sont rattachés à un métier. Cliquer sur 'Supprimer' ne supprimera que les items qui ne sont rattachés à aucun métier.",
-  "SPLIT_SUPPLIED_ITEM": "Scinder l'item",
+  "SPLIT_SUPPLIED_ITEM": "Split Supplied Item",
   "SPONSOR_LOAN": "Prêt sponsor",
   "SPONSOR_SUPPLY": "Fourniture sponsor",
   "STANDARD_SETS": "Lots standard",
-  "STATUS": "Statut",
+  "STATUS": "État",
+  "SUGGEST_ADDITION": "Suggérer un ajout",
+  "SUGGEST_DELETE": "Suggérer la suppression",
+  "SUGGEST_MODIFICATION": "Suggérer une modification",
   "SUPPLIED_ITEM": "Item",
   "SUPPLIED_ITEM_DETAILS": "Caractéristiques de l'item fourni",
   "SUPPLIED_ITEM_TAB": {
@@ -378,7 +392,11 @@
   "SUPPLY_TYPE": "Type de fourniture",
   "SURE_COMBINE_ITEMS": "Êtes vous certain(e) de vouloir combiner ces items ?",
   "SWITCH_ROLE": "Changer de rôle",
-  "SWITCH_SUPPLIED_ITEM": "Changer d'item",
+  "SWITCH_SUPPLIED_ITEM": "Switch Supplied Item",
+  "TD_ITEM_ADDITION": "Ajout",
+  "TD_ITEM_CURRENT": "Item current",
+  "TD_ITEM_DELETION": "Suppression",
+  "TD_ITEM_REPLACE_WITH": "Remplacement",
   "TEXT": {
     "ALL_CATEGORIES": "Toutes les catégories"
   },
@@ -396,14 +414,14 @@
   "THIS_ITEM_HAS_CHILD_ITEMS": "Cet item possède des items enfants - ceux-ci seront également supprimés !",
   "TH_ACTIONS": "Actions",
   "TH_ANCHOR_FIXING_BASE_REQUIREMENTS": "Ancrage, fixation, autres besoins",
-  "TH_CATEGORY": "Onglet",
+  "TH_CATEGORY": "Catégorie",
   "TH_COMPETITORS": "Participants",
   "TH_COMPRESSED_AIR": "Air comprimé",
   "TH_DELETE": "Supprimer",
   "TH_DELIVERY": "Livraison",
   "TH_DESCRIPTION": "Description",
   "TH_DETAILS": "Détails",
-  "TH_DISPOSAL_CATEGORY": "Condition de retour",
+  "TH_DISPOSAL_CATEGORY": "Catégorie de restitution",
   "TH_ELECTRICITY_AMPS": "Électricité - Ampères",
   "TH_ELECTRICITY_PHASE": "Phase électrique",
   "TH_ELECTRICITY_VOLTS": "Électricité - Volts",
@@ -416,7 +434,9 @@
   "TH_ID": "ID",
   "TH_INTERPRETERS": "Interprètes",
   "TH_ITEM": "Item",
+  "TH_ITEM_APPLICANT": "Demandeur",
   "TH_ITEM_CATEGORY": "Super famille",
+  "TH_ITEM_DATE_AND_TIME": "Date et heure",
   "TH_ITEM_SUBCATEGORY": "Famille",
   "TH_KEEP": "Conserver",
   "TH_LAST_MODIFIED": "Modifié le",
@@ -445,8 +465,9 @@
   "TH_SUPPLIER": "Partenaire",
   "TH_SUPPLIER_POTENTIAL": "Fournisseur (potentiel)",
   "TH_SUPPLY_TYPE": "Type de fourniture",
+  "TH_TOTAL_PRICE": "Prix total",
   "TH_UNIT": "Unité",
-  "TH_UNIT_COST": "Coût unitaire (€)",
+  "TH_UNIT_COST": "Coût unitaire",
   "TH_USER_GENERATED": "Utilisateur généré",
   "TH_VENTILATION_FUME_EXTRACTION": "Ventilation / extraction de fumée",
   "TH_WATER_DRAINAGE": "Évacuation d'eau",
@@ -475,7 +496,7 @@
   "UNIT_BOOTS": "Bottes",
   "UNIT_BOTTLES": "Bouteilles",
   "UNIT_BOXES": "Boites",
-  "UNIT_COST": "Coût unitaire (€)",
+  "UNIT_COST": "Coût unitaire",
   "UNIT_CUBIC_METRES": "Mètre cube",
   "UNIT_GRAMS": "Grammes",
   "UNIT_KILOGRAMS": "Kilogrammes",
@@ -497,6 +518,7 @@
   "WATER_NEEDED": "Besoin d'eau",
   "WATER_SUPPLY": "Alimentation en eau",
   "WHICH_DATA": "Sélectionnez les données à charger",
+  "WRONG_SUPPLIED_ITEM": "Item de catalogue incorrect",
   "WSALERT": {
     "DANGER": {
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET": "L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !"
@@ -506,6 +528,11 @@
       "ITEM_SAVED": "Item enregistré",
       "ITEM_S_REMOVED": "Items supprimés !",
       "QUANTITIES_UPDATED": "Quantités mises à jour !",
+      "RECOMMEND_ACCEPT": "La suggestion a été acceptée.",
+      "RECOMMEND_ADD": "Votre suggestion d'ajout a été soumise avec succès et sera traitée prochainement.",
+      "RECOMMEND_DELETE": "Votre suggestion de suppression a été soumise avec succès et sera traitée prochainement.",
+      "RECOMMEND_EDIT": "Votre suggestion de modification a été soumise avec succès et sera traitée prochainement.",
+      "RECOMMEND_REJECT": "La suggestion a été rejetée.",
       "SET_REMOVED_SUCCESSFULLY": "Lot supprimé avec succès !"
     },
     "WARNING": {
@@ -514,6 +541,7 @@
       "YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST": "Vous devez commencer par sélectionner au moins un métier"
     }
   },
+  "X_ADDITIONS_FOR_CATEGORY": "Il y a {{count}} demandes d'ajout d'item pour cette catégorie.",
   "YES": "Oui",
   "YOU_HAVE_MULTIPLE_POSITIONS": "Vous occupez plusieurs fonctions : merci de sélectionner le rôle sous lequel vous souhaitez utiliser l'application.",
   "false": "Non",

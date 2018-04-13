@@ -119,7 +119,11 @@ angular.module('ilApp')
           }
 
           if($scope.editForm.supplier.$dirty){
-            modifiedItem.supplier = $scope.editedItem.supplier && $scope.editedItem.supplier.title;
+            if ($scope.editedItem.supplier == null ) {
+              modifiedItem.supplier = $scope.editForm.supplier.$modelValue;
+            } else {
+              modifiedItem.supplier = $scope.editedItem.supplier && $scope.editedItem.supplier.title;
+            }
           }
           extendedCategory = modifiedItem.category;
           extendedCategory.list = list;

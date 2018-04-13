@@ -34,7 +34,10 @@
     "pdfmake": "^0.1.24",
     "angular-file-upload": "^2.5.0",
     "angular-moment": "^1.2.0",
-    "angular-dynamic-locale": "^0.1.32"
+    "angular-dynamic-locale": "^0.1.32",
+    "lightgallery.js": "^1.0.2",
+    "components-font-awesome": "^5.0.6",
+    "angular-i18n": "^1.6.9"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.1"

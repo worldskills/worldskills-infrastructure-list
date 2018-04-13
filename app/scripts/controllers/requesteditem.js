@@ -28,6 +28,9 @@ angular.module('ilApp')
     };
 
     $scope.selectedItems = function(){
+      if ($scope.items == null) {
+        return [];
+      }
       return $scope.items.filter(function(item){ return item.selected; });
     }
 

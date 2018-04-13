@@ -1,0 +1,135 @@
+<h1 translate>RECOMMENDATIONS</h1>
+
+<div class="container">
+    <div class="panel panel-validation-view" style="margin-top:20px;">
+        <div class="table-responsive table-validation bordered">
+            <table class="table table-condensed table-bordered il-public-items-table">
+                <thead>
+                    <tr>
+                        <th class="col-15" translate>SKILL</th>
+                        <th class="col-15" translate>TH_CATEGORY</th>
+                        <th class="col-15" translate>TH_ITEM_APPLICANT</th>
+                        <th class="col-20" translate>TH_ITEM_DATE_AND_TIME</th>
+                        <th class="col-15" translate>NAME</th>
+                        <th class="col-15" translate>ACTION</th>
+                        <th class="col-5"><i class="fa fa-info-circle warning"></i></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel panel-validation-view" ng-repeat="item in recommendedItems">
+        <div class="panel-heading">
+            <div class="table-responsive table-validation">
+                <table class="table table-condensed table-bordered il-public-items-table">
+                    <tbody>
+                        <tr>
+                            <td class="col-15">
+                                <span class="ng-binding">{{item.skill.name.text}}</span>
+                            </td>
+                            <td class="col-15">
+                                <span class="ng-binding ng-scope">{{ item.listCategory.category.name.text }}</span>
+                            </td>
+                            <td class="col-15">{{item.person.first_name}} {{item.person.last_name}}</td>
+                            <td class="col-20">
+                                <span class="ng-binding ng-scope" ng-if="item.recommendedAt">{{ 'DATE_TIME_AT' |
+                                        translate: {date: (item.recommendedAt | amDateFormat: 'LL'), time: (item.recommendedAt | amDateFormat: 'LT')} }}</span>
+                            </td>
+                            <td class="col-15">{{item.description.text}}</td>
+                            <td class="col-15">
+                              <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
+                              <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>
+                              <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+                            </td>
+                            <td class="button col-5" data-toggle="collapse" data-parent="#accordion" href="#validation{{item.id}}" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fas fa-chevron-down"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="validation{{item.id}}" class="panel-body collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="table-container table-responsive">
+                <table class="table table-condensed table-bordered il-public-items-table table-in-validation">
+                    <thead>
+                        <tr>
+                            <th class="col-10"></th>
+                            <th class="col-15" translate>DESCRIPTION</th>
+                            <th class="col-10 text-right" translate>QUANTITY</th>
+                            <th class="col-15" translate>POTENTIAL_SUPPLIER</th>
+                            <th class="col-10 text-center" translate>WRONG_SUPPLIED_ITEM</th>
+                            <th class="col-20" translate>COMMENT</th>
+                            <th class="col-20 text-center" translate>PICTURES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="actuel" ng-if="item.requestedItem">
+                            <td>
+                                <span ng-if="!item.deletionSuggestion" translate>TD_ITEM_CURRENT</span>
+                                <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+                            </td>
+                            <td ng-class="{'change': item.description.text != item.requestedItem.description.text}">
+                                {{item.requestedItem.description.text}}
+                            </td>
+                            <td class="text-right" ng-class="{'change': item.quantity != item.requestedItem.quantity}">
+                                {{item.requestedItem.quantity}}
+                            </td>
+                            <td ng-class="{'change': item.potentialSupplier != item.requestedItem.supplier}">
+                                {{item.requestedItem.supplier}}
+                            </td>
+                            <td rowspan="2" class="text-center" translate>
+                                {{item.wrongSuppliedItem}}
+                            </td>
+                            <td rowspan="2" class="description">
+                                {{item.comment}}
+                            </td>
+                            <td rowspan="2" class="image text-center text-center">
+                                <div class="aniimated-thumbnials lightgallery-validation lightgallery">
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="remplace" ng-if="!item.deletionSuggestion">
+                            <td>
+                                <span ng-if="item.requestedItem" translate>
+                                    TD_ITEM_REPLACE_WITH
+                                </span>
+                                <span ng-if="!item.requestedItem" translate>
+                                    TD_ITEM_ADDITION
+                                </span>
+                            </td>
+                            <td ng-class="{'change-error': item.description.text != item.requestedItem.description.text}">
+                                {{item.description.text}}
+                            </td>
+                            <td class="text-right" ng-class="{'change-warning': item.quantity != item.requestedItem.quantity}">
+                                {{item.quantity}}
+                            </td>
+                            <td ng-class="{'change-warning': item.potentialSupplier != item.requestedItem.supplier}">
+                                {{item.potentialSupplier}}
+                            </td>
+                            <td class="text-center" ng-if="!item.requestedItem" translate>
+                                {{item.wrongSuppliedItem}}
+                            </td>
+                            <td rowspan="2" class="description" ng-if="!item.requestedItem">
+                                {{item.comment}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="button-group">
+                    <button type="button" ng-click="accept(item);" class="pull-right btn btn-sm btn-success">
+                        <span translate>ACCEPT</span>
+                    </button>
+
+                    <button type="button" class="pull-right btn btn-sm btn-danger"  ng-click="reject(item);">
+                        <span translate>REJECT</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
