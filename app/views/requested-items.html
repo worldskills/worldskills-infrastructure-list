@@ -168,13 +168,12 @@
         <th translate>TH_SKILL</th>
         <th translate>TH_NAME</th>
         <th translate>TH_QUANTITY</th>
+        <th translate>TH_UNIT</th>
         <th translate>TH_PART_NUM</th>
         <th translate>TH_STATUS</th>
-        <th translate>TH_SUPPLIER</th>
+        <th translate>TH_SUPPLIER_POTENTIAL</th>
         <th translate>TH_EXTRA_DETAILS</th>
         <th translate>TH_ENERGY_NEEDS</th>
-        <th translate>TH_UNIT</th>
-        <th translate width="90px">TH_UNIT_COST</th>
         <th translate width="90px">TOTAL_PRICE</th>
       </tr>
     </thead>
@@ -187,6 +186,7 @@
         <td>{{item.category.list.skill.name.text}}</td>
         <td>{{item.description.text}}</td>
         <td>{{item.quantity}} {{'CONSTANT.MULTIPLIERS.' + item.multiplier | translate}}</td>
+        <td>{{UNITS[item.unit] | translate}}</td>
         <td>{{item.supplied_item.part_number}}</td>
         <td>
           <span class="label" ng-class="{
@@ -201,8 +201,6 @@
         <td>{{item.supplier}}</td>
         <td>{{item.supplied_item.extra_details}}</td>
         <td>{{item.supplied_item.needs_energy | translate}}</td>
-        <td>{{UNITS[item.unit] | translate}}</td>
-        <td>{{item.supplied_item.unit_cost}}</td>
         <td>{{item.price}}</td>
       </tr>
     </tbody>

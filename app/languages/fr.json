@@ -163,7 +163,7 @@
   "ERROR": {
     "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER": "Erreur de récupération des fonctions de l'utilisateur : {{error}}"
   },
-  "ESTIMATED_PRICE": "Prix estimé",
+  "ESTIMATED_PRICE": "Prix total estimé",
   "EXIT_FULLSCREEN": "Quitter le mode ",
   "EXPORT_ALL_ITEMS": "Exporter tous les items",
   "EXPORT_REQUESTED_ITEMS": "Exporter les lignes d'infrastructure",
@@ -288,7 +288,7 @@
     "ELECTRICITY_AMPS": "Électricité - Ampères",
     "ELECTRICITY_PHASE": "Phase électrique",
     "ELECTRICITY_VOLTS": "Électricité - Volts",
-    "ESTIMATED_PRICE": "Prix estimé",
+    "ESTIMATED_PRICE": "Prix total estimé",
     "EXTRA_DETAILS_COMMENTS": "Détails complémentaires / Commentaires",
     "FILTER": "Filtrer...",
     "GAS_REQUIREMENTS": "Besoins en gaz",
