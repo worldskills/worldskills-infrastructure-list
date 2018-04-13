@@ -392,7 +392,8 @@ module.exports = function (grunt) {
             'styles/fonts/{,*/}*.*',
             'template/{,*/}*.html',
             'styles/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            'fonts/*'
+            'fonts/*',
+            'webfonts/*'
           ]
         }, {
           expand: true,
@@ -407,23 +408,31 @@ module.exports = function (grunt) {
           src: [
             '**'
           ]
-        }, {
+        },
+        {
           src: '<%= yeoman.app %>/xdomain/xdomain.js.' + env,
           dest: '<%= yeoman.dist %>/xdomain/xdomain.js'
         },
-         {
+        {
           expand: true,
           //cwd: 'bower_components/bootstrap/dist',
           cwd: 'bower_components/worldskills-bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
         },
-          { //fonts for ui-grid
-            expand: true,
-            cwd: 'bower_components/angular-ui-grid',
-            src: '*.{ttf,svg,woff,eot}',
-            dest: '<%= yeoman.dist %>/styles'
-          }]
+        { //fonts for font-awasome
+          expand: true,
+          cwd: 'bower_components/components-font-awesome',
+          src: 'webfonts/*',
+          dest: '<%= yeoman.dist %>'
+        },
+        { //fonts for ui-grid
+          expand: true,
+          cwd: 'bower_components/angular-ui-grid',
+          src: '*.{ttf,svg,woff,eot}',
+          dest: '<%= yeoman.dist %>/styles'
+        }
+        ]
       },
       styles: {
         expand: true,

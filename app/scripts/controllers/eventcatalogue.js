@@ -14,6 +14,8 @@ angular.module('ilApp')
     UNITS
   ) {
 
+    var supplierValue = "";
+    var supplied_item_priorities = [];
     $scope.UNITS = UNITS;
     $scope.fullscreen = false;
     $scope.item = {};
@@ -22,14 +24,21 @@ angular.module('ilApp')
     $scope.showFilters = true;
     $scope.showGrid = false;
     $scope.skills = false;
-    var supplierValue = "";
-
     $scope.categories = {};
     $scope.filters = {
       active: false,
       skill: null,
       category: null
     };
+    $scope.asideState = {
+      open: false,
+    };
+    //deep copy of filters in order to show currently selected in UI
+    $scope.selectedFilters = {};
+    $scope.selectedLanguage = $translate.use();
+
+    //i18Service is provided from ui grid plugin
+    i18nService.setCurrentLang($translate.use());
 
     //prevent accidental navigation
     $scope.$on('$stateChangeStart', function( event ) {
@@ -40,9 +49,6 @@ angular.module('ilApp')
     $scope.toggleFilters = function(){
       $scope.showFilters = !$scope.showFilters;
     }
-
-    //deep copy of filters in order to show currently selected in UI
-    $scope.selectedFilters = {};
 
     $scope.toggleEditing = function(){
       $scope.allowEditing = !$scope.allowEditing;
@@ -74,13 +80,10 @@ angular.module('ilApp')
       $scope.fullscreen = !$scope.fullscreen;
     };
 
-    //i18Service is provided from ui grid plugin
-    i18nService.setCurrentLang($translate.use());
+    $scope.supplierChanged = function(val){
+      supplierValue = val;
+    };
 
-
-    $scope.selectedLanguage = $translate.use();
-
-    var supplied_item_priorities = [];
     angular.forEach(SUPPLIED_ITEM_PRIORITIES, function (element) {
       supplied_item_priorities.push({
         value: element,
@@ -142,11 +145,28 @@ angular.module('ilApp')
         {field: 'electricity_phase', name: $translate.instant('TH_ELECTRICITY_PHASE'), width: '100'},
         {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100', cellTemplate: "<div translate>{{row.entity.water_supply}}</div>"},
         {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100', cellTemplate: "<div translate>{{row.entity.water_drainage}}</div>"},
-        {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100', cellTemplate: "<div translate>{{row.entity.compressed_air}}</div>"},
+        {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100',
+          cellTemplate: "<div translate>{{row.entity.compressed_air}}</div>",
+          filter: {
+            type: uiGridConstants.filter.SELECT,
+            selectOptions: [
+              { value: 'true', label: $translate.instant('true')},
+              { value: 'false', label: $translate.instant('false')},
+            ]
+          }
+        },
         {field: 'ventilation_fume_extraction', name: $translate.instant('TH_VENTILATION_FUME_EXTRACTION'), width: '100', type: 'boolean',
-          cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction}}</div>"
+          cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction}}</div>",
+          filter: {
+            type: uiGridConstants.filter.SELECT,
+            selectOptions: [
+              { value: 'true', label: $translate.instant('true')},
+              { value: 'false', label: $translate.instant('false')},
+            ]
+          }
         },//char 1
-        {field: 'gas_requirements', name: $translate.instant('TH_GAS_REQUIREMENTS'), width: '100', type: 'boolean'},//char 1
+        {field: 'gas_requirements', name: $translate.instant('TH_GAS_REQUIREMENTS'), width: '100', type: 'boolean'
+        },//char 1
         {field: 'anchor_fixing_base_requirements', name: $translate.instant('TH_ANCHOR_FIXING_BASE_REQUIREMENTS'), width: '100'},
         {field: 'extra_details', name: $translate.instant('TH_EXTRA_DETAILS'), width: '100'},//mediumtext
         {field: 'modified', name: $translate.instant("TH_MODIFIED"), width: '95', type: 'date', enableCellEdit: false},
@@ -163,7 +183,14 @@ angular.module('ilApp')
         },
         {field: 'linkedItems', name: $translate.instant("TH_LINKED"), width: '95', type: 'boolean',
           enableCellEdit: false,
-          cellTemplate: "<div translate>{{row.entity.linkedItems}}</div>"
+          cellTemplate: "<div translate>{{row.entity.linkedItems}}</div>",
+          filter: {
+            type: uiGridConstants.filter.SELECT,
+            selectOptions: [
+              { value: 'true', label: $translate.instant('true')},
+              { value: 'false', label: $translate.instant('false')},
+            ]
+          }
         },
       ],
       //exporter
@@ -331,7 +358,6 @@ angular.module('ilApp')
       });
     };
 
-
     //used in catalogue for loading new linked items
     $scope.addLinkedItemSkillSelected = function (item, model) {
       //clear out so that category selection clears out
@@ -346,7 +372,6 @@ angular.module('ilApp')
           WSAlert.danger(error);
         });
     };
-
 
     $scope.removeItem = function($event) {
       $event.preventDefault();
@@ -469,7 +494,6 @@ angular.module('ilApp')
       });
     };
 
-
     $scope.getCurrentFocus = function(){
       if(typeof $scope.gridApi === 'undefined') return false;
 
@@ -478,7 +502,6 @@ angular.module('ilApp')
         return rowCol;
       }
     };
-
 
     //register api
     $scope.gridOptions.onRegisterApi = function(gridApi){
@@ -490,10 +513,10 @@ angular.module('ilApp')
 
     $scope.catalogueLoaded = false;
 
-    $scope.loadCatalogue = function(){
+    $scope.loadCatalogue = function() {
       $scope.loading.catalogue = true;
 
-      Items.getCatalogue($scope.selectedEvent.id, $scope.filters).then(function(data){
+      Items.getCatalogue($scope.selectedEvent.id, $scope.filters).then(function(data) {
         //init supplier api url
         $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/search/?q=';
 
@@ -505,11 +528,10 @@ angular.module('ilApp')
         $scope.showGrid = true;
         angular.copy($scope.filters, $scope.selectedFilters);
 
-
-          $timeout(function(){
-            var grid = $('.catalogueGrid').get(0);
-            $(grid).height($(window).height() - 220); //400= size topbar + bottom bar
-          }, 100);
+        $timeout(function(){
+          var grid = $('.catalogueGrid').get(0);
+          $(grid).height($(window).height() - 220); //400= size topbar + bottom bar
+        }, 100);
       },
       function(error){
         WSAlert.danger(error);
@@ -518,7 +540,7 @@ angular.module('ilApp')
       });
     };
 
-    $scope.loadFullCatalogue = function(){
+    $scope.loadFullCatalogue = function() {
       $scope.filters.active = false;
       $scope.loadCatalogue();
     };
@@ -533,8 +555,7 @@ angular.module('ilApp')
       $scope.loadCatalogue();
     }
 
-
-    $q.when($scope.appLoaded.promise).then(function(){ //still needed to use existing skill list
+    $q.when($scope.appLoaded.promise).then(function() { //still needed to use existing skill list
         initCatalogue();
     });
 
@@ -609,15 +630,11 @@ angular.module('ilApp')
       return (!focus) ? false : true;
     };
 
-    $scope.asideState = {
-      open: true,
-    };
-
     function postClose() {
       $scope.asideState.open = false;
     }
 
-    function initCatalogue(){
+    function initCatalogue() {
       $scope.loading.catalogue = true;
 
       //set event id from state if not already set
@@ -636,10 +653,6 @@ angular.module('ilApp')
       //   }
       // };
       // $scope.loadCatalogue();
-    };
-
-    $scope.asideState = {
-      open: false,
     };
 
     $scope.editRequestedItem = function(item) {
@@ -740,7 +753,6 @@ angular.module('ilApp')
     //   $scope.categoryId = cat.id;
     // };
 
-
     //map hotkeys
     hotkeys.add({
       combo: 'ctrl+o',
@@ -789,9 +801,5 @@ angular.module('ilApp')
       description: $translate.instant("HOTKEYS.TOGGLE_FILTERS_DIALOG"),
       callback: $scope.toggleFilters
     });
-
-    $scope.supplierChanged = function(val){
-      supplierValue = val;
-    };
 
   });

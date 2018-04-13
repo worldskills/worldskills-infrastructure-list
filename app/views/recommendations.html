@@ -33,8 +33,9 @@
                             </td>
                             <td class="col-15">{{item.person.first_name}} {{item.person.last_name}}</td>
                             <td class="col-20">
-                                <span class="ng-binding ng-scope" ng-if="item.recommendedAt">{{ 'DATE_TIME_AT' |
-                                        translate: {date: (item.recommendedAt | amDateFormat: 'LL'), time: (item.recommendedAt | amDateFormat: 'LT')} }}</span>
+                                <span class="ng-binding ng-scope" ng-if="item.recommendedAt">
+                                  {{ 'DATE_TIME_AT' | translate: {date: (item.recommendedAt | amDateFormat: 'LL'), time: (item.recommendedAt | amDateFormat: 'LT')} }}
+                                </span>
                             </td>
                             <td class="col-15">{{item.description.text}}</td>
                             <td class="col-15">
@@ -61,7 +62,7 @@
                             <th class="col-15" translate>POTENTIAL_SUPPLIER</th>
                             <th class="col-10 text-center" translate>WRONG_SUPPLIED_ITEM</th>
                             <th class="col-20" translate>COMMENT</th>
-                            <th class="col-20 text-center" translate>PICTURES</th>
+                            <th ng-if="false" class="col-20 text-center" translate>PICTURES<!-- deactived temporarily --></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,7 +86,8 @@
                             <td rowspan="2" class="description">
                                 {{item.comment}}
                             </td>
-                            <td rowspan="2" class="image text-center text-center">
+                            <td ng-if="false" rowspan="2" class="image text-center text-center">
+                              <!-- deactived temporarily -->
                                 <div class="aniimated-thumbnials lightgallery-validation lightgallery">
                                 </div>
                             </td>
@@ -109,6 +111,7 @@
                             <td ng-class="{'change-warning': item.potentialSupplier != item.requestedItem.supplier}">
                                 {{item.potentialSupplier}}
                             </td>
+
                             <td class="text-center" ng-if="!item.requestedItem" translate>
                                 {{item.wrongSuppliedItem}}
                             </td>
