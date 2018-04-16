@@ -39,7 +39,7 @@ angular.module('ilApp')
         deletionSuggestion: false,
         rejected: false,
         person: {
-          id: auth.user.id
+          id: auth.user.person_id
         },
         listCategoryId: $scope.item.category
       };
@@ -116,7 +116,7 @@ angular.module('ilApp')
         });
       } else {
         $scope.recommendedItem.person = {
-          id: auth.user.id
+          id: auth.user.person_id
         };
 
         RecommendedItems.suggestNew($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
