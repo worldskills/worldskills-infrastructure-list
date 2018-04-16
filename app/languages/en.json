@@ -332,6 +332,7 @@
   "QUEUE_LENGTH:": "Queue length:",
   "QUEUE_PROGRESS:": "Queue progress:",
   "RECOMMENDATIONS": "Recommendations",
+  "RECOMMENDATIONS_NO_ITEM": "Currently no recommendation",
   "RECOMMENDATIONS_WANT_REJECT": "Do you want to reject this suggestion ?",
   "REJECT": "Reject",
   "REMOVE_ITEM_S_FROM_CATALOGUE": {

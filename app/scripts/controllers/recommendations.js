@@ -24,14 +24,22 @@ angular.module('ilApp')
     });
 
     $scope.accept = function(item) {
-        RecommendedItems.acceptRecommendation(item, $state.params.eventId).then(function(res) {
-          var index = $scope.recommendedItems.indexOf(item);
-          $scope.recommendedItems.splice(index, 1);
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'));
-        },
-        function (error) {
-          WSAlert.danger(error);
-        });
+      RecommendedItems.acceptRecommendation(item, $state.params.eventId).then(function(res) {
+        var index = $scope.recommendedItems.indexOf(item);
+        $scope.recommendedItems.splice(index, 1);
+        if (item.deletionSuggestion) {
+          for(var i = $scope.recommendedItems.length - 1; i >= 0; i--) {
+            var recommendedItem = $scope.recommendedItems[i];
+            if (recommendedItem.requestedItem.id == item.requestedItem.id) {
+              $scope.recommendedItems.splice(i, 1);
+            }
+          }
+        }
+        WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'));
+      },
+      function (error) {
+        WSAlert.danger(error);
+      });
     };
 
     $scope.reject = function (item) {

@@ -560,6 +560,7 @@ $spacer-3: 15px;
 }
 
 .panel-validation-view table.table-in-validation .description {
+  white-space: pre-line;
   width: 30%;
 }
 
@@ -585,14 +586,14 @@ $spacer-3: 15px;
 
 .panel-validation-view table.table-in-validation tr.remplace td.change-warning {
   color: #f0ad4e;
-  font-weight: 500;
+  font-weight: 600;
   background-color: #f5f5f5;
 }
 
 .panel-validation-view table.table-in-validation tr.remplace td:first-child {
   text-align: center;
   color: #f0ad4e;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .panel-validation-view table.table-in-validation .image {
