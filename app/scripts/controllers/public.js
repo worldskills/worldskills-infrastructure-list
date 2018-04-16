@@ -106,7 +106,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       deletionSuggestion: true,
       rejected: false,
       person: {
-        id: auth.user.id
+        id: auth.user.person_id
       },
       listCategoryId : item.category
     };
