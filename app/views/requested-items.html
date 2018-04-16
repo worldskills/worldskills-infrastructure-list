@@ -185,7 +185,9 @@
         <td>{{item.category.list.skill.sector.name.text}}</td>
         <td>{{item.category.list.skill.name.text}}</td>
         <td>{{item.description.text}}</td>
-        <td>{{item.quantity}} {{'CONSTANT.MULTIPLIERS.' + item.multiplier | translate}}</td>
+        <td>
+          {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiply_factor} }}
+        </td>
         <td>{{UNITS[item.unit] | translate}}</td>
         <td>{{item.supplied_item.part_number}}</td>
         <td>

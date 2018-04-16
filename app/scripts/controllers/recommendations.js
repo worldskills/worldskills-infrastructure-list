@@ -28,6 +28,8 @@ angular.module('ilApp')
         var index = $scope.recommendedItems.indexOf(item);
         $scope.recommendedItems.splice(index, 1);
         if (item.deletionSuggestion) {
+          // the requested item has been deleted so we remove related recommendations
+          // from the model
           for(var i = $scope.recommendedItems.length - 1; i >= 0; i--) {
             var recommendedItem = $scope.recommendedItems[i];
             if (recommendedItem.requestedItem.id == item.requestedItem.id) {
