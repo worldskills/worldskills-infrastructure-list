@@ -1,7 +1,7 @@
 <h1 translate>RECOMMENDATIONS</h1>
 
 <div class="container">
-    <div class="panel panel-validation-view" style="margin-top:20px;">
+    <div class="panel panel-validation-view" style="margin-top:20px;" ng-if="recommendedItems.length > 0">
         <div class="table-responsive table-validation bordered">
             <table class="table table-condensed table-bordered il-public-items-table">
                 <thead>
@@ -17,6 +17,9 @@
                 </thead>
             </table>
         </div>
+    </div>
+    <div class="alert alert-warning" ng-if="recommendedItems.length == 0" translate>
+      RECOMMENDATIONS_NO_ITEM
     </div>
 
     <div class="panel panel-validation-view" ng-repeat="item in recommendedItems">
@@ -58,7 +61,7 @@
                         <tr>
                             <th class="col-10"></th>
                             <th class="col-15" translate>DESCRIPTION</th>
-                            <th class="col-10 text-right" translate>QUANTITY</th>
+                            <th class="col-10" translate>QUANTITY</th>
                             <th class="col-15" translate>POTENTIAL_SUPPLIER</th>
                             <th class="col-10 text-center" translate>WRONG_SUPPLIED_ITEM</th>
                             <th class="col-20" translate>COMMENT</th>
@@ -74,18 +77,16 @@
                             <td ng-class="{'change': item.description.text != item.requestedItem.description.text}">
                                 {{item.requestedItem.description.text}}
                             </td>
-                            <td class="text-right" ng-class="{'change': item.quantity != item.requestedItem.quantity}">
-                                {{item.requestedItem.quantity}}
+                            <td ng-class="{'change': item.quantity != item.requestedItem.quantity}">
+                                {{'ITEM_READABLE_QUANTITY_' + item.requestedItem.multiplier | translate: {quantity: item.requestedItem.quantity, factor: item.requestedItem.multiply_factor} }}
                             </td>
                             <td ng-class="{'change': item.potentialSupplier != item.requestedItem.supplier}">
                                 {{item.requestedItem.supplier}}
                             </td>
                             <td rowspan="2" class="text-center" translate>
-                                {{item.wrongSuppliedItem}}
+                                {{item.wrongSuppliedItem+"Label"}}
                             </td>
-                            <td rowspan="2" class="description">
-                                {{item.comment}}
-                            </td>
+                            <td rowspan="2" class="description">{{item.comment}}</td>
                             <td ng-if="false" rowspan="2" class="image text-center text-center">
                               <!-- deactived temporarily -->
                                 <div class="aniimated-thumbnials lightgallery-validation lightgallery">
@@ -105,19 +106,16 @@
                             <td ng-class="{'change-error': item.description.text != item.requestedItem.description.text}">
                                 {{item.description.text}}
                             </td>
-                            <td class="text-right" ng-class="{'change-warning': item.quantity != item.requestedItem.quantity}">
-                                {{item.quantity}}
+                            <td ng-class="{'change-warning': item.quantity != item.requestedItem.quantity}">
+                                {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiplyFactor} }}
                             </td>
                             <td ng-class="{'change-warning': item.potentialSupplier != item.requestedItem.supplier}">
                                 {{item.potentialSupplier}}
                             </td>
-
                             <td class="text-center" ng-if="!item.requestedItem" translate>
                                 {{item.wrongSuppliedItem}}
                             </td>
-                            <td rowspan="2" class="description" ng-if="!item.requestedItem">
-                                {{item.comment}}
-                            </td>
+                            <td rowspan="2" class="description" ng-if="!item.requestedItem">{{item.comment}}</td>
                         </tr>
                     </tbody>
                 </table>
