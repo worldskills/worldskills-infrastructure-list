@@ -27,6 +27,7 @@
   "ALL_DATA": "All data (this can take a while)",
   "ANCHOR_FIXING_BASE_REQUIREMENTS": "Anchor / Fixing / Base requirements",
   "APP_NAME": "WorldSkills Infrastructure Lists",
+  "APPROVER_INFORMATION": "Approver information",
   "ARE_YOU_SURE": {
     "OK": "Remove item",
     "TEXT": "Are you sure you want to delete the set {{text}} - this cannot be undone!",

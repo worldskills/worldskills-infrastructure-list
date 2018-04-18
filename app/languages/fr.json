@@ -27,6 +27,7 @@
   "ALL_DATA": "Toutes les données (patienter)",
   "ANCHOR_FIXING_BASE_REQUIREMENTS": "Ancrage, fixation, autres besoins",
   "APP_NAME": "WorldSkills Infrastructure Lists",
+  "APPROVER_INFORMATION": "Informations pour l'approbateur",
   "ARE_YOU_SURE": {
     "OK": "Supprimer l'item",
     "TEXT": "Êtes-vous certain(e) de vouloir supprimer le lot {{text}} - cette action est irréversible !",
