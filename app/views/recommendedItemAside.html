@@ -45,7 +45,12 @@
                 <div class='col col-sm-12 col-md-4'>
                   <div class="form-group addForm has-feedback has-success">
                     <label class='control-label' translate>MULTIPLIER</label>
-                    <select class="form-control input-sm" ng-model="recommendedItem.multiplier" ng-options="multi.id as multi.name for multi in multipliers"></select>
+                    <select
+                      class="form-control input-sm"
+                      ng-model="recommendedItem.multiplier"
+                      ng-options="multi.id as ('CONSTANT.MULTIPLIERS.' + multi.id) | translate for multi in multipliers"
+                      >
+                    </select>
                   </div>
                 </div>
                 <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(recommendedItem.multiplier)">
@@ -102,8 +107,8 @@
               </div>
             </div>
             <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
-              <label class='control-label' translate>EXTRA_DETAILS_COMMENTS</label>
-              <textarea rows="10" name="extra_details" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.EXTRA_DETAILS_COMMENTS' | translate }}" ng-model='recommendedItem.comment'></textarea>
+              <label class='control-label' translate>APPROVER_INFORMATION</label>
+              <textarea rows="10" name="extra_details" class="input-sm form-control" placeholder="{{ 'APPROVER_INFORMATION' | translate }}" ng-model='recommendedItem.comment'></textarea>
             </div>
           </div>
         </uib-tab>
