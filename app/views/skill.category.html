@@ -104,7 +104,7 @@
             <span class="sortorder" ng-show="orderProperty === 'area.name'" ng-class="{reverse: reverse}"></span>
           </small>
         </div>
-        <div ui-tree="treeOptions" id="tree-root" data-max-depth="1">
+        <div ui-tree="treeOptions" id="tree-root" data-max-depth="0">
           <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items || filterValue.length > 0' infinite-scroll-distance='1'>
             <li ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
           </ol>
