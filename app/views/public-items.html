@@ -78,8 +78,8 @@
                         <tr ng-repeat="item in category.items" ng-class="{'child': !!item.parent_id}">
                           <td class="text-right">
                               <span>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
-                                  translate: {quantity: item.quantity, factor: item.multiply_factor} }}</span>
-                              <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} <span translate>ADDITIONAL</span></span>
+                                  translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
+                              <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
                           </td>
                           <td>
                               <span ng-show="!!item.parent_id">└&nbsp;</span>
