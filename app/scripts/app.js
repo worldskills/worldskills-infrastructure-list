@@ -84,6 +84,7 @@
 
   ilApp.constant('UNITS', {
     "pcs": "UNIT_PIECES",
+    "t": "UNIT_TONNES",
     "kg": "UNIT_KILOGRAMS",
     "g": "UNIT_GRAMS",
     "l": "UNIT_LITRES",
