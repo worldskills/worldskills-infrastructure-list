@@ -141,4 +141,7 @@ angular.module('ilApp')
         });
     }
 
+    $scope.isFormValid = function() {
+      return ($scope.editForm.category.$dirty && !$scope.editForm.category.$modelValue);
+    }
   });
