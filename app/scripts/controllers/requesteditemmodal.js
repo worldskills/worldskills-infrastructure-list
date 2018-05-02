@@ -142,6 +142,10 @@ angular.module('ilApp')
     }
 
     $scope.isFormValid = function() {
-      return ($scope.editForm.category.$dirty && !$scope.editForm.category.$modelValue);
+      var isCategorValid =
+        $scope.editForm.category.$modelValue ||
+        !scope.editForm.category.$dirty;
+
+      return isCategorValid;
     }
   });
