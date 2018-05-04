@@ -9,7 +9,7 @@
  */
 angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
-    $timeout, uiGridConstants, $confirm, ITEM_STATUS_TEXT,
+    $timeout, uiGridConstants, $confirm,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
     UNITS
   ) {
