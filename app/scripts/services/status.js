@@ -39,13 +39,25 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Status.getAllStatuses = function(){
+    Status.getAllStatuses = function(eventId){
       var deferred = $q.defer();
-      $http.get(API_IL + "/statuses").then(function(result){
+      $http.get(API_IL + "/statuses/event/"  + eventId).then(function(result){
         deferred.resolve(result.data.statuses);
       },
       function(error){
         deferred.reject("Could not fetch statuses");
+      });
+
+      return deferred.promise;
+    };
+
+    Status.getDefaultStatus = function(eventId){
+      var deferred = $q.defer();
+      $http.get(API_IL + "/statuses/event/default"  + eventId).then(function(result){
+        deferred.resolve(result.data);
+      },
+      function(error){
+        deferred.reject("Could not fetch default statuse");
       });
 
       return deferred.promise;

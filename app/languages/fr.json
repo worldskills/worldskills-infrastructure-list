@@ -105,13 +105,7 @@
       "VIEW": "Afficher",
       "WS_MANAGER": "Responsable d'atelier",
       "WS_SECTOR_MANAGER": "Responsable de secteur"
-    },
-    "ITEM_STATUS_TEXT": {
-      "BLACK": "Secret",
-      "GREEN": "Confirmé",
-      "RED": "A rechercher",
-      "YELLOW": "En cours"
-    },
+    },    
     "MULTIPLIERS": {
       "COMPETITORS": "par candidat",
       "EXPERTS": "par juré",

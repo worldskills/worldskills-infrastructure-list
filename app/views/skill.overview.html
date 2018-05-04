@@ -34,11 +34,7 @@
 				<div class="progress">
 				  <div
             ng-repeat="status in statusSummary"
-            ng-class="{
-            'progress-bar-success': status.status.id == ITEM_STATUS.GREEN,
-            'progress-bar-warning': status.status.id == ITEM_STATUS.YELLOW,
-            'progress-bar-danger': status.status.id == ITEM_STATUS.RED
-            }"
+						ng-style="{'background-color': status.status.color_code}"            
             class="progress-bar" style="width: {{status.count / totalItems * 100}}%">
 				    <span uib-tooltip="{{status.status.name.text}}" tooltip-placement="top" tooltip-trigger="mouseenter" class="">{{status.count}}</span>
 				  </div>

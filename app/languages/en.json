@@ -105,13 +105,7 @@
       "VIEW": "View",
       "WS_MANAGER": "Workshop Manager",
       "WS_SECTOR_MANAGER": "Sector Manager"
-    },
-    "ITEM_STATUS_TEXT": {
-      "BLACK": "Secret",
-      "GREEN": "Confirmed",
-      "RED": "Requested",
-      "YELLOW": "Pending"
-    },
+    },    
     "MULTIPLIERS": {
       "COMPETITORS": "per Competitor",
       "EXPERTS": "per Expert",

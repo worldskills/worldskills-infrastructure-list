@@ -191,12 +191,8 @@
         <td>{{UNITS[item.unit] | translate}}</td>
         <td>{{item.supplied_item.part_number}}</td>
         <td>
-          <span class="label" ng-class="{
-            'label-danger': item.status.id == ITEM_STATUS.RED,
-            'label-warning': item.status.id == ITEM_STATUS.YELLOW,
-            'label-info': item.status.id == ITEM_STATUS.BLACK,
-            'label-success': item.status.id == ITEM_STATUS.GREEN
-          }">
+          <span class="label"
+            ng-style="{'background-color': status.status.color_code}">
             {{item.status.name.text}}
           </span>
         </td>

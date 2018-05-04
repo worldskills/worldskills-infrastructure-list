@@ -18,12 +18,7 @@
             <div class="progress list-group-item-text"> <!-- second class needed? -->
               <div
                 ng-repeat="status in skill.status_summary.summaries"
-                ng-class="{
-                  'progress-bar-success': status.status.id == ITEM_STATUS.GREEN,
-                  'progress-bar-warning': status.status.id == ITEM_STATUS.YELLOW,
-                  'progress-bar-info': status.status.id == ITEM_STATUS.BLACK,
-                  'progress-bar-danger': status.status.id == ITEM_STATUS.RED
-                }"
+                ng-style="{'background-color': status.status.color_code}"
                 class="progress-bar"
                 style="width: {{status.count / totalCount(skill.status_summary.summaries) * 100}}%"
               >
