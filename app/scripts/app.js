@@ -58,14 +58,6 @@
   ]);
 
 
-  ilApp.constant('ITEM_STATUS_TEXT', {
-    'RED': "Requested",
-    'YELLOW': "Pending",
-    'GREEN': "Confirmed",
-    'BLACK': "Secret"
-  });
-
-  ilApp.constant('ITEM_STATUS_DEFAULT', 'RED');
 
   ilApp.constant('MULTIPLIER_DEFAULT', 'SKILL');
 
