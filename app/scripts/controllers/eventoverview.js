@@ -8,9 +8,8 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventOverviewCtrl', function ($scope, ITEM_STATUS_TEXT, ITEM_STATUS, WSAlert, Reporting) {
+  .controller('EventOverviewCtrl', function ($scope, ITEM_STATUS_TEXT, WSAlert, Reporting) {
 
-    $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.ITEM_STATUS_TEXT = ITEM_STATUS_TEXT;
     $scope.loading.requested = $scope.loading.catalogue = false;
 

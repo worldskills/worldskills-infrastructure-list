@@ -83,17 +83,17 @@
                           </td>
                           <td>
                               <span ng-show="!!item.parent_id">└&nbsp;</span>
-                              <span ng-if="item.status.id === ITEM_STATUS.RED || item.status.id === ITEM_STATUS.BLACK">{{ item.description.text }}</span>
-                              <span ng-if="item.status.id !== ITEM_STATUS.RED && item.status.id !== ITEM_STATUS.BLACK">{{item.supplied_item.description.text}}</span>
+                              <span ng-if="!item.status.show_details_in_public_view">{{ item.description.text }}</span>
+                              <span ng-if="item.status.show_details_in_public_view">{{item.supplied_item.description.text}}</span>
                           </td>
                           <td>
-                            <div ng-if="item.status.id === ITEM_STATUS.RED || item.status.id === ITEM_STATUS.BLACK">
+                            <div ng-if="item.status.show_details_in_public_view">
                               <div class="row" ng-if="item.supplier">
                                 <div class="col col-md col-md-5 supplied-key" translate>TH_SUPPLIER_POTENTIAL</div>
                                 <div class="col col-md col-md-7 supplied-val">{{ item.supplier }}</div>
                               </div>
                             </div>
-                            <div ng-if="item.status.id !== ITEM_STATUS.RED && item.status.id !== ITEM_STATUS.BLACK">
+                            <div ng-if="item.status.show_details_in_public_view">
                               <div class="row" ng-if="item.supplied_item.manufacturer">
                                 <div class="col col-md col-md-4 supplied-key" translate>TH_MANUFACTURER</div>
                                 <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.manufacturer}}</div>
@@ -133,17 +133,16 @@
                             </span>
                           </td>
                           <td class="status">
-                              <span ng-show="item.status.id == ITEM_STATUS.RED" class="label label-danger">{{ item.status.name.text }}</span>
-                              <span ng-show="item.status.id == ITEM_STATUS.YELLOW" class="label label-warning">{{ item.status.name.text }}</span>
-                              <span ng-show="item.status.id == ITEM_STATUS.BLACK" class="label label-info">{{ item.status.name.text }}</span>
-                              <span ng-show="item.status.id == ITEM_STATUS.GREEN" class="label label-success">{{ item.status.name.text }}</span>
+                              <span class='label' ng-style="{'background-color': item.status.color_code}">{{item.status.name.text}}</span>
                           </td>
                           <td class="canRecommend" ng-if="canRecommend()">
-                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)" style="margin-right:8px;"><span
-                                class="glyphicon glyphicon-edit"></span></a>
-                              <a ng-if="item.status.id != ITEM_STATUS.GREEN" class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(item)" style="margin-right:8px;"><span
-                              class="glyphicon glyphicon-remove"></span></a>
-                              <span ng-if="item.status.id == ITEM_STATUS.GREEN">&nbsp;</span>
+                              <span ng-if="item.status.allow_editing">
+                                <a class="pull-right btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)" style="margin-right:8px;"><span
+                                  class="glyphicon glyphicon-edit"></span></a>
+                                <a class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(item)" style="margin-right:8px;"><span
+                                class="glyphicon glyphicon-remove"></span></a>
+                                <span>&nbsp;</span>
+                              </span>
                           </td>
                         </tr>
                     </tbody>

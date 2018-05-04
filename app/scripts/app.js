@@ -57,12 +57,6 @@
     {"id": "PER_NUM_EXPERTS", "name" : "per every X Experts", "x_number_needed": true }
   ]);
 
-  ilApp.constant('ITEM_STATUS', {
-    'RED': 1,
-    'YELLOW': 2,
-    'GREEN': 3,
-    'BLACK': 4
-  });
 
   ilApp.constant('ITEM_STATUS_TEXT', {
     'RED': "Requested",

@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, ITEM_STATUS, API_IL, ITEM_STATUS_TEXT, Auth, APP_ROLES, UNITS, $translate, Status) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, ITEM_STATUS_TEXT, Auth, APP_ROLES, UNITS, $translate, Status) {
 
     $scope.UNITS = UNITS;
     $scope.categoryId = $state.params.categoryId;
@@ -24,7 +24,6 @@ angular.module('ilApp')
 
     $scope.deleteMode = false;
 
-    $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.multipliers = MULTIPLIERS;
     $scope.tmp_item = {};
     $scope.items = {};
@@ -254,7 +253,7 @@ angular.module('ilApp')
 
     };
 
-    Status.getAllStatuses().then(function (result) {
+    Status.getAllStatuses($state.params.eventId).then(function (result) {
       $scope.statuses = result;
     });
 
@@ -350,11 +349,11 @@ angular.module('ilApp')
     //link helper function from items
     $scope.factorNeeded = Items.factorNeeded;
 
-    $scope.canEdit = function (statusId) {
-      if(Auth.hasRole(APP_ROLES.ORGANIZER)) {
+    $scope.canEdit = function (item) {
+      if(Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.ADMIN)) {
         return true;
       }
-      return (statusId == ITEM_STATUS.RED) ? true : false;
+      return item.status.allow_editing;
     };
 
     $scope.canEditStatus = function ()
@@ -362,8 +361,8 @@ angular.module('ilApp')
       return Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
     }
 
-    $scope.canDelete = function (statusId) {
-      return (statusId == ITEM_STATUS.RED) ? true : false;
+    $scope.canDelete = function (item) {
+      return item.status.allow_editing;
     }
 
     $scope.addStandardSet = function(){
