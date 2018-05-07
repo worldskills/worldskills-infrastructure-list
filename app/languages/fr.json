@@ -105,7 +105,7 @@
       "VIEW": "Afficher",
       "WS_MANAGER": "Responsable d'atelier",
       "WS_SECTOR_MANAGER": "Responsable de secteur"
-    },    
+    },
     "MULTIPLIERS": {
       "COMPETITORS": "par candidat",
       "EXPERTS": "par juré",
@@ -149,7 +149,7 @@
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Édition des informations des lignes d'infrastructure dans",
   "EDIT_DETAILS": "Modifier",
   "EDIT_REQUESTS": "Demandes de modification",
-  "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné",
+  "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné(?)",
   "EDIT_SUPPLIED_ITEM": "Modifier l'item",
   "ELECTRICITY": "Electricity",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
@@ -523,7 +523,7 @@
     },
     "SUCCESS": {
       "ITEMS_COMBINED": "Items combinés !",
-      "ITEM_SAVED": "Item enregistré",
+      "ITEM_SAVED": "Item(s) enregistré",
       "ITEM_S_REMOVED": "Items supprimés !",
       "QUANTITIES_UPDATED": "Quantités mises à jour !",
       "RECOMMEND_ACCEPT": "La suggestion a été acceptée.",

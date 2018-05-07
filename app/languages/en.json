@@ -105,7 +105,7 @@
       "VIEW": "View",
       "WS_MANAGER": "Workshop Manager",
       "WS_SECTOR_MANAGER": "Sector Manager"
-    },    
+    },
     "MULTIPLIERS": {
       "COMPETITORS": "per Competitor",
       "EXPERTS": "per Expert",
@@ -149,7 +149,7 @@
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Editing requested item details in",
   "EDIT_DETAILS": "edit",
   "EDIT_REQUESTS": "Edit requests",
-  "EDIT_SELECTED_ITEM": "Edit selected item",
+  "EDIT_SELECTED_ITEM": "Edit selected item(s)",
   "EDIT_SUPPLIED_ITEM": "Edit Supplied Item",
   "ELECTRICITY": "Electricity",
   "ELECTRICITY_NEEDED": "Electricity required",
@@ -523,7 +523,7 @@
     },
     "SUCCESS": {
       "ITEMS_COMBINED": "Items combined!",
-      "ITEM_SAVED": "Item saved",
+      "ITEM_SAVED": "Item(s) saved",
       "ITEM_S_REMOVED": "Item(s) removed!",
       "QUANTITIES_UPDATED": "Quantities updated!",
       "RECOMMEND_ACCEPT": "The recommendation has been accepted.",
