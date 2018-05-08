@@ -48,7 +48,7 @@
   </small>
   <small class='quantity pull-right'>
     {{'ITEM_READABLE_QUANTITY_' + item.multiplier |
-      translate: {quantity: item.quantity, factor: item.multiply_factor} }}
+      translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
   </small>
   <small class='skill-area pull-right'>{{item.area.name}}</small>
   <!-- edit -->
