@@ -66,7 +66,7 @@ angular.module('ilApp')
     };
 
 
-    ItemCategory.getAllSubCategory = function(eventId){      
+    ItemCategory.getAllSubCategory = function(eventId){
       return ItemCategory.getAll(eventId, 1);
     };
 
