@@ -214,9 +214,9 @@
     "TITLE": "Combine items?"
   },
   "LANGUAGE": "Language: ",
-  "LEAD_10_WEEKS": "&gt; 10 weeks",
+  "LEAD_10_WEEKS": "> 10 weeks",
   "LEAD_2-4_WEEKS": "2 - 4 weeks",
-  "LEAD_2_WEEKS": "&lt; 2 weeks",
+  "LEAD_2_WEEKS": "< 2 weeks",
   "LEAD_4-6_WEEKS": "4 - 6 weeks",
   "LEAD_6-8_WEEKS": "6 - 8 weeks",
   "LEAD_8-10_WEEKS": "8 - 10 weeks",
@@ -543,5 +543,6 @@
   "YES": "Yes",
   "YOU_HAVE_MULTIPLE_POSITIONS": "You have multiple positions, please select a role to use the application as",
   "falseLabel": "False",
-  "trueLabel": "True"
+  "trueLabel": "True",
+  "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected."
 }

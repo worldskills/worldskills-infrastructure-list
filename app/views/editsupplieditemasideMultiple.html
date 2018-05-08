@@ -6,6 +6,7 @@
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>
 
+    <div class="alert alert-info"><span translate>SUPPLIED_MULTI_EDIT_DESCRIPTION</span></div>
     <div ng-if="item.multiple_linked_items" class="alert alert-warning"><span translate>ITEM_ATTACHED_TO_MULTIPLE_SKILLS</span></div>
 
     <form class="editForm" name='editForm'>
@@ -15,32 +16,31 @@
               <fieldset><legend class="aside" translate>ITEM_INFORMATION_PUBLISHED</legend>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.manufacturer.$error.required, 'has-success': !editForm.manufacturer.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.manufacturer.$dirty && item.manufacturer, 'has-success': item.manufacturer}">
                     <label class='control-label' translate>TH_MANUFACTURER</label>
                     <input type="text" name="manufacturer" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.MANUFACTURER' | translate }}" ng-model='item.manufacturer'>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.model.$error.required, 'has-success': !editForm.model.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.model.$dirty && item.model, 'has-success': item.model}">
                     <label class='control-label' translate>TH_MODEL</label>
                     <input type="text" name="model" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.MODEL' | translate }}" ng-model='item.model'>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.size.$error.required, 'has-success': !editForm.size.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.size.$dirty && item.size, 'has-success': item.size}">
                     <label class='control-label' translate>TH_SIZE</label>
                     <input type="text" name="size" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.SIZE' | translate }}" ng-model='item.size'>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.part_number.$error.required, 'has-success': !editForm.part_number.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.part_number.$dirty && item.part_number, 'has-success': item.part_number}">
                     <label class='control-label' translate>TH_PART_NUM</label>
                     <input type="text" name="part_number" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.PART_NUMBER' | translate }}" ng-model='item.part_number'>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback"
-                    ng-class="{'has-error': editForm.item_category.$error.required, 'has-success': !editForm.item_category.$error.required}"
-                  >
+                    ng-class="{'has-warning': editForm.item_category.$dirty && item.item_category, 'has-success': item.item_category}">
                     <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
                     <ui-select ng-required="false" ng-model="item.item_category" theme="bootstrap">
                       <ui-select-match placeholder="{{ 'ITEM_SUB_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
@@ -50,7 +50,7 @@
                       </ui-select-choices>
                     </ui-select>
                   </div>
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.priority.$error.required, 'has-success': !editForm.priority.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.priority.$dirty && item.priority, 'has-success': item.priority}">
                     <label class='control-label' translate>TH_PRIORITY</label>
                     <ui-select ng-required="false" ng-model="item.priority" theme="bootstrap">
                       <ui-select-match placeholder="{{ 'TH_PRIORITY' | translate }}">{{item.priority | translate}}</ui-select-match>
@@ -69,7 +69,7 @@
             <div class='well'>
               <fieldset><legend class="aside" translate>SUPPLY_HOST_INFO</legend>
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.supplier.$dirty && editForm.supplier.$error.required, 'has-success': !editForm.supplier.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.supplier.$dirty && item.supplier, 'has-success': item.supplier}">
                     <label class='control-label' translate>SUPPLIER</label>
                     <angucomplete-alt
                       id="id"
@@ -93,7 +93,7 @@
                       input-class="input-sm form-control angucomplete-overflow"/>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.supply_type.$dirty && editForm.supply_type.$error.required, 'has-success': !editForm.supply_type.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.supply_type.$dirty && item.supply_type, 'has-success': item.supply_type}">
                     <label class='control-label' translate>SUPPLY_TYPE</label>
                     <select name="supply_type" class="input-sm form-control" ng-model="item.supply_type">
                         <option value="-"></option>
@@ -107,14 +107,14 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.unit_cost.$dirty && editForm.unit_cost.$error.required, 'has-success': !editForm.unit_cost.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.unit_cost.$dirty && item.unit_cost, 'has-success': item.unit_cost}">
                     <label class='control-label' translate>UNIT_COST</label>
                     <input type="number" name="unit_cost" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.UNIT_COST' | translate }}" ng-model='item.unit_cost'>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-warning': editForm.po_number.$dirty && item.po_number, 'has-success': item.po_number}">
                     <label class='control-label' translate>PO_NUMBER</label>
                     <input name="po_number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.PO_NUMBER' | translate }}" ng-model='item.po_number'>
                   </div>
@@ -129,7 +129,7 @@
                 <legend class="aside" translate>LOGISTICS_INFORMATION</legend>
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6">
-                    <p class='input-group'>                      
+                    <p class='input-group'>
                       <input type="text" placeholder="{{ 'PLACEHOLDER.DELIVERY' | translate }}" class="form-control input-sm" uib-datepicker-popup="dd.MM.yyyy" ng-model="item.delivery" is-open="item.delivery_open" datepicker-options="dateOptions" />
                       <span class="input-group-btn">
               			  	<button type="button" class="btn btn-sm btn-default" ng-init="delivery_open = false" ng-click="item.delivery_open = !item.delivery_open"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -174,7 +174,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.disposal_category.$dirty && editForm.disposal_category.$error.required, 'has-success': !editForm.disposal_category.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.disposal_category.$dirty && item.disposal_category, 'has-success': item.disposal_category}">
                     <label class='control-label' translate>DISPOSAL_CATEGORY</label>
                     <select name="disposal_category" class="input-sm form-control" ng-model='item.disposal_category'>
                         <option value="-"></option>
@@ -189,7 +189,7 @@
                     </select>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.category.$dirty && editForm.category.$error.required, 'has-success': !editForm.category.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.category.$dirty && item.category, 'has-success': item.category}">
                     <label class='control-label' translate>LOCATION</label>
                     <select name="location" class="input-sm form-control" ng-model='item.location'>
                       <option value="-"></option>
@@ -201,7 +201,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.lead_time.$dirty && editForm.lead_time.$error.required, 'has-success': !editForm.lead_time.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-warning': editForm.lead_time.$dirty && item.lead_time, 'has-success': item.lead_time}">
                     <label class='control-label' translate>LEAD_TIME</label>
                     <select name="lead_time" class="input-sm form-control" ng-model='item.lead_time'>
                         <option value="> 10 weeks"translate>LEAD_10_WEEKS</option>
@@ -223,26 +223,26 @@
                 <legend class="aside" translate>SERVICES_UTILITIES_INSTALLATION</legend>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.electricity.$dirty && editForm.electricity.$error.required, 'has-success': !editForm.electricity.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-warning': editForm.electricity.$dirty && item.electricity, 'has-success': item.electricity}">
                     <label class='control-label' translate>ELECTRICITY</label>
                     <input type="checkbox" name="electricity" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY' | translate }}" ng-model='item.electricity'/>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_volts.$dirty && editForm.electricity_volts.$error.required, 'has-success': !editForm.electricity_volts.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.electricity_volts.$dirty && item.electricity_volts, 'has-success': item.electricity_volts}">
                     <label class='control-label' translate>REQ_ELECTRICITY_V</label>
                     <input type="text" name="electricity_volts" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_VOLTS' | translate }}" ng-model='item.electricity_volts'>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_amps.$dirty && editForm.electricity_amps.$error.required, 'has-success': !editForm.electricity_amps.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.electricity_amps.$dirty && item.electricity_amps, 'has-success': item.electricity_amps}">
                     <label class='control-label' translate>REQ_ELECTRICITY_A</label>
                     <input type="text" name="electricity_amps" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_AMPS' | translate }}" ng-model='item.electricity_amps'>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.electricity_phase.$dirty && editForm.electricity_phase.$error.required, 'has-success': !editForm.electricity_phase.$error.required}">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-warning': editForm.electricity_phase.$dirty && item.electricity_phase, 'has-success': item.electricity_phase}">
                     <label class='control-label' translate>ELECTRICITY_PHASE</label>
                     <input type="text" name="electricity_phase" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_PHASE' | translate }}" ng-model='item.electricity_phase'>
                   </div>
@@ -251,36 +251,36 @@
                 <div>&nbsp;</div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.water_supply.$dirty && editForm.water_supply.$error.required, 'has-success': !editForm.water_supply.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.water_supply.$dirty && item.water_supply, 'has-success': item.water_supply}">
                     <label class='control-label' translate>WATER_SUPPLY</label>
                     <input type="checkbox" name="water_supply" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_SUPPLY' | translate }}" ng-model='item.water_supply'/>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.water_drainage.$dirty && editForm.water_drainage.$error.required, 'has-success': !editForm.water_drainage.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.water_drainage.$dirty && item.water_drainage, 'has-success': item.water_drainage}">
                     <label class='control-label' translate>WATER_DRAINAGE</label>
                     <input type="checkbox" name="water_drainage" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_DRAINAGE' | translate }}" ng-model='item.water_drainage'/>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.compressed_air.$dirty && editForm.compressed_air.$error.required, 'has-success': !editForm.compressed_air.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.compressed_air.$dirty && item.compressed_air, 'has-success': item.compressed_air}">
                     <label class='control-label' translate>COMPRESSED_AIR</label>
                     <input type="checkbox" name="compressed_air" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.COMPRESSED_AIR' | translate }}" ng-model='item.compressed_air'/>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.gas_requirements.$dirty && editForm.gas_requirements.$error.required, 'has-success': !editForm.gas_requirements.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.gas_requirements.$dirty && item.gas_requirements, 'has-success': item.gas_requirements}">
                     <label class='control-label' translate>VENTILATION_FUME_EXTRACTION</label>
                     <input type="checkbox" name="ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.VENTILATION_FUME_EXTRACTION' | translate }}" ng-model='item.ventilation_fume_extraction'>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.gas_requirements.$dirty && editForm.gas_requirements.$error.required, 'has-success': !editForm.gas_requirements.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.gas_requirements.$dirty && item.gas_requirements, 'has-success': item.gas_requirements}">
                     <label class='control-label' translate>GAS_REQUIREMENTS</label>
                     <input type="text" name="gas_requirements" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.GAS_REQUIREMENTS' | translate }}" ng-model='item.gas_requirements'>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.anchor_fixing_base_requirements.$dirty && editForm.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.anchor_fixing_base_requirements.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.anchor_fixing_base_requirements.$dirty && item.anchor_fixing_base_requirements, 'has-success': item.anchor_fixing_base_requirements}">
                     <label class='control-label' translate>ANCHOR_FIXING_BASE_REQUIREMENTS</label>
                     <input type="text" name="anchor_fixing_base_requirements" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ANCHOR_FIXING_BASE_REQUIREMENTS' | translate }}" ng-model='item.anchor_fixing_base_requirements'>
                   </div>
@@ -293,7 +293,7 @@
           <uib-tab index="5" heading="{{'SUPPLIED_ITEM_TAB.EXTRA' | translate}}">
             <div class='well'>
               <fieldset>
-                <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
+                <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-warning': editForm.extra_details.$dirty && item.extra_details, 'has-success': item.extra_details}">
                   <label class='control-label' translate>EXTRA_DETAILS_COMMENTS</label>
                   <textarea rows="20" name="extra_details" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.EXTRA_DETAILS_COMMENTS' | translate }}" ng-model='item.extra_details'></textarea>
                 </div>
