@@ -543,5 +543,6 @@
   "YES": "Oui",
   "YOU_HAVE_MULTIPLE_POSITIONS": "Vous occupez plusieurs fonctions : merci de sélectionner le rôle sous lequel vous souhaitez utiliser l'application.",
   "falseLabel": "Non",
-  "trueLabel": "Oui"
+  "trueLabel": "Oui",
+  "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected."
 }
