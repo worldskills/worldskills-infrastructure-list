@@ -87,26 +87,32 @@
                               <span ng-if="item.status.id !== ITEM_STATUS.RED && item.status.id !== ITEM_STATUS.BLACK">{{item.supplied_item.description.text}}</span>
                           </td>
                           <td>
+                            <div ng-if="item.status.id === ITEM_STATUS.RED || item.status.id === ITEM_STATUS.BLACK">
+                              <div class="row" ng-if="item.supplier">
+                                <div class="col col-md col-md-5 supplied-key" translate>TH_SUPPLIER_POTENTIAL</div>
+                                <div class="col col-md col-md-7 supplied-val">{{ item.supplier }}</div>
+                              </div>
+                            </div>
                             <div ng-if="item.status.id !== ITEM_STATUS.RED && item.status.id !== ITEM_STATUS.BLACK">
                               <div class="row" ng-if="item.supplied_item.manufacturer">
-                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_MANUFACTURER</div>
-                                <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.manufacturer}}</div>
+                                <div class="col col-md col-md-4 supplied-key" translate>TH_MANUFACTURER</div>
+                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.manufacturer}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.model">
-                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_MODEL</div>
-                                <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.model}}</div>
+                                <div class="col col-md col-md-4 supplied-key" translate>TH_MODEL</div>
+                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.model}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.size">
-                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_SIZE</div>
-                                <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.size}}</div>
+                                <div class="col col-md col-md-4 supplied-key" translate>TH_SIZE</div>
+                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.size}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.part_number">
-                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_PART_NUM</div>
-                                <div class="col col-xs col-xs-8 supplied-val">{{item.supplied_item.part_number}}</div>
+                                <div class="col col-md col-md-4 supplied-key" translate>TH_PART_NUM</div>
+                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.part_number}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.files.length > 0">
-                                <div class="col col-xs col-xs-4 supplied-key" translate>TH_FILES</div>
-                                <div class="col col-xs col-xs-8 supplied-val">
+                                <div class="col col-md col-md-4 supplied-key" translate>TH_FILES</div>
+                                <div class="col col-md col-md-8 supplied-val">
                                   <ul class="public-files">
                                     <li ng-repeat="file in item.supplied_item.files">
                                       <a target="_blank" href="{{UPLOADS_URL}}/{{file.download_path}}">{{file.filename_original}} ({{file.size | filesize}})</a>
