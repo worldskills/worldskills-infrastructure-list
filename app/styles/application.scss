@@ -439,11 +439,12 @@ th.select, td.select {
       text-align: center;
     }
     &.canRecommend {
-      display: flex;
+      display: block;
       align-items: center;
       border-left: 0;
       border-bottom: 0;
-      a:first-child {
+      width: 85px;
+      a {
         margin-left: 8px;
       }
     }

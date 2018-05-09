@@ -136,13 +136,12 @@
                               <span class='label' ng-style="{'background-color': item.status.color_code}">{{item.status.name.text}}</span>
                           </td>
                           <td class="canRecommend" ng-if="canRecommend()">
-                              <span ng-if="item.status.allow_editing">
-                                <a class="pull-right btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)" style="margin-right:8px;"><span
+                              <div ng-if="item.status.allow_editing">
+                                <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)"><span
                                   class="glyphicon glyphicon-edit"></span></a>
-                                <a class="pull-right btn btn-danger btn-xs" ng-click="suggestDeletion(item)" style="margin-right:8px;"><span
+                                <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span
                                 class="glyphicon glyphicon-remove"></span></a>
-                                <span>&nbsp;</span>
-                              </span>
+                              </div>
                           </td>
                         </tr>
                     </tbody>
