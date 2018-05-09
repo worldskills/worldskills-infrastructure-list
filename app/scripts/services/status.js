@@ -53,7 +53,7 @@ angular.module('ilApp')
 
     Status.getDefaultStatus = function(eventId){
       var deferred = $q.defer();
-      $http.get(API_IL + "/statuses/event/default"  + eventId).then(function(result){
+      $http.get(API_IL + "/statuses/event/"  + eventId + "/default").then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
