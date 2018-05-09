@@ -361,10 +361,6 @@ angular.module('ilApp')
       return Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
     }
 
-    $scope.canDelete = function (item) {
-      return item.status.allow_editing;
-    }
-
     $scope.addStandardSet = function(){
       $('#id_value').val('');
       $scope.standardSetSelector = !$scope.standardSetSelector;
