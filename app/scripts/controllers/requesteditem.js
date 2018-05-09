@@ -19,6 +19,9 @@ angular.module('ilApp')
     $scope.current_page = 1;
     $scope.items_per_page = 50;
 
+    // used to manage concurrent search requests
+    $scope.loadPromise = null;
+
     $scope.selectAll = function() {
       angular.forEach($scope.items, function(v, k) {
         v.selected = $scope.allSelected;
@@ -91,13 +94,18 @@ angular.module('ilApp')
 
     $scope.loadData = function(){
       $scope.loading.items = true;
-      return Items.getItemsByEvent(
+      var loadPromise = Items.getItemsByEvent(
         $state.params.eventId,
         $scope.items_per_page,
         $scope.current_page,
         $scope.filters
       )
       .then(function(res) {
+        if (loadPromise !== $scope.loadPromise) {
+          // another load request has been sent meanwhile
+          // so result of this one is cancelled
+          return;
+        }
         $scope.items = res.requested_items;
         $scope.items_total_count = res.total;
         $scope.loading.items = false;
@@ -106,6 +114,9 @@ angular.module('ilApp')
         WSAlert.danger(error);
         $scope.loading.items = false;
       });
+
+      $scope.loadPromise = loadPromise;
+      return $scope.loadPromise;
     }
 
     $scope.clear = function() {

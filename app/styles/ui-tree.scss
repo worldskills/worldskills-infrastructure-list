@@ -73,16 +73,16 @@
     border-radius: 0;
 }
 
-.tree-header small.areaHeader{ padding-right: 5em; }
-.tree-header small.quantityHeader{ padding-right: 5em; width: 150px; }
+.tree-header small.areaHeader{ padding-right: 3.5em; }
+.tree-header small.quantityHeader{ padding-right: 3.5em; width: 200px; }
 .tree-header small.supplierHeader{ padding-right: 5em; }
-.tree-header small.statusHeader{ padding-right: 5em; }
-.tree-header small.actionsHeader{ padding-right: 3em; }
+.tree-header small.statusHeader{ padding-right: 2.5em; width: 100px; }
+.tree-header small.actionsHeader{ padding-right: 3.5em; width: 76px; }
 .tree-node-content .toggler{ margin-right: .4em;}
 
 .tree-node small.skill-area{ padding-right: 3.5em; }
-.tree-node small.quantity{ padding-right: 3.5em; width:150px; }
-.tree-node small.status{ padding-right: 2.5em; }
+.tree-node small.quantity{ padding-right: 3.5em; width: 200px; }
+.tree-node small.status{ padding-right: 2.5em; width: 100px; }
 .tree-node .actions{ padding-right: 3em; }
 
 .rotate90{
