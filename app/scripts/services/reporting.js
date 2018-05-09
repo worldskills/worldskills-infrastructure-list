@@ -54,6 +54,7 @@ angular.module('ilApp')
         params.status = filters.status ? filters.status.id : null;
         params.description = filters.description || null;
         params.skill = filters.skill ? filters.skill.id : null;
+        params.sector = filters.sector ? filters.sector.id : null;
         params.item_category = filters.item_category ? filters.item_category.id : null;
         params.item_subcategory = filters.item_subcategory ? filters.item_subcategory.id : null;
         params.category = filters.category ? filters.category.id : null;
