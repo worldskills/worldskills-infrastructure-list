@@ -19,6 +19,7 @@ angular.module('ilApp')
     $scope.UNITS = UNITS;
     $scope.fullscreen = false;
     $scope.item = {};
+    $scope.items = [];
     $scope.loading.catalogue = true;
     $scope.allowEditing = false;
     $scope.showFilters = true;
@@ -256,6 +257,41 @@ angular.module('ilApp')
         promise.reject();
         $scope.loading.catalogue = false;
       });
+
+      return promise.promise;
+    };
+
+    $scope.saveRows = function(rowEntities, updateRequested){
+
+      var promise = $q.defer();
+      var promises = [];
+
+      //go through fields and update them
+      angular.forEach(rowEntities, function(rowEntity, key){
+
+        $scope.loading.catalogue = true;
+
+        //actually save row
+        $scope.gridApi.rowEdit.setSavePromise(rowEntities[key], promise.promise);
+        promises.push(SuppliedItem.saveItem(rowEntities[key], updateRequested));
+      });
+
+      //go through promises
+      $q.all(promises).then(function(res){
+          for(var i = 0 ; i < promises.length ; i++){
+            //copy back data from request's response
+            angular.extend(rowEntities[i], res[i]);
+          }
+
+          $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
+          $scope.loading.catalogue = false;
+          promise.resolve();
+        },
+        function(error){
+          WSAlert.danger(error);
+          promise.reject();
+          $scope.loading.catalogue = false;
+        });
 
       return promise.promise;
     };
@@ -561,23 +597,26 @@ angular.module('ilApp')
     });
 
     //edit item
-    $scope.editItem = function($event){
+    $scope.editItems = function($event){
       $event.preventDefault();
       $event.stopPropagation();
 
       //exit if in full screen
       if($scope.fullscreen) return;
 
-      //selection more than one rows
-      var item = $scope.getOneSelectedItem();
+      var items = $scope.getSelectedItems();
 
-      if(item == void 0 || item === false){
-        alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
-        return;
+      if(items.length > 1){
+        //edit multiple
+        $scope.openItemEditorMultiple(items);
       }
-
-      //scope gets passed to editSuppliedItemCtrl
-      $scope.openItemEditor(item);
+      else if (items.length === 1){
+        //scope gets passed to editSuppliedItemCtrl
+        $scope.openItemEditor(items[0]);
+      }
+      else{
+        alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
+      }
     };
 
     $scope.getOneSelectedItem = function(){
@@ -610,8 +649,6 @@ angular.module('ilApp')
       }
 
       //fix date object
-
-      //TODO remove hardcoded date
       $scope.item.delivery = ($scope.item.delivery == null) ? new Date("2017-08-01") : new Date($scope.item.delivery);
 
       $aside.open({
@@ -621,6 +658,34 @@ angular.module('ilApp')
         scope: $scope,
         backdrop: true,
         controller: 'editSuppliedItemCtrl',
+      }).result.then(postClose, postClose);
+
+    };
+
+    $scope.openItemEditorMultiple  = function(items){
+      if(items == void 0 || items.length < 2) {
+        alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
+        return;
+      }
+      else {
+        $scope.items = items;
+        //use first item as a base for comparison
+        angular.copy(items[0], $scope.item);
+        $scope.rowItems = items;
+      }
+
+      //fix date objects
+      angular.forEach($scope.items, function(val, key){
+        $scope.items[key].delivery = ($scope.items[key].delivery == null) ? new Date("2017-08-01") : new Date($scope.items[key].delivery);
+      });
+
+      $aside.open({
+        templateUrl: 'views/editsupplieditemasideMultiple.html',
+        placement: 'right',
+        size: 'md',
+        scope: $scope,
+        backdrop: true,
+        controller: 'editSuppliedItemMultipleCtrl',
       }).result.then(postClose, postClose);
 
     };
@@ -758,7 +823,7 @@ angular.module('ilApp')
     hotkeys.add({
       combo: 'ctrl+o',
       description: $translate.instant("HOTKEYS.EDIT_ITEM_IN_FULL_VIEW"),
-      callback: $scope.editItem
+      callback: $scope.editItems
     });
 
     hotkeys.add({

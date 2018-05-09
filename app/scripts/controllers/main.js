@@ -70,8 +70,10 @@ angular.module('ilApp')
       if(!$scope.appLoaded.promise)
         $scope.appLoaded = $q.defer();
 
+
       //load item from session storage if needed
       if($scope.activePosition.id === undefined && pos.id === undefined){
+
         if(sessionStorage.getItem('active_position_id') !== null) {
           //check that active positions has loaded
           $q.when(User.activePositions.promise).then(function(res){
@@ -86,7 +88,17 @@ angular.module('ilApp')
             });
           });
         }
-        else $scope.loading.init = false; //stop loading to show position selection
+        else{
+           $scope.loading.init = false; //stop loading to show position selection
+           //automatically select the first active competition - this skips the selection, but it's shown on the navigation anyway, fixes catalogue loading errors
+           $q.when(User.activePositions.promise).then(function(res){
+             //resolve if still a promise
+             if($scope.$parent.activePosition.promise)
+               $scope.$parent.activePosition.resolve(res[0]);
+
+             $scope.$parent.activePosition = res[0];
+          });
+       }
       }
       else {
         $scope.selectedSkill = {};
@@ -94,7 +106,7 @@ angular.module('ilApp')
         $scope.selectedSector = {};
 
         //redirect if in home
-        if($state.current.name == 'home') $scope.redirectNeeded = true;
+         if($state.current.name == 'home') $scope.redirectNeeded = true;
 
 
         if($state.current.name === 'event.catalogue')
