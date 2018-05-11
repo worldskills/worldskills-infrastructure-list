@@ -106,12 +106,6 @@
       "WS_MANAGER": "Workshop Manager",
       "WS_SECTOR_MANAGER": "Sector Manager"
     },
-    "ITEM_STATUS_TEXT": {
-      "BLACK": "Secret",
-      "GREEN": "Confirmed",
-      "RED": "Requested",
-      "YELLOW": "Pending"
-    },
     "MULTIPLIERS": {
       "COMPETITORS": "per Competitor",
       "EXPERTS": "per Expert",
@@ -155,7 +149,7 @@
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Editing requested item details in",
   "EDIT_DETAILS": "edit",
   "EDIT_REQUESTS": "Edit requests",
-  "EDIT_SELECTED_ITEM": "Edit selected item",
+  "EDIT_SELECTED_ITEM": "Edit selected item(s)",
   "EDIT_SUPPLIED_ITEM": "Edit Supplied Item",
   "ELECTRICITY": "Electricity",
   "ELECTRICITY_NEEDED": "Electricity required",
@@ -220,9 +214,9 @@
     "TITLE": "Combine items?"
   },
   "LANGUAGE": "Language: ",
-  "LEAD_10_WEEKS": "&gt; 10 weeks",
+  "LEAD_10_WEEKS": "> 10 weeks",
   "LEAD_2-4_WEEKS": "2 - 4 weeks",
-  "LEAD_2_WEEKS": "&lt; 2 weeks",
+  "LEAD_2_WEEKS": "< 2 weeks",
   "LEAD_4-6_WEEKS": "4 - 6 weeks",
   "LEAD_6-8_WEEKS": "6 - 8 weeks",
   "LEAD_8-10_WEEKS": "8 - 10 weeks",
@@ -529,7 +523,7 @@
     },
     "SUCCESS": {
       "ITEMS_COMBINED": "Items combined!",
-      "ITEM_SAVED": "Item saved",
+      "ITEM_SAVED": "Item(s) saved",
       "ITEM_S_REMOVED": "Item(s) removed!",
       "QUANTITIES_UPDATED": "Quantities updated!",
       "RECOMMEND_ACCEPT": "The recommendation has been accepted.",
@@ -549,5 +543,6 @@
   "YES": "Yes",
   "YOU_HAVE_MULTIPLE_POSITIONS": "You have multiple positions, please select a role to use the application as",
   "falseLabel": "False",
-  "trueLabel": "True"
+  "trueLabel": "True",
+  "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected."
 }

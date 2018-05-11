@@ -106,12 +106,6 @@
       "WS_MANAGER": "Responsable d'atelier",
       "WS_SECTOR_MANAGER": "Responsable de secteur"
     },
-    "ITEM_STATUS_TEXT": {
-      "BLACK": "Secret",
-      "GREEN": "Confirmé",
-      "RED": "A rechercher",
-      "YELLOW": "En cours"
-    },
     "MULTIPLIERS": {
       "COMPETITORS": "par candidat",
       "EXPERTS": "par juré",
@@ -155,7 +149,7 @@
   "EDITING_REQUESTED_ITEM_DETAILS_IN": "Édition des informations des lignes d'infrastructure dans",
   "EDIT_DETAILS": "Modifier",
   "EDIT_REQUESTS": "Demandes de modification",
-  "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné",
+  "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné(?)",
   "EDIT_SUPPLIED_ITEM": "Modifier l'item",
   "ELECTRICITY": "Electricity",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
@@ -529,7 +523,7 @@
     },
     "SUCCESS": {
       "ITEMS_COMBINED": "Items combinés !",
-      "ITEM_SAVED": "Item enregistré",
+      "ITEM_SAVED": "Item(s) enregistré",
       "ITEM_S_REMOVED": "Items supprimés !",
       "QUANTITIES_UPDATED": "Quantités mises à jour !",
       "RECOMMEND_ACCEPT": "La suggestion a été acceptée.",
@@ -549,5 +543,6 @@
   "YES": "Oui",
   "YOU_HAVE_MULTIPLE_POSITIONS": "Vous occupez plusieurs fonctions : merci de sélectionner le rôle sous lequel vous souhaitez utiliser l'application.",
   "falseLabel": "Non",
-  "trueLabel": "Oui"
+  "trueLabel": "Oui",
+  "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected."
 }

@@ -8,10 +8,9 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items, ITEM_STATUS,
+  .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items,
     ItemCategory, Category, Status, API_IL, $aside, Reporting, UNITS) {
 
-    $scope.ITEM_STATUS = ITEM_STATUS;
     $scope.UNITS = UNITS;
     $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?limit=100&search='; //search url for autocomplete
     $scope.loading.items = true;
@@ -183,7 +182,7 @@ angular.module('ilApp')
       .then(function(res){
         $scope.categories = res;
         //Load statuses
-        return Status.getAllStatuses();
+        return Status.getAllStatuses($state.params.eventId);
       })
       .then(function(res){
         $scope.statuses = res;

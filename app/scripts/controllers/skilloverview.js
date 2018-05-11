@@ -8,15 +8,13 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillOverviewCtrl', function ($scope, $q, $state, Status, Events, ITEM_STATUS, ITEM_STATUS_TEXT, WSAlert, MULTIPLIERS, Reporting) {
+  .controller('SkillOverviewCtrl', function ($scope, $q, $state, Status, Events, WSAlert, MULTIPLIERS, Reporting) {
 
 
     $scope.exportSkill = function(){
         Reporting.exportRequestedForSkill($scope.event_id, $scope.skill_id);
     };
 
-    $scope.ITEM_STATUS = ITEM_STATUS;
-    $scope.ITEM_STATUS_TEXT = ITEM_STATUS_TEXT;
 
     $scope.totalItems = 0;
     $scope.statusSummary = {};

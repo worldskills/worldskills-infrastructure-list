@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('recommendedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS, MULTIPLIER_DEFAULT, ITEM_STATUS, ITEM_STATUS_TEXT, API_IL, RecommendedItems, $translate, auth) {
+  .controller('recommendedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS, MULTIPLIER_DEFAULT, API_IL, RecommendedItems, $translate, auth) {
 
     $scope.multipliers = MULTIPLIERS;
 
