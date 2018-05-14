@@ -57,10 +57,14 @@ angular.module('ilApp')
     });
 
     $rootScope.$on('$translateChangeSuccess', function () {
-      var lang = $translate.use();
-      $http.defaults.headers.common["Accept-Language"] = lang;
-      tmhDynamicLocale.set(lang);
-      $scope.loadActivePosition($scope.activePosition, null);
+      //only change state if in event overview
+      if($state.current.name === 'event.overview'){
+        var lang = $translate.use();
+        //tweak http defaults so that the next request will have the correct language header
+        $http.defaults.headers.common["Accept-Language"] = lang;
+        tmhDynamicLocale.set(lang);
+        $scope.loadActivePosition($scope.activePosition, null);
+      }
     });
 
     $scope.loadActivePosition = function(pos, $event){
@@ -175,11 +179,7 @@ angular.module('ilApp')
 
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
       if(toState.name == 'event.catalogue') $scope.hideFooter = true;
-      else $scope.hideFooter = false;
-      // if (fromState.name === "") {
-      //   // The initial transition comes from "root", which uses the empty string as a name.
-      //   alert("initial state: " + toState.name);
-      // }
+      else $scope.hideFooter = false;      
     });
 
   });
