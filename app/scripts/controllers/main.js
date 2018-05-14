@@ -2,7 +2,7 @@
 
 angular.module('ilApp')
   .controller('MainCtrl', function (
-    $q, $scope, Auth, $state, $rootScope, APP_ROLES, $translate, Language, auth, WSAlert, Events, User
+    $q, $scope, Auth, $state, $rootScope, $http, APP_ROLES, $translate, tmhDynamicLocale, Language, auth, WSAlert, Events, User
   ) {
     $scope.selectedLanguage = Language.selectedLanguage;
 
@@ -56,6 +56,12 @@ angular.module('ilApp')
       $scope.loadActivePosition(pos, null);
     });
 
+    $rootScope.$on('$translateChangeSuccess', function () {
+      var lang = $translate.use();
+      $http.defaults.headers.common["Accept-Language"] = lang;
+      tmhDynamicLocale.set(lang);
+      $scope.loadActivePosition($scope.activePosition, null);
+    });
 
     $scope.loadActivePosition = function(pos, $event){
       if($event !== null && $event !== undefined) $event.preventDefault();
