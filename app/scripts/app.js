@@ -159,7 +159,7 @@
     $translateProvider.preferredLanguage('en');
     $translateProvider.fallbackLanguage('en');
     $translateProvider.useLocalStorage();
-    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
     $translateProvider.registerAvailableLanguageKeys(['en', 'fr'], {
       'en_*': 'en',
       'fr_*': 'fr',
