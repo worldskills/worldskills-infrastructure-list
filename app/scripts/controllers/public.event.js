@@ -23,7 +23,7 @@ angular.module('ilApp').controller('PublicItemsEventCtrl', function ($scope, $st
       $scope.skills = res[1];
       $scope.loading = false;
     }, function(errors){
-      WSAlert.danger($translate.instant('WSALERT.DANGER.VIEW_PUBLIC_ITEMS_LIST'));
+      WSAlert.danger($translate.instant('WSALERT.DANGER.NO_ACCESSS_PUBLIC_VIEW'));
       $scope.loading = false;
     });
 
