@@ -1,0 +1,19 @@
+<div class='panel panel-default'>
+  <div class='panel-heading' translate>SELECT_SKILL</div>
+  <div class='panel-body'>
+    <div class="list-group">
+      <a ng-href="{{getLink(skill)}}" class="list-group-item" ng-repeat="skill in skills track by skill.id">
+        <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
+        <div class="progress list-group-item-text"> <!-- second class needed? -->
+          <div
+            ng-repeat="status in skill.status_summary.summaries"
+            ng-style="{'background-color': status.status.color_code}"
+            class="progress-bar"
+            style="width: {{status.count / totalCount(skill.status_summary.summaries) * 100}}%">
+            <span uib-tooltip="{{status.status.name.text}}" tooltip-placement="top" tooltip-trigger="mouseenter" class="">{{status.count}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

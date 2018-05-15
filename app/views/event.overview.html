@@ -9,43 +9,7 @@
 
 <div class='row' ng-if="skills.length > 0">
   <div class='col col-xs-12 col-sm-9'>
-    <div class='panel panel-default'>
-      <div class='panel-heading' translate>SELECT_SKILL</div>
-      <div class='panel-body'>
-        <div class="list-group">
-          <a ui-sref="event.skill.overview({eventId: event_id, skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
-            <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
-            <div class="progress list-group-item-text"> <!-- second class needed? -->
-              <div
-                ng-repeat="status in skill.status_summary.summaries"
-                ng-style="{'background-color': status.status.color_code}"
-                class="progress-bar"
-                style="width: {{status.count / totalCount(skill.status_summary.summaries) * 100}}%"
-              >
-                <span uib-tooltip="{{status.status.name.text}}" tooltip-placement="top" tooltip-trigger="mouseenter" class="">{{status.count}}</span>
-              </div>
-            </div>
-               <!--progress bar-->
-              <!--<div class="progress list-group-item-text">-->
-              <!--<div class="progress-bar progress-bar-success" style="width: 60%">-->
-                <!--<span uib-tooltip="Confirmed" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">1932</span>-->
-              <!--</div>-->
-              <!--<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 25%">-->
-                <!--<span uib-tooltip="Pending" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">123</span>-->
-              <!--</div>-->
-              <!--<div class="progress-bar progress-bar-danger progress-bar-striped" style="width: 15%">-->
-                <!--<span uib-tooltip="Requested" tooltip-placement="top" tooltip-trigger="mouseenter" class="smallText">2</span>-->
-              <!--</div>-->
-            <!--</div>-->
-             <!--/progress bar-->
-
-              <!-- <span class='label label-danger'>Requested: 1948</span> -->
-              <!-- <span class='label label-warning'>Pending: 123</span> -->
-              <!-- <span class='label label-success'>Confirmed: 0</span> -->
-          </a>
-        </div>
-      </div>
-    </div>
+    <skill-status-selector skills="skills" link="event.skill.overview" event="event.id"></skill-status-selector>      
   </div>
   <div class='col col-xs-12 col-sm-3'>
     <div class='panel panel-default'>

@@ -30,15 +30,7 @@ angular.module('ilApp').controller('PublicItemsEventCtrl', function ($scope, $st
 
   };
 
-  $scope.totalCount = function(summaries){
-    var c = 0;
 
-    angular.forEach(summaries, function(val){
-      c += val.count;
-    });
-
-    return c;
-  };
 
   $scope.init();
 
