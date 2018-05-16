@@ -62,6 +62,8 @@
                             <th class="col-10"></th>
                             <th class="col-15" translate>DESCRIPTION</th>
                             <th class="col-10" translate>QUANTITY</th>
+                            <th class="col-10" translate>ADDITIONAL_QUANTITY</th>
+                            <th class="col-10" translate>UNIT</th>
                             <th class="col-15" translate>POTENTIAL_SUPPLIER</th>
                             <th class="col-10 text-center" translate>WRONG_SUPPLIED_ITEM</th>
                             <th class="col-20" translate>COMMENT</th>
@@ -79,6 +81,12 @@
                             </td>
                             <td ng-class="{'change': item.quantity != item.requestedItem.quantity}">
                                 {{'ITEM_READABLE_QUANTITY_' + item.requestedItem.multiplier | translate: {quantity: item.requestedItem.quantity, factor: item.requestedItem.multiply_factor} }}
+                            </td>
+                            <td ng-class="{'change': item.additional_quantity != item.requestedItem.additional_quantity}">
+                                {{item.requestedItem.additional_quantity}}
+                            </td>
+                            <td ng-class="{'change': item.unit != item.requestedItem.unit}">
+                                {{item.requestedItem.unit}}
                             </td>
                             <td ng-class="{'change': item.potentialSupplier != item.requestedItem.supplier}">
                                 {{item.requestedItem.supplier}}
@@ -108,6 +116,12 @@
                             </td>
                             <td ng-class="{'change-warning': item.quantity != item.requestedItem.quantity}">
                                 {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiplyFactor} }}
+                            </td>
+                            <td ng-class="{'change-warning': item.additional_quantity != item.requestedItem.additional_quantity}">
+                                {{item.additional_quantity}}
+                            </td>
+                            <td ng-class="{'change-warning': item.unit != item.requestedItem.unit}">
+                                {{item.unit}}
                             </td>
                             <td ng-class="{'change-warning': item.potentialSupplier != item.requestedItem.supplier}">
                                 {{item.potentialSupplier}}

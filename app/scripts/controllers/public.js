@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Downloader, WSAlert, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
   $scope.skillId = $state.params.skillId;
   $scope.UPLOADS_URL = UPLOADS_URL;
+  $scope.UNITS = UNITS;
   $scope.participantNumbers = {};
   $scope.skillManagement = {};
 
@@ -71,7 +72,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   };
 
 
-  $scope.openSuggestModalAside = function (listCategoryId, item) {
+  $scope.openSuggestModalAside = function (listCategoryId, item) {    
     $scope.item = item || {};
     $scope.item.listCategory = {
       id : listCategoryId
@@ -98,6 +99,8 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       multiplier : item.multiplier,
       multiplyFactor : item.multiply_factor,
       potentialSupplier :item.supplier,
+      additional_quantity: item.additional_quantity,
+      unit: item.unit,
       price: item.price,
       wrongSuppliedItem : false,
       comment: null,
