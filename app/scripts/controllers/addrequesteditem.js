@@ -8,16 +8,21 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, MULTIPLIERS, Items, ItemCategory, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES, UNITS, $translate) {
+  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, Status, $state, MULTIPLIERS, Items, ItemCategory, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES, UNITS, $translate) {
 
     $scope.item = $scope.item || {}; //can be already set if called from catalogue view
     $scope.item.multiplier = MULTIPLIER_DEFAULT;
     $scope.UNITS = UNITS;
+    $scope.statuses = [];
 
     //ensure multipliers are set
     $scope.multipliers = $scope.multipliers || MULTIPLIERS;
 
     $scope.disableInput = false;
+
+    Status.getAllStatuses($state.params.eventId).then(function (result) {
+      $scope.statuses = result;
+    });
 
     $scope.$watch('suppliedItem', function (val1, val2) {
       if (typeof val1 !== 'undefined' && typeof val1.title !== 'undefined')
@@ -56,6 +61,8 @@ angular.module('ilApp')
       else if ($scope.supplierValue != false)
           $scope.item.supplier = $scope.supplierValue;
 
+      var split_supplied_item = $scope.item.split_supplied_item || false;
+      delete $scope.item.split_supplied_item; //get rid of extra param
 
       //set category or parent depending on if parent exists
       if($scope.suppliedItem.force === true)
@@ -91,7 +98,7 @@ angular.module('ilApp')
       }//creating completely new item
 
       //add the requested item
-      Items.addItem($scope.item, $scope.event_id, true).then(function (result) {
+      Items.addItem($scope.item, $scope.event_id, true, split_supplied_item).then(function (result) {
         $scope.pushItem(result);
       },
 

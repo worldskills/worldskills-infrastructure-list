@@ -107,11 +107,12 @@ angular.module('ilApp')
     };
 
 
-    Items.addItem = function(item, eventId, _extended){
+    Items.addItem = function(item, eventId, _extended, _split_supplied_item){
       var deferred = $q.defer();
 
       //extended view of the item in response
       var extended = _extended || false;
+      var split_supplied_item = _split_supplied_item || false;
 
       Status.getDefaultStatus(eventId).then(function(defaultStatus){
         var api = API_IL + "/items/" + eventId
@@ -130,7 +131,7 @@ angular.module('ilApp')
 
         //add supplied item first if needed
         if(item.supplied_item === null){
-          $http.post(api + "/supplied_items/" + "?extended=" + extended, supplied_item).then(function(result){
+          $http.post(api + "/supplied_items/" + "?extended=" + extended + "&split_supplied_item=" + split_supplied_item, supplied_item).then(function(result){
             //supplied item created
             var new_supplied_item = result;
 
@@ -151,7 +152,7 @@ angular.module('ilApp')
           });
         } else {
             //supplied item already created
-            $http.post(api + "/requested_items/" + "?extended=" + extended, item).then(function(result){
+            $http.post(api + "/requested_items/" + "?extended=" + extended + "&split_supplied_item=" + split_supplied_item, item).then(function(result){
                 deferred.resolve(result.data);
               },
               function(error){
