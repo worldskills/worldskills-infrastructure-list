@@ -59,10 +59,6 @@ angular.module('ilApp')
     $rootScope.$on('$translateChangeSuccess', function () {
       //only change state if in event overview
       if($state.current.name === 'event.overview'){
-        var lang = $translate.use();
-        //tweak http defaults so that the next request will have the correct language header
-        $http.defaults.headers.common["Accept-Language"] = lang;
-        tmhDynamicLocale.set(lang);
         $scope.loadActivePosition($scope.activePosition, null);
       }
     });
@@ -179,7 +175,7 @@ angular.module('ilApp')
 
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
       if(toState.name == 'event.catalogue') $scope.hideFooter = true;
-      else $scope.hideFooter = false;      
+      else $scope.hideFooter = false;
     });
 
   });

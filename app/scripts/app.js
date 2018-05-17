@@ -434,6 +434,11 @@
 
     //Set global translations of to uiboostrapDatepicker
     $rootScope.$on('$translateChangeSuccess', function () {
+      console.log("Change headers");
+      var activeLanguage = $translate.use();
+      $http.defaults.headers.common["Accept-Language"] = activeLanguage;
+      tmhDynamicLocale.set(activeLanguage);
+
       $translate(['DATEPICKER.CLOSE', 'DATEPICKER.TODAY', 'DATEPICKER.CLEAR'])
       .then(function (translations) {
         uibDatepickerPopupConfig.closeText = translations['DATEPICKER.CLOSE'];
