@@ -1,0 +1,15 @@
+<h1><span translate>TITLE_PUBLIC_ITEMS</span> <small>{{ event.name.text}}</small></h1>
+
+<hr/>
+
+<ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
+
+<div ng-hide="loading || error">
+
+  <div class='row' ng-if="skills.length > 0">
+    <div class='col col-xs-12 col-sm-9'>
+      <skill-status-selector skills="skills" link="publicItems" event="event.id"></skill-status-selector>      
+    </div>
+
+
+</div>

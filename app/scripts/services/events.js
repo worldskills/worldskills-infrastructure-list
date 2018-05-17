@@ -31,7 +31,7 @@ angular.module('ilApp')
     Events.getEvent = function(eventId){
       var deferred = $q.defer();
 
-      $http.get(API_IL + "/events/" + eventId).then(function(result){
+      $http.get(API_IL + "/events/info/" + eventId).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
