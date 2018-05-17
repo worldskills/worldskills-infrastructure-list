@@ -9,11 +9,12 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $scope.participantNumbers = {};
   $scope.skillManagement = {};
 
-
   $scope.loading = true;
+  $scope.error = false;
 
   var promises = [];
   var categoriesIndexed = {};
+
 
   promises.push(Events.getSkill($scope.skillId)
     .then(function(result){
@@ -56,6 +57,10 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
           }
         });
         $scope.loading = false;
+      }, function(error){
+        WSAlert.danger($translate.instant('WSALERT.DANGER.NO_ACCESSS_PUBLIC_VIEW'));
+        $scope.loading = false;
+        $scope.error = true;
       });
   });
 
