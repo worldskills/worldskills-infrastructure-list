@@ -12,17 +12,6 @@ angular.module('ilApp')
 
     $scope.loading.requested = $scope.loading.catalogue = false;
 
-    //calculate total items in a skill
-    $scope.totalCount = function(summaries){
-      var c = 0;
-
-      angular.forEach(summaries, function(val){
-        c += val.count;
-      });
-
-      return c;
-    };
-
     $scope.exportAllRequested = function(e){
       e.preventDefault();
       $scope.loading.requested = true;

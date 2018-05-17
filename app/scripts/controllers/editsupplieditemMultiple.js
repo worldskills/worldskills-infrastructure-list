@@ -77,6 +77,7 @@ angular.module('ilApp')
         //go through fields
         angular.forEach(itemVal, function(fieldVal, fieldKey){
           if($scope.item[fieldKey] !== null && $scope.item[fieldKey] !== '' && EXCLUDED_FIELDS.indexOf(fieldKey) === -1)
+          if($scope.item[fieldKey] !== null && EXCLUDED_FIELDS.indexOf(fieldKey) === -1)
             $scope.items[itemKey][fieldKey] = $scope.item[fieldKey];
         });
       });

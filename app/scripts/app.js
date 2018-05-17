@@ -311,6 +311,18 @@
         }
     })
 
+    .state('publicItemsEvent', {
+      url: '/event/{eventId}/public',
+      templateUrl: 'views/public-items-event.html',
+      controller: 'PublicItemsEventCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.VIEW }
+        ]
+      }
+    })
+
     .state('publicItems', {
       url: '/event/{eventId}/skill/{skillId}/public',
       templateUrl: 'views/public-items.html',
