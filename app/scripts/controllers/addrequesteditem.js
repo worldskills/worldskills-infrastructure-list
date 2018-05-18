@@ -16,6 +16,7 @@ angular.module('ilApp')
     $scope.statuses = [];
     $scope.showChangeHint = false;
     $scope.showCloneHint = false;
+    $scope.splitDetails = {};
 
     //ensure multipliers are set
     $scope.multipliers = $scope.multipliers || MULTIPLIERS;
@@ -50,6 +51,9 @@ angular.module('ilApp')
 
     $scope.splitItem = function(){
       //force a new objec to be created and category selection to show up
+      $scope.item.split_supplied_item = true;
+      //copy to split details for later use
+      angular.copy($scope.suppliedItem, $scope.splitDetails);
       $scope.suppliedItem.originalObject = $scope.suppliedItem.originalObject.description.text;
       $scope.showCloneHint = true;
     }
@@ -57,6 +61,8 @@ angular.module('ilApp')
     $scope.unSplitItem = function(){
       $scope.item.split_supplied_item = false;
       $scope.showCloneHint = false;
+      //clear split details
+      $scope.splitDetails = {};
       $scope.rename();
     }
 
