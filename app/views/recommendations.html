@@ -81,7 +81,7 @@
                                 {{'ITEM_READABLE_QUANTITY_' + item.requestedItem.multiplier | translate: {quantity: item.requestedItem.quantity, factor: item.requestedItem.multiply_factor} }}
                             </td>
                             <td ng-class="{'change': item.potentialSupplier != item.requestedItem.supplier}">
-                                {{item.requestedItem.supplier}}
+                                {{item.requestedItem.supplier.name}}
                             </td>
                             <td rowspan="2" class="text-center" translate>
                                 {{item.wrongSuppliedItem+"Label"}}
@@ -110,7 +110,7 @@
                                 {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiplyFactor} }}
                             </td>
                             <td ng-class="{'change-warning': item.potentialSupplier != item.requestedItem.supplier}">
-                                {{item.potentialSupplier}}
+                                {{item.potentialSupplier.name}}
                             </td>
                             <td class="text-center" ng-if="!item.requestedItem" translate>
                                 {{item.wrongSuppliedItem}}

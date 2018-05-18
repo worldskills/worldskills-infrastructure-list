@@ -121,7 +121,7 @@ angular.module('ilApp')
           width: '160',
           cellEditableCondition: false
         },
-        {field: 'supplier', name: $translate.instant('TH_SUPPLIER'), width: '100'},
+        {field: 'supplier.name', name: $translate.instant('TH_SUPPLIER'), width: '100', cellEditableCondition: false},
         {field: 'supply_type', name: $translate.instant('TH_SUPPLY_TYPE'), width: '100'},
         {field: 'unit_cost', name: $translate.instant('TH_UNIT_COST'), width: '100'}, //double
         {field: 'unit', name: $translate.instant('TH_UNIT'), width: '100'},
@@ -145,8 +145,26 @@ angular.module('ilApp')
         {field: 'electricity_volts', name: $translate.instant('TH_ELECTRICITY_VOLTS'), width: '100'},//int
         {field: 'electricity_amps', name: $translate.instant('TH_ELECTRICITY_AMPS'), width: '100'},//int
         {field: 'electricity_phase', name: $translate.instant('TH_ELECTRICITY_PHASE'), width: '100'},
-        {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100', cellTemplate: "<div translate>{{row.entity.water_supply}}</div>"},
-        {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100', cellTemplate: "<div translate>{{row.entity.water_drainage}}</div>"},
+        {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100',
+          cellTemplate: "<div translate>{{row.entity.water_supply + 'Label' }}</div>",
+          filter: {
+            type: uiGridConstants.filter.SELECT,
+            selectOptions: [
+              { value: 'true', label: $translate.instant('trueLabel')},
+              { value: 'false', label: $translate.instant('falseLabel')},
+            ]
+          }
+        },
+        {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100',
+          cellTemplate: "<div translate>{{row.entity.water_drainage + 'Label' }}</div>",
+          filter: {
+            type: uiGridConstants.filter.SELECT,
+            selectOptions: [
+              { value: 'true', label: $translate.instant('trueLabel')},
+              { value: 'false', label: $translate.instant('falseLabel')},
+            ]
+          }
+        },
         {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100',
           cellTemplate: "<div translate>{{row.entity.compressed_air + 'Label' }}</div>",
           filter: {
@@ -266,32 +284,50 @@ angular.module('ilApp')
       var promise = $q.defer();
       var promises = [];
 
-      //go through fields and update them
-      angular.forEach(rowEntities, function(rowEntity, key){
+      // we need to save the first row first in order to create
+      // the new supplier if needed
+      // (else several request attempt to do that and fail)
+      var firstRow = rowEntities[0];
 
-        $scope.loading.catalogue = true;
+      SuppliedItem
+        .saveItem(firstRow, updateRequested)
+        .then(function(){
 
-        //actually save row
-        $scope.gridApi.rowEdit.setSavePromise(rowEntities[key], promise.promise);
-        promises.push(SuppliedItem.saveItem(rowEntities[key], updateRequested));
-      });
+          //go through fields and update them
+          angular.forEach(rowEntities, function(rowEntity, index){
 
-      //go through promises
-      $q.all(promises).then(function(res){
-          for(var i = 0 ; i < promises.length ; i++){
-            //copy back data from request's response
-            angular.extend(rowEntities[i], res[i]);
-          }
+            // the first row is already saved
+            if (index == 0) {
+              return;
+            }
 
-          $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
-          $scope.loading.catalogue = false;
-          promise.resolve();
-        },
-        function(error){
-          WSAlert.danger(error);
-          promise.reject();
-          $scope.loading.catalogue = false;
+            $scope.loading.catalogue = true;
+
+            //actually save row
+            $scope.gridApi.rowEdit.setSavePromise(rowEntities[index], promise.promise);
+
+            promises.push(SuppliedItem.saveItem(rowEntities[index], updateRequested));
+          });
+
+          //go through promises
+          $q.all(promises).then(function(res){
+              for(var i = 0 ; i < rowEntities.length ; i++){
+                //copy back data from request's response
+                angular.extend(rowEntities[i], res[i]);
+              }
+
+              $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
+              $scope.loading.catalogue = false;
+              promise.resolve();
+            },
+            function(error){
+              WSAlert.danger(error);
+              promise.reject();
+              $scope.loading.catalogue = false;
+            });
         });
+
+
 
       return promise.promise;
     };
