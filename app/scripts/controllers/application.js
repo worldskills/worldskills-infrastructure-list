@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ApplicationCtrl', function ($q, Auth, User, $scope, $state, auth, WSAlert, $translate) {
+  .controller('ApplicationCtrl', function ($q, Auth, User, $scope, APP_ROLES, $state, auth, WSAlert, $translate) {
 
     $scope.auth = auth;
     $scope.activePositions = $q.defer();
@@ -31,8 +31,13 @@ angular.module('ilApp')
         $scope.activePositions = res;
       },
       function(error){
-        $scope.activePositions.reject($translate.instant('ERROR.COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER', {error: error}));
-        $scope.loading.init = false;
+        if(!$scope.hasRole(APP_ROLES.VIEW)){ //only show error if no view permission exists
+          $scope.activePositions.reject($translate.instant('ERROR.COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER', {error: error}));
+          $scope.loading.init = false;
+        }
+        else{
+          $state.go('publicItemsEventList');
+        }
       });
     });
 
