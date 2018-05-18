@@ -369,6 +369,8 @@
   "SPLIT_SUPPLIED_ITEM": "Create a new copy of Supplied Item",
   "DONT_SPLIT_SUPPLIED_ITEM": "Creating a copy when saved, click to cancel",
   "ITEM_SPLIT_DESCRIPTION": "<b>OR</b> create a new copy of the item to be used in this skill",
+  "CLONE_ITEM_HELP": "Creating a new copy of the supplied item, please select the subcategory for the item",
+  "CHANGE_TO_ANOTHER_ITEM_HELP": "In order to create a new item with this description, hit enter<br><br><b>OR</b> if you'd like to search for another item, keep typing",
   "SPONSOR_LOAN": "Prêt sponsor",
   "SPONSOR_SUPPLY": "Fourniture sponsor",
   "STANDARD_SETS": "Lots standard",

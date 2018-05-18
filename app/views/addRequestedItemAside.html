@@ -177,6 +177,22 @@
           </div> <!-- well -->
         </div>
         <div class="col col-sm-12 col-md-6">
+          <div class='alert alert-info smallText' ng-if="suppliedItem.force !== true && showChangeHint">
+            <span translate>CHANGE_TO_ANOTHER_ITEM_HELP</span>
+          </div>
+          <div class='alert alert-info smallText' ng-if="suppliedItem.force !== true && showCloneHint">
+            <span translate>CLONE_ITEM_HELP</span>
+            <br />
+            <br />
+            <button
+              ng-click="unSplitItem()"
+              class='btn btn-xs btn-warning'
+              ng-model="item.split_supplied_item"              
+              >
+              <span><i class='glyphicon glyphicon-ok'></i>&nbsp;<span translate>DONT_SPLIT_SUPPLIED_ITEM</span></span>
+          </button>
+          </div>
+
           <div class='form-group addForm' ng-if="suppliedItem.originalObject.id">
             <div class='panel panel-default'>
               <div class='panel-heading smallText'><strong translate>SUPPLIED_ITEM_DETAILS</strong></div>
@@ -208,7 +224,7 @@
                   <span translate>ITEM_SPLIT_DESCRIPTION</span><br /><br />
                   <button
                     ng-init="item.split_supplied_item = false"
-                    ng-click="item.split_supplied_item = !item.split_supplied_item"
+                    ng-click="splitItem()"
                     class='btn btn-xs'
                     ng-model="item.split_supplied_item"
                     ng-class="{'btn-success': item.split_supplied_item,
@@ -216,7 +232,6 @@
                     }"
                     >
                     <span ng-show="!item.split_supplied_item">&nbsp;<span translate>SPLIT_SUPPLIED_ITEM</span></span>
-                    <span ng-show="item.split_supplied_item"><i class='glyphicon glyphicon-ok'></i>&nbsp;<span translate>DONT_SPLIT_SUPPLIED_ITEM</span></span>
                 </button>
                 </div>
               </div>

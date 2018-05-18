@@ -8,12 +8,14 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, Status, $state, MULTIPLIERS, Items, ItemCategory, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES, UNITS, $translate) {
+  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, Status, $state, MULTIPLIERS, $timeout, Items, ItemCategory, WSAlert, MULTIPLIER_DEFAULT, Auth, APP_ROLES, UNITS, $translate) {
 
     $scope.item = $scope.item || {}; //can be already set if called from catalogue view
     $scope.item.multiplier = MULTIPLIER_DEFAULT;
     $scope.UNITS = UNITS;
     $scope.statuses = [];
+    $scope.showChangeHint = false;
+    $scope.showCloneHint = false;
 
     //ensure multipliers are set
     $scope.multipliers = $scope.multipliers || MULTIPLIERS;
@@ -25,8 +27,12 @@ angular.module('ilApp')
     });
 
     $scope.$watch('suppliedItem', function (val1, val2) {
-      if (typeof val1 !== 'undefined' && typeof val1.title !== 'undefined')
+      if (typeof val1 !== 'undefined' && typeof val1.title !== 'undefined'){
         $scope.disableInput = true;
+        //hide help alerts
+        $scope.showCloneHint = $scope.showChangeHint = false;
+      }
+      if($scope.suppliedItem && $scope.suppliedItem.originalObject && $scope.suppliedItem.originalObject.id == void 0) $scope.showChangeHint = false;
     });
 
     $scope.selectedLanguage = $translate.use();
@@ -42,9 +48,30 @@ angular.module('ilApp')
       WSAlert.danger(error);
     });
 
+    $scope.splitItem = function(){
+      //force a new objec to be created and category selection to show up
+      $scope.suppliedItem.originalObject = $scope.suppliedItem.originalObject.description.text;
+      $scope.showCloneHint = true;
+    }
+
+    $scope.unSplitItem = function(){
+      $scope.item.split_supplied_item = false;
+      $scope.showCloneHint = false;
+      $scope.rename();
+    }
+
     $scope.rename = function () {
       $scope.suppliedItem = {};
       $scope.disableInput = false;
+      $scope.focus('id_value');
+      $scope.showChangeHint = true;
+    };
+
+    $scope.focus = function(id){
+      $timeout(function(){
+        var field = document.getElementById(id);
+        field.focus();
+      }, 0);
     };
 
     $scope.addItem = function () {

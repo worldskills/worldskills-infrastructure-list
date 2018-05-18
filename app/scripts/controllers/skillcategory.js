@@ -204,7 +204,7 @@ angular.module('ilApp')
     };
 
     $scope.canEditSuppliedItem = function(){
-      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER);      
+      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER);
     };
 
     $scope.newSubItem = function (item) {
