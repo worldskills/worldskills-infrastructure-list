@@ -31,11 +31,24 @@ angular.module('ilApp')
     Events.getEvent = function(eventId){
       var deferred = $q.defer();
 
-      $http.get(API_IL + "/events/" + eventId).then(function(result){
+      $http.get(API_IL + "/events/info/" + eventId).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
         deferred.reject("Could not fetch event details");
+      });
+
+      return deferred.promise;
+    };
+
+    Events.getViewEvents = function(pid){
+      var deferred = $q.defer();
+
+      $http.get(API_IL + "/person/" + pid + "/permissions/view").then(function(result){
+        deferred.resolve(result.data);
+      },
+      function(error){
+        deferred.reject("Could not fetch list of events with view permissions");
       });
 
       return deferred.promise;

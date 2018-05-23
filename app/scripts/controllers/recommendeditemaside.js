@@ -25,6 +25,8 @@ angular.module('ilApp')
         requestedItemId : $scope.item.id,
         description : $scope.item.description,
         quantity : $scope.item.quantity,
+        additional_quantity: $scope.item.additional_quantity,
+        unit: $scope.item.unit,
         multiplier : $scope.item.multiplier,
         listCategory : {
           id: $scope.item.category

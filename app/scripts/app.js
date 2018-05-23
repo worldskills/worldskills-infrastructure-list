@@ -311,6 +311,30 @@
         }
     })
 
+    .state('publicItemsEventList', {
+      url: '/events/public',
+      templateUrl: 'views/public-items-event-list.html',
+      controller: 'PublicItemsEventListCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.VIEW }
+        ]
+      }
+    })
+
+    .state('publicItemsEvent', {
+      url: '/event/{eventId}/public',
+      templateUrl: 'views/public-items-event.html',
+      controller: 'PublicItemsEventCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.VIEW }
+        ]
+      }
+    })
+
     .state('publicItems', {
       url: '/event/{eventId}/skill/{skillId}/public',
       templateUrl: 'views/public-items.html',
@@ -422,6 +446,10 @@
 
     //Set global translations of to uiboostrapDatepicker
     $rootScope.$on('$translateChangeSuccess', function () {
+      var activeLanguage = $translate.use();
+      $http.defaults.headers.common["Accept-Language"] = activeLanguage;
+      tmhDynamicLocale.set(activeLanguage);
+
       $translate(['DATEPICKER.CLOSE', 'DATEPICKER.TODAY', 'DATEPICKER.CLEAR'])
       .then(function (translations) {
         uibDatepickerPopupConfig.closeText = translations['DATEPICKER.CLOSE'];

@@ -4,7 +4,7 @@
 
 <ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
 
-<div ng-hide="loading">
+<div ng-hide="loading || error">
 
     <div class="il-public-items-category">
       <div class="panel panel-default">
@@ -109,6 +109,10 @@
                               <div class="row" ng-if="item.supplied_item.part_number">
                                 <div class="col col-md col-md-4 supplied-key" translate>TH_PART_NUM</div>
                                 <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.part_number}}</div>
+                              </div>
+                              <div class="row" ng-if="item.supplied_item.supplier">
+                                <div class="col col-md col-md-4 supplied-key" translate>TH_SUPPLIER</div>
+                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.supplier}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.files.length > 0">
                                 <div class="col col-md col-md-4 supplied-key" translate>TH_FILES</div>

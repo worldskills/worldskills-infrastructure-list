@@ -98,6 +98,41 @@
             </div>
           </div>
 
+          <div class='row'>
+            <div class='col col-xs-12 col-md-4'>
+              <div class="form-group addForm has-feedback has-success">
+                <label class='control-label' translate>ADDITIONAL_QUANTITY</label>
+                <input name='additional_quantity' type="number" class="input-sm form-control" ng-model="recommendedItem.additional_quantity" placeholder="{{ 'PLACEHOLDER.ADDITIONAL_QUANTITY' | translate }}">
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <div class='col col-xs-12 col-md-4 form-group'>
+                <div class="form-group addForm has-feedback has-success">
+
+                  <label class='control-label' translate>UNIT</label>
+                  <select name="unit" class="input-sm form-control" ng-model="recommendedItem.unit">
+                      <option value=""></option>
+                      <option value="pcs" translate="{{UNITS['pcs']}}"></option>
+                      <option value="t" translate="{{UNITS['t']}}"></option>
+                      <option value="kg" translate="{{UNITS['kg']}}"></option>
+                      <option value="g" translate="{{UNITS['g']}}"></option>
+                      <option value="l" translate="{{UNITS['l']}}"></option>
+                      <option value="boxes" translate="{{UNITS['boxes']}}"></option>
+                      <option value="boots" translate="{{UNITS['boots']}}"></option>
+                      <option value="bottles" translate="{{UNITS['bottles']}}"></option>
+                      <option value="sheets" translate="{{UNITS['sheets']}}"></option>
+                      <option value="kits" translate="{{UNITS['kits']}}"></option>
+                      <option value="m" translate="{{UNITS['m']}}"></option>
+                      <option value="m2" translate="{{UNITS['m2']}}"></option>
+                      <option value="m3" translate="{{UNITS['m3']}}"></option>
+                  </select>
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class='col col-md-4 form-group'></div>
+          </div>
+
           <div class="row">
             <div ng-if="item.id" class="col col-xs-12 col-md-4 form-group">
               <div data-nodrag class="checkbox addForm form-group has-feedback has-success" style="margin-top: -20px;">
