@@ -69,7 +69,7 @@
                             <th class="text-right" translate>TH_QUANTITY</th>
                             <th translate>TH_ITEM</th>
                             <th translate>TH_DETAILS</th>
-                            <th translate>TH_LAST_MODIFIED</th>
+                            <th translate>SKILL_AREA</th>
                             <th class="status" translate>TH_STATUS</th>
                             <th class="canRecommend" ng-if="canRecommend()" translate>TH_ACTIONS</th>
                         </tr>
@@ -125,16 +125,22 @@
                                 </div>
                               </div>
                             </div>
+                            <div class="row">
+                              <div class="col col-md col-md-4 supplied-key" translate>TH_LAST_MODIFIED</div>
+                              <div class="col col-md col-md-8 supplied-val">
+                                <span ng-if="item.supplied_item.modified">
+                                  {{ 'DATE_TIME_AT' |
+                                    translate: {date: (item.supplied_item.modified | amDateFormat: 'LL'), time: (item.supplied_item.modified | amDateFormat: 'LT')} }}
+                                </span>
+                                <span ng-if="!item.supplied_item.modified">
+                                  {{ 'DATE_TIME_AT' |
+                                    translate: {date: (item.modified | amDateFormat: 'LL'), time: (item.modified | amDateFormat: 'LT')} }}
+                                </span>
+                              </div>
+                            </div>
                           </td>
                           <td>
-                            <span ng-if="item.supplied_item.modified">
-                              {{ 'DATE_TIME_AT' |
-                                translate: {date: (item.supplied_item.modified | amDateFormat: 'LL'), time: (item.supplied_item.modified | amDateFormat: 'LT')} }}
-                            </span>
-                            <span ng-if="!item.supplied_item.modified">
-                              {{ 'DATE_TIME_AT' |
-                                translate: {date: (item.modified | amDateFormat: 'LL'), time: (item.modified | amDateFormat: 'LT')} }}
-                            </span>
+                              {{item.area.name}}
                           </td>
                           <td class="status">
                               <span class='label' ng-style="{'background-color': item.status.color_code}">{{item.status.name.text}}</span>
