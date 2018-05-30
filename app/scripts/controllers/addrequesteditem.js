@@ -121,6 +121,15 @@ angular.module('ilApp')
         $scope.item.supplied_item = $scope.suppliedItem.originalObject;
 
       }//if supplied item selected
+      else if(split_supplied_item){
+        //get details from splitDetails object clone
+        $scope.item.supplied_item = $scope.splitDetails.originalObject;
+        //get description from supplied item
+        $scope.item.description = {
+          lang_code: $scope.selectedLanguage,
+          text: $scope.suppliedItem.originalObject,
+        };
+      }
       else {
         //get description from supplied item
         $scope.item.description = {

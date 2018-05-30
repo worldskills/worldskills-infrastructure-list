@@ -175,7 +175,7 @@
         <div class="form-group">
           <a data-nodrag class='btn btn-sm btn-primary' ng-if="canEditSuppliedItem()" ng-click="editSuppliedItem(item)" translate>EDIT_SUPPLIED_ITEM</a>
           <a data-nodrag class='btn btn-sm btn-info' ng-click="switchSuppliedItem(item)" translate>SWITCH_SUPPLIED_ITEM</a>
-          <a data-nodrag class='btn btn-sm btn-warning' ng-if="canEditSuppliedItem() && item.supplied_item.multiple_linked_items" ng-click="splitSuppliedItem(item)" translate>SPLIT_SUPPLIED_ITEM</a>
+          <br><br><a data-nodrag class='btn btn-sm btn-warning' ng-if="canEditSuppliedItem() && item.supplied_item.multiple_linked_items" ng-click="splitSuppliedItem(item)" translate>SPLIT_SUPPLIED_ITEM</a>
         </div>
         <div ng-if="item.supplied_item.multiple_linked_items" class="alert alert-warning" data-nodrag><span translate>ITEM_ATTACHED_TO_MULTIPLE_SKILLS</span></div>
       </div>
