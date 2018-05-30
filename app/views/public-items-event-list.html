@@ -1,0 +1,24 @@
+<h1><span translate>TITLE_PUBLIC_ITEMS</span></h1>
+
+<hr/>
+
+<ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
+
+<div ng-hide="loading || error">
+
+  <div class='row' ng-if="events.length > 0">
+    <div class='col col-xs-12 col-sm-9'>
+      <div class='panel panel-default'>
+        <div class='panel-heading' translate>SELECT_EVENT</div>
+        <div class='panel-body'>
+          <div class="list-group">
+            <a ui-sref="publicItemsEvent({eventId: e.id})" class="list-group-item" ng-repeat="e in events track by e.id" ng-hide="e.id == 364">
+              <h5 class="list-group-item-heading">{{e.name.text}}</h5>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>

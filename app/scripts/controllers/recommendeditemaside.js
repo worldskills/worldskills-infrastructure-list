@@ -8,7 +8,12 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('recommendedItemAsideCtrl', function ($scope, $uibModalInstance, Items, WSAlert, MULTIPLIERS, MULTIPLIER_DEFAULT, API_IL, RecommendedItems, $translate, auth) {
+  .controller('recommendedItemAsideCtrl', function ($scope, $state, $uibModalInstance, Items, WSAlert, MULTIPLIERS, MULTIPLIER_DEFAULT, API_IL, RecommendedItems, $translate, auth) {
+
+    //set event id from state if not already set
+    if(!$scope.event_id){
+      $scope.event_id = $state.params.eventId;
+    }
 
     $scope.multipliers = MULTIPLIERS;
 

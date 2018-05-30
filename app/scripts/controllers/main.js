@@ -2,7 +2,7 @@
 
 angular.module('ilApp')
   .controller('MainCtrl', function (
-    $q, $scope, Auth, $state, $rootScope, APP_ROLES, $translate, Language, auth, WSAlert, Events, User
+    $q, $scope, Auth, $state, $rootScope, $http, APP_ROLES, $translate, tmhDynamicLocale, Language, auth, WSAlert, Events, User
   ) {
     $scope.selectedLanguage = Language.selectedLanguage;
 
@@ -56,6 +56,12 @@ angular.module('ilApp')
       $scope.loadActivePosition(pos, null);
     });
 
+    $rootScope.$on('$translateChangeSuccess', function () {
+      //only change state if in event overview
+      if($state.current.name === 'event.overview'){
+        $scope.loadActivePosition($scope.activePosition, null);
+      }
+    });
 
     $scope.loadActivePosition = function(pos, $event){
       if($event !== null && $event !== undefined) $event.preventDefault();
@@ -170,10 +176,6 @@ angular.module('ilApp')
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
       if(toState.name == 'event.catalogue') $scope.hideFooter = true;
       else $scope.hideFooter = false;
-      // if (fromState.name === "") {
-      //   // The initial transition comes from "root", which uses the empty string as a name.
-      //   alert("initial state: " + toState.name);
-      // }
     });
 
   });
