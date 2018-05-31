@@ -250,7 +250,7 @@
           </uib-tab>
         </uib-tabset>
 
-      <button ng-disabled="addForm.$error.required" ng-click="saveItem();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
+      <button ng-disabled="addForm.$error.required || !addForm.$dirty" ng-click="saveItem();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>
 
