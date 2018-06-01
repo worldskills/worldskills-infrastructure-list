@@ -78,7 +78,7 @@
           </div>
         </div>
       </div>
-      <button ng-disabled="!isFormValid()" class="btn btn-sm btn-success" ng-click="saveItems()" translate>UPDATE_REQUESTED_ITEMS</button>
+      <button ng-disabled="!editForm.$dirty || !isFormValid() || isSubmitting" class="btn btn-sm btn-success" ng-click="saveItems()" translate>UPDATE_REQUESTED_ITEMS</button>
       <button class="btn btn-sm btn-warning" ng-click="cancel()" translate>CANCEL</button>
     </form>
   </fieldset>
