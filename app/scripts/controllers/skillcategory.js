@@ -114,6 +114,8 @@ angular.module('ilApp')
       else {
         $scope.activeItem = item.id;
       }
+
+      $scope.supplierValue = false;
     };
 
     $scope.editItemStatus = function (item)
