@@ -108,7 +108,6 @@ angular.module('ilApp')
     $scope.editItem = function (item, itemIndex) {
       //defining canEditItemStatus here because roles is undefined at start for an unknown reason
       $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
-      $scope.canEditSuppliedItem = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER);
 
       if ($scope.activeItem == item.id) $scope.activeItem = false;
       else {
@@ -204,6 +203,10 @@ angular.module('ilApp')
         backdrop: true,
         controller: 'addRequestedItemCtrl',
       }).result.then(postClose, postClose);
+    };
+
+    $scope.canEditSuppliedItem = function(){
+      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER);
     };
 
     $scope.newSubItem = function (item) {
