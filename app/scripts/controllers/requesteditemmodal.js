@@ -89,7 +89,6 @@ angular.module('ilApp')
       // the new supplier if needed
       // (else several request attempt to do that and fail)
       var firstRow = $scope.itemsSelected[0];
-      var firstErr = null;
 
       $scope
         .saveItem(firstRow)
