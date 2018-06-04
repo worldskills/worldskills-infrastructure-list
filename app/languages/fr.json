@@ -525,6 +525,7 @@
   "WSALERT": {
     "DANGER": {
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET": "L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !",
+      "ITEM_COULD_NOT_BE_SAVED": "l'item {{itemName}} n'a pas pu être sauvegardé : {{error}}",
       "NO_ACCESSS_PUBLIC_VIEW":"You don't have access to the public view for this event",
       "VIEW_PUBLIC_ITEMS_LIST":"Could not load public items"
     },
