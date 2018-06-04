@@ -36,6 +36,8 @@ angular.module('ilApp')
 
     $scope.searchSupplierAPI = API_IL + '/suppliers/'+ $state.params.eventId + "/search?q=";
 
+    $scope.isSubmitting = false;
+
     //close modal aside
     $scope.cancel = function () {
       $uibModalInstance.dismiss();
@@ -83,6 +85,11 @@ angular.module('ilApp')
     };
 
     $scope.saveItems = function(){
+      if($scope.isSubmitting === true){
+        return;
+      }
+
+      $scope.isSubmitting = true;
       var tasks = [];
 
       // we need to save the first row first in order to create

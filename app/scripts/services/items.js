@@ -8,7 +8,7 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('Items', function ($q, $http, API_IL, MULTIPLIERS, Status, Language) {
+  .service('Items', function ($q, $http, API_IL, MULTIPLIERS, SuppliedItem, Status, Language) {
 
     var Items = { categories : $q.defer(), $data : $q.defer(), total: null };
     var statuses = null;
@@ -107,12 +107,12 @@ angular.module('ilApp')
     };
 
 
-    Items.addItem = function(item, eventId, _extended){
+    Items.addItem = function(item, eventId, _extended, _split_supplied_item){
       var deferred = $q.defer();
 
       //extended view of the item in response
       var extended = _extended || false;
-
+      var split_supplied_item = _split_supplied_item || false;
       Status.getDefaultStatus(eventId).then(function(defaultStatus){
         var api = API_IL + "/items/" + eventId
         var supplied_item = {
@@ -130,13 +130,12 @@ angular.module('ilApp')
 
         //add supplied item first if needed
         if(item.supplied_item === null){
-          $http.post(api + "/supplied_items/" + "?extended=" + extended, supplied_item).then(function(result){
+          $http.post(api + "/supplied_items/" + "?extended=" + extended + "&split_supplied_item=" + split_supplied_item, supplied_item).then(function(result){
             //supplied item created
             var new_supplied_item = result;
 
             //link supplied item
             item.supplied_item = result.data;
-
             $http.post(api + "/requested_items/", item).then(function(result){
                 deferred.resolve(result.data);
               },
@@ -149,9 +148,30 @@ angular.module('ilApp')
           function(error){
             deferred.reject("Could not create a supplied item: " + error.data.user_msg);
           });
-        } else {
+        }
+        else if(split_supplied_item){
+          //clone item
+          //extend data form supplied item created above
+          angular.extend(item.supplied_item, supplied_item);
+          SuppliedItem.cloneItem(item.supplied_item, eventId, true).then(function(clone){
+            //link supplied item
+            item.supplied_item = clone;
+            $http.post(api + "/requested_items/", item).then(function(result){
+                deferred.resolve(result.data);
+              },
+              function(error){
+                //delete supplied item orphan
+                $http.delete(api + "/supplied_items/" + clone.id);
+                deferred.reject("Could not create a requested item, please try again. " + error.data.user_msg);
+              });
+          },
+          function(error){
+            deferred.reject("Could not create a copy of supplied item: " + error.data.user_msg);
+          });
+        }
+        else {
             //supplied item already created
-            $http.post(api + "/requested_items/" + "?extended=" + extended, item).then(function(result){
+            $http.post(api + "/requested_items/" + "?extended=" + extended + "&split_supplied_item=" + split_supplied_item, item).then(function(result){
                 deferred.resolve(result.data);
               },
               function(error){

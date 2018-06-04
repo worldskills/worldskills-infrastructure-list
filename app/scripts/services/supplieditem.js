@@ -76,7 +76,7 @@ angular.module('ilApp')
 
         return deferred.promise;
       },
-  
+
       getItems: function (eventId, search) {
         var deferred = $q.defer();
 
@@ -102,10 +102,11 @@ angular.module('ilApp')
         return deferred.promise;
       },
 
-      cloneItem: function(item, eventId){
+      cloneItem: function(item, eventId, _update){
         var deferred = $q.defer();
+        var update = _update || false;
 
-        $http.post(API_IL + '/items/' + eventId + '/supplied_items/' + item.id + '/clone').then(function(res){
+        $http.post(API_IL + '/items/' + eventId + '/supplied_items/' + item.id + '/clone?update=' + update, item).then(function(res){
             deferred.resolve(res.data);
         }, function(error){
             deferred.reject("Could not clone item: " + error.data.user_msg);
