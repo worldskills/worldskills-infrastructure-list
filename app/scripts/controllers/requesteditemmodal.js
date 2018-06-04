@@ -36,6 +36,8 @@ angular.module('ilApp')
 
     $scope.searchSupplierAPI = API_IL + '/suppliers/'+ $state.params.eventId + "/search?q=";
 
+    $scope.isSubmitting = false;
+
     //close modal aside
     $scope.cancel = function () {
       $uibModalInstance.dismiss();
@@ -83,7 +85,13 @@ angular.module('ilApp')
     };
 
     $scope.saveItems = function(){
+      if($scope.isSubmitting === true){
+        return;
+      }
+
+      $scope.isSubmitting = true;
       var tasks = [];
+
 
       angular.forEach($scope.itemsSelected, function(i, k) {
         var task = $scope.saveItem(i);
@@ -92,7 +100,13 @@ angular.module('ilApp')
 
       Promise
         .all(tasks)
-        .then(WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED')));
+        .then(function(){
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED'));
+        })
+        .finally(function(){
+          $uibModalInstance.dismiss();
+          $scope.isSubmitting = false;
+        });
     }
 
     $scope.saveItem = function(modifiedItem) {
@@ -133,11 +147,14 @@ angular.module('ilApp')
         })
         .then(function(res){
           modifiedItem.category = extendedCategory;
-          $uibModalInstance.dismiss();
         })
         .catch(function(err){
-          WSAlert.danger(err);
-          $uibModalInstance.dismiss();
+          var message = $translate.instant(
+            'WSALERT.DANGER.ITEM_COULD_NOT_BE_SAVED',
+            {itemName: modifiedItem.description.text, error: err}
+          );
+          WSAlert.danger(message);
+          throw err;
         });
     }
 
