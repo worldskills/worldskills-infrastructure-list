@@ -119,7 +119,7 @@
                                 <div class="col col-md col-md-8 supplied-val">
                                   <ul class="public-files">
                                     <li ng-repeat="file in item.supplied_item.files">
-                                      <a target="_blank" href="{{UPLOADS_URL}}/{{file.download_path}}">{{file.filename_original}} ({{file.size | filesize}})</a>
+                                      <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
                                     </li>
                                   </ul>
                                 </div>
