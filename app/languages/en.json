@@ -527,7 +527,8 @@
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET": "Item could not be removed from set, please try again!",
       "ITEM_COULD_NOT_BE_SAVED": "The item {{itemName}} could not be saved: {{error}}",
       "NO_ACCESSS_PUBLIC_VIEW":"You don't have access to the public view for this event",
-      "VIEW_PUBLIC_ITEMS_LIST":"Could not load public items"
+      "VIEW_PUBLIC_ITEMS_LIST":"Could not load public items",
+      "FILE_UPLOAD_FAILED": "Uploading files failed"
     },
     "SUCCESS": {
       "ITEMS_COMBINED": "Items combined!",
@@ -553,5 +554,6 @@
   "falseLabel": "False",
   "trueLabel": "True",
   "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected.",
-  "TITLE_PUBLIC_ITEMS":"PUBLIC ITEMS"
+  "TITLE_PUBLIC_ITEMS":"PUBLIC ITEMS",
+  "LOADING": "Loading..."
 }

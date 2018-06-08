@@ -8,7 +8,7 @@
 
     <form class="addForm" name='addForm'>
         <uib-tabset active="recommended01">
-          <uib-tab index="0" heading="General">
+          <uib-tab index="0" heading="{{'REQUESTED_ITEM' | translate}}">
             <div class="form-group addForm">
               <label class='control-label' translate>DESCRIPTION</label>
               <angucomplete-alt
@@ -79,7 +79,7 @@
                   minlength="1"
                   disable-input="disableInputSupplier"
                   focus-first="true"
-                  input-changed="supplierChanged"
+                  input-changed="potentialSupplierChanged"
                   override-suggestions="true"
                   field-required="false"
                   text-searching="false"
@@ -148,107 +148,404 @@
           </div>
         </uib-tab>
 
-        <uib-tab ng-show="false" index="1" heading="Files">
-          <div class='well'>
-            <fieldset>
-              <legend class="aside" translate>FILES_AND_PICTURES</legend>
+        <uib-tab index="1" heading="{{'SUPPLIED_ITEM_DETAILS' | translate}}" ng-show="canRecommendSupplied()">
+          <!-- supplied item details -->
+          <!-- <div ng-if="item.multiple_linked_items" class="alert alert-warning"><span translate>ITEM_ATTACHED_TO_MULTIPLE_SKILLS</span></div> -->
 
-              <div ng-show="recommendedItem.files.length > 0">
-                <table class="table">
-                  <thead>
-                  <tr>
-                    <th width="50%" translate>TH_NAME</th>
-                    <th>Size</th>
-                    <th style="text-align: right;" translate>TH_ACTIONS</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="file in recommendedItem.files">
-                      <td>{{file.file.filenameOriginal}}</td>
-                      <td>{{file.file.size}}</td>
-                      <td style="text-align: right;">
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="removeFile(file, $index)">
-                          <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div ng-controller="FileCtrl" ng-file-drop="" uploader="uploader" filters="">
-                <!-- drop zone -->
-                <div ng-show="uploader.isHTML5">
-                  <div nv-file-drop="" uploader="uploader">
-                    <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone" translate>
-                      DROP_FILES_HERE_TO_UPLOAD
+          {{item}}
+          <hr>
+          {{recommendedItem}}
+          <uib-tabset active="supplied01">
+            <uib-tab index="0" heading="{{'SUPPLIED_ITEM_TAB.GENERAL' | translate}}">
+              <div class='well'>
+                <fieldset><legend class="aside" translate>ITEM_INFORMATION_PUBLISHED</legend>
+                  <div class="row">
+                    <div class="col col-xs-12 form-group has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.description.$error.required, 'has-success': !editForm.recommendedItemSupplied.description.$error.required}">
+                      <!-- <label class='control-label' translate>TH_DESCRIPTION</label> -->
+                      <input type="text" name="recommendedItemSupplied.description" autofocus="autofocus" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.description.text'>
                     </div>
                   </div>
-                </div>
-                <!-- drop zone -->
-                <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple  />
 
-                <!-- queue -->
-                <div class="well" style='background-color: #fff;' ng-show="uploader.queue.length > 0">
-                  <h4><span translate>UPLOAD_QUEUE</span>&nbsp;<small><span translate>QUEUE_LENGTH:</span> {{ uploader.queue.length }}</small></h4>
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.manufacturer.$error.required, 'has-success': !editForm.recommendedItemSupplied.manufacturer.$error.required}">
+                      <label class='control-label' translate>TH_MANUFACTURER</label>
+                      <input type="text" name="recommendedItemSupplied.manufacturer" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.MANUFACTURER' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.manufacturer'>
+                    </div>
 
-                  <table class="table upload-table">
-                    <thead>
-                    <tr >
-                      <th translate>TH_NAME</th>
-                      <th ng-show="uploader.isHTML5" translate>TH_SIZE</th>
-                      <th ng-show="uploader.isHTML5" translate>TH_PROGRESS</th>
-                      <th translate>TH_ACTIONS</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in uploader.queue">
-                      <td>
-                        <span ng-show="recommendedItem.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                        <span ng-show="recommendedItem.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                        <span ng-show="recommendedItem.isError"><i class="glyphicon glyphicon-remove"></i></span>&nbsp;<strong>{{ recommendedItem.file.name }}</strong></td>
-                      <td ng-show="uploader.isHTML5" nowrap>{{ recommendedItem.file.size/1024/1024|number:2 }} <span translate>MB</span></td>
-                      <td ng-show="uploader.isHTML5">
-                        <div class="progress" style="margin-bottom: 0;">
-                          <div class="progress-bar" role="progressbar" ng-style="{ 'width': recommendedItem.progress + '%' }"></div>
-                        </div>
-                      </td>
-                      <td nowrap>
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="recommendedItem.remove()">
-                          <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
-                        </button>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- queue -->
-
-                <!-- progress -->
-                  <div ng-show="uploader.queue.length > 0">
-                      <div>
-                          <span translate>QUEUE_PROGRESS:</span>
-                          <div class="progress">
-                              <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-                          </div>
-                      </div>
-                      <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                          <span class="glyphicon glyphicon-upload"></span> <span translate>BUTTON_UPLOAD_ALL</span>
-                      </button>
-                      <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                          <span class="glyphicon glyphicon-ban-circle"></span> <span translate>BUTTON_CANCEL_ALL</span>
-                      </button>
-                      <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                          <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE_ALL</span>
-                      </button>
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.model.$error.required, 'has-success': !editForm.recommendedItemSupplied.model.$error.required}">
+                      <label class='control-label' translate>TH_MODEL</label>
+                      <input type="text" name="recommendedItemSupplied.model" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.MODEL' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.model'>
+                    </div>
                   </div>
 
-                <!-- progress -->
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.size.$error.required, 'has-success': !editForm.recommendedItemSupplied.size.$error.required}">
+                      <label class='control-label' translate>TH_SIZE</label>
+                      <input type="text" name="recommendedItemSupplied.size" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.SIZE' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.size'>
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.part_number.$error.required, 'has-success': !editForm.recommendedItemSupplied.part_number.$error.required}">
+                      <label class='control-label' translate>TH_PART_NUM</label>
+                      <input type="text" name="recommendedItemSupplied.part_number" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.PART_NUMBER' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.part_number'>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback"
+                      ng-class="{'has-error': editForm.recommendedItemSupplied.item_category.$error.required, 'has-success': !editForm.recommendedItemSupplied.item_category.$error.required}"
+                    >
+                      <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
+                      <ui-select ng-required="false" ng-model="recommendedItem.recommendedItemSupplied.item_category" theme="bootstrap">
+                        <ui-select-match placeholder="{{ 'ITEM_SUB_CATEGORY' | translate }}">{{recommendedItem.recommendedItemSupplied.item_category.name.text}}</ui-select-match>
+                        <ui-select-choices repeat="category as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                          {{category.name.text}} <small> / {{category.parent.name.text}}</small>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.priority.$error.required, 'has-success': !editForm.recommendedItemSupplied.priority.$error.required}">
+                      <label class='control-label' translate>TH_PRIORITY</label>
+                      <ui-select ng-required="false" ng-model="recommendedItem.recommendedItemSupplied.priority" theme="bootstrap">
+                        <ui-select-match placeholder="{{ 'TH_PRIORITY' | translate }}">{{recommendedItem.recommendedItemSupplied.priority | translate}}</ui-select-match>
+                        <ui-select-choices repeat="priority in priorities">
+                          <div translate>{{priority}}</div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+
+                </fieldset>
+              </div>
+            </uib-tab>
+
+            <uib-tab index="1" heading="{{'SUPPLIED_ITEM_TAB.HOST' | translate}}">
+              <div class='well'>
+                <fieldset><legend class="aside" translate>SUPPLY_HOST_INFO</legend>
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.supplier.$dirty && editForm.supplier.$error.required, 'has-success': !editForm.recommendedItemSupplied.supplier.$error.required}">
+                      <label class='control-label' translate>SUPPLIER</label>
+                      <input name='supplier' type="text" class="input-sm form-control" ng-model="recommendedItem.recommendedItemSupplied.supplier" placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}">
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.supply_type.$dirty && editForm.recommendedItemSupplied.supply_type.$error.required, 'has-success': !editForm.recommendedItemSupplied.supply_type.$error.required}">
+                      <label class='control-label' translate>SUPPLY_TYPE</label>
+                      <select name="recommendedItemSupplied.supply_type" class="input-sm form-control" ng-model="recommendedItem.recommendedItemSupplied.supply_type">
+                          <option value="-"></option>
+                          <option value="sponsor_loan" translate>SPONSOR_LOAN</option>
+                          <option value="sponsor_supply" translate>SPONSOR_SUPPLY</option>
+                          <option value="loan_lease_hire" translate>LOAN_LEASE_HIRE</option>
+                          <option value="purchase" translate>PURCHASE</option>
+                          <option value="to_purchase" translate>TO_PURCHASE</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.unit_cost.$dirty && editForm.recommendedItemSupplied.unit_cost.$error.required, 'has-success': !editForm.recommendedItemSupplied.unit_cost.$error.required}">
+                      <label class='control-label' translate>UNIT_COST</label>
+                      <input type="number" name="recommendedItemSupplied.unit_cost" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.UNIT_COST' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.unit_cost'>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.po_number.$dirty && editForm.recommendedItemSupplied.po_number.$error.required, 'has-success': !editForm.recommendedItemSupplied.po_number.$error.required}">
+                      <label class='control-label' translate>PO_NUMBER</label>
+                      <input name="recommendedItemSupplied.po_number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.PO_NUMBER' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.po_number'>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </uib-tab>
+
+            <uib-tab index="2" heading="{{'SUPPLIED_ITEM_TAB.LOGISTICS' | translate}}">
+              <div class='well'>
+                <fieldset>
+                  <legend class="aside" translate>LOGISTICS_INFORMATION</legend>
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6">
+                      <p class='input-group'>
+                        <input type="text" placeholder="{{ 'PLACEHOLDER.DELIVERY' | translate }}" class="form-control input-sm" uib-datepicker-popup="dd.MM.yyyy" ng-model="recommendedItem.recommendedItemSupplied.delivery" is-open="item.delivery_open" datepicker-options="dateOptions" />
+                        <span class="input-group-btn">
+                			  	<button type="button" class="btn btn-sm btn-default" ng-init="delivery_open = false" ng-click="item.delivery_open = !item.delivery_open"><i class="glyphicon glyphicon-calendar"></i></button>
+                				</span>
+                      </p>
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6">
+                      <input type="time" placeholder="{{ 'PLACEHOLDER.TIME' | translate }}" class="form-control input-sm" ng-model="recommendedItem.recommendedItemSupplied.delivery">
+                    </div>
+                    <!--<div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.delivery_date.$dirty && editForm.delivery_date.$error.required, 'has-success': !editForm.delivery_date.$error.required}">-->
+                      <!--<label class='control-label'>Delivery date</label>-->
+
+                      <!--<select name="delivery_date" class="input-sm form-control" ng-model='item.delivery_date'>-->
+                          <!--<option value="C-09">C-09</option>-->
+                          <!--<option value="C-08">C-08</option>-->
+                          <!--<option value="C-07">C-07</option>-->
+                          <!--<option value="C-06">C-06</option>-->
+                          <!--<option value="C-05">C-05</option>-->
+                          <!--<option value="C-04">C-04</option>-->
+                          <!--<option value="C-03">C-03</option>-->
+                          <!--<option value="C-02">C-02</option>-->
+                          <!--<option value="C-01">C-01</option>-->
+                      <!--</select>-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.delivery_time.$dirty && editForm.delivery_time.$error.required, 'has-success': !editForm.delivery_time.$error.required}">-->
+                      <!--<label class='control-label'>Delivery time</label>-->
+                      <!--<select name="delivery_time" class="input-sm form-control" ng-model='item.delivery_time'>-->
+                          <!--<option value="-"></option>-->
+                          <!--<option value="C-09">C-09</option>-->
+                          <!--<option value="C-08">C-08</option>-->
+                          <!--<option value="C-07">C-07</option>-->
+                          <!--<option value="C-06">C-06</option>-->
+                          <!--<option value="C-05">C-05</option>-->
+                          <!--<option value="C-04">C-04</option>-->
+                          <!--<option value="C-03">C-03</option>-->
+                          <!--<option value="C-02">C-02</option>-->
+                          <!--<option value="C-01">C-01</option>-->
+                      <!--</select>-->
+                    <!--</div>-->
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.disposal_category.$dirty && editForm.recommendedItemSupplied.disposal_category.$error.required, 'has-success': !editForm.recommendedItemSupplied.disposal_category.$error.required}">
+                      <label class='control-label' translate>DISPOSAL_CATEGORY</label>
+                      <select name="recommendedItemSupplied.disposal_category" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.disposal_category'>
+                          <option value="-"></option>
+                          <option value="Return_to_Sponsor" translate>CAT_RETURN_TO_SPONSOR</option>
+                          <option value="Return_to_Supplier" translate>CAT_RETURN_TO_SUPPLIER</option>
+                          <option value="Sale_at_venue" translate>CAT_SALE_AT_VENUE</option>
+                          <option value="Post_event_sale" translate>CAT_POST_EVENT_SALE</option>
+                          <option value="Capital Fund" translate>CAT_CAPITAL_FUND</option>
+                          <option value="Dispose" translate>CAT_DISPOSE</option>
+                          <option value="Donate" translate>CAT_DONATE</option>
+                          <option value="Donate" translate>CAT_RETAIN</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.category.$dirty && editForm.recommendedItemSupplied.category.$error.required, 'has-success': !editForm.recommendedItemSupplied.category.$error.required}">
+                      <label class='control-label' translate>LOCATION</label>
+                      <select name="recommendedItemSupplied.location" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.location'>
+                        <option value="-"></option>
+                        <option value="Warehouse" translate>LOC_WAREHOUSE</option>
+                        <option value="Venue" translate>LOC_VENUE</option>
+                        <option value="Other" translate>LOC_OTHER</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.lead_time.$dirty && editForm.recommendedItemSupplied.lead_time.$error.required, 'has-success': !editForm.recommendedItemSupplied.lead_time.$error.required}">
+                      <label class='control-label' translate>LEAD_TIME</label>
+                      <select name="recommendedItemSupplied.lead_time" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.lead_time'>
+                          <option value="> 10 weeks"translate>LEAD_10_WEEKS</option>
+                          <option value="8 - 10 weeks" translate>LEAD_8-10_WEEKS</option>
+                          <option value="6 - 8 weeks" translate>LEAD_6-8_WEEKS</option>
+                          <option value="4 - 6 weeks" translate>LEAD_4-6_WEEKS</option>
+                          <option value="2 - 4 weeks" translate>LEAD_2-4_WEEKS</option>
+                          <option value="< 2 weeks" translate>LEAD_2_WEEKS</option>
+                      </select>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </uib-tab>
+
+            <uib-tab index="3" heading="{{'SUPPLIED_ITEM_TAB.INSTALLATION' | translate}}">
+              <div class='well'>
+                <fieldset>
+                  <legend class="aside" translate>SERVICES_UTILITIES_INSTALLATION</legend>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity.$dirty && editForm.recommendedItemSupplied.electricity.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity.$error.required}">
+                      <label class='control-label' translate>ELECTRICITY</label>
+                      <input type="checkbox" name="recommendedItemSupplied.electricity" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.electricity'/>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_volts.$dirty && editForm.recommendedItemSupplied.electricity_volts.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_volts.$error.required}">
+                      <label class='control-label' translate>REQ_ELECTRICITY_V</label>
+                      <input type="text" name="recommendedItemSupplied.electricity_volts" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_VOLTS' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.electricity_volts'>
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_amps.$dirty && editForm.recommendedItemSupplied.electricity_amps.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_amps.$error.required}">
+                      <label class='control-label' translate>REQ_ELECTRICITY_A</label>
+                      <input type="text" name="recommendedItemSupplied.electricity_amps" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_AMPS' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.electricity_amps'>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_phase.$dirty && editForm.recommendedItemSupplied.electricity_phase.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_phase.$error.required}">
+                      <label class='control-label' translate>ELECTRICITY_PHASE</label>
+                      <input type="text" name="recommendedItemSupplied.electricity_phase" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_PHASE' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.electricity_phase'>
+                    </div>
+                  </div>
+
+                  <div>&nbsp;</div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.water_supply.$dirty && editForm.recommendedItemSupplied.water_supply.$error.required, 'has-success': !editForm.recommendedItemSupplied.water_supply.$error.required}">
+                      <label class='control-label' translate>WATER_SUPPLY</label>
+                      <input type="checkbox" name="recommendedItemSupplied.water_supply" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_SUPPLY' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.water_supply'/>
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.water_drainage.$dirty && editForm.recommendedItemSupplied.water_drainage.$error.required, 'has-success': !editForm.recommendedItemSupplied.water_drainage.$error.required}">
+                      <label class='control-label' translate>WATER_DRAINAGE</label>
+                      <input type="checkbox" name="recommendedItemSupplied.water_drainage" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_DRAINAGE' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.water_drainage'/>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.compressed_air.$dirty && editForm.recommendedItemSupplied.compressed_air.$error.required, 'has-success': !editForm.recommendedItemSupplied.compressed_air.$error.required}">
+                      <label class='control-label' translate>COMPRESSED_AIR</label>
+                      <input type="checkbox" name="recommendedItemSupplied.compressed_air" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.COMPRESSED_AIR' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.compressed_air'/>
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.gas_requirements.$dirty && editForm.recommendedItemSupplied.gas_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.gas_requirements.$error.required}">
+                      <label class='control-label' translate>VENTILATION_FUME_EXTRACTION</label>
+                      <input type="checkbox" name="recommendedItemSupplied.ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.VENTILATION_FUME_EXTRACTION' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.ventilation_fume_extraction'>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.gas_requirements.$dirty && editForm.recommendedItemSupplied.gas_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.gas_requirements.$error.required}">
+                      <label class='control-label' translate>GAS_REQUIREMENTS</label>
+                      <input type="text" name="recommendedItemSupplied.gas_requirements" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.GAS_REQUIREMENTS' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.gas_requirements'>
+                    </div>
+
+                    <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$dirty && editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$error.required}">
+                      <label class='control-label' translate>ANCHOR_FIXING_BASE_REQUIREMENTS</label>
+                      <input type="text" name="recommendedItemSupplied.anchor_fixing_base_requirements" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ANCHOR_FIXING_BASE_REQUIREMENTS' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.anchor_fixing_base_requirements'>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </uib-tab>
 
 
-              </fieldset>
-            </div>
-          </uib-tab>
-        </uib-tabset>
+            <uib-tab index="4" heading="{{'SUPPLIED_ITEM_TAB.FILES' | translate}}">
+              <div class='well'>
+                <fieldset>
+                  <legend class="aside" translate>FILES_AND_PICTURES</legend>
+
+                  <div ng-show="recommendedItem.files.length > 0">
+                    <table class="table">
+                      <thead>
+                      <tr>
+                        <th width="50%" translate>TH_NAME</th>
+                        <th>Size</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="file in recommendedItem.files">
+                          <td>{{file.file.filename_original}}</td>
+                          <td>{{file.file.size}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div ng-file-drop="" uploader="uploader" filters="">
+
+                    <!-- drop zone -->
+                    <style>
+                      .my-drop-zone { border: dotted 3px lightgray; }
+                      .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+                      .another-file-over-class { border: dotted 3px green; }
+                    </style>
+                    <div ng-show="uploader.isHTML5">
+                      <div nv-file-drop="" uploader="uploader">
+                        <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone" translate>
+                          DROP_FILES_HERE_TO_UPLOAD
+                        </div>
+                      </div>
+                    </div>
+                    <!-- drop zone -->
+                  <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple  />
+
+                    <!-- queue -->
+                    <div class="well" style='background-color: #fff;' ng-show="uploader.queue.length > 0">
+                      <h4><span translate>UPLOAD_QUEUE</span>&nbsp;<small><span translate>QUEUE_LENGTH:</span> {{ uploader.queue.length }}</small></h4>
+
+                      <table class="table upload-table">
+                        <thead>
+                        <tr >
+                          <th translate>TH_NAME</th>
+                          <th ng-show="uploader.isHTML5" translate>TH_SIZE</th>
+                          <th ng-show="uploader.isHTML5" translate>TH_PROGRESS</th>
+                          <th translate>TH_ACTIONS</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in uploader.queue">
+                          <td>
+                            <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                            <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>&nbsp;<strong>{{ item.file.name }}</strong></td>
+                          <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} <span translate>MB</span></td>
+                          <td ng-show="uploader.isHTML5">
+                            <div class="progress" style="margin-bottom: 0;">
+                              <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                          </td>
+                          <td nowrap>
+                            <!--<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">-->
+                              <!--<span class="glyphicon glyphicon-upload"></span> Upload-->
+                            <!--</button>-->
+                            <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">-->
+                              <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
+                            <!--</button>-->
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                              <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
+                            </button>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- queue -->
+
+                    <!-- progress -->
+                     <div ng-show="uploader.queue.length > 0">
+                          <div>
+                              <span translate>QUEUE_PROGRESS:</span>
+                              <div class="progress" style="">
+                                  <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                              </div>
+                          </div>
+                          <!-- <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                              <span class="glyphicon glyphicon-upload"></span> <span translate>BUTTON_UPLOAD_ALL</span>
+                          </button> -->
+                          <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                              <span class="glyphicon glyphicon-ban-circle"></span> <span translate>BUTTON_CANCEL_ALL</span>
+                          </button>
+                          <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                              <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE_ALL</span>
+                          </button>
+                      </div>
+
+                    <!-- progress -->
+
+
+                </fieldset>
+              </div>
+            </uib-tab>
+
+            <uib-tab index="5" heading="{{'SUPPLIED_ITEM_TAB.EXTRA' | translate}}">
+              <div class='well'>
+                <fieldset>
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.extra_details.$dirty && editForm.recommendedItemSupplied.extra_details.$error.required, 'has-success': !editForm.recommendedItemSupplied.extra_details.$error.required}">
+                    <label class='control-label' translate>EXTRA_DETAILS_COMMENTS</label>
+                    <textarea rows="20" name="recommendedItemSupplied.extra_details" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.EXTRA_DETAILS_COMMENTS' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.extra_details'></textarea>
+                  </div>
+                </fieldset>
+              </div>
+            </uib-tab>
+
+          </uib-tabset>
+
+
+          <!-- -supplied item details -->
+        </uib-tab>
+      </uib-tabset>
 
       <button ng-disabled="addForm.$error.required || !addForm.$dirty" ng-click="saveItem();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>

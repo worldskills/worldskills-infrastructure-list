@@ -102,6 +102,19 @@ angular.module('ilApp')
         return deferred.promise;
       },
 
+      getItemForRecommendation: function(itemId, eventId){
+        var deferred = $q.defer();
+
+        $http.get(API_IL + "/items/" + eventId + "/supplied_items/" + itemId + "/recommendation").then(function(res){
+            deferred.resolve(res.data);
+          },
+          function(error){
+            deferred.reject("Could not get supplied item: " + error.data.user_msg);
+          });
+
+        return deferred.promise;
+      },
+
       cloneItem: function(item, eventId, _update){
         var deferred = $q.defer();
         var update = _update || false;

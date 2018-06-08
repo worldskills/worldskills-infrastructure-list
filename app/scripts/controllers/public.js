@@ -76,8 +76,17 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
   };
 
+  $scope.canRecommendSupplied = function(){
+    return Auth.hasRole(APP_ROLES.ADMIN) || (
+      Auth.hasRole(APP_ROLES.RECOMMEND_SUPPLIED)
+      && recommendedItem.requestedItemId
+      && item.status.secret !== true
+      && item.status.show_in_public_view
+    );
+  };
 
-  $scope.openSuggestModalAside = function (listCategoryId, item) {    
+
+  $scope.openSuggestModalAside = function (listCategoryId, item) {
     $scope.item = item || {};
     $scope.item.listCategory = {
       id : listCategoryId
