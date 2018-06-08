@@ -15,7 +15,8 @@ angular.module('ilApp')
       headers: {
         Authorization: 'Bearer ' + auth.accessToken
       }
-    })
+    });
+
 
     //callbacks for debug
 

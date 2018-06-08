@@ -46,6 +46,7 @@
     EDIT_ITEM_STATUS: 'EditItemStatus',
     EDIT_CONFIG: 'EditConfig',
     RECOMMEND: 'Recommend',
+    RECOMMEND_SUPPLIED: 'RecommendSupplied',
     VIEW: 'View'
   });
 
