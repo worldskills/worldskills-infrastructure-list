@@ -19,6 +19,8 @@ angular.module('ilApp')
     $scope.priorities = SUPPLIED_ITEM_PRIORITIES;
 
     $scope.selectedLanguage = $translate.use();
+    $scope.recommendedItemSuppliedForm = {};
+    $scope.suppliedDirty = false;
 
     $scope.recommendedItem = {
       multiplier: MULTIPLIER_DEFAULT
@@ -34,6 +36,8 @@ angular.module('ilApp')
     if($scope.item && $scope.item.id) {
       //fetch supplied item from API
       SuppliedItem.getItemForRecommendation($scope.item.supplied_item.id, $scope.item.status.event.id).then(function(resSupplied){
+
+        resSupplied.delivery = resSupplied.delivery == null ? null : new Date(resSupplied.delivery);
 
         $scope.recommendedItem = {
           requestedItemId : $scope.item.id,
@@ -121,8 +125,18 @@ angular.module('ilApp')
 
       $scope.recommendedItem.listCategory = $scope.recommendedItem.listCategory || $scope.$parent.item.listCategory;
 
+      //check if supplied form is $dirty
+      if(
+        this.recommendedItemSuppliedForm.DETAILED.$dirty ||
+        this.recommendedItemSuppliedForm.HOST.$dirty ||
+        this.recommendedItemSuppliedForm.LOGISTICS.$dirty ||
+        this.recommendedItemSuppliedForm.INSTALLATION.$dirty ||
+        this.recommendedItemSuppliedForm.FILES.$dirty ||
+        this.recommendedItemSuppliedForm.EXTRA.$dirty)
+        $scope.suppliedDirty = true;
+
       if($scope.recommendedItem.requestedItemId) {
-        RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
+        RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId, $scope.suppliedDirty).then(function(result) {
           if($scope.uploader.queue.length > 0){
               //upload files
               $scope.recommendedItem.id = result.id;
@@ -141,7 +155,7 @@ angular.module('ilApp')
           id: auth.user.person_id
         };
 
-        RecommendedItems.suggestNew($scope.recommendedItem, $scope.event_id, $scope.skillId).then(function(result) {
+        RecommendedItems.suggestNew($scope.recommendedItem, $scope.event_id, $scope.skillId, $scope.suppliedDirty).then(function(result) {
           if($scope.uploader.queue.length > 0){
               //upload files
               $scope.recommendedItem.id = result.id;
