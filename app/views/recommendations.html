@@ -40,7 +40,7 @@
                                   {{ 'DATE_TIME_AT' | translate: {date: (item.recommendedAt | amDateFormat: 'LL'), time: (item.recommendedAt | amDateFormat: 'LT')} }}
                                 </span>
                             </td>
-                            <td class="col-15">{{item.description.text}}</td>
+                            <td class="col-15">{{item.description.text}}</td>                            
                             <td class="col-15">
                               <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
                               <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>

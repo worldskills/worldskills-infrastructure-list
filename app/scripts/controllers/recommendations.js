@@ -14,7 +14,7 @@ angular.module('ilApp')
     $scope.APP_ROLES = APP_ROLES;
 
     $q.when($scope.appLoaded.promise).then(function () {
-      //Load recommendations
+      //Load recommendations      
       RecommendedItems.getRecommendations($state.params.eventId).then(function (res) {
         $scope.recommendedItems = res.recommendedItems;
       },

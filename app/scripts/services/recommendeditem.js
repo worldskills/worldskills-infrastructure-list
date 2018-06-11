@@ -12,11 +12,12 @@ angular.module('ilApp')
 
     var RecommendedItems = { };
 
-    RecommendedItems.suggestOnItem = function(item, eventId, skillId){
+    RecommendedItems.suggestOnItem = function(item, eventId, skillId, _dirty){
 
       var deferred = $q.defer();
+      var dirty = _dirty || false;
 
-      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId, item).then(function(result){
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId + "?dirty=" + dirty, item).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
@@ -26,11 +27,12 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    RecommendedItems.suggestNew = function(item, eventId, skillId){
+    RecommendedItems.suggestNew = function(item, eventId, skillId, _dirty){
 
       var deferred = $q.defer();
+      var dirty = _dirty || false;
 
-      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId, item).then(function(result){
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "?dirty=" + dirty, item).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
