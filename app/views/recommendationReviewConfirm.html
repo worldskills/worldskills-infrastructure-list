@@ -1,0 +1,140 @@
+<div class="modal-header">
+  <h3 class="modal-title pull-left">{{data.title}}</h3>
+  <!-- <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>ADD_NEW_LINKED_ITEM</span></button></span> -->
+  <br class="clearfix">
+</div>
+<div class="modal-body">
+  <alerts></alerts>
+  <fieldset><legend>Requested Item</legend>
+    <table class="table table-striped" ng-if="data.item.id">
+      <thead>
+        <tr>
+          <th translate>Original</th>
+          <th translate>Recommended
+            <span class='label label-warning' ng-if="data.item.wrongSuppliedItem" translate>WRONG_SUPPLIED_ITEM</span>
+            <span class='label label-danger' ng-if="data.item.deletionSuggestion" translate>Deletion suggested</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Description</b><br>{{data.item.requestedItem.description.text}}</td>
+          <td><b>Description</b><br>{{data.item.description.text}}</td>
+        </tr>
+        <tr
+        ng-class="{'warning': data.item.readable_quantity != data.item.requestedItem.readable_quantity}">
+          <td><b>Quantity</b><br>{{data.item.requestedItem.readable_quantity}}</td>
+          <td><b>Quantity</b><br>{{data.item.readable_quantity}}</td>
+        </tr>
+        <tr>
+          <td><b>Additional quantity</b><br>{{data.item.requestedItem.additional_quantity}}</td>
+          <td><b>Additional quantity</b><br>{{data.item.additional_quantity}}</td>
+        </tr>
+        <tr>
+          <td><b>Potential Supplier</b><br>{{data.item.requestedItem.supplier}}</td>
+          <td><b>Potential Supplier</b><br>{{data.item.potentialSupplier}}</td>
+        </tr>
+        <tr>
+          <td><b>Potential Supplier</b><br>{{data.item.requestedItem.supplier}}</td>
+          <td><b>Potential Supplier</b><br>{{data.item.potentialSupplier}}</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <b>Comment:</b><br>
+            {{data.item.comment}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <div ng-if='data.item.recommendedItemSupplied.id'>
+      <fieldset><legend>Supplied Item
+        <span class='pull-right'><button class='btn btn-xs btn-warning' translate>SPLIT_SUPPLIED_ITEM</button></span>
+      </legend>
+        <table class="table table-striped" ng-if="data.item.id">
+          <thead>
+            <tr>
+              <th translate>Original</th>
+              <th translate>Recommended</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Description</b><br>{{data.item.suppliedItem.description.text}}</td>
+              <td><b>Description</b><br>{{data.item.recommendedItemSupplied.description.text}}</td>
+            </tr>
+            <tr>
+              <td><b translate>TH_MANUFACTURER</b><br>{{data.item.suppliedItem.manufacturer}}</td>
+              <td><b translate>TH_MANUFACTURER</b><br>{{data.item.recommendedItemSupplied.manufacturer}}</td>
+            </tr>
+            <tr>
+              <td><b>Model</b><br>{{data.item.suppliedItem.model}}</td>
+              <td><b>Model</b><br>{{data.item.recommendedItemSupplied.model}}</td>
+            </tr>
+            <tr>
+              <td><b>Size</b><br>{{data.item.suppliedItem.size}}</td>
+              <td><b>Size</b><br>{{data.item.recommendedItemSupplied.size}}</td>
+            </tr>
+            <tr>
+              <td><b>Part number</b><br>{{data.item.suppliedItem.part_number}}</td>
+              <td><b>Part number</b><br>{{data.item.recommendedItemSupplied.part_number}}</td>
+            </tr>
+            <tr>
+              <td><b>Sub category</b><br>{{data.item.suppliedItem.item_category.name.text}}</td>
+              <td><b>Sub category</b><br>{{data.item.recommendedItemSupplied.item_category.name.text}}</td>
+            </tr>
+            <tr>
+              <td><b>Priority</b><br>{{data.item.suppliedItem.priority}}</td>
+              <td><b>Priority</b><br>{{data.item.recommendedItemSupplied.priority}}</td>
+            </tr>
+            <tr>
+              <td><b>Supplier</b><br>{{data.item.suppliedItem.supplier}}</td>
+              <td><b>Supplier</b><br>{{data.item.recommendedItemSupplied.supplier}}</td>
+            </tr>
+            <tr>
+              <td><b>Supply Type</b><br>{{data.item.suppliedItem.supply_type}}</td>
+              <td><b>Supply Type</b><br>{{data.item.recommendedItemSupplied.supply_type}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+        <br>
+        <br>
+        <div class='pull-right'>
+          <div class='pull-right'><button ng-click="data.modifyRecommendation()" class='btn btn-md btn-warning'>Modify Recommendation before accepting</button></div>
+          <div style='clear: both; padding-top: 5px;'>
+            <button class='btn btn-md btn-success'>Accept Recommendation</button>
+            <button class='btn btn-md btn-danger'>Reject Recommendation</button>
+          </div>
+        </div>
+    </div>
+
+
+    <!-- <div class='row'>
+      <div class='col col-xs-12 col-sm-6'>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Original</h3>
+          </div>
+          <div class="panel-body">
+            Requested
+          </div>
+        </div>
+      </div>
+      <div class='col col-xs-12 col-sm-6'>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Recommended</h3>
+          </div>
+          <div class="panel-body">
+            Recommendeded
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </fieldset>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">{{data.close}}</button>
+</div>

@@ -23,6 +23,89 @@ angular.module('ilApp')
       });
     });
 
+    $scope.review = function(item){
+      console.log(item);
+      $scope.openRecommendationReviewModal(item);
+    };
+
+    function openSuggestModalAside(item) {
+      $scope.item = item.requestedItem || {};
+
+      $scope.item.listCategory = {
+        id : item.requestedItem.category.id
+      };
+      $scope.asideState = {
+        open: true,
+      };
+
+      $aside.open({
+        templateUrl: 'views/recommendedItemAside.html',
+        placement: 'right',
+        size: 'lg',
+        scope: $scope,
+        backdrop: true,
+        controller: 'recommendedItemAsideCtrl',
+      }).result.then(postClose, postClose);
+    };
+
+    function postClose() {
+      $scope.asideState.open = false;
+    };
+
+    $scope.openRecommendationReviewModal = function(item){
+      $confirm({
+          title: $translate.instant("JSTEXT_REVIEW_ITEMS.TITLE"),
+          item: item,
+          modifyRecommendation: function(){
+            openSuggestModalAside(item);
+          },
+          close: $translate.instant("JSTEXT_REVIEW_ITEMS.CLOSE")
+        },
+        {
+          templateUrl: 'views/recommendationReviewConfirm.html',
+          size: 'lg'
+        }).then(function () {
+
+        $scope.loading.catalogue = true;
+
+        SuppliedItem.combineItems(items, $scope.masterItem).then(function(res){
+
+            //remove everything except one marked as master item
+            angular.forEach(updatedItems, function(val){
+              if(val.id != $scope.masterItem.id) {
+                var i = $scope.gridOptions.data.indexOf(val);
+                $scope.gridOptions.data.splice(i, 1);
+              }
+            });
+            WSAlert.success($translate.instant("WSALERT.SUCCESS.ITEMS_COMBINED"));
+            $scope.loading.catalogue = false;
+        },
+        function(error){
+          WSAlert.danger(error);
+          $scope.loading.catalogue = false;
+        });
+      });
+    }
+
+    // $scope.openRecommendationReviewModal = function (item) {
+    //   $scope.asideState = {
+    //     open: true,
+    //   };
+    //
+    //   $aside.open({
+    //     templateUrl: 'views/recommendationReviewAside.html',
+    //     placement: 'right',
+    //     size: 'lg',
+    //     scope: $scope,
+    //     backdrop: true,
+    //     controller: 'recommendationReviewAsideCtrl',
+    //   }).result.then(postClose, postClose);
+    // };
+
+    function postClose() {
+      $scope.asideState.open = false;
+    };
+
     $scope.accept = function(item) {
       RecommendedItems.acceptRecommendation(item, $state.params.eventId).then(function(res) {
         var index = $scope.recommendedItems.indexOf(item);
