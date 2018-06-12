@@ -12,7 +12,7 @@
                         <th class="col-20" translate>TH_ITEM_DATE_AND_TIME</th>
                         <th class="col-15" translate>NAME</th>
                         <th class="col-15" translate>ACTION</th>
-                        <th class="col-5"><i class="fa fa-info-circle warning"></i></th>
+                        <th class="col-15" translate>ACTIONS</th>
                     </tr>
                 </thead>
             </table>
@@ -40,14 +40,17 @@
                                   {{ 'DATE_TIME_AT' | translate: {date: (item.recommendedAt | amDateFormat: 'LL'), time: (item.recommendedAt | amDateFormat: 'LT')} }}
                                 </span>
                             </td>
-                            <td class="col-15">{{item.description.text}}</td>                            
+                            <td class="col-15">{{item.description.text}}</td>
                             <td class="col-15">
                               <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
                               <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>
                               <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+                              <span ng-if="item.recommendedItemSupplied">
+                                &nbsp;<i class='glyphicon glyphicon-exclamation-sign blue' tooltip-placement="bottom" uib-tooltip="{{'SUPPLIED_ITEM_CHANGED' | translate}}"></i>
+                              </span>
                             </td>
-                            <td class="button col-5" data-toggle="collapse" data-parent="#accordion" href="#validation{{item.id}}" aria-expanded="true" aria-controls="collapseOne">
-                                <i class="fas fa-chevron-down"></i>
+                            <td class="col-15">
+                                <button ng-click="review(item)" class='btn btn-primary btn-sm'><i class="fa fa-info-circle"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -66,8 +69,7 @@
                             <th class="col-10" translate>UNIT</th>
                             <th class="col-15" translate>POTENTIAL_SUPPLIER</th>
                             <th class="col-10 text-center" translate>WRONG_SUPPLIED_ITEM</th>
-                            <th class="col-20" translate>COMMENT</th>
-                            <th ng-if="false" class="col-20 text-center" translate>PICTURES<!-- deactived temporarily --></th>
+                            <th class="col-5" translate>COMMENT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,7 +96,9 @@
                             <td rowspan="2" class="text-center" translate>
                                 {{item.wrongSuppliedItem+"Label"}}
                             </td>
-                            <td rowspan="2" class="description">{{item.comment}}</td>
+                            <td rowspan="2" class="description">
+                              {{item.comment}}
+                            </td>
                             <td ng-if="false" rowspan="2" class="image text-center text-center">
                               <!-- deactived temporarily -->
                                 <div class="aniimated-thumbnials lightgallery-validation lightgallery">

@@ -213,6 +213,10 @@
     "OK": "Combine",
     "TITLE": "Combine items?"
   },
+  "JSTEXT_REVIEW_ITEMS": {
+    "CLOSE": "Close window",    
+    "TITLE": "Review Changes"
+  },
   "LANGUAGE": "Language: ",
   "LEAD_10_WEEKS": "> 10 weeks",
   "LEAD_2-4_WEEKS": "2 - 4 weeks",
@@ -556,5 +560,7 @@
   "trueLabel": "True",
   "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected.",
   "TITLE_PUBLIC_ITEMS":"PUBLIC ITEMS",
-  "LOADING": "Loading..."
+  "LOADING": "Loading...",
+  "REVIEW": "Review",
+  "SUPPLIED_ITEM_CHANGED": "Supplied item changed"
 }
