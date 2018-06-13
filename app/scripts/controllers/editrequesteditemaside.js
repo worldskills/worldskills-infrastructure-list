@@ -43,11 +43,11 @@ angular.module('ilApp')
       //set supplier from autocomplete
       if (item.selectedSupplier != void 0
         && item.selectedSupplier.originalObject.id != void 0) {
-        item.supplier = item.selectedSupplier.originalObject.name;
-      }      else if (item.selectedSupplier != void 0) {
         item.supplier = item.selectedSupplier.originalObject;
-      }      else if ($scope.supplierValue !== false) {
-        item.supplier = $scope.supplierValue;
+      } else if ($scope.supplierValue !== false) {
+        item.supplier =  {
+          name: $scope.supplierValue
+        };
       }
 
       Items.saveItem(item, $scope.event_id, true).then(function (result) {

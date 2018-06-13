@@ -87,10 +87,10 @@
                               <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
                           </td>
                           <td>
-                            <div ng-if="item.status.show_in_public_view">
+                            <div ng-if="!item.status.show_in_public_view">
                               <div class="row" ng-if="item.supplier">
                                 <div class="col col-md col-md-5 supplied-key" translate>TH_SUPPLIER_POTENTIAL</div>
-                                <div class="col col-md col-md-7 supplied-val">{{ item.supplier }}</div>
+                                <div class="col col-md col-md-7 supplied-val">{{ item.supplier.name }}</div>
                               </div>
                             </div>
                             <div ng-if="item.status.show_in_public_view">
@@ -112,7 +112,7 @@
                               </div>
                               <div class="row" ng-if="item.supplied_item.supplier">
                                 <div class="col col-md col-md-4 supplied-key" translate>TH_SUPPLIER</div>
-                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.supplier}}</div>
+                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.supplier.name}}</div>
                               </div>
                               <div class="row" ng-if="item.supplied_item.files.length > 0">
                                 <div class="col col-md col-md-4 supplied-key" translate>TH_FILES</div>
