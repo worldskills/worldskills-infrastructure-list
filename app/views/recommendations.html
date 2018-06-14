@@ -91,7 +91,7 @@
                                 {{item.requestedItem.unit}}
                             </td>
                             <td ng-class="{'change': item.potentialSupplier != item.requestedItem.supplier}">
-                                {{item.requestedItem.supplier}}
+                                {{item.requestedItem.supplier.name}}
                             </td>
                             <td rowspan="2" class="text-center" translate>
                                 {{item.wrongSuppliedItem+"Label"}}
@@ -128,7 +128,7 @@
                                 {{item.unit}}
                             </td>
                             <td ng-class="{'change-warning': item.potentialSupplier != item.requestedItem.supplier}">
-                                {{item.potentialSupplier}}
+                                {{item.potentialSupplier.name}}
                             </td>
                             <td class="text-center" ng-if="!item.requestedItem" translate>
                                 {{item.wrongSuppliedItem}}

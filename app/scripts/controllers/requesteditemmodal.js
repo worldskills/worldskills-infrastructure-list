@@ -92,21 +92,31 @@ angular.module('ilApp')
       $scope.isSubmitting = true;
       var tasks = [];
 
+      // we need to save the first row first in order to create
+      // the new supplier if needed
+      // (else several request attempt to do that and fail)
+      var firstRow = $scope.itemsSelected[0];
 
-      angular.forEach($scope.itemsSelected, function(i, k) {
-        var task = $scope.saveItem(i);
-        tasks.push(task);
-      });
+      $scope
+        .saveItem(firstRow)
+        .then(function() {
+          //go through fields and update them
+          angular.forEach($scope.itemsSelected, function(rowEntity, index) {
 
-      Promise
-        .all(tasks)
-        .then(function(){
+            // the first row is already saved
+            if (index == 0) {
+              return;
+            }
+
+            var task = $scope.saveItem(rowEntity, false);
+            tasks.push(task);
+          });
+          return $q.all(tasks);
+        })
+        .then(function() {
           WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED'));
         })
-        .finally(function(){
-          $uibModalInstance.dismiss();
-          $scope.isSubmitting = false;
-        });
+        .finally($uibModalInstance.dismiss);
     }
 
     $scope.saveItem = function(modifiedItem) {
@@ -114,8 +124,9 @@ angular.module('ilApp')
       var list = modifiedItem.category.list;
 
       return Items.getCategories(modifiedItem.category.list.skill.id)
-        .then(function(categories){
-          if($scope.editForm.category.$dirty){
+      .then(function(categories) {
+
+          if($scope.editForm.category.$dirty) {
             var cat = categories.filter(function (cat) {
               return cat.category.id == $scope.editedItem.category.id
             });
@@ -124,31 +135,34 @@ angular.module('ilApp')
             }
           }
 
-          if($scope.editForm.status.$dirty){
+          if($scope.editForm.status.$dirty) {
             modifiedItem.status = $scope.editedItem.status;
           }
 
-          if($scope.editForm.price.$dirty){
+          if($scope.editForm.price.$dirty) {
             modifiedItem.price = $scope.editedItem.price;
           }
 
-          if($scope.editForm.supplier.$dirty){
-            if ($scope.editedItem.supplier == null ) {
-              modifiedItem.supplier = $scope.editForm.supplier.$modelValue;
+          if($scope.editForm.supplier.$dirty) {
+            if ($scope.editedItem.supplier != void 0) {
+              modifiedItem.supplier = $scope.editedItem.supplier.originalObject;
             } else {
-              modifiedItem.supplier = $scope.editedItem.supplier && $scope.editedItem.supplier.title;
+              modifiedItem.supplier = {
+                name : $scope.editForm.supplier.$modelValue
+              }
             }
           }
+
           extendedCategory = modifiedItem.category;
           extendedCategory.list = list;
           modifiedItem.category = modifiedItem.category.id;
 
           return Items.saveItem(modifiedItem, $state.params.eventId);
         })
-        .then(function(res){
+        .then(function(res) {
           modifiedItem.category = extendedCategory;
         })
-        .catch(function(err){
+        .catch(function(err) {
           var message = $translate.instant(
             'WSALERT.DANGER.ITEM_COULD_NOT_BE_SAVED',
             {itemName: modifiedItem.description.text, error: err}

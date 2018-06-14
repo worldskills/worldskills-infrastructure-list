@@ -47,7 +47,7 @@ angular.module('ilApp')
             $scope.item[itemKey] = ($scope.item[itemKey] != void 0 && $scope.item[itemKey] !== '')
             ? new Date($scope.item[itemKey])
             : "";
-            
+
           if(EXCLUDED_FIELDS.indexOf(itemKey) === -1){
             if(itemVal === "" || itemVal === null
             || (typeof $scope.item[itemKey] === 'object' && JSON.stringify($scope.item[itemKey]) !== JSON.stringify(itemVal)) //object comparison, a bit dirty but works nicely
@@ -111,11 +111,12 @@ angular.module('ilApp')
       //set supplier from autocomplete
       if ($scope.item.selectedSupplier != void 0
         && $scope.item.selectedSupplier.originalObject.id != void 0) {
-        $scope.item.supplier = $scope.item.selectedSupplier.originalObject.name;
-      }      else if ($scope.item.selectedSupplier != void 0)
         $scope.item.supplier = $scope.item.selectedSupplier.originalObject;
-      else if ($scope.supplierValueAdd != false)
-        $scope.item.supplier = $scope.supplierValueAdd;
+      } if ($scope.supplierValueAdd != false) {
+        $scope.item.supplier = {
+          name: $scope.supplierValueAdd
+        };
+      }
 
       delete $scope.item.selectedSupplier;
     };

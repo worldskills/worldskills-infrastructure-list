@@ -112,22 +112,15 @@ angular.module('ilApp')
       //Set potential supplier from autocomplete
       //First case : supplier chosen by clicking a suggestion
       if ($scope.recommendedItem.potentialSupplier != void 0
-        && $scope.recommendedItem.potentialSupplier.originalObject != void 0
-        && $scope.recommendedItem.potentialSupplier.originalObject.id != void 0) {
-        $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.originalObject.name;
-      }
-      else if ($scope.recommendedItem.potentialSupplier != void 0
         && $scope.recommendedItem.potentialSupplier.originalObject != void 0) {
           $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.originalObject;
 
         }
       //Second case : supplier set from text written in field
-      else if ($scope.potentialSupplierValue != null) {
-        $scope.recommendedItem.potentialSupplier = $scope.potentialSupplierValue;
-      }
-      //Third case : field auto-filled with previous data and untouched by user
-      else if ($scope.recommendedItem.potentialSupplier != void 0) {
-        $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.name;
+      else if ($scope.supplierValue != null) {
+        $scope.recommendedItem.potentialSupplier =  {
+          name: $scope.supplierValue
+        }
       }
 
       $scope.recommendedItem.listCategory = $scope.recommendedItem.listCategory || $scope.$parent.item.listCategory;

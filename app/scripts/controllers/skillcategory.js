@@ -134,13 +134,12 @@ angular.module('ilApp')
       //set supplier from autocomplete
       if (item.selectedSupplier != void 0
             && item.selectedSupplier.originalObject.id != void 0) {
-        item.supplier = item.selectedSupplier.originalObject.name;
-      }
-      else if (item.selectedSupplier != void 0) {
         item.supplier = item.selectedSupplier.originalObject;
       }
       else if ($scope.supplierValue !== false) {
-        item.supplier = $scope.supplierValue;
+        item.supplier = {
+          name: $scope.supplierValue
+        }
       }
 
       item.description.lang_code = $translate.use(); // Ensure lang_code are the same as the user

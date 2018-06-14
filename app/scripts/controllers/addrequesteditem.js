@@ -87,12 +87,13 @@ angular.module('ilApp')
       //set supplier from autocomplete
       if ($scope.item.selectedSupplier != void 0
           && $scope.item.selectedSupplier.originalObject.id != void 0) {
-        $scope.item.supplier = $scope.item.selectedSupplier.originalObject.name;
+        $scope.item.supplier = $scope.item.selectedSupplier.originalObject;
       }
-      else if ($scope.item.selectedSupplier != void 0)
-       $scope.item.supplier = $scope.item.selectedSupplier.originalObject;
-      else if ($scope.supplierValue != false)
-          $scope.item.supplier = $scope.supplierValue;
+      else if ($scope.supplierValue != false) {
+          $scope.item.supplier = {
+            name: $scope.supplierValue
+          };
+      }
 
       var split_supplied_item = $scope.item.split_supplied_item || false;
       delete $scope.item.split_supplied_item; //get rid of extra param
