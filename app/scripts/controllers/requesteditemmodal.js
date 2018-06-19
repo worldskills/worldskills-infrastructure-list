@@ -73,7 +73,7 @@ angular.module('ilApp')
         $scope.editedItem.category = null;
         $scope.multipleCategory = true;
       }
-      if($scope.editedItem.supplier !== v.supplier)
+      if(!$scope.editedItem.supplier || !v.supplier || $scope.editedItem.supplier.name !== v.supplier.name)
       {
         $scope.editedItem.supplier = null;
         $scope.multipleSupplier = true;
