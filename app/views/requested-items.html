@@ -182,7 +182,7 @@
         <td class="select">
           <input type="checkbox" ng-checked="item.selected"/>
         </td>
-        <td>{{item.category.list.skill.sector.name.text}}</td>
+        <td><span ng-if="item.category.list.skill.sector">{{item.category.list.skill.sector.name.text}}</span></td>
         <td>{{item.category.list.skill.name.text}}</td>
         <td>{{item.description.text}}</td>
         <td>
