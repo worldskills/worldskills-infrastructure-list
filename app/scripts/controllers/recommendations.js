@@ -88,8 +88,8 @@ angular.module('ilApp')
       $scope.asideState.open = false;
     };
 
-    $scope.accept = function(item, confirmInstance) {
-      RecommendedItems.acceptRecommendation(item, $state.params.eventId).then(function(res) {
+    $scope.accept = function(item, confirmInstance, split) {
+      RecommendedItems.acceptRecommendation(item, $state.params.eventId, split).then(function(res) {
         var index = $scope.recommendedItems.indexOf(item);
         $scope.recommendedItems.splice(index, 1);
         if (item.deletionSuggestion) {
