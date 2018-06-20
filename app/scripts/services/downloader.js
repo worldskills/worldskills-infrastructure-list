@@ -30,7 +30,6 @@ angular.module('ilApp')
 	                if(saveBlob === undefined) throw "Not supported";
 	                saveBlob(blob, filename);
 	            }
-	            console.log("saveBlob succeeded");
 	            saved = true;
 	        } catch(ex)
 	        {
@@ -69,7 +68,7 @@ angular.module('ilApp')
 
 	                    } catch(ex) {
 	                        //console.log("Download link method with simulated click failed with the following exception:");
-	                        console.log(ex);
+	                        //console.log(ex);
 	                    }
 	                }
 
@@ -109,7 +108,7 @@ angular.module('ilApp')
 	        if(!saved)
 	        {
 	            // Fallback to window.open method
-	            console.log("No methods worked for saving the arraybuffer, using last resort window.open");
+	            //console.log("No methods worked for saving the arraybuffer, using last resort window.open");
 	            window.open(httpPath, '_blank', '');
 	        }
   		}

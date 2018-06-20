@@ -215,7 +215,9 @@
   },
   "JSTEXT_REVIEW_ITEMS": {
     "CLOSE": "Close window",
-    "TITLE": "Review Changes"
+    "TITLE": "Review Changes",
+    "ACCEPT": "Accept Recommendation",
+    "REJECT": "Reject Recommendation"
   },
   "LANGUAGE": "Language: ",
   "LEAD_10_WEEKS": "> 10 weeks",
@@ -562,5 +564,6 @@
   "TITLE_PUBLIC_ITEMS":"PUBLIC ITEMS",
   "LOADING": "Loading...",
   "REVIEW": "Review",
-  "SUPPLIED_ITEM_CHANGED": "Supplied item changed"
+  "SUPPLIED_ITEM_CHANGED": "Supplied item changed",
+  "EDIT_RECOMMENDATION": "Edit Recommendation"
 }

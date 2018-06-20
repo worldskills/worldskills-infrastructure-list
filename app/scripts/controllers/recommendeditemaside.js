@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('recommendedItemAsideCtrl', function ($scope, $state, $uibModalInstance, $timeout, FileUploader, Items, WSAlert, ItemCategory, SUPPLIED_ITEM_PRIORITIES, MULTIPLIERS, MULTIPLIER_DEFAULT, API_IL, RecommendedItems, SuppliedItem, $translate, auth) {
+  .controller('recommendedItemAsideCtrl', function ($scope, $state, $uibModalInstance, $timeout, FileUploader, Items, WSAlert, ItemCategory, UNITS, SUPPLIED_ITEM_PRIORITIES, MULTIPLIERS, MULTIPLIER_DEFAULT, API_IL, RecommendedItems, SuppliedItem, $translate, auth) {
 
     //set event id from state if not already set
     if(!$scope.event_id){
@@ -17,6 +17,7 @@ angular.module('ilApp')
 
     $scope.multipliers = MULTIPLIERS;
     $scope.priorities = SUPPLIED_ITEM_PRIORITIES;
+    $scope.UNITS = UNITS;
 
     $scope.selectedLanguage = $translate.use();
     $scope.recommendedItemSuppliedForm = {};
@@ -33,42 +34,70 @@ angular.module('ilApp')
       $scope.subCategories = subCategories.categories;
     }, function(error){ WSAlert.warning(error); });
 
-    if($scope.item && $scope.item.id) {
-      //fetch supplied item from API
-      SuppliedItem.getItemForRecommendation($scope.item.supplied_item.id, $scope.item.status.event.id).then(function(resSupplied){
 
-        resSupplied.delivery = resSupplied.delivery == null ? null : new Date(resSupplied.delivery);
+    $scope.refreshView = function(_suppliedItemId, _eventId){
+      var suppliedItemId = _suppliedItemId || false;
+      var eventId = _eventId || false;
 
-        $scope.recommendedItem = {
-          requestedItemId : $scope.item.id,
-          description : $scope.item.description,
-          quantity : $scope.item.quantity,
-          additional_quantity: $scope.item.additional_quantity,
-          unit: $scope.item.unit,
-          multiplier : $scope.item.multiplier,
-          listCategory : {
-            id: $scope.item.category
-          },
-          multiplyFactor : $scope.item.multiply_factor,
-          potentialSupplier : {
-            name: $scope.item.supplier
-          },
-          price: $scope.item.price,
-          wrongSuppliedItem : false,
-          comment: "",
-          deletionSuggestion: false,
-          rejected: false,
-          person: {
-            id: auth.user.person_id
-          },
-          listCategoryId: $scope.item.category,
-          suppliedItem: resSupplied,
-          recommendedItemSupplied: resSupplied
-        };
-      }, function(error){ WSAlert.danger(error); });
-    }
+      if($scope.reviewItem != void 0){
+        //pass in review item from the recommendations view
+        $scope.recommendedItem = $scope.reviewItem;
+        //fix dates
+        if($scope.recommendedItem.suppliedItem != void 0 && $scope.recommendedItem.suppliedItem.delivery != null)
+        $scope.recommendedItem.suppliedItem.delivery = new Date($scope.recommendedItem.suppliedItem.delivery);
+
+        if($scope.recommendedItem.recommendedItemSupplied != void 0 && $scope.recommendedItem.recommendedItemSupplied.delivery != null)
+        $scope.recommendedItem.recommendedItemSupplied.delivery = new Date($scope.recommendedItem.recommendedItemSupplied.delivery);
+      }
+      else if(suppliedItemId !== false && eventId !== false){
+        SuppliedItem.getItemForRecommendation(suppliedItemId, eventId).then(function(resSupplied){
+
+          resSupplied.delivery = resSupplied.delivery == null ? null : new Date(resSupplied.delivery);
+          $scope.recommendedItem['suppliedItem'] = resSupplied;
+          $scope.recommendedItem['recommendedItemSupplied'] = resSupplied;
+          $scope.recommendedItem['person'] = {id: auth.user.person_id};
+        }, function(error){ WSAlert.danger(error); });
+      }
+      else if($scope.item && $scope.item.id) {
+        //fetch supplied item from API
+        SuppliedItem.getItemForRecommendation($scope.item.supplied_item.id, $scope.item.status.event.id).then(function(resSupplied){
+
+          resSupplied.delivery = resSupplied.delivery == null ? null : new Date(resSupplied.delivery);
+
+          $scope.recommendedItem = {
+            requestedItemId : $scope.item.id,
+            description : $scope.item.description,
+            quantity : $scope.item.quantity,
+            additional_quantity: $scope.item.additional_quantity,
+            unit: $scope.item.unit,
+            multiplier : $scope.item.multiplier,
+            listCategory : {
+              id: $scope.item.category
+            },
+            multiplyFactor : $scope.item.multiply_factor,
+            potentialSupplier : {
+              name: $scope.item.supplier
+            },
+            price: $scope.item.price,
+            wrongSuppliedItem : false,
+            comment: "",
+            deletionSuggestion: false,
+            rejected: false,
+            person: {
+              id: auth.user.person_id
+            },
+            listCategoryId: $scope.item.category,
+            suppliedItem: resSupplied,
+            recommendedItemSupplied: resSupplied
+          };
+        }, function(error){ WSAlert.danger(error); });
+      }
+    };
+
+    $scope.refreshView();
 
     $scope.potentialSupplierValue = null;
+    $scope.supplierValue = null;
 
     $scope.potentialSupplierChanged = function (val) {
       if(val == "") {
@@ -77,6 +106,22 @@ angular.module('ilApp')
         $scope.potentialSupplierValue = val;
       }
     };
+
+    $scope.supplierChanged = function (val) {
+      if(val == "") {
+        $scope.supplierValue = null;
+      } else {
+        $scope.supplierValue = val;
+      }
+    };
+
+    $scope.$watch('recommendedItem.description', function(val){
+      if(val != void 0 && val.originalObject != void 0 && val.originalObject.id != void 0){
+        //load supplied item details
+        console.log(val.originalObject.id, val.originalObject.event.id);
+        $scope.refreshView(val.originalObject.id, val.originalObject.event.id);
+      }
+    });
 
     $scope.factorNeeded = function (multiplierId) {
       var retval = false;
@@ -113,15 +158,47 @@ angular.module('ilApp')
       //First case : supplier chosen by clicking a suggestion
       if ($scope.recommendedItem.potentialSupplier != void 0
         && $scope.recommendedItem.potentialSupplier.originalObject != void 0) {
-          $scope.recommendedItem.potentialSupplier = $scope.recommendedItem.potentialSupplier.originalObject;
+          if($scope.recommendedItem.potentialSupplier.originalObject.name != void 0){
+            $scope.recommendedItem.potentialSupplier = {
+              name: $scope.recommendedItem.potentialSupplier.originalObject.name
+            };
+          }
+          else{
+            $scope.recommendedItem.potentialSupplier = {
+              name: $scope.recommendedItem.potentialSupplier.originalObject
+            };
+          }
+        }
+      //Second case : supplier set from text written in field
+      else if ($scope.potentialSupplierValue != null) {
+        $scope.recommendedItem.potentialSupplier =  {
+          name: $scope.potentialSupplierValue
+        };
+      }
 
+      //do the same for supplied item supplier - this is dirty, perhaps find a cleaner way
+      //Set potential supplier from autocomplete
+      //First case : supplier chosen by clicking a suggestion
+      if ($scope.recommendedItem.recommendedItemSupplied.supplier != void 0
+        && $scope.recommendedItem.recommendedItemSupplied.supplier.originalObject != void 0) {
+          if($scope.recommendedItem.recommendedItemSupplied.supplier.originalObject.name != void 0){
+            $scope.recommendedItem.recommendedItemSupplied.supplier = {
+              name: $scope.recommendedItem.recommendedItemSupplied.supplier.originalObject.name
+            };
+          }
+          else{
+            $scope.recommendedItem.recommendedItemSupplied.supplier = {
+              name: $scope.recommendedItem.recommendedItemSupplied.supplier.originalObject
+            };
+          }
         }
       //Second case : supplier set from text written in field
       else if ($scope.supplierValue != null) {
-        $scope.recommendedItem.potentialSupplier =  {
+        $scope.recommendedItem.recommendedItemSupplied.supplier =  {
           name: $scope.supplierValue
-        }
+        };
       }
+      //////////////////
 
       $scope.recommendedItem.listCategory = $scope.recommendedItem.listCategory || $scope.$parent.item.listCategory;
 
@@ -132,10 +209,23 @@ angular.module('ilApp')
         this.recommendedItemSuppliedForm.LOGISTICS.$dirty ||
         this.recommendedItemSuppliedForm.INSTALLATION.$dirty ||
         this.recommendedItemSuppliedForm.FILES.$dirty ||
-        this.recommendedItemSuppliedForm.EXTRA.$dirty)
+        this.recommendedItemSuppliedForm.EXTRA.$dirty ||
+        $scope.uploader.queue.length > 0)
         $scope.suppliedDirty = true;
 
-      if($scope.recommendedItem.requestedItemId) {
+      if($scope.reviewItem != void 0){
+        RecommendedItems.updateRecommendation($scope.recommendedItem, $scope.event_id, $scope.suppliedDirty).then(function(result){
+          if($scope.uploader.queue.length > 0){
+              //upload files
+              $scope.recommendedItem.id = result.id;
+              $scope.uploader.uploadAll();
+          }
+          $uibModalInstance.close(result);
+        }, function(error){
+          WSAlert.danger(error);
+        });
+      }
+      else if($scope.recommendedItem.requestedItemId) {
         RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId, $scope.suppliedDirty).then(function(result) {
           if($scope.uploader.queue.length > 0){
               //upload files
@@ -185,6 +275,10 @@ angular.module('ilApp')
     });
 
     $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
+      //init array in case it doesn't exist yet
+      if($scope.recommendedItem.recommendedItemSupplied.files == void 0)
+        $scope.recommendedItem.recommendedItemSupplied.files = [];
+
       $scope.recommendedItem.recommendedItemSupplied.files.push(response);
     };
 

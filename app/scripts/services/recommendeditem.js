@@ -12,6 +12,21 @@ angular.module('ilApp')
 
     var RecommendedItems = { };
 
+    RecommendedItems.updateRecommendation = function(recommendedItem, eventId, _dirty){
+
+      var deferred = $q.defer();
+      var dirty = _dirty || false;
+
+      $http.put(API_IL + "/recommended-items/event/" + eventId + "/skill/" + recommendedItem.skill.id + "/recommended-item/" + recommendedItem.id + "?dirty=" + dirty, recommendedItem).then(function(result){
+        deferred.resolve(result.data);
+      },
+      function(error){
+        deferred.reject("Could not update recommendation: " + error.data.user_msg);
+      });
+
+      return deferred.promise;
+    };
+
     RecommendedItems.suggestOnItem = function(item, eventId, skillId, _dirty){
 
       var deferred = $q.defer();
