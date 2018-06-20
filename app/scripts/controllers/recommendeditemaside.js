@@ -38,21 +38,19 @@ angular.module('ilApp')
     $scope.refreshView = function(_suppliedItemId, _eventId){
       var suppliedItemId = _suppliedItemId || false;
       var eventId = _eventId || false;
-
+      
       if($scope.reviewItem != void 0){
         //pass in review item from the recommendations view
         $scope.recommendedItem = $scope.reviewItem;
-        //fix dates
-        if($scope.recommendedItem.suppliedItem != void 0 && $scope.recommendedItem.suppliedItem.delivery != null)
-        $scope.recommendedItem.suppliedItem.delivery = new Date($scope.recommendedItem.suppliedItem.delivery);
 
-        if($scope.recommendedItem.recommendedItemSupplied != void 0 && $scope.recommendedItem.recommendedItemSupplied.delivery != null)
-        $scope.recommendedItem.recommendedItemSupplied.delivery = new Date($scope.recommendedItem.recommendedItemSupplied.delivery);
+        SuppliedItem.getItemForRecommendation($scope.reviewItem.suppliedItem.id, $scope.reviewItem.suppliedItem.event.id).then(function(resSupplied){
+          $scope.recommendedItem['suppliedItem'] = resSupplied;
+          $scope.recommendedItem['recommendedItemSupplied'] = resSupplied;
+
+        }, function(error){ WSAlert.danger(error); });
       }
       else if(suppliedItemId !== false && eventId !== false){
         SuppliedItem.getItemForRecommendation(suppliedItemId, eventId).then(function(resSupplied){
-
-          resSupplied.delivery = resSupplied.delivery == null ? null : new Date(resSupplied.delivery);
           $scope.recommendedItem['suppliedItem'] = resSupplied;
           $scope.recommendedItem['recommendedItemSupplied'] = resSupplied;
           $scope.recommendedItem['person'] = {id: auth.user.person_id};
@@ -61,8 +59,6 @@ angular.module('ilApp')
       else if($scope.item && $scope.item.id) {
         //fetch supplied item from API
         SuppliedItem.getItemForRecommendation($scope.item.supplied_item.id, $scope.item.status.event.id).then(function(resSupplied){
-
-          resSupplied.delivery = resSupplied.delivery == null ? null : new Date(resSupplied.delivery);
 
           $scope.recommendedItem = {
             requestedItemId : $scope.item.id,

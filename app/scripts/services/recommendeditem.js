@@ -76,9 +76,10 @@ angular.module('ilApp')
       return deferred.promise;
     }
 
-    RecommendedItems.acceptRecommendation = function(item, eventId) {
+    RecommendedItems.acceptRecommendation = function(item, eventId, _split) {
+      var split = _split || false;
       var deferred = $q.defer();
-      $http.post(API_IL + "/recommended-items/event/" + eventId + "/accept/" + item.id).then(function(result) {
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/accept/" + item.id + "?split=" + split).then(function(result) {
         deferred.resolve(result.data);
       },
       function(error) {

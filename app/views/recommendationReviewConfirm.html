@@ -64,7 +64,7 @@
 
     <div ng-if='data.item.recommendedItemSupplied.id'>
       <fieldset><legend>Supplied Item</legend>
-        <div class='alert alert-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true" >
+        <div class='alert alert-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true && !data.item.deletionSuggestion" >
           <div translate ng-show="!data.split">ITEM_ATTACHED_TO_MULTIPLE_SKILLS</div>
           <button ng-click="data.split = !data.split" class='btn btn-xs btn-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true" >
             <span translate ng-show="!data.split">SPLIT_SUPPLIED_ITEM</span>
@@ -148,8 +148,8 @@
             <tr
             ng-class="{'warning': data.item.suppliedItem.delivery != data.item.recommendedItemSupplied.delivery}"
             ng-if='data.item.recommendedItemSupplied.delivery'>
-              <td><b translate>Delivery</b><br>{{data.item.suppliedItem.delivery}}</td>
-              <td><b translate>Delivery</b><br>{{data.item.recommendedItemSupplied.delivery}}</td>
+              <td><b translate>Delivery</b><br>{{data.item.suppliedItem.delivery | date:'medium'}}</td>
+              <td><b translate>Delivery</b><br>{{data.item.recommendedItemSupplied.delivery | date:'medium'}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.disposal_category != data.item.recommendedItemSupplied.disposal_category}"
@@ -289,7 +289,7 @@
   </fieldset>
 </div>
 <div class="modal-footer">
-  <button ng-click="data.acceptRecommendation(data.item, this)" class='btn btn-md btn-success'>{{data.accept}}</button>
+  <button ng-click="data.acceptRecommendation(data.item, this, data.split)" class='btn btn-md btn-success'>{{data.accept}}</button>
   <button ng-click="data.rejectRecommendation(data.item, this)" class='btn btn-md btn-danger'>{{data.reject}}</button>
   <button class="btn btn-primary" ng-click="cancel()">{{data.close}}</button>
 </div>
