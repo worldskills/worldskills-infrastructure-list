@@ -1,10 +1,11 @@
 <div class='aside'>
   <fieldset>
-    <legend ng-if="!item.id" translate>SUGGEST_ADDITION</legend>
-    <legend ng-if="item.id" translate>SUGGEST_MODIFICATION</legend>
+    <legend ng-if="reviewMode" translate>EDIT_RECOMMENDATION</legend>
+    <legend ng-if="!reviewMode && !item.id" translate>SUGGEST_ADDITION</legend>
+    <legend ng-if="!reviewMode && item.id" translate>SUGGEST_MODIFICATION</legend>
 
     <alerts></alerts>
-    <ws-spinner ng-if="loading.aside"></ws-spinner>    
+    <ws-spinner ng-if="loading.aside"></ws-spinner>
     <form class="addForm" name='addForm'>
         <uib-tabset active="recommended01">
           <uib-tab index="0" heading="{{'REQUESTED_ITEM' | translate}}">
@@ -215,7 +216,27 @@
               <div class="row">
                 <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.supplier.$dirty && editForm.supplier.$error.required, 'has-success': !editForm.recommendedItemSupplied.supplier.$error.required}">
                   <label class='control-label' translate>SUPPLIER</label>
-                  <input name='supplier' type="text" class="input-sm form-control" ng-model="recommendedItem.recommendedItemSupplied.supplier" placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}">
+                  <!-- <input name='supplier' type="text" class="input-sm form-control" ng-model="recommendedItem.recommendedItemSupplied.supplier" placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}"> -->
+                  <angucomplete-alt
+                    id="supplier"
+                    placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}"
+                    pause="400"
+                    selected-object="recommendedItem.recommendedItemSupplied.supplier"
+                    remote-url="{{searchSupplierAPI}}"
+                    remote-url-request-with-credentials="true"
+                    remote-url-data-field="suppliers"
+                    title-field="name"
+                    minlength="1"
+                    disable-input="disableInputSupplier"
+                    focus-first="true"
+                    input-changed="supplierChanged"
+                    override-suggestions="true"
+                    field-required="false"
+                    text-searching="false"
+                    text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
+                    initial-value="recommendedItem.recommendedItemSupplied.supplier.name"
+                    input-class="input-sm form-control angucomplete-overflow"
+                  />
                 </div>
 
                 <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.supply_type.$dirty && editForm.recommendedItemSupplied.supply_type.$error.required, 'has-success': !editForm.recommendedItemSupplied.supply_type.$error.required}">

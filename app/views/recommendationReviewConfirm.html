@@ -5,7 +5,7 @@
 </div>
 <div class="modal-body">
   <alerts></alerts>
-  <fieldset><legend>Requested Item</legend>
+  <fieldset><legend>Requested Itema</legend>
     <table class="table table-striped" ng-if="data.item.id">
       <thead>
         <tr>
@@ -17,30 +17,44 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><b>Description</b><br>{{data.item.requestedItem.description.text}}</td>
-          <td><b>Description</b><br>{{data.item.description.text}}</td>
+        <tr
+        ng-class="{'warning': data.item.description.text != data.item.requestedItem.description.text}"
+        ng-if='data.item.description.text'>
+          <td><b translate>Description</b><br>{{data.item.requestedItem.description.text}}</td>
+          <td><b translate>Description</b><br>{{data.item.description.text}}</td>
         </tr>
         <tr
         ng-class="{'warning': data.item.readable_quantity != data.item.requestedItem.readable_quantity}">
-          <td><b>Quantity</b><br>{{data.item.requestedItem.readable_quantity}}</td>
-          <td><b>Quantity</b><br>{{data.item.readable_quantity}}</td>
+          <td><b translate>Quantity</b><br>{{data.item.requestedItem.readable_quantity}}</td>
+          <td><b translate>Quantity</b><br>{{data.item.readable_quantity}}</td>
         </tr>
-        <tr>
-          <td><b>Additional quantity</b><br>{{data.item.requestedItem.additional_quantity}}</td>
-          <td><b>Additional quantity</b><br>{{data.item.additional_quantity}}</td>
+        <tr
+        ng-class="{'warning': data.item.additional_quantity != data.item.requestedItem.additional_quantity}"
+        ng-if='data.item.additional_quantity'>
+          <td><b translate>Additional quantity</b><br>{{data.item.requestedItem.additional_quantity}}</td>
+          <td><b translate>Additional quantity</b><br>{{data.item.additional_quantity}}</td>
         </tr>
-        <tr>
-          <td><b>Potential Supplier</b><br>{{data.item.requestedItem.supplier}}</td>
-          <td><b>Potential Supplier</b><br>{{data.item.potentialSupplier}}</td>
+        <tr
+        ng-class="{'warning': data.item.potentialSupplier.name != data.item.requestedItem.potentialSupplier.name}"
+        ng-if='data.item.potentialSupplier'>
+          <td><b translate>Potential Supplier</b><br>{{data.item.requestedItem.potentialSupplier.name}}</td>
+          <td><b translate>Potential Supplier</b><br>{{data.item.potentialSupplier.name}}</td>
         </tr>
-        <tr>
-          <td><b>Potential Supplier</b><br>{{data.item.requestedItem.supplier}}</td>
-          <td><b>Potential Supplier</b><br>{{data.item.potentialSupplier}}</td>
+        <tr
+        ng-class="{'warning': data.item.price != data.item.requestedItem.price}"
+        ng-if='data.item.price'>
+          <td><b translate>Estimated Price</b><br>{{data.item.requestedItem.price}}</td>
+          <td><b translate>Estimated Price</b><br>{{data.item.price}}</td>
         </tr>
-        <tr>
+        <tr
+        ng-class="{'warning': data.item.unit != data.item.requestedItem.unit}"
+        ng-if='data.item.unit'>
+          <td><b translate>Unit</b><br>{{data.item.requestedItem.unit}}</td>
+          <td><b translate>Unit</b><br>{{data.item.unit}}</td>
+        </tr>
+        <tr ng-if='data.item.comment && data.item.comment.length > 0'>
           <td colspan="2">
-            <b>Comment:</b><br>
+            <b translate>Comment:</b><br>
             {{data.item.comment}}
           </td>
         </tr>
@@ -49,9 +63,14 @@
 
 
     <div ng-if='data.item.recommendedItemSupplied.id'>
-      <fieldset><legend>Supplied Item
-        <span class='pull-right'><button class='btn btn-xs btn-warning' translate>SPLIT_SUPPLIED_ITEM</button></span>
-      </legend>
+      <fieldset><legend>Supplied Item</legend>
+        <div class='alert alert-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true" >
+          <div translate ng-show="!data.split">ITEM_ATTACHED_TO_MULTIPLE_SKILLS</div>
+          <button ng-click="data.split = !data.split" class='btn btn-xs btn-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true" >
+            <span translate ng-show="!data.split">SPLIT_SUPPLIED_ITEM</span>
+            <span translate ng-show="data.split">DONT_SPLIT_SUPPLIED_ITEM</span>
+          </button>
+        </div>
         <table class="table table-striped" ng-if="data.item.id">
           <thead>
             <tr>
@@ -60,54 +79,188 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><b>Description</b><br>{{data.item.suppliedItem.description.text}}</td>
-              <td><b>Description</b><br>{{data.item.recommendedItemSupplied.description.text}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.description.text != data.item.recommendedItemSupplied.description.text}"
+            ng-if='data.item.recommendedItemSupplied.description.text'>
+              <td><b translate>Description</b><br>{{data.item.suppliedItem.description.text}}</td>
+              <td><b translate>Description</b><br>{{data.item.recommendedItemSupplied.description.text}}</td>
             </tr>
-            <tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.manufacturer != data.item.recommendedItemSupplied.manufacturer}"
+            ng-if='data.item.recommendedItemSupplied.manufacturer'>
               <td><b translate>TH_MANUFACTURER</b><br>{{data.item.suppliedItem.manufacturer}}</td>
               <td><b translate>TH_MANUFACTURER</b><br>{{data.item.recommendedItemSupplied.manufacturer}}</td>
             </tr>
-            <tr>
-              <td><b>Model</b><br>{{data.item.suppliedItem.model}}</td>
-              <td><b>Model</b><br>{{data.item.recommendedItemSupplied.model}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.model != data.item.recommendedItemSupplied.model}"
+            ng-if='data.item.recommendedItemSupplied.model'>
+              <td><b translate>Model</b><br>{{data.item.suppliedItem.model}}</td>
+              <td><b translate>Model</b><br>{{data.item.recommendedItemSupplied.model}}</td>
             </tr>
-            <tr>
-              <td><b>Size</b><br>{{data.item.suppliedItem.size}}</td>
-              <td><b>Size</b><br>{{data.item.recommendedItemSupplied.size}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.size != data.item.recommendedItemSupplied.size}"
+            ng-if='data.item.recommendedItemSupplied.size'>
+              <td><b translate>Size</b><br>{{data.item.suppliedItem.size}}</td>
+              <td><b translate>Size</b><br>{{data.item.recommendedItemSupplied.size}}</td>
             </tr>
-            <tr>
-              <td><b>Part number</b><br>{{data.item.suppliedItem.part_number}}</td>
-              <td><b>Part number</b><br>{{data.item.recommendedItemSupplied.part_number}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.part_number != data.item.recommendedItemSupplied.part_number}"
+            ng-if='data.item.recommendedItemSupplied.part_number'>
+              <td><b translate>Part number</b><br>{{data.item.suppliedItem.part_number}}</td>
+              <td><b translate>Part number</b><br>{{data.item.recommendedItemSupplied.part_number}}</td>
             </tr>
-            <tr>
-              <td><b>Sub category</b><br>{{data.item.suppliedItem.item_category.name.text}}</td>
-              <td><b>Sub category</b><br>{{data.item.recommendedItemSupplied.item_category.name.text}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.item_category.name.text != data.item.recommendedItemSupplied.item_category.name.text}"
+            ng-if='data.item.recommendedItemSupplied.item_category.name'>
+              <td><b translate>Sub category</b><br>{{data.item.suppliedItem.item_category.name.text}}</td>
+              <td><b translate>Sub category</b><br>{{data.item.recommendedItemSupplied.item_category.name.text}}</td>
             </tr>
-            <tr>
-              <td><b>Priority</b><br>{{data.item.suppliedItem.priority}}</td>
-              <td><b>Priority</b><br>{{data.item.recommendedItemSupplied.priority}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.priority != data.item.recommendedItemSupplied.priority}"
+            ng-if='data.item.recommendedItemSupplied.priority'>
+              <td><b translate>Priority</b><br>{{data.item.suppliedItem.priority}}</td>
+              <td><b translate>Priority</b><br>{{data.item.recommendedItemSupplied.priority}}</td>
             </tr>
-            <tr>
-              <td><b>Supplier</b><br>{{data.item.suppliedItem.supplier}}</td>
-              <td><b>Supplier</b><br>{{data.item.recommendedItemSupplied.supplier}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.supplier.name != data.item.recommendedItemSupplied.supplier.name}"
+            ng-if='data.item.recommendedItemSupplied.supplier.name'>
+              <td><b translate>Supplier</b><br>{{data.item.suppliedItem.supplier.name}}</td>
+              <td><b translate>Supplier</b><br>{{data.item.recommendedItemSupplied.supplier.name}}</td>
             </tr>
-            <tr>
-              <td><b>Supply Type</b><br>{{data.item.suppliedItem.supply_type}}</td>
-              <td><b>Supply Type</b><br>{{data.item.recommendedItemSupplied.supply_type}}</td>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.supply_type != data.item.recommendedItemSupplied.supply_type}"
+            ng-if='data.item.recommendedItemSupplied.supply_type'>
+              <td><b translate>Supply Type</b><br>{{data.item.suppliedItem.supply_type}}</td>
+              <td><b translate>Supply Type</b><br>{{data.item.recommendedItemSupplied.supply_type}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.unit_cost != data.item.recommendedItemSupplied.unit_cost}"
+            ng-if='data.item.recommendedItemSupplied.unit_cost'>
+              <td><b translate>Unit Cost</b><br>{{data.item.suppliedItem.unit_cost}}</td>
+              <td><b translate>Unit Cost</b><br>{{data.item.recommendedItemSupplied.unit_cost}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.po_number != data.item.recommendedItemSupplied.po_number}"
+            ng-if='data.item.recommendedItemSupplied.po_number'>
+              <td><b translate>PO Number</b><br>{{data.item.suppliedItem.po_number}}</td>
+              <td><b translate>PO Number</b><br>{{data.item.recommendedItemSupplied.po_number}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.delivery != data.item.recommendedItemSupplied.delivery}"
+            ng-if='data.item.recommendedItemSupplied.delivery'>
+              <td><b translate>Delivery</b><br>{{data.item.suppliedItem.delivery}}</td>
+              <td><b translate>Delivery</b><br>{{data.item.recommendedItemSupplied.delivery}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.disposal_category != data.item.recommendedItemSupplied.disposal_category}"
+            ng-if='data.item.recommendedItemSupplied.disposal_category'>
+              <td><b translate>Disposal Category</b><br>{{data.item.suppliedItem.disposal_category}}</td>
+              <td><b translate>Disposal Category</b><br>{{data.item.recommendedItemSupplied.disposal_category}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.location != data.item.recommendedItemSupplied.location}"
+            ng-if='data.item.recommendedItemSupplied.location'>
+              <td><b translate>Location</b><br>{{data.item.suppliedItem.location}}</td>
+              <td><b translate>Location</b><br>{{data.item.recommendedItemSupplied.location}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.lead_time != data.item.recommendedItemSupplied.lead_time}"
+            ng-if='data.item.recommendedItemSupplied.lead_time'>
+              <td><b translate>Lead Time</b><br>{{data.item.suppliedItem.lead_time}}</td>
+              <td><b translate>Lead Time</b><br>{{data.item.recommendedItemSupplied.lead_time}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.electricity != data.item.recommendedItemSupplied.electricity}"
+            ng-if='data.item.recommendedItemSupplied.electricity'>
+              <td><b translate>Electricity</b><br>{{data.item.suppliedItem.electricity}}</td>
+              <td><b translate>Electricity</b><br>{{data.item.recommendedItemSupplied.electricity}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.electricity_volts != data.item.recommendedItemSupplied.electricity_volts}"
+            ng-if='data.item.recommendedItemSupplied.electricity_volts'>
+              <td><b translate>Volts</b><br>{{data.item.suppliedItem.electricity_volts}}</td>
+              <td><b translate>Volts</b><br>{{data.item.recommendedItemSupplied.electricity_volts}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.electricity_amps != data.item.recommendedItemSupplied.electricity_amps}"
+            ng-if='data.item.recommendedItemSupplied.electricity_amps'>
+              <td><b translate>Amps</b><br>{{data.item.suppliedItem.electricity_amps}}</td>
+              <td><b translate>Amps</b><br>{{data.item.recommendedItemSupplied.electricity_amps}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.electricity_phase != data.item.recommendedItemSupplied.electricity_phase}"
+            ng-if='data.item.recommendedItemSupplied.electricity_phase'>
+              <td><b translate>Phase</b><br>{{data.item.suppliedItem.electricity_phase}}</td>
+              <td><b translate>Phase</b><br>{{data.item.recommendedItemSupplied.electricity_phase}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.water_supply != data.item.recommendedItemSupplied.water_supply}"
+            ng-if='data.item.recommendedItemSupplied.water_supply'>
+              <td><b translate>Water Supply</b><br>{{data.item.suppliedItem.water_supply}}</td>
+              <td><b translate>Water Supply</b><br>{{data.item.recommendedItemSupplied.water_supply}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.water_drainage != data.item.recommendedItemSupplied.water_drainage}"
+            ng-if='data.item.recommendedItemSupplied.water_drainage'>
+              <td><b translate>Water Drainage</b><br>{{data.item.suppliedItem.water_drainage}}</td>
+              <td><b translate>Water Drainage</b><br>{{data.item.recommendedItemSupplied.water_drainage}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.compressed_air != data.item.recommendedItemSupplied.compressed_air}"
+            ng-if='data.item.recommendedItemSupplied.compressed_air'>
+              <td><b translate>Compressed Air</b><br>{{data.item.suppliedItem.compressed_air}}</td>
+              <td><b translate>Compressed Air</b><br>{{data.item.recommendedItemSupplied.compressed_air}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.ventilation_fume_extraction != data.item.recommendedItemSupplied.ventilation_fume_extraction}"
+            ng-if='data.item.recommendedItemSupplied.ventilation_fume_extraction'>
+              <td><b translate>Ventilation / Fume Extraction</b><br>{{data.item.suppliedItem.ventilation_fume_extraction}}</td>
+              <td><b translate>Ventilation / Fume Extraction</b><br>{{data.item.recommendedItemSupplied.ventilation_fume_extraction}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.gas_requirements != data.item.recommendedItemSupplied.gas_requirements}"
+            ng-if='data.item.recommendedItemSupplied.gas_requirements'>
+              <td><b translate>Gas Requirements</b><br>{{data.item.suppliedItem.gas_requirements}}</td>
+              <td><b translate>Gas Requirements</b><br>{{data.item.recommendedItemSupplied.gas_requirements}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.anchor_fixing_base_requirements != data.item.recommendedItemSupplied.anchor_fixing_base_requirements}"
+            ng-if='data.item.recommendedItemSupplied.anchor_fixing_base_requirements'>
+              <td><b translate>Anchor Fixing / Base Requirements</b><br>{{data.item.suppliedItem.anchor_fixing_base_requirements}}</td>
+              <td><b translate>Anchor Fixing / Base Requirements</b><br>{{data.item.recommendedItemSupplied.anchor_fixing_base_requirements}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.extra_details != data.item.recommendedItemSupplied.extra_details}"
+            ng-if='data.item.recommendedItemSupplied.extra_details'>
+              <td><b translate>Extra Details</b><br>{{data.item.suppliedItem.extra_details}}</td>
+              <td><b translate>Extra Details</b><br>{{data.item.recommendedItemSupplied.extra_details}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.files.length != data.item.recommendedItemSupplied.recommended_files.length}"
+            ng-if='data.item.recommendedItemSupplied.recommended_files.length > 0'>
+              <td><b translate>Files</b><br>
+                <ul>
+                  <li ng-repeat="file in data.item.suppliedItem.files">
+                    <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
+                  </li>
+                </ul>
+              </td>
+              <td><b translate>Files</b><br>
+                <ul>
+                  <li ng-repeat="file in data.item.recommendedItemSupplied.recommended_files">
+                    <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
+                  </li>
+                </ul>
+              </td>
             </tr>
 
           </tbody>
         </table>
         <br>
         <br>
-        <div class='pull-right'>
-          <div class='pull-right'><button ng-click="data.modifyRecommendation()" class='btn btn-md btn-warning'>Modify Recommendation before accepting</button></div>
-          <div style='clear: both; padding-top: 5px;'>
-            <button class='btn btn-md btn-success'>Accept Recommendation</button>
-            <button class='btn btn-md btn-danger'>Reject Recommendation</button>
-          </div>
-        </div>
+    </div>
+    <div class='pull-right' ng-if="!data.item.deletionSuggestion">
+      <button ng-click="data.modifyRecommendation(data.item)" class='btn btn-md btn-warning'>Modify Recommendation before accepting</button>
     </div>
 
 
@@ -136,5 +289,7 @@
   </fieldset>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="ok()">{{data.close}}</button>
+  <button ng-click="data.acceptRecommendation(data.item, this)" class='btn btn-md btn-success'>{{data.accept}}</button>
+  <button ng-click="data.rejectRecommendation(data.item, this)" class='btn btn-md btn-danger'>{{data.reject}}</button>
+  <button class="btn btn-primary" ng-click="cancel()">{{data.close}}</button>
 </div>

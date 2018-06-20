@@ -127,7 +127,6 @@ angular.module('ilApp')
 
         //remove from sets
         angular.forEach($scope.sets, function(val, key){
-          console.log(val, key);
           if(val.id == setId)
             $scope.sets.splice(key, 1);
         });

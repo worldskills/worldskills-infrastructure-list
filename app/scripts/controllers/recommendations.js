@@ -8,12 +8,18 @@
  * Controller handling recommendations validation
  */
 angular.module('ilApp')
-  .controller('RecommendationsCtrl', function ($q, $scope, $state, $uibModal, $rootScope, $confirm, $translate, $aside, Items, Language, RecommendedItems, WSAlert, APP_ROLES) {
+  .controller('RecommendationsCtrl', function ($q, $scope, $state, $uibModal, $rootScope, $confirm, $translate, $aside, Items, Language, RecommendedItems, WSAlert, APP_ROLES, UPLOADS_URL) {
     $scope.event = false;
     $scope.data = {};
     $scope.APP_ROLES = APP_ROLES;
+    $scope.UPLOADS_URL = UPLOADS_URL;
+    $scope.split = false;
 
     $q.when($scope.appLoaded.promise).then(function () {
+      $scope.refreshRecommendations();
+    });
+
+    $scope.refreshRecommendations = function(){
       //Load recommendations
       RecommendedItems.getRecommendations($state.params.eventId).then(function (res) {
         $scope.recommendedItems = res.recommendedItems;
@@ -21,22 +27,20 @@ angular.module('ilApp')
       function (error) {
         WSAlert.danger(error);
       });
-    });
+    };
 
     $scope.review = function(item){
-      console.log(item);
       $scope.openRecommendationReviewModal(item);
     };
 
-    function openSuggestModalAside(item) {
-      $scope.item = item.requestedItem || {};
+    function openSuggestModalAside(item, itemRef) {
+      $scope.reviewItem = item;
 
-      $scope.item.listCategory = {
-        id : item.requestedItem.category.id
-      };
       $scope.asideState = {
         open: true,
       };
+
+      $scope.reviewMode = true;
 
       $aside.open({
         templateUrl: 'views/recommendedItemAside.html',
@@ -45,68 +49,46 @@ angular.module('ilApp')
         scope: $scope,
         backdrop: true,
         controller: 'recommendedItemAsideCtrl',
-      }).result.then(postClose, postClose);
+      }).result.then(function(res){
+        //copy back to the view and scope
+        angular.copy(res, itemRef);
+        angular.copy(res, $scope.reviewItem);
+      }, postClose);
     };
 
     function postClose() {
       $scope.asideState.open = false;
     };
 
+
     $scope.openRecommendationReviewModal = function(item){
-      $confirm({
+      var inst = $confirm({
           title: $translate.instant("JSTEXT_REVIEW_ITEMS.TITLE"),
           item: item,
-          modifyRecommendation: function(){
-            openSuggestModalAside(item);
+          split: $scope.split,
+          modifyRecommendation: function(itemRef){
+            openSuggestModalAside(item, itemRef);
           },
-          close: $translate.instant("JSTEXT_REVIEW_ITEMS.CLOSE")
+          acceptRecommendation: $scope.accept,
+          rejectRecommendation: $scope.reject,
+          close: $translate.instant("JSTEXT_REVIEW_ITEMS.CLOSE"),
+          accept: $translate.instant("JSTEXT_REVIEW_ITEMS.ACCEPT"),
+          reject: $translate.instant("JSTEXT_REVIEW_ITEMS.REJECT")
         },
         {
           templateUrl: 'views/recommendationReviewConfirm.html',
           size: 'lg'
-        }).then(function () {
-
-        $scope.loading.catalogue = true;
-
-        SuppliedItem.combineItems(items, $scope.masterItem).then(function(res){
-
-            //remove everything except one marked as master item
-            angular.forEach(updatedItems, function(val){
-              if(val.id != $scope.masterItem.id) {
-                var i = $scope.gridOptions.data.indexOf(val);
-                $scope.gridOptions.data.splice(i, 1);
-              }
-            });
-            WSAlert.success($translate.instant("WSALERT.SUCCESS.ITEMS_COMBINED"));
-            $scope.loading.catalogue = false;
-        },
-        function(error){
-          WSAlert.danger(error);
-          $scope.loading.catalogue = false;
-        });
+        }).then(function (action) {
+          //refresh recommendations
+          $scope.refreshRecommendations();
       });
-    }
-
-    // $scope.openRecommendationReviewModal = function (item) {
-    //   $scope.asideState = {
-    //     open: true,
-    //   };
-    //
-    //   $aside.open({
-    //     templateUrl: 'views/recommendationReviewAside.html',
-    //     placement: 'right',
-    //     size: 'lg',
-    //     scope: $scope,
-    //     backdrop: true,
-    //     controller: 'recommendationReviewAsideCtrl',
-    //   }).result.then(postClose, postClose);
-    // };
+    };
 
     function postClose() {
       $scope.asideState.open = false;
     };
 
-    $scope.accept = function(item) {
+    $scope.accept = function(item, confirmInstance) {
       RecommendedItems.acceptRecommendation(item, $state.params.eventId).then(function(res) {
         var index = $scope.recommendedItems.indexOf(item);
         $scope.recommendedItems.splice(index, 1);
@@ -120,6 +102,7 @@ angular.module('ilApp')
             }
           }
         }
+        confirmInstance.ok();
         WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'));
       },
       function (error) {
@@ -127,7 +110,7 @@ angular.module('ilApp')
       });
     };
 
-    $scope.reject = function (item) {
+    $scope.reject = function (item, confirmInstance) {
       $scope.recommendedItem = item;
 
       var self = this;
@@ -140,7 +123,9 @@ angular.module('ilApp')
         $scope.recommendedItem.rejectionReason = modalScope.rejectionReason;
         RecommendedItems.rejectRecommendation($scope.recommendedItem, $state.params.eventId).then(function(result) {
           var index = $scope.recommendedItems.indexOf(item);
+          //close confirm dialog
           $scope.recommendedItems.splice(index, 1);
+          confirmInstance.ok();
           WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'));
         }, function (error) {
           WSAlert.danger(error);
