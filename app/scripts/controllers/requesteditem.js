@@ -143,13 +143,17 @@ angular.module('ilApp')
         var sectors = [];
         $scope
         .skills
-        .map(function(skill){return skill.sector;})
+        .map(function(skill){
+          return skill.sector;
+        })
         .forEach(function(sector){
-          var newSector = sectors.filter(function(sectorToTest){
-            return sectorToTest.id === sector.id;
-          }).length === 0;
-          if(newSector){
-            sectors.push(sector);
+          if (sector != undefined) {
+            var newSector = sectors.filter(function(sectorToTest){
+              return sectorToTest.id === sector.id;
+            }).length === 0;
+            if(newSector){
+              sectors.push(sector);
+            }
           }
         })
 
