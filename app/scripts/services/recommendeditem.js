@@ -12,12 +12,12 @@ angular.module('ilApp')
 
     var RecommendedItems = { };
 
-    RecommendedItems.updateRecommendation = function(recommendedItem, eventId, _dirty){
+    RecommendedItems.updateRecommendation = function(recommendedItem, eventId, _suppliedItemChanged){
 
       var deferred = $q.defer();
-      var dirty = _dirty || false;
+      var suppliedItemChanged = _suppliedItemChanged || false;
 
-      $http.put(API_IL + "/recommended-items/event/" + eventId + "/skill/" + recommendedItem.skill.id + "/recommended-item/" + recommendedItem.id + "?dirty=" + dirty, recommendedItem).then(function(result){
+      $http.put(API_IL + "/recommended-items/event/" + eventId + "/skill/" + recommendedItem.skill.id + "/requested-item/" + recommendedItem.id + "?suppliedItemChanged=" + suppliedItemChanged, recommendedItem).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
@@ -27,12 +27,12 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    RecommendedItems.suggestOnItem = function(item, eventId, skillId, _dirty){
+    RecommendedItems.suggestOnItem = function(item, eventId, skillId, _suppliedItemChanged){
 
       var deferred = $q.defer();
-      var dirty = _dirty || false;
+      var suppliedItemChanged = _suppliedItemChanged || false;
 
-      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId + "?dirty=" + dirty, item).then(function(result){
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId + "?suppliedItemChanged=" + suppliedItemChanged, item).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
@@ -42,12 +42,12 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    RecommendedItems.suggestNew = function(item, eventId, skillId, _dirty){
+    RecommendedItems.suggestNew = function(item, eventId, skillId, _suppliedItemChanged){
 
       var deferred = $q.defer();
-      var dirty = _dirty || false;
+      var suppliedItemChanged = suppliedItemChanged || false;
 
-      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "?dirty=" + dirty, item).then(function(result){
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "?suppliedItemChanged=" + suppliedItemChanged, item).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){

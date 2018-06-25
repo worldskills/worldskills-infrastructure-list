@@ -43,11 +43,14 @@ angular.module('ilApp')
         //pass in review item from the recommendations view
         $scope.recommendedItem = $scope.reviewItem;
 
-        SuppliedItem.getItemForRecommendation($scope.reviewItem.suppliedItem.id, $scope.reviewItem.suppliedItem.event.id).then(function(resSupplied){
-          $scope.recommendedItem['suppliedItem'] = resSupplied;
-          $scope.recommendedItem['recommendedItemSupplied'] = resSupplied;
+        //load supplied item if exists
+        if($scope.reviewItem.suppliedItem != void 0){
+          SuppliedItem.getItemForRecommendation($scope.reviewItem.suppliedItem.id, $scope.reviewItem.suppliedItem.event.id).then(function(resSupplied){
+            $scope.recommendedItem['suppliedItem'] = resSupplied;
+            $scope.recommendedItem['recommendedItemSupplied'] = resSupplied;
 
-        }, function(error){ WSAlert.danger(error); });
+          }, function(error){ WSAlert.danger(error); });
+        }
       }
       else if(suppliedItemId !== false && eventId !== false){
         SuppliedItem.getItemForRecommendation(suppliedItemId, eventId).then(function(resSupplied){
