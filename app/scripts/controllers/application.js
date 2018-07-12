@@ -34,8 +34,7 @@ angular.module('ilApp')
         if(!$scope.hasRole(APP_ROLES.VIEW)){ //only show error if no view permission exists
           $scope.activePositions.reject($translate.instant('ERROR.COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER', {error: error}));
           $scope.loading.init = false;
-        }
-        else{
+        } else if ($state.current.name !== 'publicItems') {
           $state.go('publicItemsEventList');
         }
       });
