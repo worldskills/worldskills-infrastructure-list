@@ -213,6 +213,12 @@
     "OK": "Combiner",
     "TITLE": "Combiner les articles ?"
   },
+  "JSTEXT_REVIEW_ITEMS": {
+    "CLOSE": "Close window",
+    "TITLE": "Review Changes",
+    "ACCEPT": "Accept Recommendation",
+    "REJECT": "Reject Recommendation"
+  },
   "LANGUAGE": "Langage : ",
   "LEAD_10_WEEKS": "> 10 semaines",
   "LEAD_2-4_WEEKS": "2 - 4 semaines",
@@ -385,6 +391,7 @@
     "EXTRA": "Extra",
     "FILES": "Fichiers",
     "GENERAL": "Général",
+    "DETAILED": "Details",
     "HOST": "Hôte",
     "INSTALLATION": "Installation",
     "LOGISTICS": "Logistique"
@@ -527,7 +534,8 @@
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET": "L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !",
       "ITEM_COULD_NOT_BE_SAVED": "l'item {{itemName}} n'a pas pu être sauvegardé : {{error}}",
       "NO_ACCESSS_PUBLIC_VIEW":"You don't have access to the public view for this event",
-      "VIEW_PUBLIC_ITEMS_LIST":"Could not load public items"
+      "VIEW_PUBLIC_ITEMS_LIST":"Could not load public items",
+      "FILE_UPLOAD_FAILED": "Uploading files failed"
     },
     "SUCCESS": {
       "ITEMS_COMBINED": "Items combinés !",
@@ -553,5 +561,9 @@
   "falseLabel": "Non",
   "trueLabel": "Oui",
   "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected.",
-  "TITLE_PUBLIC_ITEMS":"PUBLIC ITEMS"
+  "TITLE_PUBLIC_ITEMS":"PUBLIC ITEMS",
+  "LOADING": "Loading...",
+  "REVIEW": "Review",
+  "SUPPLIED_ITEM_CHANGED": "Supplied item changed",
+  "EDIT_RECOMMENDATION": "Edit Recommendation"
 }

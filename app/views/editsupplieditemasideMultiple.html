@@ -232,12 +232,12 @@
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.electricity_volts.$dirty && item.electricity_volts, 'has-success': item.electricity_volts}">
                     <label class='control-label' translate>REQ_ELECTRICITY_V</label>
-                    <input type="text" name="electricity_volts" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_VOLTS' | translate }}" ng-model='item.electricity_volts'>
+                    <input type="number" name="electricity_volts" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_VOLTS' | translate }}" ng-model='item.electricity_volts'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.electricity_amps.$dirty && item.electricity_amps, 'has-success': item.electricity_amps}">
                     <label class='control-label' translate>REQ_ELECTRICITY_A</label>
-                    <input type="text" name="electricity_amps" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_AMPS' | translate }}" ng-model='item.electricity_amps'>
+                    <input type="number" name="electricity_amps" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_AMPS' | translate }}" ng-model='item.electricity_amps'>
                   </div>
                 </div>
 
