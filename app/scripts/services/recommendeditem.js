@@ -45,7 +45,8 @@ angular.module('ilApp')
     RecommendedItems.suggestNew = function(item, eventId, skillId, _suppliedItemChanged){
 
       var deferred = $q.defer();
-      var suppliedItemChanged = suppliedItemChanged || false;
+      var suppliedItemChanged = _suppliedItemChanged || false;
+
 
       $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "?suppliedItemChanged=" + suppliedItemChanged, item).then(function(result){
         deferred.resolve(result.data);
