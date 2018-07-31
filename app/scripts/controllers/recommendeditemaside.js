@@ -117,7 +117,6 @@ angular.module('ilApp')
     $scope.$watch('recommendedItem.description', function(val){
       if(val != void 0 && val.originalObject != void 0 && val.originalObject.id != void 0){
         //load supplied item details
-        console.log(val.originalObject.id, val.originalObject.event.id);
         $scope.refreshView(val.originalObject.id, val.originalObject.event.id);
       }
     });
@@ -212,6 +211,7 @@ angular.module('ilApp')
         $scope.uploader.queue.length > 0)
         $scope.suppliedDirty = true;
 
+
       if($scope.reviewItem != void 0){
         RecommendedItems.updateRecommendation($scope.recommendedItem, $scope.event_id, $scope.suppliedDirty).then(function(result){
           if($scope.uploader.queue.length > 0){
@@ -287,7 +287,6 @@ angular.module('ilApp')
     };
 
     $scope.uploader.onCompleteAll = function() {
-//      console.info('onCompleteAll');
       if($scope.uploader.progress == 100) {
         $timeout(function () {
           //reload item
