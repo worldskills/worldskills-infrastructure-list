@@ -126,14 +126,8 @@
                             <div class="row">
                               <div class="col col-md col-md-4 supplied-key" translate>TH_LAST_MODIFIED</div>
                               <div class="col col-md col-md-8 supplied-val">
-                                <span ng-if="item.supplied_item.modified">
-                                  {{ 'DATE_TIME_AT' |
-                                    translate: {date: (item.supplied_item.modified | amDateFormat: 'LL'), time: (item.supplied_item.modified | amDateFormat: 'LT')} }}
-                                </span>
-                                <span ng-if="!item.supplied_item.modified">
-                                  {{ 'DATE_TIME_AT' |
-                                    translate: {date: (item.modified | amDateFormat: 'LL'), time: (item.modified | amDateFormat: 'LT')} }}
-                                </span>
+                                <span ng-if="item.supplied_item.modified" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.supplied_item.modified | amDateFormat: 'LL'), time: (item.supplied_item.modified | amDateFormat: 'LT')}"></span>
+                                <span ng-if="!item.supplied_item.modified" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.modified | amDateFormat: 'LL'), time: (item.modified | amDateFormat: 'LT')}"></span>
                               </div>
                             </div>
                           </td>
