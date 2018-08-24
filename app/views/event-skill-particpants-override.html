@@ -25,7 +25,7 @@
         <fieldset>
             <div ng-repeat="skill in skills track by skill.id" class="form-group form-group-sm">
               <div class="col-sm-6">
-                  {{ skill.name.text }}
+                  {{ skill.name.text }} <span class="badge smallText">{{skill.skill_number}}</span>
               </div>
               <div class="col-sm-2">
                 <input class="form-control input-sm" ng-model="skill.numbers.num_competitors" placeholder="{{ 'TH_COMPETITORS' | translate }}">
