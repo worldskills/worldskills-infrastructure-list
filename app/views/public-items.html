@@ -83,6 +83,7 @@
                           </td>
                           <td>
                               <span ng-show="!!item.parent_id">└&nbsp;</span>
+                              <span ng-if="item.status.secret" translate>SECRET_ITEM</span>
                               <span ng-if="!item.status.show_in_public_view">{{ item.description.text }}</span>
                               <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
                           </td>
