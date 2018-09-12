@@ -36,7 +36,7 @@
                             </td>
                             <td class="col-15">{{item.person.first_name}} {{item.person.last_name}}</td>
                             <td class="col-20">
-                                <span class="ng-binding ng-scope" ng-if="item.recommendedAt" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.recommendedAt | amDateFormat: 'LL'), time: (item.recommendedAt | amDateFormat: 'LT')}"></span>
+                                <span class="ng-binding ng-scope" ng-if="item.recommendedAt" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.recommendedAt | amDateFormat: 'DD.MM.YYYY'), time: (item.recommendedAt | amDateFormat: 'HH:mm')}"></span>
                             </td>
                             <td class="col-15">{{item.description.text}}</td>
                             <td class="col-15">
