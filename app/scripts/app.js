@@ -443,6 +443,7 @@
       $translate.preferredLanguage();
 
     $http.defaults.headers.common["Accept-Language"] = activeLanguage;
+    amMoment.changeLocale(activeLanguage);
     tmhDynamicLocale.set(activeLanguage);
 
     //Set global translations of to uiboostrapDatepicker
