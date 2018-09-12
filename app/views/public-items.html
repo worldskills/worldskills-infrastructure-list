@@ -87,11 +87,11 @@
                               <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
                           </td>
                           <td>
-                            <div class="row" ng-if="item.supplier">
-                              <div class="col col-md col-md-5 supplied-key" translate>TH_SUPPLIER_POTENTIAL</div>
-                              <div class="col col-md col-md-7 supplied-val">{{ item.supplier.name }}</div>
-                            </div>
                             <div ng-if="item.status.show_in_public_view">
+                              <div class="row" ng-if="item.supplier">
+                                <div class="col col-md col-md-5 supplied-key" translate>TH_SUPPLIER_POTENTIAL</div>
+                                <div class="col col-md col-md-7 supplied-val">{{ item.supplier.name }}</div>
+                              </div>
                               <div class="row" ng-if="item.supplied_item.manufacturer">
                                 <div class="col col-md col-md-4 supplied-key" translate>TH_MANUFACTURER</div>
                                 <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.manufacturer}}</div>
