@@ -62,6 +62,7 @@ angular.module('ilApp')
 
 
     $scope.openRecommendationReviewModal = function(item){
+      WSAlert.clear();
       var inst = $confirm({
           title: $translate.instant("JSTEXT_REVIEW_ITEMS.TITLE"),
           item: item,
@@ -103,7 +104,7 @@ angular.module('ilApp')
           }
         }
         confirmInstance.ok();
-        WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'), '', false, false);
+        WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'), '', true, false);
       },
       function (error) {
         WSAlert.danger(error);
@@ -126,7 +127,7 @@ angular.module('ilApp')
           //close confirm dialog
           $scope.recommendedItems.splice(index, 1);
           confirmInstance.ok();
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'), '', false, false);
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'), '', true, false);
         }, function (error) {
           WSAlert.danger(error);
         });
