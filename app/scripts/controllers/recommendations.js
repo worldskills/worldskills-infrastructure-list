@@ -103,7 +103,7 @@ angular.module('ilApp')
           }
         }
         confirmInstance.ok();
-        WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'));
+        WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'), '', false, false);
       },
       function (error) {
         WSAlert.danger(error);
@@ -126,7 +126,7 @@ angular.module('ilApp')
           //close confirm dialog
           $scope.recommendedItems.splice(index, 1);
           confirmInstance.ok();
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'));
+          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'), '', false, false);
         }, function (error) {
           WSAlert.danger(error);
         });

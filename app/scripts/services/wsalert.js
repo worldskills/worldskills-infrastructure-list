@@ -13,20 +13,23 @@ angular.module('ilApp')
 
     // AngularJS will instantiate a singleton by calling "new" on this function
     var addMessage = function(type){
-        return function(title, text, displayed){
+        return function(title, text, displayed, scroll){
             var msg = {
                 'type': type,
                 'title': title,
                 'text': text,
                 'displayed': displayed || false
             };
+            scroll = (typeof scroll !== 'undefined') ? scroll : true;
 
             this.messages.push(msg);
             var _this = this;
             
             //scroll to alerts
-            $location.hash('alertScrollAnchor');
-            $anchorScroll();
+            if (scroll) {
+              $location.hash('alertScrollAnchor');
+              $anchorScroll();
+            }
 
             //clear message automatically in 7.5 seconds
             $timeout(function(){
