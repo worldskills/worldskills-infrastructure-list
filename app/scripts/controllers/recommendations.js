@@ -98,7 +98,7 @@ angular.module('ilApp')
           // from the model
           for(var i = $scope.recommendedItems.length - 1; i >= 0; i--) {
             var recommendedItem = $scope.recommendedItems[i];
-            if (recommendedItem.requestedItem.id == item.requestedItem.id) {
+            if (recommendedItem.requestedItem && recommendedItem.requestedItem.id == item.requestedItem.id) {
               $scope.recommendedItems.splice(i, 1);
             }
           }
