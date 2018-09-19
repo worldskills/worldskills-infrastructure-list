@@ -8,15 +8,6 @@
         <span ng-hide='sortable'>Sort mode OFF</span>
       </button> -->
 
-
-      <div class="btn-group pull-right" style="margin-left: .5em;" uib-dropdown="actionsDropdown">
-        <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm"><span translate>ADVANCED_ACTIONS</span>&nbsp;<span class="caret"></span></button>
-
-        <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
-          <li role="menuitem"><a ng-click="clearSorting($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>CLEAR_SORTING</span></a></li>
-        </ul>
-      </div>
-
       <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
         <i class="glyphicon glyphicon-plus">
         </i> <span translate>ADD_ITEM</span>
@@ -72,45 +63,41 @@
         </div>
       </div>
 
-      <div class="col-sm-12" ng-if="filterValue.length > 0">
-        <div class='alert alert-info'>
-          <p>
-            <small>
-              <span class='glyphicon glyphicon-info-sign'></span> <span translate>IMPORTANT_CANT_SORT</span>
-              <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a>
-            </small>
-          </p>
-        </div>
-      </div>
-
       <!-- tree of items -->
       <div class="col-sm-12" ng-show="items.length > 0">
-        <div class="alert alert-warning" ng-show="allowReordering === false" translate>REORDER_DISABLED_SORT</div>
-        <div class="tree-node tree-node-content tree-header">
-            <span ng-click="sortBy('description.text');" translate>DESCRIPTION</span>
-            <span class="sortorder" ng-show="orderProperty === 'description.text'" ng-class="{reverse: reverse}"></span>
-          <small class='actionsHeader pull-right' translate>ACTIONS</small>
-          <small class='statusHeader pull-right'>
-            <span ng-click="sortBy('supplied_item.status.id');" translate>STATUS</span>
-            <span class="sortorder" ng-show="orderProperty === 'status.id'" ng-class="{reverse: reverse}"></span>
-          </small>
-          <small class='quantityHeader pull-right'>
-            <span ng-click="sortBy('readable_quantity');" translate>QUANTITY</span>
-            <span class="sortorder" ng-show="orderProperty === 'readable_quantity'" ng-class="{reverse: reverse}"></span>
-          </small>
-          <small class='areaHeader pull-right'>
-            <span ng-click="sortBy('area.name');" translate>SKILL_AREA</span>
-            <span class="sortorder" ng-show="orderProperty === 'area.name'" ng-class="{reverse: reverse}"></span>
-          </small>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <colgroup>
+              <col width="15%" />
+              <col width="35%" />
+              <col width="30%" />
+              <col width="10%" />
+              <col width="10%" />
+            </colgroup>
+            <tr>
+              <th class="text-right" ng-class="{dropup: reverse}">
+                <span ng-click="sortBy('readable_quantity');" translate>QUANTITY</span>
+                <span class="caret" ng-show="orderProperty === 'readable_quantity'"></span>
+              </th>
+              <th ng-class="{dropup: reverse}">
+                <span ng-click="sortBy('description.text');" translate>DESCRIPTION</span>
+                <span class="caret" ng-show="orderProperty === 'description.text'"></span>
+              </th>
+              <th ng-class="{dropup: reverse}">
+                <span ng-click="sortBy('area.name');" translate>SKILL_AREA</span>
+                <span class="caret" ng-show="orderProperty === 'area.name'"></span>
+              </th>
+              <th ng-class="{dropup: reverse}">
+                <span ng-click="sortBy('status.id');" translate>STATUS</span>
+                <span class="caret" ng-show="orderProperty === 'status.id'"></span>
+              </th>
+              <th>
+                <span translate>ACTIONS</small>
+              </th>
+            </tr>
+            <tr ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ng-include="'views/item_render.html'"></tr>
+          </table>
         </div>
-        <div ui-tree="treeOptions" id="tree-root" data-max-depth="0">
-          <ol ui-tree-nodes ng-model="items" infinite-scroll='more()' infinite-scroll-disabled='loading.items || filterValue.length > 0' infinite-scroll-distance='1'>
-            <li ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
-          </ol>
-        </div>
-        <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more && total > limit && offset < total && filterValue.length == 0'><small translate>SCROLL_MORE</small></div>
-        <!-- <div style='height: 90px; position: relative; top: 30px; text-align: center;' ng-if='!loading.more &&  (limit >= total || offset >= total)'><small>All items loaded</small></div>     -->
-        <ws-spinner ng-if='loading.more'></ws-spinner>
       </div>
       <div style="top: 30px;" class="col-sm-12" ng-if="additionRecommendationsCount > 0">
         <span class="fa fa-plus icon-circled"></span>

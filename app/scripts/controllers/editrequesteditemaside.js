@@ -33,9 +33,14 @@ angular.module('ilApp')
 
     $scope.saveItem = function (item, itemIndex) {
 
+      var extended = false;
+
       //fix category --> RequestedItemExtendedView --> RequestedItemView
-      var category = angular.copy(item.category); //keep a copy for safekeeping
-      item.category = item.category.id;
+      if (typeof item.category == 'object') {
+        var category = angular.copy(item.category); //keep a copy for safekeeping
+        item.category = item.category.id;
+        extended = true;
+      }
 
       //Ensure local of description is sync with selectedLanguage
       item.description.lang_code = $translate.use();
@@ -50,8 +55,13 @@ angular.module('ilApp')
         };
       }
 
-      Items.saveItem(item, $scope.event_id, true).then(function (result) {
+      Items.saveItem(item, $scope.event_id, extended).then(function (result) {
           $scope.activeItem = false;
+
+          if ($scope.items && result.category != $scope.categoryId){
+            //category changed, remove from list
+            $scope.items.splice(itemIndex, 1);
+          }
 
           //set readable quantity as it's coming from API rather than bound to the scope model
           item.readable_quantity = result.readable_quantity;

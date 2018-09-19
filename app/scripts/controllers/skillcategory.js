@@ -32,7 +32,7 @@ angular.module('ilApp')
     $scope.searchAPI = false;
     $scope.searchSupplierAPI = false;
     $scope.searchSetAPI = API_IL + '/sets/event/' + $state.params.eventId + "/?search="; //search url for autocomplete
-    $scope.limit = 25;
+    $scope.limit = 900;
     $scope.offset = 0;
     $scope.canceler = false;
     $scope.total = 0;
@@ -40,65 +40,34 @@ angular.module('ilApp')
     $scope.standardSetSelector = false;
     $scope.statusEditionItemId = -1; // starting at -1 as no item should be considered in edition mode on page start
 
-    $scope.moveItem = function (itemId, parentId, position) {
-      //console.log("item %d, parent %d, position %d", itemId, parentId, position);
-      Items.moveItem($scope.event_id, $scope.skill_id, itemId, parentId, position).then(function (result) {
-        //console.log("Item moved!");
-      },
+    $scope.editRequestedItem = function(item) {
 
-        function (error) {
-          $scope.initCategory();
-          $confirm({
-            title: 'Error',
-            text: 'We were unable to move the item, we are now reloading the items, please try again.',
-            ok: "Ok, I'll try again",
-          },
-            {
-              template: '<div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>' +
-                 '<div class="modal-body">{{data.text}}</div>' +
-                 '<div class="modal-footer">' +
-                 '<button class="btn btn-primary" ng-click="ok()">{{data.ok}}</button>' +
-                 '</div>',
-            });
-        });
-    };
+      //defining canEditItemStatus here because roles is undefined at start for an unknown reason
+      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
 
-    $scope.treeOptions = {
-      accept: function (sourceNodeScope, destNodesScope, destIndex) {
-        //manually check max-depth the default does not work with accept
-        if($scope.allowReordering === false) return false;
-        if (destNodesScope.depth() > 0) return false; //don't accept if depth > 0
-        return (typeof $scope.filterValue == 'undefined' || $scope.filterValue == '') ? true : false;
-      },
+      $scope.supplierValue = false;
 
-      dropped: function (event) {
+      //copy item
+      $scope.item = angular.copy(item);
 
-        //find out id of the item in question
-        var itemId = event.source.nodeScope.$modelValue.id;
-        var position = event.dest.index;
-        var parentId = 0;
+      $scope.editModal = $aside.open({
+        templateUrl: 'views/editRequestedItemAside.html',
+        placement: 'right',
+        size: 'lg',
+        scope: $scope,
+        backdrop: true,
+        controller: 'editRequestedItemAsideCtrl'
+      });
 
-        //find out if depth changed, and which way
-        //from level 0 to level 1
-        if (event.source.nodesScope.depth() < event.dest.nodesScope.depth()) {
-          var parentId = event.dest.nodesScope.$parent.$modelValue.id;
+      $scope.editModal.result.then(function(res){
+        if(res && res.id === item.id){
+          //copy returned item back to the view
+          item.updated = true;
+          angular.extend(item, res);
+          $scope.item = null;
         }
-
-        //from level 1 to level 0
-        else if (event.source.nodesScope.depth() > event.dest.nodesScope.depth()) {
-          //parent id already zero, no need to do anything
-        }
-
-        //no depth change, just reorder
-        else {
-          //see if the item has a parent
-          if (event.source.nodesScope.depth() != 0) {
-            var parentId = event.dest.nodesScope.$parent.$modelValue.id;
-          }
-        }
-
-        $scope.moveItem(itemId, parentId, position);
-      },
+        //res === null if close called because of `cancel`
+      });
     };
 
     $scope.asideState = {
@@ -208,10 +177,6 @@ angular.module('ilApp')
       return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER);
     };
 
-    $scope.newSubItem = function (item) {
-      $scope.addItem(item);
-    };
-
     $scope.initCategory = function () {
       $scope.offset = 0;
 
@@ -277,78 +242,11 @@ angular.module('ilApp')
       return $scope.loading.initial || $scope.loading.more || (Items.data != 'undefined' && typeof Items.data == 'promise');
     };
 
-    $scope.more = function () {
-      //stop if already loading
-      if ($scope.isLoading())
-          return;
-
-      // all loaded already
-
-      if ($scope.limit >= $scope.total || $scope.offset >= $scope.total) { return; }
-
-      //canceler
-      if ($scope.canceler.promise){ $scope.canceler.resolve();}
-      $scope.canceler = $q.defer();
-
-      $scope.offset += $scope.limit;
-      $scope.loading.more = true;
-
-      Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, '', $scope.canceler).then(function (result) {
-        //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
-        angular.forEach(result.requested_items, function (val, key) {
-          if (typeof val.child_items == 'undefined')
-              val.child_items = [];
-
-          $scope.items.push(val);
-        });
-
-        $scope.total = result.total;
-        $scope.loading.more = false;
-      },
-        function (error) {
-          WSAlert.danger(error);
-          $scope.loading.more = false;
-        });
-    };
-
     $scope.supplierChanged = function (val) {
       $scope.supplierValue = val;
     };
 
     $scope.initCategory();
-
-    // $scope.visible = function(item){
-
-    //     var retval = false;
-
-    //     var matcher = RegExp($scope.filterValue, 'i');
-
-    //     //see if item has child items that match the query
-    //     if(typeof item.child_items != 'undefined'){
-    //         angular.forEach(item.child_items, function(val, key){
-    //             if(!retval){
-    //                 retval = !($scope.filterValue && $scope.filterValue.length > 0 && !val.description.text.match(matcher));
-
-    //                 //id value search
-    //                 if(retval == false){
-    //                     retval = (val.id == $scope.filterValue);
-    //                 }
-    //             }
-    //         });
-    //     }
-
-    //     //if my children don't match, or I didn't have any, see if I'm a match myself
-    //     if(retval == false){
-    //         retval = !($scope.filterValue && $scope.filterValue.length > 0 && !item.description.text.match(matcher));
-
-    //         //id value search
-    //         if(retval == false){
-    //             retval = (item.id == $scope.filterValue);
-    //         }
-    //     }
-
-    //     return retval;
-    // };
 
     //link helper function from items
     $scope.factorNeeded = Items.factorNeeded;
@@ -401,16 +299,6 @@ angular.module('ilApp')
           $scope.loading.initial = false;
         });
       });
-    };
-
-    $scope.toggleReordering = function(){
-      $scope.allowReordering = !$scope.allowReordering;
-    };
-
-    $scope.clearSorting = function(e){
-      $scope.orderProperty = null;//"item_order";
-      $scope.reverse = false;
-      $scope.allowReordering = true;
     };
 
     $scope.sortBy = function(sort){

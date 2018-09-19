@@ -1,42 +1,26 @@
-<div ui-tree-handle class="tree-node tree-node-content">
-   <a class="btn btn-info btn-xs toggler" ng-if="item.child_items && item.child_items.length > 0" data-nodrag ng-click="toggle(this)"><span
-       class="glyphicon"
-       ng-class="{
-         'glyphicon-menu-right': collapsed,
-         'glyphicon-menu-down': !collapsed
-       }"></span></a>
-    <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
-    <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
-    {{item.description.text}}
-  <!-- <span class='badge idBadge'>{{item.id}}</span> -->
-
-  <!-- <span ng-show="activeItem == item.id">
-    <small class='pull-right'>Saving...</small>
-  </span> -->
-  <span class='actions' ng-hide="activeItem == item.id">
-    <span ng-if="canEdit(item)">
-      <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removeItem(item, this);" style="margin-right: 8px;"><span
-           class="glyphicon glyphicon-remove"></span></a>
-    </span>
-
-    <div style='width: 32px;' class='pull-right' ng-if="!canEdit(item)">&nbsp;</div>
-    <span ng-if="canEdit(item)">
-        <a class="pull-right btn btn-warning btn-xs" data-nodrag ng-click="editItem(item, $index);" style="margin-right: 8px;"><span
-          class="glyphicon glyphicon-edit"></span></a>
-    </span>
-    <span ng-if="!canEdit(item) && canEditStatus()">
-        <a class="pull-right btn btn-warning btn-xs" data-nodrag ng-click="editItemStatus(item);" style="margin-right: 8px;"><span
-          class="glyphicon glyphicon-edit"></span></a>
-    </span>
-    <div style='width: 32px;' class='pull-right' ng-if="!canEdit(item) && !canEditStatus()">&nbsp;</div>
+<td class="text-right">
+  <span>
+    {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
   </span>
-
-  <small ng-if='item.status && item.id != statusEditionItemId' class='status pull-right'>
-    <span class='label'
-    ng-style="{'background-color': item.status.color_code}"
-    translate>{{item.status.name.text}}</span>
+</td>
+<td>
+  <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
+  <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
+  <a href ng-if="canEdit(item)" ng-click="editRequestedItem(item);">
+    {{item.description.text}}
+  </a>
+  <span ng-if="!canEdit(item)">
+    {{item.description.text}}
+  </span>
+</td>
+<td>
+  <span class='skill-area'>{{item.area.name}}</span>
+</td>
+<td>
+  <small ng-if='item.status && item.id != statusEditionItemId' class='status'>
+    <span class='label' ng-style="{'background-color': item.status.color_code}" translate>{{item.status.name.text}}</span>
   </small>
-  <small data-nodrag ng-if='item.id == statusEditionItemId' class="status pull-right form-group-sm">
+  <small ng-if='item.id == statusEditionItemId' class="status pull-right form-group-sm">
     <ui-select ng-model="item.status" theme="bootstrap" on-select="saveStatus(item, itemIndex);" style="width: 100px">
       <ui-select-match placeholder="{{ 'PLACEHOLDER.SELECT_STATUS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
       <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
@@ -44,20 +28,15 @@
       </ui-select-choices>
     </ui-select>
   </small>
-  <small class='quantity pull-right'>
-    {{'ITEM_READABLE_QUANTITY_' + item.multiplier |
-      translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
-  </small>
-  <small class='skill-area pull-right'>{{item.area.name}}</small>
-  <!-- edit -->
-  <div data-nodrag ng-if='item.id == activeItem' class='animate-if'>
-    <hr class='edit-divider'/>
-    <!-- <strong><small>Description</small></strong><br />
-    <input class='form-control input-sm' ng-model='item.description.text'/> -->
-    <div ng-include="'views/edit-requested-item-form.html'" />
-  </div>
-  <!-- /edit -->
-</div>
- <ol ui-tree-nodes="" ng-model="item.child_items" ng-class="{hidden: collapsed}">
-   <li ng-repeat="item in item.child_items track by $id(item)" ui-tree-node ng-include="'views/item_render.html'"></li>
- </ol>
+</td>
+<td>
+  <span class='actions'>
+    <span ng-if="!canEdit(item) && canEditStatus()">
+        <a class="btn btn-warning btn-xs" ng-click="editItemStatus(item);" style="margin-right: 8px;" title="Edit item status"><span class="glyphicon glyphicon-edit"></span></a>
+    </span>
+    <div style='width: 32px;' ng-if="!canEdit(item)">&nbsp;</div>
+    <span ng-if="canEdit(item)">
+      <a class="btn btn-danger btn-xs" ng-click="removeItem(item, this);" style="margin-right: 8px;" title="Delete item"><span class="glyphicon glyphicon-remove"></span></a>
+    </span>
+  </span>
+</td>
