@@ -400,6 +400,10 @@
           {code: 2200, role: APP_ROLES.WS_MANAGER }
         ]
       }
+    })
+
+    .state('ping', {
+      url: '/ping'
     });
 
    //
