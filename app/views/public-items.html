@@ -1,3 +1,7 @@
+<div class="visible-print-block">
+  <img src="images/logo.png" alt="WorldSkills" width="100" height="68">
+</div>
+
 <h1>{{ skill.skill_number }} {{ skill.name.text }} <small>{{ skill.event.name.text }}</small></h1>
 
 <hr/>
@@ -79,10 +83,10 @@
                           <td class="text-right">
                               <span>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
                                   translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
-                              <span ng-show="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
+                              <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
                           </td>
                           <td>
-                              <span ng-show="!!item.parent_id">└&nbsp;</span>
+                              <span ng-if="!!item.parent_id">└&nbsp;</span>
                               <span ng-if="item.status.secret" translate>SECRET_ITEM</span>
                               <span ng-if="!item.status.show_in_public_view">{{ item.description.text }}</span>
                               <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
@@ -90,46 +94,46 @@
                           <td>
                             <div ng-if="item.status.show_in_public_view">
                               <div class="row" ng-if="item.supplier">
-                                <div class="col col-md col-md-5 supplied-key" translate>TH_SUPPLIER_POTENTIAL</div>
-                                <div class="col col-md col-md-7 supplied-val">{{ item.supplier.name }}</div>
+                                <span class="col-md-5 supplied-key" translate>TH_SUPPLIER_POTENTIAL</span>
+                                <span class="col-md-7 supplied-val">{{ item.supplier.name }}</span>
                               </div>
                               <div class="row" ng-if="item.supplied_item.manufacturer">
-                                <div class="col col-md col-md-4 supplied-key" translate>TH_MANUFACTURER</div>
-                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.manufacturer}}</div>
+                                <span class="col-md-4 supplied-key" translate>TH_MANUFACTURER</span>
+                                <span class="col-md-8 supplied-val">{{item.supplied_item.manufacturer}}</span>
                               </div>
                               <div class="row" ng-if="item.supplied_item.model">
-                                <div class="col col-md col-md-4 supplied-key" translate>TH_MODEL</div>
-                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.model}}</div>
+                                <span class="col-md-4 supplied-key" translate>TH_MODEL</span>
+                                <span class="col-md-8 supplied-val">{{item.supplied_item.model}}</span>
                               </div>
                               <div class="row" ng-if="item.supplied_item.size">
-                                <div class="col col-md col-md-4 supplied-key" translate>TH_SIZE</div>
-                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.size}}</div>
+                                <span class="col-md-4 supplied-key" translate>TH_SIZE</span>
+                                <span class="col-md-8 supplied-val">{{item.supplied_item.size}}</span>
                               </div>
                               <div class="row" ng-if="item.supplied_item.part_number">
-                                <div class="col col-md col-md-4 supplied-key" translate>TH_PART_NUM</div>
-                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.part_number}}</div>
+                                <span class="col-md-4 supplied-key" translate>TH_PART_NUM</span>
+                                <span class="col-md-8 supplied-val">{{item.supplied_item.part_number}}</span>
                               </div>
                               <div class="row" ng-if="item.supplied_item.supplier">
-                                <div class="col col-md col-md-4 supplied-key" translate>TH_SUPPLIER</div>
-                                <div class="col col-md col-md-8 supplied-val">{{item.supplied_item.supplier.name}}</div>
+                                <span class="col-md-4 supplied-key" translate>TH_SUPPLIER</span>
+                                <span class="col-md-8 supplied-val">{{item.supplied_item.supplier.name}}</span>
                               </div>
                               <div class="row" ng-if="item.supplied_item.files.length > 0">
-                                <div class="col col-md col-md-4 supplied-key" translate>TH_FILES</div>
-                                <div class="col col-md col-md-8 supplied-val">
+                                <span class="col-md-4 supplied-key" translate>TH_FILES</span>
+                                <span class="col-md-8 supplied-val">
                                   <ul class="public-files">
                                     <li ng-repeat="file in item.supplied_item.files">
                                       <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
                                     </li>
                                   </ul>
-                                </div>
+                                </span>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col col-md col-md-4 supplied-key" translate>TH_LAST_MODIFIED</div>
-                              <div class="col col-md col-md-8 supplied-val">
+                              <span class="col-md-4 supplied-key" translate>TH_LAST_MODIFIED</span>
+                              <span class="col-md-8 supplied-val">
                                 <span ng-if="item.supplied_item.modified" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.supplied_item.modified | amDateFormat: 'DD.MM.YYYY'), time: (item.supplied_item.modified | amDateFormat: 'HH:mm')}"></span>
                                 <span ng-if="!item.supplied_item.modified" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.modified | amDateFormat: 'DD.MM.YYYY'), time: (item.modified | amDateFormat: 'HH:mm')}"></span>
-                              </div>
+                              </span>
                             </div>
                           </td>
                           <td>
@@ -148,7 +152,7 @@
                           </td>
                         </tr>
                     </tbody>
-                    <tbody ng-show="!category.items.length">
+                    <tbody ng-if="!category.items.length">
                         <tr>
                             <td></td>
                             <td colspan="3" translate>NO_ITEMS</td>

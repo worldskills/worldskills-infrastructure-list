@@ -12,7 +12,7 @@
         <div class='panel-heading' translate>SELECT_EVENT</div>
         <div class='panel-body'>
           <div class="list-group">
-            <a ui-sref="publicItemsEvent({eventId: e.id})" class="list-group-item" ng-repeat="e in events track by e.id" ng-hide="e.id == 364">
+            <a ui-sref="publicItemsEvent({eventId: e.id})" class="list-group-item" ng-repeat="e in events track by e.id">
               <h5 class="list-group-item-heading">{{e.name.text}}</h5>
             </a>
           </div>
