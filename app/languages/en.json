@@ -53,7 +53,6 @@
   "BUTTON_SUBMIT": "Submit",
   "BUTTON_UPLOAD_ALL": "Upload all",
   "CANCEL": "Cancel",
-  "CANNOT_CHILD_ITEMS": "You cannot move child items independently, but you can move the parent, which will also move child items.",
   "CATALOGUE_EDITOR": "Catalogue editor",
   "CATALOGUE_ITEMS_SET": "Catalogue Items in the set",
   "CATALOGUE_VIEW": "Catalogue view",

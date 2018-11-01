@@ -149,11 +149,8 @@ angular.module('ilApp')
 
     };
 
-    $scope.addItem = function (parent) {
+    $scope.addItem = function () {
       //item, itemIndex
-
-      $scope.addParent = parent || 0;
-      var parent = parent || 0;
 
       $scope.asideState = {
         open: true,

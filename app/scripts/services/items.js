@@ -185,19 +185,6 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Items.moveItem = function(eventId, skillId, itemId, parentId, index){
-      var deferred = $q.defer();
-
-      $http.put(API_IL + "/items/" + eventId + "/requested_items/" + itemId + "/move?skill="+skillId+"&parent="+parentId+"&index="+index, {}).then(function(result){
-        deferred.resolve(result);
-      },
-      function(error){
-        deferred.reject(error.data.user_msg);
-      });
-
-      return deferred.promise;
-    };
-
     Items.addSet = function(setId, categoryId, eventId){
       var deferred = $q.defer();
 

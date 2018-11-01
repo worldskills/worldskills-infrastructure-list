@@ -98,13 +98,12 @@ angular.module('ilApp')
       var split_supplied_item = $scope.item.split_supplied_item || false;
       delete $scope.item.split_supplied_item; //get rid of extra param
 
-      //set category or parent depending on if parent exists
-      if($scope.suppliedItem.force === true)
+      //set category
+      if ($scope.suppliedItem.force === true) {
         $scope.item.category = $scope.newLinkedItem.category.id;
-      else if ($scope.addParent == 0)
-          $scope.item.category = $scope.categoryId;
-      else
-          $scope.item.parent_id = $scope.addParent.id;
+      } else {
+        $scope.item.category = $scope.categoryId;
+      }
 
       //if supplied item selected - use link together
       if($scope.suppliedItem.force === true) { //catalogue view
@@ -155,15 +154,7 @@ angular.module('ilApp')
     $scope.pushItem = function (result) {
       //Push the new item into the items tree
       if(!$scope.suppliedItem.force) { //normal requested items view
-        if ($scope.addParent == 0)
-          $scope.items.push(result);
-        else {
-          //add under the correct parent
-          angular.forEach($scope.items, function (val, key) {
-            if (val.id == $scope.addParent.id)
-              $scope.items[key].child_items.push(result);
-          });
-        }
+        $scope.items.push(result);
 
         //clear and dismiss the form
         $scope.addForm.$setPristine();

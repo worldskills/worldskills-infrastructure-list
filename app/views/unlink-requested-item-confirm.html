@@ -22,7 +22,6 @@
     </tr>
     <tr ng-if="data.item.child_items.length > 0" ng-repeat="child in data.item.child_items">
       <td>
-        <span ng-show="!!child.parent_id">└&nbsp;</span>
         {{child.id}}
       </td>
       <td>{{child.description.text}} <span class="label label-info">{{child.description.lang_code}}</span></td>

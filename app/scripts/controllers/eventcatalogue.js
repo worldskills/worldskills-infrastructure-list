@@ -808,10 +808,6 @@ angular.module('ilApp')
         force: true
       };
 
-      //set parent to zero = none
-      //needed in order to re-use addrequestedItem.js as a controller
-      $scope.addParent = 0;
-
       //initialize description of the item for the form
       $scope.item = {
         description: suppliedItem.description

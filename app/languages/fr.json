@@ -53,7 +53,6 @@
   "BUTTON_SUBMIT": "Enregistrer",
   "BUTTON_UPLOAD_ALL": "Tout uploader",
   "CANCEL": "Annuler",
-  "CANNOT_CHILD_ITEMS": "Vous ne pouvez pas déplacer un item enfant indépendamment des autres. Vous pouvez déplacer le parent, ce qui aura pour effet de déplacer également ses enfants.",
   "CATALOGUE_EDITOR": "Gestion du catalogue",
   "CATALOGUE_ITEMS_SET": "Items du catalogue dans le lot",
   "CATALOGUE_VIEW": "Catalogue",

@@ -29,11 +29,8 @@
         </div>
         <div class="form-group addForm has-feedback has-success">
           <label class='control-label' translate>INSTALLATION_TYPE</label>
-          <div ng-show="item.parent_id != 0" class="alert alert-warning small" translate>CANNOT_CHILD_ITEMS</div>
-          <div ng-show="item.parent_id == 0">
-            <select class="form-control input-sm" ng-model="item.category" ng-options="category.id as category.category.name.text for category in categories"></select>
-            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-          </div>
+          <select class="form-control input-sm" ng-model="item.category" ng-options="category.id as category.category.name.text for category in categories"></select>
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="row">
           <div class="col-md-4">
