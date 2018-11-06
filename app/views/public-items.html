@@ -116,6 +116,10 @@
                                 <span class="col-md-4 supplied-key" translate>TH_SUPPLIER</span>
                                 <span class="col-md-8 supplied-val">{{item.supplied_item.supplier.name}}</span>
                               </div>
+                              <div class="row" ng-if="item.supplied_item.extra_details">
+                                <span class="col-md-4 supplied-key" translate>TH_EXTRA_DETAILS</span>
+                                <span class="col-md-8 supplied-val">{{item.supplied_item.extra_details}}</span>
+                              </div>
                               <div class="row" ng-if="item.supplied_item.files.length > 0">
                                 <span class="col-md-4 supplied-key" translate>TH_FILES</span>
                                 <span class="col-md-8 supplied-val">
