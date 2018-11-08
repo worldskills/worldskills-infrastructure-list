@@ -36,7 +36,7 @@
     </span>
     <div style='width: 32px;' ng-if="!canEdit(item)">&nbsp;</div>
     <span ng-if="canEdit(item)">
-      <a class="btn btn-danger btn-xs" ng-click="removeItem(item, this);" style="margin-right: 8px;" title="Delete item"><span class="glyphicon glyphicon-remove"></span></a>
+      <a class="btn btn-danger btn-xs" ng-click="removeItem(item, $index);" style="margin-right: 8px;" title="Delete item"><span class="glyphicon glyphicon-remove"></span></a>
     </span>
   </span>
 </td>

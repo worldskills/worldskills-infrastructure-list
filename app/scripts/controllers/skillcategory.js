@@ -130,7 +130,7 @@ angular.module('ilApp')
         });
     };
 
-    $scope.removeItem = function (item, itemScope) {
+    $scope.removeItem = function (item, itemIndex) {
 
       //confirm and remove children too
       $confirm({
@@ -138,8 +138,8 @@ angular.module('ilApp')
         text: 'Are you sure, this will also remove any potential child-items?',
       }).then(function () {
         Items.removeItem(item, $scope.event_id).then(function (result) {
-          //remove from scope
-          itemScope.remove();
+          //remove from list
+          $scope.items.splice(itemIndex, 1);
         }),
 
             function (error) {
