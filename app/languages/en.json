@@ -108,8 +108,8 @@
     "MULTIPLIERS": {
       "COMPETITORS": "per Competitor",
       "EXPERTS": "per Expert",
-      "PER_NUM_COMPETITORS": "per every X Competitors",
-      "PER_NUM_EXPERTS": "per every X Experts",
+      "PER_NUM_COMPETITORS": "per X Competitors",
+      "PER_NUM_EXPERTS": "per X Experts",
       "SKILL": "per Skill"
     }
   },
@@ -199,11 +199,11 @@
   "ITEM_DOESNT_MATCH": "If this doesn't match your needs, please use one of the options below.",
   "ITEM_INFORMATION_PUBLISHED": "Item information published in the IL list",
   "ITEM_NO_SKILLS": "This item is not yet used in any skills.",
-  "ITEM_READABLE_QUANTITY_COMPETITORS": "{{quantity}} per competitor",
-  "ITEM_READABLE_QUANTITY_EXPERTS": "{{quantity}} per expert",
-  "ITEM_READABLE_QUANTITY_PER_NUM_COMPETITORS": "{{quantity}} per {{factor}} competitors",
-  "ITEM_READABLE_QUANTITY_PER_NUM_EXPERTS": "{{quantity}} per {{factor}} experts",
-  "ITEM_READABLE_QUANTITY_SKILL": "{{quantity}} per skill",
+  "ITEM_READABLE_QUANTITY_COMPETITORS": "{{quantity}} per Competitor",
+  "ITEM_READABLE_QUANTITY_EXPERTS": "{{quantity}} per Expert",
+  "ITEM_READABLE_QUANTITY_PER_NUM_COMPETITORS": "{{quantity}} per {{factor}} Competitors",
+  "ITEM_READABLE_QUANTITY_PER_NUM_EXPERTS": "{{quantity}} per {{factor}} Experts",
+  "ITEM_READABLE_QUANTITY_SKILL": "{{quantity}} per Skill",
   "ITEM_SUBCATEGORY_DESCRIPTION": "Subcategory description",
   "ITEM_SUBCATEGORY_NAME": "Subcategory name",
   "ITEM_SUBCATEGORY_PROPERTY": "Subcategory properties",
