@@ -22,8 +22,8 @@
         <label class='control-label' translate>SKILL</label>
         <ui-select ui-disable-choice="value.status == 'inactive'" ng-model="filters.skill" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
           <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_SKILL' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices repeat="skill in skills | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
-            <div ng-bind-html="skill.name.text"></div>
+          <ui-select-choices repeat="skill in skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}">
+            <div>{{skill.skill_number}} {{skill.name.text}}</div>
           </ui-select-choices>
         </ui-select>
       </div>
