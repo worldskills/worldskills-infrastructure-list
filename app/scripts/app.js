@@ -81,6 +81,7 @@
     "sheets": "UNIT_SHEETS",
     "kits": "UNIT_KITS",
     "m": "UNIT_METRES",
+    "cm": "UNIT_CENTIMETRES",
     "m2": "UNIT_SQUARE_METRES",
     "m3": "UNIT_CUBIC_METRES",
   });
