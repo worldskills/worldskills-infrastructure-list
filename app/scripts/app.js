@@ -266,6 +266,19 @@
       }
     })
 
+    .state('event.revisions', {
+      url: '/revisions',
+      templateUrl: 'views/event.revisions.html',
+      controller: 'EventRevisionsCtrl',
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER }
+          ]
+        }
+    })
+
     //skills
     .state('event.skill', {
       url: '/skill/{skillId}',
