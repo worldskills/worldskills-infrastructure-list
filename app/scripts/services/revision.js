@@ -15,7 +15,7 @@ angular.module('ilApp')
     Revision.getRevisionsForEvent = function(eventId){
       var deferred= $q.defer();
 
-      $http.get(API_IL + '/events/' + eventId + '/revisions').then(function(result){
+      $http.get(API_IL + '/events/' + eventId + '/revisions', {params: {limit: 100}}).then(function(result){
         deferred.resolve(result.data.revisions);
       },
       function(error){
