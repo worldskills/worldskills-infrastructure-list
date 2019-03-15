@@ -3,20 +3,20 @@
 
 
     var ilApp = angular.module('ilApp');
-    ilApp.constant('API_IL', 'https://staging-api.worldskills.org/il');
-    ilApp.constant('API_PEOPLE', 'https://staging-api.worldskills.org/people');
+    ilApp.constant('API_IL', 'https://api.worldskills.show/il');
+    ilApp.constant('API_PEOPLE', 'https://api.worldskills.show/people');
     ilApp.constant('APP_ID', '2200');
-    ilApp.constant('API_IMAGES', 'https://staging-api.worldskills.org/images');
+    ilApp.constant('API_IMAGES', 'https://api.worldskills.show/images');
     ilApp.constant('CLIENT_ID', 'bc9cf785283f');
-    ilApp.constant('API_AUTH', 'https://staging-api.worldskills.org/auth');
-    ilApp.constant('AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
-    ilApp.constant('LOGOUT_URL', 'https://staging-auth.worldskills.org/logout');
-    ilApp.constant('UPLOADS_URL', 'https://staging-il.worldskillsusercontent.org');
+    ilApp.constant('API_AUTH', 'https://api.worldskills.show/auth');
+    ilApp.constant('AUTHORIZE_URL', 'https://auth.worldskills.show/oauth/authorize');
+    ilApp.constant('LOGOUT_URL', 'https://auth.worldskills.show/logout');
+    ilApp.constant('UPLOADS_URL', 'https://il.worldskillsusercontent.show');
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
     ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');
-    ilApp.constant('WORLDSKILLS_API_AUTH', 'https://staging-api.worldskills.org/auth');
-    ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://staging-auth.worldskills.org/oauth/authorize');
+    ilApp.constant('WORLDSKILLS_API_AUTH', 'https://api.worldskills.show/auth');
+    ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://auth.worldskills.show/oauth/authorize');
 
     ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
