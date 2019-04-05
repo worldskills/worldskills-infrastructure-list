@@ -28,7 +28,7 @@
         <span ng-if="item.updated" class="label label-success" translate>UPDATED</span>
       </td>
       <td>{{item.description.text}}&nbsp;<span class="label label-info">{{item.description.lang_code}}</span></td>
-      <td>{{item.category.list.skill.name.text}}</td>
+      <td>{{item.category.list.skill.skill_number}} {{item.category.list.skill.name.text}}</td>
       <td>{{item.category.category.name.text}}</td>
       <td>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
           translate: {quantity: item.quantity, factor: item.multiply_factor} }}</td>

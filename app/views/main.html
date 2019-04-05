@@ -14,7 +14,7 @@
       <div class='panel-body'>
         <div class="list-group">
           <a ui-sref="skill.overview({eventId: event_id, skillId: skill.id})" class="list-group-item" ng-repeat="skill in skills track by skill.id">
-            <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
+            <h5 class="list-group-item-heading">{{skill.skill_number}} {{skill.name.text}}</h5>
             <!-- progress bar -->
             <div class="progress list-group-item-text">
               <div class="progress-bar progress-bar-success" style="width: 60%">

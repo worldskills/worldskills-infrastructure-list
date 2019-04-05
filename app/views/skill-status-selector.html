@@ -3,7 +3,7 @@
   <div class='panel-body'>
     <div class="list-group">
       <a ng-href="{{getLink(skill)}}" class="list-group-item" ng-repeat="skill in skills track by skill.id">
-        <h5 class="list-group-item-heading">{{skill.name.text}} <span class="badge smallText">{{skill.skill_number}}</span></h5>
+        <h5 class="list-group-item-heading">{{skill.skill_number}} {{skill.name.text}}</h5>
         <div class="progress list-group-item-text"> <!-- second class needed? -->
           <div
             ng-repeat="status in skill.status_summary.summaries"
