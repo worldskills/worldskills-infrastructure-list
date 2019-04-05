@@ -566,5 +566,6 @@
   "LOADING": "Loading...",
   "REVIEW": "Review",
   "SUPPLIED_ITEM_CHANGED": "Supplied item changed",
-  "EDIT_RECOMMENDATION": "Edit Recommendation"
+  "EDIT_RECOMMENDATION": "Edit Recommendation",
+  "TIER": "Tier"
 }

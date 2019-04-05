@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCtrl', function ($q, $scope, Events, WSAlert, APP_ROLES) {
+  .controller('EventCtrl', function ($q, $scope, Events, ItemTier, WSAlert, APP_ROLES) {
 
     $scope.event = false;
     //$scope.loading.event = true;
@@ -26,7 +26,12 @@ angular.module('ilApp')
         WSAlert.danger(error);
         $scope.loadingEvent.reject();
       });
+      ItemTier.getTiersForEvent($scope.event_id).then(function (tiers) {
+        $scope.tiers = tiers;
+      }, function(error){
+        WSAlert.warning(error);
+        $scope.loadingEvent.reject();
+      });
     });
-
 
   });
