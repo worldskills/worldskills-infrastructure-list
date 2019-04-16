@@ -279,6 +279,19 @@
         }
     })
 
+    .state('event.tierReport', {
+      url: '/tier-report',
+      templateUrl: 'views/tierReport.html',
+      controller: 'TierReportCtrl',
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.ORGANIZER }
+          ]
+        }
+    })
+
     //skills
     .state('event.skill', {
       url: '/skill/{skillId}',

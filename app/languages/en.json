@@ -567,5 +567,7 @@
   "REVIEW": "Review",
   "SUPPLIED_ITEM_CHANGED": "Supplied item changed",
   "EDIT_RECOMMENDATION": "Edit Recommendation",
-  "TIER": "Tier"
+  "TIER": "Tier",
+  "NO_TIER": "No Tier",
+  "REPORT_TIER": "Tier Report"
 }

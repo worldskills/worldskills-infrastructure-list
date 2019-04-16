@@ -1,0 +1,38 @@
+<h1 translate>REPORT_TIER</h1>
+
+<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>NO_ACCESS_ROLE</div>
+
+<div class="table-responsive mt-3">
+    <table class="table table-striped table-bordered vmiddle table-tiers table-tiers-aligned test-bar">
+        <thead>
+            <tr>
+                <th style="width: 30%;">Skill</th>
+                <th ng-style="{width: (70 / (report.tiers.length + 1)) + '%'}" translate>NO_TIER</th>
+                <th ng-style="{width: (70 / (report.tiers.length + 1)) + '%'}" ng-repeat="tier in report.tiers">{{tier.name.text}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="list in report.lists">
+                <td>{{list.skill.skill_number}} {{list.skill.name.text}}</td>
+                <td>
+                    <div class="progress">
+                        <div ng-repeat="total in report.totals | filter:{list_id:list.id, tier_id:null}:true" ng-style="{'background-color': statusesIndexed[total.status_id].color_code, 'width': (total.total / totalsIndexed[total.list_id + '_' + total.tier_id] * 100) + '%'}" class="progress-bar">
+                            <span uib-tooltip="{{statusesIndexed[total.status_id].name.text}}: {{total.total}}" tooltip-placement="top" tooltip-trigger="mouseenter" style="cursor: default;">{{total.total}}</span>
+                        </div>
+                    </div>
+                </td>
+                <td ng-repeat="tier in report.tiers">
+                    <div class="progress">
+                        <div ng-repeat="total in report.totals | filter:{list_id:list.id, tier_id:tier.id}:true" ng-style="{'background-color': statusesIndexed[total.status_id].color_code, 'width': (total.total / totalsIndexed[total.list_id + '_' + total.tier_id] * 100) + '%'}" class="progress-bar">
+                            <span uib-tooltip="{{statusesIndexed[total.status_id].name.text}}: {{total.total}}" tooltip-placement="top" tooltip-trigger="mouseenter" style="cursor: default;">{{total.total}}</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<br/>
