@@ -74,6 +74,20 @@
                   </ui-select>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label" translate>TIER</label>
+                    <ui-select name="tier" ng-model="editedItem.tier" theme="bootstrap">
+                      <ui-select-match allow-clear="true" placeholder="{{  multipleTier ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.ALL_TIERS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                      <ui-select-choices repeat="tier.id as tier in tiers track by tier.id">
+                        <div ng-bind-html="tier.name.text | highlight: $select.selected.name.text"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div>
+              </div>
             </fieldset>
           </div>
         </div>

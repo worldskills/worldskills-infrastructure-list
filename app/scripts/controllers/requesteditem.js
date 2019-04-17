@@ -9,7 +9,7 @@
  */
 angular.module('ilApp')
   .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items,
-    ItemCategory, Category, Status, API_IL, $aside, Reporting, UNITS) {
+    ItemCategory, Category, Status, API_IL, $aside, ItemTier, Reporting, UNITS) {
 
     $scope.UNITS = UNITS;
     $scope.searchAPI = API_IL + '/items/' + $state.params.eventId+ '/supplied_items/?limit=100&search='; //search url for autocomplete
@@ -190,6 +190,11 @@ angular.module('ilApp')
       })
       .then(function(res){
         $scope.statuses = res;
+        //Load tiers
+        return ItemTier.getTiersForEvent($state.params.eventId);
+      })
+      .then(function(res){
+        $scope.tiers = res;
         $scope.loading.items = false;
       })
       .catch(function (error) {

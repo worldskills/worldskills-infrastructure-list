@@ -54,6 +54,7 @@ angular.module('ilApp')
     $scope.editedItem.supplier = $scope.itemsSelected[0].supplier;
     $scope.editedItem.price = $scope.itemsSelected[0].price;
     $scope.editedItem.category = $scope.itemsSelected[0].category.category;
+    $scope.editedItem.tier = $scope.itemsSelected[0].tier_id;
 
     //Detect in multiple edition if one field has multiple values
     //If so field are set to null and boolean set to true to indicate that it has multiple values
@@ -77,6 +78,11 @@ angular.module('ilApp')
       {
         $scope.editedItem.supplier = null;
         $scope.multipleSupplier = true;
+      }
+      if($scope.editedItem.tier && $scope.editedItem.tier !== v.tier_id)
+      {
+        $scope.editedItem.tier = null;
+        $scope.multipleTier = true;
       }
     });
 
@@ -156,6 +162,7 @@ angular.module('ilApp')
           extendedCategory = modifiedItem.category;
           extendedCategory.list = list;
           modifiedItem.category = modifiedItem.category.id;
+          modifiedItem.tier_id = $scope.editedItem.tier;
 
           return Items.saveItem(modifiedItem, $state.params.eventId);
         })
