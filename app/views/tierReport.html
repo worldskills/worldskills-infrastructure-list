@@ -18,14 +18,14 @@
                 <td>{{list.skill.skill_number}} {{list.skill.name.text}}</td>
                 <td>
                     <div class="progress">
-                        <div ng-repeat="total in report.totals | filter:{list_id:list.id, tier_id:null}:true" ng-style="{'background-color': statusesIndexed[total.status_id].color_code, 'width': (total.total / totalsIndexed[total.list_id + '_' + total.tier_id] * 100) + '%'}" class="progress-bar">
+                        <div ng-repeat="total in report.totals | filter:{list_id:list.id, tier_id:null}:true" ng-style="{'background-color': statusesIndexed[total.status_id].color_code, 'border-bottom-color': statusesIndexed[total.status_id].color_code, 'width': (total.total / totalsIndexed[total.list_id + '_' + total.tier_id] * 100) + '%'}" class="progress-bar">
                             <span uib-tooltip="{{statusesIndexed[total.status_id].name.text}}: {{total.total}}" tooltip-placement="top" tooltip-trigger="mouseenter" style="cursor: default;">{{total.total}}</span>
                         </div>
                     </div>
                 </td>
                 <td ng-repeat="tier in report.tiers">
                     <div class="progress">
-                        <div ng-repeat="total in report.totals | filter:{list_id:list.id, tier_id:tier.id}:true" ng-style="{'background-color': statusesIndexed[total.status_id].color_code, 'width': (total.total / totalsIndexed[total.list_id + '_' + total.tier_id] * 100) + '%'}" class="progress-bar">
+                        <div ng-repeat="total in report.totals | filter:{list_id:list.id, tier_id:tier.id}:true" ng-style="{'background-color': statusesIndexed[total.status_id].color_code, 'border-bottom-color': statusesIndexed[total.status_id].color_code, 'width': (total.total / totalsIndexed[total.list_id + '_' + total.tier_id] * 100) + '%'}" class="progress-bar">
                             <span uib-tooltip="{{statusesIndexed[total.status_id].name.text}}: {{total.total}}" tooltip-placement="top" tooltip-trigger="mouseenter" style="cursor: default;">{{total.total}}</span>
                         </div>
                     </div>
