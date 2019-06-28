@@ -154,7 +154,7 @@
                               {{item.area.name}}
                           </td>
                           <td class="status">
-                              <span class='label' ng-style="{'background-color': item.status.color_code}">{{item.status.name.text}}</span>
+                              <span class='label' ng-style="{'background-color': item.status.color_code}" title="{{item.status.description.text}}">{{item.status.name.text}}</span>
                           </td>
                           <td class="canRecommend" ng-if="canRecommend()">
                               <div ng-if="item.status.allow_editing && !item.status.secret">
@@ -173,6 +173,22 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" translate>Statuses</h3>
+                </div>
+                <table class="table">
+                        <tr class="dl-horizontal" ng-repeat="status in statuses">
+                            <td style="padding-right: 10px;"><span class="label" ng-style="{'background-color': status.color_code}">{{status.name.text}}</span></td>
+                            <td>{{status.description.text}}</td>
+                        </tr>
+                    </table>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Status, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
   $scope.skillId = $state.params.skillId;
@@ -46,6 +46,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     })
   );
 
+  Status.getAllStatuses($state.params.eventId).then(function (result) {
+    $scope.statuses = result;
+  });
 
   $q.all(promises).then(function () {
     Items.getPublicItems($scope.eventId, $scope.skillId)
