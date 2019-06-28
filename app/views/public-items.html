@@ -70,16 +70,28 @@
                       </colgroup>
                     <thead>
                         <tr>
-                            <th class="text-right" translate>TH_QUANTITY</th>
-                            <th translate>TH_ITEM</th>
+                            <th ng-class="{dropup: !category.reverse}" class="text-right">
+                              <span ng-click="sortBy(category, 'readable_quantity')" translate>TH_QUANTITY</span>
+                              <span class="caret" ng-show="category.sort === 'readable_quantity'"></span>
+                            </th>
+                            <th ng-class="{dropup: !category.reverse}">
+                              <span ng-click="sortBy(category, 'description.text')" translate>TH_ITEM</span>
+                              <span class="caret" ng-show="category.sort === 'description.text'"></span>
+                            </th>
                             <th translate>TH_DETAILS</th>
-                            <th translate>SKILL_AREA</th>
-                            <th class="status" translate>TH_STATUS</th>
+                            <th ng-class="{dropup: !category.reverse}">
+                              <span ng-click="sortBy(category, 'area.name')" translate>SKILL_AREA</span>
+                              <span class="caret" ng-show="category.sort === 'area.name'"></span>
+                            </th>
+                            <th ng-class="{dropup: !category.reverse}" class="status">
+                              <span ng-click="sortBy(category, 'status.id')" translate>TH_STATUS</span>
+                              <span class="caret" ng-show="category.sort === 'status.id'"></span>
+                            </th>
                             <th class="canRecommend" ng-if="canRecommend()" translate>TH_ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in category.items">
+                        <tr ng-repeat="item in category.items | orderBy:category.sort:category.reverse track by item.id">
                           <td class="text-right">
                               <span ng-if="item.multiplier">{{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
                               <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>

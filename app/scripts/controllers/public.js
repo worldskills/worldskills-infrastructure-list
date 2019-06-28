@@ -27,6 +27,8 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         $scope.categories = result;
         angular.forEach($scope.categories, function (category) {
             category.items = [];
+            category.sort = null;
+            category.reverse = false;
             categoriesIndexed[category.id] = category;
         });
     })
@@ -70,6 +72,11 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
   $scope.downloadFile = function(file){
     Downloader.handleDownload(data, status, headers, filename);
+  };
+
+  $scope.sortBy = function (category, sort) {
+    category.reverse = (category.sort === sort) ? !category.reverse : false;
+    category.sort = sort;
   };
 
   $scope.canRecommend = function() {
