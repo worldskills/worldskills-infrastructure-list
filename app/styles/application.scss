@@ -431,6 +431,10 @@ th.select, td.select {
     }
 }
 
+td.break-all {
+  word-break: break-all;
+}
+
 .panel-heading-btn {
     display: flex;
     justify-content: space-between;
