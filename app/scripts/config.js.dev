@@ -19,5 +19,6 @@
 
     ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
+    ilApp.constant('ENVIRONMENT_WARNING', 'This is the local development environment. Happy coding!');
 
 })();

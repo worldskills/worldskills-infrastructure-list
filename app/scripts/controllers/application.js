@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ApplicationCtrl', function ($q, Auth, User, $scope, APP_ROLES, $state, auth, WSAlert, $translate) {
+  .controller('ApplicationCtrl', function ($q, Auth, User, $scope, APP_ROLES, $state, auth, WSAlert, ENVIRONMENT_WARNING, $translate) {
 
     $scope.auth = auth;
     $scope.activePositions = $q.defer();
@@ -60,4 +60,5 @@ angular.module('ilApp')
       $scope.activePosition = position;
     };
 
+    $scope.environmentWarning = ENVIRONMENT_WARNING;
   });
