@@ -115,6 +115,9 @@ angular.module('ilApp')
           name: $scope.supplierValueAdd
         };
       }
+      else if ($scope.supplierValueAdd == '') {
+        $scope.item.supplier = null;
+      }
 
       delete $scope.item.selectedSupplier;
     };
