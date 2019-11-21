@@ -16,6 +16,7 @@ angular.module('ilApp')
     $scope.loadStatus = true;
 
     $scope.hideFooter = false;
+    $scope.date = new Date();
 
 
     $scope.skill_id, $scope.event_id;
