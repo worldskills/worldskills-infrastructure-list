@@ -196,7 +196,7 @@ angular.module('ilApp')
       }
       //////////////////
 
-      $scope.recommendedItem.listCategory = $scope.recommendedItem.listCategory;
+      $scope.recommendedItem.listCategory = $scope.recommendedItem.listCategory || $scope.$parent.item.listCategory;
 
       //check if supplied form is $dirty
       if(
