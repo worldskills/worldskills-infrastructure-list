@@ -8,9 +8,10 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, APP_ROLES, UNITS, $translate, Status) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
 
     $scope.UNITS = UNITS;
+    $scope.UPLOADS_URL = UPLOADS_URL;
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
     $scope.loading = {
