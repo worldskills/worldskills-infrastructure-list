@@ -172,7 +172,7 @@
           <div class="col col-xs col-xs-8">
             <div ng-show="item.supplied_item.files.length == 0">-</div>
             <div ng-repeat="file in item.supplied_item.files">
-              <a target="_blank" href="{{UPLOADS_URL}}/{{file.download_path}}">{{file.filename_original}} ({{file.size | filesize}})</a>
+              <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
             </div>
           </div>
         </div>

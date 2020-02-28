@@ -311,7 +311,7 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="file in item.files">
-                        <td>{{file.file.filename_original}}</td>
+                        <td><a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}}</a></td>
                         <td>{{file.file.size}}</td>
                         <td style="text-align: right;">
                           <button type="button" class="btn btn-danger btn-xs" ng-click="removeFile(file, $index)">
