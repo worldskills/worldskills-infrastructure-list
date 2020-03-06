@@ -1,0 +1,40 @@
+
+<ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
+
+<div ng-hide="loading || error">
+
+    <h1 class="h3" style="margin-top: 0;" translate>EVENTS</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <colgroup>
+                <col width="5%" />
+                <col width="45%" />
+                <col width="50%" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Dates</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr ng-show="!loading"><td colspan="3"></td></tr>
+            </tfoot>
+            <tbody>
+                <tr ng-repeat="event in events track by event.id">
+                    <td>{{event.id}}</td>
+                    <td><a ui-sref="publicItemsEvent({eventId: event.id})">{{event.name.text}}</a></td>
+                    <td>{{event.start_date|date:'d MMMM yyyy'}} to {{event.end_date|date:'d MMMM yyyy'}}</td>
+                </tr>
+                <tr ng-show="!loading && events.length == 0">
+                    <td colspan="3">No events found.</td>
+                </tr>
+                <tr ng-show="loading">
+                    <td colspan="3"><ws-spinner></ws-spinner></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

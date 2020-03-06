@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsEventCtrl', function ($scope, $state, $q, Events, Items, WSAlert, Auth, APP_ROLES, $translate, auth) {
+angular.module('ilApp').controller('PublicItemsEventCtrl', function ($scope, $state, $q, Events, Status, WSAlert, $translate) {
 
   $scope.eventId = $state.params.eventId;
   $scope.skillId = $state.params.skillId;
@@ -27,10 +27,21 @@ angular.module('ilApp').controller('PublicItemsEventCtrl', function ($scope, $st
       $scope.loading = false;
     });
 
+    Status.getAllStatuses($state.params.eventId).then(function (result) {
+      $scope.statuses = result;
+    });
 
   };
 
+  $scope.totalCount = function(summaries){
+    var c = 0;
 
+    angular.forEach(summaries, function(val){
+      c += val.count;
+    });
+
+    return c;
+  };
 
   $scope.init();
 

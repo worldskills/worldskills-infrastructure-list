@@ -41,6 +41,19 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
+    Events.getEventsWithILs = function(pid){
+      var deferred = $q.defer();
+
+      $http.get(API_IL + "/events").then(function(result){
+        deferred.resolve(result.data);
+      },
+      function(error){
+        deferred.reject("Could not fetch list of events with view ILs");
+      });
+
+      return deferred.promise;
+    };
+
     Events.getViewEvents = function(pid){
       var deferred = $q.defer();
 

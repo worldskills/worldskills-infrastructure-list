@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsEventListCtrl', function ($scope, $state, $q, Events, Items, WSAlert, Auth, APP_ROLES, $translate, auth) {
+angular.module('ilApp').controller('EventListCtrl', function ($scope, $state, $q, Events, Items, WSAlert, Auth, APP_ROLES, $translate, auth) {
 
 
   $scope.loading = true;
@@ -10,7 +10,7 @@ angular.module('ilApp').controller('PublicItemsEventListCtrl', function ($scope,
 
   $scope.init = function(){
 
-    Events.getViewEvents(auth.user.person_id).then(function(e){
+    Events.getEventsWithILs().then(function(e){
       $scope.events = e.events;      
       $scope.loading = false;
     }, function(error){
@@ -18,8 +18,6 @@ angular.module('ilApp').controller('PublicItemsEventListCtrl', function ($scope,
     });
 
   };
-
-
 
   $q.when(auth.user.$promise).then(function(r){
     $scope.init();

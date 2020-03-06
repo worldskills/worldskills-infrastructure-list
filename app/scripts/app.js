@@ -339,13 +339,14 @@
         }
     })
 
-    .state('publicItemsEventList', {
-      url: '/events/public',
-      templateUrl: 'views/public-items-event-list.html',
-      controller: 'PublicItemsEventListCtrl',
+    .state('eventList', {
+      url: '/events',
+      templateUrl: 'views/event-list.html',
+      controller: 'EventListCtrl',
       data: {
         requireLoggedIn: true,
         requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.VIEW }
         ]
       }
