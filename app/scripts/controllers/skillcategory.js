@@ -14,10 +14,8 @@ angular.module('ilApp')
     $scope.UPLOADS_URL = UPLOADS_URL;
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
-    $scope.loading = {
-      initial: true,
-      more: false,
-    };
+    $scope.loading.init = true;
+    $scope.loading.more = false;
 
     $scope.orderProperty = null;//"item_order";
     $scope.reverse = false;
@@ -206,7 +204,7 @@ angular.module('ilApp')
           $scope.items = result.requested_items;
           $scope.total = result.total;
           $scope.additionRecommendationsCount = result.additionRecommendationsCount;
-          $scope.loading.initial = false;
+          $scope.loading.init = false;
           deferred.resolve();
         },
 
@@ -226,18 +224,18 @@ angular.module('ilApp')
 
     $scope.filter = function () {
       if ($scope.searchAPI = false) return;
-      //$scope.loading.initial = true;
+      //$scope.loading.init = true;
       $scope.initCategory();
     };
 
     $scope.clearSearchTerms = function () {
       $scope.filterValue = '';
-      $scope.loading.initial = true;
+      $scope.loading.init = true;
       $scope.initCategory();
     };
 
     $scope.isLoading = function () {
-      return $scope.loading.initial || $scope.loading.more || (Items.data != 'undefined' && typeof Items.data == 'promise');
+      return $scope.loading.init || $scope.loading.more || (Items.data != 'undefined' && typeof Items.data == 'promise');
     };
 
     $scope.supplierChanged = function (val) {
@@ -284,17 +282,17 @@ angular.module('ilApp')
     {
       templateUrl: 'views/add-set-confirm.html'
     }).then(function(){
-        $scope.loading.initial = true;
+        $scope.loading.init = true;
 
         //add the set to the list
         Items.addSet(set.originalObject.id, $scope.categoryId, $scope.event_id, $scope.skill_id).then(function(res){
           $scope.standardSetSelector = false;
-          $scope.loading.initial = false;
+          $scope.loading.init = false;
           $scope.items = res;
         },
         function(error){
           WSAlert.warning(error);
-          $scope.loading.initial = false;
+          $scope.loading.init = false;
         });
       });
     };

@@ -8,30 +8,31 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $confirm, $translate, $aside, Language, ItemCategory, WSAlert, APP_ROLES) {
+  .controller('ItemCategoryCtrl', function ($q, $scope, $state, $stateParams, $confirm, $translate, $aside, Events, Language, ItemCategory, WSAlert, APP_ROLES) {
 
     $scope.event = false;
     $scope.data = {};
-    $scope.APP_ROLES = APP_ROLES;
     $scope.loading.subCategories = true;
 
-    $q.when($scope.appLoaded.promise).then(function () {
-      //load item sub categories
-      ItemCategory.getAllSubCategory($state.params.eventId).then(function (res) {
-        $scope.data.subCategories = res.categories;
-        $scope.loading.subCategories = false;
-      },
-      function (error) {
-        WSAlert.danger(error);
-        $scope.loading.subCategories = false;
-      });
-      //load item categories
-      ItemCategory.getAllCategory($state.params.eventId).then(function (res) {
-        $scope.data.categories = res.categories;
-      },
-      function (error) {
-        WSAlert.danger(error);
-      });
+    Events.getEvent($stateParams.eventId).then( function (event) {
+      $scope.event = event;
+    });
+
+    //load item sub categories
+    ItemCategory.getAllSubCategory($state.params.eventId).then(function (res) {
+      $scope.data.subCategories = res.categories;
+      $scope.loading.subCategories = false;
+    },
+    function (error) {
+      WSAlert.danger(error);
+      $scope.loading.subCategories = false;
+    });
+    //load item categories
+    ItemCategory.getAllCategory($state.params.eventId).then(function (res) {
+      $scope.data.categories = res.categories;
+    },
+    function (error) {
+      WSAlert.danger(error);
     });
 
     $scope.asideState = {

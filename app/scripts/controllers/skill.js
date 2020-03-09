@@ -20,35 +20,25 @@ angular.module('ilApp')
     };
 
     $scope.initSkill = function(){
-        if(typeof $scope.selectedSkill.id == 'undefined'){
-                $scope.skill_id = $state.params.skillId;
-                $scope.initializing = $q.defer();
-                Events.getSkill($scope.skill_id).then(function(result){
-                    $scope.selectedSkill = result;
+        $scope.skill_id = $state.params.skillId;
+        Events.getSkill($scope.skill_id).then(function(result){
+            $scope.selectedSkill = result;
 
-                    //re-init event id to be used later
-                    $scope.event_id = result.event.id;
-                    $scope.getCategories();
-                },
-                function(error){
-                    WSAlert.danger(error);
-                    $scope.initializing.reject(error);
-                });
-        }
-        else{
-            $scope.initializing = $q.defer();
+            //re-init event id to be used later
+            $scope.event_id = result.event.id;
             $scope.getCategories();
-        }
-
+        },
+        function(error){
+            WSAlert.danger(error);
+            $scope.initializing.reject(error);
+        });
     };
 
 
     $scope.getCategories = function(){
-      //perhaps not needed, but checks if app has fully loaded before getting the categories
-      $q.when($scope.appLoaded).then(function() {
 
         var promises = [];
-        promises.push(Items.getCategories($scope.selectedSkill.id));
+        promises.push(Items.getCategories($scope.skill_id));
         promises.push(Events.getParticipantCounts($scope.skill_id));
 
         $q.all(promises).then(function(res){
@@ -62,7 +52,6 @@ angular.module('ilApp')
           $scope.initializing.reject(error);
         });
 
-      });
     };
 
     $scope.initSkill();

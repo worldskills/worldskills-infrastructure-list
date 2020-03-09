@@ -12,7 +12,6 @@ angular.module('ilApp')
 
     $scope.event = false;
     $scope.data = {};
-    $scope.APP_ROLES = APP_ROLES;
 
     $scope.asideState = {
       open: true,

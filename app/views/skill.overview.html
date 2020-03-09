@@ -1,5 +1,5 @@
-<ws-spinner class="bigSpinner" ng-if="loading.init"></ws-spinner>
-<fieldset ng-show="!loading.init"><legend translate>OVERVIEW</legend>
+<ws-spinner class="bigSpinner" ng-if="loading.overview"></ws-spinner>
+<fieldset ng-show="!loading.overview"><legend translate>OVERVIEW</legend>
 
 <p translate>TO_EDIT_ITEMS</p>
 <p>&nbsp;</p>
@@ -45,7 +45,7 @@
 		<div class='panel panel-default'>
 			<div class='panel-heading' translate>REPORTS</div>
 			<div class='panel-body'>
-				<a ui-sref="publicItems({eventId: event_id, skillId: skill_id})" class="btn btn-sm btn-info" target="_blank"><i class="glyphicon glyphicon-th-list"></i> <span translate>BUTTON_REPORT_PRINT_VIEW</span></a>
+				<a ui-sref="publicItems({eventId: event_id, skillId: skill_id})" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-th-list"></i> <span translate>BUTTON_REPORT_PRINT_VIEW</span></a>
 				<button type="button" ng-click="exportSkill();" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-download-alt"></i> <span translate>BUTTON_REPORT_REQUESTED_ITEMS</span></button>
 			</div>
 		</div>

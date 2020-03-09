@@ -72,9 +72,9 @@ angular.module('ilApp')
 
       $scope.pickSupplier();
 
-      $scope.item.event = $scope.selectedEvent;
+      $scope.item.event = $scope.event;
 
-      SuppliedItem.createItem($scope.item, $scope.selectedEvent.id).then(function(res){
+      SuppliedItem.createItem($scope.item, $scope.event.id).then(function(res){
           //add to grid - to the top
           $scope.gridOptions.data.unshift(res);
 

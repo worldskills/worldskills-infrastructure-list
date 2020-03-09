@@ -26,7 +26,7 @@ angular.module('ilApp')
     };
 
     $scope.cancel = function(){
-      $state.go("event.sets", {eventId: $state.params.eventId});
+      $state.go("eventBase.sets", {eventId: $state.params.eventId});
     };
 
   });

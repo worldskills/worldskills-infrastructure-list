@@ -1,4 +1,10 @@
-<h1 translate>REPORT_TIER</h1>
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
+    <li class="active" translate>REPORT_TIER</li>
+</ol>
+
+<h1 class="h2" translate>REPORT_TIER</h1>
 
 <ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
 

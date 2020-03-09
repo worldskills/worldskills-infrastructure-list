@@ -1,9 +1,16 @@
+<ol class="breadcrumb">
+    <li class="active" translate>EVENTS</li>
+</ol>
 
 <ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
 
 <div ng-hide="loading || error">
+  
+    <h1 class="h2" style="margin-top: 0;" translate>INFRASTRUCTURE_LISTS</h1>
 
-    <h1 class="h3" style="margin-top: 0;" translate>EVENTS</h1>
+    <hr>
+
+    <h2 class="h3" style="margin-top: 0;" translate>EVENTS</h2>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -25,7 +32,7 @@
             <tbody>
                 <tr ng-repeat="event in events track by event.id">
                     <td>{{event.id}}</td>
-                    <td><a ui-sref="publicItemsEvent({eventId: event.id})">{{event.name.text}}</a></td>
+                    <td><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></td>
                     <td>{{event.start_date|date:'d MMMM yyyy'}} to {{event.end_date|date:'d MMMM yyyy'}}</td>
                 </tr>
                 <tr ng-show="!loading && events.length == 0">

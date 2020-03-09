@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, WSAlert, API_IL,
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, $stateParams, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
     UNITS, UPLOADS_URL
@@ -25,7 +25,6 @@ angular.module('ilApp')
     $scope.allowEditing = false;
     $scope.showFilters = true;
     $scope.showGrid = false;
-    $scope.skills = false;
     $scope.categories = {};
     $scope.filters = {
       active: false,
@@ -590,9 +589,9 @@ angular.module('ilApp')
     $scope.loadCatalogue = function() {
       $scope.loading.catalogue = true;
 
-      Items.getCatalogue($scope.selectedEvent.id, $scope.filters).then(function(data) {
+      Items.getCatalogue($stateParams.eventId, $scope.filters).then(function(data) {
         //init supplier api url
-        $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.selectedEvent.id + '/search/?q=';
+        $scope.searchSupplierAPI = API_IL + '/suppliers/' + $stateParams.eventId + '/search/?q=';
 
         $scope.gridOptions.data = data.supplied_items;
 
@@ -629,9 +628,7 @@ angular.module('ilApp')
       $scope.loadCatalogue();
     }
 
-    $q.when($scope.appLoaded.promise).then(function() { //still needed to use existing skill list
-        initCatalogue();
-    });
+    initCatalogue();
 
     //edit item
     $scope.editItems = function($event){
@@ -742,10 +739,13 @@ angular.module('ilApp')
 
       //set event id from state if not already set
       if(!$scope.event_id)
-        $scope.event_id = $state.params.eventId;
+        $scope.event_id = $stateParams.eventId;
+
+      Events.getEvent($scope.event_id).then( function (event) {
+        $scope.event = event;
+      });
 
       //copy from service, already loaded in main.js
-      $scope.skills = Events.skills;
       $scope.loading.catalogue = false;
 
       //debug only

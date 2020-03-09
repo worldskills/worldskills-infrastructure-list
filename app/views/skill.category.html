@@ -1,6 +1,6 @@
 <fieldset>
-  <ws-spinner class='bigSpinner' ng-if='loading.initial'></ws-spinner>
-  <div ng-hide="loading.initial">
+  <ws-spinner class='bigSpinner' ng-if='loading.init'></ws-spinner>
+  <div ng-hide="loading.init">
 
     <span class='pull-right'>
     <!-- 	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
@@ -53,7 +53,7 @@
 
     <!-- notifications for no items -->
     <div class="row" ng-hide="loading.addItem">
-      <div class="col-sm-12" ng-show="items.length == 0 && !loading.initial">
+      <div class="col-sm-12" ng-show="items.length == 0 && !loading.init">
         <div class='alert alert-warning'>
           <p ng-if="filterValue.length > 0">
             <span class='glyphicon glyphicon-info-sign'></span> <span translate>SEARCH_NO_RESULTS</span><br />
@@ -104,7 +104,7 @@
         <span style="color: #7c9eb2;">{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: additionRecommendationsCount } }}</span>
       </div>
       <div style="top: 60px;" class="col-sm-12" ng-if="canRecommend()">
-        <a ui-sref="recommendations({eventId: selectedEvent.id})" translate>HANDLE_RECOMMENDATIONS</a>
+        <a ui-sref="recommendations({eventId: selectedSkill.event.id})" translate>HANDLE_RECOMMENDATIONS</a>
       </div>
     </div>
   </div>

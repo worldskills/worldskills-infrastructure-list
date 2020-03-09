@@ -3,14 +3,20 @@
 </div>
 
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList">Events</a></li>
-    <li><a ui-sref="publicItemsEvent({eventId: skill.event.id})">{{skill.event.name.text}}</a></li>
+    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="event({eventId: skill.event.id})">{{skill.event.name.text}}</a></li>
     <li class="active">{{skill.name.text}}</li>
 </ol>
 
-<h1>{{ skill.name.text }} <small>Skill {{ skill.skill_number }}, {{ skill.event.name.text }}</small></h1>
+<p class="pull-right">
+    <a ng-show="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER) || hasRole(APP_ROLES.WS_MANAGER) || hasRole(APP_ROLES.WS_SECTOR_MANAGER)" ui-sref="eventBase.skill.overview({eventId: skill.event.id, skillId: skill.id})" title="{{event.name}}" class="btn btn-sm btn-warning">
+      <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
+    </a>
+</p>
 
-<hr/>
+<h1 class="h2">{{ skill.skill_number }} {{ skill.name.text }} <small>{{ skill.event.name.text }}</small></h1>
+
+<hr class="clear" />
 
 <ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
 

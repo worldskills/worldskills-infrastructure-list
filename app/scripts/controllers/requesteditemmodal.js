@@ -26,8 +26,6 @@ angular.module('ilApp')
     Items
   ) {
 
-    $scope.APP_ROLES = APP_ROLES;
-
     $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
 
     $scope.asideState = {

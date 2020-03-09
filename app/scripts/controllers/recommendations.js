@@ -8,26 +8,30 @@
  * Controller handling recommendations validation
  */
 angular.module('ilApp')
-  .controller('RecommendationsCtrl', function ($q, $scope, $state, $uibModal, $rootScope, $confirm, $translate, $aside, Items, Language, RecommendedItems, WSAlert, APP_ROLES, UPLOADS_URL) {
+  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $uibModal, $rootScope, $confirm, $translate, $aside, Items, Language, RecommendedItems, Events, WSAlert, APP_ROLES, UPLOADS_URL) {
+
     $scope.event = false;
     $scope.data = {};
-    $scope.APP_ROLES = APP_ROLES;
     $scope.UPLOADS_URL = UPLOADS_URL;
     $scope.split = false;
+    $scope.loading.recommendations = true;
 
-    $q.when($scope.appLoaded.promise).then(function () {
-      $scope.refreshRecommendations();
+    Events.getEvent($stateParams.eventId).then( function (event) {
+      $scope.event = event;
     });
 
     $scope.refreshRecommendations = function(){
       //Load recommendations
       RecommendedItems.getRecommendations($state.params.eventId).then(function (res) {
         $scope.recommendedItems = res.recommendedItems;
+        $scope.loading.recommendations = false;
       },
       function (error) {
         WSAlert.danger(error);
       });
     };
+
+    $scope.refreshRecommendations();
 
     $scope.review = function(item){
       $scope.openRecommendationReviewModal(item);

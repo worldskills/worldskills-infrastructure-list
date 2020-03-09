@@ -8,9 +8,10 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventSetsCtrl', function ($q, $scope, $state, ItemSets, WSAlert) {
+  .controller('EventSetsCtrl', function ($q, $scope, $state, $stateParams, ItemSets, WSAlert) {
     //permission checks done on server side
 
+    $scope.event_id = $stateParams.eventId;
     $scope.sets = ItemSets.list;
 
     function loadSets(eventId){
@@ -28,19 +29,11 @@ angular.module('ilApp')
 
     //Important: this does not work with WS_SECTOR_MANAGER or WS_MANAGER as they don't have event level access
     //if there is a need to enable this in the future, this must be changed
-    if(typeof $scope.selectedEvent.id !== 'undefined')
-      loadSets($scope.selectedEvent.id);
-    else{
-      $q.when($scope.appLoaded.promise).then(function(){
-        loadSets($scope.selectedEvent.id);
-      },
-      function(error){
-        WSAlert.danger(error);
-      });
-    }
+    if(typeof $stateParams.eventId !== 'undefined')
+      loadSets($stateParams.eventId);
 
     $scope.addNewSet = function(){
-      $state.go("event.sets.add", {eventId: $scope.selectedEvent.id});
+      $state.go("eventBase.sets.add", {eventId: $scope.event_id});
     };
 
 

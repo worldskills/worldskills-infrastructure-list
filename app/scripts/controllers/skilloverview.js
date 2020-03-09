@@ -10,6 +10,7 @@
 angular.module('ilApp')
   .controller('SkillOverviewCtrl', function ($scope, $q, $state, Status, Events, WSAlert, MULTIPLIERS, Reporting) {
 
+    $scope.loading.overview = true;
 
     $scope.exportSkill = function(){
         Reporting.exportRequestedForSkill($scope.event_id, $scope.skill_id);
@@ -27,6 +28,7 @@ angular.module('ilApp')
       });
 
       $scope.statusSummary = res;
+      $scope.loading.overview = false;
     },
     function(error){
       WSAlert.warning(error);

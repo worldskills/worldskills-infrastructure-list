@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('RequestedItemCtrl', function ($q, $scope, $state, Events, WSAlert, APP_ROLES, Items,
+  .controller('RequestedItemCtrl', function ($q, $scope, $state, $stateParams, Events, WSAlert, APP_ROLES, Items,
     ItemCategory, Category, Status, API_IL, $aside, ItemTier, Reporting, UNITS) {
 
     $scope.UNITS = UNITS;
@@ -130,12 +130,11 @@ angular.module('ilApp')
 
     $scope.changePage($scope.current_page);
 
-    $q.when($scope.appLoaded.promise)
-      .then(function(res){
-        $scope.sectors = res;
-        //Load skills and sectors
-        return Events.getSkillsForEvent($state.params.eventId);
-      })
+    Events.getEvent($stateParams.eventId).then( function (event) {
+      $scope.event = event;
+    });
+
+    $q.when(Events.getSkillsForEvent($state.params.eventId))
       .then(function(res){
         $scope.skills = res;
 

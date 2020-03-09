@@ -1,3 +1,100 @@
-<h2 ng-show="!hideFooter">{{selectedEvent.name.text}}</h2>
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li class="active">{{event.name.text || " "}}</li>
+</ol>
 
-<div ui-view=""></div>
+<h1 class="h2">{{ event.name.text || " "}}</h1>
+
+<hr>
+
+<div class="pull-right" ng-show="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER) || hasRole(APP_ROLES.EDIT_ITEM_CATEGORIES) || hasRole(APP_ROLES.WS_SECTOR_MANAGER)">
+    <div class="btn-group" uib-dropdown>
+        <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled"><span translate>Tools</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu" uib-dropdown-menu>
+          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.EDIT_ITEM_CATEGORIES)"><a ui-sref="itemCategory({eventId: event.id})" translate>ITEM_CATEGORY_AND_SUBCATEGORY</a></li>
+          <li><a ui-sref="requestedItems({eventId: event.id})" translate>REQUESTED_ITEMS</a></li>
+          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.EDIT_CONFIG)"><a ui-sref="eventBase.skill-participants-override({eventId: event.id})" translate>SKILL_PARTICIPANTS_OVERRIDE</a></li>
+          <li><a ui-sref="eventBase.catalogue({eventId: event.id})" translate>CATALOGUE_EDITOR</a></li>
+          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.RECOMMEND)"><a ui-sref="recommendations({eventId: event.id})" translate>RECOMMENDATIONS</a></li>
+          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER)"><a ui-sref="eventBase.tierReport({eventId: event.id})" translate>REPORT_TIER</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a ng-if="!loading.requested" href="#" ng-click="exportAllRequested($event)" translate>EXPORT_REQUESTED_ITEMS</a></li>
+          <li><a ng-if="!loading.catalogue" href="#" ng-click="exportAllCatalogue($event)" translate>EXPORT_ALL_ITEMS</a></li>
+        </ul>
+    </div>
+</div>
+
+<div ng-hide="error">
+  
+    <h2 class="h3" style="margin-top: 0;" translate>INFRASTRUCTURE_LISTS</h2>
+
+    <ws-spinner class="smallSpinner" ng-show="loading.requested || loading.catalogue"></ws-spinner>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <colgroup>
+                <col width="5%" />
+                <col width="35%" />
+                <col width="55%" />
+                <col width="5%" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Items</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr ng-show="!loading.lists"><td colspan="4"></td></tr>
+            </tfoot>
+            <tbody>
+                <tr ng-repeat="skill in skills track by skill.id">
+                    <td>{{skill.id}}</td>
+                    <td style="white-space: nowrap;">
+                        <a ui-sref="publicItems({eventId: event.id, skillId: skill.id})">{{skill.skill_number}} {{skill.name.text}}</a>
+                    </td>
+                    <td>
+                      <div class="progress" style="margin-bottom: 0;">
+                        <div
+                          ng-repeat="status in skill.status_summary.summaries"
+                          ng-style="{'background-color': status.status.color_code, 'border-bottom-color': status.status.color_code}"
+                          class="progress-bar"
+                          style="width: {{status.count / totalCount(skill.status_summary.summaries) * 100}}%">
+                          <span uib-tooltip="{{status.status.name.text}}" tooltip-placement="top" tooltip-trigger="mouseenter" class="">{{status.count}}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="white-space: nowrap;">
+                      <a ng-show="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER) || hasRole(APP_ROLES.WS_MANAGER) || hasRole(APP_ROLES.WS_SECTOR_MANAGER)" ui-sref="eventBase.skill.overview({eventId: event.id, skillId: skill.id})" title="{{event.name}}" class="btn btn-xs btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
+                      </a>
+                    </td>
+                </tr>
+                <tr ng-show="!loading.lists && skills.length == 0">
+                    <td colspan="4">No lists found.</td>
+                </tr>
+                <tr ng-show="loading.lists">
+                    <td colspan="4"><ws-spinner></ws-spinner></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row" ng-show="!loading.lists">
+        <div class="col-md-6 col-md-offset-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" translate>Statuses</h3>
+                </div>
+                <table class="table">
+                        <tr class="dl-horizontal" ng-repeat="status in statuses">
+                            <td style="padding-right: 10px;"><span class="label" ng-style="{'background-color': status.color_code}">{{status.name.text}}</span></td>
+                            <td>{{status.description.text}}</td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>

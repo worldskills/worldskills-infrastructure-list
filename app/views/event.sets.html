@@ -1,8 +1,3 @@
-<div id='userActions'>
-<p class="pull-right">
-    <!-- <button class="btn btn-info" ui-sref="home"><span ng-cloak translate>Action button if needed?</span></button> -->
-</p>
-</div>
 <ws-spinner class='bigSpinner' ng-show="loading.sets"></ws-spinner>
 <hr class='cb' />
 <div class='row'>
@@ -11,7 +6,7 @@
       <div ng-show="sets.length < 1" translate>
         NO_SETS_DEFINED
       </div>
-      <a ng-show="sets.length > 0" ui-sref-active ui-sref="event.sets.edit({eventId: selectedEvent.id, setId: set.id})" class="list-group-item" ng-repeat="set in sets track by set.id">
+      <a ng-show="sets.length > 0" ui-sref-active ui-sref="eventBase.sets.edit({eventId: event_id, setId: set.id})" class="list-group-item" ng-repeat="set in sets track by set.id">
         {{set.name}}
         <span class="badge">{{set.items.length}}</span>
       </a>

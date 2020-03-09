@@ -1,4 +1,10 @@
-<h2 ng-show="!hideFooter" class="ng-binding ng-scope" aria-hidden="false" translate>REQUESTED_ITEMS</h2>
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
+    <li class="active" translate>REQUESTED_ITEMS</li>
+</ol>
+
+<h1 class="h2" ng-show="!hideFooter" class="ng-binding ng-scope" aria-hidden="false" translate>REQUESTED_ITEMS</h1>
 <hr class="cb">
 <div class="alert alert-info text-center" ng-if="loading.download">
   <span translate>DOWNLOADING_FILE</span>

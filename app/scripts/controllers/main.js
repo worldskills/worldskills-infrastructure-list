@@ -10,8 +10,6 @@ angular.module('ilApp')
 
     $scope.selectedSkill = {};
     $scope.selectedSector = {};
-    $scope.selectedEvent = {};
-    $scope.appLoaded = $q.defer();
     $scope.loadStatus = true;
 
     $scope.hideFooter = false;
@@ -52,7 +50,7 @@ angular.module('ilApp')
     };
 
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {
-      if(toState.name == 'event.catalogue') $scope.hideFooter = true;
+      if(toState.name == 'eventBase.catalogue') $scope.hideFooter = true;
       else $scope.hideFooter = false;
     });
 

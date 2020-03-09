@@ -169,10 +169,10 @@
     //routes
     $stateProvider
 
-    .state('event', {
+    .state('eventBase', {
       url: '/event/{eventId}',
-      templateUrl: 'views/event.html',
-      controller: 'EventCtrl',
+      templateUrl: 'views/event.base.html',
+      controller: 'EventBaseCtrl',
       abstract: true,
       data: {
         requireLoggedIn: true,
@@ -185,22 +185,8 @@
         }
     })
 
-    .state('event.overview', {
-      url: '/overview',
-      templateUrl: 'views/event.overview.html',
-      controller: 'EventOverviewCtrl',
-      data: {
-        requireLoggedIn: true,
-          requiredRoles: [
-            {code: 2200, role: APP_ROLES.ADMIN },
-            {code: 2200, role: APP_ROLES.ORGANIZER },
-            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
-          ]
-        }
-    })
-
     //event management
-    .state('event.sets', {
+    .state('eventBase.sets', {
       url: '/sets',
       templateUrl: 'views/event.sets.html',
       controller: 'EventSetsCtrl',
@@ -213,7 +199,7 @@
       }
     })
 
-    .state('event.sets.edit', {
+    .state('eventBase.sets.edit', {
       url: '/edit/{setId}',
       templateUrl: 'views/event.sets.edit.html',
       controller: 'EventSetsEditCtrl',
@@ -226,7 +212,7 @@
       }
     })
 
-    .state('event.sets.add', {
+    .state('eventBase.sets.add', {
       url: '/add',
       templateUrl: 'views/event.sets.add.html',
       controller: 'EventSetsAddCtrl',
@@ -240,7 +226,7 @@
     })
 
     //catalogue
-    .state('event.catalogue', {
+    .state('eventBase.catalogue', {
       url: '/catalogue',
       templateUrl: 'views/event.catalogue.html',
       controller: 'EventCatalogueCtrl',
@@ -254,7 +240,7 @@
       }
     })
 
-    .state('event.revisions', {
+    .state('eventBase.revisions', {
       url: '/revisions',
       templateUrl: 'views/event.revisions.html',
       controller: 'EventRevisionsCtrl',
@@ -267,7 +253,7 @@
         }
     })
 
-    .state('event.tierReport', {
+    .state('eventBase.tierReport', {
       url: '/tier-report',
       templateUrl: 'views/tierReport.html',
       controller: 'TierReportCtrl',
@@ -281,7 +267,7 @@
     })
 
     //skills
-    .state('event.skill', {
+    .state('eventBase.skill', {
       url: '/skill/{skillId}',
       templateUrl: 'views/skill.html',
       controller: 'SkillCtrl',
@@ -297,7 +283,7 @@
       }
     })
 
-    .state('event.skill.overview', {
+    .state('eventBase.skill.overview', {
       url: '',
       templateUrl: 'views/skill.overview.html',
       controller: 'SkillOverviewCtrl',
@@ -312,7 +298,7 @@
         }
     })
 
-    .state('event.skill.category', {
+    .state('eventBase.skill.category', {
       url: '/category/{categoryId}',
       templateUrl: 'views/skill.category.html',
       controller: 'SkillCategoryCtrl',
@@ -340,10 +326,10 @@
       }
     })
 
-    .state('publicItemsEvent', {
-      url: '/event/{eventId}/public',
-      templateUrl: 'views/public-items-event.html',
-      controller: 'PublicItemsEventCtrl',
+    .state('event', {
+      url: '/events/{eventId}',
+      templateUrl: 'views/event.html',
+      controller: 'EventCtrl',
       data: {
         requireLoggedIn: true,
         requiredRoles: [
@@ -391,7 +377,7 @@
       }
     })
 
-    .state('event.skill-participants-override', {
+    .state('eventBase.skill-participants-override', {
       url: '/skill-participants-override',
       templateUrl: 'views/event-skill-particpants-override.html',
       controller: 'EventSkillParticipantsOverrideCtrl',
