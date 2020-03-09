@@ -75,10 +75,11 @@
                 <table class="table table-condensed table-bordered il-public-items-table table-with-actions">
                     <colgroup>
                         <col width="15%" />
+                        <col width="20%" />
                         <col width="25%" />
-                        <col width="25%" />
-                        <col width="25%" />
-                        <col ng-if="canRecommend()" width="10%" />
+                        <col width="20%" />
+                        <col width="10%" />
+                        <col width="10%" />
                       </colgroup>
                     <thead>
                         <tr>
@@ -99,7 +100,7 @@
                               <span ng-click="sortBy(category, 'status.id')" translate>TH_STATUS</span>
                               <span class="caret" ng-show="category.sort === 'status.id'"></span>
                             </th>
-                            <th class="canRecommend" ng-if="canRecommend()" translate>TH_ACTIONS</th>
+                            <th class="canRecommend" translate>TH_ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -168,12 +169,13 @@
                           <td class="status">
                               <span class='label' ng-style="{'background-color': item.status.color_code}" title="{{item.status.description.text}}">{{item.status.name.text}}</span>
                           </td>
-                          <td class="canRecommend" ng-if="canRecommend()">
-                              <div ng-if="item.status.allow_editing && !item.status.secret">
+                          <td class="canRecommend">
+                              <div ng-if="canRecommend() && item.status.allow_editing && !item.status.secret">
                                 <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)"><span
                                   class="glyphicon glyphicon-edit"></span></a>
                                 <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span
                                 class="glyphicon glyphicon-remove"></span></a>
+                                <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
                               </div>
                           </td>
                         </tr>
@@ -181,7 +183,7 @@
                     <tbody ng-if="!category.items.length">
                         <tr>
                             <td></td>
-                            <td colspan="3" translate>NO_ITEMS</td>
+                            <td colspan="6" translate>NO_ITEMS</td>
                         </tr>
                     </tbody>
                 </table>

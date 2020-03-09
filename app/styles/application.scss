@@ -442,24 +442,13 @@ td.break-all {
 
 .table-with-actions {
   th {
-    &.status,
-    &.canRecommend {
+    &.status {
       text-align: center;
     }
   }
   td {
     &.status {
       text-align: center;
-    }
-    &.canRecommend {
-      display: block;
-      align-items: center;
-      border-left: 0;
-      border-bottom: 0;
-      width: 85px;
-      a {
-        margin-left: 8px;
-      }
     }
   }
 }
