@@ -33,6 +33,13 @@ angular.module('ilApp')
           }
         });
       }
+      if (Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER)) {
+        angular.forEach(activePositions, function (position) {
+          if (typeof position.sector !== 'undefined' && position.sector.event.id == event.id) {
+            event.userCanEdit = true;
+          }
+        });
+      }
     };
 
     Auth.setUserSkillPermissions = function (activePositions, skill) {
