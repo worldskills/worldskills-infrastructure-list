@@ -9,7 +9,7 @@
 </ol>
 
 <p class="pull-right">
-    <a ng-show="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER) || hasRole(APP_ROLES.WS_MANAGER) || hasRole(APP_ROLES.WS_SECTOR_MANAGER)" ui-sref="eventBase.skill.overview({eventId: skill.event.id, skillId: skill.id})" title="{{event.name}}" class="btn btn-sm btn-warning">
+    <a ng-show="skill.userCanEdit" ui-sref="eventBase.skill.overview({eventId: skill.event.id, skillId: skill.id})" title="{{event.name}}" class="btn btn-sm btn-warning">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
     </a>
 </p>

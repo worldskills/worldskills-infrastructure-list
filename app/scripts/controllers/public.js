@@ -19,6 +19,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   promises.push(Events.getSkill($scope.skillId)
     .then(function(result){
         $scope.skill = result;
+        $scope.activePositions.then(function (activePositions) {
+          Auth.setUserSkillPermissions(activePositions, $scope.skill);
+        });
     })
   );
 

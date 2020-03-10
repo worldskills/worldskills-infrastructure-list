@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $stateParams, $q, Events, Status, Reporting, WSAlert, $translate) {
+angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $stateParams, $q, Events, Status, Reporting, Auth, auth, WSAlert, APP_ROLES, APP_ID, $translate) {
 
   $scope.eventId = $state.params.eventId;
   $scope.skillId = $state.params.skillId;
@@ -22,10 +22,22 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
 
     promises.push(Events.getEvent(eventId));
     promises.push(Events.getSkillsForEvent(eventId, true));
+    promises.push($scope.activePositions);
 
     $q.all(promises).then(function(res){
       $scope.event = res[0];
       $scope.skills = res[1];
+      var activePositions = res[2];
+      auth.hasUserRole(APP_ID, ['Admin', 'EditItemCategories'], $scope.event.entity).then(function (hasUserRole) {
+          $scope.userCanEditItemCategories = hasUserRole;
+      });
+      auth.hasUserRole(APP_ID, ['Admin', 'EditConfig'], $scope.event.entity).then(function (hasUserRole) {
+          $scope.userCanEditConfig = hasUserRole;
+      });
+      Auth.setUserEventPermissions(activePositions, $scope.event);
+      angular.forEach($scope.skills, function (skill) {
+        Auth.setUserSkillPermissions(activePositions, skill);
+      });
       $scope.loading.lists = false;
     }, function(errors){
       WSAlert.danger($translate.instant('WSALERT.DANGER.NO_ACCESSS_PUBLIC_VIEW'));

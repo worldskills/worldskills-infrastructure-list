@@ -7,19 +7,19 @@
 
 <hr>
 
-<div class="pull-right" ng-show="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER) || hasRole(APP_ROLES.EDIT_ITEM_CATEGORIES) || hasRole(APP_ROLES.WS_SECTOR_MANAGER)">
+<div class="pull-right" ng-show="event.userCanEdit || userCanEditItemCategories || userCanEditConfig">
     <div class="btn-group" uib-dropdown>
         <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled"><span translate>Tools</span> <span class="caret"></span></button>
         <ul class="dropdown-menu" uib-dropdown-menu>
-          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.EDIT_ITEM_CATEGORIES)"><a ui-sref="itemCategory({eventId: event.id})" translate>ITEM_CATEGORY_AND_SUBCATEGORY</a></li>
-          <li><a ui-sref="requestedItems({eventId: event.id})" translate>REQUESTED_ITEMS</a></li>
-          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.EDIT_CONFIG)"><a ui-sref="eventBase.skill-participants-override({eventId: event.id})" translate>SKILL_PARTICIPANTS_OVERRIDE</a></li>
-          <li><a ui-sref="eventBase.catalogue({eventId: event.id})" translate>CATALOGUE_EDITOR</a></li>
-          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.RECOMMEND)"><a ui-sref="recommendations({eventId: event.id})" translate>RECOMMENDATIONS</a></li>
-          <li ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER)"><a ui-sref="eventBase.tierReport({eventId: event.id})" translate>REPORT_TIER</a></li>
+          <li ng-if="userCanEditItemCategories"><a ui-sref="itemCategory({eventId: event.id})" translate>ITEM_CATEGORY_AND_SUBCATEGORY</a></li>
+          <li ng-if="event.userCanEdit"><a ui-sref="requestedItems({eventId: event.id})" translate>REQUESTED_ITEMS</a></li>
+          <li ng-if="userCanEditConfig"><a ui-sref="eventBase.skill-participants-override({eventId: event.id})" translate>SKILL_PARTICIPANTS_OVERRIDE</a></li>
+          <li ng-if="event.userCanEdit"><a ui-sref="eventBase.catalogue({eventId: event.id})" translate>CATALOGUE_EDITOR</a></li>
+          <li ng-if="event.userCanEdit"><a ui-sref="recommendations({eventId: event.id})" translate>RECOMMENDATIONS</a></li>
+          <li ng-if="event.userCanEdit"><a ui-sref="eventBase.tierReport({eventId: event.id})" translate>REPORT_TIER</a></li>
           <li role="separator" class="divider"></li>
-          <li><a ng-if="!loading.requested" href="#" ng-click="exportAllRequested($event)" translate>EXPORT_REQUESTED_ITEMS</a></li>
-          <li><a ng-if="!loading.catalogue" href="#" ng-click="exportAllCatalogue($event)" translate>EXPORT_ALL_ITEMS</a></li>
+          <li ng-if="event.userCanEdit && !loading.requested"><a href="#" ng-click="exportAllRequested($event)" translate>EXPORT_REQUESTED_ITEMS</a></li>
+          <li ng-if="event.userCanEdit && !loading.catalogue"><a href="#" ng-click="exportAllCatalogue($event)" translate>EXPORT_ALL_ITEMS</a></li>
         </ul>
     </div>
 </div>
@@ -67,7 +67,7 @@
                       </div>
                     </td>
                     <td style="white-space: nowrap;">
-                      <a ng-show="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER) || hasRole(APP_ROLES.WS_MANAGER) || hasRole(APP_ROLES.WS_SECTOR_MANAGER)" ui-sref="eventBase.skill.overview({eventId: event.id, skillId: skill.id})" title="{{event.name}}" class="btn btn-xs btn-warning">
+                      <a ng-show="skill.userCanEdit" ui-sref="eventBase.skill.overview({eventId: event.id, skillId: skill.id})" title="{{event.name}}" class="btn btn-xs btn-warning">
                         <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
                       </a>
                     </td>
