@@ -88,8 +88,6 @@
 
   ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, tmhDynamicLocaleProvider) {
 
-    $urlRouterProvider.otherwise('/');
-
     $urlRouterProvider.otherwise(function ($injector, $location) {
       // check for existing redirect
       var $state = $injector.get('$state');
@@ -105,7 +103,7 @@
         }
         $state.go(redirectToState, redirectToParams);
       } else {
-        $state.go('home');
+        $state.go('eventList');
       }
     });
 
@@ -170,16 +168,6 @@
 
     //routes
     $stateProvider
-
-    //index
-    .state('home', {
-      url: '/',
-      templateUrl: 'views/home.html',
-      controller: 'HomeCtrl',
-      data: {
-        requireLoggedIn: true
-      }
-    })
 
     .state('event', {
       url: '/event/{eventId}',

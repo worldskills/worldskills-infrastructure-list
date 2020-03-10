@@ -16,32 +16,6 @@ angular.module('ilApp')
         return hasRole;
       },
 
-      activeRole: function () {
-        var retval = false;
-        angular.forEach(auth.user.roles, function (val, key) {
-          if (val.role_application.application_code == APP_ID) {
-            retval = val.name;
-          }
-        });
-        return retval;
-      },
-
-      activeRoles: function () {
-        var retval = [];
-
-        if(auth.user.$promise) {
-          $q.when(auth.user.$promise).then(function() {
-            angular.forEach(auth.user.roles, function (val, key) {
-              if (val.role_application.application_code == APP_ID) {
-                retval.push(val);
-              }
-            });
-          });
-        }
-
-        return retval;
-      },
-
       ilRoles: function () {
         return auth.user.roles.filter(function (role) {
           return role.role_application.application_code == APP_ID;
