@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Status, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Status, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
   $scope.skillId = $state.params.skillId;
@@ -21,6 +21,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         $scope.skill = result;
         $scope.activePositions.then(function (activePositions) {
           Auth.setUserSkillPermissions(activePositions, $scope.skill);
+        });
+        auth.hasUserRole(APP_ID, ['Admin', 'RECOMMEND'], $scope.skill.entity).then(function (hasUserRole) {
+            $scope.userCanRecommend = hasUserRole;
         });
     })
   );
@@ -83,10 +86,6 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $scope.sortBy = function (category, sort) {
     category.reverse = (category.sort === sort) ? !category.reverse : false;
     category.sort = sort;
-  };
-
-  $scope.canRecommend = function() {
-      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
   };
 
   $scope.canRecommendSupplied = function(){

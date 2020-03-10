@@ -61,12 +61,12 @@
       </div>
     </div>
 
-    <div ng-repeat="category in categories" class="il-public-items-category"  ng-if="category.items.length || canRecommend()" >
+    <div ng-repeat="category in categories" class="il-public-items-category"  ng-if="category.items.length || userCanRecommend" >
 
         <div class="panel panel-default">
             <div class="panel-heading panel-heading-btn">
               <h2 class="panel-title">{{ category.category.name.text }}</h2>
-              <button type="button" ng-if="canRecommend()" ng-click="openSuggestModalAside(category.id);" data-target="" class="btn btn-xs btn-primary">
+              <button type="button" ng-if="userCanRecommend" ng-click="openSuggestModalAside(category.id);" data-target="" class="btn btn-xs btn-primary">
                 <span translate><i class="fas fa-plus-circle"></i><span translate>SUGGEST_ADDITION</span>
               </button>
             </div>
@@ -170,7 +170,7 @@
                               <span class='label' ng-style="{'background-color': item.status.color_code}" title="{{item.status.description.text}}">{{item.status.name.text}}</span>
                           </td>
                           <td class="canRecommend">
-                              <div ng-if="canRecommend() && item.status.allow_editing && !item.status.secret">
+                              <div ng-if="userCanRecommend && item.status.allow_editing && !item.status.secret">
                                 <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)"><span
                                   class="glyphicon glyphicon-edit"></span></a>
                                 <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span
