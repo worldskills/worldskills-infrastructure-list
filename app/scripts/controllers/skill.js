@@ -24,6 +24,11 @@ angular.module('ilApp')
         Events.getSkill($scope.skill_id).then(function(result){
             $scope.selectedSkill = result;
 
+            $scope.activePositions.then(function (activePositions) {
+              Auth.setUserSkillPermissions(activePositions, $scope.selectedSkill);
+              Auth.setUserEventPermissions(activePositions, $scope.selectedSkill.event);
+            });
+
             //re-init event id to be used later
             $scope.event_id = result.event.id;
             $scope.getCategories();

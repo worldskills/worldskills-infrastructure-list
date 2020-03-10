@@ -14,7 +14,7 @@
             <a ng-repeat="category in categories" ui-sref-active='active' class="list-group-item" ui-sref='eventBase.skill.category({eventId: event_id, skillId: skill_id, categoryId:category.id})'><small ng-cloak translate>{{category.category.name.text}}</small></a>
          </div>
 
-        <div class="list-group" ng-if="hasRole(APP_ROLES.ADMIN) || hasRole(APP_ROLES.ORGANIZER) || hasRole(APP_ROLES.WS_SECTOR_MANAGER)">
+        <div class="list-group" ng-if="selectedSkill.event.userCanEdit">
           <a class="list-group-item" ui-sref='eventBase.catalogue({eventId: event_id})'><small ng-cloak translate>CATALOGUE_VIEW</small></a>
         </div>
      </div>
