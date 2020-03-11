@@ -134,7 +134,7 @@ angular.module('ilApp')
       //confirm and remove children too
       $confirm({
         title: 'Delete item',
-        text: 'Are you sure, this will also remove any potential child-items?',
+        text: 'Are you sure?',
       }).then(function () {
         Items.removeItem(item, $scope.event_id).then(function (result) {
           //remove from list
