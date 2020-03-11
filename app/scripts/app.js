@@ -163,46 +163,6 @@
         }
     })
 
-    //event management
-    .state('eventBase.sets', {
-      url: '/sets',
-      templateUrl: 'views/event.sets.html',
-      controller: 'EventSetsCtrl',
-      data: {
-      requireLoggedIn: true,
-        requiredRoles: [
-          {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER }
-        ]
-      }
-    })
-
-    .state('eventBase.sets.edit', {
-      url: '/edit/{setId}',
-      templateUrl: 'views/event.sets.edit.html',
-      controller: 'EventSetsEditCtrl',
-      data: {
-      requireLoggedIn: true,
-        requiredRoles: [
-          {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER }
-        ]
-      }
-    })
-
-    .state('eventBase.sets.add', {
-      url: '/add',
-      templateUrl: 'views/event.sets.add.html',
-      controller: 'EventSetsAddCtrl',
-      data: {
-      requireLoggedIn: true,
-        requiredRoles: [
-          {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER }
-        ]
-      }
-    })
-
     //catalogue
     .state('eventBase.catalogue', {
       url: '/catalogue',
@@ -388,36 +348,6 @@
     .state('ping', {
       url: '/ping'
     });
-
-   //
-  //  .state('management', {
-  //   url: '/management',
-  //   controller: 'ManagementCtrl',
-  //   templateUrl: 'views/management.html',
-  //   abstract: true,
-  //   data: {
-  //     requireLoggedIn: true,
-  //       requiredRoles: [
-  //         {code: 2200, role: APP_ROLES.ADMIN },
-  //         {code: 2200, role: APP_ROLES.ORGANIZER }
-  //       ]
-  //     }
-  //  })
-   //
-  //  .state('management.sets', {
-  //   url: '/sets/{eventId}',
-  //   templateUrl: 'views/event.sets.html',
-  //   controller: 'EventSetsCtrl',
-  //   data: {
-  //     requireLoggedIn: true,
-  //     requiredRoles: [
-  //         {code: 2200, role: APP_ROLES.ADMIN },
-  //         {code: 2200, role: APP_ROLES.ORGANIZER }
-  //       ]
-   //
-  //     }
-  //  })
-  //  ;
 
   });
 

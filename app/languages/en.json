@@ -256,7 +256,6 @@
   "NO_ITEMS": "No items",
   "NO_ITEMS_FOUND_PLEASE_RETYPE": "No items found, type in a different search term above and click search.",
   "NO_PERMISSION_EDIT_STATUS": "You do not have permission to change the status",
-  "NO_SETS_DEFINED": "No sets defined",
   "NO_SUBCATEGORIES": "No subcategories found",
   "NUMBER:": "Number:",
   "OVERVIEW": "Overview",
@@ -308,8 +307,6 @@
     "PRIORITY": "Priority",
     "QUANTITY": "Quantity",
     "SEARCH": "Search",
-    "SEARCH_FROM_CATALOG": "Search from catalogue items...",
-    "SEARCH_FROM_STANDARD": "Search from standard sets...",
     "SELECT_STATUS": "Status",
     "SIZE": "Size",
     "STANDARD_SET": "Standard set",
@@ -383,7 +380,6 @@
   "CHANGE_TO_ANOTHER_ITEM_HELP": "In order to create a new item with this description, hit enter<br><br><b>OR</b> if you'd like to search for another item, keep typing",
   "SPONSOR_LOAN": "Sponsor Loan",
   "SPONSOR_SUPPLY": "Sponsor Supply",
-  "STANDARD_SETS": "Standard sets",
   "STATUS": "Status",
   "SUGGEST_ADDITION": "Recommend an addition",
   "SUGGEST_DELETE": "Recommend item deletion",
@@ -416,8 +412,7 @@
     "NO_EXISTING_ITEMS_HIT": "No existing items.",
     "NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM": "No existing items, hit return key to add as a new item.",
     "NO_EXISTING_SUPPLIERS_FOUND": "No existing suppliers found.",
-    "NO_ITEMS_FOUND_PLEASE_TRY": "No items found, please try using other search terms.",
-    "NO_SETS": "No sets found, please try using other search terms."
+    "NO_ITEMS_FOUND_PLEASE_TRY": "No items found, please try using other search terms."
   },
   "TEXT_SEARCHING": {
     "SEARCHING_FOR_ITEMS_IN_CATALOGUE": "Searching for items in catalogue...",

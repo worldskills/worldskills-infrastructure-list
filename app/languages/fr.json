@@ -255,7 +255,6 @@
   "NO_ITEMS": "Aucun item",
   "NO_ITEMS_FOUND_PLEASE_RETYPE": "Aucun item trouvé, Saisir un terme de recherche différent ci-dessus et cliquer sur rechercher.",
   "NO_PERMISSION_EDIT_STATUS": "Vous n'avez pas la permission de modifier le statut",
-  "NO_SETS_DEFINED": "Aucun lot n'a été défini",
   "NO_SUBCATEGORIES": "Aucune famille trouvée",
   "NUMBER:": "Numéro :",
   "OVERVIEW": "Vue d'ensemble",
@@ -306,8 +305,6 @@
     "PRIORITY": "Priorité",
     "QUANTITY": "Quantité",
     "SEARCH": "Rechercher...",
-    "SEARCH_FROM_CATALOG": "Rechercher dans les items du catalogue...",
-    "SEARCH_FROM_STANDARD": "Rechercher dans les lots standard...",
     "SELECT_STATUS": "Statut",
     "SIZE": "Taille",
     "STANDARD_SET": "Lot standard",
@@ -379,7 +376,6 @@
   "CHANGE_TO_ANOTHER_ITEM_HELP": "In order to create a new item with this description, hit enter<br><br><b>OR</b> if you'd like to search for another item, keep typing",
   "SPONSOR_LOAN": "Prêt sponsor",
   "SPONSOR_SUPPLY": "Fourniture sponsor",
-  "STANDARD_SETS": "Lots standard",
   "STATUS": "Statut",
   "SUGGEST_ADDITION": "Suggérer un ajout",
   "SUGGEST_DELETE": "Suggérer la suppression",
@@ -412,8 +408,7 @@
     "NO_EXISTING_ITEMS_HIT": "Aucun item n'a été trouvé.",
     "NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM": "Aucun item n'a été trouvé : appuyez sur Entrée pour ajouter un nouvel item.",
     "NO_EXISTING_SUPPLIERS_FOUND": "Aucun fournisseur existant ne correspond.",
-    "NO_ITEMS_FOUND_PLEASE_TRY": "Aucun item n'a été trouvé : merci de modifier les termes de la recherche.",
-    "NO_SETS": "Aucun lot n'a été trouvé : merci de modifier les termes de la recherche."
+    "NO_ITEMS_FOUND_PLEASE_TRY": "Aucun item n'a été trouvé : merci de modifier les termes de la recherche."
   },
   "TEXT_SEARCHING": {
     "SEARCHING_FOR_ITEMS_IN_CATALOGUE": "Recherche dans les items du catalogue...",

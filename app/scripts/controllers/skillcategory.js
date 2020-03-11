@@ -30,13 +30,11 @@ angular.module('ilApp')
     $scope.suppliedItem = {};
     $scope.searchAPI = false;
     $scope.searchSupplierAPI = false;
-    $scope.searchSetAPI = API_IL + '/sets/event/' + $state.params.eventId + "/?search="; //search url for autocomplete
     $scope.limit = 900;
     $scope.offset = 0;
     $scope.canceler = false;
     $scope.total = 0;
     $scope.supplierValue = false;
-    $scope.standardSetSelector = false;
     $scope.statusEditionItemId = -1; // starting at -1 as no item should be considered in edition mode on page start
 
     $scope.editRequestedItem = function(item) {
@@ -258,44 +256,6 @@ angular.module('ilApp')
     {
       return Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
     }
-
-    $scope.addStandardSet = function(){
-      $('#id_value').val('');
-      $scope.standardSetSelector = !$scope.standardSetSelector;
-
-      //set focus
-      if($scope.standardSetSelector){
-        $timeout(function(){
-          $('#id_value').focus();
-        });
-      }
-    };
-
-
-    $scope.addSelectedSet = function(set){
-      if(typeof set === 'undefined' || typeof set.originalObject === 'undefined' || typeof set.originalObject.id === 'undefined') return false;
-
-      $confirm({
-        title: "Add standard set to the list?",
-        itemset: set
-      },
-    {
-      templateUrl: 'views/add-set-confirm.html'
-    }).then(function(){
-        $scope.loading.init = true;
-
-        //add the set to the list
-        Items.addSet(set.originalObject.id, $scope.categoryId, $scope.event_id, $scope.skill_id).then(function(res){
-          $scope.standardSetSelector = false;
-          $scope.loading.init = false;
-          $scope.items = res;
-        },
-        function(error){
-          WSAlert.warning(error);
-          $scope.loading.init = false;
-        });
-      });
-    };
 
     $scope.sortBy = function(sort){
       $scope.allowReordering = false;

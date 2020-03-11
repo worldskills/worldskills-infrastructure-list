@@ -25,32 +25,6 @@
 
     <ws-spinner class='bigSpinner' ng-if='loading.addItem'></ws-spinner>
 
-    <!-- standard sets -->
-    <ws-spinner ng-show='loading.addSet'></ws-spinner>
-    <div ng-show='standardSetSelector' class='well'>
-      <h5 translate>ADD_STANDARD_SET</h5>
-      <angucomplete-alt id="id"
-        placeholder="{{ 'PLACEHOLDER.SEARCH_FROM_STANDARD' | translate }}"
-        pause="400"
-        selected-object="addSelectedSet"
-        remote-url="{{searchSetAPI}}"
-        remote-url-request-with-credentials="true"
-        remote-url-data-field="sets"
-        title-field="name"
-        description-field="description"
-        minlength="2"
-        search-fields="name"
-        disable-input="disableInput"
-        focus-first="true"
-        override-suggestions="true"
-        field-required="true"
-        text-searching="{{ 'TEXT_SEARCHING.SEARCH_FOR_STANDARD' | translate }}"
-        text-no-results="{{ 'TEXT_NO_RESULTS.NO_SETS' | translate }}"
-        input-class="form-control form-control-small has-feedback"
-      />
-    </div>
-    <!-- /standard sets -->
-
     <!-- notifications for no items -->
     <div class="row" ng-hide="loading.addItem">
       <div class="col-sm-12" ng-show="items.length == 0 && !loading.init">

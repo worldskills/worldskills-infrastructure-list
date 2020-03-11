@@ -185,19 +185,6 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Items.addSet = function(setId, categoryId, eventId){
-      var deferred = $q.defer();
-
-      $http.post(API_IL + "/items/" + eventId + "/requested_items/sets?set=" + setId + "&category=" + categoryId).then(function(res){
-        deferred.resolve(res.data);
-      },
-      function(error){
-        deferred.reject("Could not add set to the list: " + error.data.user_msg);
-      });
-
-      return deferred.promise;
-    };
-
     Items.getCatalogue = function(eventId, filters){
       var deferred = $q.defer();
 
