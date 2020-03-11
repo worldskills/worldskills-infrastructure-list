@@ -170,7 +170,7 @@
     $stateProvider
 
     .state('eventBase', {
-      url: '/event/{eventId}',
+      url: '/events/{eventId}',
       templateUrl: 'views/event.base.html',
       controller: 'EventBaseCtrl',
       abstract: true,
@@ -268,7 +268,7 @@
 
     //skills
     .state('eventBase.skill', {
-      url: '/skill/{skillId}',
+      url: '/skills/{skillId}',
       templateUrl: 'views/skill.html',
       controller: 'SkillCtrl',
       abstract: true,
@@ -339,7 +339,7 @@
     })
 
     .state('publicItems', {
-      url: '/event/{eventId}/skill/{skillId}/public',
+      url: '/events/{eventId}/skills/{skillId}/public',
       templateUrl: 'views/public-items.html',
       controller: 'PublicItemsCtrl',
       data: {
@@ -351,7 +351,7 @@
     })
 
     .state('requestedItems', {
-      url: '/event/{eventId}/requested-items',
+      url: '/events/{eventId}/requested-items',
       templateUrl: 'views/requested-items.html',
       controller: 'RequestedItemCtrl',
       data: {
@@ -365,7 +365,7 @@
     })
 
     .state('itemCategory', {
-      url: '/event/{eventId}/item-category',
+      url: '/events/{eventId}/item-category',
       templateUrl: 'views/item-category.html',
       controller: 'ItemCategoryCtrl',
       data: {
@@ -391,7 +391,7 @@
     })
 
     .state('recommendations', {
-      url: '/event/{eventId}/recommendations',
+      url: '/events/{eventId}/recommendations',
       templateUrl: 'views/recommendations.html',
       controller: 'RecommendationsCtrl',
       data: {
