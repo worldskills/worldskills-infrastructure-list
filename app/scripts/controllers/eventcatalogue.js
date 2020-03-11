@@ -11,6 +11,7 @@ angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, $stateParams, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
+    Status, Auth, APP_ROLES,
     UNITS, UPLOADS_URL
   ) {
 
@@ -57,6 +58,10 @@ angular.module('ilApp')
     };
 
     $scope.canEdit = function(){ return $scope.allowEditing; };
+
+    Status.getAllStatuses($state.params.eventId).then(function (result) {
+      $scope.statuses = result;
+    });
 
     $scope.toggleFullScreen = function(){
       var element = $('#fullScreenDiv').get(0);
@@ -759,6 +764,8 @@ angular.module('ilApp')
     };
 
     $scope.editRequestedItem = function(item) {
+
+      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
 
       //copy item
       $scope.item = angular.copy(item);
