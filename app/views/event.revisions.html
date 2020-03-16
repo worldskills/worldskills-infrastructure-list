@@ -60,6 +60,7 @@
               <span ng-if="revision.requested_item_previous.supplied_item.id != revision.requested_item.supplied_item.id"><br><span class="text-muted">Changed Supplied Item from {{revision.requested_item_previous.supplied_item.description.text || 'None'}} to</span> {{revision.requested_item.supplied_item.description.text || 'None'}}</span>
               <span ng-if="revision.requested_item_previous.status.id != revision.requested_item.status.id"><br><span class="text-muted">Changed Status from {{revision.requested_item_previous.status.name.text || 'None'}} to</span> {{revision.requested_item.status.name.text || 'None'}}</span>
               <span ng-if="revision.requested_item_previous.area.id != revision.requested_item.area.id"><br><span class="text-muted">Changed Area from {{revision.requested_item_previous.area.name || 'None'}} to</span> {{revision.requested_item.area.name || 'None'}}</span>
+              <span ng-if="revision.requested_item_previous.secret != revision.requested_item.secret"><br><span class="text-muted">Changed Secret from {{revision.requested_item_previous.secret || 'None'}} to</span> {{revision.requested_item.secret || 'None'}}</span>
             </span>
           </span>
           <span ng-switch-when="delete">
