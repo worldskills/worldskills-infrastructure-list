@@ -17,7 +17,7 @@
     ilApp.constant('WORLDSKILLS_API_AUTH', 'http://localhost:8080/auth');
     ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'http://worldskills-auth.localhost/oauth/authorize');
 
-    ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
+    ilApp.constant('LOAD_CHILD_ENTITY_ROLES', true);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
     ilApp.constant('ENVIRONMENT_WARNING', 'This is the local development environment. Happy coding!');
 
