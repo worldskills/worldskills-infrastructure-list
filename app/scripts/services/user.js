@@ -26,13 +26,8 @@ angular.module('ilApp')
       //wait for auth.user to resolve
       $q.when(auth.user.$promise).then(function () {
         $http.get(API_IL + "/person/" + auth.user.person_id + "/permissions/").then(function (result) {
-
-            if (result.data.person_positions.length > 0) {
-              User.activePositions.resolve(result.data.person_positions);
-              User.activePositions = result.data.person_positions;
-            }
-            else
-              User.activePositions.reject("No active positions for user");
+            User.activePositions.resolve(result.data.person_positions);
+            User.activePositions = result.data.person_positions;
           },
           function (error) {
             User.activePositions.reject("Could not fetch active user positions: " + error.data.user_msg);
