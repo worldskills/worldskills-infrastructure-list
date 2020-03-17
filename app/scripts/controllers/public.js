@@ -22,7 +22,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         $scope.activePositions.then(function (activePositions) {
           Auth.setUserSkillPermissions(activePositions, $scope.skill);
         });
-        auth.hasUserRole(APP_ID, ['Admin', 'RECOMMEND'], $scope.skill.entity).then(function (hasUserRole) {
+        auth.hasUserRole(APP_ID, ['Admin', 'Recommend'], $scope.skill.entity).then(function (hasUserRole) {
             $scope.userCanRecommend = hasUserRole;
         });
     })
