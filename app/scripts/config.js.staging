@@ -18,7 +18,7 @@
     ilApp.constant('WORLDSKILLS_API_AUTH', 'https://api.worldskills.show/auth');
     ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://auth.worldskills.show/oauth/authorize');
 
-    ilApp.constant('LOAD_CHILD_ENTITY_ROLES', false);
+    ilApp.constant('LOAD_CHILD_ENTITY_ROLES', true);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
     ilApp.constant('ENVIRONMENT_WARNING', 'This is the staging environment. Changes in this environment might get overwritten.');
 
