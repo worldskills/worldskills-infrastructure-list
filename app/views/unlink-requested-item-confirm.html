@@ -1,7 +1,6 @@
 <div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>
 <div class="modal-body">
   <p translate>ARE_YOU_SURE_YOU_WANT_TO_UNLINK</p>
-  <div ng-if="data.item.child_items.length > 0" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong translate>IMPORTANT!</strong> <span translate>THIS_ITEM_HAS_CHILD_ITEMS</span></div>
   <p>
     &nbsp;
   </p>
@@ -20,14 +19,6 @@
       <td>{{data.item.description.text}} <span class="label label-info">{{data.item.description.lang_code}}</span></td>
       <td>{{data.item.status.name.text}}</td>
     </tr>
-    <tr ng-if="data.item.child_items.length > 0" ng-repeat="child in data.item.child_items">
-      <td>
-        {{child.id}}
-      </td>
-      <td>{{child.description.text}} <span class="label label-info">{{child.description.lang_code}}</span></td>
-      <td>{{child.status.name.text}}</td>
-    </tr>
-    </tbody>
   </table>
 
 </div>

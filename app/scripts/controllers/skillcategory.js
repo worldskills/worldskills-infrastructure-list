@@ -193,12 +193,6 @@ angular.module('ilApp')
 
         //get items
         Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function (result) {
-          //TODO this can happen server side, just make sure all level 0 items have a child_items array, even if it's empty
-          angular.forEach(result.requested_items, function (val, key) {
-            if (typeof val.child_items == 'undefined')
-                result.requested_items[key].child_items = [];
-          });
-
           $scope.items = result.requested_items;
           $scope.total = result.total;
           $scope.additionRecommendationsCount = result.additionRecommendationsCount;

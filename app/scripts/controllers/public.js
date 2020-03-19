@@ -62,9 +62,6 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         angular.forEach(result, function (item) {
           if (typeof categoriesIndexed[item.category] !== 'undefined') {
             categoriesIndexed[item.category].items.push(item);
-            angular.forEach(item.child_items, function (child) {
-              categoriesIndexed[item.category].items.push(child);
-            });
           }
         });
         $scope.loading = false;

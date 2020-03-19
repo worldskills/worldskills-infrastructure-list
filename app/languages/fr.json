@@ -414,7 +414,6 @@
     "SEARCHING_FOR_ITEMS_IN_CATALOGUE": "Recherche dans les items du catalogue...",
     "SEARCH_FOR_STANDARD": "Recherche dans les lots standard..."
   },
-  "THIS_ITEM_HAS_CHILD_ITEMS": "Cet item possède des items enfants - ceux-ci seront également supprimés !",
   "TH_ACTIONS": "Actions",
   "TH_ANCHOR_FIXING_BASE_REQUIREMENTS": "Ancrage, fixation, autres besoins",
   "TH_CATEGORY": "Onglet",
