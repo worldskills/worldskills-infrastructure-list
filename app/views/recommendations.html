@@ -8,7 +8,20 @@
 
 <ws-spinner ng-if="loading.recommendations" class="bigSpinner"></ws-spinner>
 
-<div class="container">
+<form class="form-inline">
+  <div class="form-group">
+    <select class="form-control input-sm" ng-model="skillId" ng-change="updateSkillId()">
+        <option value=""></option>
+        <option ng-repeat="skill in skills" value="{{skill.id}}">{{skill.skill_number}} {{skill.name.text}}</option>
+    </select>
+  </div>
+</form>
+
+<div ng-if="recommendedItems.length == 0">
+  <br>
+  <div class="alert alert-warning" translate>RECOMMENDATIONS_NO_ITEM</div>
+</div>
+
     <div class="panel panel-validation-view" style="margin-top:20px;" ng-if="recommendedItems.length > 0">
         <div class="table-responsive table-validation bordered">
             <table class="table table-condensed table-bordered il-public-items-table">
@@ -25,9 +38,6 @@
                 </thead>
             </table>
         </div>
-    </div>
-    <div class="alert alert-warning" ng-if="recommendedItems.length == 0" translate>
-      RECOMMENDATIONS_NO_ITEM
     </div>
 
     <div class="panel panel-validation-view" ng-repeat="item in recommendedItems">
@@ -156,5 +166,5 @@
             </div>
         </div>
     </div>
-</div>
+
 <br/>

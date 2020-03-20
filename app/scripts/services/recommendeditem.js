@@ -63,11 +63,16 @@ angular.module('ilApp')
       return this.suggestOnItem(item, eventId, skillId);
     };
 
-    RecommendedItems.getRecommendations = function(eventId) {
+    RecommendedItems.getRecommendations = function(eventId, skillId) {
 
       var deferred = $q.defer();
 
-      $http.get(API_IL + "/recommended-items/event/" + eventId + "/recommendations").then(function(result) {
+      var config = {params: {}};
+      if (skillId) {
+        config.params.skill_id = skillId;
+      }
+
+      $http.get(API_IL + "/recommended-items/event/" + eventId + "/recommendations", config).then(function(result) {
         deferred.resolve(result.data);
       },
       function(error) {

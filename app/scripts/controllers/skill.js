@@ -15,8 +15,8 @@ angular.module('ilApp')
     $scope.participantNumbers = {};
     $scope.initializing = $q.defer();
 
-    $scope.canRecommend = function() {
-      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.RECOMMEND);
+    $scope.canHandleRecommend = function() {
+      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER);
     };
 
     $scope.initSkill = function(){

@@ -77,8 +77,8 @@
         <span class="fa fa-plus icon-circled"></span>
         <span style="color: #7c9eb2;">{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: additionRecommendationsCount } }}</span>
       </div>
-      <div style="top: 60px;" class="col-sm-12" ng-if="canRecommend()">
-        <a ui-sref="recommendations({eventId: selectedSkill.event.id})" translate>HANDLE_RECOMMENDATIONS</a>
+      <div style="top: 60px;" class="col-sm-12" ng-if="canHandleRecommend()">
+        <a ui-sref="recommendations({eventId: selectedSkill.event.id, skill: selectedSkill.id})" translate>HANDLE_RECOMMENDATIONS</a>
       </div>
     </div>
   </div>

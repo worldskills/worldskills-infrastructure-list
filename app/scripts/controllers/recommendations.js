@@ -8,7 +8,7 @@
  * Controller handling recommendations validation
  */
 angular.module('ilApp')
-  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $uibModal, $rootScope, $confirm, $translate, $aside, Items, Language, RecommendedItems, Events, WSAlert, APP_ROLES, UPLOADS_URL) {
+  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, Items, Language, RecommendedItems, Events, WSAlert, APP_ROLES, UPLOADS_URL) {
 
     $scope.event = false;
     $scope.data = {};
@@ -16,13 +16,25 @@ angular.module('ilApp')
     $scope.split = false;
     $scope.loading.recommendations = true;
 
+    $scope.skillId = $state.params.skill || '';
+
     Events.getEvent($stateParams.eventId).then( function (event) {
       $scope.event = event;
     });
 
+    Events.getSkillsForEvent($stateParams.eventId, false).then(function (skills) {
+      $scope.skills = skills;
+    });
+
+    $scope.updateSkillId = function () {
+      $location.search('skill', $scope.skillId);
+      $scope.refreshRecommendations();
+    };
+
     $scope.refreshRecommendations = function(){
       //Load recommendations
-      RecommendedItems.getRecommendations($state.params.eventId).then(function (res) {
+      $scope.loading.recommendations = true;
+      RecommendedItems.getRecommendations($state.params.eventId, $scope.skillId).then(function (res) {
         $scope.recommendedItems = res.recommendedItems;
         $scope.loading.recommendations = false;
       },
