@@ -12,10 +12,10 @@ angular.module('ilApp')
 
     var Category = {};
 
-    Category.getAll = function(){
+    Category.getAll = function(eventId){
       var deferred= $q.defer();
 
-      $http.get(API_IL + "/categories?l=" + Language.selectedLanguage).then(function(result){
+      $http.get(API_IL + "/events/" + eventId + "/categories?l=" + Language.selectedLanguage).then(function(result){
         deferred.resolve(result.data.categories);
       },
       function(error){

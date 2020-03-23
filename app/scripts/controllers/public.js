@@ -60,8 +60,8 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     Items.getPublicItems($scope.eventId, $scope.skillId)
       .then(function(result) {
         angular.forEach(result, function (item) {
-          if (typeof categoriesIndexed[item.category] !== 'undefined') {
-            categoriesIndexed[item.category].items.push(item);
+          if (typeof categoriesIndexed[item.category_id] !== 'undefined') {
+            categoriesIndexed[item.category_id].items.push(item);
           }
         });
         $scope.loading = false;
@@ -95,10 +95,10 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   };
 
 
-  $scope.openSuggestModalAside = function (listCategoryId, item) {
+  $scope.openSuggestModalAside = function (categoryId, item) {
     $scope.item = item || {};
-    $scope.item.listCategory = {
-      id : listCategoryId
+    $scope.item.category = {
+      id : categoryId
     };
     $scope.asideState = {
       open: true,
@@ -132,7 +132,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       person: {
         id: auth.user.person_id
       },
-      listCategoryId : item.category
+      categoryId : item.category_id
     };
 
     var self = this;

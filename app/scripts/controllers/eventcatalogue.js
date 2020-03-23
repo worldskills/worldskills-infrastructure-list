@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, $state, $stateParams, WSAlert, API_IL,
+  .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, Category, $state, $stateParams, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
     Status, Auth, APP_ROLES,
@@ -240,6 +240,13 @@ angular.module('ilApp')
       exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
     };
 
+    Category.getAll($state.params.eventId).then(function (res) {
+      $scope.categories = res
+    },
+    function(error){
+      WSAlert.danger(error);
+    });
+
     ItemCategory.getAllSubCategory($state.params.eventId)
       .then(function(res){
         $scope.subCategories = res.categories;
@@ -415,40 +422,11 @@ angular.module('ilApp')
       return (items.length > 0) ? items : false;
     };
 
-    $scope.filterSkillSelected = function (item, model) {
-      //clear category, as it's different set for each skill
-      $scope.filters.category = null;
-
-      Items.getCategories(item.id).then(function (res) {
-        res.unshift({
-          id: 'all',
-          category: {
-            name: {
-              text: $translate.instant('TEXT.ALL_CATEGORIES')
-            }
-          }
-        });
-
-        $scope.categories = res
-      },
-      function(error){
-        WSAlert.danger(error);
-      });
-    };
-
     //used in catalogue for loading new linked items
     $scope.addLinkedItemSkillSelected = function (item, model) {
       //clear out so that category selection clears out
-      $scope.newLinkedItemCategories = {};
       $scope.newLinkedItem.category = {};
       $scope.categoryId = 0;
-
-      Items.getCategories(item.id).then(function (res) {
-          $scope.newLinkedItemCategories = res
-        },
-        function(error){
-          WSAlert.danger(error);
-        });
     };
 
     $scope.removeItem = function($event) {
@@ -829,7 +807,7 @@ angular.module('ilApp')
         $scope.newLinkedItem.skill = $scope.filters.skill;
 
         //pre-set category
-        if($scope.filters.category && $scope.filters.category.id != 'all')
+        if($scope.filters.category)
           $scope.newLinkedItem.category = $scope.filters.category;
         else{
           $scope.addLinkedItemSkillSelected($scope.newLinkedItem.skill, false);

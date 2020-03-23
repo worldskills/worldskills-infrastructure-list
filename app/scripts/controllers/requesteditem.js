@@ -180,7 +180,7 @@ angular.module('ilApp')
         $scope.items = res.requested_items;
         $scope.items_total_count = res.total;
         //Load categories
-        return Category.getAll();
+        return Category.getAll($state.params.eventId);
       })
       .then(function(res){
         $scope.categories = res;

@@ -98,11 +98,13 @@ angular.module('ilApp')
       var split_supplied_item = $scope.item.split_supplied_item || false;
       delete $scope.item.split_supplied_item; //get rid of extra param
 
-      //set category
+      //set list and category
       if ($scope.suppliedItem.force === true) {
-        $scope.item.category = $scope.newLinkedItem.category.id;
+        $scope.item.list_id = $scope.newLinkedItem.skill.list_id;
+        $scope.item.category_id = $scope.newLinkedItem.category.id;
       } else {
-        $scope.item.category = $scope.categoryId;
+        $scope.item.list_id = $scope.listId;
+        $scope.item.category_id = $scope.categoryId;
       }
 
       //if supplied item selected - use link together

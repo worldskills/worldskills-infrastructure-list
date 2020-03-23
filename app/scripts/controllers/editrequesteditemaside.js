@@ -37,8 +37,6 @@ angular.module('ilApp')
 
       //fix category --> RequestedItemExtendedView --> RequestedItemView
       if (typeof item.category == 'object') {
-        var category = angular.copy(item.category); //keep a copy for safekeeping
-        item.category = item.category.id;
         extended = true;
       }
 

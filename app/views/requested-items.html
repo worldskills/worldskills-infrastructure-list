@@ -188,8 +188,8 @@
         <td class="select">
           <input type="checkbox" ng-checked="item.selected"/>
         </td>
-        <td><span ng-if="item.category.list.skill.sector">{{item.category.list.skill.sector.name.text}}</span></td>
-        <td>{{item.category.list.skill.skill_number}} {{item.category.list.skill.name.text}}</td>
+        <td><span ng-if="item.list.skill.sector">{{item.list.skill.sector.name.text}}</span></td>
+        <td>{{item.list.skill.skill_number}} {{item.list.skill.name.text}}</td>
         <td>{{item.description.text}}</td>
         <td>
           {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiply_factor} }}

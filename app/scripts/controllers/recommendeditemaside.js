@@ -83,7 +83,7 @@ angular.module('ilApp')
             person: {
               id: auth.user.person_id
             },
-            listCategoryId: $scope.item.category,
+            categoryId: $scope.item.category_id,
             suppliedItem: resSupplied,
             recommendedItemSupplied: resSupplied
           };
@@ -196,7 +196,7 @@ angular.module('ilApp')
       }
       //////////////////
 
-      $scope.recommendedItem.listCategory = $scope.recommendedItem.listCategory || $scope.$parent.item.listCategory;
+      $scope.recommendedItem.category = $scope.recommendedItem.category || $scope.$parent.item.category;
 
       //check if supplied form is $dirty
       if(

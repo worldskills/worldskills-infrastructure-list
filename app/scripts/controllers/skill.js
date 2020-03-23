@@ -31,6 +31,7 @@ angular.module('ilApp')
 
             //re-init event id to be used later
             $scope.event_id = result.event.id;
+            $scope.listId = result.list_id;
             $scope.getCategories();
         },
         function(error){

@@ -6,8 +6,6 @@
 
 <h1 class="h2" translate>RECOMMENDATIONS</h1>
 
-<ws-spinner ng-if="loading.recommendations" class="bigSpinner"></ws-spinner>
-
 <form class="form-inline">
   <div class="form-group">
     <select class="form-control input-sm" ng-model="skillId" ng-change="updateSkillId()">
@@ -16,6 +14,8 @@
     </select>
   </div>
 </form>
+
+<ws-spinner ng-if="loading.recommendations" class="bigSpinner"></ws-spinner>
 
 <div ng-if="recommendedItems.length == 0">
   <br>
@@ -50,7 +50,7 @@
                                 <span class="ng-binding">{{item.skill.name.text}}</span>
                             </td>
                             <td class="col-15">
-                                <span class="ng-binding ng-scope">{{ item.listCategory.category.name.text }}</span>
+                                <span class="ng-binding ng-scope">{{ item.category.name.text }}</span>
                             </td>
                             <td class="col-15">{{item.person.first_name}} {{item.person.last_name}}</td>
                             <td class="col-20">

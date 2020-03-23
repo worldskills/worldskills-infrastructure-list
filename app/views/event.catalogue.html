@@ -39,7 +39,7 @@
         <button class="btn btn-sm"
                 ng-click="showFilters = !showFilters"
                 ng-class="{'btn-primary': !selectedFilters.active, 'btn-warning': selectedFilters.active}"
-        ><i class="glyphicon glyphicon-filter"></i>&nbsp;<span translate>FILTERS</span><small ng-show="selectedFilters.active">&nbsp;[{{ 'SKILL_COLON' | translate }} {{selectedFilters.skill.skill_number}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.category.name.text}}</span>]</small></button>
+        ><i class="glyphicon glyphicon-filter"></i>&nbsp;<span translate>FILTERS</span><small ng-show="selectedFilters.active">&nbsp;[{{ 'SKILL_COLON' | translate }} {{selectedFilters.skill.skill_number}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.name.text}}</span>]</small></button>
 
         <button class="btn btn-sm" ng-click="toggleEditing()"
                 ng-class="{'btn-primary': !allowEditing, 'btn-danger': allowEditing}"><span class="glyphicon glyphicon-edit"></span>&nbsp;
@@ -59,7 +59,7 @@
       <h4><span translate>WHICH_DATA</span><br><small translate>CHANGE_FILTERS</small></h4>
       <div class="row">
         <div class="col col-xs-6">
-          <ui-select ng-model="filters.skill" theme="bootstrap" on-select="filterSkillSelected($item, $model)" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
+          <ui-select ng-model="filters.skill" theme="bootstrap" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
             <ui-select-match placeholder="{{ 'TITLE.CHOOSE_SKILL' | translate }}">{{$select.selected.name.text}} - {{$select.selected.skill_number}}</ui-select-match>
             <ui-select-choices repeat="skill as skill in (skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
               <div ng-bind-html="skill.name.text"></div>
@@ -70,10 +70,10 @@
           </ui-select>
         </div>
         <div class="col col-xs-4">
-          <ui-select ng-model="filters.category" theme="bootstrap" title="{{ 'TITLE.CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL' | translate }}" ng-disabled="!filters.skill">
-            <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL' | translate }}">{{$select.selected.category.name.text}}</ui-select-match>
-            <ui-select-choices repeat="cat as cat in (categories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
-              <div ng-bind-html="cat.category.name.text"></div>
+          <ui-select ng-model="filters.category" theme="bootstrap" title="{{ 'TITLE.CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL' | translate }}">
+            <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+            <ui-select-choices repeat="cat as cat in (categories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+              <div ng-bind-html="cat.name.text"></div>
             </ui-select-choices>
           </ui-select>
         </div>

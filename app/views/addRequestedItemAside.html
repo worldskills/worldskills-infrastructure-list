@@ -38,10 +38,10 @@
               <div class="form-group addForm">
                 <label class='control-label' translate>INSTALLATION_TYPE</label>
                 <!--<input type="text" class="input-sm form-control" placeholder="Installation type" ng-model='categoryId'>-->
-                <ui-select ng-model="newLinkedItem.category" theme="bootstrap" title="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE' | translate }}" ng-disabled="newLinkedItemCategories.length < 1">
-                  <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE_OPT' | translate }}">{{$select.selected.category.name.text}}</ui-select-match>
-                  <ui-select-choices repeat="cat as cat in (newLinkedItemCategories | customWSFilter: {objPath: 'category.name.text', 'query': $select.search}) track by $index">
-                    <div ng-bind-html="cat.category.name.text"></div>
+                <ui-select ng-model="newLinkedItem.category" theme="bootstrap" title="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE' | translate }}">
+                  <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_INSTALLATION_TYPE_OPT' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                  <ui-select-choices repeat="cat as cat in (categories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                    <div ng-bind-html="cat.name.text"></div>
                   </ui-select-choices>
                 </ui-select>
               </div>

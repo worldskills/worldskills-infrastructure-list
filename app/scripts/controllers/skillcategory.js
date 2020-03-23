@@ -113,7 +113,7 @@ angular.module('ilApp')
       Items.saveItem(item, $scope.event_id).then(function (result) {
         $scope.activeItem = false;
 
-        if(result.category != $scope.categoryId){
+        if(result.category_id != $scope.categoryId){
           //category changed, remove from list
           $scope.items.splice(itemIndex, 1);
         }
