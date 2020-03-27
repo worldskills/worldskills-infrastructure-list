@@ -34,6 +34,9 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
       auth.hasUserRole(APP_ID, ['Admin', 'EditConfig'], $scope.event.entity).then(function (hasUserRole) {
           $scope.userCanEditConfig = hasUserRole;
       });
+      auth.hasUserRole(APP_ID, ['Admin'], $scope.event.entity).then(function (hasUserRole) {
+          $scope.userCanSeeHistory = hasUserRole;
+      });
       Auth.setUserEventPermissions(activePositions, $scope.event);
       angular.forEach($scope.skills, function (skill) {
         Auth.setUserSkillPermissions(activePositions, skill);
