@@ -339,6 +339,7 @@
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.ORGANIZER },
+          {code: 2200, role: APP_ROLES.WS_MANAGER },
           {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
         ]
       }

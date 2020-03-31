@@ -259,7 +259,7 @@
         <br>
         <br>
     </div>
-    <div class='pull-right' ng-if="!data.item.deletionSuggestion">
+    <div class='pull-right' ng-if="!data.item.deletionSuggestion && data.userCanAcceptReject">
       <button ng-click="data.modifyRecommendation(data.item)" class='btn btn-md btn-warning'>Modify Recommendation before accepting</button>
     </div>
 
@@ -289,7 +289,7 @@
   </fieldset>
 </div>
 <div class="modal-footer">
-  <button ng-click="data.acceptRecommendation(data.item, this, data.split)" class='btn btn-md btn-success'>{{data.accept}}</button>
-  <button ng-click="data.rejectRecommendation(data.item, this)" class='btn btn-md btn-danger'>{{data.reject}}</button>
+  <button ng-show="data.userCanAcceptReject" ng-click="data.acceptRecommendation(data.item, this, data.split)" class='btn btn-md btn-success'>{{data.accept}}</button>
+  <button ng-show="data.userCanAcceptReject" ng-click="data.rejectRecommendation(data.item, this)" class='btn btn-md btn-danger'>{{data.reject}}</button>
   <button class="btn btn-primary" ng-click="cancel()">{{data.close}}</button>
 </div>

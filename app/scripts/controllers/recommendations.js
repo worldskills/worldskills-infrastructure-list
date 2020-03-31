@@ -8,7 +8,7 @@
  * Controller handling recommendations validation
  */
 angular.module('ilApp')
-  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, Items, Language, RecommendedItems, Events, WSAlert, APP_ROLES, UPLOADS_URL) {
+  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, auth, Items, Language, RecommendedItems, Events, WSAlert, APP_ID, APP_ROLES, UPLOADS_URL) {
 
     $scope.event = false;
     $scope.data = {};
@@ -20,6 +20,9 @@ angular.module('ilApp')
 
     Events.getEvent($stateParams.eventId).then( function (event) {
       $scope.event = event;
+      auth.hasUserRole(APP_ID, ['Admin', 'Organizer', 'Sector Manager'], $scope.event.entity).then(function (hasUserRole) {
+          $scope.userCanAcceptReject = hasUserRole;
+      });
     });
 
     Events.getSkillsForEvent($stateParams.eventId, false).then(function (skills) {
@@ -83,6 +86,7 @@ angular.module('ilApp')
           title: $translate.instant("JSTEXT_REVIEW_ITEMS.TITLE"),
           item: item,
           split: $scope.split,
+          userCanAcceptReject: $scope.userCanAcceptReject,
           modifyRecommendation: function(itemRef){
             openSuggestModalAside(item, itemRef);
           },
