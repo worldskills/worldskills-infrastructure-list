@@ -125,14 +125,14 @@ angular.module('ilApp')
 
     $scope.saveItem = function(modifiedItem) {
       var extendedCategory;
-      var list = modifiedItem.category.list;
+      var list = modifiedItem.list;
 
-      return Items.getCategories(modifiedItem.category.list.skill.id)
+      return Items.getCategories(modifiedItem.list.skill.id)
       .then(function(categories) {
 
           if($scope.editForm.category.$dirty) {
             var cat = categories.filter(function (cat) {
-              return cat.category.id == $scope.editedItem.category.id
+              return cat.id == $scope.editedItem.category.id
             });
             if(cat.length > 0){
               modifiedItem.category = cat[0];
@@ -159,7 +159,7 @@ angular.module('ilApp')
 
           extendedCategory = modifiedItem.category;
           extendedCategory.list = list;
-          modifiedItem.category = modifiedItem.category.id;
+          modifiedItem.category_id = modifiedItem.category.id;
           modifiedItem.tier_id = $scope.editedItem.tier;
 
           return Items.saveItem(modifiedItem, $state.params.eventId);
