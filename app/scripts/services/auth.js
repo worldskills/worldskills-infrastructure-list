@@ -52,21 +52,21 @@ angular.module('ilApp')
       }
       if (Auth.hasRole(APP_ROLES.ORGANIZER)) {
         angular.forEach(activePositions, function (position) {
-          if (typeof position.event !== 'undefined' && position.event.id == skill.event.id) {
+          if (position.event && position.event.id == skill.event.id) {
             skill.userCanEdit = true;
           }
         });
       }
       if (Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER)) {
         angular.forEach(activePositions, function (position) {
-          if (typeof position.sector !== 'undefined' && position.sector.id == skill.sector.id) {
+          if (position.sector && skill.sector && position.sector.id == skill.sector.id) {
             skill.userCanEdit = true;
           }
         });
       }
       if (Auth.hasRole(APP_ROLES.WS_MANAGER)) {
         angular.forEach(activePositions, function (position) {
-          if (typeof position.skill !== 'undefined' && position.skill.id == skill.id) {
+          if (position.skill && position.skill.id == skill.id) {
             skill.userCanEdit = true;
           }
         });
