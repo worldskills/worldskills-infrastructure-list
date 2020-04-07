@@ -54,7 +54,8 @@
                 <tr ng-repeat="skill in skills track by skill.id">
                     <td>{{skill.id}}</td>
                     <td style="white-space: nowrap;">
-                        <a ui-sref="publicItems({eventId: event.id, skillId: skill.id})">{{skill.skill_number}} {{skill.name.text}}</a>
+                        <a ng-if="skill.userCanView" ui-sref="publicItems({eventId: event.id, skillId: skill.id})">{{skill.skill_number}} {{skill.name.text}}</a>
+                        <span ng-if="!skill.userCanView">{{skill.skill_number}} {{skill.name.text}}</span>
                     </td>
                     <td>
                       <div class="progress" style="margin-bottom: 0;">

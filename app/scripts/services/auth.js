@@ -43,6 +43,9 @@ angular.module('ilApp')
     };
 
     Auth.setUserSkillPermissions = function (activePositions, skill) {
+      auth.hasUserRole(APP_ID, ['Admin', 'View'], skill.entity_id).then(function (hasUserRole) {
+          skill.userCanView = hasUserRole;
+      });
       if (Auth.hasRole(APP_ROLES.ADMIN)) {
         skill.userCanEdit = true;
         return;
