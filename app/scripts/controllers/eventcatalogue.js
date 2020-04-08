@@ -11,7 +11,7 @@ angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, Category, $state, $stateParams, WSAlert, API_IL,
     $timeout, uiGridConstants, $confirm,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
-    Status, Auth, APP_ROLES,
+    Status, Auth, auth, APP_ID, APP_ROLES,
     UNITS, UPLOADS_URL
   ) {
 
@@ -743,7 +743,9 @@ angular.module('ilApp')
 
     $scope.editRequestedItem = function(item) {
 
-      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
+        $scope.canEditItemStatus = hasUserRole;
+      });
 
       //copy item
       $scope.item = angular.copy(item);

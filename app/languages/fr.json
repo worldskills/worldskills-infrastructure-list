@@ -98,13 +98,6 @@
   },
   "CONFIRM_DELETION_SUGGESTION": "Souhaitez-vous vraiment suggérer la suppression de cet item ? Vous pouvez spécifier une raison dans le champ ci-dessous (optionnel)",
   "CONSTANT": {
-    "APP_ROLES": {
-      "ADMIN": "Admin",
-      "ORGANIZER": "Organisateur",
-      "VIEW": "Afficher",
-      "WS_MANAGER": "Responsable d'atelier",
-      "WS_SECTOR_MANAGER": "Responsable de secteur"
-    },
     "MULTIPLIERS": {
       "COMPETITORS": "par candidat",
       "EXPERTS": "par juré",

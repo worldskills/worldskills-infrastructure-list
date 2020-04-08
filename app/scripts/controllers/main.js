@@ -6,8 +6,6 @@ angular.module('ilApp')
   ) {
     $scope.selectedLanguage = Language.selectedLanguage;
 
-    $scope.ilRoles = {};
-
     $scope.selectedSkill = {};
     $scope.selectedSector = {};
     $scope.loadStatus = true;

@@ -22,24 +22,22 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
 
     promises.push(Events.getEvent(eventId));
     promises.push(Events.getSkillsForEvent(eventId, true));
-    promises.push($scope.activePositions);
 
     $q.all(promises).then(function(res){
       $scope.event = res[0];
       $scope.skills = res[1];
-      var activePositions = res[2];
-      auth.hasUserRole(APP_ID, ['Admin', 'EditItemCategories'], $scope.event.entity).then(function (hasUserRole) {
+      auth.hasUserRole(APP_ID, ['Admin', 'EditItemCategories'], $scope.event.entity_id).then(function (hasUserRole) {
           $scope.userCanEditItemCategories = hasUserRole;
       });
-      auth.hasUserRole(APP_ID, ['Admin', 'EditConfig'], $scope.event.entity).then(function (hasUserRole) {
+      auth.hasUserRole(APP_ID, ['Admin', 'EditConfig'], $scope.event.entity_id).then(function (hasUserRole) {
           $scope.userCanEditConfig = hasUserRole;
       });
-      auth.hasUserRole(APP_ID, ['Admin'], $scope.event.entity).then(function (hasUserRole) {
+      auth.hasUserRole(APP_ID, ['Admin'], $scope.event.entity_id).then(function (hasUserRole) {
           $scope.userCanSeeHistory = hasUserRole;
       });
-      Auth.setUserEventPermissions(activePositions, $scope.event);
+      Auth.setUserEventPermissions($scope.event);
       angular.forEach($scope.skills, function (skill) {
-        Auth.setUserSkillPermissions(activePositions, skill);
+        Auth.setUserSkillPermissions(skill);
       });
       $scope.loading.lists = false;
     }, function(errors){

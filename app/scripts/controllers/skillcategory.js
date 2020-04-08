@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
+  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, auth, APP_ID, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
 
     $scope.UNITS = UNITS;
     $scope.UPLOADS_URL = UPLOADS_URL;
@@ -37,10 +37,11 @@ angular.module('ilApp')
     $scope.supplierValue = false;
     $scope.statusEditionItemId = -1; // starting at -1 as no item should be considered in edition mode on page start
 
-    $scope.editRequestedItem = function(item) {
+    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
+      $scope.canEditItemStatus = hasUserRole;
+    });
 
-      //defining canEditItemStatus here because roles is undefined at start for an unknown reason
-      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+    $scope.editRequestedItem = function(item) {
 
       $scope.supplierValue = false;
 
@@ -72,8 +73,6 @@ angular.module('ilApp')
     };
 
     $scope.editItem = function (item, itemIndex) {
-      //defining canEditItemStatus here because roles is undefined at start for an unknown reason
-      $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
 
       if ($scope.activeItem == item.id) $scope.activeItem = false;
       else {
@@ -167,9 +166,9 @@ angular.module('ilApp')
       }).result.then(postClose, postClose);
     };
 
-    $scope.canEditSuppliedItem = function(){
-      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER);
-    };
+    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS], $scope.event.entity_id).then(function (hasUserRole) {
+      $scope.canEditSuppliedItem = hasUserRole;
+    });
 
     $scope.initCategory = function () {
       $scope.offset = 0;
@@ -194,6 +193,15 @@ angular.module('ilApp')
         //get items
         Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function (result) {
           $scope.items = result.requested_items;
+          angular.forEach($scope.items, function (item) {
+            auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_REQUESTED_ITEMS_ALWAYS], $scope.event.entity_id).then(function (hasUserRole) {
+              if (hasUserRole) {
+                item.canEdit = true;
+              } else {
+                item.canEdit = item.status.allow_editing;
+              }
+            });
+          });
           $scope.total = result.total;
           $scope.additionRecommendationsCount = result.additionRecommendationsCount;
           $scope.loading.init = false;
@@ -239,17 +247,9 @@ angular.module('ilApp')
     //link helper function from items
     $scope.factorNeeded = Items.factorNeeded;
 
-    $scope.canEdit = function (item) {
-      if(Auth.hasRole(APP_ROLES.ORGANIZER) || Auth.hasRole(APP_ROLES.ADMIN)) {
-        return true;
-      }
-      return item.status.allow_editing;
-    };
-
-    $scope.canEditStatus = function ()
-    {
-      return Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
-    }
+    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
+      $scope.canEditItemStatus = hasUserRole;
+    });
 
     $scope.sortBy = function(sort){
       $scope.allowReordering = false;

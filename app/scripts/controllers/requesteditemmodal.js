@@ -21,12 +21,16 @@ angular.module('ilApp')
     ItemCategory,
     WSAlert,
     Auth,
+    auth,
+    APP_ID,
     APP_ROLES,
     API_IL,
     Items
   ) {
 
-    $scope.canEditItemStatus = Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.EDIT_ITEM_STATUS);
+    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
+      $scope.canEditItemStatus = hasUserRole;
+    });
 
     $scope.asideState = {
       open: true,

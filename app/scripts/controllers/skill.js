@@ -8,26 +8,24 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCtrl', function ($q, $http, $scope, $state, $interval, Language, Auth, APP_ROLES, API_IMAGES, $timeout, auth, Items, Events, WSAlert) {
+  .controller('SkillCtrl', function ($q, $http, $scope, $state, $interval, Language, APP_ID, APP_ROLES, API_IMAGES, $timeout, Auth, auth, Items, Events, WSAlert) {
     //$scope.skill_id =
     //$scope.skill_id = $state.params.skillId;
     $scope.categories = {};
     $scope.participantNumbers = {};
     $scope.initializing = $q.defer();
 
-    $scope.canHandleRecommend = function() {
-      return Auth.hasRole(APP_ROLES.ADMIN) || Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER) || Auth.hasRole(APP_ROLES.WS_MANAGER);
-    };
+    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS, APP_ROLES.EDIT_REQUESTED_ITEMS], $scope.event.entity_id).then(function (hasUserRole) {
+      $scope.canHandleRecommend = hasUserRole;
+    });
 
     $scope.initSkill = function(){
         $scope.skill_id = $state.params.skillId;
         Events.getSkill($scope.skill_id).then(function(result){
             $scope.selectedSkill = result;
 
-            $scope.activePositions.then(function (activePositions) {
-              Auth.setUserSkillPermissions(activePositions, $scope.selectedSkill);
-              Auth.setUserEventPermissions(activePositions, $scope.selectedSkill.event);
-            });
+            Auth.setUserSkillPermissions($scope.selectedSkill);
+            Auth.setUserEventPermissions($scope.selectedSkill.event);
 
             //re-init event id to be used later
             $scope.event_id = result.event.id;

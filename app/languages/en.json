@@ -98,13 +98,6 @@
   },
   "CONFIRM_DELETION_SUGGESTION": "Do you really wish to recommend this item's deletion? You can provide a reason in the section below (optional)",
   "CONSTANT": {
-    "APP_ROLES": {
-      "ADMIN": "Admin",
-      "ORGANIZER": "Organizer",
-      "VIEW": "View",
-      "WS_MANAGER": "Workshop Manager",
-      "WS_SECTOR_MANAGER": "Sector Manager"
-    },
     "MULTIPLIERS": {
       "COMPETITORS": "per Competitor",
       "EXPERTS": "per Expert",

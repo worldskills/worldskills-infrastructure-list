@@ -39,15 +39,18 @@
 
   ilApp.constant('APP_ROLES', {
     ADMIN: 'Admin',
-    ORGANIZER: 'Organizer',
-    WS_MANAGER: 'Workshop Manager',
-    WS_SECTOR_MANAGER: 'Sector Manager',
+    EDIT_REQUESTED_ITEMS: 'EditRequestedItems',
+    EDIT_REQUESTED_ITEMS_ALWAYS: 'EditRequestedAlways',
+    CREATE_SUPPLIED_ITEMS: 'CreateSuppliedItems',
+    EDIT_SUPPLIED_ITEMS: 'EditSuppliedItems',
+    EDIT_SUPPLIERS: 'EditSuppliers',
     EDIT_ITEM_CATEGORIES: 'EditItemCategories',
     EDIT_ITEM_STATUS: 'EditItemStatus',
     EDIT_CONFIG: 'EditConfig',
     RECOMMEND: 'Recommend',
     RECOMMEND_SUPPLIED: 'RecommendSupplied',
-    VIEW: 'View'
+    VIEW: 'View',
+    VIEW_ALWAYS: 'ViewAlways'
   });
 
   ilApp.constant('MULTIPLIERS', [
@@ -156,9 +159,7 @@
         requireLoggedIn: true,
           requiredRoles: [
             {code: 2200, role: APP_ROLES.ADMIN },
-            {code: 2200, role: APP_ROLES.ORGANIZER },
-            {code: 2200, role: APP_ROLES.WS_MANAGER },
-            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+            {code: 2200, role: APP_ROLES.VIEW }
           ]
         }
     })
@@ -172,8 +173,7 @@
         requireLoggedIn: true,
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          {code: 2200, role: APP_ROLES.EDIT_SUPPLIED_ITEMS }
         ]
       }
     })
@@ -186,7 +186,7 @@
         requireLoggedIn: true,
           requiredRoles: [
             {code: 2200, role: APP_ROLES.ADMIN },
-            {code: 2200, role: APP_ROLES.ORGANIZER }
+            {code: 2200, role: APP_ROLES.EDIT_CONFIG }
           ]
         }
     })
@@ -199,8 +199,7 @@
         requireLoggedIn: true,
           requiredRoles: [
             {code: 2200, role: APP_ROLES.ADMIN },
-            {code: 2200, role: APP_ROLES.ORGANIZER },
-            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+            {code: 2200, role: APP_ROLES.EDIT_CONFIG }
           ]
         }
     })
@@ -215,9 +214,7 @@
         requireLoggedIn: true,
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_MANAGER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          {code: 2200, role: APP_ROLES.EDIT_REQUESTED_ITEMS }
         ]
       }
     })
@@ -230,9 +227,7 @@
         requireLoggedIn: true,
         requiredRoles: [
             {code: 2200, role: APP_ROLES.ADMIN },
-            {code: 2200, role: APP_ROLES.ORGANIZER },
-            {code: 2200, role: APP_ROLES.WS_MANAGER },
-            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+            {code: 2200, role: APP_ROLES.EDIT_REQUESTED_ITEMS }
           ]
         }
     })
@@ -245,9 +240,7 @@
         requireLoggedIn: true,
         requiredRoles: [
             {code: 2200, role: APP_ROLES.ADMIN },
-            {code: 2200, role: APP_ROLES.ORGANIZER },
-            {code: 2200, role: APP_ROLES.WS_MANAGER },
-            {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+            {code: 2200, role: APP_ROLES.EDIT_REQUESTED_ITEMS }
           ]
         }
     })
@@ -272,6 +265,7 @@
       data: {
         requireLoggedIn: true,
         requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.VIEW }
         ]
       }
@@ -284,6 +278,7 @@
       data: {
         requireLoggedIn: true,
         requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.VIEW }
         ]
       }
@@ -297,9 +292,7 @@
         requireLoggedIn: true,
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER },
-          {code: 2200, role: APP_ROLES.WS_MANAGER }
+          {code: 2200, role: APP_ROLES.EDIT_REQUESTED_ITEMS }
         ]
       }
     })
@@ -338,9 +331,8 @@
         requireLoggedIn: true,
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
-          {code: 2200, role: APP_ROLES.ORGANIZER },
-          {code: 2200, role: APP_ROLES.WS_MANAGER },
-          {code: 2200, role: APP_ROLES.WS_SECTOR_MANAGER }
+          {code: 2200, role: APP_ROLES.EDIT_SUPPLIED_ITEMS },
+          {code: 2200, role: APP_ROLES.EDIT_REQUESTED_ITEMS }
         ]
       }
     })

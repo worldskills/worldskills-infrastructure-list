@@ -19,11 +19,12 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   promises.push(Events.getSkill($scope.skillId)
     .then(function(result){
         $scope.skill = result;
-        $scope.activePositions.then(function (activePositions) {
-          Auth.setUserSkillPermissions(activePositions, $scope.skill);
-        });
-        auth.hasUserRole(APP_ID, ['Admin', 'Recommend'], $scope.skill.entity_id).then(function (hasUserRole) {
+        Auth.setUserSkillPermissions($scope.skill);
+        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.RECOMMEND], $scope.skill.entity_id).then(function (hasUserRole) {
             $scope.userCanRecommend = hasUserRole;
+        });
+        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.skill.entity_id).then(function (hasUserRole) {
+          $scope.canEditItemStatus = hasUserRole;
         });
     })
   );
@@ -84,16 +85,6 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     category.reverse = (category.sort === sort) ? !category.reverse : false;
     category.sort = sort;
   };
-
-  $scope.canRecommendSupplied = function(){
-    return Auth.hasRole(APP_ROLES.ADMIN) || (
-      Auth.hasRole(APP_ROLES.RECOMMEND_SUPPLIED)
-      && recommendedItem.requestedItemId
-      && item.secret !== true
-      && item.status.show_in_public_view
-    );
-  };
-
 
   $scope.openSuggestModalAside = function (categoryId, item) {
     $scope.item = item || {};

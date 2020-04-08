@@ -6,10 +6,10 @@
 <td>
   <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
   <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
-  <a href ng-if="canEdit(item)" ng-click="editRequestedItem(item);">
+  <a href ng-if="item.canEdit" ng-click="editRequestedItem(item);">
     {{item.description.text}}
   </a>
-  <span ng-if="!canEdit(item)">
+  <span ng-if="!item.canEdit">
     {{item.description.text}}
   </span>
 </td>
@@ -31,11 +31,11 @@
 </td>
 <td>
   <span class='actions'>
-    <span ng-if="!canEdit(item) && canEditStatus()">
+    <span ng-if="item.canEdit && canEditItemStatus">
         <a class="btn btn-warning btn-xs" ng-click="editItemStatus(item);" style="margin-right: 8px;" title="Edit item status"><span class="glyphicon glyphicon-edit"></span></a>
     </span>
-    <div style='width: 32px;' ng-if="!canEdit(item)">&nbsp;</div>
-    <span ng-if="canEdit(item)">
+    <div style='width: 32px;' ng-if="!item.canEdit">&nbsp;</div>
+    <span ng-if="item.canEdit">
       <a class="btn btn-danger btn-xs" ng-click="removeItem(item, $index);" style="margin-right: 8px;" title="Delete item"><span class="glyphicon glyphicon-remove"></span></a>
     </span>
   </span>

@@ -5,72 +5,19 @@ angular.module('ilApp')
 
     var Auth = {};
 
-    Auth.hasRole = function(role) {
-      var hasRole = false;
-      angular.forEach(auth.user.roles, function (val, key) {
-        if (val.name == role) {
-          hasRole = true;
-        }
-      });
-      return hasRole;
-    };
-
-    Auth.ilRoles = function () {
-      return auth.user.roles.filter(function (role) {
-        return role.role_application.application_code == APP_ID;
+    Auth.setUserEventPermissions = function (event) {
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS], event.entity_id).then(function (hasUserRole) {
+        event.userCanEdit = hasUserRole;
       });
     };
 
-    Auth.setUserEventPermissions = function (activePositions, event) {
-      if (Auth.hasRole(APP_ROLES.ADMIN)) {
-        event.userCanEdit = true;
-        return;
-      }
-      if (Auth.hasRole(APP_ROLES.ORGANIZER)) {
-        angular.forEach(activePositions, function (position) {
-          if (position.event && position.event.id == event.id) {
-            event.userCanEdit = true;
-          }
-        });
-      }
-      if (Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER)) {
-        angular.forEach(activePositions, function (position) {
-          if (position.sector && position.sector.event.id == event.id) {
-            event.userCanEdit = true;
-          }
-        });
-      }
-    };
-
-    Auth.setUserSkillPermissions = function (activePositions, skill) {
-      auth.hasUserRole(APP_ID, ['Admin', 'View'], skill.entity_id).then(function (hasUserRole) {
+    Auth.setUserSkillPermissions = function (skill) {
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.VIEW], skill.entity_id).then(function (hasUserRole) {
           skill.userCanView = hasUserRole;
       });
-      if (Auth.hasRole(APP_ROLES.ADMIN)) {
-        skill.userCanEdit = true;
-        return;
-      }
-      if (Auth.hasRole(APP_ROLES.ORGANIZER)) {
-        angular.forEach(activePositions, function (position) {
-          if (position.event && position.event.id == skill.event.id) {
-            skill.userCanEdit = true;
-          }
-        });
-      }
-      if (Auth.hasRole(APP_ROLES.WS_SECTOR_MANAGER)) {
-        angular.forEach(activePositions, function (position) {
-          if (position.sector && skill.sector && position.sector.id == skill.sector.id) {
-            skill.userCanEdit = true;
-          }
-        });
-      }
-      if (Auth.hasRole(APP_ROLES.WS_MANAGER)) {
-        angular.forEach(activePositions, function (position) {
-          if (position.skill && position.skill.id == skill.id) {
-            skill.userCanEdit = true;
-          }
-        });
-      }
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_REQUESTED_ITEMS], skill.entity_id).then(function (hasUserRole) {
+          skill.userCanEdit = hasUserRole;
+      });
     };
 
     Auth.getAuthUser = function (pid) {
