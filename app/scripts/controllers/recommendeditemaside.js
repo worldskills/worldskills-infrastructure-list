@@ -271,6 +271,10 @@ angular.module('ilApp')
       }
     });
 
+    $scope.uploader.onAfterAddingFile = function() {
+       $scope.addForm.$setDirty();
+    };
+
     $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
       //init array in case it doesn't exist yet
       if($scope.recommendedItem.recommendedItemSupplied.files == void 0)
