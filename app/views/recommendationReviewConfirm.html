@@ -241,14 +241,14 @@
               <td><b translate>Files</b><br>
                 <ul>
                   <li ng-repeat="file in data.item.suppliedItem.files">
-                    <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
+                    <a target="_blank" href="{{data.UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
                   </li>
                 </ul>
               </td>
               <td><b translate>Files</b><br>
                 <ul>
                   <li ng-repeat="file in data.item.recommendedItemSupplied.recommended_files">
-                    <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
+                    <a target="_blank" href="{{data.UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
                   </li>
                 </ul>
               </td>

@@ -87,6 +87,7 @@ angular.module('ilApp')
           item: item,
           split: $scope.split,
           userCanAcceptReject: $scope.userCanAcceptReject,
+          UPLOADS_URL: $scope.UPLOADS_URL,
           modifyRecommendation: function(itemRef){
             openSuggestModalAside(item, itemRef);
           },
