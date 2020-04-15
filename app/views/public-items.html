@@ -171,7 +171,7 @@
                               <span class='label' ng-style="{'background-color': item.status.color_code}" title="{{item.status.description.text}}">{{item.status.name.text}}</span>
                           </td>
                           <td class="canRecommend">
-                              <div ng-if="userCanRecommend && item.status.allow_editing && !item.secret">
+                              <div ng-if="userCanRecommend && item.status.allow_editing && item.status.show_in_public_view">
                                 <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)"><span
                                   class="glyphicon glyphicon-edit"></span></a>
                                 <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span
