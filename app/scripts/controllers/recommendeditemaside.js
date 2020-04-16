@@ -257,6 +257,10 @@ angular.module('ilApp')
           WSAlert.danger(error);
         });
       }
+      
+      if($scope.item && $scope.item.id) {
+        $scope.item.modificationSuggestions++;
+      }
     };
 
     $scope.cancel = function () {
