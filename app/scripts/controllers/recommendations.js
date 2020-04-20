@@ -20,7 +20,7 @@ angular.module('ilApp')
 
     Events.getEvent($stateParams.eventId).then( function (event) {
       $scope.event = event;
-      auth.hasUserRole(APP_ID, ['Admin', 'Organizer', 'Sector Manager'], $scope.event.entity_id).then(function (hasUserRole) {
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS], $scope.event.entity_id).then(function (hasUserRole) {
           $scope.userCanAcceptReject = hasUserRole;
       });
     });
