@@ -15,10 +15,6 @@ angular.module('ilApp')
     $scope.participantNumbers = {};
     $scope.initializing = $q.defer();
 
-    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS, APP_ROLES.EDIT_REQUESTED_ITEMS], $scope.event.entity_id).then(function (hasUserRole) {
-      $scope.canHandleRecommend = hasUserRole;
-    });
-
     $scope.initSkill = function(){
         $scope.skill_id = $state.params.skillId;
         Events.getSkill($scope.skill_id).then(function(result){
@@ -26,6 +22,10 @@ angular.module('ilApp')
 
             Auth.setUserSkillPermissions($scope.selectedSkill);
             Auth.setUserEventPermissions($scope.selectedSkill.event);
+
+            auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS, APP_ROLES.EDIT_REQUESTED_ITEMS], $scope.selectedSkill.entity_id).then(function (hasUserRole) {
+              $scope.canHandleRecommend = hasUserRole;
+            });
 
             //re-init event id to be used later
             $scope.event_id = result.event.id;
