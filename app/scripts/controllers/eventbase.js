@@ -37,7 +37,7 @@ angular.module('ilApp')
     Events.getEvent($stateParams.eventId).then( function (event) {
       $scope.event = event;
     });
-    Events.getSkillsForEvent($stateParams.eventId, $scope.loadStatus).then(function (result) {
+    Events.getSkillsForEvent($stateParams.eventId, true).then(function (result) {
       $scope.skills = result;
       $scope.appLoaded.resolve();
     });
