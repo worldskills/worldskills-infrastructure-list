@@ -22,10 +22,12 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
 
     promises.push(Events.getEvent(eventId));
     promises.push(Events.getSkillsForEvent(eventId, true));
+    promises.push(Events.getListsForEvent(eventId));
 
     $q.all(promises).then(function(res){
       $scope.event = res[0];
       $scope.skills = res[1];
+      $scope.lists = res[2];
       auth.hasUserRole(APP_ID, ['Admin', 'EditItemCategories'], $scope.event.entity_id).then(function (hasUserRole) {
           $scope.userCanEditItemCategories = hasUserRole;
       });
@@ -36,8 +38,8 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
           $scope.userCanSeeHistory = hasUserRole;
       });
       Auth.setUserEventPermissions($scope.event);
-      angular.forEach($scope.skills, function (skill) {
-        Auth.setUserSkillPermissions(skill);
+      angular.forEach($scope.lists, function (list) {
+        Auth.setUserListPermissions(list);
       });
       $scope.loading.lists = false;
     }, function(errors){
