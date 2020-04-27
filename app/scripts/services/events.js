@@ -54,19 +54,6 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Events.getViewEvents = function(pid){
-      var deferred = $q.defer();
-
-      $http.get(API_IL + "/person/" + pid + "/permissions/view").then(function(result){
-        deferred.resolve(result.data);
-      },
-      function(error){
-        deferred.reject("Could not fetch list of events with view permissions");
-      });
-
-      return deferred.promise;
-    };
-
     Events.getSkillsForSector = function(sectorId, eventId, status){
         var deferred = $q.defer();
         status = status || false;
