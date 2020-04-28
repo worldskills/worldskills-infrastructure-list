@@ -472,15 +472,15 @@
                   .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
                   .another-file-over-class { border: dotted 3px green; }
                 </style>
-                <div ng-show="uploader.isHTML5">
-                  <div nv-file-drop="" uploader="uploader">
+                <div>
+                  <label nv-file-drop="" uploader="uploader" style="display: block;">
                     <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone" translate>
                       DROP_FILES_HERE_TO_UPLOAD
                     </div>
-                  </div>
+                    <input class="hidden" type="file" nv-file-select="" uploader="uploader" multiple  />
+                  </label>
                 </div>
                 <!-- drop zone -->
-              <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple  />
 
                 <!-- queue -->
                 <div class="well" style='background-color: #fff;' ng-show="uploader.queue.length > 0">
@@ -491,7 +491,7 @@
                     <tr >
                       <th translate>TH_NAME</th>
                       <th ng-show="uploader.isHTML5" translate>TH_SIZE</th>
-                      <th ng-show="uploader.isHTML5" translate>TH_PROGRESS</th>
+                      <th ng-show="uploader.isHTML5 && uploader.isUploading" translate>TH_PROGRESS</th>
                       <th translate>TH_ACTIONS</th>
                     </tr>
                     </thead>
@@ -502,18 +502,12 @@
                         <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
                         <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>&nbsp;<strong>{{ item.file.name }}</strong></td>
                       <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} <span translate>MB</span></td>
-                      <td ng-show="uploader.isHTML5">
+                      <td ng-show="uploader.isHTML5 && item.isUploading">
                         <div class="progress" style="margin-bottom: 0;">
                           <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                         </div>
                       </td>
                       <td nowrap>
-                        <!--<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">-->
-                          <!--<span class="glyphicon glyphicon-upload"></span> Upload-->
-                        <!--</button>-->
-                        <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">-->
-                          <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
-                        <!--</button>-->
                         <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
                           <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
                         </button>
@@ -523,27 +517,6 @@
                   </table>
                 </div>
                 <!-- queue -->
-
-                <!-- progress -->
-                 <div ng-show="uploader.queue.length > 0">
-                      <div>
-                          <span translate>QUEUE_PROGRESS:</span>
-                          <div class="progress" style="">
-                              <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-                          </div>
-                      </div>
-                      <!-- <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                          <span class="glyphicon glyphicon-upload"></span> <span translate>BUTTON_UPLOAD_ALL</span>
-                      </button> -->
-                      <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                          <span class="glyphicon glyphicon-ban-circle"></span> <span translate>BUTTON_CANCEL_ALL</span>
-                      </button>
-                      <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                          <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE_ALL</span>
-                      </button>
-                  </div>
-
-                <!-- progress -->
 
 
             </fieldset>

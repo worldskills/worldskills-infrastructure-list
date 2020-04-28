@@ -330,15 +330,15 @@
                     .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
                     .another-file-over-class { border: dotted 3px green; }
                   </style>
-                  <div ng-show="uploader.isHTML5">
-                    <div nv-file-drop="" uploader="uploader">
+                  <div>
+                    <label nv-file-drop="" uploader="uploader" style="display: block;">
                       <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone" translate>
                         DROP_FILES_HERE_TO_UPLOAD
                       </div>
-                    </div>
+                      <input class="hidden" type="file" nv-file-select="" uploader="uploader" multiple  />
+                    </label>
                   </div>
                   <!-- drop zone -->
-                <input ng-show="!uploader.isHTML5" type="file" nv-file-select="" uploader="uploader" multiple  />
 
                   <!-- queue -->
                   <div class="well" style='background-color: #fff;' ng-show="uploader.queue.length > 0">
