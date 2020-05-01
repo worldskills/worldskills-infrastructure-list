@@ -272,7 +272,7 @@
     })
 
     .state('publicItems', {
-      url: '/events/{eventId}/skills/{skillId}/public',
+      url: '/events/{eventId}/lists/{listId}/public',
       templateUrl: 'views/public-items.html',
       controller: 'PublicItemsCtrl',
       data: {
@@ -324,7 +324,7 @@
     })
 
     .state('recommendations', {
-      url: '/events/{eventId}/recommendations?skill',
+      url: '/events/{eventId}/recommendations?list',
       templateUrl: 'views/recommendations.html',
       controller: 'RecommendationsCtrl',
       data: {

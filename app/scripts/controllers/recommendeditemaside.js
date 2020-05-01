@@ -223,7 +223,7 @@ angular.module('ilApp')
         });
       }
       else if($scope.recommendedItem.requestedItemId) {
-        RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.skillId, $scope.suppliedDirty).then(function(result) {
+        RecommendedItems.suggestOnItem($scope.recommendedItem, $scope.event_id, $scope.listId, $scope.suppliedDirty).then(function(result) {
           if($scope.uploader.queue.length > 0){
               //upload files
               $scope.recommendedItem.id = result.id;
@@ -242,7 +242,7 @@ angular.module('ilApp')
           id: auth.user.person_id
         };
 
-        RecommendedItems.suggestNew($scope.recommendedItem, $scope.event_id, $scope.skillId, $scope.suppliedDirty).then(function(result) {
+        RecommendedItems.suggestNew($scope.recommendedItem, $scope.event_id, $scope.listId, $scope.suppliedDirty).then(function(result) {
           if($scope.uploader.queue.length > 0){
               //upload files
               $scope.recommendedItem.id = result.id;

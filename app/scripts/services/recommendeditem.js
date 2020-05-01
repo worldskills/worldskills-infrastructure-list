@@ -17,7 +17,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
       var suppliedItemChanged = _suppliedItemChanged || false;
 
-      $http.put(API_IL + "/recommended-items/event/" + eventId + "/skill/" + recommendedItem.skill.id + "/requested-item/" + recommendedItem.id + "?suppliedItemChanged=" + suppliedItemChanged, recommendedItem).then(function(result){
+      $http.put(API_IL + "/recommended-items/event/" + eventId + "/lists/" + recommendedItem.list.id + "/requested-item/" + recommendedItem.id + "?suppliedItemChanged=" + suppliedItemChanged, recommendedItem).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
@@ -27,12 +27,12 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    RecommendedItems.suggestOnItem = function(item, eventId, skillId, _suppliedItemChanged){
+    RecommendedItems.suggestOnItem = function(item, eventId, listId, _suppliedItemChanged){
 
       var deferred = $q.defer();
       var suppliedItemChanged = _suppliedItemChanged || false;
 
-      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "/requested-item/" + item.requestedItemId + "?suppliedItemChanged=" + suppliedItemChanged, item).then(function(result){
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/lists/" + listId + "/requested-item/" + item.requestedItemId + "?suppliedItemChanged=" + suppliedItemChanged, item).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
@@ -42,13 +42,13 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    RecommendedItems.suggestNew = function(item, eventId, skillId, _suppliedItemChanged){
+    RecommendedItems.suggestNew = function(item, eventId, listId, _suppliedItemChanged){
 
       var deferred = $q.defer();
       var suppliedItemChanged = _suppliedItemChanged || false;
 
 
-      $http.post(API_IL + "/recommended-items/event/" + eventId + "/skill/" + skillId + "?suppliedItemChanged=" + suppliedItemChanged, item).then(function(result){
+      $http.post(API_IL + "/recommended-items/event/" + eventId + "/lists/" + listId + "?suppliedItemChanged=" + suppliedItemChanged, item).then(function(result){
         deferred.resolve(result.data);
       },
       function(error){
@@ -58,18 +58,18 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    RecommendedItems.suggestDeletion = function(item, eventId, skillId) {
+    RecommendedItems.suggestDeletion = function(item, eventId, listId) {
       //fixed duplicated code
-      return this.suggestOnItem(item, eventId, skillId);
+      return this.suggestOnItem(item, eventId, listId);
     };
 
-    RecommendedItems.getRecommendations = function(eventId, skillId) {
+    RecommendedItems.getRecommendations = function(eventId, listId) {
 
       var deferred = $q.defer();
 
       var config = {params: {}};
-      if (skillId) {
-        config.params.skill_id = skillId;
+      if (listId) {
+        config.params.list_id = listId;
       }
 
       $http.get(API_IL + "/recommended-items/event/" + eventId + "/recommendations", config).then(function(result) {

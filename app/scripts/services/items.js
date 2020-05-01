@@ -238,10 +238,10 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Items.getPublicItems = function(eventId, skillId){
+    Items.getPublicItems = function(eventId, listId){
       var deferred = $q.defer();
 
-      $http.get(API_IL + '/public/items/' + eventId + '/skills/' + skillId + '/requested_items/').then(function(result) {
+      $http.get(API_IL + '/public/lists/' + listId + '/requested_items').then(function(result) {
         deferred.resolve(result.data.requested_items);
       }, function(error) {
         deferred.reject(error.data.user_msg);
