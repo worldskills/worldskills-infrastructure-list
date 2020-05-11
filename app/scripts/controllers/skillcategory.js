@@ -191,7 +191,7 @@ angular.module('ilApp')
         $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.event_id + '/search?q=';
 
         //get items
-        Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function (result) {
+        Items.getItems($scope.categoryId, $scope.listId, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function (result) {
           $scope.items = result.requested_items;
           angular.forEach($scope.items, function (item) {
             auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_REQUESTED_ITEMS_ALWAYS], $scope.event.entity_id).then(function (hasUserRole) {

@@ -8,33 +8,35 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillCtrl', function ($q, $http, $scope, $state, $interval, Language, APP_ID, APP_ROLES, API_IMAGES, $timeout, Auth, auth, Items, Events, WSAlert) {
-    //$scope.skill_id =
-    //$scope.skill_id = $state.params.skillId;
+  .controller('SkillCtrl', function ($q, $http, $scope, $state, $stateParams, $interval, Language, APP_ID, APP_ROLES, API_IMAGES, $timeout, Auth, auth, Items, Events, List, Category, WSAlert) {
+
     $scope.categories = {};
     $scope.participantNumbers = {};
     $scope.initializing = $q.defer();
 
-    $scope.initSkill = function(){
-        $scope.skill_id = $state.params.skillId;
-        Events.getSkill($scope.skill_id).then(function(result){
-            $scope.selectedSkill = result;
+    $scope.event_id = $stateParams.eventId;
+    $scope.listId = $stateParams.listId;
 
-            Auth.setUserSkillPermissions($scope.selectedSkill);
-            Auth.setUserEventPermissions($scope.selectedSkill.event);
+    $scope.initSkill = function(){
+
+        $scope.list = List.get({id: $scope.listId}, function(result){
+
+            Auth.setUserListPermissions($scope.list);
 
             auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS, APP_ROLES.EDIT_REQUESTED_ITEMS], $scope.selectedSkill.entity_id).then(function (hasUserRole) {
               $scope.canHandleRecommend = hasUserRole;
             });
 
-            //re-init event id to be used later
-            $scope.event_id = result.event.id;
-            $scope.listId = result.list_id;
             $scope.getCategories();
         },
         function(error){
             WSAlert.danger(error);
             $scope.initializing.reject(error);
+        });
+
+        Events.getEvent($scope.event_id).then( function (event) {
+          $scope.event = event;
+          Auth.setUserEventPermissions($scope.event);
         });
     };
 
@@ -42,13 +44,18 @@ angular.module('ilApp')
     $scope.getCategories = function(){
 
         var promises = [];
-        promises.push(Items.getCategories($scope.skill_id));
-        promises.push(Events.getParticipantCounts($scope.skill_id));
+        promises.push(Category.getAll($scope.event_id));
+        
+        if ($scope.list.skill) {
+          promises.push(Events.getParticipantCounts($scope.list.skill.id));
+        }
 
         $q.all(promises).then(function(res){
 
           $scope.categories = res[0];
-          $scope.participantNumbers = res[1];
+          if (typeof res[1] !== 'undefined') {
+            $scope.participantNumbers = res[1];
+          }
 
           $scope.initializing.resolve();
         }, function(error){

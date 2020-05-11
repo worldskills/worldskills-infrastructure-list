@@ -145,6 +145,13 @@ angular.module('ilApp')
 
       //add the requested item
       Items.addItem($scope.item, $scope.event_id, true, split_supplied_item).then(function (result) {
+        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_REQUESTED_ITEMS_ALWAYS], $scope.event.entity_id).then(function (hasUserRole) {
+          if (hasUserRole) {
+            result.canEdit = true;
+          } else {
+            result.canEdit = result.status.allow_editing;
+          }
+        });
         $scope.pushItem(result);
       },
 

@@ -3,11 +3,6 @@
   <div ng-hide="loading.init">
 
     <span class='pull-right'>
-    <!-- 	<button ng-class="{'btn-warning': sortable === true, 'btn-info': sortable === false}" ng-click="sortable = !sortable" class='btn btn-sm'>
-        <span ng-show='sortable'>Sort mode ON</span>
-        <span ng-hide='sortable'>Sort mode OFF</span>
-      </button> -->
-
       <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
         <i class="glyphicon glyphicon-plus">
         </i> <span translate>ADD_ITEM</span>
@@ -66,7 +61,7 @@
                 <span class="caret" ng-show="orderProperty === 'status.id'"></span>
               </th>
               <th>
-                <span translate>ACTIONS</small>
+                <span translate>ACTIONS</span>
               </th>
             </tr>
             <tr ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ng-include="'views/item_render.html'"></tr>
@@ -78,7 +73,7 @@
         <span style="color: #7c9eb2;">{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: additionRecommendationsCount } }}</span>
       </div>
       <div style="top: 60px;" class="col-sm-12" ng-if="canHandleRecommend">
-        <a ui-sref="recommendations({eventId: selectedSkill.event.id, skill: selectedSkill.id})" translate>HANDLE_RECOMMENDATIONS</a>
+        <a ui-sref="recommendations({eventId: event.id, list: list.id})" translate>HANDLE_RECOMMENDATIONS</a>
       </div>
     </div>
   </div>

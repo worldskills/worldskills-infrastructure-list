@@ -8,20 +8,19 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('SkillOverviewCtrl', function ($scope, $q, $state, Status, Events, WSAlert, MULTIPLIERS, Reporting) {
+  .controller('SkillOverviewCtrl', function ($scope, $q, $state, $stateParams, Status, Events, WSAlert, MULTIPLIERS, Reporting) {
 
     $scope.loading.overview = true;
 
-    $scope.exportSkill = function(){
-        Reporting.exportRequestedForSkill($scope.event_id, $scope.skill_id);
+    $scope.exportList = function(){
+        Reporting.exportRequestedForList($scope.event_id, $scope.listId);
     };
-
 
     $scope.totalItems = 0;
     $scope.statusSummary = {};
     $scope.skillManagement = {};
 
-    Status.getSummaryForSkill($state.params.skillId).then(function(res){
+    Status.getSummaryForList($stateParams.listId).then(function(res){
       //calculate total for percentage
       angular.forEach(res, function(val, key){
         $scope.totalItems += val.count;
@@ -34,17 +33,17 @@ angular.module('ilApp')
       WSAlert.warning(error);
     });
 
-    Events.getSkillManagement($state.params.skillId).then(function(res){
-      $scope.skillManagement = res.data.person_positions;
-    }, function(error){
-      WSAlert.warning("Could not get skill management information");
+    $scope.list.$promise.then(function () {
+
+      if ($scope.list.skill) {
+        Events.getSkillManagement($scope.list.skill.id).then(function(res){
+          $scope.skillManagement = res.data.person_positions;
+        }, function(error){
+          WSAlert.warning("Could not get skill management information");
+        });
+      }
+
     });
-
-
-
-
-
-
 
 
     /*

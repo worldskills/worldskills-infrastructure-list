@@ -28,12 +28,12 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Items.getItems = function(categoryId, skillId, eventId, limit, offset, filter, canceler){
+    Items.getItems = function(categoryId, listId, eventId, limit, offset, filter, canceler){
       Items.data = $q.defer();
 
       var filterStr = (typeof filter != 'undefined') ? "&filter=" + filter : "";
 
-      $http.get(API_IL + "/items/" + eventId + "/skills/" + skillId + "/requested_items/" + categoryId + "?limit=" + limit + "&offset=" + offset + filterStr, {timeout: canceler.promise}).then(function(result){
+      $http.get(API_IL + "/items/" + eventId + "/lists/" + listId + "/requested_items/" + categoryId + "?limit=" + limit + "&offset=" + offset + filterStr, {timeout: canceler.promise}).then(function(result){
         Items.data.resolve(result.data);
         Items.data = result.data;
       },

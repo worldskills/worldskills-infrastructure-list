@@ -204,9 +204,9 @@
         }
     })
 
-    //skills
-    .state('eventBase.skill', {
-      url: '/skills/{skillId}',
+    // lists
+    .state('eventBase.list', {
+      url: '/lists/{listId}',
       templateUrl: 'views/skill.html',
       controller: 'SkillCtrl',
       abstract: true,
@@ -219,7 +219,7 @@
       }
     })
 
-    .state('eventBase.skill.overview', {
+    .state('eventBase.list.overview', {
       url: '',
       templateUrl: 'views/skill.overview.html',
       controller: 'SkillOverviewCtrl',
@@ -232,7 +232,7 @@
         }
     })
 
-    .state('eventBase.skill.category', {
+    .state('eventBase.list.category', {
       url: '/category/{categoryId}',
       templateUrl: 'views/skill.category.html',
       controller: 'SkillCategoryCtrl',
