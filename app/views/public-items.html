@@ -177,6 +177,7 @@
                                 <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                                 <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
+                                <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
                               </div>
                           </td>
                         </tr>
