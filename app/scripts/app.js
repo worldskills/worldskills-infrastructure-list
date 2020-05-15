@@ -207,8 +207,8 @@
     // lists
     .state('eventBase.list', {
       url: '/lists/{listId}',
-      templateUrl: 'views/skill.html',
-      controller: 'SkillCtrl',
+      templateUrl: 'views/list.html',
+      controller: 'ListCtrl',
       abstract: true,
       data: {
         requireLoggedIn: true,
@@ -221,8 +221,8 @@
 
     .state('eventBase.list.overview', {
       url: '',
-      templateUrl: 'views/skill.overview.html',
-      controller: 'SkillOverviewCtrl',
+      templateUrl: 'views/list.overview.html',
+      controller: 'ListOverviewCtrl',
       data: {
         requireLoggedIn: true,
         requiredRoles: [
@@ -234,8 +234,8 @@
 
     .state('eventBase.list.category', {
       url: '/category/{categoryId}',
-      templateUrl: 'views/skill.category.html',
-      controller: 'SkillCategoryCtrl',
+      templateUrl: 'views/list.category.html',
+      controller: 'ListCategoryCtrl',
       data: {
         requireLoggedIn: true,
         requiredRoles: [

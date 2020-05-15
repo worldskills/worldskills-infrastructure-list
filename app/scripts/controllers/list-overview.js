@@ -1,14 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name ilApp.controller:SkillOverviewCtrl
- * @description
- * # SkillOverviewCtrl
- * Controller of the ilApp
- */
 angular.module('ilApp')
-  .controller('SkillOverviewCtrl', function ($scope, $q, $state, $stateParams, Status, Events, WSAlert, MULTIPLIERS, Reporting) {
+  .controller('ListOverviewCtrl', function ($scope, $q, $state, $stateParams, Status, Events, WSAlert, MULTIPLIERS, Reporting) {
 
     $scope.loading.overview = true;
 

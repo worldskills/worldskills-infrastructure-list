@@ -1,14 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name ilApp.controller:SkillCtrl
- * @description
- * # SkillCtrl
- * Controller of the ilApp
- */
 angular.module('ilApp')
-  .controller('SkillCtrl', function ($q, $http, $scope, $state, $stateParams, $interval, Language, APP_ID, APP_ROLES, API_IMAGES, $timeout, Auth, auth, Items, Events, List, Category, WSAlert) {
+  .controller('ListCtrl', function ($q, $http, $scope, $state, $stateParams, $interval, Language, APP_ID, APP_ROLES, API_IMAGES, $timeout, Auth, auth, Items, Events, List, Category, WSAlert) {
 
     $scope.categories = {};
     $scope.participantNumbers = {};

@@ -1,14 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name ilApp.controller:SkillcategoryCtrl
- * @description
- * # SkillcategoryCtrl
- * Controller of the ilApp
- */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, auth, APP_ID, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
+  .controller('ListCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, auth, APP_ID, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
 
     $scope.UNITS = UNITS;
     $scope.UPLOADS_URL = UPLOADS_URL;
