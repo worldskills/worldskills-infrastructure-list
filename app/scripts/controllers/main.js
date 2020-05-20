@@ -6,7 +6,6 @@ angular.module('ilApp')
   ) {
     $scope.selectedLanguage = Language.selectedLanguage;
 
-    $scope.selectedSkill = {};
     $scope.selectedSector = {};
 
     $scope.hideFooter = false;

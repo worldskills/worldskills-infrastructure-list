@@ -16,7 +16,7 @@ angular.module('ilApp')
 
             Auth.setUserListPermissions($scope.list);
 
-            auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS, APP_ROLES.EDIT_REQUESTED_ITEMS], $scope.selectedSkill.entity_id).then(function (hasUserRole) {
+            auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS, APP_ROLES.EDIT_REQUESTED_ITEMS], $scope.list.entity_id).then(function (hasUserRole) {
               $scope.canHandleRecommend = hasUserRole;
             });
 
