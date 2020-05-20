@@ -102,7 +102,7 @@ angular.module('ilApp')
 
       //set list and category
       if ($scope.suppliedItem.force === true) {
-        $scope.item.list_id = $scope.newLinkedItem.skill.list_id;
+        $scope.item.list_id = $scope.newLinkedItem.list.id;
         $scope.item.category_id = $scope.newLinkedItem.category.id;
       } else {
         $scope.item.list_id = $scope.listId;

@@ -191,8 +191,8 @@ angular.module('ilApp')
       var queryParams = "?search=";
 
       //skill filter
-      if(filters.active && filters.skill && filters.skill.id != 'all')
-        queryParams += "&skill=" + filters.skill.id;
+      if(filters.active && filters.list && filters.list.id != 'all')
+        queryParams += "&list=" + filters.list.id;
 
       //category filter
       if(filters.active && filters.category && filters.category.id != 'all')

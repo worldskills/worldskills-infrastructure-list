@@ -13,10 +13,6 @@
             <a ui-sref-active='active' class="list-group-item" ui-sref='eventBase.list.overview({eventId: event_id, listId: listId})'><small ng-cloak translate>OVERVIEW</small></a>
             <a ng-repeat="category in categories" ui-sref-active='active' class="list-group-item" ui-sref='eventBase.list.category({eventId: event_id, listId: listId, categoryId:category.id})'><small ng-cloak translate>{{category.name.text}}</small></a>
          </div>
-
-        <div class="list-group" ng-if="selectedSkill.event.userCanEdit">
-          <a class="list-group-item" ui-sref='eventBase.catalogue({eventId: event_id})'><small ng-cloak translate>CATALOGUE_VIEW</small></a>
-        </div>
      </div>
 
     <div class="col-sm-9 col-md-10" id="content" ui-view=""></div>

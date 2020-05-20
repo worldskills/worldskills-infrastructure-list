@@ -29,7 +29,7 @@ angular.module('ilApp')
     $scope.categories = {};
     $scope.filters = {
       active: false,
-      skill: null,
+      list: null,
       category: null
     };
     $scope.asideState = {
@@ -58,6 +58,10 @@ angular.module('ilApp')
     };
 
     $scope.canEdit = function(){ return $scope.allowEditing; };
+
+    Events.getListsForEvent($stateParams.eventId).then(function (lists) {
+      $scope.lists = lists;
+    });
 
     Status.getAllStatuses($state.params.eventId).then(function (result) {
       $scope.statuses = result;
@@ -423,7 +427,7 @@ angular.module('ilApp')
     };
 
     //used in catalogue for loading new linked items
-    $scope.addLinkedItemSkillSelected = function (item, model) {
+    $scope.addLinkedItemListSelected = function (item, model) {
       //clear out so that category selection clears out
       $scope.newLinkedItem.category = {};
       $scope.categoryId = 0;
@@ -602,7 +606,7 @@ angular.module('ilApp')
     };
 
     $scope.filtersActivate = function(){
-      if($scope.filters.skill == null) {
+      if($scope.filters.list == null) {
         WSAlert.warning($translate.instant("WSALERT.WARNING.YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST"));
         return;
       }
@@ -805,14 +809,14 @@ angular.module('ilApp')
 
       //preset filters if exists
       if($scope.filters && $scope.filters.active === true){
-        //pre-set skill
-        $scope.newLinkedItem.skill = $scope.filters.skill;
+        //pre-set list
+        $scope.newLinkedItem.list = $scope.filters.list;
 
         //pre-set category
         if($scope.filters.category)
           $scope.newLinkedItem.category = $scope.filters.category;
         else{
-          $scope.addLinkedItemSkillSelected($scope.newLinkedItem.skill, false);
+          $scope.addLinkedItemListSelected($scope.newLinkedItem.list, false);
         }
 
       }//if

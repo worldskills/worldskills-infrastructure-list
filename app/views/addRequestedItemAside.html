@@ -22,15 +22,11 @@
             <!-- catalogue view only -->
             <div ng-if="suppliedItem.force === true">
               <div class="form-group addForm">
-                <label class='control-label' translate>SKILL</label>
-                <!--<input type="text" class="input-sm form-control" placeholder="Skill" ng-model='skill'>-->
-                <ui-select ng-model="newLinkedItem.skill" theme="bootstrap" on-select="addLinkedItemSkillSelected($item, $model)" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
-                  <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_SKILL' | translate }}">{{$select.selected.name.text}} - {{$select.selected.skill_number}}</ui-select-match>
-                  <ui-select-choices repeat="skill as skill in (skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
-                    <div ng-bind-html="skill.name.text"></div>
-                    <small>
-                      <span translate>NUMBER:</span> {{skill.skill_number}}
-                    </small>
+                <label class='control-label' translate>LIST</label>
+                <ui-select ng-model="newLinkedItem.list" theme="bootstrap" on-select="addLinkedItemListSelected($item, $model)" title="{{ 'TITLE.CHOOSE_LIST' | translate }}">
+                  <ui-select-match placeholder="{{ 'PLACEHOLDER.CHOOSE_LIST' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                  <ui-select-choices repeat="list as list in (lists | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                    <div ng-bind-html="list.name.text"></div>
                   </ui-select-choices>
                 </ui-select>
               </div>
