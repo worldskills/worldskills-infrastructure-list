@@ -21,6 +21,8 @@
           <li role="separator" class="divider"></li>
           <li ng-if="event.userCanEdit && !loading.requested"><a href="#" ng-click="exportAllRequested($event)" translate>EXPORT_REQUESTED_ITEMS</a></li>
           <li ng-if="event.userCanEdit && !loading.catalogue"><a href="#" ng-click="exportAllCatalogue($event)" translate>EXPORT_ALL_ITEMS</a></li>
+          <li role="separator" class="divider"></li>
+          <li ng-if="event.userCanEdit"><a href ng-click="createList()" translate>Create new list</a></li>
         </ul>
     </div>
 </div>
