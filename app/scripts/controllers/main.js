@@ -6,8 +6,6 @@ angular.module('ilApp')
   ) {
     $scope.selectedLanguage = Language.selectedLanguage;
 
-    $scope.selectedSector = {};
-
     $scope.hideFooter = false;
     $scope.date = new Date();
 
