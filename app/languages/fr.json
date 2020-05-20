@@ -355,7 +355,7 @@
   "SIGNUP": "Inscription",
   "SKILL": "Métier",
   "SKILL_AREA": "Zone métier",
-  "SKILL_COLON": "Métier :",
+  "LIST_COLON": "Métier :",
   "SKILL_INFORMATION": "Informations métier",
   "SKILL_MANAGEMENT": "Gestion du métier",
   "SKILL_PARTICIPANTS_OVERRIDE": "Remplacer la liste des candidats",

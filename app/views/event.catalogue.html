@@ -39,7 +39,7 @@
         <button class="btn btn-sm"
                 ng-click="showFilters = !showFilters"
                 ng-class="{'btn-primary': !selectedFilters.active, 'btn-warning': selectedFilters.active}"
-        ><i class="glyphicon glyphicon-filter"></i>&nbsp;<span translate>FILTERS</span><small ng-show="selectedFilters.active">&nbsp;[{{ 'SKILL_COLON' | translate }} {{selectedFilters.list.name.text}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.name.text}}</span>]</small></button>
+        ><i class="glyphicon glyphicon-filter"></i>&nbsp;<span translate>FILTERS</span><small ng-show="selectedFilters.active">&nbsp;[{{ 'LIST_COLON' | translate }} {{selectedFilters.list.name.text}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.name.text}}</span>]</small></button>
 
         <button class="btn btn-sm" ng-click="toggleEditing()"
                 ng-class="{'btn-primary': !allowEditing, 'btn-danger': allowEditing}"><span class="glyphicon glyphicon-edit"></span>&nbsp;
