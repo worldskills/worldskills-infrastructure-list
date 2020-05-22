@@ -14,14 +14,14 @@
     <table class="table table-striped table-bordered vmiddle table-tiers table-tiers-aligned test-bar">
         <thead>
             <tr>
-                <th style="width: 30%;">Skill</th>
+                <th style="width: 30%;">List</th>
                 <th ng-style="{width: (70 / (report.tiers.length + 1)) + '%'}" translate>NO_TIER</th>
                 <th ng-style="{width: (70 / (report.tiers.length + 1)) + '%'}" ng-repeat="tier in report.tiers">{{tier.name.text}}</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="list in report.lists">
-                <td>{{list.skill.skill_number}} {{list.skill.name.text}}</td>
+                <td>{{list.name.text}}</td>
                 <td>
                     <div class="progress">
                         <div ng-repeat="total in report.totals | filter:{list_id:list.id, tier_id:null}:true" ng-style="{'background-color': statusesIndexed[total.status_id].color_code, 'border-bottom-color': statusesIndexed[total.status_id].color_code, 'width': (total.total / totalsIndexed[total.list_id + '_' + total.tier_id] * 100) + '%'}" class="progress-bar">
