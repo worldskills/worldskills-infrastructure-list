@@ -12,7 +12,7 @@
     <tr>
       <th translate>TH_ID</th>
       <th translate>TH_REQUESTED</th>
-      <th translate>TH_SKILL</th>
+      <th translate>TH_LIST</th>
       <th translate>TH_CATEGORY</th>
       <th translate>TH_QTY</th>
       <th translate>TH_SUPPLIER_POTENTIAL</th>
@@ -28,7 +28,7 @@
         <span ng-if="item.updated" class="label label-success" translate>UPDATED</span>
       </td>
       <td>{{item.description.text}}&nbsp;<span class="label label-info">{{item.description.lang_code}}</span></td>
-      <td>{{item.list.skill.skill_number}} {{item.list.skill.name.text}}</td>
+      <td>{{item.list.name.text}}</td>
       <td>{{item.category.name.text}}</td>
       <td>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
           translate: {quantity: item.quantity, factor: item.multiply_factor} }}</td>
