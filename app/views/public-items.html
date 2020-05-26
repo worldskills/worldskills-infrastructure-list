@@ -4,17 +4,17 @@
 
 <ol class="breadcrumb">
     <li><a ui-sref="eventList" translate>EVENTS</a></li>
-    <li><a ui-sref="event({eventId: skill.event.id})">{{skill.event.name.text}}</a></li>
-    <li class="active">{{skill.name.text}}</li>
+    <li><a ui-sref="event({eventId: eventId})">{{event.name.text}}</a></li>
+    <li class="active">{{list.name.text}}</li>
 </ol>
 
 <p class="pull-right">
-    <a ng-show="skill.userCanEdit" ui-sref="eventBase.skill.overview({eventId: skill.event.id, skillId: skill.id})" title="{{event.name}}" class="btn btn-sm btn-warning">
+    <a ng-show="list.userCanEdit" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" title="{{event.name.text}}" class="btn btn-sm btn-warning">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
     </a>
 </p>
 
-<h1 class="h2">{{ skill.skill_number }} {{ skill.name.text }} <small>{{ skill.event.name.text }}</small></h1>
+<h1 class="h2">{{ list.name.text }} <small>{{ event.name.text }}</small></h1>
 
 <hr class="clear" />
 
@@ -22,7 +22,7 @@
 
 <div ng-hide="loading || error">
 
-    <div class="il-public-items-category">
+    <div class="il-public-items-category" ng-show="list.skill">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h2 class="panel-title" translate>SKILL_INFORMATION</h2>

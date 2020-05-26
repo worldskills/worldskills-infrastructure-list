@@ -8,9 +8,9 @@
 
 <form class="form-inline">
   <div class="form-group">
-    <select class="form-control input-sm" ng-model="skillId" ng-change="updateSkillId()">
+    <select class="form-control input-sm" ng-model="listId" ng-change="updateListId()">
         <option value=""></option>
-        <option ng-repeat="skill in skills" value="{{skill.id}}">{{skill.skill_number}} {{skill.name.text}}</option>
+        <option ng-repeat="list in lists" value="{{list.id}}">{{list.name.text}}</option>
     </select>
   </div>
 </form>
@@ -27,7 +27,7 @@
             <table class="table table-condensed table-bordered il-public-items-table">
                 <thead>
                     <tr>
-                        <th class="col-15" translate>SKILL</th>
+                        <th class="col-15" translate>LIST</th>
                         <th class="col-15" translate>TH_CATEGORY</th>
                         <th class="col-15" translate>TH_ITEM_APPLICANT</th>
                         <th class="col-20" translate>TH_ITEM_DATE_AND_TIME</th>
@@ -47,7 +47,7 @@
                     <tbody>
                         <tr>
                             <td class="col-15">
-                                <span class="ng-binding">{{item.skill.name.text}}</span>
+                                <span class="ng-binding">{{item.list.name.text}}</span>
                             </td>
                             <td class="col-15">
                                 <span class="ng-binding ng-scope">{{ item.category.name.text }}</span>

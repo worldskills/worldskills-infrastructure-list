@@ -12,14 +12,14 @@ angular.module('ilApp')
 
     var Status = {};
 
-    Status.getSummaryForSkill = function(skillId){
+    Status.getSummaryForList = function(listId){
       var deferred= $q.defer();
 
-      $http.get(API_IL + "/summary/skill/" + skillId).then(function(result){
+      $http.get(API_IL + "/summary/lists/" + listId).then(function(result){
         deferred.resolve(result.data.summaries);
       },
       function(error){
-        deferred.reject("Could not fetch summary for skill: " + error.data.user_msg);
+        deferred.reject("Could not fetch summary for list: " + error.data.user_msg);
       });
 
       return deferred.promise;

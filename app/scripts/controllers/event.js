@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $stateParams, $q, Events, Status, Reporting, Auth, auth, WSAlert, APP_ROLES, APP_ID, $translate) {
+angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $stateParams, $q, Events, Status, List, Reporting, Auth, auth, WSAlert, APP_ROLES, APP_ID, $translate) {
 
   $scope.eventId = $state.params.eventId;
   $scope.skillId = $state.params.skillId;
@@ -22,10 +22,12 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
 
     promises.push(Events.getEvent(eventId));
     promises.push(Events.getSkillsForEvent(eventId, true));
+    promises.push(Events.getListsForEvent(eventId));
 
     $q.all(promises).then(function(res){
       $scope.event = res[0];
       $scope.skills = res[1];
+      $scope.lists = res[2];
       auth.hasUserRole(APP_ID, ['Admin', 'EditItemCategories'], $scope.event.entity_id).then(function (hasUserRole) {
           $scope.userCanEditItemCategories = hasUserRole;
       });
@@ -36,8 +38,8 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
           $scope.userCanSeeHistory = hasUserRole;
       });
       Auth.setUserEventPermissions($scope.event);
-      angular.forEach($scope.skills, function (skill) {
-        Auth.setUserSkillPermissions(skill);
+      angular.forEach($scope.lists, function (list) {
+        Auth.setUserListPermissions(list);
       });
       $scope.loading.lists = false;
     }, function(errors){
@@ -65,7 +67,14 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
     Reporting.exportCatalogueForEvent($scope.eventId).then(function(){
       $scope.loading.catalogue = false;
     }, function(error){ WSAlert.danger(error); $scope.loading.catalogue = false; });
-  }
+  };
+
+  $scope.createList = function() {
+    var name = window.prompt('Name for new list?');
+    List.save({eventId: $scope.event.id}, {name: {text: name, lang_code: $scope.selectedLanguage}, entity_id: $scope.event.entity_id}, function (list) {
+      console.log(list);
+    });
+  };
 
   $scope.totalCount = function(summaries){
     var c = 0;

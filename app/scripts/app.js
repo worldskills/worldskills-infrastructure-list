@@ -204,11 +204,11 @@
         }
     })
 
-    //skills
-    .state('eventBase.skill', {
-      url: '/skills/{skillId}',
-      templateUrl: 'views/skill.html',
-      controller: 'SkillCtrl',
+    // lists
+    .state('eventBase.list', {
+      url: '/lists/{listId}',
+      templateUrl: 'views/list.html',
+      controller: 'ListCtrl',
       abstract: true,
       data: {
         requireLoggedIn: true,
@@ -219,10 +219,10 @@
       }
     })
 
-    .state('eventBase.skill.overview', {
+    .state('eventBase.list.overview', {
       url: '',
-      templateUrl: 'views/skill.overview.html',
-      controller: 'SkillOverviewCtrl',
+      templateUrl: 'views/list.overview.html',
+      controller: 'ListOverviewCtrl',
       data: {
         requireLoggedIn: true,
         requiredRoles: [
@@ -232,10 +232,10 @@
         }
     })
 
-    .state('eventBase.skill.category', {
+    .state('eventBase.list.category', {
       url: '/category/{categoryId}',
-      templateUrl: 'views/skill.category.html',
-      controller: 'SkillCategoryCtrl',
+      templateUrl: 'views/list.category.html',
+      controller: 'ListCategoryCtrl',
       data: {
         requireLoggedIn: true,
         requiredRoles: [
@@ -272,7 +272,7 @@
     })
 
     .state('publicItems', {
-      url: '/events/{eventId}/skills/{skillId}/public',
+      url: '/events/{eventId}/lists/{listId}/public',
       templateUrl: 'views/public-items.html',
       controller: 'PublicItemsCtrl',
       data: {
@@ -324,7 +324,7 @@
     })
 
     .state('recommendations', {
-      url: '/events/{eventId}/recommendations?skill',
+      url: '/events/{eventId}/recommendations?list',
       templateUrl: 'views/recommendations.html',
       controller: 'RecommendationsCtrl',
       data: {

@@ -28,12 +28,12 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Items.getItems = function(categoryId, skillId, eventId, limit, offset, filter, canceler){
+    Items.getItems = function(categoryId, listId, eventId, limit, offset, filter, canceler){
       Items.data = $q.defer();
 
       var filterStr = (typeof filter != 'undefined') ? "&filter=" + filter : "";
 
-      $http.get(API_IL + "/items/" + eventId + "/skills/" + skillId + "/requested_items/" + categoryId + "?limit=" + limit + "&offset=" + offset + filterStr, {timeout: canceler.promise}).then(function(result){
+      $http.get(API_IL + "/items/" + eventId + "/lists/" + listId + "/requested_items/" + categoryId + "?limit=" + limit + "&offset=" + offset + filterStr, {timeout: canceler.promise}).then(function(result){
         Items.data.resolve(result.data);
         Items.data = result.data;
       },
@@ -191,8 +191,8 @@ angular.module('ilApp')
       var queryParams = "?search=";
 
       //skill filter
-      if(filters.active && filters.skill && filters.skill.id != 'all')
-        queryParams += "&skill=" + filters.skill.id;
+      if(filters.active && filters.list && filters.list.id != 'all')
+        queryParams += "&list=" + filters.list.id;
 
       //category filter
       if(filters.active && filters.category && filters.category.id != 'all')
@@ -238,10 +238,10 @@ angular.module('ilApp')
       return deferred.promise;
     };
 
-    Items.getPublicItems = function(eventId, skillId){
+    Items.getPublicItems = function(eventId, listId){
       var deferred = $q.defer();
 
-      $http.get(API_IL + '/public/items/' + eventId + '/skills/' + skillId + '/requested_items/').then(function(result) {
+      $http.get(API_IL + '/public/lists/' + listId + '/requested_items').then(function(result) {
         deferred.resolve(result.data.requested_items);
       }, function(error) {
         deferred.reject(error.data.user_msg);

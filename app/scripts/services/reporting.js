@@ -17,13 +17,13 @@ angular.module('ilApp')
       return $filter('date')(now, "yyyy-MM-dd-HH-mm-ss");
     };
 
-    Reporting.exportRequestedForSkill = function(eventId, skillId) {
+    Reporting.exportRequestedForList = function(eventId, listId) {
 
       var deferred = $q.defer();
 
-      $http({url: API_IL + "/reports/requested/skill/" + eventId + "/" + skillId, method: "GET", params: { s: "xlsx" }, responseType : "blob", timeout: 120000 })
+      $http({url: API_IL + "/reports/requested/lists/" + eventId + "/" + listId, method: "GET", params: { s: "xlsx" }, responseType : "blob", timeout: 120000 })
       .success( function(data, status, headers) {
-          var filename = 'report_requested_' + skillId + '__'  + Reporting.dateNow() + '.xlsx';
+          var filename = 'report_requested_' + listId + '__'  + Reporting.dateNow() + '.xlsx';
           Downloader.handleDownload(data, status, headers, filename);
           deferred.resolve();
 

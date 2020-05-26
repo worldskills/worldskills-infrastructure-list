@@ -1,14 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name ilApp.controller:SkillcategoryCtrl
- * @description
- * # SkillcategoryCtrl
- * Controller of the ilApp
- */
 angular.module('ilApp')
-  .controller('SkillCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, auth, APP_ID, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
+  .controller('ListCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, auth, APP_ID, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
 
     $scope.UNITS = UNITS;
     $scope.UPLOADS_URL = UPLOADS_URL;
@@ -191,7 +184,7 @@ angular.module('ilApp')
         $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.event_id + '/search?q=';
 
         //get items
-        Items.getItems($scope.categoryId, $scope.skill_id, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function (result) {
+        Items.getItems($scope.categoryId, $scope.listId, $scope.event_id, $scope.limit, $scope.offset, $scope.filterValue, $scope.canceler).then(function (result) {
           $scope.items = result.requested_items;
           angular.forEach($scope.items, function (item) {
             auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_REQUESTED_ITEMS_ALWAYS], $scope.event.entity_id).then(function (hasUserRole) {

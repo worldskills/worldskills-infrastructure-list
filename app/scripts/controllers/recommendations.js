@@ -16,7 +16,7 @@ angular.module('ilApp')
     $scope.split = false;
     $scope.loading.recommendations = true;
 
-    $scope.skillId = $state.params.skill || '';
+    $scope.listId = $state.params.list || '';
 
     Events.getEvent($stateParams.eventId).then( function (event) {
       $scope.event = event;
@@ -25,19 +25,19 @@ angular.module('ilApp')
       });
     });
 
-    Events.getSkillsForEvent($stateParams.eventId, false).then(function (skills) {
-      $scope.skills = skills;
+    Events.getListsForEvent($stateParams.eventId).then(function (lists) {
+      $scope.lists = lists;
     });
 
-    $scope.updateSkillId = function () {
-      $location.search('skill', $scope.skillId);
+    $scope.updateListId = function () {
+      $location.search('list', $scope.listId);
       $scope.refreshRecommendations();
     };
 
     $scope.refreshRecommendations = function(){
       //Load recommendations
       $scope.loading.recommendations = true;
-      RecommendedItems.getRecommendations($state.params.eventId, $scope.skillId).then(function (res) {
+      RecommendedItems.getRecommendations($state.params.eventId, $scope.listId).then(function (res) {
         $scope.recommendedItems = res.recommendedItems;
         $scope.loading.recommendations = false;
       },

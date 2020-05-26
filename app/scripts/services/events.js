@@ -69,6 +69,20 @@ angular.module('ilApp')
         return deferred.promise;
     };
 
+    Events.getListsForEvent = function(eventId){
+        var deferred = $q.defer();
+        status = status || false;
+
+        $http.get(API_IL + "/events/" + eventId + "/lists").then(function(result){
+            deferred.resolve(result.data.lists);
+        },
+        function(error){
+            deferred.reject("Could not fetch lists for event");
+        });
+
+        return deferred.promise;
+    };
+
     Events.getSkillsForEvent = function(eventId, status){
         var deferred = $q.defer();
         status = status || false;

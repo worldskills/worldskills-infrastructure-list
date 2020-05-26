@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, Status, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
-  $scope.skillId = $state.params.skillId;
+  $scope.listId = $state.params.listId;
   $scope.UPLOADS_URL = UPLOADS_URL;
   $scope.UNITS = UNITS;
   $scope.participantNumbers = {};
@@ -15,21 +15,35 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   var promises = [];
   var categoriesIndexed = {};
 
+  Events.getEvent($scope.eventId).then(function (event) {
+    $scope.event = event;
+  })
 
-  promises.push(Events.getSkill($scope.skillId)
+  $scope.list = List.get({id: $scope.listId});
+
+  promises.push($scope.list.$promise
     .then(function(result){
-        $scope.skill = result;
-        Auth.setUserSkillPermissions($scope.skill);
-        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.RECOMMEND], $scope.skill.entity_id).then(function (hasUserRole) {
+        Auth.setUserListPermissions($scope.list);
+        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.RECOMMEND], $scope.list.entity_id).then(function (hasUserRole) {
             $scope.userCanRecommend = hasUserRole;
         });
-        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.skill.entity_id).then(function (hasUserRole) {
+        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.list.entity_id).then(function (hasUserRole) {
           $scope.canEditItemStatus = hasUserRole;
         });
+        if ($scope.list.skill) {
+          Events.getParticipantCounts($scope.list.skill.id)
+            .then(function (res) {
+              $scope.participantNumbers = res;
+            });
+          Events.getSkillManagement($scope.list.skill.id)
+            .then(function(res){
+              $scope.skillManagement = res.data.person_positions;
+            })
+        }
     })
   );
 
-  promises.push(Items.getCategories($scope.skillId)
+  promises.push(Category.getAll($scope.eventId)
     .then(function(result){
         $scope.categories = result;
         angular.forEach($scope.categories, function (category) {
@@ -41,24 +55,12 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     })
   );
 
-  promises.push(Events.getSkillManagement($state.params.skillId)
-    .then(function(res){
-      $scope.skillManagement = res.data.person_positions;
-    })
-  );
-
-  promises.push(Events.getParticipantCounts($scope.skillId)
-    .then(function (res) {
-      $scope.participantNumbers = res;
-    })
-  );
-
   Status.getAllStatuses($state.params.eventId).then(function (result) {
     $scope.statuses = result;
   });
 
   $q.all(promises).then(function () {
-    Items.getPublicItems($scope.eventId, $scope.skillId)
+    Items.getPublicItems($scope.eventId, $scope.listId)
       .then(function(result) {
         angular.forEach(result, function (item) {
           if (typeof categoriesIndexed[item.category_id] !== 'undefined') {
@@ -134,7 +136,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
     modalInstance.result.then(function (modalScope) {
       $scope.recommendedItem.comment = modalScope.comment;
-      RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.skillId).then(function(result) {
+      RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.listId).then(function(result) {
         WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
       }, function(error) {
         WSAlert.danger(error);

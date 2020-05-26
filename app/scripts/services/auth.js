@@ -11,6 +11,15 @@ angular.module('ilApp')
       });
     };
 
+    Auth.setUserListPermissions = function (list) {
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.VIEW], list.entity_id).then(function (hasUserRole) {
+          list.userCanView = hasUserRole;
+      });
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_REQUESTED_ITEMS], list.entity_id).then(function (hasUserRole) {
+          list.userCanEdit = hasUserRole;
+      });
+    };
+
     Auth.setUserSkillPermissions = function (skill) {
       auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.VIEW], skill.entity_id).then(function (hasUserRole) {
           skill.userCanView = hasUserRole;
