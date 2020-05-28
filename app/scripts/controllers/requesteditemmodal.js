@@ -19,6 +19,7 @@ angular.module('ilApp')
     $filter,
     $aside,
     ItemCategory,
+    Category,
     WSAlert,
     Auth,
     auth,
@@ -131,7 +132,7 @@ angular.module('ilApp')
       var extendedCategory;
       var list = modifiedItem.list;
 
-      return Items.getCategories(modifiedItem.list.skill.id)
+      return Category.getAll($state.params.eventId)
       .then(function(categories) {
 
           if($scope.editForm.category.$dirty) {
