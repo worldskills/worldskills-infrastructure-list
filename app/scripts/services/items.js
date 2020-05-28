@@ -13,21 +13,6 @@ angular.module('ilApp')
     var Items = { categories : $q.defer(), $data : $q.defer(), total: null };
     var statuses = null;
 
-    Items.getCategories = function(skillId){
-      //if(typeof Items.categories.promise == 'undefined') Items.categories = $q.defer();
-      var deferred = $q.defer();
-
-      $http.get(API_IL + "/categories/" + skillId).then(function(result){
-        deferred.resolve(result.data.categories);
-        Items.categories = result.data.categories;
-      },
-      function(error){
-      deferred.reject("Could not fetch categories: " + error.data.user_msg);
-      });
-
-      return deferred.promise;
-    };
-
     Items.getItems = function(categoryId, listId, eventId, limit, offset, filter, canceler){
       Items.data = $q.defer();
 
