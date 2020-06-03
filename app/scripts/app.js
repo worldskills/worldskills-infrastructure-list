@@ -332,6 +332,7 @@
         requiredRoles: [
           {code: 2200, role: APP_ROLES.ADMIN },
           {code: 2200, role: APP_ROLES.EDIT_SUPPLIED_ITEMS },
+          {code: 2200, role: APP_ROLES.CREATE_SUPPLIED_ITEMS },
           {code: 2200, role: APP_ROLES.EDIT_REQUESTED_ITEMS }
         ]
       }

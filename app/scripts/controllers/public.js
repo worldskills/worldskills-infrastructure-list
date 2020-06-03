@@ -15,14 +15,15 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   var promises = [];
   var categoriesIndexed = {};
 
-  Events.getEvent($scope.eventId).then(function (event) {
+  promises.push(Events.getEvent($scope.eventId).then(function (event) {
     $scope.event = event;
-  })
+  }));
 
   $scope.list = List.get({id: $scope.listId});
 
   promises.push($scope.list.$promise
     .then(function(result){
+        Auth.setUserEventPermissions($scope.event);
         Auth.setUserListPermissions($scope.list);
         auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.RECOMMEND], $scope.list.entity_id).then(function (hasUserRole) {
             $scope.userCanRecommend = hasUserRole;

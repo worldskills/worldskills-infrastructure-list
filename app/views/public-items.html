@@ -9,7 +9,10 @@
 </ol>
 
 <p class="pull-right">
-    <a ng-show="list.userCanEdit" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" title="{{event.name.text}}" class="btn btn-sm btn-warning">
+    <a ng-show="event.userCanCreate" ui-sref="recommendations({eventId: eventId, list: list.id})" class="btn btn-link">
+      <span translate>RECOMMENDATIONS</span>
+    </a>
+    <a ng-show="list.userCanEdit" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" class="btn btn-sm btn-warning">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
     </a>
 </p>
