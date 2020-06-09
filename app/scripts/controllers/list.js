@@ -30,6 +30,12 @@ angular.module('ilApp')
         Events.getEvent($scope.event_id).then( function (event) {
           $scope.event = event;
           Auth.setUserEventPermissions($scope.event);
+          auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS], $scope.event.entity_id).then(function (hasUserRole) {
+            $scope.canEditSuppliedItem = hasUserRole;
+          });
+          auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
+            $scope.canEditItemStatus = hasUserRole;
+          });
         });
     };
 

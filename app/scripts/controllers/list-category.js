@@ -30,10 +30,6 @@ angular.module('ilApp')
     $scope.supplierValue = false;
     $scope.statusEditionItemId = -1; // starting at -1 as no item should be considered in edition mode on page start
 
-    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
-      $scope.canEditItemStatus = hasUserRole;
-    });
-
     $scope.editRequestedItem = function(item) {
 
       $scope.supplierValue = false;
@@ -159,10 +155,6 @@ angular.module('ilApp')
       }).result.then(postClose, postClose);
     };
 
-    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_SUPPLIED_ITEMS], $scope.event.entity_id).then(function (hasUserRole) {
-      $scope.canEditSuppliedItem = hasUserRole;
-    });
-
     $scope.initCategory = function () {
       $scope.offset = 0;
 
@@ -239,10 +231,6 @@ angular.module('ilApp')
 
     //link helper function from items
     $scope.factorNeeded = Items.factorNeeded;
-
-    auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
-      $scope.canEditItemStatus = hasUserRole;
-    });
 
     $scope.sortBy = function(sort){
       $scope.allowReordering = false;
