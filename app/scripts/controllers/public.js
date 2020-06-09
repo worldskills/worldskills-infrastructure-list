@@ -15,9 +15,11 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   var promises = [];
   var categoriesIndexed = {};
 
-  promises.push(Events.getEvent($scope.eventId).then(function (event) {
+  var eventPromise = Events.getEvent($scope.eventId);
+  promises.push(eventPromise);
+  eventPromise.then(function (event) {
     $scope.event = event;
-  }));
+  });
 
   $scope.list = List.get({id: $scope.listId});
 
