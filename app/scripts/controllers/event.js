@@ -71,12 +71,14 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
 
   $scope.createList = function() {
     var name = window.prompt('Name for new list?');
-    List.save({eventId: $scope.event.id}, {name: {text: name, lang_code: $scope.selectedLanguage}, entity_id: $scope.event.entity_id}, function (list) {
-      WSAlert.success('The list has been successfully created.');
-      $state.go('eventBase.list.overview', {eventId: $scope.eventId, listId: list.id});
-    }, function (error) {
-      WSAlert.danger(error.data.user_msg);
-    });
+    if (name !== null) {
+      List.save({eventId: $scope.event.id}, {name: {text: name, lang_code: $scope.selectedLanguage}, entity_id: $scope.event.entity_id}, function (list) {
+        WSAlert.success('The list has been successfully created.');
+        $state.go('eventBase.list.overview', {eventId: $scope.eventId, listId: list.id});
+      }, function (error) {
+        WSAlert.danger(error.data.user_msg);
+      });
+    }
   };
 
   $scope.totalCount = function(summaries){
