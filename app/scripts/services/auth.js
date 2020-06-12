@@ -12,6 +12,9 @@ angular.module('ilApp')
       auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.CREATE_SUPPLIED_ITEMS], event.entity_id).then(function (hasUserRole) {
         event.userCanCreate = hasUserRole;
       });
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_CONFIG], event.entity_id).then(function (hasUserRole) {
+        event.userCanEditConfig = hasUserRole;
+      });
     };
 
     Auth.setUserListPermissions = function (list) {
