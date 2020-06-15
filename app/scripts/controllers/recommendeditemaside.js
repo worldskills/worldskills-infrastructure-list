@@ -68,9 +68,6 @@ angular.module('ilApp')
             additional_quantity: $scope.item.additional_quantity,
             unit: $scope.item.unit,
             multiplier : $scope.item.multiplier,
-            listCategory : {
-              id: $scope.item.category
-            },
             multiplyFactor : $scope.item.multiply_factor,
             potentialSupplier : {
               name: $scope.item.supplier
@@ -83,7 +80,6 @@ angular.module('ilApp')
             person: {
               id: auth.user.person_id
             },
-            categoryId: $scope.item.category_id,
             suppliedItem: resSupplied,
             recommendedItemSupplied: resSupplied
           };

@@ -12,6 +12,29 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $scope.loading = true;
   $scope.error = false;
 
+  $scope.filter = {category_id: '', status: {id: ''}};
+  $scope.columns = {
+    category: true,
+    quantity: true,
+    description: true,
+    supplier_potential: false,
+    area: true,
+    supplied: true,
+    manufacturer: true,
+    model: true,
+    size: false,
+    part_number: false,
+    supplier: false,
+    extra_details: false,
+    files: false,
+    status: true,
+    modified: false,
+    actions: true,
+  };
+  $scope.columnLength = 0;
+  $scope.sort = null;
+  $scope.reverse = false;
+
   var promises = [];
   var categoriesIndexed = {};
 
@@ -31,16 +54,6 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.list.entity_id).then(function (hasUserRole) {
           $scope.canEditItemStatus = hasUserRole;
         });
-        if ($scope.list.skill) {
-          Events.getParticipantCounts($scope.list.skill.id)
-            .then(function (res) {
-              $scope.participantNumbers = res;
-            });
-          Events.getSkillManagement($scope.list.skill.id)
-            .then(function(res){
-              $scope.skillManagement = res.data.person_positions;
-            })
-        }
     })
   );
 
@@ -56,6 +69,10 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     })
   );
 
+  promises.push(Events.getSkillAreas($scope.eventId).then(function(res){
+    $scope.skillAreas = res;
+  }));
+
   Status.getAllStatuses($state.params.eventId).then(function (result) {
     $scope.statuses = result;
   });
@@ -65,9 +82,10 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       .then(function(result) {
         angular.forEach(result, function (item) {
           if (typeof categoriesIndexed[item.category_id] !== 'undefined') {
-            categoriesIndexed[item.category_id].items.push(item);
+            item.category = categoriesIndexed[item.category_id];
           }
         });
+        $scope.items = result;
         $scope.loading = false;
       }, function(error){
         WSAlert.danger($translate.instant('WSALERT.DANGER.NO_ACCESSS_PUBLIC_VIEW'));
@@ -80,13 +98,25 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.asideState.open = false;
   };
 
+  var updateColumnLength = function () {
+    $scope.columnLength = Object.values($scope.columns).reduce(function (accumulator, currentValue) {
+      return accumulator + currentValue
+    }, 0);
+  };
+  updateColumnLength();
+
+  $scope.toggleColumn = function (column) {
+    $scope.columns[column] = !$scope.columns[column];
+    updateColumnLength();
+  };
+
   $scope.downloadFile = function(file){
     Downloader.handleDownload(data, status, headers, filename);
   };
 
-  $scope.sortBy = function (category, sort) {
-    category.reverse = (category.sort === sort) ? !category.reverse : false;
-    category.sort = sort;
+  $scope.sortBy = function (sort) {
+    $scope.reverse = ($scope.sort === sort) ? !$scope.reverse : false;
+    $scope.sort = sort;
   };
 
   $scope.openSuggestModalAside = function (categoryId, item) {

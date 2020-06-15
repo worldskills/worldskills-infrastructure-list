@@ -67,12 +67,16 @@
         </div>
     </div>
 
-    <div class='container' ng-controller='MainCtrl'>
+    <div ng-controller='MainCtrl'>
+      
+      <div class="container">
         <span id="alertScrollAnchor"></span>
         <alerts></alerts>
+      </div>
+
       <div ui-view></div>
 
-      <footer ng-show="!hideFooter">
+      <footer ng-show="!hideFooter" class="container">
         <div class="row">
           <div class="col-xs-6 col-sm-4">
             <div class="dropdown" ng-controller="TranslateCtrl">
