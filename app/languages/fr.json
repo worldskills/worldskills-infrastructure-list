@@ -238,7 +238,7 @@
   "MULTIPLE_VALUES_DETECTED": "Plusieurs valeurs détectées",
   "MULTIPLIER": "Multiplicateur",
   "MULTIPLY_FACTOR": "Coefficient multiplicateur",
-  "MUST_SELECT_INSTALLATION_TYPE": "Vous devez spécifier le type d'installation pour cet item",
+  "MUST_SELECT_CATEGORY": "Vous devez spécifier le type d'installation pour cet item",
   "NAME": "Nom",
   "NEW": "nouveau",
   "NO": "Non",

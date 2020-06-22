@@ -64,6 +64,7 @@ angular.module('ilApp')
           $scope.recommendedItem = {
             requestedItemId : $scope.item.id,
             description : $scope.item.description,
+            category: $scope.item.category,
             quantity : $scope.item.quantity,
             additional_quantity: $scope.item.additional_quantity,
             unit: $scope.item.unit,
@@ -191,8 +192,6 @@ angular.module('ilApp')
         };
       }
       //////////////////
-
-      $scope.recommendedItem.category = $scope.recommendedItem.category || $scope.$parent.item.category;
 
       //check if supplied form is $dirty
       if(

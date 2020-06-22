@@ -28,7 +28,7 @@
 <div ng-hide="loading || error">
 
     <div class="pull-right">
-      <button type="button" ng-if="userCanRecommend" ng-click="openSuggestModalAside(category.id);" data-target="" class="btn btn-sm btn-success">
+      <button type="button" ng-if="userCanRecommend" ng-click="openSuggestModalAside();" data-target="" class="btn btn-sm btn-success">
         <span translate><i class="fas fa-plus-circle"></i><span translate>SUGGEST_ADDITION</span>
       </button>
       <div class="btn-group">
@@ -185,7 +185,7 @@
                   </td>
                   <td ng-if="columns.actions" class="canRecommend" style="white-space: nowrap;">
                       <span ng-if="userCanRecommend && item.status.allow_editing && item.status.show_in_public_view">
-                        <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(parent, item)"><span
+                        <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(item)"><span
                           class="glyphicon glyphicon-edit"></span></a>
                         <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span
                         class="glyphicon glyphicon-remove"></span></a>

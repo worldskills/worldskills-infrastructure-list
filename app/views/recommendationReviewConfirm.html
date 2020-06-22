@@ -24,6 +24,12 @@
           <td><b translate>Description</b><br>{{data.item.description.text}}</td>
         </tr>
         <tr
+        ng-class="{'warning': data.item.category.id != data.item.requestedItem.category_id}"
+        ng-if='data.item.category.id != data.item.requestedItem.category_id'>
+          <td><b translate>Category</b><br>{{data.item.requestedItem.category.name.text}}</td>
+          <td><b translate>Category</b><br>{{data.item.category.name.text}}</td>
+        </tr>
+        <tr
         ng-class="{'warning': data.item.readable_quantity != data.item.requestedItem.readable_quantity}">
           <td><b translate>Quantity</b><br>{{data.item.requestedItem.readable_quantity}}</td>
           <td><b translate>Quantity</b><br>{{data.item.readable_quantity}}</td>

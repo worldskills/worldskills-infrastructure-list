@@ -119,11 +119,8 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.sort = sort;
   };
 
-  $scope.openSuggestModalAside = function (categoryId, item) {
+  $scope.openSuggestModalAside = function (item) {
     $scope.item = item || {};
-    $scope.item.category = {
-      id : categoryId
-    };
     $scope.asideState = {
       open: true,
     };
