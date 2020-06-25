@@ -11,7 +11,7 @@
 </ol>
 
 <p class="pull-right">
-    <a ng-show="event.userCanCreate" ui-sref="recommendations({eventId: eventId, list: list.id})" class="btn btn-link">
+    <a ng-show="userCanRecommend" ng-click="showRecommendations()" class="btn btn-link">
       <span translate>RECOMMENDATIONS</span>
     </a>
     <a ng-show="list.userCanEdit" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" class="btn btn-sm btn-warning">
@@ -193,12 +193,9 @@
                   </td>
                   <td ng-if="columns.actions" class="canRecommend" style="white-space: nowrap;">
                       <span ng-if="userCanRecommend && item.status.allow_editing && item.status.show_in_public_view">
-                        <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(item)"><span
-                          class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span
-                        class="glyphicon glyphicon-remove"></span></a>
-                        <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
-                        <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
+                        <a class="btn btn-warning btn-xs" ng-click="openSuggestModalAside(item)"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-danger btn-xs" ng-click="suggestDeletion(item)"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a class="btn btn-info btn-xs" ng-if="item.modificationSuggestions > 0 || item.deletionSuggestions > 0" ng-click="showRecommendations(item.id)"><span class="glyphicon glyphicon-comment"></span> {{item.modificationSuggestions + item.deletionSuggestions}}</a>
                       </span>
                   </td>
                 </tr>

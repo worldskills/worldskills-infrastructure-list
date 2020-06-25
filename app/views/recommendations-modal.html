@@ -1,0 +1,86 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="closeRecommendationsModal()"><span>&times;</span></button>
+    <h3 class="modal-title" translate>RECOMMENDATIONS</h3>
+</div>
+<div class="modal-body">
+
+<ws-spinner ng-if="loadingRecommendations"></ws-spinner>
+
+<div ng-if="recommendedItems.length == 0">
+  <div class="alert alert-warning" translate>RECOMMENDATIONS_NO_ITEM</div>
+</div>
+
+<div ng-repeat="item in recommendedItems">
+  <div class="row">
+    <div class="col-md-2">
+      <span class="text-muted">{{item.recommendedAt | amDateFormat:'DD.MM.YYYY HH:mm'}}</span>
+    </div>
+    <div class="col-md-10">
+      {{item.person.first_name}} {{item.person.last_name}}
+      <span class="text-muted">
+        recommended 
+        <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
+        <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>
+        <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+        <span ng-if="item.recommendedItemSupplied">
+          (<span translate>SUPPLIED_ITEM_Change</span>)
+        </span>
+      </span>
+      <span ng-if="item.requestedItem && !item.deletionSuggestion">
+        <span class="text-muted">for</span> {{item.requestedItem.description.text}}
+        <span ng-if="item.recommendedItemSupplied">
+          <span ng-if="item.suppliedItem.description.text != item.recommendedItemSupplied.description.text"><br><span class="text-muted">Change Description from {{item.suppliedItem.description.text || 'None'}} to</span> {{item.recommendedItemSupplied.description.text || 'None'}}</span>
+          <span ng-if="item.suppliedItem.manufacturer != item.recommendedItemSupplied.manufacturer"><br><span class="text-muted">Change Manufacturer from {{item.suppliedItem.manufacturer || 'None'}} to</span> {{item.recommendedItemSupplied.manufacturer || 'None'}}</span>
+          <span ng-if="item.suppliedItem.model != item.recommendedItemSupplied.model"><br><span class="text-muted">Change Model from {{item.suppliedItem.model || 'None'}} to</span> {{item.recommendedItemSupplied.model || 'None'}}</span>
+          <span ng-if="item.suppliedItem.size != item.recommendedItemSupplied.size"><br><span class="text-muted">Change Size from {{item.suppliedItem.size || 'None'}} to</span> {{item.recommendedItemSupplied.size || 'None'}}</span>
+          <span ng-if="item.suppliedItem.supplier.id != item.recommendedItemSupplied.supplier.id"><br><span class="text-muted">Change Supplier from {{item.suppliedItem.supplier.name || 'None'}} to</span> {{item.recommendedItemSupplied.supplier.name || 'None'}}</span>
+          <span ng-if="item.suppliedItem.part_number != item.recommendedItemSupplied.part_number"><br><span class="text-muted">Change Part Number from {{item.suppliedItem.part_number || 'None'}} to</span> {{item.recommendedItemSupplied.part_number || 'None'}}</span>
+          <span ng-if="item.suppliedItem.supply_type != item.recommendedItemSupplied.supply_type"><br><span class="text-muted">Change Supply Type from {{item.suppliedItem.supply_type || 'None'}} to</span> {{item.recommendedItemSupplied.supply_type || 'None'}}</span>
+          <span ng-if="item.suppliedItem.unit_cost != item.recommendedItemSupplied.unit_cost"><br><span class="text-muted">Change Unit Cost from {{item.suppliedItem.unit_cost || 'None'}} to</span> {{item.recommendedItemSupplied.unit_cost || 'None'}}</span>
+          <span ng-if="item.suppliedItem.po_number != item.recommendedItemSupplied.po_number"><br><span class="text-muted">Change PO Number from {{item.suppliedItem.po_number || 'None'}} to</span> {{item.recommendedItemSupplied.po_number || 'None'}}</span>
+          <span ng-if="item.suppliedItem.delivery != item.recommendedItemSupplied.delivery"><br><span class="text-muted">Change Delivery from {{item.suppliedItem.delivery || 'None'}} to</span> {{item.recommendedItemSupplied.delivery || 'None'}}</span>
+          <span ng-if="item.suppliedItem.category != item.recommendedItemSupplied.category"><br><span class="text-muted">Change Category from {{item.suppliedItem.category || 'None'}} to</span> {{item.recommendedItemSupplied.category || 'None'}}</span>
+          <span ng-if="item.suppliedItem.disposal_category != item.recommendedItemSupplied.disposal_category"><br><span class="text-muted">Change Disposal Category from {{item.suppliedItem.disposal_category || 'None'}} to</span> {{item.recommendedItemSupplied.disposal_category || 'None'}}</span>
+          <span ng-if="item.suppliedItem.lead_time != item.recommendedItemSupplied.lead_time"><br><span class="text-muted">Change Lead time from {{item.suppliedItem.lead_time || 'None'}} to</span> {{item.recommendedItemSupplied.lead_time || 'None'}}</span>
+          <span ng-if="item.suppliedItem.location != item.recommendedItemSupplied.location"><br><span class="text-muted">Change Location from {{item.suppliedItem.location || 'None'}} to</span> {{item.recommendedItemSupplied.location || 'None'}}</span>
+          <span ng-if="item.suppliedItem.hs_code != item.recommendedItemSupplied.hs_code"><br><span class="text-muted">Change HS Code from {{item.suppliedItem.hs_code || 'None'}} to</span> {{item.recommendedItemSupplied.hs_code || 'None'}}</span>
+          <span ng-if="item.suppliedItem.electricity != item.recommendedItemSupplied.electricity"><br><span class="text-muted">Change Electricity from {{item.suppliedItem.electricity || 'None'}} to</span> {{item.recommendedItemSupplied.electricity || 'None'}}</span>
+          <span ng-if="item.suppliedItem.electricity_volts != item.recommendedItemSupplied.electricity_volts"><br><span class="text-muted">Change Electricity Volts from {{item.suppliedItem.electricity_volts || 'None'}} to</span> {{item.recommendedItemSupplied.electricity_volts || 'None'}}</span>
+          <span ng-if="item.suppliedItem.electricity_amps != item.recommendedItemSupplied.electricity_amps"><br><span class="text-muted">Change Electricity Amps from {{item.suppliedItem.electricity_amps || 'None'}} to</span> {{item.recommendedItemSupplied.electricity_amps || 'None'}}</span>
+          <span ng-if="item.suppliedItem.electricity_phase != item.recommendedItemSupplied.electricity_phase"><br><span class="text-muted">Change Electricity Phase from {{item.suppliedItem.electricity_phase || 'None'}} to</span> {{item.recommendedItemSupplied.electricity_phase || 'None'}}</span>
+          <span ng-if="item.suppliedItem.water_supply != item.recommendedItemSupplied.water_supply"><br><span class="text-muted">Change Water Supply from {{item.suppliedItem.water_supply || 'None'}} to</span> {{item.recommendedItemSupplied.water_supply || 'None'}}</span>
+          <span ng-if="item.suppliedItem.water_drainage != item.recommendedItemSupplied.water_drainage"><br><span class="text-muted">Change Water Drainage from {{item.suppliedItem.water_drainage || 'None'}} to</span> {{item.recommendedItemSupplied.water_drainage || 'None'}}</span>
+          <span ng-if="item.suppliedItem.compressed_air != item.recommendedItemSupplied.compressed_air"><br><span class="text-muted">Change Compressed Air from {{item.suppliedItem.compressed_air || 'None'}} to</span> {{item.recommendedItemSupplied.compressed_air || 'None'}}</span>
+          <span ng-if="item.suppliedItem.ventilation_fume_extraction != item.recommendedItemSupplied.ventilation_fume_extraction"><br><span class="text-muted">Change Ventilation Fume Extraction from {{item.suppliedItem.ventilation_fume_extraction || 'None'}} to</span> {{item.recommendedItemSupplied.ventilation_fume_extraction || 'None'}}</span>
+          <span ng-if="item.suppliedItem.gas_requirements != item.recommendedItemSupplied.gas_requirements"><br><span class="text-muted">Change Gas Requirements from {{item.suppliedItem.gas_requirements || 'None'}} to</span> {{item.recommendedItemSupplied.gas_requirements || 'None'}}</span>
+          <span ng-if="item.suppliedItem.anchor_fixing_base_requirements != item.recommendedItemSupplied.anchor_fixing_base_requirements"><br><span class="text-muted">Change Anchor Fixing Base Requirements from {{item.suppliedItem.anchor_fixing_base_requirements || 'None'}} to</span> {{item.recommendedItemSupplied.anchor_fixing_base_requirements || 'None'}}</span>
+          <span ng-if="item.suppliedItem.extra_details != item.recommendedItemSupplied.extra_details"><br><span class="text-muted">Change Extra details from {{item.suppliedItem.extra_details || 'None' || 'None'}} to</span> {{item.recommendedItemSupplied.extra_details || 'None'}}</span>
+          <span ng-if="item.suppliedItem.item_category.id != item.recommendedItemSupplied.item_category.id"><br><span class="text-muted">Change Item Category from {{item.suppliedItem.item_category.name.text || 'None'}} to</span> {{item.recommendedItemSupplied.item_category.name.text || 'None'}}</span>
+        </span>
+        <span ng-if="item.requestedItem.description.text != item.description.text"><br><span class="text-muted">Change Description from {{item.requestedItem.description.text || 'None'}} to</span> {{item.description.text || 'None'}}</span>
+        <span ng-if="item.requestedItem.readable_quantity != item.readable_quantity"><br><span class="text-muted">Change Quantity from {{item.requestedItem.readable_quantity || 'None'}} to</span> {{item.readable_quantity || 'None'}}</span>
+        <span ng-if="item.requestedItem.additional_quantity != item.additional_quantity"><br><span class="text-muted">Change Additional Quantity from {{item.requestedItem.additional_quantity || 'None'}} to</span> {{item.additional_quantity || 'None'}}</span>
+        <span ng-if="item.requestedItem.unit != item.unit"><br><span class="text-muted">Change Unit from {{item.requestedItem.unit || 'None'}} to</span> {{item.unit || 'None'}}</span>
+        <span ng-if="item.requestedItem.supplier.id != item.potentialSupplier.id"><br><span class="text-muted">Change Potential Supplier from {{item.requestedItem.supplier.name || 'None'}} to</span> {{item.potentialSupplier.name || 'None'}}</span>
+        <span ng-if="item.requestedItem.price != item.price"><br><span class="text-muted">Change Price from {{item.requestedItem.price || 'None'}} to</span> {{item.price || 'None'}}</span>
+        <span ng-if="item.recommendedItemSupplied && item.suppliedItem.id != item.recommendedItemSupplied.supplied_item.id"><br><span class="text-muted">Change Supplied Item from {{item.suppliedItem.description.text || 'None'}} to</span> {{item.recommendedItemSupplied.description.text || 'None'}}</span>
+        <span ng-if="item.requestedItem.category_id != item.category.id"><br><span class="text-muted">Change Category to</span> {{item.category.name.text || 'None'}}</span>
+      </span>
+
+      <span ng-if="!item.requestedItem">
+        <span class="text-muted">of</span> {{item.description.text}}
+        <span ng-if="item.readable_quantity"><br><span class="text-muted">Quantity:</span> {{item.readable_quantity}}</span>
+        <span ng-if="item.additional_quantity"><br><span class="text-muted">Additional Quantity:</span> {{item.additional_quantity}}</span>
+        <span ng-if="item.unit"><br><span class="text-muted">Unit:</span> {{item.unit}}</span>
+        <span ng-if="item.potentialSupplier.id"><br><span class="text-muted">Potential Supplier:</span> {{item.potentialSupplier.name}}</span>
+        <span ng-if="item.price"><br><span class="text-muted">Price:</span> {{item.price}}</span>
+        <span ng-if="item.recommendedItemSupplied.id"><br><span class="text-muted">Supplied Item:</span> {{item.recommendedItemSupplied.description.text}}</span>
+        <span ng-if="item.category.id"><br><span class="text-muted">Category:</span> {{item.category.name.text}}</span>
+      </span>
+
+    </div>
+  </div>
+  <hr/>
+</div>
+
+</div>

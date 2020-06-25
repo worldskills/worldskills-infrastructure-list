@@ -120,6 +120,27 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.sort = sort;
   };
 
+  $scope.showRecommendations = function (requestedItemId) {
+    $scope.loadingRecommendations = true;
+    RecommendedItems.getRecommendations($scope.eventId, $scope.listId, requestedItemId).then(function (res) {
+      $scope.recommendedItems = res.recommendedItems;
+      $scope.loadingRecommendations = false;
+    },
+    function (error) {
+      WSAlert.danger(error);
+    });
+    $scope.recommendationsModal = $uibModal.open({
+      animation: false,
+      size: 'lg',
+      templateUrl: 'views/recommendations-modal.html',
+      scope: $scope
+    });
+  };
+
+  $scope.closeRecommendationsModal = function () {
+    $scope.recommendationsModal.dismiss('cancel');
+  };
+
   $scope.openSuggestModalAside = function (item) {
     $scope.item = item || {};
     $scope.asideState = {

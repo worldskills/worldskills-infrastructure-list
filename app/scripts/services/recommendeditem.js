@@ -63,13 +63,16 @@ angular.module('ilApp')
       return this.suggestOnItem(item, eventId, listId);
     };
 
-    RecommendedItems.getRecommendations = function(eventId, listId) {
+    RecommendedItems.getRecommendations = function(eventId, listId, requestedItemId) {
 
       var deferred = $q.defer();
 
       var config = {params: {}};
       if (listId) {
         config.params.list_id = listId;
+      }
+      if (requestedItemId) {
+        config.params.requested_item_id = requestedItemId;
       }
 
       $http.get(API_IL + "/recommended-items/event/" + eventId + "/recommendations", config).then(function(result) {
