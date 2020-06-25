@@ -29,7 +29,7 @@
 
     <div class="pull-right">
       <button type="button" ng-if="userCanRecommend" ng-click="openSuggestModalAside();" data-target="" class="btn btn-sm btn-success">
-        <span translate><i class="fas fa-plus-circle"></i><span translate>SUGGEST_ADDITION</span>
+        <span translate>SUGGEST_ADDITION</span>
       </button>
       <div class="btn-group">
         <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
@@ -61,7 +61,7 @@
 
     <div class="clearfix"></div>
 
-    <div class="table-responsive" ng-if="items.length" >
+    <div class="table-responsive" ng-if="items.requested_items.length" >
         <table class="table table-condensed table-hover il-public-items-table table-with-actions">
             <colgroup>
             </colgroup>
@@ -153,7 +153,7 @@
                 <tr><td colspan="{{columnLength}}"></td></tr>
             </tfoot>
             <tbody>
-                <tr ng-repeat="item in filteredItems = (items | filter:filter) | orderBy:sort:reverse track by item.id">
+                <tr ng-repeat="item in filteredItems = (items.requested_items | filter:filter) | orderBy:sort:reverse track by item.id">
                   <td ng-if="columns.category">
                       {{ item.category.name.text }}
                   </td>
@@ -210,7 +210,12 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-md-offset-6">
+        <div class="col-md-6">
+          <p ng-if="items.additionRecommendationsCount > 0">
+            <em>{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: items.additionRecommendationsCount } }}</em>
+          </p>
+        </div>
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title" translate>Statuses</h3>

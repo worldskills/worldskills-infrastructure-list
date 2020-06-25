@@ -227,7 +227,7 @@ angular.module('ilApp')
       var deferred = $q.defer();
 
       $http.get(API_IL + '/public/lists/' + listId + '/requested_items').then(function(result) {
-        deferred.resolve(result.data.requested_items);
+        deferred.resolve(result.data);
       }, function(error) {
         deferred.reject(error.data.user_msg);
       });
