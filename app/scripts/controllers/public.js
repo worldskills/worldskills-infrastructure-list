@@ -154,7 +154,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       person: {
         id: auth.user.person_id
       },
-      categoryId : item.category_id
+      category: {
+        id: item.category_id
+      }
     };
 
     var self = this;
