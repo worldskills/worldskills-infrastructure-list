@@ -81,7 +81,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $q.all(promises).then(function () {
     Items.getPublicItems($scope.eventId, $scope.listId)
       .then(function(result) {
-        angular.forEach(result, function (item) {
+        angular.forEach(result.requested_items, function (item) {
           if (typeof categoriesIndexed[item.category_id] !== 'undefined') {
             item.category = categoriesIndexed[item.category_id];
           }
