@@ -122,6 +122,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
   $scope.showRecommendations = function (requestedItemId) {
     $scope.loadingRecommendations = true;
+    $scope.recommendedItems = [];
     RecommendedItems.getRecommendations($scope.eventId, $scope.listId, requestedItemId).then(function (res) {
       $scope.recommendedItems = res.recommendedItems;
       $scope.loadingRecommendations = false;
