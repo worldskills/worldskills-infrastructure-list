@@ -147,7 +147,6 @@
   "ELECTRICITY": "Electricity",
   "ELECTRICITY_NEEDED": "Electricity required",
   "ELECTRICITY_PHASE": "Electricity Phase",
-  "ENERGY_NEEDED": "Energy required",
   "ERROR": {
     "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER": "Could not get active positions for user: {{error}}"
   },
@@ -428,7 +427,6 @@
   "TH_ELECTRICITY_AMPS": "Electricity - Amps",
   "TH_ELECTRICITY_PHASE": "Electricity Phase",
   "TH_ELECTRICITY_VOLTS": "Electricity - Volts",
-  "TH_ENERGY_NEEDS": "Energy needs",
   "TH_EXPERTS": "Experts",
   "TH_EXTRA_DETAILS": "Extra details",
   "TH_FACTOR": "Factor",

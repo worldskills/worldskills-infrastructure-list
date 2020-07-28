@@ -146,7 +146,6 @@
   "ELECTRICITY": "Electricity",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
   "ELECTRICITY_PHASE": "Phase électrique",
-  "ENERGY_NEEDED": "Besoin d'énergie",
   "ERROR": {
     "COULD_NOT_GET_ACTIVE_POSITIONS_FOR_USER": "Erreur de récupération des fonctions de l'utilisateur : {{error}}"
   },
@@ -422,7 +421,6 @@
   "TH_ELECTRICITY_AMPS": "Électricité - Ampères",
   "TH_ELECTRICITY_PHASE": "Phase électrique",
   "TH_ELECTRICITY_VOLTS": "Électricité - Volts",
-  "TH_ENERGY_NEEDS": "Besoin d'énergie",
   "TH_EXPERTS": "Jurés",
   "TH_EXTRA_DETAILS": "Remarques",
   "TH_FACTOR": "Facteur",

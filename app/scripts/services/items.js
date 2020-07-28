@@ -208,7 +208,6 @@ angular.module('ilApp')
         item_subcategory: filters.item_subcategory ? filters.item_subcategory.id : null,
         category: filters.category ? filters.category.id : null,
         supplier: filters.supplier || null,
-        energy: filters.energy || null,
         air: filters.air || null,
         water: filters.water || null,
         electricity: filters.electricity || null

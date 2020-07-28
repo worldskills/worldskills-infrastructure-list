@@ -59,7 +59,6 @@ angular.module('ilApp')
         params.item_subcategory = filters.item_subcategory ? filters.item_subcategory.id : null;
         params.category = filters.category ? filters.category.id : null;
         params.supplier = filters.supplier || null;
-        params.energy = filters.energy || null;
         params.air = filters.air || null;
         params.water = filters.water || null;
         params.electricity = filters.electricity || null;
