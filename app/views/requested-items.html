@@ -1,3 +1,5 @@
+<div class="container-fluid">
+
 <ol class="breadcrumb">
     <li><a ui-sref="eventList" translate>EVENTS</a></li>
     <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
@@ -179,7 +181,7 @@
         <th translate>TH_STATUS</th>
         <th translate>TH_SUPPLIER_POTENTIAL</th>
         <th translate>TH_EXTRA_DETAILS</th>
-        <th translate>TH_ENERGY_NEEDS</th>
+        <th translate>TH_ELECTRICITY</th>
         <th translate width="90px">TOTAL_PRICE</th>
       </tr>
     </thead>
@@ -204,7 +206,7 @@
         </td>
         <td>{{item.supplier.name}}</td>
         <td>{{item.supplied_item.extra_details}}</td>
-        <td>{{item.supplied_item.needs_energy + 'Label' | translate}}</td>
+        <td>{{item.supplied_item.electricity}}</td>
         <td>{{item.price}}</td>
       </tr>
     </tbody>
@@ -236,5 +238,7 @@
       </tr>
     </tfoot>
   </table>
+
+</div>
 
 </div>
