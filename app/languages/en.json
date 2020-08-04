@@ -457,6 +457,7 @@
   "TH_PROGRESS": "Progress",
   "TH_QTY": "Qty",
   "TH_QUANTITY": "Quantity",
+  "TH_QUANTITY_CALCULATED": "Quantity (calculated)",
   "TH_REQUESTED": "Requested",
   "TH_REQUESTED_ITEM": "Requested item",
   "TH_SIZE": "Size",

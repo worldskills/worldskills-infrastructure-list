@@ -38,6 +38,7 @@
         <ul id="myDropdown" class="dropdown-menu dropdown-menu-right" role="menu">
           <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_CATEGORY</span></a></li>
           <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY</span></a></li>
+          <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY_CALCULATED</span></a></li>
           <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_DESCRIPTION</span></a></li>
           <li><a href ng-click="toggleColumn('requested')"><i ng-style="{'visibility' : columns.requested ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_REQUESTED_ITEM</span></a></li>
           <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER_POTENTIAL</span></a></li>
@@ -74,6 +75,10 @@
                     <th ng-if="columns.quantity" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('readable_quantity')" translate>TH_QUANTITY</span>
                       <span class="caret" ng-show="sort === 'readable_quantity'"></span>
+                    </th>
+                    <th ng-if="columns.calculated_quantity" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('calculated_quantity')" translate>TH_QUANTITY_CALCULATED</span>
+                      <span class="caret" ng-show="sort === 'calculated_quantity'"></span>
                     </th>
                     <th ng-if="columns.description" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('description.text')" translate>TH_DESCRIPTION</span>
@@ -116,9 +121,8 @@
                             <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name.text}}</option>
                         </select>
                     </td>
-                    <td ng-if="columns.quantity">
-                        &nbsp;
-                    </td>
+                    <td ng-if="columns.quantity">&nbsp;</td>
+                    <td ng-if="columns.calculated_quantity">&nbsp;</td>
                     <td ng-if="columns.description">
                         <input type="text" class="form-control input-sm" ng-model="filter.description.text" />
                     </td>
@@ -161,6 +165,7 @@
                       <span ng-if="item.multiplier">{{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
                       <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
                   </td>
+                  <td ng-if="columns.calculated_quantity">{{item.calculated_quantity}}</td>
                   <td ng-if="columns.description">
                       <em ng-if="item.secret" translate>SECRET_ITEM</em>
                       <span ng-if="item.secret && item.status.show_in_public_view"><br></span>
