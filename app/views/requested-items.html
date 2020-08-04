@@ -167,6 +167,7 @@
         <th translate>TH_SKILL</th>
         <th translate>TH_NAME</th>
         <th translate>TH_QUANTITY</th>
+        <th translate>TH_QUANTITY_CALCULATED</th>
         <th translate>TH_UNIT</th>
         <th translate>TH_PART_NUM</th>
         <th translate>TH_STATUS</th>
@@ -187,6 +188,7 @@
         <td>
           {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiply_factor} }}
         </td>
+        <td>{{item.calculated_quantity}}</td>
         <td>{{UNITS[item.unit] | translate}}</td>
         <td>{{item.supplied_item.part_number}}</td>
         <td>
@@ -203,13 +205,13 @@
     </tbody>
     <tbody ng-show="!items.length || loading.items">
       <tr>
-        <td ng-if="loading.items" colspan="13"><ws-spinner></ws-spinner></td>
-        <td ng-if="!loading.items" colspan="13" class="text-center" translate>NO_ITEMS</td>
+        <td ng-if="loading.items" colspan="14"><ws-spinner></ws-spinner></td>
+        <td ng-if="!loading.items" colspan="14" class="text-center" translate>NO_ITEMS</td>
       </tr>
     </tbody>
     <tfoot ng-if="items.length && !loading.items">
       <tr>
-        <td colspan="13" class="text-center">
+        <td colspan="14" class="text-center">
           <uib-pagination
             total-items="items_total_count"
             ng-model="current_page"
