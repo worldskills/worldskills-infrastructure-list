@@ -118,7 +118,7 @@
               </div>
             </div>
 
-            <div class='col col-xs-12 col-md-4 form-group'>
+            <div class='col col-xs-12 col-md-4'>
                 <div class="form-group addForm has-feedback has-success">
 
                   <label class='control-label' translate>UNIT</label>
@@ -142,17 +142,35 @@
                   <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 </div>
             </div>
-            <div class='col col-md-4 form-group'></div>
+            <div class='col col-md-4'></div>
           </div>
-
           <div class="row">
-            <div ng-if="item.id" class="col col-xs-12 col-md-4 form-group">
-              <div data-nodrag class="checkbox addForm form-group has-feedback has-success" style="margin-top: -20px;">
+            <div class="col col-xs-12 col-md-4">
+              <div class="form-group addForm has-feedback has-success">
+                <label class='control-label' translate>SKILL_AREA</label>
+                <select class="form-control input-sm" ng-model="recommendedItem.area" ng-options="area.name for area in skillAreas track by area.id">
+                  <option></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div ng-if="item.id" class="col col-xs-12 col-md-4">
+              <div data-nodrag class="checkbox addForm form-group">
                 <label>
-                  <input type="checkbox" ng-model="recommendedItem.wrongSuppliedItem"> <span translate>WRONG_SUPPLIED_ITEM </span></input>
+                  <input type="checkbox" ng-model="recommendedItem.wrongSuppliedItem"></input> <span translate>WRONG_SUPPLIED_ITEM</span>
                 </label>
               </div>
             </div>
+            <div class="col col-xs-12 col-md-4">
+              <div data-nodrag class="checkbox addForm form-group">
+                <label>
+                  <input type="checkbox" ng-model="recommendedItem.secret"></input> <span translate>SECRET_ITEM</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
               <label class='control-label' translate>APPROVER_INFORMATION</label>
               <textarea rows="10" name="extra_details" class="input-sm form-control" placeholder="{{ 'APPROVER_INFORMATION' | translate }}" ng-model='recommendedItem.comment'></textarea>

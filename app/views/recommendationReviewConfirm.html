@@ -58,6 +58,18 @@
           <td><b translate>Unit</b><br>{{data.item.requestedItem.unit}}</td>
           <td><b translate>Unit</b><br>{{data.item.unit}}</td>
         </tr>
+        <tr
+        ng-class="{'warning': data.item.area.id != data.item.requestedItem.area.id}"
+        ng-if='data.item.area.id != data.item.requestedItem.area.id'>
+          <td><b translate>SKILL_AREA</b><br>{{data.item.requestedItem.area.name}}</td>
+          <td><b translate>SKILL_AREA</b><br>{{data.item.area.name}}</td>
+        </tr>
+        <tr
+        ng-class="{'warning': data.item.secret != data.item.requestedItem.secret}"
+        ng-if='data.item.secret != data.item.requestedItem.secret'>
+          <td><b translate>Secret</b><br>{{data.item.requestedItem.secret}}</td>
+          <td><b translate>Secret</b><br>{{data.item.secret}}</td>
+        </tr>
         <tr ng-if='data.item.comment && data.item.comment.length > 0'>
           <td colspan="2">
             <b translate>Comment:</b><br>

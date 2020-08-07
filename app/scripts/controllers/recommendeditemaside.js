@@ -74,6 +74,8 @@ angular.module('ilApp')
               name: $scope.item.supplier
             },
             price: $scope.item.price,
+            secret: $scope.item.secret,
+            area: $scope.item.area,
             wrongSuppliedItem : false,
             comment: "",
             deletionSuggestion: false,

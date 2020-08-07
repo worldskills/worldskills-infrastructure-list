@@ -65,6 +65,8 @@
         <span ng-if="item.requestedItem.price != item.price"><br><span class="text-muted">Change Price from {{item.requestedItem.price || 'None'}} to</span> {{item.price || 'None'}}</span>
         <span ng-if="item.recommendedItemSupplied && item.suppliedItem.id != item.recommendedItemSupplied.supplied_item.id"><br><span class="text-muted">Change Supplied Item from {{item.suppliedItem.description.text || 'None'}} to</span> {{item.recommendedItemSupplied.description.text || 'None'}}</span>
         <span ng-if="item.requestedItem.category_id != item.category.id"><br><span class="text-muted">Change Category to</span> {{item.category.name.text || 'None'}}</span>
+        <span ng-if="item.requestedItem.area.id != item.area.id"><br><span class="text-muted">Change Skill Area to</span> {{item.area.name || 'None'}}</span>
+        <span ng-if="item.requestedItem.secret != item.secret"><br><span class="text-muted">Change Secret to</span> {{item.secret}}</span>
       </span>
 
       <span ng-if="!item.requestedItem">
