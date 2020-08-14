@@ -137,6 +137,9 @@ angular.module('ilApp')
     $scope.addItem = function () {
       //item, itemIndex
 
+      // reset item
+      $scope.item = null;
+
       $scope.asideState = {
         open: true,
       };

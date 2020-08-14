@@ -23,10 +23,20 @@ angular.module('ilApp')
     };
 
     $scope.item.updateRequested = false;
-    if ($scope.item == undefined || !$scope.item.id) {
+    if ($scope.item == undefined) {
+      $scope.item = {};
+    }
+    if ($scope.item.description == undefined) {
       $scope.item.description = {};
     }
     $scope.item.description.lang_code = $translate.use(); // Ensure lang_code are the same as the user
+
+    if ($scope.suppliedItemAsideAdd == undefined) {
+      $scope.suppliedItemAsideAdd = ($scope.item == undefined || !$scope.item.id);
+    }
+    if ($scope.suppliedItemAsideFiles == undefined) {
+      $scope.suppliedItemAsideFiles = !($scope.item == undefined || !$scope.item.id);
+    }
 
     $scope.supplierValueAdd = false;
 

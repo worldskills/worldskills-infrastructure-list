@@ -1,7 +1,7 @@
 <div class='aside'>
   <fieldset>
-    <legend ng-if="!item.id" translate>ADD_NEW_ITEM</legend>
-    <legend ng-if="item.id" translate>EDITING_ITEM</legend>
+    <legend ng-if="suppliedItemAsideAdd" translate>ADD_NEW_ITEM</legend>
+    <legend ng-if="!suppliedItemAsideAdd" translate>EDITING_ITEM</legend>
 
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>
@@ -295,7 +295,7 @@
           </uib-tab>
 
 
-          <uib-tab index="4" heading="{{'SUPPLIED_ITEM_TAB.FILES' | translate}}">
+          <uib-tab index="4" heading="{{'SUPPLIED_ITEM_TAB.FILES' | translate}}" ng-if="suppliedItemAsideFiles">
             <div class='well'>
               <fieldset>
                 <legend class="aside" translate>FILES_AND_PICTURES</legend>
@@ -421,9 +421,9 @@
 
         </uib-tabset>
 
-      <button ng-disabled="editForm.$error.required" ng-if="!item.id" ng-click="addItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
+      <button ng-disabled="editForm.$error.required" ng-if="suppliedItemAsideAdd" ng-click="addItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
 
-      <button ng-disabled="editForm.$error.required" ng-if="item.id" ng-click="saveItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
+      <button ng-disabled="editForm.$error.required" ng-if="!suppliedItemAsideAdd" ng-click="saveItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>
 
