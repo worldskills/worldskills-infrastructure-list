@@ -16,6 +16,8 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $scope.columns = {
     category: true,
     quantity: true,
+    calculated_quantity: false,
+    unit: false,
     description: true,
     requested: false,
     supplier_potential: true,

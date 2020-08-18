@@ -39,6 +39,7 @@
           <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_CATEGORY</span></a></li>
           <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY</span></a></li>
           <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY_CALCULATED</span></a></li>
+          <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_UNIT</span></a></li>
           <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_DESCRIPTION</span></a></li>
           <li><a href ng-click="toggleColumn('requested')"><i ng-style="{'visibility' : columns.requested ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_REQUESTED_ITEM</span></a></li>
           <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER_POTENTIAL</span></a></li>
@@ -80,6 +81,7 @@
                       <span ng-click="sortBy('calculated_quantity')" translate>TH_QUANTITY_CALCULATED</span>
                       <span class="caret" ng-show="sort === 'calculated_quantity'"></span>
                     </th>
+                    <th ng-if="columns.unit" translate>TH_UNIT</th>
                     <th ng-if="columns.description" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('description.text')" translate>TH_DESCRIPTION</span>
                       <span class="caret" ng-show="sort === 'description.text'"></span>
@@ -123,6 +125,7 @@
                     </td>
                     <td ng-if="columns.quantity">&nbsp;</td>
                     <td ng-if="columns.calculated_quantity">&nbsp;</td>
+                    <td ng-if="columns.unit">&nbsp;</td>
                     <td ng-if="columns.description">
                         <input type="text" class="form-control input-sm" ng-model="filter.description.text" />
                     </td>
@@ -166,6 +169,7 @@
                       <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
                   </td>
                   <td ng-if="columns.calculated_quantity">{{item.calculated_quantity}}</td>
+                  <td ng-if="columns.unit">{{UNITS[item.unit] | translate}}</td>
                   <td ng-if="columns.description">
                       <em ng-if="item.secret" translate>SECRET_ITEM</em>
                       <span ng-if="item.secret && item.status.show_in_public_view"><br></span>
