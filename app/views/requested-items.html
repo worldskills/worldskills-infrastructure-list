@@ -145,36 +145,77 @@
     </div>
   </div>
 
-  <div class="text-right mt-2">
+  <div class="pull-right mt-2">
+    <div class="btn-group">
+      <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+        Columns <span class="caret"></span>
+      </button>
+      <ul id="myDropdown" class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><a href ng-click="toggleColumn('sector')"><i ng-style="{'visibility' : columns.sector ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SKILL_SECTOR</span></a></li>
+        <li><a href ng-click="toggleColumn('list')"><i ng-style="{'visibility' : columns.list ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_LIST</span></a></li>
+        <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_CATEGORY</span></a></li>
+        <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY</span></a></li>
+        <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY_CALCULATED</span></a></li>
+        <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_UNIT</span></a></li>
+        <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_DESCRIPTION</span></a></li>
+        <li><a href ng-click="toggleColumn('requested')"><i ng-style="{'visibility' : columns.requested ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_REQUESTED_ITEM</span></a></li>
+        <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER_POTENTIAL</span></a></li>
+        <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>SKILL_AREA</span></a></li>
+        <li><a href ng-click="toggleColumn('supplied')"><i ng-style="{'visibility' : columns.supplied ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIED_ITEM</span></a></li>
+        <li><a href ng-click="toggleColumn('manufacturer')"><i ng-style="{'visibility' : columns.manufacturer ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MANUFACTURER</span></a></li>
+        <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MODEL</span></a></li>
+        <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SIZE</span></a></li>
+        <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_PART_NUM</span></a></li>
+        <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER</span></a></li>
+        <li><a href ng-click="toggleColumn('electricity')"><i ng-style="{'visibility' : columns.electricity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ELECTRICITY</span></a></li>
+        <li><a href ng-click="toggleColumn('price')"><i ng-style="{'visibility' : columns.price ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TOTAL_PRICE</span></a></li>
+        <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_EXTRA_DETAILS</span></a></li>
+        <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_FILES</span></a></li>
+        <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_STATUS</span></a></li>
+      </ul>
+    </div>
     <button class="btn btn-sm btn-default" ng-click="clear()" translate>CLEAR</button>
+    <button class="btn btn-sm btn-primary" ng-click="downloadCsv()"><span class="glyphicon glyphicon-save"></span>&nbsp;<span translate>EXTRACT_RESULTS</span></button>
+  </div>
+
+  <div class="mt-2">
     <button class="btn btn-sm btn-primary" ng-disabled="selectedItemsCount() < 1" ng-click="openMultipleItemEditor()">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate>MULTIPLE_EDITION</span>
     </button>
-    <button class="btn btn-sm btn-primary" ng-click="downloadCsv()"><span class="glyphicon glyphicon-save"></span>&nbsp;<span translate>EXTRACT_RESULTS</span></button>
   </div>
 
   <div class="clearfix"></div>
 </div>
 
+
 <div class="table-responsive mt-3">
-  <table class="table table-striped vmiddle">
+  <table class="table table-condensed table-hover vmiddle">
     <thead>
       <tr>
         <th class="select">
           <input type="checkbox" ng-model="allSelected" ng-click="selectAll()">
         </th>
-        <th translate>TH_SKILL_SECTOR</th>
-        <th translate>TH_SKILL</th>
-        <th translate>TH_NAME</th>
-        <th translate>TH_QUANTITY</th>
-        <th translate>TH_QUANTITY_CALCULATED</th>
-        <th translate>TH_UNIT</th>
-        <th translate>TH_PART_NUM</th>
-        <th translate>TH_STATUS</th>
-        <th translate>TH_SUPPLIER_POTENTIAL</th>
-        <th translate>TH_EXTRA_DETAILS</th>
-        <th translate>TH_ELECTRICITY</th>
-        <th translate width="90px">TOTAL_PRICE</th>
+        <th ng-if="columns.sector" translate>TH_SKILL_SECTOR</th>
+        <th ng-if="columns.list" translate>TH_LIST</th>
+        <th ng-if="columns.category" translate>TH_CATEGORY</th>
+        <th ng-if="columns.quantity" translate>TH_QUANTITY</th>
+        <th ng-if="columns.calculated_quantity" translate>TH_QUANTITY_CALCULATED</th>
+        <th ng-if="columns.unit" translate>TH_UNIT</th>
+        <th ng-if="columns.description" translate>TH_DESCRIPTION</th>
+        <th ng-if="columns.requested" translate>TH_REQUESTED_ITEM</th>
+        <th ng-if="columns.supplier_potential" translate>TH_SUPPLIER_POTENTIAL</th>
+        <th ng-if="columns.area" translate>SKILL_AREA</th>
+        <th ng-if="columns.supplied" translate>TH_SUPPLIED_ITEM</th>
+        <th ng-if="columns.manufacturer" translate>TH_MANUFACTURER</th>
+        <th ng-if="columns.model" translate>TH_MODEL</th>
+        <th ng-if="columns.size" translate>TH_SIZE</th>
+        <th ng-if="columns.part_number" translate>TH_PART_NUM</th>
+        <th ng-if="columns.supplier" translate>TH_SUPPLIER</th>
+        <th ng-if="columns.electricity" translate>TH_ELECTRICITY</th>
+        <th ng-if="columns.price" translate>TOTAL_PRICE</th>
+        <th ng-if="columns.extra_details" translate>TH_EXTRA_DETAILS</th>
+        <th ng-if="columns.files" translate>TH_FILES</th>
+        <th ng-if="columns.status" translate>TH_STATUS</th>
       </tr>
     </thead>
     <tbody ng-show="items.length && !loading.items">
@@ -182,36 +223,56 @@
         <td class="select">
           <input type="checkbox" ng-checked="item.selected"/>
         </td>
-        <td><span ng-if="item.list.skill.sector">{{item.list.skill.sector.name.text}}</span></td>
-        <td>{{item.list.skill.skill_number}} {{item.list.skill.name.text}}</td>
-        <td>{{item.description.text}}</td>
-        <td>
-          {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiply_factor} }}
+        <td ng-if="columns.sector"><span ng-if="item.list.skill.sector">{{item.list.skill.sector.name.text}}</span></td>
+        <td ng-if="columns.list">{{item.list.skill.skill_number}} {{item.list.skill.name.text}}</td>
+        <td ng-if="columns.category">
+            {{ item.category.name.text }}
         </td>
-        <td>{{item.calculated_quantity}}</td>
-        <td>{{UNITS[item.unit] | translate}}</td>
-        <td>{{item.supplied_item.part_number}}</td>
-        <td>
-          <span class="label"
-            ng-style="{'background-color': item.status.color_code}">
-            {{item.status.name.text}}
-          </span>
+        <td ng-if="columns.quantity">
+            <span ng-if="item.multiplier">{{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
+            <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
         </td>
-        <td>{{item.supplier.name}}</td>
-        <td>{{item.supplied_item.extra_details}}</td>
-        <td>{{item.supplied_item.electricity}}</td>
-        <td>{{item.price}}</td>
+        <td ng-if="columns.calculated_quantity">{{item.calculated_quantity}}</td>
+        <td ng-if="columns.unit">{{UNITS[item.unit] | translate}}</td>
+        <td ng-if="columns.description">
+            <em ng-if="item.secret" translate>SECRET_ITEM</em>
+            <span ng-if="item.secret && item.status.show_in_public_view"><br></span>
+            <span ng-if="!item.status.show_in_public_view">{{ item.description.text }}</span>
+            <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
+        </td>
+        <td ng-if="columns.requested">{{ item.description.text }}</td>
+        <td ng-if="columns.supplier_potential"><span if="item.status.show_in_public_view">{{item.supplier.name}}</span></td>
+        <td ng-if="columns.area">{{item.area.name}}</td>
+        <td ng-if="columns.supplied">{{item.supplied_item.description.text}}</td>
+        <td ng-if="columns.manufacturer">{{item.supplied_item.manufacturer}}</td>
+        <td ng-if="columns.model">{{item.supplied_item.model}}</td>
+        <td ng-if="columns.size">{{item.supplied_item.size}}</td>
+        <td ng-if="columns.part_number">{{item.supplied_item.part_number}}</td>
+        <td ng-if="columns.supplier">{{item.supplied_item.supplier.name}}</td>
+        <td ng-if="columns.electricity">{{item.supplied_item.electricity}}</td>
+        <td ng-if="columns.price">{{item.price}}</td>
+        <td ng-if="columns.extra_details">{{item.supplied_item.extra_details}}</td>
+        <td ng-if="columns.files">
+          <ul class="public-files">
+            <li ng-repeat="file in item.supplied_item.files">
+              <a target="_blank" href="{{UPLOADS_URL}}/{{file.file.download_path}}">{{file.file.filename_original}} ({{file.file.size | filesize}})</a>
+            </li>
+          </ul>
+        </td>
+        <td ng-if="columns.status">
+            <span class='label' ng-style="{'background-color': item.status.color_code}" title="{{item.status.description.text}}">{{item.status.name.text}}</span>
+        </td>
       </tr>
     </tbody>
     <tbody ng-show="!items.length || loading.items">
       <tr>
-        <td ng-if="loading.items" colspan="14"><ws-spinner></ws-spinner></td>
-        <td ng-if="!loading.items" colspan="14" class="text-center" translate>NO_ITEMS</td>
+        <td ng-if="loading.items" colspan="{{columnLength}}"><ws-spinner></ws-spinner></td>
+        <td ng-if="!loading.items" colspan="{{columnLength}}" class="text-center" translate>NO_ITEMS</td>
       </tr>
     </tbody>
     <tfoot ng-if="items.length && !loading.items">
       <tr>
-        <td colspan="14" class="text-center">
+        <td colspan="{{columnLength}}" class="text-center">
           <uib-pagination
             total-items="items_total_count"
             ng-model="current_page"

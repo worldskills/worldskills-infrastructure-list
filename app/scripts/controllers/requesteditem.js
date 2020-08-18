@@ -22,6 +22,46 @@ angular.module('ilApp')
     // used to manage concurrent search requests
     $scope.loadPromise = null;
 
+    $scope.resetColumns = function () {
+      $scope.columns = {
+        sector: true,
+        list: true,
+        category: false,
+        quantity: true,
+        calculated_quantity: false,
+        unit: false,
+        description: true,
+        requested: false,
+        supplier_potential: true,
+        area: false,
+        supplied: false,
+        manufacturer: false,
+        model: false,
+        size: false,
+        part_number: false,
+        supplier: false,
+        electricity: false,
+        price: false,
+        extra_details: false,
+        files: false,
+        status: true
+      };
+    };
+    $scope.resetColumns();
+    $scope.columnLength = 1;
+
+    var updateColumnLength = function () {
+      $scope.columnLength = Object.values($scope.columns).reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue
+      }, 0) + 1;
+    };
+    updateColumnLength();
+
+    $scope.toggleColumn = function (column) {
+      $scope.columns[column] = !$scope.columns[column];
+      updateColumnLength();
+    };
+
     $scope.selectAll = function() {
       angular.forEach($scope.items, function(v, k) {
         v.selected = $scope.allSelected;
@@ -121,6 +161,7 @@ angular.module('ilApp')
 
     $scope.clear = function() {
       $scope.filters = {};
+      $scope.resetColumns();
       $scope.changePage(1);
     };
 
