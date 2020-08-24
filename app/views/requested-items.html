@@ -167,6 +167,8 @@
         <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_PART_NUM</span></a></li>
         <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER</span></a></li>
         <li><a href ng-click="toggleColumn('electricity')"><i ng-style="{'visibility' : columns.electricity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ELECTRICITY</span></a></li>
+        <li><a href ng-click="toggleColumn('water_supply')"><i ng-style="{'visibility' : columns.water_supply ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_WATER_SUPPLY</span></a></li>
+        <li><a href ng-click="toggleColumn('compressed_air')"><i ng-style="{'visibility' : columns.compressed_air ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_COMPRESSED_AIR</span></a></li>
         <li><a href ng-click="toggleColumn('price')"><i ng-style="{'visibility' : columns.price ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TOTAL_PRICE</span></a></li>
         <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_EXTRA_DETAILS</span></a></li>
         <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_FILES</span></a></li>
@@ -210,6 +212,8 @@
         <th ng-if="columns.part_number" translate>TH_PART_NUM</th>
         <th ng-if="columns.supplier" translate>TH_SUPPLIER</th>
         <th ng-if="columns.electricity" translate>TH_ELECTRICITY</th>
+        <th ng-if="columns.water_supply" translate>TH_WATER_SUPPLY</th>
+        <th ng-if="columns.compressed_air" translate>TH_COMPRESSED_AIR</th>
         <th ng-if="columns.price" translate>TOTAL_PRICE</th>
         <th ng-if="columns.extra_details" translate>TH_EXTRA_DETAILS</th>
         <th ng-if="columns.files" translate>TH_FILES</th>
@@ -242,6 +246,8 @@
         <td ng-if="columns.part_number">{{item.supplied_item.part_number}}</td>
         <td ng-if="columns.supplier">{{item.supplied_item.supplier.name}}</td>
         <td ng-if="columns.electricity">{{item.supplied_item.electricity}}</td>
+        <td ng-if="columns.water_supply">{{item.supplied_item.water_supply}}</td>
+        <td ng-if="columns.compressed_air">{{item.supplied_item.compressed_air}}</td>
         <td ng-if="columns.price">{{item.price}}</td>
         <td ng-if="columns.extra_details">{{item.supplied_item.extra_details}}</td>
         <td ng-if="columns.files">

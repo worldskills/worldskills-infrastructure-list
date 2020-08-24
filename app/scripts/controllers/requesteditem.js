@@ -40,6 +40,8 @@ angular.module('ilApp')
         part_number: false,
         supplier: false,
         electricity: false,
+        water_supply: false,
+        compressed_air: false,
         price: false,
         extra_details: false,
         files: false,
