@@ -31,7 +31,6 @@ angular.module('ilApp')
         calculated_quantity: false,
         unit: false,
         description: true,
-        requested: false,
         supplier_potential: true,
         area: false,
         supplied: false,

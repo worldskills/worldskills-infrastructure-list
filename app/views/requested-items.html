@@ -158,7 +158,6 @@
         <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY_CALCULATED</span></a></li>
         <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_UNIT</span></a></li>
         <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_DESCRIPTION</span></a></li>
-        <li><a href ng-click="toggleColumn('requested')"><i ng-style="{'visibility' : columns.requested ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_REQUESTED_ITEM</span></a></li>
         <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER_POTENTIAL</span></a></li>
         <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>SKILL_AREA</span></a></li>
         <li><a href ng-click="toggleColumn('supplied')"><i ng-style="{'visibility' : columns.supplied ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIED_ITEM</span></a></li>
@@ -202,7 +201,6 @@
         <th ng-if="columns.calculated_quantity" translate>TH_QUANTITY_CALCULATED</th>
         <th ng-if="columns.unit" translate>TH_UNIT</th>
         <th ng-if="columns.description" translate>TH_DESCRIPTION</th>
-        <th ng-if="columns.requested" translate>TH_REQUESTED_ITEM</th>
         <th ng-if="columns.supplier_potential" translate>TH_SUPPLIER_POTENTIAL</th>
         <th ng-if="columns.area" translate>SKILL_AREA</th>
         <th ng-if="columns.supplied" translate>TH_SUPPLIED_ITEM</th>
@@ -234,13 +232,7 @@
         </td>
         <td ng-if="columns.calculated_quantity">{{item.calculated_quantity}}</td>
         <td ng-if="columns.unit">{{UNITS[item.unit] | translate}}</td>
-        <td ng-if="columns.description">
-            <em ng-if="item.secret" translate>SECRET_ITEM</em>
-            <span ng-if="item.secret && item.status.show_in_public_view"><br></span>
-            <span ng-if="!item.status.show_in_public_view">{{ item.description.text }}</span>
-            <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
-        </td>
-        <td ng-if="columns.requested">{{ item.description.text }}</td>
+        <td ng-if="columns.description">{{ item.description.text }}</td>
         <td ng-if="columns.supplier_potential"><span if="item.status.show_in_public_view">{{item.supplier.name}}</span></td>
         <td ng-if="columns.area">{{item.area.name}}</td>
         <td ng-if="columns.supplied">{{item.supplied_item.description.text}}</td>
