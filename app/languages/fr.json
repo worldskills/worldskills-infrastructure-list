@@ -462,7 +462,6 @@
   "TH_SUPPLIER": "Partenaire",
   "TH_SUPPLIER_POTENTIAL": "Fournisseur (potentiel)",
   "TH_SUPPLY_TYPE": "Type de fourniture",
-  "TH_TOTAL_PRICE": "Prix total",
   "TH_UNIT": "Unité",
   "TH_UNIT_COST": "Coût unitaire",
   "TH_USER_GENERATED": "Utilisateur généré",
@@ -481,7 +480,6 @@
     "CHOOSE_STATUS": "Sélectionnez un statut",
     "CHOOSE_SUPPLIER": "Sélectionnez un partenaire"
   },
-  "TOTAL_PRICE": "Prix total estimé (€)",
   "TO_EDIT_ITEMS": "Pour éditer des items, sélectionnez une catégorie dans le menu situé sur la gauche.",
   "TO_PURCHASE": "Achat requis",
   "TO_THE_LIST": "à la liste ?",
