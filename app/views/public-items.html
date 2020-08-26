@@ -177,7 +177,7 @@
                       <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
                   </td>
                   <td ng-if="columns.requested">{{ item.description.text }}</td>
-                  <td ng-if="columns.supplier_potential"><span if="item.status.show_in_public_view">{{item.supplier.name}}</span></td>
+                  <td ng-if="columns.supplier_potential"><span ng-if="item.status.show_in_public_view">{{item.supplier.name}}</span></td>
                   <td ng-if="columns.area">{{item.area.name}}</td>
                   <td ng-if="columns.supplied">{{item.supplied_item.description.text}}</td>
                   <td ng-if="columns.manufacturer">{{item.supplied_item.manufacturer}}</td>
