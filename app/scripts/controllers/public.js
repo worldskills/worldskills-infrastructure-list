@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
   $scope.listId = $state.params.listId;
@@ -132,6 +132,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     function (error) {
       WSAlert.danger(error);
     });
+    RecommendedSubscription.getSubscription($scope.eventId, $scope.listId, auth.user.person_id).then(function (res) {
+      $scope.subscription = res;
+    });
     $scope.recommendationsModal = $uibModal.open({
       animation: false,
       size: 'lg',
@@ -142,6 +145,13 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
   $scope.closeRecommendationsModal = function () {
     $scope.recommendationsModal.dismiss('cancel');
+  };
+
+  $scope.updateSubscription = function (subscribe) {
+    $scope.subscription.subscribed = subscribe;
+    RecommendedSubscription.updateSubscription($scope.eventId, $scope.listId, auth.user.person_id, $scope.subscription).then(function (res) {
+      $scope.subscription = res;
+    });
   };
 
   $scope.openSuggestModalAside = function (item) {
