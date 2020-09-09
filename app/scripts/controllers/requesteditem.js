@@ -52,9 +52,12 @@ angular.module('ilApp')
     $scope.columnLength = 1;
 
     var updateColumnLength = function () {
-      $scope.columnLength = Object.values($scope.columns).reduce(function (accumulator, currentValue) {
-        return accumulator + currentValue
-      }, 0) + 1;
+      $scope.columnLength = 0;
+      angular.forEach($scope.columns, function(value, key) {
+        if (key) {
+          $scope.columnLength += 1;
+        }
+      });
     };
     updateColumnLength();
 
