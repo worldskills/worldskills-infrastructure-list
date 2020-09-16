@@ -491,6 +491,7 @@
   "TO_PURCHASE": "To Purchase",
   "TO_THE_LIST": "to the list?",
   "BORROW": "Borrow",
+  "INVENTORY": "Inventory",
   "UIB_TOOLTIP": {
     "CATEGORY_CONTAINS_SUBCATEGORY": "This item category contains subcategories",
     "SUBCATEGORY_CONTAINS_ITEMS": "This subcategory contains items",

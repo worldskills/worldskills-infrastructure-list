@@ -484,6 +484,7 @@
   "TO_PURCHASE": "Achat requis",
   "TO_THE_LIST": "à la liste ?",
   "BORROW": "Borrow",
+  "INVENTORY": "Inventory",
   "UIB_TOOLTIP": {
     "CATEGORY_CONTAINS_SUBCATEGORY": "Cette superfamille contient des familles",
     "SUBCATEGORY_CONTAINS_ITEMS": "Cette famille contient des items",
