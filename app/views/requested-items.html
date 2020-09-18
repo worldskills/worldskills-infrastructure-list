@@ -170,6 +170,7 @@
         <li><a href ng-click="toggleColumn('water_supply')"><i ng-style="{'visibility' : columns.water_supply ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_WATER_SUPPLY</span></a></li>
         <li><a href ng-click="toggleColumn('compressed_air')"><i ng-style="{'visibility' : columns.compressed_air ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_COMPRESSED_AIR</span></a></li>
         <li><a href ng-click="toggleColumn('price')"><i ng-style="{'visibility' : columns.price ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>ESTIMATED_PRICE</span></a></li>
+        <li><a href ng-click="toggleColumn('tier')"><i ng-style="{'visibility' : columns.tier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TIER</span></a></li>
         <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_EXTRA_DETAILS</span></a></li>
         <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_FILES</span></a></li>
         <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_STATUS</span></a></li>
@@ -215,6 +216,7 @@
         <th ng-if="columns.water_supply" translate>TH_WATER_SUPPLY</th>
         <th ng-if="columns.compressed_air" translate>TH_COMPRESSED_AIR</th>
         <th ng-if="columns.price" translate>ESTIMATED_PRICE</th>
+        <th ng-if="columns.tier" translate>TIER</th>
         <th ng-if="columns.extra_details" translate>TH_EXTRA_DETAILS</th>
         <th ng-if="columns.files" translate>TH_FILES</th>
         <th ng-if="columns.status" translate>TH_STATUS</th>
@@ -249,6 +251,7 @@
         <td ng-if="columns.water_supply">{{item.supplied_item.water_supply}}</td>
         <td ng-if="columns.compressed_air">{{item.supplied_item.compressed_air}}</td>
         <td ng-if="columns.price">{{item.price}}</td>
+        <td ng-if="columns.tier">{{tiersIndexed[item.tier_id].name.text}}</td>
         <td ng-if="columns.extra_details">{{item.supplied_item.extra_details}}</td>
         <td ng-if="columns.files">
           <ul class="public-files">

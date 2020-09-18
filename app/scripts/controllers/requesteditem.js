@@ -43,6 +43,7 @@ angular.module('ilApp')
         water_supply: false,
         compressed_air: false,
         price: false,
+        tier: false,
         extra_details: false,
         files: false,
         status: true
@@ -239,6 +240,10 @@ angular.module('ilApp')
       })
       .then(function(res){
         $scope.tiers = res;
+        $scope.tiersIndexed = {};
+        angular.forEach($scope.tiers, function (tier) {
+          $scope.tiersIndexed[tier.id] = tier;
+        });
         $scope.loading.items = false;
       })
       .catch(function (error) {
