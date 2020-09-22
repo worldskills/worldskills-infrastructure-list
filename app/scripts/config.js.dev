@@ -2,23 +2,23 @@
     'use strict';
 
     var ilApp = angular.module('ilApp');
-    ilApp.constant('API_IL', 'http://localhost:8080/il');
-    ilApp.constant('API_PEOPLE', 'http://localhost:8080/people');
+    ilApp.constant('API_IL', 'https://api.worldskills.dev/il');
+    ilApp.constant('API_PEOPLE', 'https://api.worldskills.dev/people');
     ilApp.constant('APP_ID', '2200');
-    ilApp.constant('API_IMAGES', 'http://localhost:8080/images');
+    ilApp.constant('API_IMAGES', 'https://api.worldskills.dev/images');
     ilApp.constant('CLIENT_ID', 'bc9cf785283f');
-    ilApp.constant('API_AUTH', 'http://localhost:8080/auth');
-    ilApp.constant('AUTHORIZE_URL', 'http://worldskills-auth.localhost/oauth/authorize');
-    ilApp.constant('LOGOUT_URL', 'http://worldskills-auth.localhost/logout');
-    ilApp.constant('UPLOADS_URL', 'http://localhost/worldskills-il');
+    ilApp.constant('API_AUTH', 'https://api.worldskills.dev/auth');
+    ilApp.constant('AUTHORIZE_URL', 'https://auth.worldskills.dev/oauth/authorize');
+    ilApp.constant('LOGOUT_URL', 'https://auth.worldskills.dev/logout');
+    ilApp.constant('UPLOADS_URL', 'https://il.worldskillsusercontent.dev');
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
     ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');
-    ilApp.constant('WORLDSKILLS_API_AUTH', 'http://localhost:8080/auth');
-    ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'http://worldskills-auth.localhost/oauth/authorize');
+    ilApp.constant('WORLDSKILLS_API_AUTH', 'https://api.worldskills.dev/auth');
+    ilApp.constant('WORLDSKILLS_AUTHORIZE_URL', 'https://auth.worldskills.dev/oauth/authorize');
 
     ilApp.constant('LOAD_CHILD_ENTITY_ROLES', true);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
-    ilApp.constant('ENVIRONMENT_WARNING', 'This is the local development environment. Happy coding!');
+    ilApp.constant('ENVIRONMENT_WARNING', 'This is the dev environment. Changes in this environment might get overwritten.');
 
 })();

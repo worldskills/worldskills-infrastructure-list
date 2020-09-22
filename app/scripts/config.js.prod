@@ -1,7 +1,6 @@
 (function() {
     'use strict';
 
-
     var ilApp = angular.module('ilApp');
     ilApp.constant('API_IL', 'https://api.worldskills.org/il');
     ilApp.constant('API_PEOPLE', 'https://api.worldskills.org/people');
