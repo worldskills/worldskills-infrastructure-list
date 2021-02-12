@@ -284,6 +284,18 @@
       }
     })
 
+    .state('publicItemsSkill', {
+      url: '/events/{eventId}/skills/{skillId}/public',
+      controller: 'PublicItemsSkillCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.VIEW }
+        ]
+      }
+    })
+
     .state('requestedItems', {
       url: '/events/{eventId}/requested-items',
       templateUrl: 'views/requested-items.html',

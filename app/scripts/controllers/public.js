@@ -212,3 +212,10 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     });
   };
 });
+
+angular.module('ilApp').controller('PublicItemsSkillCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
+
+   Events.getSkill($state.params.skillId).then(function(skill) {
+     $state.go('publicItems', {eventId: $state.params.eventId, listId: skill.list_id});
+   });
+});
