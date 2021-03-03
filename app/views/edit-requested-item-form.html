@@ -21,12 +21,6 @@
             </ui-select>
           </div>
         </div>
-        <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.description.$error.required, 'has-success': !editForm.description.$error.required}">
-          <label class='control-label' translate>DESCRIPTION</label>
-          <input name="description" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}" ng-model='item.description.text' required="{{ 'REQUIRED.QUANTITY_IS_MISSING' | translate }}" ng-required="true"  ng-trim="true">
-          <span ng-if="!editForm.description.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-          <span ng-if="editForm.description.$error.required" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-        </div>
         <div class="form-group addForm has-feedback has-success">
           <label class='control-label' translate>CATEGORY</label>
           <select class="form-control input-sm" ng-model="item.category_id" ng-options="category.id as category.name.text for category in categories"></select>

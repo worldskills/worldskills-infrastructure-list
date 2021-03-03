@@ -1,6 +1,6 @@
 <div class="aside">
   <fieldset>
-    <legend translate>SWITCH_SUPPLIED_ITEM</legend>
+    <legend translate>FIND_SUPPLIED_ITEM</legend>
     <alerts></alerts>
     <form name="form" ng-submit="search()">
       <div class="input-group">
@@ -38,6 +38,7 @@
       </tbody>
     </table>
     <hr>
+    <button ng-disabled="!searchResults" ng-show="!item.id" ng-click="createNewSuppliedItem(item)" class="btn btn-sm btn-primary" ng-if="event.userCanCreate" translate>CREATE_NEW_SUPPLIED_ITEM</button>
     <button ng-click="cancel()" class="btn btn-sm btn-warning" translate>BUTTON_CANCEL</button>
   </fieldset>
 </div>

@@ -11,6 +11,17 @@
       }
     };
 
+    $scope.createNewSuppliedItem = function () {
+      var suppliedItem = {};
+      suppliedItem.description = {
+        lang_code: $scope.selectedLanguage,
+        text: $scope.searchTerm,
+      };
+      suppliedItem.event = $scope.event;
+
+      $uibModalInstance.close(suppliedItem);
+    };
+
     $scope.selectSuppliedItem = function (suppliedItem) {
       $uibModalInstance.close(suppliedItem);
     };

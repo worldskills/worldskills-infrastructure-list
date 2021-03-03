@@ -795,10 +795,8 @@ angular.module('ilApp')
     $scope.createNewLinkedItem = function(suppliedItem, linkedItemsRef){
 
       //copy item
-      $scope.suppliedItem = {
-        originalObject: angular.copy(suppliedItem),
-        force: true
-      };
+      $scope.suppliedItem = angular.copy(suppliedItem);
+      $scope.suppliedItem.force = true;
 
       //initialize description of the item for the form
       $scope.item = {

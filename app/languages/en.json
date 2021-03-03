@@ -90,6 +90,7 @@
   "CLOSE_TEXT": {
     "CLOSE": "Close"
   },
+  "CREATE_NEW_SUPPLIED_ITEM": "Create new Supplied Item",
   "COMBINE_ITEMS": "Combine items",
   "COMMENT": "Comment",
   "COMPRESSED_AIR": "Compressed air",
@@ -156,6 +157,7 @@
   "EXPORT_REQUESTED_ITEMS": "Export all Requested Items",
   "EXTRACT_RESULTS": "Download results",
   "EXTRA_DETAILS_COMMENTS": "Extra details",
+  "FIND_SUPPLIED_ITEM": "Find Supplied Item",
   "FILES_AND_PICTURES": "Files and Pictures",
   "FILTERS": "Filters",
   "FULLSCREEN": "Fullscreen",

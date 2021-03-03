@@ -45,34 +45,6 @@
             <div ng-if="(suppliedItem.force === true && !newLinkedItem.category.id)" class="alert alert-warning" translate>MUST_SELECT_CATEGORY</div>
             <!-- catalogue view only -->
 
-            <div class="form-group addForm">
-              <label class='control-label' translate>DESCRIPTION</label>
-              <!-- catalogue view only -->
-              <input ng-if="suppliedItem.force === true" type="text" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}" ng-model='item.description.text'>
-              <!-- !catalogue view -->
-              <angucomplete-alt
-                id="id"
-                ng-show="suppliedItem.force !== true"
-                placeholder="{{ 'PLACEHOLDER.DESCRIPTION_OF_THE_ITEM' | translate }}"
-                pause="400"
-                selected-object="suppliedItem"
-                remote-url="{{searchAPI}}"
-                remote-url-request-with-credentials="true"
-                remote-url-data-field="supplied_items"
-                title-field="description.text"
-                description-field="make"
-                focus-out="focusOutItem"
-                minlength="2"
-                search-fields="description.text"
-                disable-input="disableInput"
-                override-suggestions="true"
-                field-required="true"
-                text-searching="{{ 'TEXT_SEARCHING.SEARCHING_FOR_ITEMS_IN_CATALOGUE' | translate }}"
-                text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_ITEMS_HIT_RETURN_KEY_TO_ADD_AS_A_NEW_ITEM' | translate }}"
-                input-class="form-control form-control-small has-feedback"
-              />
-            </div>
-
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
@@ -186,95 +158,7 @@
           </div> <!-- well -->
         </div>
         <div class="col col-sm-12 col-md-6">
-          <div class='alert alert-info smallText' ng-if="suppliedItem.force !== true && showChangeHint">
-            <span translate>CHANGE_TO_ANOTHER_ITEM_HELP</span>
-          </div>
-
-          <div ng-if="suppliedItem.force !== true && showCloneHint">
-            <div class='alert alert-info smallText'>
-              <span translate>CLONE_ITEM_HELP</span>
-              <br />
-              <br />
-              <button
-                ng-click="unSplitItem()"
-                class='btn btn-xs btn-warning'
-                ng-model="item.split_supplied_item"
-                >
-                <span><i class='glyphicon glyphicon-ok'></i>&nbsp;<span translate>DONT_SPLIT_SUPPLIED_ITEM</span></span>
-            </button>
-            </div>
-
-            <div class='panel panel-default'>
-              <div class='panel-heading smallText'><strong translate>SUPPLIED_ITEM_DETAILS</strong></div>
-              <div class='panel-body'>
-                <table class='table smallText'>
-                  <thead>
-                    <tr>
-                      <th translate>TH_DESCRIPTION</th>
-                      <th translate>TH_MANUFACTURER</th>
-                      <th translate>TH_MODEL</th>
-                      <th translate>TH_SIZE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{{splitDetails.originalObject.description.text}}</td>
-                      <td>{{splitDetails.originalObject.manufacturer}}</td>
-                      <td>{{splitDetails.originalObject.model}}</td>
-                      <td>{{splitDetails.originalObject.size}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class='form-group addForm' ng-if="suppliedItem.originalObject.id">
-            <div class='panel panel-default'>
-              <div class='panel-heading smallText'><strong translate>SUPPLIED_ITEM_DETAILS</strong></div>
-              <div class='panel-body'>
-                <table class='table smallText'>
-                  <thead>
-                    <tr>
-                      <th translate>TH_DESCRIPTION</th>
-                      <th translate>TH_MANUFACTURER</th>
-                      <th translate>TH_MODEL</th>
-                      <th translate>TH_SIZE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{{suppliedItem.originalObject.description.text}}</td>
-                      <td>{{suppliedItem.originalObject.manufacturer}}</td>
-                      <td>{{suppliedItem.originalObject.model}}</td>
-                      <td>{{suppliedItem.originalObject.size}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <div class='alert alert-info smallText' ng-if="suppliedItem.force !== true">
-                  <span translate>ITEM_ALREADY_CREATED</span><br /><br />
-                  <span translate>ITEM_DOESNT_MATCH</span><br /><br />
-                  <button ng-show="disableInput" ng-click="rename()" class='btn btn-xs btn-warning' translate>CHANGE_TO_ANOTHER_ITEM</button>
-                  <br /><br />
-                  <span translate>ITEM_SPLIT_DESCRIPTION</span><br /><br />
-                  <button
-                    ng-init="item.split_supplied_item = false"
-                    ng-click="splitItem()"
-                    class='btn btn-xs'
-                    ng-model="item.split_supplied_item"
-                    ng-class="{'btn-success': item.split_supplied_item,
-                               'btn-warning': !item.split_supplied_item
-                    }"
-                    >
-                    <span ng-show="!item.split_supplied_item">&nbsp;<span translate>SPLIT_SUPPLIED_ITEM</span></span>
-                </button>
-                </div>
-              </div>
-            </div>
-            <hr>
-          </div>
-          <div class="form-group addForm" ng-if="item.supplied_item && !suppliedItem.originalObject.id && !showChangeHint && !showCloneHint">
+          <div class="form-group addForm" ng-if="item.supplied_item">
             <div class="well">
               <h5 translate>SUPPLIED_ITEM</h5>
               <div class="row">
@@ -303,14 +187,15 @@
               </div>
               <br>
               <div class="form-group">
-                <a ng-if="event.userCanCreate" data-nodrag class='btn btn-sm btn-primary' ng-click="editSuppliedItem()" translate>EDIT_SUPPLIED_ITEM</a>
-                <button ng-click="rename()" class='btn btn-sm btn-warning' translate>CHANGE_TO_ANOTHER_ITEM</button>
+                <a data-nodrag ng-if="event.userCanCreate" class='btn btn-sm btn-primary' ng-click="editSuppliedItem()" translate>EDIT_SUPPLIED_ITEM</a>
+                <a data-nodrag class='btn btn-sm btn-info' ng-click="switchSuppliedItem(item)" translate>SWITCH_SUPPLIED_ITEM</a>
               </div>
+              <div ng-if="item.supplied_item.multiple_linked_items" class="alert alert-warning" data-nodrag><span translate>ITEM_ATTACHED_TO_MULTIPLE_SKILLS</span></div>
             </div>
           </div>
         </div>
       </div>
-      <button ng-disabled="addForm.$error.required  || !suppliedItem.originalObject || (suppliedItem.force === true && !newLinkedItem.category.id)" ng-click="addItem();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
+      <button ng-disabled="addForm.$error.required  || (suppliedItem.force === true && !newLinkedItem.category.id)" ng-click="addItem();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
     </form>
   </fieldset>

@@ -138,7 +138,7 @@ angular.module('ilApp')
       //item, itemIndex
 
       // reset item
-      $scope.item = null;
+      $scope.item = {};
 
       $scope.asideState = {
         open: true,
@@ -148,14 +148,22 @@ angular.module('ilApp')
         $scope.asideState.open = false;
       }
 
-      $aside.open({
+      var requestedItemAside = $aside.open({
         templateUrl: 'views/addRequestedItemAside.html',
         placement: 'right',
         size: 'lg',
         scope: $scope,
         backdrop: true,
         controller: 'addRequestedItemCtrl',
-      }).result.then(postClose, postClose);
+      });
+      requestedItemAside.result.then(postClose, postClose);
+
+      var suppliedItemAside = $scope.switchSuppliedItem($scope.item);
+      suppliedItemAside.result.then(function () {
+        
+      }, function () {
+        requestedItemAside.dismiss();
+      })
     };
 
     $scope.initCategory = function () {
@@ -303,13 +311,17 @@ angular.module('ilApp')
 
         item.supplied_item = suppliedItem;
 
-        Items.saveItemSuppliedItem(item, $scope.event_id).then(function (result) {
-          // supplied item updated
-        }, function (error) {
-          WSAlert.danger(error);
-        });
+        if (item.id) {
+          Items.saveItemSuppliedItem(item, $scope.event_id).then(function (result) {
+            // supplied item updated
+          }, function (error) {
+            WSAlert.danger(error);
+          });
+        }
 
       });
+
+      return aside;
 
     };
 
@@ -325,11 +337,13 @@ angular.module('ilApp')
 
           item.supplied_item = res;
 
-          Items.saveItemSuppliedItem(item, $scope.event_id).then(function (result) {
-            // supplied item updated
-          }, function (error) {
-            WSAlert.danger(error);
-          });
+          if (item.id) {
+            Items.saveItemSuppliedItem(item, $scope.event_id).then(function (result) {
+              // supplied item updated
+            }, function (error) {
+              WSAlert.danger(error);
+            });
+          }
 
         }, function (error) {
           WSAlert.danger(error);
@@ -337,7 +351,6 @@ angular.module('ilApp')
       });
 
     };
-
   })
 .directive('requestedItem', function (UNITS) {
   return {

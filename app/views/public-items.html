@@ -41,10 +41,8 @@
           <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY_CALCULATED</span></a></li>
           <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_UNIT</span></a></li>
           <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_DESCRIPTION</span></a></li>
-          <li><a href ng-click="toggleColumn('requested')"><i ng-style="{'visibility' : columns.requested ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_REQUESTED_ITEM</span></a></li>
           <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER_POTENTIAL</span></a></li>
           <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>SKILL_AREA</span></a></li>
-          <li><a href ng-click="toggleColumn('supplied')"><i ng-style="{'visibility' : columns.supplied ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIED_ITEM</span></a></li>
           <li><a href ng-click="toggleColumn('manufacturer')"><i ng-style="{'visibility' : columns.manufacturer ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MANUFACTURER</span></a></li>
           <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MODEL</span></a></li>
           <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SIZE</span></a></li>
@@ -83,12 +81,8 @@
                     </th>
                     <th ng-if="columns.unit" translate>TH_UNIT</th>
                     <th ng-if="columns.description" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('description.text')" translate>TH_DESCRIPTION</span>
-                      <span class="caret" ng-show="sort === 'description.text'"></span>
-                    </th>
-                    <th ng-if="columns.requested" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('description.text')" translate>TH_REQUESTED_ITEM</span>
-                      <span class="caret" ng-show="sort === 'description.text'"></span>
+                      <span ng-click="sortBy('supplied_item.description.text')" translate>TH_DESCRIPTION</span>
+                      <span class="caret" ng-show="sort === 'supplied_item.description.text'"></span>
                     </th>
                     <th ng-if="columns.supplier_potential" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('supplier.name')" translate>TH_SUPPLIER_POTENTIAL</span>
@@ -97,10 +91,6 @@
                     <th ng-if="columns.area" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('area.name')" translate>SKILL_AREA</span>
                       <span class="caret" ng-show="sort === 'area.name'"></span>
-                    </th>
-                    <th ng-if="columns.supplied" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.description.text')" translate>TH_SUPPLIED_ITEM</span>
-                      <span class="caret" ng-show="sort === 'supplied_item.description.text'"></span>
                     </th>
                     <th ng-if="columns.manufacturer" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('supplied_item.manufacturer')" translate>TH_MANUFACTURER</span>
@@ -188,13 +178,10 @@
                   <td ng-if="columns.description">
                       <em ng-if="item.secret" translate>SECRET_ITEM</em>
                       <span ng-if="item.secret && item.status.show_in_public_view"><br></span>
-                      <span ng-if="!item.status.show_in_public_view">{{ item.description.text }}</span>
-                      <span ng-if="item.status.show_in_public_view">{{item.supplied_item.description.text}}</span>
+                      <span>{{item.supplied_item.description.text}}</span>
                   </td>
-                  <td ng-if="columns.requested">{{ item.description.text }}</td>
                   <td ng-if="columns.supplier_potential"><span ng-if="item.status.show_in_public_view">{{item.supplier.name}}</span></td>
                   <td ng-if="columns.area">{{item.area.name}}</td>
-                  <td ng-if="columns.supplied">{{item.supplied_item.description.text}}</td>
                   <td ng-if="columns.manufacturer">{{item.supplied_item.manufacturer}}</td>
                   <td ng-if="columns.model">{{item.supplied_item.model}}</td>
                   <td ng-if="columns.size">{{item.supplied_item.size}}</td>
