@@ -102,11 +102,26 @@
                       <span ng-click="sortBy('supplied_item.description.text')" translate>TH_SUPPLIED_ITEM</span>
                       <span class="caret" ng-show="sort === 'supplied_item.description.text'"></span>
                     </th>
-                    <th ng-if="columns.manufacturer" translate>TH_MANUFACTURER</th>
-                    <th ng-if="columns.model" translate>TH_MODEL</th>
-                    <th ng-if="columns.size" translate>TH_SIZE</th>
-                    <th ng-if="columns.part_number" translate>TH_PART_NUM</th>
-                    <th ng-if="columns.supplier" translate>TH_SUPPLIER</th>
+                    <th ng-if="columns.manufacturer" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('supplied_item.manufacturer')" translate>TH_MANUFACTURER</span>
+                      <span class="caret" ng-show="sort === 'supplied_item.manufacturer'"></span>
+                    </th>
+                    <th ng-if="columns.model" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('supplied_item.model')" translate>TH_MODEL</span>
+                      <span class="caret" ng-show="sort === 'supplied_item.model'"></span>
+                    </th>
+                    <th ng-if="columns.size" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('supplied_item.size')" translate>TH_SIZE</span>
+                      <span class="caret" ng-show="sort === 'supplied_item.size'"></span>
+                    </th>
+                    <th ng-if="columns.part_number" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('supplied_item.part_number')" translate>TH_PART_NUM</span>
+                      <span class="caret" ng-show="sort === 'supplied_item.part_number'"></span>
+                    </th>
+                    <th ng-if="columns.supplier" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('supplied_item.supplier.name')" translate>TH_SUPPLIER</span>
+                      <span class="caret" ng-show="sort === 'supplied_item.supplier.name'"></span>
+                    </th>
                     <th ng-if="columns.extra_details" translate>TH_EXTRA_DETAILS</th>
                     <th ng-if="columns.files" translate>TH_FILES</th>
                     <th ng-if="columns.status" ng-class="{dropup: !reverse}">
