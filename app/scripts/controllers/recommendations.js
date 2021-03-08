@@ -8,7 +8,7 @@
  * Controller handling recommendations validation
  */
 angular.module('ilApp')
-  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, auth, Items, Language, RecommendedItems, Events, WSAlert, APP_ID, APP_ROLES, UPLOADS_URL) {
+  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, auth, ItemTier, RecommendedItems, Events, WSAlert, APP_ID, APP_ROLES, UPLOADS_URL) {
 
     $scope.event = false;
     $scope.data = {};
@@ -27,6 +27,10 @@ angular.module('ilApp')
 
     Events.getListsForEvent($stateParams.eventId).then(function (lists) {
       $scope.lists = lists;
+    });
+
+    ItemTier.getTiersForEvent($stateParams.eventId).then(function (tiers) {
+      $scope.tiers = tiers;
     });
 
     $scope.updateListId = function () {
@@ -86,6 +90,7 @@ angular.module('ilApp')
           title: $translate.instant("JSTEXT_REVIEW_ITEMS.TITLE"),
           item: item,
           split: $scope.split,
+          tiers: $scope.tiers,
           userCanAcceptReject: $scope.userCanAcceptReject,
           UPLOADS_URL: $scope.UPLOADS_URL,
           modifyRecommendation: function(itemRef){

@@ -76,6 +76,7 @@ angular.module('ilApp')
             price: $scope.item.price,
             secret: $scope.item.secret,
             area: $scope.item.area,
+            tier: {id: $scope.item.tier_id},
             wrongSuppliedItem : false,
             comment: "",
             deletionSuggestion: false,

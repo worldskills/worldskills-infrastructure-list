@@ -153,6 +153,14 @@
                 </select>
               </div>
             </div>
+            <div class="col col-xs-12 col-md-4">
+              <div class="form-group addForm has-feedback has-success">
+                <label class='control-label' translate>TIER</label>
+                <select class="form-control input-sm" ng-model="recommendedItem.tier.id" ng-options="tier.id as tier.name.text for tier in tiers">
+                  <option></option>
+                </select>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div ng-if="item.id" class="col col-xs-12 col-md-4">

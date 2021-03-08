@@ -65,6 +65,12 @@
           <td><b translate>SKILL_AREA</b><br>{{data.item.area.name}}</td>
         </tr>
         <tr
+        ng-class="{'warning': data.item.tier.id != data.item.requestedItem.tier_id}"
+        ng-if='data.item.tier.id != data.item.requestedItem.tier_id'>
+          <td><b translate>TIER</b><br><span ng-repeat="tier in data.tiers" ng-if="tier.id == data.item.requestedItem.tier_id">{{tier.name.text}}</span></td>
+          <td><b translate>TIER</b><br>{{data.item.tier.name.text}}</td>
+        </tr>
+        <tr
         ng-class="{'warning': data.item.secret != data.item.requestedItem.secret}"
         ng-if='data.item.secret != data.item.requestedItem.secret'>
           <td><b translate>Secret</b><br>{{data.item.requestedItem.secret}}</td>
