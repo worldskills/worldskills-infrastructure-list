@@ -58,7 +58,10 @@
                             <td class="col-20">
                                 <span class="ng-binding ng-scope" ng-if="item.recommendedAt" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.recommendedAt | amDateFormat: 'DD.MM.YYYY'), time: (item.recommendedAt | amDateFormat: 'HH:mm')}"></span>
                             </td>
-                            <td class="col-15">{{item.description.text}}</td>
+                            <td class="col-15">
+                                <span ng-if="item.requestedItem">{{item.requestedItem.supplied_item.description.text}}</span>
+                                <span ng-if="!item.requestedItem">{{item.recommendedItemSupplied.description.text}}</span>
+                            </td>
                             <td class="col-15">
                               <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
                               <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>

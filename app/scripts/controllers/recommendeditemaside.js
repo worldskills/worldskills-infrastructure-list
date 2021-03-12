@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('recommendedItemAsideCtrl', function ($scope, $state, $uibModalInstance, $timeout, FileUploader, Items, WSAlert, ItemCategory, UNITS, SUPPLIED_ITEM_PRIORITIES, MULTIPLIERS, MULTIPLIER_DEFAULT, API_IL, RecommendedItems, SuppliedItem, $translate, auth) {
+  .controller('recommendedItemAsideCtrl', function ($scope, $state, $uibModalInstance, $timeout, FileUploader, Items, WSAlert, ItemCategory, UNITS, SUPPLIED_ITEM_PRIORITIES, MULTIPLIERS, API_IL, RecommendedItems, SuppliedItem, $translate, auth) {
 
     //set event id from state if not already set
     if(!$scope.event_id){
@@ -22,10 +22,6 @@ angular.module('ilApp')
     $scope.selectedLanguage = $translate.use();
     $scope.recommendedItemSuppliedForm = {};
     $scope.suppliedDirty = false;
-
-    $scope.recommendedItem = {
-      multiplier: MULTIPLIER_DEFAULT
-    };
 
     $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.event_id + '/search?q=';
     $scope.searchAPI = API_IL + '/items/' + $scope.event_id + '/supplied_items/?search=';
@@ -112,13 +108,6 @@ angular.module('ilApp')
       }
     };
 
-    $scope.$watch('recommendedItem.description', function(val){
-      if(val != void 0 && val.originalObject != void 0 && val.originalObject.id != void 0){
-        //load supplied item details
-        $scope.refreshView(val.originalObject.id, val.originalObject.event.id);
-      }
-    });
-
     $scope.factorNeeded = function (multiplierId) {
       var retval = false;
 
@@ -130,25 +119,6 @@ angular.module('ilApp')
     };
 
     $scope.saveItem = function () {
-
-      //Set recommended item name from autocomplete
-      //First case : description set by clicking a suggestion from catalogue
-      if($scope.recommendedItem.description.originalObject &&
-        $scope.recommendedItem.description.originalObject.description) {
-        $scope.recommendedItem.suppliedItem = $scope.recommendedItem.description.originalObject;
-        $scope.recommendedItem.recommendedItemSupplied = $scope.recommendedItem.description.originalObject;
-        $scope.recommendedItem.description = {
-          lang_code: $scope.selectedLanguage,
-          text: $scope.recommendedItem.description.originalObject.description.text
-        }
-
-      //Second case : description only set from written text in field
-      } else if ($scope.recommendedItem.description.originalObject) {
-        $scope.recommendedItem.description = {
-          lang_code: $scope.selectedLanguage,
-          text: $scope.recommendedItem.description.originalObject
-        }
-      }
 
       //Set potential supplier from autocomplete
       //First case : supplier chosen by clicking a suggestion
@@ -204,6 +174,7 @@ angular.module('ilApp')
         this.recommendedItemSuppliedForm.INSTALLATION.$dirty ||
         this.recommendedItemSuppliedForm.FILES.$dirty ||
         this.recommendedItemSuppliedForm.EXTRA.$dirty ||
+        !$scope.recommendedItem.suppliedItem.id ||
         $scope.uploader.queue.length > 0)
         $scope.suppliedDirty = true;
 

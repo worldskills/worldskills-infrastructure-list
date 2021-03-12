@@ -9,30 +9,6 @@
     <form class="addForm" name='addForm'>
         <uib-tabset active="recommended01">
           <uib-tab index="0" heading="{{'REQUESTED_ITEM' | translate}}">
-            <div class="form-group addForm">
-              <label class='control-label' translate>DESCRIPTION</label>
-              <angucomplete-alt
-                id="id"
-                placeholder="{{ 'PLACEHOLDER.DESCRIPTION_OF_THE_ITEM' | translate }}"
-                pause="400"
-                selected-object="recommendedItem.description"
-                remote-url="{{searchAPI}}"
-                remote-url-request-with-credentials="true"
-                remote-url-data-field="supplied_items"
-                title-field="description.text"
-                description-field="make"
-                focus-out="focusOutItem"
-                minlength="2"
-                search-fields="description.text"
-                disable-input="disableInput"
-                override-suggestions="true"
-                field-required="true"
-                text-searching="{{ 'TEXT_SEARCHING.SEARCHING_FOR_ITEMS_IN_CATALOGUE' | translate }}"
-                text-no-results="false"
-                input-class="form-control form-control-small has-feedback"
-                initial-value="recommendedItem.description.text"
-              />
-            </div>
             <div class="row">
               <div class="form-group col col-xs-12 col-sm-8 has-feedback" ng-class="{'has-error': addForm.category.$dirty && addForm.category.$error.required, 'has-success': !addForm.category.$error.required}">
                 <label class="control-label" translate>ITEM_CATEGORY</label>

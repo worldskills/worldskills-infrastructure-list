@@ -18,12 +18,6 @@
       </thead>
       <tbody>
         <tr
-        ng-class="{'warning': data.item.description.text != data.item.requestedItem.description.text}"
-        ng-if='data.item.description.text'>
-          <td><b translate>Description</b><br>{{data.item.requestedItem.description.text}}</td>
-          <td><b translate>Description</b><br>{{data.item.description.text}}</td>
-        </tr>
-        <tr
         ng-class="{'warning': data.item.category.id != data.item.requestedItem.category_id}"
         ng-if='data.item.category.id != data.item.requestedItem.category_id'>
           <td><b translate>Category</b><br>{{data.item.requestedItem.category.name.text}}</td>
@@ -86,7 +80,7 @@
     </table>
 
 
-    <div ng-if='data.item.recommendedItemSupplied.id'>
+    <div ng-if='data.item.suppliedItem.id || data.item.recommendedItemSupplied.id'>
       <fieldset><legend>Supplied Item</legend>
         <div class='alert alert-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true && !data.item.deletionSuggestion" >
           <div translate ng-show="!data.split">ITEM_ATTACHED_TO_MULTIPLE_SKILLS</div>
@@ -104,10 +98,9 @@
           </thead>
           <tbody>
             <tr
-            ng-class="{'warning': data.item.suppliedItem.description.text != data.item.recommendedItemSupplied.description.text}"
-            ng-if='data.item.recommendedItemSupplied.description.text'>
+            ng-class="{'warning': data.item.recommendedItemSupplied.description.text && data.item.suppliedItem.description.text != data.item.recommendedItemSupplied.description.text}">
               <td><b translate>Description</b><br>{{data.item.suppliedItem.description.text}}</td>
-              <td><b translate>Description</b><br>{{data.item.recommendedItemSupplied.description.text}}</td>
+              <td><b translate>Description</b><br>{{data.item.recommendedItemSupplied ? data.item.recommendedItemSupplied.description.text : data.item.suppliedItem.description.text}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.manufacturer != data.item.recommendedItemSupplied.manufacturer}"

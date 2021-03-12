@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, ItemTier, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, ItemTier, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, MULTIPLIER_DEFAULT, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
   $scope.listId = $state.params.listId;
@@ -167,14 +167,49 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       open: true,
     };
 
-    $aside.open({
+    $scope.recommendedItem = {
+      multiplier: MULTIPLIER_DEFAULT
+    };
+
+    var requestedItemAside = $aside.open({
       templateUrl: 'views/recommendedItemAside.html',
       placement: 'right',
       size: 'lg',
       scope: $scope,
       backdrop: true,
       controller: 'recommendedItemAsideCtrl',
-    }).result.then(postClose, postClose);
+    });
+    requestedItemAside.result.then(postClose, postClose);
+
+    if (!$scope.item.id) {
+
+      $scope.recommendedItem.description = {
+        lang_code: $scope.selectedLanguage,
+        text: '',
+      };
+
+      // create new scope with item for aside
+      var scope = $scope.$new();
+      scope.event_id = $scope.eventId;
+      scope.item = $scope.item;
+
+      // open aside
+      var suppliedItemAside = $aside.open({
+        templateUrl: 'views/switchSuppliedItemAside.html',
+        placement: 'right',
+        size: 'md',
+        scope: scope,
+        backdrop: true,
+        controller: 'switchSuppliedItemCtrl',
+      });
+      // update supplied item on aside close
+      suppliedItemAside.result.then(function (suppliedItem) {
+        $scope.recommendedItem.suppliedItem = suppliedItem;
+        $scope.recommendedItem.recommendedItemSupplied = suppliedItem;
+      }, function () {
+        requestedItemAside.dismiss();
+      });
+    }
   };
 
   $scope.suggestDeletion = function (item) {
