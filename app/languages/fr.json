@@ -90,7 +90,7 @@
   "CLOSE_TEXT": {
     "CLOSE": "Fermer"
   },
-  "CREATE_NEW_SUPPLIED_ITEM": "Create new Supplied Item",
+  "CREATE_NEW_SUPPLIED_ITEM": "Créer un nouvel Item",
   "COMBINE_ITEMS": "Combiner les items",
   "COMMENT": "Commentaire",
   "COMPRESSED_AIR": "Air comprimé",
@@ -156,7 +156,7 @@
   "EXPORT_REQUESTED_ITEMS": "Exporter les lignes d'infrastructure",
   "EXTRACT_RESULTS": "Extraire les résultats",
   "EXTRA_DETAILS_COMMENTS": "Détails complémentaires / Commentaires",
-  "FIND_SUPPLIED_ITEM": "Find Supplied Item",
+  "FIND_SUPPLIED_ITEM": "Trouver un item",
   "FILES_AND_PICTURES": "Fichiers et images",
   "FILTERS": "Filtres",
   "FULLSCREEN": "Plein-écran",
