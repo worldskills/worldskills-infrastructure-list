@@ -250,8 +250,8 @@
             <tr
             ng-class="{'warning': data.item.suppliedItem.extra_details != data.item.recommendedItemSupplied.extra_details}"
             ng-if='data.item.recommendedItemSupplied.extra_details'>
-              <td><b translate>Extra Details</b><br>{{data.item.suppliedItem.extra_details}}</td>
-              <td><b translate>Extra Details</b><br>{{data.item.recommendedItemSupplied.extra_details}}</td>
+              <td class="break-all"><b translate>Extra Details</b><br>{{data.item.suppliedItem.extra_details}}</td>
+              <td class="break-all"><b translate>Extra Details</b><br>{{data.item.recommendedItemSupplied.extra_details}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.files.length != data.item.recommendedItemSupplied.recommended_files.length}"
