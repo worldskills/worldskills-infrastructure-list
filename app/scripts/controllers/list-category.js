@@ -52,8 +52,13 @@ angular.module('ilApp')
           item.updated = true;
           angular.extend(item, res);
           $scope.item = null;
+        } else {
+          //res === null if close called because of `cancel`
+          item.supplied_item = $scope.item.supplied_item;
         }
-        //res === null if close called because of `cancel`
+      }, function () {
+        // dismissed
+        item.supplied_item = $scope.item.supplied_item;
       });
     };
 
@@ -265,6 +270,7 @@ angular.module('ilApp')
         SuppliedItem.saveItem(rowEntity, updateRequested).then(function(res){
           // copy back data from request's response
           angular.extend(rowEntity, res);
+          item.supplied_item = res;
           promise.resolve();
         }, function(error){
           WSAlert.danger(error);
