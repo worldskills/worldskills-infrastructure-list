@@ -144,6 +144,7 @@
   "EDIT_REQUESTS": "Demandes de modification",
   "EDIT_SELECTED_ITEM": "Modifier l'item sélectionné(?)",
   "EDIT_SUPPLIED_ITEM": "Modifier l'item",
+  "EVENTS": "Events",
   "ELECTRICITY": "Electricity",
   "ELECTRICITY_NEEDED": "Besoin d'électricité",
   "ELECTRICITY_PHASE": "Phase électrique",
@@ -220,6 +221,7 @@
   "LEAD_6-8_WEEKS": "6 - 8 semaines",
   "LEAD_8-10_WEEKS": "8 - 10 semaines",
   "LEAD_TIME": "Délai de disponibilité",
+  "LIST": "List",
   "LINKED_ITEMS": {
     "OK": "Fermer",
     "TITLE": "Items liés"
@@ -268,6 +270,7 @@
     "ALL_SKILL": "Tous",
     "ALL_SKILL_SECTORS": "Tous",
     "ALL_STATUSES": "Tous",
+    "ALL_TIERS": "All",
     "ANCHOR_FIXING_BASE_REQUIREMENTS": "Ancrage, fixation, autres besoins",
     "CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL": "Choisissez un type d'installation (facultatif)",
     "CHOOSE_INSTALLATION_TYPE": "Choisissez un type d'installation",
@@ -345,6 +348,7 @@
   "REQ_ELECTRICITY_A": "Électricité - Ampères",
   "REQ_ELECTRICITY_V": "Électricité - Volts",
   "SAVE": "Enregistrer",
+  "SECRET_ITEM": "Secret item",
   "SCROLL_MORE": "Faire défiler pour afficher plus de résultats...",
   "SEARCH_NO_RESULTS": "La recherche n'a retourné aucun résultat",
   "SEE_LINKED_ITEMS": "Afficher les items liés",
@@ -355,10 +359,12 @@
   "SET_NAME": "Nom du lot",
   "SIGNUP": "Inscription",
   "SKILL": "Métier",
+  "INFRASTRUCTURE_LISTS": "Infrastructure Lists",
   "SKILL_AREA": "Zone métier",
   "LIST_COLON": "Métier :",
   "SKILL_INFORMATION": "Informations métier",
   "SKILL_MANAGEMENT": "Gestion du métier",
+  "SKILL_NUMBERS": "Skill Numbers",
   "SKILL_PARTICIPANTS_OVERRIDE": "Remplacer la liste des candidats",
   "SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT": "Laissez les champs vides pour utiliser les numéros d'enregistrement (si disponibles).",
   "SKILL_PARTICIPANTS_OVERRIDE_SAVE": "Enregistrer les candidats",
@@ -455,6 +461,7 @@
   "TH_QUANTITY": "Quantité",
   "TH_QUANTITY_CALCULATED": "Quantité (calculé)",
   "TH_REQUESTED": "Demandé",
+  "TH_REQUESTED_ITEM": "Requested item",
   "TH_SIZE": "Taille",
   "TH_LIST": "List",
   "TH_SKILL": "Métier",
@@ -525,8 +532,8 @@
     "DANGER": {
       "ITEM_COULD_NOT_BE_REMOVED_FROM_SET": "L'item n'a pu être supprimé du lot, merci d'essayer à nouveau !",
       "ITEM_COULD_NOT_BE_SAVED": "l'item {{itemName}} n'a pas pu être sauvegardé : {{error}}",
-      "NO_ACCESSS_PUBLIC_VIEW":"You don't have access to the public view for this event",
-      "VIEW_PUBLIC_ITEMS_LIST":"Could not load public items",
+      "NO_ACCESSS_PUBLIC_VIEW": "You don't have access to the public view for this event",
+      "VIEW_PUBLIC_ITEMS_LIST": "Could not load public items",
       "FILE_UPLOAD_FAILED": "Uploading files failed"
     },
     "SUCCESS": {
@@ -553,9 +560,12 @@
   "falseLabel": "Non",
   "trueLabel": "Oui",
   "SUPPLIED_MULTI_EDIT_DESCRIPTION": "You are editing multiple catalogue items at once, the fields that these items have in common are shown, and only the fields you change are updated across all the items you selected.",
-  "TITLE_PUBLIC_ITEMS":"PUBLIC ITEMS",
+  "TITLE_PUBLIC_ITEMS": "PUBLIC ITEMS",
   "LOADING": "Loading...",
   "REVIEW": "Review",
   "SUPPLIED_ITEM_CHANGED": "Supplied item changed",
-  "EDIT_RECOMMENDATION": "Edit Recommendation"
+  "EDIT_RECOMMENDATION": "Edit Recommendation",
+  "TIER": "Tier",
+  "NO_TIER": "No Tier",
+  "REPORT_TIER": "Tier Report"
 }
