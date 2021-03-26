@@ -60,7 +60,8 @@
                             </td>
                             <td class="col-15">
                                 <span ng-if="item.requestedItem">{{item.requestedItem.supplied_item.description.text}}</span>
-                                <span ng-if="!item.requestedItem">{{item.recommendedItemSupplied.description.text}}</span>
+                                <span ng-if="!item.requestedItem && item.recommendedItemSupplied">{{item.recommendedItemSupplied.description.text}}</span>
+                                <span ng-if="!item.requestedItem && !item.recommendedItemSupplied">{{item.suppliedItem.description.text}}</span>
                             </td>
                             <td class="col-15">
                               <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
