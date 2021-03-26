@@ -445,6 +445,19 @@ module.exports = function (grunt) {
       }
     },
 
+    translate_sync: {
+      options: {
+        keepKeyOrder: true,
+        indent: 2,
+      },
+      data: {
+        source: '<%= yeoman.app %>/languages/en.json',
+        targets: [
+          '<%= yeoman.app %>/languages/fr.json',
+        ]
+      }
+    },
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
