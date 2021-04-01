@@ -132,7 +132,7 @@
                     <td ng-if="columns.calculated_quantity">&nbsp;</td>
                     <td ng-if="columns.unit">&nbsp;</td>
                     <td ng-if="columns.description">
-                        <input type="text" class="form-control input-sm" ng-model="filter.description.text" />
+                        <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.description.text" />
                     </td>
                     <td ng-if="columns.supplier_potential">&nbsp;</td>
                     <td ng-if="columns.area">
@@ -140,9 +140,6 @@
                             <option value=""></option>
                             <option ng-repeat="area in skillAreas" value="{{area.id}}">{{area.name}}</option>
                         </select>
-                    </td>
-                    <td ng-if="columns.supplied">
-                        <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.description.text" />
                     </td>
                     <td ng-if="columns.manufacturer">&nbsp;</td>
                     <td ng-if="columns.model">&nbsp;</td>
