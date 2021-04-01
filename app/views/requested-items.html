@@ -61,7 +61,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>NAME</label>
+        <label class="control-label" translate>DESCRIPTION</label>
         <div class="input-group">
           <input
             type="text"
@@ -69,8 +69,7 @@
             ng-model="filters.description"
             ng-model-options='{ debounce: 300 }'
             ng-change="changeFilters()"
-            title="{{'TITLE.CHOOSE_NAME_OF_THE_ITEM' | translate}}"
-            placeholder="{{ 'PLACEHOLDER.NAME_OF_THE_ITEM' | translate }}"
+            placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}"
             >
           <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
         </div>
