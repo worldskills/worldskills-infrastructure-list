@@ -82,7 +82,7 @@
 
     <div ng-if='data.item.suppliedItem.id || data.item.recommendedItemSupplied.id'>
       <fieldset><legend>Supplied Item</legend>
-        <div class='alert alert-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true && !data.item.deletionSuggestion" >
+        <div class='alert alert-warning' ng-if="data.item.recommendedItemSupplied.id && data.item.suppliedItem.multiple_linked_items === true && !data.item.deletionSuggestion" >
           <p class="lead" translate ng-show="!data.split">ITEM_ATTACHED_TO_MULTIPLE_SKILLS</p>
           <br>
           <button ng-click="data.split = !data.split" class='btn btn-xs btn-warning' ng-if="data.item.suppliedItem.multiple_linked_items === true" >
