@@ -225,23 +225,9 @@ angular.module('ilApp')
       //exporter
       enableGridMenu: true,
       enableSelectAll: true,
-      exporterCsvFilename: 'myFile.csv',
-      exporterPdfDefaultStyle: {fontSize: 8},
-      exporterPdfTableStyle: {margin: [10, 10, 10, 10]},
-      exporterPdfTableHeaderStyle: {fontSize: 9, bold: true, italics: true, color: 'red'},
-      exporterPdfHeader: { text: "IL Catalogue Export", style: 'headerStyle' },
-      exporterPdfFooter: function ( currentPage, pageCount ) {
-        return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
-      },
-      exporterPdfCustomFormatter: function ( docDefinition ) {
-        docDefinition.styles.headerStyle = { fontSize: 18, bold: true };
-        docDefinition.styles.footerStyle = { fontSize: 8, bold: true };
-        return docDefinition;
-      },
-      exporterPdfOrientation: 'landscape',
-      exporterPdfPageSize: 'A4',
-      exporterPdfMaxGridWidth: 640,
-      exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
+      exporterExcelFilename: 'IL.xlsx',
+      exporterMenuCsv: false,
+      exporterMenuPdf: false,
     };
 
     Category.getAll($state.params.eventId).then(function (res) {
