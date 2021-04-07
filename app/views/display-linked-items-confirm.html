@@ -11,7 +11,6 @@
     <thead>
     <tr>
       <th translate>TH_ID</th>
-      <th translate>TH_REQUESTED</th>
       <th translate>TH_LIST</th>
       <th translate>TH_CATEGORY</th>
       <th translate>TH_QTY</th>
@@ -27,7 +26,6 @@
         <span ng-if="item.new" class="label label-success" translate>NEW</span>
         <span ng-if="item.updated" class="label label-success" translate>UPDATED</span>
       </td>
-      <td>{{item.description.text}}&nbsp;<span class="label label-info">{{item.description.lang_code}}</span></td>
       <td>{{item.list.name.text}}</td>
       <td>{{item.category.name.text}}</td>
       <td>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
