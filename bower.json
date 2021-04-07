@@ -38,8 +38,8 @@
     "lightgallery.js": "^1.0.2",
     "components-font-awesome": "^5.0.6",
     "angular-i18n": "^1.6.9",
-    "lodash": "^4.17.21",
-    "jszip": "2.6.1",
+    "lodash": "~2.4.1",
+    "jszip": "~2.6.1",
     "excel-builder-js": "excelbuilder#^2.0.2"
   },
   "devDependencies": {
@@ -48,6 +48,8 @@
   "appPath": "app",
   "moduleName": "ilApp",
   "resolutions": {
-    "angular": "~1.4.1"
+    "angular": "~1.4.1",
+    "lodash": "~2.4.1",
+    "jszip": "~2.6.1"
   }
 }
