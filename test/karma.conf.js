@@ -61,7 +61,7 @@ module.exports = function(config) {
       'bower_components/angular-moment/angular-moment.js',
       'bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.js',
       'bower_components/lightgallery.js/dist/js/lightgallery.min.js',
-      'bower_components/lodash/lodash.js',
+      'bower_components/lodash/dist/lodash.compat.js',
       'bower_components/jszip/dist/jszip.js',
       'bower_components/excel-builder-js/dist/excel-builder.dist.js',
       'bower_components/angular-mocks/angular-mocks.js',
