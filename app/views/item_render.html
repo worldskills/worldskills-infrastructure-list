@@ -7,10 +7,10 @@
   <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
   <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
   <a href ng-if="item.canEdit" ng-click="editRequestedItem(item);">
-    {{item.supplied_item.description.text}}
+    {{item.supplied_item.description.text || "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}}
   </a>
   <span ng-if="!item.canEdit">
-    {{item.supplied_item.description.text}}
+    {{item.supplied_item.description.text || "&nbsp;"}}
   </span>
 </td>
 <td>
