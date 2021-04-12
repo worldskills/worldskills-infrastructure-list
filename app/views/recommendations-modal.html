@@ -29,7 +29,7 @@
         </span>
       </span>
       <span ng-if="item.requestedItem && !item.deletionSuggestion">
-        <span class="text-muted">for</span> {{item.requestedItem.description.text}}
+        <span class="text-muted">for</span> {{item.suppliedItem.description.text}}
         <span ng-if="item.recommendedItemSupplied">
           <span ng-if="item.suppliedItem.description.text != item.recommendedItemSupplied.description.text"><br><span class="text-muted">Change Description from {{item.suppliedItem.description.text || 'None'}} to</span> {{item.recommendedItemSupplied.description.text || 'None'}}</span>
           <span ng-if="item.suppliedItem.manufacturer != item.recommendedItemSupplied.manufacturer"><br><span class="text-muted">Change Manufacturer from {{item.suppliedItem.manufacturer || 'None'}} to</span> {{item.recommendedItemSupplied.manufacturer || 'None'}}</span>
@@ -73,7 +73,7 @@
       </span>
 
       <span ng-if="!item.requestedItem">
-        <span class="text-muted">of</span> {{item.description.text}}
+        <span class="text-muted">of</span> {{item.suppliedItem.description.text}}
         <span ng-if="item.readable_quantity"><br><span class="text-muted">Quantity:</span> {{item.readable_quantity}}</span>
         <span ng-if="item.additional_quantity"><br><span class="text-muted">Additional Quantity:</span> {{item.additional_quantity}}</span>
         <span ng-if="item.unit"><br><span class="text-muted">Unit:</span> {{item.unit}}</span>
