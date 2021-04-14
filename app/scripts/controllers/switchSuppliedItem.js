@@ -1,7 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('ilApp').controller('switchSuppliedItemCtrl', function ($scope, $http, $uibModalInstance, SuppliedItem) {
+  angular.module('ilApp').controller('switchSuppliedItemCtrl', function ($scope, $translate, $uibModalInstance, SuppliedItem) {
+
+    $scope.selectedLanguage = $translate.use();
 
     $scope.search = function () {
       if ($scope.searchTerm) {
