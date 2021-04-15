@@ -186,6 +186,7 @@
   "ITEM_ALREADY_CREATED": "This is an item already created by the organizer, or an item already used in another skill.",
   "ITEM_ATTACHED_TO_MULTIPLE_SKILLS": "This supplied item is linked to multiple skills. Changes to the supplied item will apply to all skills.",
   "ITEM_ATTACHED_TO_SKILL": "One or more of these items is attached to a skill, please note that this action will also overwrite the description of these items.",
+  "ITEM_ATTACHED_TO_MULTIPLE_ITEMS": "This supplied item is used more than once. Changes to the supplied item will apply to all uses.",
   "ITEM_CATEGORY": "Category",
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Item categories and subcategories",
   "ITEM_CATEGORY_DESCRIPTION": "Category description",
