@@ -48,6 +48,8 @@
           <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SIZE</span></a></li>
           <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_PART_NUM</span></a></li>
           <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER</span></a></li>
+          <li><a href ng-click="toggleColumn('item_category')"><i ng-style="{'visibility' : columns.item_category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ITEM_CATEGORY</span></a></li>
+          <li><a href ng-click="toggleColumn('item_subcategory')"><i ng-style="{'visibility' : columns.item_subcategory ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ITEM_SUBCATEGORY</span></a></li>
           <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_EXTRA_DETAILS</span></a></li>
           <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_FILES</span></a></li>
           <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_STATUS</span></a></li>
@@ -112,6 +114,8 @@
                       <span ng-click="sortBy('supplied_item.supplier.name')" translate>TH_SUPPLIER</span>
                       <span class="caret" ng-show="sort === 'supplied_item.supplier.name'"></span>
                     </th>
+                    <th ng-if="columns.item_category" translate>TH_ITEM_CATEGORY</th>
+                    <th ng-if="columns.item_subcategory" translate>TH_ITEM_SUBCATEGORY</th>
                     <th ng-if="columns.extra_details" translate>TH_EXTRA_DETAILS</th>
                     <th ng-if="columns.files" translate>TH_FILES</th>
                     <th ng-if="columns.status" ng-class="{dropup: !reverse}">
@@ -146,6 +150,8 @@
                     <td ng-if="columns.size">&nbsp;</td>
                     <td ng-if="columns.part_number">&nbsp;</td>
                     <td ng-if="columns.supplier">&nbsp;</td>
+                    <td ng-if="columns.item_category">&nbsp;</td>
+                    <td ng-if="columns.item_subcategory">&nbsp;</td>
                     <td ng-if="columns.extra_details">&nbsp;</td>
                     <td ng-if="columns.files">&nbsp;</td>
                     <td ng-if="columns.status">
@@ -184,6 +190,8 @@
                   <td ng-if="columns.size">{{item.supplied_item.size}}</td>
                   <td ng-if="columns.part_number">{{item.supplied_item.part_number}}</td>
                   <td ng-if="columns.supplier">{{item.supplied_item.supplier.name}}</td>
+                  <td ng-if="columns.item_category">{{item.supplied_item.item_category.parent.name.text}}</td>
+                  <td ng-if="columns.item_subcategory">{{item.supplied_item.item_category.name.text}}</td>
                   <td ng-if="columns.extra_details">{{item.supplied_item.extra_details}}</td>
                   <td ng-if="columns.files">
                     <ul class="public-files">
