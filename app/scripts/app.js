@@ -191,6 +191,19 @@
         }
     })
 
+    .state('eventBase.clone', {
+      url: '/clone',
+      templateUrl: 'views/event.clone.html',
+      controller: 'EventCloneCtrl',
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.EDIT_CONFIG }
+          ]
+        }
+    })
+
     .state('eventBase.tierReport', {
       url: '/tier-report',
       templateUrl: 'views/tierReport.html',

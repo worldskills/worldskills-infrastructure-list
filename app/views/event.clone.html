@@ -1,0 +1,94 @@
+<div class="container">
+
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
+    <li class="active" translate>Copy Event</li>
+</ol>
+
+<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>NO_ACCESS_ROLE</div>
+
+<div ng-show="auth.accessToken">
+
+<h1 class="h2">{{ event.name.text || " "}}</h1>
+<hr>
+
+<h3 translate>Copy Event</h3>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">1. Select Target Event</p>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <form class="form-inline">
+      <div class="form-group">
+        <select class="form-control" ng-model="targetEvent" ng-change="changeEvent()" ng-options="e.name.text for e in (events | filter:{id: '!' + event.id}) track by e.id">
+            <option value=""></option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">2. Check Status</p>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-4">
+          <h4>{{ event.name.text || " "}}</h4>
+      </div>
+      <div class="col-md-8">
+        <h4>{{ targetEvent.name.text || " "}}</h4>
+      </div>
+    </div>
+    <div class="row" ng-repeat="status in statuses">
+      <div class="col-md-4">
+        <p><span class="label" ng-style="{'background-color': status.color_code}">{{status.name.text}}</span></p>
+      </div>
+      <div class="col-md-8">
+        <p ng-repeat="targetStatus in filteredStatuses = (targetStatuses | filter:{name: {text: status.name.text}})">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: <span class="label" ng-style="{'background-color': targetStatus.color_code}">{{targetStatus.name.text}}</span>
+        </p>
+        <p ng-if="filteredStatuses.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetStatus in targetStatuses">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <span ng-repeat="status in filteredStatuses = (statuses | filter:{name: {text: targetStatus.name.text}})">
+        </span>
+        <p ng-if="filteredStatuses.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused status found: <span class="label" ng-style="{'background-color': targetStatus.color_code}">{{targetStatus.name.text}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<p>3. Check Lists</p>
+
+<hr>
+
+<p>4. Copy</p>
+
+<br/>
+</div>
+
+</div>

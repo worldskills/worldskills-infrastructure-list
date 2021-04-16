@@ -20,6 +20,7 @@
           <li ng-if="event.userCanEdit"><a ui-sref="recommendations({eventId: event.id})" translate>RECOMMENDATIONS</a></li>
           <li ng-if="event.userCanEditConfig"><a ui-sref="eventBase.tierReport({eventId: event.id})" translate>REPORT_TIER</a></li>
           <li ng-if="userCanSeeHistory"><a ui-sref="eventBase.revisions({eventId: event.id})" translate>History</a></li>
+          <li ng-if="userCanSeeHistory"><a ui-sref="eventBase.clone({eventId: event.id})" translate>Copy Event</a></li>
           <li ng-if="event.userCanEditConfig" role="separator" class="divider"></li>
           <li ng-if="event.userCanEditConfig && !loading.requested"><a href="#" ng-click="exportAllRequested($event)" translate>EXPORT_REQUESTED_ITEMS</a></li>
           <li ng-if="event.userCanEditConfig && !loading.catalogue"><a href="#" ng-click="exportAllCatalogue($event)" translate>EXPORT_ALL_ITEMS</a></li>
