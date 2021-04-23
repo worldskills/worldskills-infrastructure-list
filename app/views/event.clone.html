@@ -82,13 +82,101 @@
 
 <hr>
 
-<p>3. Check Lists</p>
+<div class="row">
+  <div class="col-md-3 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">3. Check Lists</p>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <colgroup>
+            <col width="5%" />
+            <col width="40%" />
+            <col width="55%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="select">
+                  <input type="checkbox" ng-model="allChecked" ng-click="checkAll()">
+                </th>
+                <th>{{ event.name.text || " "}}</th>
+                <th>{{ targetEvent.name.text || " "}}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr><td colspan="3"></td></tr>
+        </tfoot>
+        <tbody>
+            <tr ng-repeat="list in lists | filter:{skill: {id: '!!'}}">
+                <td class="select">
+                  <input type="checkbox" ng-model="list.checked" />
+                </td>
+                <td>{{list.name.text}}</td>
+                <td>
+                  <span ng-if="list.checked">
+                    <span ng-if="filteredLists.length > 1">
+                      <span class="glyphicon glyphicon-warning-sign text-warning"></span> Multiple matches found! First one will be used:<br>
+                    </span>
+                    <span ng-repeat="targetList in filteredLists = (targetLists | filter:{skill: {base_id: list.skill.base_id}}:true)">
+                      <span class="glyphicon glyphicon-ok text-success"></span> Matched by Base Skill, will be mapped: {{targetList.name.text}}<br>
+                    </span>
+                    <span ng-if="filteredLists.length === 0">
+                      <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created<br>
+                    </span>
+                  </span>
+                </td>
+            </tr>
+            <tr ng-repeat="list in lists | filter:{skill: null}">
+              <td class="select">
+                <input type="checkbox" ng-model="list.checked" />
+              </td>
+              <td>{{list.name.text}}</td>
+              <td>
+                <span ng-if="list.checked">
+                  <span ng-if="filteredLists.length > 1">
+                    <span class="glyphicon glyphicon-warning-sign text-warning"></span> Multiple matches found! First one will be used:<br>
+                  </span>
+                  <span ng-repeat="targetList in filteredLists = (targetLists | filter:{name: {text: list.name.text}})">
+                    <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetList.name.text}}<br>
+                  </span>
+                  <span ng-if="filteredLists.length === 0">
+                    <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created<br>
+                  </span>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="select">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>
+                <div ng-repeat="targetList in targetLists">
+                  <span ng-repeat="list in filteredSkillLists = (lists | filter:{skill: {base_id: list.skill.base_id}}:true)">
+                  </span>
+                  <span ng-repeat="list in filteredLists = (lists | filter:{name: {text: targetList.name.text}})">
+                  </span>
+                  <span ng-if="filteredSkillLists.length === 0 || filteredLists.length === 0">
+                    <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused list found: {{targetList.name.text}}<br>
+                  </span>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
 <hr>
 
 <p>4. Copy</p>
 
-<br/>
+<p>
+  <button class="btn btn-success" type="submit">Copy selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
+</p>
+
+<br/><br/><br/>
 </div>
 
 </div>
