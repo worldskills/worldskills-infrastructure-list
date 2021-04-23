@@ -186,6 +186,7 @@
   "ITEM_ALREADY_CREATED": "Cet item a déjà été créé par l'organisateur ou est déjà utilisé par un autre métier.",
   "ITEM_ATTACHED_TO_MULTIPLE_SKILLS": "Cet item est lié à plusieurs métiers. Les modifications sur l'item seront appliquées dans tous les métiers.",
   "ITEM_ATTACHED_TO_SKILL": "L'un au moins des items sélectionnés est rattaché à un métier : cette action aura pour effet d'écraser la description de ces items.",
+  "ITEM_ATTACHED_TO_MULTIPLE_ITEMS": "Cet item est utilisé à plusieurs reprises. Les modifications seront appliqués à l'ensemble des lignes.",
   "ITEM_CATEGORY": "Super famille",
   "ITEM_CATEGORY_AND_SUBCATEGORY": "Familles et super familles",
   "ITEM_CATEGORY_DESCRIPTION": "Description de la super famille",

@@ -11,7 +11,7 @@
           <uib-tab index="0" heading="{{'REQUESTED_ITEM' | translate}}">
             <div class="row">
               <div class="form-group col col-xs-12 col-sm-8 has-feedback" ng-class="{'has-error': addForm.category.$dirty && addForm.category.$error.required, 'has-success': !addForm.category.$error.required}">
-                <label class="control-label" translate>ITEM_CATEGORY</label>
+                <label class="control-label" translate>CATEGORY</label>
                 <ui-select name="category" ng-required="true" ng-model="recommendedItem.category" theme="bootstrap">
                   <ui-select-match placeholder="{{ 'ITEM_CATEGORY' | translate }}">{{recommendedItem.category.name.text}}</ui-select-match>
                   <ui-select-choices repeat="category in (categories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
