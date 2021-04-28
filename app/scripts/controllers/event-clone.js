@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, WSAlert, Events, Status) {
+angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, WSAlert, Events, Status, Category) {
 
   $scope.loading = true;
   $scope.events = [];
@@ -21,6 +21,10 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
     $scope.statuses = result;
   });
 
+  Category.getAll(eventId).then(function (result) {
+    $scope.listCategories = result;
+  });
+
   Events.getListsForEvent(eventId).then(function (result) {
     $scope.lists = result;
     angular.forEach($scope.lists, function(list){
@@ -34,6 +38,10 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
 
     Status.getAllStatuses(targetEventId).then(function (result) {
       $scope.targetStatuses = result;
+    });
+
+    Category.getAll(targetEventId).then(function (result) {
+      $scope.targetListCategories = result;
     });
 
     Events.getListsForEvent(targetEventId).then(function (result) {

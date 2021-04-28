@@ -20,12 +20,12 @@
 <hr>
 
 <div class="row">
-  <div class="col-md-3 form-inline">
+  <div class="col-md-2 form-inline">
     <div class="form-group">
       <p class="form-control-static">1. Select Target Event</p>
     </div>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-10">
     <form class="form-inline">
       <div class="form-group">
         <select class="form-control" ng-model="targetEvent" ng-change="changeEvent()" ng-options="e.name.text for e in (events | filter:{id: '!' + event.id}) track by e.id">
@@ -39,25 +39,25 @@
 <hr>
 
 <div class="row">
-  <div class="col-md-3 form-inline">
+  <div class="col-md-2 form-inline">
     <div class="form-group">
       <p class="form-control-static">2. Check Status</p>
     </div>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-10">
     <div class="row">
-      <div class="col-md-4">
-          <h4>{{ event.name.text || " "}}</h4>
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
       </div>
-      <div class="col-md-8">
-        <h4>{{ targetEvent.name.text || " "}}</h4>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
       </div>
     </div>
     <div class="row" ng-repeat="status in statuses">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <p><span class="label" ng-style="{'background-color': status.color_code}">{{status.name.text}}</span></p>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-7">
         <p ng-repeat="targetStatus in filteredStatuses = (targetStatuses | filter:{name: {text: status.name.text}})">
           <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: <span class="label" ng-style="{'background-color': targetStatus.color_code}">{{targetStatus.name.text}}</span>
         </p>
@@ -67,9 +67,9 @@
       </div>
     </div>
     <div class="row" ng-repeat="targetStatus in targetStatuses">
-      <div class="col-md-4">
+      <div class="col-md-5">
       </div>
-      <div class="col-md-8">
+      <div class="col-md-7">
         <span ng-repeat="status in filteredStatuses = (statuses | filter:{name: {text: targetStatus.name.text}})">
         </span>
         <p ng-if="filteredStatuses.length === 0">
@@ -83,19 +83,62 @@
 <hr>
 
 <div class="row">
-  <div class="col-md-3 form-inline">
+  <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">3. Check Lists</p>
+      <p class="form-control-static">3. Check List Categories</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="listCategory in listCategories">
+      <div class="col-md-5">
+        <p>{{listCategory.name.text}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetListCategory in filteredListCategories = (targetListCategories | filter:{name: {text: listCategory.name.text}})">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetListCategory.name.text}}
+        </p>
+        <p ng-if="filteredListCategories.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetListCategory in targetListCategories">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="listCategory in filteredListCategories = (listCategories | filter:{name: {text: targetListCategory.name.text}})">
+        </span>
+        <p ng-if="filteredListCategories.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused list categories found: {{targetListCategory.name.text}}
+        </p>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="table-responsive">
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">4. Check Lists</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+
     <table class="table table-striped">
         <colgroup>
-            <col width="5%" />
-            <col width="40%" />
-            <col width="55%" />
+            <col width="3%" />
+            <col width="37%" />
+            <col width="60%" />
         </colgroup>
         <thead>
             <tr>
@@ -165,16 +208,27 @@
             </tr>
         </tbody>
     </table>
-</div>
 
+  </div>
+</div>
 
 <hr>
 
-<p>4. Copy</p>
 
-<p>
-  <button class="btn btn-success" type="submit">Copy selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
-</p>
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">5. Copy</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="form-group">
+      <p class="form-control-static">
+        <button class="btn btn-success" type="submit">Copy selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
+      </p>
+    </div>
+  </div>
+</div>
 
 <br/><br/><br/>
 </div>
