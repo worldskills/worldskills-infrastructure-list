@@ -225,7 +225,7 @@
   <div class="col-md-10">
     <div class="form-group">
       <p class="form-control-static">
-        <button class="btn btn-success" type="submit">Copy selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
+        <button class="btn btn-success" type="submit">Copy {{(lists|filter:{checked:true}:true).length}} selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
       </p>
     </div>
   </div>
