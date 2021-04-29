@@ -6,6 +6,8 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
   $scope.events = [];
   $scope.statuses = [];
   $scope.lists = [];
+  $scope.listCategories = [];
+  $scope.itemCategories = [];
   $scope.allChecked = true;
 
   var eventId = $state.params.eventId;

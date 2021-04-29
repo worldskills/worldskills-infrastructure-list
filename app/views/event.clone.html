@@ -53,6 +53,9 @@
         <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
       </div>
     </div>
+    <p ng-if="statuses.length === 0">
+      <em>No statuses found</em>
+    </p>
     <div class="row" ng-repeat="status in statuses">
       <div class="col-md-5">
         <p><span class="label" ng-style="{'background-color': status.color_code}">{{status.name.text}}</span></p>
@@ -97,6 +100,9 @@
         <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
       </div>
     </div>
+    <p ng-if="listCategories.length === 0">
+      <em>No list categories found</em>
+    </p>
     <div class="row" ng-repeat="listCategory in listCategories">
       <div class="col-md-5">
         <p>{{listCategory.name.text}}</p>
@@ -141,6 +147,9 @@
         <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
       </div>
     </div>
+    <p ng-if="itemCategories.length === 0">
+      <em>No item categories found</em>
+    </p>
     <div class="row" ng-repeat="itemCategory in itemCategories">
       <div class="col-md-5">
         <p>{{itemCategory.name.text}}</p>
