@@ -60,4 +60,10 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
 
   };
 
+  $scope.toggleAll = function () {
+    angular.forEach($scope.lists, function(list){
+      list.checked = $scope.allChecked;
+    });
+  };
+
 });
