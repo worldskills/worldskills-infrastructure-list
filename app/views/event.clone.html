@@ -58,7 +58,7 @@
         <p><span class="label" ng-style="{'background-color': status.color_code}">{{status.name.text}}</span></p>
       </div>
       <div class="col-md-7">
-        <p ng-repeat="targetStatus in filteredStatuses = (targetStatuses | filter:{name: {text: status.name.text}})">
+        <p ng-repeat="targetStatus in filteredStatuses = (targetStatuses | filter:{name: {text: status.name.text}}:true)">
           <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: <span class="label" ng-style="{'background-color': targetStatus.color_code}">{{targetStatus.name.text}}</span>
         </p>
         <p ng-if="filteredStatuses.length === 0">
@@ -70,7 +70,7 @@
       <div class="col-md-5">
       </div>
       <div class="col-md-7">
-        <span ng-repeat="status in filteredStatuses = (statuses | filter:{name: {text: targetStatus.name.text}})">
+        <span ng-repeat="status in filteredStatuses = (statuses | filter:{name: {text: targetStatus.name.text}}:true)">
         </span>
         <p ng-if="filteredStatuses.length === 0">
           <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused status found: <span class="label" ng-style="{'background-color': targetStatus.color_code}">{{targetStatus.name.text}}</span>
@@ -102,7 +102,7 @@
         <p>{{listCategory.name.text}}</p>
       </div>
       <div class="col-md-7">
-        <p ng-repeat="targetListCategory in filteredListCategories = (targetListCategories | filter:{name: {text: listCategory.name.text}})">
+        <p ng-repeat="targetListCategory in filteredListCategories = (targetListCategories | filter:{name: {text: listCategory.name.text}}:true)">
           <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetListCategory.name.text}}
         </p>
         <p ng-if="filteredListCategories.length === 0">
@@ -114,7 +114,7 @@
       <div class="col-md-5">
       </div>
       <div class="col-md-7">
-        <span ng-repeat="listCategory in filteredListCategories = (listCategories | filter:{name: {text: targetListCategory.name.text}})">
+        <span ng-repeat="listCategory in filteredListCategories = (listCategories | filter:{name: {text: targetListCategory.name.text}}:true)">
         </span>
         <p ng-if="filteredListCategories.length === 0">
           <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused list categories found: {{targetListCategory.name.text}}
@@ -129,7 +129,51 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">4. Check Lists</p>
+      <p class="form-control-static">4. Check Item Categories</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="itemCategory in itemCategories">
+      <div class="col-md-5">
+        <p>{{itemCategory.name.text}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetItemCategory in filteredItemCategories = (targetItemCategories | filter:{name: {text: itemCategory.name.text}}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetItemCategory.name.text}}
+        </p>
+        <p ng-if="filteredItemCategories.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetItemCategory in targetItemCategories">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="itemCategory in filteredItemCategories = (itemCategories | filter:{name: {text: targetItemCategory.name.text}}:true)">
+        </span>
+        <p ng-if="filteredItemCategories.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused item categories found: {{targetItemCategory.name.text}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">5. Check Lists</p>
       <p class="text-muted"><small>Make sure to copy the skills in the <a href="https://events.worldskills.org/" target="_blank">Events application</a> first!</small></p>
     </div>
   </div>
@@ -219,7 +263,7 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">5. Copy</p>
+      <p class="form-control-static">6. Copy</p>
     </div>
   </div>
   <div class="col-md-10">
