@@ -135,7 +135,54 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">4. Check List Categories</p>
+      <p class="form-control-static">4. Check Skill Areas</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <p ng-if="skillAreas.length === 0">
+      <em>No skill areas found</em>
+    </p>
+    <div class="row" ng-repeat="skillArea in skillAreas">
+      <div class="col-md-5">
+        <p>{{skillArea.name}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetSkillArea in filteredSkillAreas = (targetSkillAreas | filter:{name: skillArea.name}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetSkillArea.name}}
+        </p>
+        <p ng-if="filteredSkillAreas.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetSkillArea in targetSkillAreas">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="skillArea in filteredSkillAreas = (skillAreas | filter:{name: targetSkillArea.name}:true)">
+        </span>
+        <p ng-if="filteredSkillAreas.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused skill area found: {{targetSkillArea.name}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">5. Check List Categories</p>
     </div>
   </div>
   <div class="col-md-10">
@@ -182,7 +229,7 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">5. Check Item Categories</p>
+      <p class="form-control-static">6. Check Item Categories</p>
     </div>
   </div>
   <div class="col-md-10">
@@ -229,7 +276,7 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">6. Check Lists</p>
+      <p class="form-control-static">7. Check Lists</p>
       <p class="text-muted"><small>Make sure to copy the skills in the <a href="https://events.worldskills.org/" target="_blank">Events application</a> first!</small></p>
     </div>
   </div>
@@ -319,7 +366,7 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">7. Copy</p>
+      <p class="form-control-static">8. Copy</p>
     </div>
   </div>
   <div class="col-md-10">

@@ -6,6 +6,7 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
   $scope.events = [];
   $scope.statuses = [];
   $scope.tiers = [];
+  $scope.skillAreas = [];
   $scope.lists = [];
   $scope.listCategories = [];
   $scope.itemCategories = [];
@@ -24,8 +25,12 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
     $scope.statuses = result;
   });
 
-  ItemTier.getTiersForEvent(eventId).then(function (tiers) {
-    $scope.tiers = tiers;
+  ItemTier.getTiersForEvent(eventId).then(function (result) {
+    $scope.tiers = result;
+  });
+
+  Events.getSkillAreas(eventId).then(function (result) {
+    $scope.skillAreas = result;
   });
 
   Category.getAll(eventId).then(function (result) {
@@ -53,6 +58,10 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
 
     ItemTier.getTiersForEvent(targetEventId).then(function (tiers) {
       $scope.targetTiers = tiers;
+    });
+
+    Events.getSkillAreas(targetEventId).then(function (result) {
+      $scope.targetSkillAreas = result;
     });
 
     Category.getAll(targetEventId).then(function (result) {
