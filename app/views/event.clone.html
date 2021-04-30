@@ -88,7 +88,54 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">3. Check List Categories</p>
+      <p class="form-control-static">3. Check Tiers</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <p ng-if="tiers.length === 0">
+      <em>No tiers found</em>
+    </p>
+    <div class="row" ng-repeat="tier in tiers">
+      <div class="col-md-5">
+        <p>{{tier.name.text}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetTier in filteredTiers = (targetTiers | filter:{name: {text: tier.name.text}}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetTier.name.text}}
+        </p>
+        <p ng-if="filteredTiers.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetTier in targetTiers">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="tier in filteredTiers = (tiers | filter:{name: {text: targetTier.name.text}}:true)">
+        </span>
+        <p ng-if="filteredTiers.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused tier found: {{targetTier.name.text}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">4. Check List Categories</p>
     </div>
   </div>
   <div class="col-md-10">
@@ -135,7 +182,7 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">4. Check Item Categories</p>
+      <p class="form-control-static">5. Check Item Categories</p>
     </div>
   </div>
   <div class="col-md-10">
@@ -182,7 +229,7 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">5. Check Lists</p>
+      <p class="form-control-static">6. Check Lists</p>
       <p class="text-muted"><small>Make sure to copy the skills in the <a href="https://events.worldskills.org/" target="_blank">Events application</a> first!</small></p>
     </div>
   </div>
@@ -272,13 +319,13 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">6. Copy</p>
+      <p class="form-control-static">7. Copy</p>
     </div>
   </div>
   <div class="col-md-10">
     <div class="form-group">
       <p class="form-control-static">
-        <button class="btn btn-success" type="submit">Copy {{(lists|filter:{checked:true}:true).length}} selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
+        <button class="btn btn-success" ng-click="clone()" ng-disabled="!targetEvent.id">Copy {{(lists|filter:{checked:true}:true).length}} selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
       </p>
     </div>
   </div>

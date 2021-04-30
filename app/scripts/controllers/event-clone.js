@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, WSAlert, Events, Status, Category, ItemCategory) {
+angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, WSAlert, Events, Status, ItemTier, Category, ItemCategory, EventClone) {
 
   $scope.loading = true;
   $scope.events = [];
   $scope.statuses = [];
+  $scope.tiers = [];
   $scope.lists = [];
   $scope.listCategories = [];
   $scope.itemCategories = [];
@@ -21,6 +22,10 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
 
   Status.getAllStatuses(eventId).then(function (result) {
     $scope.statuses = result;
+  });
+
+  ItemTier.getTiersForEvent(eventId).then(function (tiers) {
+    $scope.tiers = tiers;
   });
 
   Category.getAll(eventId).then(function (result) {
@@ -46,6 +51,10 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
       $scope.targetStatuses = result;
     });
 
+    ItemTier.getTiersForEvent(targetEventId).then(function (tiers) {
+      $scope.targetTiers = tiers;
+    });
+
     Category.getAll(targetEventId).then(function (result) {
       $scope.targetListCategories = result;
     });
@@ -64,6 +73,16 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
     angular.forEach($scope.lists, function(list){
       list.checked = $scope.allChecked;
     });
+  };
+
+  $scope.clone = function () {
+
+    var listIds = $scope.lists.filter(list => list.checked).map(list => list.id);
+
+    EventClone.clone(eventId, $scope.targetEvent.id, listIds).then(function (result) {
+      console.log(result);
+    });
+
   };
 
 });
