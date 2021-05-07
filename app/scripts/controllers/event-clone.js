@@ -11,6 +11,7 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
   $scope.listCategories = [];
   $scope.itemCategories = [];
   $scope.allChecked = true;
+  $scope.copying = false;
 
   var eventId = $state.params.eventId;
 
@@ -86,10 +87,16 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
 
   $scope.clone = function () {
 
+    $scope.copying = true;
+
     var listIds = $scope.lists.filter(list => list.checked).map(list => list.id);
 
     EventClone.clone(eventId, $scope.targetEvent.id, listIds).then(function (result) {
-      console.log(result);
+      WSAlert.success('Lists have been copied.');
+      $state.go('event', {eventId: $scope.targetEvent.id});
+    }, function (error) {
+      alert('Error while copying: ' + error);
+      $scope.copying = false;
     });
 
   };
