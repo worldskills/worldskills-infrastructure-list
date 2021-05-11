@@ -46,6 +46,7 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
     $scope.lists = result;
     angular.forEach($scope.lists, function(list){
       list.checked = true;
+      list.disabled = false;
     });
   });
 
@@ -75,6 +76,37 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
 
     Events.getListsForEvent(targetEventId).then(function (result) {
       $scope.targetLists = result;
+      // reset target lists
+      angular.forEach($scope.targetLists, function (targetList) {
+        targetList.matched = false;
+      });
+      // loop and match lists
+      angular.forEach($scope.lists, function (list) {
+        // reset
+        list.checked = true;
+        list.disabled = false;
+        list.targetList = null;
+        // match lists
+        angular.forEach($scope.targetLists, function (targetList) {
+          // by skill
+          if (list.skill) {
+            if (targetList.skill && !list.targetList && targetList.skill.base_id == list.skill.base_id) {
+              list.targetList = targetList;
+              targetList.matched = true;
+            }
+          } else {
+            // by name
+            if (!targetList.skill && !list.targetList && targetList.name.text == list.name.text) {
+              list.targetList = targetList;
+              targetList.matched = true;
+            }
+          }
+        });
+        if (list.skill && !list.targetList) {
+          list.checked = false;
+          list.disabled = true;
+        }
+      });
     });
 
   };
