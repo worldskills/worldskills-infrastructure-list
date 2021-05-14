@@ -310,6 +310,7 @@
                   <span ng-if="targetEvent && list.skill">
                     <span ng-if="list.checked && list.targetList">
                       <span class="glyphicon glyphicon-ok text-success"></span> Matched by Base Skill, will be mapped: {{list.targetList.name.text}}<br>
+                      <span ng-if="list.targetList.status_summary.summaries.length > 0"><span class="glyphicon glyphicon-warning-sign text-warning"></span> List already has {{totalCount(list.targetList.status_summary.summaries)}} existing Requested Items!<br></span>
                     </span>
                     <span ng-if="!list.targetList">
                       <span class="glyphicon glyphicon-ban-circle text-danger"></span> No matching Base Skill found, will be skipped<br>
@@ -353,6 +354,7 @@
     <div class="form-group">
       <p class="form-control-static">
         <button class="btn btn-success" ng-click="clone()" ng-disabled="!targetEvent.id || copying">Copy {{(lists|filter:{checked:true}:true).length}} selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
+        <span ng-show="copying">Copying, please wait...</span>
       </p>
     </div>
   </div>
