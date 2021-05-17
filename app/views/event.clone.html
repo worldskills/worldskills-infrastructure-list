@@ -1,0 +1,366 @@
+<div class="container">
+
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
+    <li class="active" translate>Copy Event</li>
+</ol>
+
+<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>NO_ACCESS_ROLE</div>
+
+<div ng-show="auth.accessToken">
+
+<h1 class="h2">{{ event.name.text || " "}}</h1>
+<hr>
+
+<h3 translate>Copy Event</h3>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">1. Select Target Event</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <form class="form-inline">
+      <div class="form-group">
+        <select class="form-control" ng-model="targetEvent" ng-change="changeEvent()" ng-options="e.name.text for e in (events | filter:{id: '!' + event.id}) track by e.id">
+            <option value=""></option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">2. Check Status</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <p ng-if="statuses.length === 0">
+      <em>No statuses found</em>
+    </p>
+    <div class="row" ng-repeat="status in statuses">
+      <div class="col-md-5">
+        <p><span class="label" ng-style="{'background-color': status.color_code}">{{status.name.text}}</span></p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetStatus in filteredStatuses = (targetStatuses | filter:{name: {text: status.name.text}}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: <span class="label" ng-style="{'background-color': targetStatus.color_code}">{{targetStatus.name.text}}</span>
+        </p>
+        <p ng-if="filteredStatuses.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetStatus in targetStatuses">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="status in filteredStatuses = (statuses | filter:{name: {text: targetStatus.name.text}}:true)">
+        </span>
+        <p ng-if="filteredStatuses.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused status found: <span class="label" ng-style="{'background-color': targetStatus.color_code}">{{targetStatus.name.text}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">3. Check Tiers</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <p ng-if="tiers.length === 0">
+      <em>No tiers found</em>
+    </p>
+    <div class="row" ng-repeat="tier in tiers">
+      <div class="col-md-5">
+        <p>{{tier.name.text}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetTier in filteredTiers = (targetTiers | filter:{name: {text: tier.name.text}}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetTier.name.text}}
+        </p>
+        <p ng-if="filteredTiers.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetTier in targetTiers">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="tier in filteredTiers = (tiers | filter:{name: {text: targetTier.name.text}}:true)">
+        </span>
+        <p ng-if="filteredTiers.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused tier found: {{targetTier.name.text}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">4. Check Skill Areas</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <p ng-if="skillAreas.length === 0">
+      <em>No skill areas found</em>
+    </p>
+    <div class="row" ng-repeat="skillArea in skillAreas">
+      <div class="col-md-5">
+        <p>{{skillArea.name}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetSkillArea in filteredSkillAreas = (targetSkillAreas | filter:{name: skillArea.name}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetSkillArea.name}}
+        </p>
+        <p ng-if="filteredSkillAreas.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetSkillArea in targetSkillAreas">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="skillArea in filteredSkillAreas = (skillAreas | filter:{name: targetSkillArea.name}:true)">
+        </span>
+        <p ng-if="filteredSkillAreas.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused skill area found: {{targetSkillArea.name}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">5. Check List Categories</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <p ng-if="listCategories.length === 0">
+      <em>No list categories found</em>
+    </p>
+    <div class="row" ng-repeat="listCategory in listCategories">
+      <div class="col-md-5">
+        <p>{{listCategory.name.text}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetListCategory in filteredListCategories = (targetListCategories | filter:{name: {text: listCategory.name.text}}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetListCategory.name.text}}
+        </p>
+        <p ng-if="filteredListCategories.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetListCategory in targetListCategories">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="listCategory in filteredListCategories = (listCategories | filter:{name: {text: targetListCategory.name.text}}:true)">
+        </span>
+        <p ng-if="filteredListCategories.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused list categories found: {{targetListCategory.name.text}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">6. Check Item Categories</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-5">
+        <p><strong>{{ event.name.text || " "}}</strong></p>
+      </div>
+      <div class="col-md-7">
+        <p><strong>{{ targetEvent.name.text || " "}}</strong></p>
+      </div>
+    </div>
+    <p ng-if="itemCategories.length === 0">
+      <em>No item categories found</em>
+    </p>
+    <div class="row" ng-repeat="itemCategory in itemCategories">
+      <div class="col-md-5">
+        <p>{{itemCategory.name.text}}</p>
+      </div>
+      <div class="col-md-7">
+        <p ng-repeat="targetItemCategory in filteredItemCategories = (targetItemCategories | filter:{name: {text: itemCategory.name.text}}:true)">
+          <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{targetItemCategory.name.text}}
+        </p>
+        <p ng-if="filteredItemCategories.length === 0">
+          <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created
+        </p>
+      </div>
+    </div>
+    <div class="row" ng-repeat="targetItemCategory in targetItemCategories">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7">
+        <span ng-repeat="itemCategory in filteredItemCategories = (itemCategories | filter:{name: {text: targetItemCategory.name.text}}:true)">
+        </span>
+        <p ng-if="filteredItemCategories.length === 0">
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused item categories found: {{targetItemCategory.name.text}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">7. Check Lists</p>
+      <p class="text-muted"><small>Make sure to copy the skills in the <a href="https://events.worldskills.org/" target="_blank">Events application</a> first!</small></p>
+    </div>
+  </div>
+  <div class="col-md-10">
+
+    <table class="table table-striped">
+        <colgroup>
+            <col width="3%" />
+            <col width="37%" />
+            <col width="60%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="select">
+                  <input type="checkbox" ng-model="allChecked" ng-click="toggleAll()">
+                </th>
+                <th>{{ event.name.text || " "}}</th>
+                <th>{{ targetEvent.name.text || " "}}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr><td colspan="3"></td></tr>
+        </tfoot>
+        <tbody>
+            <tr ng-repeat="list in lists">
+                <td class="select">
+                  <input type="checkbox" ng-model="list.checked" ng-disabled="list.disabled" />
+                </td>
+                <td>{{list.name.text}}</td>
+                <td>
+                  <span ng-if="targetEvent && list.skill">
+                    <span ng-if="list.checked && list.targetList">
+                      <span class="glyphicon glyphicon-ok text-success"></span> Matched by Base Skill, will be mapped: {{list.targetList.name.text}}<br>
+                      <span ng-if="list.targetList.status_summary.summaries.length > 0"><span class="glyphicon glyphicon-warning-sign text-warning"></span> List already has {{totalCount(list.targetList.status_summary.summaries)}} existing Requested Items!<br></span>
+                    </span>
+                    <span ng-if="!list.targetList">
+                      <span class="glyphicon glyphicon-ban-circle text-danger"></span> No matching Base Skill found, will be skipped<br>
+                    </span>
+                  </span>
+                  <span ng-if="targetEvent && !list.skill">
+                    <span ng-if="list.checked && list.targetList">
+                      <span class="glyphicon glyphicon-ok text-success"></span> Matched by name, will be mapped: {{list.targetList.name.text}}<br>
+                    </span>
+                    <span ng-if="!list.targetList">
+                      <span class="glyphicon glyphicon-ban-circle text-danger"></span> No match found, will be created<br>
+                    </span>
+                  </span>
+                </td>
+            </tr>
+            <tr>
+              <td class="select">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>
+                <div ng-repeat="targetList in targetLists | filter:{matched: false}:true">
+                  <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused list found: {{targetList.name.text}}<br>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row">
+  <div class="col-md-2 form-inline">
+    <div class="form-group">
+      <p class="form-control-static">8. Copy</p>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div class="form-group">
+      <p class="form-control-static">
+        <button class="btn btn-success" ng-click="clone()" ng-disabled="!targetEvent.id || copying">Copy {{(lists|filter:{checked:true}:true).length}} selected lists from {{event.name.text}} to {{ targetEvent.name.text || "N/A" }}</button>
+        <span ng-show="copying">Copying, please wait...</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<br/><br/><br/>
+</div>
+
+</div>
