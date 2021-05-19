@@ -131,7 +131,7 @@ angular.module('ilApp').controller('EventCloneCtrl', function ($scope, $state, W
 
     $scope.copying = true;
 
-    var listIds = $scope.lists.filter(list => list.checked).map(list => list.id);
+    var listIds = $scope.lists.filter(function (list) { return list.checked; }).map(function (list) { return list.id; });
 
     EventClone.clone(eventId, $scope.targetEvent.id, listIds).then(function (result) {
       WSAlert.success('Lists have been copied.');
