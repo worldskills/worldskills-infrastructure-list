@@ -192,6 +192,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
       // create new scope with item for aside
       var scope = $scope.$new();
+      scope.event.userCanCreate = scope.userCanRecommend;
       scope.event_id = $scope.eventId;
       scope.item = $scope.item;
 
