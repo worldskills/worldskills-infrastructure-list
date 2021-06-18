@@ -80,7 +80,7 @@ angular.module('ilApp')
       getItems: function (eventId, search) {
         var deferred = $q.defer();
 
-        $http.get(API_IL + '/items/' + eventId + '/supplied_items', {params: {search: search}}).then(function (res) {
+        $http.get(API_IL + '/items/' + eventId + '/supplied_items', {params: {search: search, limit: 100}}).then(function (res) {
           deferred.resolve(res.data);
         }, function (error) {
           deferred.reject('Could not get items: ' + error.data.user_msg);

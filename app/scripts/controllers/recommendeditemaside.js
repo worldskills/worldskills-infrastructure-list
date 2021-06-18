@@ -24,7 +24,7 @@ angular.module('ilApp')
     $scope.suppliedDirty = false;
 
     $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.event_id + '/search?q=';
-    $scope.searchAPI = API_IL + '/items/' + $scope.event_id + '/supplied_items/?search=';
+    $scope.searchAPI = API_IL + '/items/' + $scope.event_id + '/supplied_items/?limit=100&search=';
 
     ItemCategory.getAllSubCategory($scope.event_id).then(function(subCategories){
       $scope.subCategories = subCategories.categories;
