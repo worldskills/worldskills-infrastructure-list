@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert, $translate, SUPPLIED_ITEM_PRIORITIES) {
+  .controller('editSuppliedItemCtrl', function ($scope, $timeout, SuppliedItem, uiGridConstants, $uibModalInstance, WSAlert, $translate, ItemCategory, SUPPLIED_ITEM_PRIORITIES) {
 
     $scope.priorities = SUPPLIED_ITEM_PRIORITIES;
 
@@ -39,6 +39,13 @@ angular.module('ilApp')
     }
 
     $scope.supplierValueAdd = false;
+
+    ItemCategory.getAllSubCategory($scope.event.id).then(function (res) {
+      $scope.subCategories = res.categories;
+    },
+    function (error) {
+      WSAlert.danger(error);
+    });
 
     $scope.saveItemDetails = function(){
       $scope.loading.aside = true;

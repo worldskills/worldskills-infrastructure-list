@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, Status, $state, $q, $aside, MULTIPLIERS, $timeout, Items, ItemCategory, WSAlert, MULTIPLIER_DEFAULT, auth, APP_ID, APP_ROLES, UNITS, $translate) {
+  .controller('addRequestedItemCtrl', function ($scope, $uibModalInstance, Status, $state, $q, $aside, MULTIPLIERS, $timeout, Items, WSAlert, MULTIPLIER_DEFAULT, auth, APP_ID, APP_ROLES, UNITS, $translate) {
 
     var createSuppliedItem = false;
 
@@ -33,13 +33,6 @@ angular.module('ilApp')
 
     auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
       $scope.canEditItemStatus = hasUserRole;
-    });
-
-    ItemCategory.getAllSubCategory($scope.event_id).then(function (res) {
-      $scope.subCategories = res.categories;
-    },
-    function (error) {
-      WSAlert.danger(error);
     });
 
     $scope.addItem = function () {
