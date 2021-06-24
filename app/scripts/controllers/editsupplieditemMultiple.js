@@ -27,7 +27,7 @@ angular.module('ilApp')
 
     var updateRequested = false;
     if ($scope.items == undefined || $scope.items.length < 2) {
-      alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
+      alert($translate.instant("alert.you_need_to_select_at_least_one_item"));
       return;
     }
 
@@ -90,7 +90,7 @@ angular.module('ilApp')
         //  angular.extend($scope.rowItem, res);
         //$scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
           $scope.loading.aside = false;
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED'));
+          WSAlert.success($translate.instant('wsalert.success.item_saved'));
           $uibModalInstance.dismiss();
         },
         function (error){

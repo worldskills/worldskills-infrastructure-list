@@ -5,14 +5,14 @@
 </div>
 
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="eventList" translate>events</a></li>
     <li><a ui-sref="event({eventId: eventId})">{{event.name.text}}</a></li>
     <li class="active">{{list.name.text}}</li>
 </ol>
 
 <p class="pull-right">
     <a ng-show="userCanRecommend" ng-click="showRecommendations()" class="btn btn-link">
-      <span translate>RECOMMENDATIONS</span>
+      <span translate>recommendations</span>
     </a>
     <a ng-show="list.userCanEdit" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" class="btn btn-sm btn-warning">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
@@ -29,32 +29,32 @@
 
     <div class="pull-right">
       <button type="button" ng-if="userCanRecommend" ng-click="openSuggestModalAside();" data-target="" class="btn btn-sm btn-success">
-        <span translate>SUGGEST_ADDITION</span>
+        <span translate>suggest_addition</span>
       </button>
       <div class="btn-group">
         <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
           Columns <span class="caret"></span>
         </button>
         <ul id="myDropdown" class="dropdown-menu dropdown-menu-right" role="menu">
-          <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_CATEGORY</span></a></li>
-          <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY</span></a></li>
-          <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY_CALCULATED</span></a></li>
-          <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_UNIT</span></a></li>
-          <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_DESCRIPTION</span></a></li>
-          <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER_POTENTIAL</span></a></li>
-          <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>SKILL_AREA</span></a></li>
-          <li><a href ng-click="toggleColumn('manufacturer')"><i ng-style="{'visibility' : columns.manufacturer ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MANUFACTURER</span></a></li>
-          <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MODEL</span></a></li>
-          <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SIZE</span></a></li>
-          <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_PART_NUM</span></a></li>
-          <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER</span></a></li>
-          <li><a href ng-click="toggleColumn('item_category')"><i ng-style="{'visibility' : columns.item_category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ITEM_CATEGORY</span></a></li>
-          <li><a href ng-click="toggleColumn('item_subcategory')"><i ng-style="{'visibility' : columns.item_subcategory ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ITEM_SUBCATEGORY</span></a></li>
-          <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_EXTRA_DETAILS</span></a></li>
-          <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_FILES</span></a></li>
-          <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_STATUS</span></a></li>
-          <li><a href ng-click="toggleColumn('modified')"><i ng-style="{'visibility' : columns.modified ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_LAST_MODIFIED</span></a></li>
-          <li><a href ng-click="toggleColumn('actions')"><i ng-style="{'visibility' : columns.actions ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ACTIONS</span></a></li>
+          <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_category</span></a></li>
+          <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity</span></a></li>
+          <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity_calculated</span></a></li>
+          <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_unit</span></a></li>
+          <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_description</span></a></li>
+          <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supplier_potential</span></a></li>
+          <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>skill_area</span></a></li>
+          <li><a href ng-click="toggleColumn('manufacturer')"><i ng-style="{'visibility' : columns.manufacturer ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_manufacturer</span></a></li>
+          <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_model</span></a></li>
+          <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_size</span></a></li>
+          <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_part_num</span></a></li>
+          <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supplier</span></a></li>
+          <li><a href ng-click="toggleColumn('item_category')"><i ng-style="{'visibility' : columns.item_category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_item_category</span></a></li>
+          <li><a href ng-click="toggleColumn('item_subcategory')"><i ng-style="{'visibility' : columns.item_subcategory ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_item_subcategory</span></a></li>
+          <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_extra_details</span></a></li>
+          <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_files</span></a></li>
+          <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_status</span></a></li>
+          <li><a href ng-click="toggleColumn('modified')"><i ng-style="{'visibility' : columns.modified ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_last_modified</span></a></li>
+          <li><a href ng-click="toggleColumn('actions')"><i ng-style="{'visibility' : columns.actions ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_actions</span></a></li>
         </ul>
       </div>
     </div>
@@ -70,60 +70,60 @@
             <thead>
                 <tr>
                     <th ng-if="columns.category" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('category')" translate>TH_CATEGORY</span>
+                      <span ng-click="sortBy('category')" translate>th_category</span>
                       <span class="caret" ng-show="sort === 'category'"></span>
                     </th>
                     <th ng-if="columns.quantity" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('readable_quantity')" translate>TH_QUANTITY</span>
+                      <span ng-click="sortBy('readable_quantity')" translate>th_quantity</span>
                       <span class="caret" ng-show="sort === 'readable_quantity'"></span>
                     </th>
                     <th ng-if="columns.calculated_quantity" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('calculated_quantity')" translate>TH_QUANTITY_CALCULATED</span>
+                      <span ng-click="sortBy('calculated_quantity')" translate>th_quantity_calculated</span>
                       <span class="caret" ng-show="sort === 'calculated_quantity'"></span>
                     </th>
-                    <th ng-if="columns.unit" translate>TH_UNIT</th>
+                    <th ng-if="columns.unit" translate>th_unit</th>
                     <th ng-if="columns.description" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.description.text')" translate>TH_DESCRIPTION</span>
+                      <span ng-click="sortBy('supplied_item.description.text')" translate>th_description</span>
                       <span class="caret" ng-show="sort === 'supplied_item.description.text'"></span>
                     </th>
                     <th ng-if="columns.supplier_potential" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplier.name')" translate>TH_SUPPLIER_POTENTIAL</span>
+                      <span ng-click="sortBy('supplier.name')" translate>th_supplier_potential</span>
                       <span class="caret" ng-show="sort === 'supplier.name'"></span>
                     </th>
                     <th ng-if="columns.area" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('area.name')" translate>SKILL_AREA</span>
+                      <span ng-click="sortBy('area.name')" translate>skill_area</span>
                       <span class="caret" ng-show="sort === 'area.name'"></span>
                     </th>
                     <th ng-if="columns.manufacturer" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.manufacturer')" translate>TH_MANUFACTURER</span>
+                      <span ng-click="sortBy('supplied_item.manufacturer')" translate>th_manufacturer</span>
                       <span class="caret" ng-show="sort === 'supplied_item.manufacturer'"></span>
                     </th>
                     <th ng-if="columns.model" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.model')" translate>TH_MODEL</span>
+                      <span ng-click="sortBy('supplied_item.model')" translate>th_model</span>
                       <span class="caret" ng-show="sort === 'supplied_item.model'"></span>
                     </th>
                     <th ng-if="columns.size" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.size')" translate>TH_SIZE</span>
+                      <span ng-click="sortBy('supplied_item.size')" translate>th_size</span>
                       <span class="caret" ng-show="sort === 'supplied_item.size'"></span>
                     </th>
                     <th ng-if="columns.part_number" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.part_number')" translate>TH_PART_NUM</span>
+                      <span ng-click="sortBy('supplied_item.part_number')" translate>th_part_num</span>
                       <span class="caret" ng-show="sort === 'supplied_item.part_number'"></span>
                     </th>
                     <th ng-if="columns.supplier" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.supplier.name')" translate>TH_SUPPLIER</span>
+                      <span ng-click="sortBy('supplied_item.supplier.name')" translate>th_supplier</span>
                       <span class="caret" ng-show="sort === 'supplied_item.supplier.name'"></span>
                     </th>
-                    <th ng-if="columns.item_category" translate>TH_ITEM_CATEGORY</th>
-                    <th ng-if="columns.item_subcategory" translate>TH_ITEM_SUBCATEGORY</th>
-                    <th ng-if="columns.extra_details" translate>TH_EXTRA_DETAILS</th>
-                    <th ng-if="columns.files" translate>TH_FILES</th>
+                    <th ng-if="columns.item_category" translate>th_item_category</th>
+                    <th ng-if="columns.item_subcategory" translate>th_item_subcategory</th>
+                    <th ng-if="columns.extra_details" translate>th_extra_details</th>
+                    <th ng-if="columns.files" translate>th_files</th>
                     <th ng-if="columns.status" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('status.id')" translate>TH_STATUS</span>
+                      <span ng-click="sortBy('status.id')" translate>th_status</span>
                       <span class="caret" ng-show="sort === 'status.id'"></span>
                     </th>
-                    <th ng-if="columns.modified" translate>TH_LAST_MODIFIED</th>
-                    <th ng-if="columns.actions" class="canRecommend" translate>TH_ACTIONS</th>
+                    <th ng-if="columns.modified" translate>th_last_modified</th>
+                    <th ng-if="columns.actions" class="canRecommend" translate>th_actions</th>
                 </tr>
                 <tr class="active">
                     <td ng-if="columns.category">
@@ -173,13 +173,13 @@
                       {{ item.category.name.text }}
                   </td>
                   <td ng-if="columns.quantity">
-                      <span ng-if="item.multiplier">{{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
-                      <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
+                      <span ng-if="item.multiplier">{{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
+                      <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>additional</span></span>
                   </td>
                   <td ng-if="columns.calculated_quantity">{{item.calculated_quantity}}</td>
                   <td ng-if="columns.unit">{{UNITS[item.unit] | translate}}</td>
                   <td ng-if="columns.description">
-                      <em ng-if="item.secret" translate>SECRET_ITEM</em>
+                      <em ng-if="item.secret" translate>secret_item</em>
                       <span ng-if="item.secret && item.status.show_in_public_view"><br></span>
                       <span>{{item.supplied_item.description.text}}</span>
                   </td>
@@ -204,8 +204,8 @@
                       <span class='label' ng-style="{'background-color': item.status.color_code}" title="{{item.status.description.text}}">{{item.status.name.text}}</span>
                   </td>
                   <td ng-if="columns.modified">
-                    <span ng-if="item.supplied_item.modified" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.supplied_item.modified | amDateFormat: 'DD.MM.YYYY'), time: (item.supplied_item.modified | amDateFormat: 'HH:mm')}"></span>
-                    <span ng-if="!item.supplied_item.modified" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.modified | amDateFormat: 'DD.MM.YYYY'), time: (item.modified | amDateFormat: 'HH:mm')}"></span>
+                    <span ng-if="item.supplied_item.modified" ng-bind-html="'date_time_at' | translate: {date: (item.supplied_item.modified | amDateFormat: 'DD.MM.YYYY'), time: (item.supplied_item.modified | amDateFormat: 'HH:mm')}"></span>
+                    <span ng-if="!item.supplied_item.modified" ng-bind-html="'date_time_at' | translate: {date: (item.modified | amDateFormat: 'DD.MM.YYYY'), time: (item.modified | amDateFormat: 'HH:mm')}"></span>
                   </td>
                   <td ng-if="columns.actions" class="canRecommend" style="white-space: nowrap;">
                       <span ng-if="userCanRecommend && item.status.allow_editing && item.status.show_in_public_view">
@@ -216,7 +216,7 @@
                   </td>
                 </tr>
                 <tr ng-if="!filteredItems.length">
-                    <td colspan="{{columnLength}}" translate>NO_ITEMS</td
+                    <td colspan="{{columnLength}}" translate>no_items</td
                 </tr>
             </tbody>
         </table>
@@ -225,7 +225,7 @@
     <div class="row">
         <div class="col-md-6">
           <p ng-if="items.additionRecommendationsCount > 0">
-            <em>{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: items.additionRecommendationsCount } }}</em>
+            <em>{{'x_additions_for_category' | translate:{ count: items.additionRecommendationsCount } }}</em>
           </p>
         </div>
         <div class="col-md-6">

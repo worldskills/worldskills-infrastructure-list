@@ -1,12 +1,12 @@
 <div class="container">
 
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="eventList" translate>events</a></li>
     <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
-    <li class="active" translate>RECOMMENDATIONS</li>
+    <li class="active" translate>recommendations</li>
 </ol>
 
-<h1 class="h2" translate>RECOMMENDATIONS</h1>
+<h1 class="h2" translate>recommendations</h1>
 
 <form class="form-inline">
   <div class="form-group">
@@ -21,7 +21,7 @@
 
 <div ng-if="recommendedItems.length == 0">
   <br>
-  <div class="alert alert-warning" translate>RECOMMENDATIONS_NO_ITEM</div>
+  <div class="alert alert-warning" translate>recommendations_no_item</div>
 </div>
 
     <div class="panel panel-validation-view" style="margin-top:20px;" ng-if="recommendedItems.length > 0">
@@ -29,13 +29,13 @@
             <table class="table table-condensed table-bordered il-public-items-table">
                 <thead>
                     <tr>
-                        <th class="col-15" translate>LIST</th>
-                        <th class="col-15" translate>TH_CATEGORY</th>
-                        <th class="col-15" translate>TH_ITEM_APPLICANT</th>
-                        <th class="col-20" translate>TH_ITEM_DATE_AND_TIME</th>
-                        <th class="col-15" translate>NAME</th>
-                        <th class="col-15" translate>ACTION</th>
-                        <th class="col-15" translate>ACTIONS</th>
+                        <th class="col-15" translate>list</th>
+                        <th class="col-15" translate>th_category</th>
+                        <th class="col-15" translate>th_item_applicant</th>
+                        <th class="col-20" translate>th_item_date_and_time</th>
+                        <th class="col-15" translate>name</th>
+                        <th class="col-15" translate>action</th>
+                        <th class="col-15" translate>actions</th>
                     </tr>
                 </thead>
             </table>
@@ -56,7 +56,7 @@
                             </td>
                             <td class="col-15">{{item.person.first_name}} {{item.person.last_name}}</td>
                             <td class="col-20">
-                                <span class="ng-binding ng-scope" ng-if="item.recommendedAt" ng-bind-html="'DATE_TIME_AT' | translate: {date: (item.recommendedAt | amDateFormat: 'DD.MM.YYYY'), time: (item.recommendedAt | amDateFormat: 'HH:mm')}"></span>
+                                <span class="ng-binding ng-scope" ng-if="item.recommendedAt" ng-bind-html="'date_time_at' | translate: {date: (item.recommendedAt | amDateFormat: 'DD.MM.YYYY'), time: (item.recommendedAt | amDateFormat: 'HH:mm')}"></span>
                             </td>
                             <td class="col-15">
                                 <span ng-if="item.requestedItem">{{item.requestedItem.supplied_item.description.text}}</span>
@@ -64,11 +64,11 @@
                                 <span ng-if="!item.requestedItem && !item.recommendedItemSupplied">{{item.suppliedItem.description.text}}</span>
                             </td>
                             <td class="col-15">
-                              <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
-                              <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>
-                              <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+                              <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>td_item_replace_with</span>
+                              <span ng-if="!item.requestedItem" translate>td_item_addition</span>
+                              <span ng-if="item.deletionSuggestion" translate>td_item_deletion</span>
                               <span ng-if="item.recommendedItemSupplied">
-                                &nbsp;<i class='glyphicon glyphicon-exclamation-sign blue' tooltip-placement="bottom" uib-tooltip="{{'SUPPLIED_ITEM_CHANGED' | translate}}"></i>
+                                &nbsp;<i class='glyphicon glyphicon-exclamation-sign blue' tooltip-placement="bottom" uib-tooltip="{{'supplied_item_changed' | translate}}"></i>
                               </span>
                             </td>
                             <td class="col-15">
@@ -85,26 +85,26 @@
                     <thead>
                         <tr>
                             <th class="col-10"></th>
-                            <th class="col-15" translate>DESCRIPTION</th>
-                            <th class="col-10" translate>QUANTITY</th>
-                            <th class="col-10" translate>ADDITIONAL_QUANTITY</th>
-                            <th class="col-10" translate>UNIT</th>
-                            <th class="col-15" translate>POTENTIAL_SUPPLIER</th>
-                            <th class="col-10 text-center" translate>WRONG_SUPPLIED_ITEM</th>
-                            <th class="col-5" translate>COMMENT</th>
+                            <th class="col-15" translate>description</th>
+                            <th class="col-10" translate>quantity</th>
+                            <th class="col-10" translate>additional_quantity</th>
+                            <th class="col-10" translate>unit</th>
+                            <th class="col-15" translate>potential_supplier</th>
+                            <th class="col-10 text-center" translate>wrong_supplied_item</th>
+                            <th class="col-5" translate>comment</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="actuel" ng-if="item.requestedItem">
                             <td>
-                                <span ng-if="!item.deletionSuggestion" translate>TD_ITEM_CURRENT</span>
-                                <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+                                <span ng-if="!item.deletionSuggestion" translate>td_item_current</span>
+                                <span ng-if="item.deletionSuggestion" translate>td_item_deletion</span>
                             </td>
                             <td ng-class="{'change': item.description.text != item.requestedItem.description.text}">
                                 {{item.requestedItem.description.text}}
                             </td>
                             <td ng-class="{'change': item.quantity != item.requestedItem.quantity}">
-                                {{'ITEM_READABLE_QUANTITY_' + item.requestedItem.multiplier | translate: {quantity: item.requestedItem.quantity, factor: item.requestedItem.multiply_factor} }}
+                                {{'item_readable_quantity_' + item.requestedItem.multiplier.toLowerCase() | translate: {quantity: item.requestedItem.quantity, factor: item.requestedItem.multiply_factor} }}
                             </td>
                             <td ng-class="{'change': item.additional_quantity != item.requestedItem.additional_quantity}">
                                 {{item.requestedItem.additional_quantity}}
@@ -131,17 +131,17 @@
                         <tr class="remplace" ng-if="!item.deletionSuggestion">
                             <td>
                                 <span ng-if="item.requestedItem" translate>
-                                    TD_ITEM_REPLACE_WITH
+                                    td_item_replace_with
                                 </span>
                                 <span ng-if="!item.requestedItem" translate>
-                                    TD_ITEM_ADDITION
+                                    td_item_addition
                                 </span>
                             </td>
                             <td ng-class="{'change-error': item.description.text != item.requestedItem.description.text}">
                                 {{item.description.text}}
                             </td>
                             <td ng-class="{'change-warning': item.quantity != item.requestedItem.quantity}">
-                                {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.quantity, factor: item.multiplyFactor} }}
+                                {{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.quantity, factor: item.multiplyFactor} }}
                             </td>
                             <td ng-class="{'change-warning': item.additional_quantity != item.requestedItem.additional_quantity}">
                                 {{item.additional_quantity}}
@@ -162,11 +162,11 @@
 
                 <div class="button-group">
                     <button type="button" ng-click="accept(item);" class="pull-right btn btn-sm btn-success">
-                        <span translate>ACCEPT</span>
+                        <span translate>accept</span>
                     </button>
 
                     <button type="button" class="pull-right btn btn-sm btn-danger"  ng-click="reject(item);">
-                        <span translate>REJECT</span>
+                        <span translate>reject</span>
                     </button>
                 </div>
             </div>

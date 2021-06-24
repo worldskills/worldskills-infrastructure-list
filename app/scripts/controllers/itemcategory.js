@@ -73,14 +73,14 @@ angular.module('ilApp')
     };
 
     $scope.removeItemCategory = function (itemCategory, isCategory) {
-      var entityCode = isCategory ? 'CATEGORY' : 'SUB_CATEGORY';
+      var entityCode = isCategory ? 'category' : 'sub_category';
 
       if(!itemCategory.used){
         $confirm({
-          title: $translate.instant('DELETE_ITEM_'+entityCode+'.TITLE'),
-          text: $translate.instant('DELETE_ITEM_'+entityCode+'.TEXT', {text: itemCategory.name.text}),
-          ok: $translate.instant('OK'),
-          cancel: $translate.instant('CANCEL')
+          title: $translate.instant('delete_item_'+entityCode+'.title'),
+          text: $translate.instant('delete_item_'+entityCode+'.text', {text: itemCategory.name.text}),
+          ok: $translate.instant('ok'),
+          cancel: $translate.instant('cancel')
         }).then(function () {
           return ItemCategory.removeItemCategory(itemCategory);
         }).then(function (result) {

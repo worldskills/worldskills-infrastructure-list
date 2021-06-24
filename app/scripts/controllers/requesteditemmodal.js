@@ -123,7 +123,7 @@ angular.module('ilApp')
           return $q.all(tasks);
         })
         .then(function() {
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED'));
+          WSAlert.success($translate.instant('wsalert.success.item_saved'));
         })
         .finally($uibModalInstance.dismiss);
     }
@@ -174,7 +174,7 @@ angular.module('ilApp')
         })
         .catch(function(err) {
           var message = $translate.instant(
-            'WSALERT.DANGER.ITEM_COULD_NOT_BE_SAVED',
+            'wsalert.danger.item_could_not_be_saved',
             {itemName: modifiedItem.description.text, error: err}
           );
           WSAlert.danger(message);

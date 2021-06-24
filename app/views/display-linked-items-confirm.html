@@ -1,34 +1,34 @@
 <div class="modal-header">
   <h3 class="modal-title pull-left">{{data.title}}</h3>
-  <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>ADD_NEW_LINKED_ITEM</span></button></span>
+  <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>add_new_linked_item</span></button></span>
   <br class="clearfix">
 </div>
 <div class="modal-body">
   <alerts></alerts>
-  <div ng-if="data.items.length == 0" class="alert alert-info" translate>ITEM_NO_SKILLS</div>
+  <div ng-if="data.items.length == 0" class="alert alert-info" translate>item_no_skills</div>
 
   <table class="table table-striped" ng-if="data.items.length > 0">
     <thead>
     <tr>
-      <th translate>TH_ID</th>
-      <th translate>TH_LIST</th>
-      <th translate>TH_CATEGORY</th>
-      <th translate>TH_QTY</th>
-      <th translate>TH_SUPPLIER_POTENTIAL</th>
-      <th translate>TH_STATUS</th>
-      <th translate>TH_ACTIONS</th>
+      <th translate>th_id</th>
+      <th translate>th_list</th>
+      <th translate>th_category</th>
+      <th translate>th_qty</th>
+      <th translate>th_supplier_potential</th>
+      <th translate>th_status</th>
+      <th translate>th_actions</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in data.items track by item.id"
     ng-class="{'success': item.new || item.updated}">
       <td>{{item.id}}
-        <span ng-if="item.new" class="label label-success" translate>NEW</span>
-        <span ng-if="item.updated" class="label label-success" translate>UPDATED</span>
+        <span ng-if="item.new" class="label label-success" translate>new</span>
+        <span ng-if="item.updated" class="label label-success" translate>updated</span>
       </td>
       <td>{{item.list.name.text}}</td>
       <td>{{item.category.name.text}}</td>
-      <td>{{'ITEM_READABLE_QUANTITY_' + item.multiplier |
+      <td>{{'item_readable_quantity_' + item.multiplier.toLowerCase() |
           translate: {quantity: item.quantity, factor: item.multiply_factor} }}</td>
       <td>{{item.supplier.name}}</td>
       <td>{{item.status.name.text}}</td>

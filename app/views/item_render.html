@@ -1,11 +1,11 @@
 <td class="text-right">
   <span>
-    {{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
+    {{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
   </span>
 </td>
 <td>
-  <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'EDIT_REQUESTS' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
-  <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'DELETION_REQUESTS' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
+  <span ng-if="item.modificationSuggestions > 0" uib-tooltip="{{ 'edit_requests' | translate}} : {{item.modificationSuggestions}}" class="fa fa-pencil-alt fa-xs icon-circled"></span>
+  <span ng-if="item.deletionSuggestions > 0" uib-tooltip="{{ 'deletion_requests' | translate}} : {{item.deletionSuggestions}}" class="fa fa-minus icon-circled"></span>
   <a href ng-if="item.canEdit" ng-click="editRequestedItem(item);">
     {{item.supplied_item.description.text || "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}}
   </a>
@@ -22,7 +22,7 @@
   </small>
   <small ng-if='item.id == statusEditionItemId' class="status pull-right form-group-sm">
     <ui-select ng-model="item.status" theme="bootstrap" on-select="saveStatus(item, itemIndex);" style="width: 100px">
-      <ui-select-match placeholder="{{ 'PLACEHOLDER.SELECT_STATUS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+      <ui-select-match placeholder="{{ 'placeholder.select_status' | translate }}">{{$select.selected.name.text}}</ui-select-match>
       <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
         <div ng-bind-html="status.name.text"></div>
       </ui-select-choices>

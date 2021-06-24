@@ -97,7 +97,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         $scope.items = result;
         $scope.loading = false;
       }, function(error){
-        WSAlert.danger($translate.instant('WSALERT.DANGER.NO_ACCESSS_PUBLIC_VIEW'));
+        WSAlert.danger($translate.instant('wsalert.danger.no_accesss_public_view'));
         $scope.loading = false;
         $scope.error = true;
       });
@@ -247,7 +247,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     modalInstance.result.then(function (modalScope) {
       $scope.recommendedItem.comment = modalScope.comment;
       RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.listId).then(function(result) {
-        WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_DELETE'));
+        WSAlert.success($translate.instant('wsalert.success.recommend_delete'));
       }, function(error) {
         WSAlert.danger(error);
       });

@@ -8,7 +8,7 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
   $scope.error = false;
   $scope.skills = {};
   $scope.event = {};
-  
+
   $scope.loading.lists = true;
   $scope.loading.requested = false;
   $scope.loading.catalogue = false;
@@ -43,7 +43,7 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
       });
       $scope.loading.lists = false;
     }, function(errors){
-      WSAlert.danger($translate.instant('WSALERT.DANGER.NO_ACCESSS_PUBLIC_VIEW'));
+      WSAlert.danger($translate.instant('wsalert.danger.no_accesss_public_view'));
       $scope.loading.lists = false;
     });
 

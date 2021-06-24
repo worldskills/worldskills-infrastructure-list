@@ -1,18 +1,18 @@
 <div class="modal-header"><h3 class="modal-title">{{data.title}}</h3></div>
 <div class="modal-body">
-  <p ng-if="!data.linkedItems" translate>ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THESE_ITEMS</p>
-  <div ng-if="data.linkedItems" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong translate>IMPORTANT!</strong> <span translate>SOME_OF_THE_ITEMS_CAN_T_BE_DELETED</span></div>
+  <p ng-if="!data.linkedItems" translate>are_you_sure_you_want_to_remove_these_items</p>
+  <div ng-if="data.linkedItems" class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<strong translate>important!</strong> <span translate>some_of_the_items_can_t_be_deleted</span></div>
   <p>
     &nbsp;
   </p>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th translate>TH_ID</th>
-      <th translate>TH_DESCRIPTION</th>
-      <th translate>TH_MANUFACTURER</th>
-      <th translate>TH_MODEL</th>
-      <th ng-if="data.linkedItems" translate>TH_DELETE</th>
+      <th translate>th_id</th>
+      <th translate>th_description</th>
+      <th translate>th_manufacturer</th>
+      <th translate>th_model</th>
+      <th ng-if="data.linkedItems" translate>th_delete</th>
     </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
       <td>{{item.manufacturer}}</td>
       <td>{{item.model}}</td>
       <td ng-if="data.linkedItems">
-        <span ng-if="!item.linkedItems" translate>YES</span>
+        <span ng-if="!item.linkedItems" translate>yes</span>
         <span ng-if="item.linkedItems" translate>NO</span>
       </td>
     </tr>

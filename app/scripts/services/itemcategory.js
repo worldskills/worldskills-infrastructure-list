@@ -54,7 +54,7 @@ angular.module('ilApp')
           deferred.resolve(result.data);
         })
         .catch(function(error){
-          deferred.reject($translate.instant("COULD_NOT_FETCH_ITEM_CATEGORIES"));
+          deferred.reject($translate.instant("could_not_fetch_item_categories"));
         })
       ;
 
@@ -78,11 +78,11 @@ angular.module('ilApp')
           deferred.resolve(res.data);
         })
         .catch(function(error){
-          var entityCode = item.parent == null ? 'CATEGORY' : 'SUB_CATEGORY';
+          var entityCode = item.parent == null ? 'category' : 'sub_category';
           if(error.status === 304){
-            deferred.reject($translate.instant("COULD_NOT_REMOVE_ITEM_"+entityCode+"_IN_USE"));
+            deferred.reject($translate.instant("could_not_remove_item_"+entityCode+"_in_use"));
           } else {
-            deferred.reject($translate.instant("COULD_NOT_REMOVE_ITEM_"+entityCode, {error: error.data.user_msg}));
+            deferred.reject($translate.instant("could_not_remove_item_"+entityCode, {error: error.data.user_msg}));
           }
         })
       ;

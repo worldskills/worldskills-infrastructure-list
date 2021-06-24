@@ -201,7 +201,7 @@ angular.module('ilApp')
           else{
             $uibModalInstance.dismiss();
             $scope.successType = "EDIT";
-            WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_EDIT'));
+            WSAlert.success($translate.instant('wsalert.success.recommend_edit'));
           }
         }, function(error) {
           WSAlert.danger(error);
@@ -220,13 +220,13 @@ angular.module('ilApp')
           else{
             $uibModalInstance.dismiss();
             $scope.successType = "ADD";
-            WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ADD'));
+            WSAlert.success($translate.instant('wsalert.success.recommend_add'));
           }
         }, function(error) {
           WSAlert.danger(error);
         });
       }
-      
+
       if($scope.item && $scope.item.id) {
         $scope.item.modificationSuggestions++;
       }
@@ -270,13 +270,13 @@ angular.module('ilApp')
           //close modal window and show alert
           $uibModalInstance.dismiss();
           if($scope.successType === "EDIT")
-            WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_EDIT'));
+            WSAlert.success($translate.instant('wsalert.success.recommend_edit'));
           else
-            WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ADD'));
+            WSAlert.success($translate.instant('wsalert.success.recommend_add'));
         }, 1000)
       }
       else{
-        WSAlert.danger($translate.instant('WSALERT.DANGER.FILE_UPLOAD_FAILED'));
+        WSAlert.danger($translate.instant('wsalert.danger.file_upload_failed'));
       }
     };
   });

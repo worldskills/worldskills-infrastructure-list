@@ -1,18 +1,18 @@
 <ws-spinner class="bigSpinner" ng-if="loading.overview"></ws-spinner>
-<fieldset ng-show="!loading.overview"><legend translate>OVERVIEW</legend>
+<fieldset ng-show="!loading.overview"><legend translate>overview</legend>
 
-<p translate>TO_EDIT_ITEMS</p>
+<p translate>to_edit_items</p>
 <p>&nbsp;</p>
 <div class='row'>
 	<div class='col col-xs-12 col-sm-6'>
 		<div class='panel panel-default' ng-show="list.skill">
-			<div class='panel-heading' translate>SKILL_MANAGEMENT</div>
+			<div class='panel-heading' translate>skill_management</div>
 			<div class='panel-body'>
 				<table class='table table-striped'>
 					<thead>
 						<tr>
-							<th translate>TH_POSITION</th>
-							<th translate>TH_NAME</th>
+							<th translate>th_position</th>
+							<th translate>th_name</th>
 							<!--<th>Email</th>-->
 						</tr>
 					</thead>
@@ -29,7 +29,7 @@
 	</div>
 	<div class='col col-xs-12 col-sm-6'>
 		<div class='panel panel-default'>
-			<div class='panel-heading' translate>PROGRESS</div>
+			<div class='panel-heading' translate>progress</div>
 			<div class='panel-body'>
 				<div class="progress">
 				  <div
@@ -43,10 +43,10 @@
 		</div>
 
 		<div class='panel panel-default'>
-			<div class='panel-heading' translate>REPORTS</div>
+			<div class='panel-heading' translate>reports</div>
 			<div class='panel-body'>
-				<a ui-sref="publicItems({eventId: event_id, listId: listId})" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-th-list"></i> <span translate>BUTTON_REPORT_PRINT_VIEW</span></a>
-				<button type="button" ng-click="exportList();" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-download-alt"></i> <span translate>BUTTON_REPORT_REQUESTED_ITEMS</span></button>
+				<a ui-sref="publicItems({eventId: event_id, listId: listId})" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-th-list"></i> <span translate>button_report_print_view</span></a>
+				<button type="button" ng-click="exportList();" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-download-alt"></i> <span translate>button_report_requested_items</span></button>
 			</div>
 		</div>
 	</div>

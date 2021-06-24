@@ -45,7 +45,7 @@ angular.module('ilApp')
 
     //prevent accidental navigation
     $scope.$on('$stateChangeStart', function( event ) {
-      if(!confirm($translate.instant('CONFIRM.ARE_YOU_SURE_YOU_WANT_TO_LEAVE_THIS_PAGE')))
+      if(!confirm($translate.instant('confirm.are_you_sure_you_want_to_leave_this_page')))
         event.preventDefault();
     });
 
@@ -113,29 +113,29 @@ angular.module('ilApp')
       disableCancelFilterButton: false,
       columnDefs: [
         {field: 'id', width: '60', enableCellEdit: false, pinnedLeft: true},
-        {field: 'description.text', name: $translate.instant("TH_DESCRIPTION"), width: '250', pinnedLeft: true, cellEditableCondition: $scope.canEdit},
-        {field: 'manufacturer', name: $translate.instant("TH_MANUFACTURER"), width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'model', name: $translate.instant("TH_MODEL"), width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'size', name: $translate.instant("TH_SIZE"), width: '160', cellEditableCondition: $scope.canEdit},
-        {field: 'part_number', name: $translate.instant("TH_PART_NUM"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'description.text', name: $translate.instant("th_description"), width: '250', pinnedLeft: true, cellEditableCondition: $scope.canEdit},
+        {field: 'manufacturer', name: $translate.instant("th_manufacturer"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'model', name: $translate.instant("th_model"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'size', name: $translate.instant("th_size"), width: '160', cellEditableCondition: $scope.canEdit},
+        {field: 'part_number', name: $translate.instant("th_part_num"), width: '160', cellEditableCondition: $scope.canEdit},
         {
           field: 'item_category.name.text',
-          name: $translate.instant('TH_ITEM_SUBCATEGORY'),
+          name: $translate.instant('th_item_subcategory'),
           width: '160',
           cellEditableCondition: false,
         },
         {
           field: 'item_category.parent.name.text',
-          name: $translate.instant('TH_ITEM_CATEGORY'),
+          name: $translate.instant('th_item_category'),
           width: '160',
           cellEditableCondition: false
         },
-        {field: 'supplier.name', name: $translate.instant('TH_SUPPLIER'), width: '100', cellEditableCondition: false},
-        {field: 'supply_type', name: $translate.instant('TH_SUPPLY_TYPE'), width: '100'},
-        {field: 'unit_cost', name: $translate.instant('TH_UNIT_COST'), width: '100'}, //double
-        {field: 'unit', name: $translate.instant('TH_UNIT'), width: '100'},
-        {field: 'po_number', name: $translate.instant('TH_PO_NUMBER'), width: '100'},
-        {field: 'priority', name: $translate.instant('TH_PRIORITY'), width: '100',
+        {field: 'supplier.name', name: $translate.instant('th_supplier'), width: '100', cellEditableCondition: false},
+        {field: 'supply_type', name: $translate.instant('th_supply_type'), width: '100'},
+        {field: 'unit_cost', name: $translate.instant('th_unit_cost'), width: '100'}, //double
+        {field: 'unit', name: $translate.instant('th_unit'), width: '100'},
+        {field: 'po_number', name: $translate.instant('th_po_number'), width: '100'},
+        {field: 'priority', name: $translate.instant('th_priority'), width: '100',
           enableCellEdit: false,
           cellTemplate: "<div translate ng-show='row.entity.priority'>{{row.entity.priority}}</div>",
           filter: {
@@ -143,18 +143,18 @@ angular.module('ilApp')
             selectOptions: supplied_item_priorities
           }
         },
-        {field: 'delivery', name: $translate.instant('TH_DELIVERY'), width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"',
+        {field: 'delivery', name: $translate.instant('th_delivery'), width: '180', cellFilter: 'date:"yyyy-MM-dd HH:mm:ssZ"',
           filter: {
             condition: uiGridConstants.filter.STARTS_WITH,
           }
         }, //datetime
-        {field: 'disposal_category', name: $translate.instant('TH_DISPOSAL_CATEGORY'), width: '100'},
-        {field: 'location', name: $translate.instant('TH_LOCATION'), width: '100'},
-        {field: 'lead_time', name: $translate.instant('TH_LEAD_TIME'), width: '100'},
-        {field: 'electricity_volts', name: $translate.instant('TH_ELECTRICITY_VOLTS'), width: '100'},//int
-        {field: 'electricity_amps', name: $translate.instant('TH_ELECTRICITY_AMPS'), width: '100'},//int
-        {field: 'electricity_phase', name: $translate.instant('TH_ELECTRICITY_PHASE'), width: '100'},
-        {field: 'water_supply', name: $translate.instant('TH_WATER_SUPPLY'), width: '100',
+        {field: 'disposal_category', name: $translate.instant('th_disposal_category'), width: '100'},
+        {field: 'location', name: $translate.instant('th_location'), width: '100'},
+        {field: 'lead_time', name: $translate.instant('th_lead_time'), width: '100'},
+        {field: 'electricity_volts', name: $translate.instant('th_electricity_volts'), width: '100'},//int
+        {field: 'electricity_amps', name: $translate.instant('th_electricity_amps'), width: '100'},//int
+        {field: 'electricity_phase', name: $translate.instant('th_electricity_phase'), width: '100'},
+        {field: 'water_supply', name: $translate.instant('th_water_supply'), width: '100',
           cellTemplate: "<div translate>{{row.entity.water_supply + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
@@ -164,7 +164,7 @@ angular.module('ilApp')
             ]
           }
         },
-        {field: 'water_drainage', name: $translate.instant('TH_WATER_DRAINAGE'), width: '100',
+        {field: 'water_drainage', name: $translate.instant('th_water_drainage'), width: '100',
           cellTemplate: "<div translate>{{row.entity.water_drainage + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
@@ -174,7 +174,7 @@ angular.module('ilApp')
             ]
           }
         },
-        {field: 'compressed_air', name: $translate.instant('TH_COMPRESSED_AIR'), width: '100',
+        {field: 'compressed_air', name: $translate.instant('th_compressed_air'), width: '100',
           cellTemplate: "<div translate>{{row.entity.compressed_air + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
@@ -184,7 +184,7 @@ angular.module('ilApp')
             ]
           }
         },
-        {field: 'ventilation_fume_extraction', name: $translate.instant('TH_VENTILATION_FUME_EXTRACTION'), width: '100', type: 'boolean',
+        {field: 'ventilation_fume_extraction', name: $translate.instant('th_ventilation_fume_extraction'), width: '100', type: 'boolean',
           cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
@@ -194,12 +194,12 @@ angular.module('ilApp')
             ]
           }
         },//char 1
-        {field: 'gas_requirements', name: $translate.instant('TH_GAS_REQUIREMENTS'), width: '100', type: 'boolean'
+        {field: 'gas_requirements', name: $translate.instant('th_gas_requirements'), width: '100', type: 'boolean'
         },//char 1
-        {field: 'anchor_fixing_base_requirements', name: $translate.instant('TH_ANCHOR_FIXING_BASE_REQUIREMENTS'), width: '100'},
-        {field: 'extra_details', name: $translate.instant('TH_EXTRA_DETAILS'), width: '100'},//mediumtext
-        {field: 'modified', name: $translate.instant("TH_MODIFIED"), width: '95', type: 'date', enableCellEdit: false},
-        {field: 'user_generated', name: $translate.instant("TH_USER_GENERATED"), width: '125', type: 'boolean',
+        {field: 'anchor_fixing_base_requirements', name: $translate.instant('th_anchor_fixing_base_requirements'), width: '100'},
+        {field: 'extra_details', name: $translate.instant('th_extra_details'), width: '100'},//mediumtext
+        {field: 'modified', name: $translate.instant("th_modified"), width: '95', type: 'date', enableCellEdit: false},
+        {field: 'user_generated', name: $translate.instant("th_user_generated"), width: '125', type: 'boolean',
           enableCellEdit: false,
           cellTemplate: "<div translate>{{row.entity.user_generated + 'Label'}}</div>",
           filter: {
@@ -210,7 +210,7 @@ angular.module('ilApp')
             ]
           }
         },
-        {field: 'linkedItems', name: $translate.instant("TH_LINKED"), width: '95', type: 'boolean',
+        {field: 'linkedItems', name: $translate.instant("th_linked"), width: '95', type: 'boolean',
           enableCellEdit: false,
           cellTemplate: "<div translate>{{row.entity.linkedItems + 'Label' }}</div>",
           filter: {
@@ -349,7 +349,7 @@ angular.module('ilApp')
         promise.resolve();
       },
       function(error){
-        WSAlert.warning($translate.instant('WSALERT.WARNING.ERROR_REFRESHING_ITEM', {error: error}));
+        WSAlert.warning($translate.instant('wsalert.warning.error_refreshing_item', {error: error}));
         promise.reject();
         $scope.loading.catalogue = false;
       });
@@ -366,7 +366,7 @@ angular.module('ilApp')
       var item = $scope.getOneSelectedItem();
 
       if(item == void 0 || item === false){
-        alert($translate.instant('ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM'));
+        alert($translate.instant('alert.you_need_to_select_at_least_one_item'));
         return;
       }
 
@@ -378,13 +378,13 @@ angular.module('ilApp')
 
         //display linked items
         $confirm({
-            title: $translate.instant('LINKED_ITEMS.TITLE'),
+            title: $translate.instant('linked_items.title'),
             newLinkedItem: $scope.createNewLinkedItem,
             suppliedItem: item,
             items: res.requested_items,
             editRequestedItem: $scope.editRequestedItem,
             unlinkRequestedItem: $scope.unlinkRequestedItem,
-            ok: $translate.instant("LINKED_ITEMS.OK"),
+            ok: $translate.instant("linked_items.ok"),
           },
           {
             templateUrl: 'views/display-linked-items-confirm.html',
@@ -440,10 +440,10 @@ angular.module('ilApp')
         }
       });
       $confirm({
-          title: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.TITLE'),
+          title: $translate.instant('remove_item_s_from_catalogue.title'),
           items: items,
           linkedItems: linkedItems,
-          ok: $translate.instant('REMOVE_ITEM_S_FROM_CATALOGUE.OK')
+          ok: $translate.instant('remove_item_s_from_catalogue.ok')
       },
       {
         templateUrl: 'views/remove-item-confirm.html'
@@ -466,7 +466,7 @@ angular.module('ilApp')
 
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
 
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_S_REMOVED'));
+          WSAlert.success($translate.instant('wsalert.success.item_s_removed'));
 
           $scope.loading.catalogue = false;
         },
@@ -485,12 +485,12 @@ angular.module('ilApp')
 
       var items = $scope.getSelectedItems();
       if(items == void 0 || items === false){
-        alert($translate.instant('ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
+        alert($translate.instant('alert.please_select_at_least_2_ITEMS'));
         return;
       }
 
       if(items.length < 2){
-        alert($translate.instant('ALERT.PLEASE_SELECT_AT_LEAST_2_ITEMS'));
+        alert($translate.instant('alert.please_select_at_least_2_ITEMS'));
         return;
       }
 
@@ -506,14 +506,14 @@ angular.module('ilApp')
       });
 
       $confirm({
-          title: $translate.instant("JSTEXT_COMBINE_ITEMS.TITLE"),
+          title: $translate.instant("jstext_combine_items.title"),
           items: items,
           linkedItems: linkedItems,
           masterItem: false,
           selectMaster: function(masterItem){
             $scope.masterItem = masterItem;
           },
-          ok: $translate.instant("JSTEXT_COMBINE_ITEMS.OK")
+          ok: $translate.instant("jstext_combine_items.ok")
         },
         {
           templateUrl: 'views/combine-items-confirm.html'
@@ -530,7 +530,7 @@ angular.module('ilApp')
                 $scope.gridOptions.data.splice(i, 1);
               }
             });
-            WSAlert.success($translate.instant("WSALERT.SUCCESS.ITEMS_COMBINED"));
+            WSAlert.success($translate.instant("wsalert.success.items_combined"));
             $scope.loading.catalogue = false;
         },
         function(error){
@@ -593,7 +593,7 @@ angular.module('ilApp')
 
     $scope.filtersActivate = function(){
       if($scope.filters.list == null) {
-        WSAlert.warning($translate.instant("WSALERT.WARNING.YOU_HAVE_TO_SELECT_AT_LEAST_SKILL_FIRST"));
+        WSAlert.warning($translate.instant("wsalert.warning.you_have_to_select_at_least_skill_first"));
         return;
       }
 
@@ -622,7 +622,7 @@ angular.module('ilApp')
         $scope.openItemEditor(items[0]);
       }
       else{
-        alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
+        alert($translate.instant("alert.you_need_to_select_at_least_one_item"));
       }
     };
 
@@ -630,7 +630,7 @@ angular.module('ilApp')
       var item = false;
 
       if($scope.gridApi.selection.getSelectedRows().length > 1){
-        WSAlert.warning($translate.instant("WSALERT.WARNING.PLEASE_SELECT_ONLY_ONE_ROW"));
+        WSAlert.warning($translate.instant("wsalert.warning.please_select_only_one_row"));
         item = false;
       }
       else if ($scope.gridApi.selection.getSelectedRows().length == 1){
@@ -671,7 +671,7 @@ angular.module('ilApp')
 
     $scope.openItemEditorMultiple  = function(items){
       if(items == void 0 || items.length < 2) {
-        alert($translate.instant("ALERT.YOU_NEED_TO_SELECT_AT_LEAST_ONE_ITEM"));
+        alert($translate.instant("alert.you_need_to_select_at_least_one_item"));
         return;
       }
       else {
@@ -762,8 +762,8 @@ angular.module('ilApp')
 
     $scope.unlinkRequestedItem = function(item, linkedItemsRef, index){
       $confirm({
-          title: $translate.instant("ARE_YOU_SURE.TITLE"),
-          ok: $translate.instant("ARE_YOU_SURE.OK"),
+          title: $translate.instant("are_you_sure.title"),
+          ok: $translate.instant("are_you_sure.ok"),
           item: item
         },
         {
@@ -830,49 +830,49 @@ angular.module('ilApp')
     //map hotkeys
     hotkeys.add({
       combo: 'ctrl+o',
-      description: $translate.instant("HOTKEYS.EDIT_ITEM_IN_FULL_VIEW"),
+      description: $translate.instant("hotkeys.edit_item_in_full_view"),
       callback: $scope.editItems
     });
 
     hotkeys.add({
       combo: 'ctrl+l',
-      description: $translate.instant("HOTKEYS.DISPLAY_LINKED_ITEMS"),
+      description: $translate.instant("hotkeys.display_linked_items"),
       callback: $scope.getLinkedItems
     });
 
     hotkeys.add({
       combo: 'ctrl+backspace',
-      description: $translate.instant("HOTKEYS.REMOVE_SELECTED_ITEM"),
+      description: $translate.instant("hotkeys.remove_selected_item"),
       callback: $scope.removeItem
     });
 
     hotkeys.add({
       combo: 'ctrl+m',
-      description: $translate.instant("HOTKEYS.COMBINE_SELECTED_ITEMS"),
+      description: $translate.instant("hotkeys.combine_selected_items"),
       callback: $scope.combineItems
     });
 
     hotkeys.add({
       combo: 'ctrl+f',
-      description: $translate.instant("HOTKEYS.FULLSCREEN_TOGGLE"),
+      description: $translate.instant("hotkeys.fullscreen_toggle"),
       callback: $scope.toggleFullScreen
     });
 
     hotkeys.add({
       combo: 'ctrl+n',
-      description: $translate.instant("HOTKEYS.ADD_NEW_ROW_IN_FULL_VIEW"),
+      description: $translate.instant("hotkeys.add_new_row_in_full_view"),
       callback: $scope.openItemEditor
     });
 
     hotkeys.add({
       combo: 'ctrl+k',
-      description: $translate.instant("HOTKEYS.TOGGLE_INLINE_EDITING"),
+      description: $translate.instant("hotkeys.toggle_inline_editing"),
       callback: $scope.toggleEditing
     });
 
     hotkeys.add({
       combo: 'ctrl+t',
-      description: $translate.instant("HOTKEYS.TOGGLE_FILTERS_DIALOG"),
+      description: $translate.instant("hotkeys.toggle_filters_dialog"),
       callback: $scope.toggleFilters
     });
 

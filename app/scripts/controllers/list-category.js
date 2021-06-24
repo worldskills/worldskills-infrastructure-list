@@ -85,7 +85,7 @@ angular.module('ilApp')
     {
       $scope.saveItem(item, itemIndex);
       $scope.statusEditionItemId = -1;
-      WSAlert.success($translate.instant('WSALERT.SUCCESS.ITEM_SAVED'));
+      WSAlert.success($translate.instant('wsalert.success.item_saved'));
     }
 
     $scope.saveItem = function (item, itemIndex) {
@@ -165,7 +165,7 @@ angular.module('ilApp')
 
       var suppliedItemAside = $scope.switchSuppliedItem($scope.item);
       suppliedItemAside.result.then(function () {
-        
+
       }, function () {
         requestedItemAside.dismiss();
       })

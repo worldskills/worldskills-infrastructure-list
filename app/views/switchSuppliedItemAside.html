@@ -1,12 +1,12 @@
 <div class="aside">
   <fieldset>
-    <legend translate>FIND_SUPPLIED_ITEM</legend>
+    <legend translate>find_supplied_item</legend>
     <alerts></alerts>
     <form name="form" ng-submit="search()">
       <div class="input-group">
         <input type="text" class="input-sm form-control" name="term" ng-model="searchTerm" autofocus autocomplete="off">
           <span class="input-group-btn">
-            <button class="btn btn-primary btn-sm" type="button" ng-click="search()" translate>BUTTON_SEARCH</button>
+            <button class="btn btn-primary btn-sm" type="button" ng-click="search()" translate>button_search</button>
           </span>
       </div>
     </form>
@@ -14,11 +14,11 @@
     <table class="table smallText">
       <thead>
         <tr>
-          <th translate>TH_DESCRIPTION</th>
-          <th translate>TH_MANUFACTURER</th>
-          <th translate>TH_MODEL</th>
-          <th translate>TH_SIZE</th>
-          <th translate>TH_SUPPLIER</th>
+          <th translate>th_description</th>
+          <th translate>th_manufacturer</th>
+          <th translate>th_model</th>
+          <th translate>th_size</th>
+          <th translate>th_supplier</th>
         </tr>
       </thead>
       <tbody>
@@ -30,15 +30,15 @@
           <td>{{suppliedItem.supplier.name}}</td>
         </tr>
         <tr ng-show="!searchResults">
-          <td colspan="5" translate>PLEASE_TYPE_SEARCH_TERM</td>
+          <td colspan="5" translate>please_type_search_term</td>
         </tr>
         <tr ng-show="searchResults.supplied_items.length == 0">
-          <td colspan="5" translate>NO_ITEMS_FOUND_PLEASE_RETYPE</td>
+          <td colspan="5" translate>no_items_found_please_retype</td>
         </tr>
       </tbody>
     </table>
     <hr>
-    <button ng-disabled="!searchResults" ng-show="!item.id" ng-click="createNewSuppliedItem(item)" class="btn btn-sm btn-primary" ng-if="event.userCanCreate" translate>CREATE_NEW_SUPPLIED_ITEM</button>
-    <button ng-click="cancel()" class="btn btn-sm btn-warning" translate>BUTTON_CANCEL</button>
+    <button ng-disabled="!searchResults" ng-show="!item.id" ng-click="createNewSuppliedItem(item)" class="btn btn-sm btn-primary" ng-if="event.userCanCreate" translate>create_new_supplied_item</button>
+    <button ng-click="cancel()" class="btn btn-sm btn-warning" translate>button_cancel</button>
   </fieldset>
 </div>

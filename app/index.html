@@ -51,7 +51,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ui-sref='eventList' ng-cloak translate>APP_NAME</a>
+                <a class="navbar-brand" ui-sref='eventList' ng-cloak translate>app_name</a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
 
@@ -60,7 +60,7 @@
                             {{auth.user.first_name + " " + auth.user.last_name }}&nbsp;<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a ng-click="logout()" ng-cloak translate>LOGOUT</a></li>
+                            <li><a ng-click="logout()" ng-cloak translate>logout</a></li>
                     </ul></li>
                 </ul>
             </div>
@@ -81,7 +81,7 @@
           <div class="col-xs-6 col-sm-4">
             <div class="dropdown" ng-controller="TranslateCtrl">
               <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="languageSelect" data-toggle="dropdown">
-                <span translate>LANGUAGE</span><small class='label'>{{available_languages[selectedLanguage]}}</small>
+                <span translate>language</span><small class='label'>{{available_languages[selectedLanguage]}}</small>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="languageSelect">
@@ -99,7 +99,7 @@
           <div class="clearfix visible-md col-md-4"></div>
           <div class="clearfix visible-lg col-lg-4"></div>
           <div class="col-xs-6 col-sm-4 text-right">
-            <!-- <small><a ui-sref='terms' ng-cloak translate>TERMS_PRIVACY</a></small>                     -->
+            <!-- <small><a ui-sref='terms' ng-cloak translate>terms_privacy</a></small>                     -->
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h3 class="modal-title pull-left">{{data.title}}</h3>
-  <!-- <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>ADD_NEW_LINKED_ITEM</span></button></span> -->
+  <!-- <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>add_new_linked_item</span></button></span> -->
   <br class="clearfix">
 </div>
 <div class="modal-body">
@@ -11,7 +11,7 @@
         <tr>
           <th translate>Original</th>
           <th translate>Recommended
-            <span class='label label-warning' ng-if="data.item.wrongSuppliedItem" translate>WRONG_SUPPLIED_ITEM</span>
+            <span class='label label-warning' ng-if="data.item.wrongSuppliedItem" translate>wrong_supplied_item</span>
             <span class='label label-danger' ng-if="data.item.deletionSuggestion" translate>Deletion suggested</span>
           </th>
         </tr>
@@ -55,14 +55,14 @@
         <tr
         ng-class="{'warning': data.item.area.id != data.item.requestedItem.area.id}"
         ng-if='data.item.area.id != data.item.requestedItem.area.id'>
-          <td><b translate>SKILL_AREA</b><br>{{data.item.requestedItem.area.name}}</td>
-          <td><b translate>SKILL_AREA</b><br>{{data.item.area.name}}</td>
+          <td><b translate>skill_area</b><br>{{data.item.requestedItem.area.name}}</td>
+          <td><b translate>skill_area</b><br>{{data.item.area.name}}</td>
         </tr>
         <tr
         ng-class="{'warning': data.item.tier.id != data.item.requestedItem.tier_id}"
         ng-if='data.item.tier.id != data.item.requestedItem.tier_id'>
-          <td><b translate>TIER</b><br><span ng-repeat="tier in data.tiers" ng-if="tier.id == data.item.requestedItem.tier_id">{{tier.name.text}}</span></td>
-          <td><b translate>TIER</b><br>{{data.item.tier.name.text}}</td>
+          <td><b translate>tier</b><br><span ng-repeat="tier in data.tiers" ng-if="tier.id == data.item.requestedItem.tier_id">{{tier.name.text}}</span></td>
+          <td><b translate>tier</b><br>{{data.item.tier.name.text}}</td>
         </tr>
         <tr
         ng-class="{'warning': data.item.secret != data.item.requestedItem.secret}"
@@ -83,13 +83,13 @@
     <div ng-if='data.item.suppliedItem.id || data.item.recommendedItemSupplied.id'>
       <fieldset><legend>Supplied Item</legend>
         <div class='alert alert-warning' ng-if="(data.item.recommendedItemSupplied.id && (data.item.suppliedItem.multiple_linked_lists === true || data.item.suppliedItem.multiple_linked_items === true || (!data.item.requestedItem && data.item.suppliedItem.linkedItems === true))) && !data.item.deletionSuggestion" >
-          <p class="lead" translate ng-show="!data.split && data.item.suppliedItem.multiple_linked_lists">ITEM_ATTACHED_TO_MULTIPLE_SKILLS</p>
-          <p class="lead" translate ng-show="!data.split && (!data.item.requestedItem && data.item.suppliedItem.linkedItems === true)">ITEM_ATTACHED_TO_SKILL</p>
-          <p class="lead" translate ng-show="!data.split && !data.item.suppliedItem.multiple_linked_lists && data.item.suppliedItem.multiple_linked_items">ITEM_ATTACHED_TO_MULTIPLE_ITEMS</p>
+          <p class="lead" translate ng-show="!data.split && data.item.suppliedItem.multiple_linked_lists">item_attached_to_multiple_skills</p>
+          <p class="lead" translate ng-show="!data.split && (!data.item.requestedItem && data.item.suppliedItem.linkedItems === true)">item_attached_to_skill</p>
+          <p class="lead" translate ng-show="!data.split && !data.item.suppliedItem.multiple_linked_lists && data.item.suppliedItem.multiple_linked_items">item_attached_to_multiple_items</p>
           <br>
           <button ng-click="data.split = !data.split" class='btn btn-xs btn-warning'>
-            <span translate ng-show="!data.split">SPLIT_SUPPLIED_ITEM</span>
-            <span translate ng-show="data.split">DONT_SPLIT_SUPPLIED_ITEM</span>
+            <span translate ng-show="!data.split">split_supplied_item</span>
+            <span translate ng-show="data.split">dont_split_supplied_item</span>
           </button>
         </div>
         <table class="table table-striped" ng-if="data.item.id">
@@ -108,8 +108,8 @@
             <tr
             ng-class="{'warning': data.item.suppliedItem.manufacturer != data.item.recommendedItemSupplied.manufacturer}"
             ng-if='data.item.recommendedItemSupplied.manufacturer'>
-              <td><b translate>TH_MANUFACTURER</b><br>{{data.item.suppliedItem.manufacturer}}</td>
-              <td><b translate>TH_MANUFACTURER</b><br>{{data.item.recommendedItemSupplied.manufacturer}}</td>
+              <td><b translate>th_manufacturer</b><br>{{data.item.suppliedItem.manufacturer}}</td>
+              <td><b translate>th_manufacturer</b><br>{{data.item.recommendedItemSupplied.manufacturer}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.model != data.item.recommendedItemSupplied.model}"

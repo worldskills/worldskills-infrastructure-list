@@ -73,20 +73,20 @@
   ]);
 
   ilApp.constant('UNITS', {
-    "pcs": "UNIT_PIECES",
-    "t": "UNIT_TONNES",
-    "kg": "UNIT_KILOGRAMS",
-    "g": "UNIT_GRAMS",
-    "l": "UNIT_LITRES",
-    "boxes": "UNIT_BOXES",
-    "boots": "UNIT_BOOTS",
-    "bottles": "UNIT_BOTTLES",
-    "sheets": "UNIT_SHEETS",
-    "kits": "UNIT_KITS",
-    "m": "UNIT_METRES",
-    "cm": "UNIT_CENTIMETRES",
-    "m2": "UNIT_SQUARE_METRES",
-    "m3": "UNIT_CUBIC_METRES",
+    "pcs": "unit_pieces",
+    "t": "unit_tonnes",
+    "kg": "unit_kilograms",
+    "g": "unit_grams",
+    "l": "unit_litres",
+    "boxes": "unit_boxes",
+    "boots": "unit_boots",
+    "bottles": "unit_bottles",
+    "sheets": "unit_sheets",
+    "kits": "unit_kits",
+    "m": "unit_metres",
+    "cm": "unit_centimetres",
+    "m2": "unit_square_metres",
+    "m3": "unit_cubic_metres",
   });
 
   ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, tmhDynamicLocaleProvider) {
@@ -387,15 +387,15 @@
       $http.defaults.headers.common["Accept-Language"] = activeLanguage;
       tmhDynamicLocale.set(activeLanguage);
 
-      $translate(['DATEPICKER.CLOSE', 'DATEPICKER.TODAY', 'DATEPICKER.CLEAR'])
+      $translate(['datepicker.close', 'datepicker.today', 'datepicker.clear'])
       .then(function (translations) {
-        uibDatepickerPopupConfig.closeText = translations['DATEPICKER.CLOSE'];
-        uibDatepickerPopupConfig.currentText = translations['DATEPICKER.TODAY'];
-        uibDatepickerPopupConfig.clearText = translations['DATEPICKER.CLEAR'];
+        uibDatepickerPopupConfig.closeText = translations['datepicker.close'];
+        uibDatepickerPopupConfig.currentText = translations['datepicker.today'];
+        uibDatepickerPopupConfig.clearText = translations['datepicker.clear'];
       }).catch(function (translationsId) {
-        uibDatepickerPopupConfig.closeText = translationsId['DATEPICKER.CLOSE'];
-        uibDatepickerPopupConfig.currentText = translationsId['DATEPICKER.TODAY'];
-        uibDatepickerPopupConfig.clearText = translationsId['DATEPICKER.CLEAR'];
+        uibDatepickerPopupConfig.closeText = translationsId['datepicker.close'];
+        uibDatepickerPopupConfig.currentText = translationsId['datepicker.today'];
+        uibDatepickerPopupConfig.clearText = translationsId['datepicker.clear'];
       });
     });
 

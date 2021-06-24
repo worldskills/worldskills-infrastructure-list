@@ -1,14 +1,14 @@
 <div class="container">
 
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="eventList" translate>events</a></li>
     <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
     <li class="active" translate>Copy Event</li>
 </ol>
 
 <ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
 
-<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>NO_ACCESS_ROLE</div>
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>no_access_role</div>
 
 <div ng-show="auth.accessToken">
 

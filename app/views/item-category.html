@@ -1,26 +1,26 @@
 <div class="container">
 
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="eventList" translate>events</a></li>
     <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
-    <li class="active" translate>ITEM_CATEGORY_AND_SUBCATEGORY</li>
+    <li class="active" translate>item_category_and_subcategory</li>
 </ol>
 
-<h2 translate>ITEM_CATEGORY_AND_SUBCATEGORY</h2>
+<h2 translate>item_category_and_subcategory</h2>
 
 <uib-tabset>
-  <uib-tab index="0" heading="{{ 'ITEM_SUB_CATEGORY' | translate }}">
+  <uib-tab index="0" heading="{{ 'item_sub_category' | translate }}">
     <div class="actions">
       <div>
         <div class="pull-left">
           <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, false)">
-            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_SUB_CATEGORY</span>
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_sub_category</span>
           </button>
         </div>
         <div class="pull-right searchContainer">
           <div class="form-group addForm">
               <div class="input-group">
-                  <input type="text" class="form-control input-sm has-feedback" placeholder="{{ 'PLACEHOLDER.SEARCH' | translate }}" ng-model="searchText">
+                  <input type="text" class="form-control input-sm has-feedback" placeholder="{{ 'placeholder.search' | translate }}" ng-model="searchText">
                   <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
               </div>
           </div>
@@ -33,14 +33,14 @@
         <thead>
           <tr>
             <th ng-click="sortBy('name.text')">
-              <span translate>TH_NAME</span>
+              <span translate>th_name</span>
               <i class="glyphicon" ng-class="{'glyphicon-chevron-down': sortReverse, 'glyphicon-chevron-up': !sortReverse}" ng-show="sortPropertyName === 'name.text'"></i>
             </th>
             <th ng-click="sortBy('parent.name.text')">
-              <span translate>TH_ITEM_CATEGORY</span>
+              <span translate>th_item_category</span>
               <i class="glyphicon" ng-class="{'glyphicon-chevron-down': sortReverse, 'glyphicon-chevron-up': !sortReverse}" ng-show="sortPropertyName === 'parent.name.text'"></i>
             </th>
-            <th class="actions" translate>TH_ACTIONS</th>
+            <th class="actions" translate>th_actions</th>
           </tr>
         </thead>
         <tfoot><tr ng-show="!loading.subCategories"><td colspan="4"></td></tr></tfoot>
@@ -49,12 +49,12 @@
             <td>{{item.name.text}}</td>
             <td>{{item.parent.name.text}}</td>
             <td class="actions">
-              <a class="btn btn-danger btn-xs" ng-disabled="item.used" uib-tooltip="{{ 'UIB_TOOLTIP.SUBCATEGORY_CONTAINS_ITEMS' | translate}}" tooltip-enable="{{item.used}}" ng-click="removeItemCategory(item, false)"><span class="glyphicon glyphicon-remove"></span></a>
+              <a class="btn btn-danger btn-xs" ng-disabled="item.used" uib-tooltip="{{ 'uib_tooltip.subcategory_contains_items' | translate}}" tooltip-enable="{{item.used}}" ng-click="removeItemCategory(item, false)"><span class="glyphicon glyphicon-remove"></span></a>
               <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, false, $index)"><span class="glyphicon glyphicon-edit"></span></a>
             </td>
           </tr>
           <tr ng-show="!loading.subCategories && !data.subCategories.length">
-            <td colspan="4" translate>NO_SUBCATEGORIES</td>
+            <td colspan="4" translate>no_subcategories</td>
           </tr>
           <tr ng-show="loading.subCategories">
             <td colspan="4"><ws-spinner></ws-spinner></td>
@@ -63,18 +63,18 @@
       </table>
     </div>
   </uib-tab>
-  <uib-tab index="1" heading="{{ 'ITEM_CATEGORY' | translate }}">
+  <uib-tab index="1" heading="{{ 'item_category' | translate }}">
     <div class="actions">
       <div>
         <div class="pull-left">
           <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, true)">
-            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_CATEGORY</span>
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_category</span>
           </button>
         </div>
         <div class="pull-right searchContainer">
           <div class="form-group addForm">
               <div class="input-group">
-                  <input type="text" class="form-control input-sm has-feedback" placeholder="{{ 'PLACEHOLDER.SEARCH' | translate }}" ng-model="searchCategory">
+                  <input type="text" class="form-control input-sm has-feedback" placeholder="{{ 'placeholder.search' | translate }}" ng-model="searchCategory">
                   <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
               </div>
           </div>
@@ -87,10 +87,10 @@
         <thead>
           <tr>
             <th ng-click="sortBy('name.text')">
-              <span translate>TH_NAME</span>
+              <span translate>th_name</span>
               <i class="glyphicon" ng-class="{'glyphicon-chevron-up': sortReverse, 'glyphicon-chevron-down': !sortReverse}" ng-show="sortPropertyName === 'name.text'"></i>
             </th>
-            <th class="actions" translate ng-click="sortBy('name')">TH_ACTIONS</th>
+            <th class="actions" translate ng-click="sortBy('name')">th_actions</th>
           </tr>
         </thead>
         <tfoot><tr><td colspan="3"></td></tr></tfoot>
@@ -98,14 +98,14 @@
           <tr ng-repeat="item in data.categories | filter:searchCategory | orderBy:sortPropertyName:sortReverse">
             <td>{{item.name.text}}</td>
             <td class="actions">
-                <a class="btn btn-danger btn-xs" ng-disabled="item.used" uib-tooltip="{{ 'UIB_TOOLTIP.CATEGORY_CONTAINS_SUBCATEGORY' | translate}}" tooltip-enable="{{item.used}}" ng-click="removeItemCategory(item, true)"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-danger btn-xs" ng-disabled="item.used" uib-tooltip="{{ 'uib_tooltip.category_contains_subcategory' | translate}}" tooltip-enable="{{item.used}}" ng-click="removeItemCategory(item, true)"><span class="glyphicon glyphicon-remove"></span></a>
                 <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, true, $index)"><span class="glyphicon glyphicon-edit"></span></a>
             </td>
           </tr>
         </tbody>
         <tbody ng-show="!data.categories.length">
           <tr>
-            <td colspan="3" translate>NO_CATEGORIES</td>
+            <td colspan="3" translate>no_categories</td>
           </tr>
         </tbody>
       </table>

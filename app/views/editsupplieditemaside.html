@@ -1,64 +1,64 @@
 <div class='aside'>
   <fieldset>
-    <legend ng-if="suppliedItemAsideAdd" translate>ADD_NEW_ITEM</legend>
-    <legend ng-if="!suppliedItemAsideAdd" translate>EDITING_ITEM</legend>
+    <legend ng-if="suppliedItemAsideAdd" translate>add_new_item</legend>
+    <legend ng-if="!suppliedItemAsideAdd" translate>editing_item</legend>
 
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>
 
-    <div ng-if="item.multiple_linked_lists" class="alert alert-warning"><span translate>ITEM_ATTACHED_TO_MULTIPLE_SKILLS</span></div>
+    <div ng-if="item.multiple_linked_lists" class="alert alert-warning"><span translate>item_attached_to_multiple_skills</span></div>
 
     <form class="editForm" name='editForm'>
         <uib-tabset active="supplied01">
-          <uib-tab index="0" heading="{{'SUPPLIED_ITEM_TAB.GENERAL' | translate}}">
+          <uib-tab index="0" heading="{{'supplied_item_tab.general' | translate}}">
             <div class='well'>
-              <fieldset><legend class="aside" translate>ITEM_INFORMATION_PUBLISHED</legend>
+              <fieldset><legend class="aside" translate>item_information_published</legend>
                 <div class="row">
                   <div class="col col-xs-12 form-group has-feedback" ng-class="{'has-error': editForm.description.$error.required, 'has-success': !editForm.description.$error.required}">
-                    <label class='control-label' translate>TH_DESCRIPTION</label>
-                    <input type="text" name="description" autofocus="autofocus" class="input-sm form-control" ng-required="true" placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}" ng-model='item.description.text'>
+                    <label class='control-label' translate>th_description</label>
+                    <input type="text" name="description" autofocus="autofocus" class="input-sm form-control" ng-required="true" placeholder="{{ 'placeholder.description' | translate }}" ng-model='item.description.text'>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.manufacturer.$error.required, 'has-success': !editForm.manufacturer.$error.required}">
-                    <label class='control-label' translate>TH_MANUFACTURER</label>
-                    <input type="text" name="manufacturer" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.MANUFACTURER' | translate }}" ng-model='item.manufacturer'>
+                    <label class='control-label' translate>th_manufacturer</label>
+                    <input type="text" name="manufacturer" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.manufacturer' | translate }}" ng-model='item.manufacturer'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.model.$error.required, 'has-success': !editForm.model.$error.required}">
-                    <label class='control-label' translate>TH_MODEL</label>
-                    <input type="text" name="model" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.MODEL' | translate }}" ng-model='item.model'>
+                    <label class='control-label' translate>th_model</label>
+                    <input type="text" name="model" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.model' | translate }}" ng-model='item.model'>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.size.$error.required, 'has-success': !editForm.size.$error.required}">
-                    <label class='control-label' translate>TH_SIZE</label>
-                    <input type="text" name="size" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.SIZE' | translate }}" ng-model='item.size'>
+                    <label class='control-label' translate>th_size</label>
+                    <input type="text" name="size" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.size' | translate }}" ng-model='item.size'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.part_number.$error.required, 'has-success': !editForm.part_number.$error.required}">
-                    <label class='control-label' translate>TH_PART_NUM</label>
-                    <input type="text" name="part_number" class="input-sm form-control" ng-required="false" placeholder="{{ 'PLACEHOLDER.PART_NUMBER' | translate }}" ng-model='item.part_number'>
+                    <label class='control-label' translate>th_part_num</label>
+                    <input type="text" name="part_number" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.part_number' | translate }}" ng-model='item.part_number'>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback"
                     ng-class="{'has-error': editForm.item_category.$error.required, 'has-success': !editForm.item_category.$error.required}"
                   >
-                    <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
+                    <label class="control-label" translate>item_sub_category</label>
                     <ui-select ng-required="false" ng-model="item.item_category" theme="bootstrap">
-                      <ui-select-match placeholder="{{ 'ITEM_SUB_CATEGORY' | translate }}">{{item.item_category.name.text}}</ui-select-match>
+                      <ui-select-match placeholder="{{ 'item_sub_category' | translate }}">{{item.item_category.name.text}}</ui-select-match>
                       <ui-select-choices repeat="category as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
                         {{category.name.text}} <small> / {{category.parent.name.text}}</small>
                       </ui-select-choices>
                     </ui-select>
                   </div>
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.priority.$error.required, 'has-success': !editForm.priority.$error.required}">
-                    <label class='control-label' translate>TH_PRIORITY</label>
+                    <label class='control-label' translate>th_priority</label>
                     <ui-select ng-required="false" ng-model="item.priority" theme="bootstrap">
-                      <ui-select-match placeholder="{{ 'TH_PRIORITY' | translate }}">{{item.priority | translate}}</ui-select-match>
+                      <ui-select-match placeholder="{{ 'th_priority' | translate }}">{{item.priority | translate}}</ui-select-match>
                       <ui-select-choices repeat="priority in priorities">
                         <div translate>{{priority}}</div>
                       </ui-select-choices>
@@ -70,15 +70,15 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="1" heading="{{'SUPPLIED_ITEM_TAB.HOST' | translate}}">
+          <uib-tab index="1" heading="{{'supplied_item_tab.host' | translate}}">
             <div class='well'>
-              <fieldset><legend class="aside" translate>SUPPLY_HOST_INFO</legend>
+              <fieldset><legend class="aside" translate>supply_host_info</legend>
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.supplier.$dirty && editForm.supplier.$error.required, 'has-success': !editForm.supplier.$error.required}">
-                    <label class='control-label' translate>SUPPLIER</label>
+                    <label class='control-label' translate>supplier</label>
                     <angucomplete-alt
                       id="id"
-                      placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}"
+                      placeholder="{{ 'placeholder.supplier' | translate }}"
                       pause="400"
                       selected-object="item.selectedSupplier"
                       remote-url="{{searchSupplierAPI}}"
@@ -93,51 +93,51 @@
                       override-suggestions="true"
                       field-required="false"
                       text-searching="false"
-                      text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
+                      text-no-results="{{ 'text_no_results.no_existing_suppliers_found' | translate }}"
                       initial-value="item.supplier"
                       input-class="input-sm form-control angucomplete-overflow"/>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.supply_type.$dirty && editForm.supply_type.$error.required, 'has-success': !editForm.supply_type.$error.required}">
-                    <label class='control-label' translate>SUPPLY_TYPE</label>
+                    <label class='control-label' translate>supply_type</label>
                     <select name="supply_type" class="input-sm form-control" ng-model="item.supply_type">
                         <option value="-"></option>
-                        <option value="sponsor_loan" translate>SPONSOR_LOAN</option>
-                        <option value="sponsor_supply" translate>SPONSOR_SUPPLY</option>
-                        <option value="loan_lease_hire" translate>LOAN_LEASE_HIRE</option>
-                        <option value="purchase" translate>PURCHASE</option>
-                        <option value="to_purchase" translate>TO_PURCHASE</option>
-                        <option value="borrow" translate>BORROW</option>
-                        <option value="inventory" translate>INVENTORY</option>
+                        <option value="sponsor_loan" translate>sponsor_loan</option>
+                        <option value="sponsor_supply" translate>sponsor_supply</option>
+                        <option value="loan_lease_hire" translate>loan_lease_hire</option>
+                        <option value="purchase" translate>purchase</option>
+                        <option value="to_purchase" translate>to_purchase</option>
+                        <option value="borrow" translate>borrow</option>
+                        <option value="inventory" translate>inventory</option>
                     </select>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.unit_cost.$dirty && editForm.unit_cost.$error.required, 'has-success': !editForm.unit_cost.$error.required}">
-                    <label class='control-label' translate>UNIT_COST</label>
-                    <input type="number" name="unit_cost" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.UNIT_COST' | translate }}" ng-model='item.unit_cost'>
+                    <label class='control-label' translate>unit_cost</label>
+                    <input type="number" name="unit_cost" class="input-sm form-control" placeholder="{{ 'placeholder.unit_cost' | translate }}" ng-model='item.unit_cost'>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.po_number.$dirty && editForm.po_number.$error.required, 'has-success': !editForm.po_number.$error.required}">
-                    <label class='control-label' translate>PO_NUMBER</label>
-                    <input name="po_number" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.PO_NUMBER' | translate }}" ng-model='item.po_number'>
+                    <label class='control-label' translate>po_number</label>
+                    <input name="po_number" class="input-sm form-control" placeholder="{{ 'placeholder.po_number' | translate }}" ng-model='item.po_number'>
                   </div>
                 </div>
               </fieldset>
             </div>
           </uib-tab>
 
-          <uib-tab index="2" heading="{{'SUPPLIED_ITEM_TAB.LOGISTICS' | translate}}">
+          <uib-tab index="2" heading="{{'supplied_item_tab.logistics' | translate}}">
             <div class='well'>
               <fieldset>
-                <legend class="aside" translate>LOGISTICS_INFORMATION</legend>
+                <legend class="aside" translate>logistics_information</legend>
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6">
                     <p class='input-group'>
-                      <input type="text" placeholder="{{ 'PLACEHOLDER.DELIVERY' | translate }}" class="form-control input-sm" uib-datepicker-popup="dd.MM.yyyy" ng-model="item.delivery" is-open="item.delivery_open" datepicker-options="dateOptions" />
+                      <input type="text" placeholder="{{ 'placeholder.delivery' | translate }}" class="form-control input-sm" uib-datepicker-popup="dd.MM.yyyy" ng-model="item.delivery" is-open="item.delivery_open" datepicker-options="dateOptions" />
                       <span class="input-group-btn">
               			  	<button type="button" class="btn btn-sm btn-default" ng-init="delivery_open = false" ng-click="item.delivery_open = !item.delivery_open"><i class="glyphicon glyphicon-calendar"></i></button>
               				</span>
@@ -145,7 +145,7 @@
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6">
-                    <input type="time" placeholder="{{ 'PLACEHOLDER.TIME' | translate }}" class="form-control input-sm" ng-model="item.delivery">
+                    <input type="time" placeholder="{{ 'placeholder.time' | translate }}" class="form-control input-sm" ng-model="item.delivery">
                   </div>
                   <!--<div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.delivery_date.$dirty && editForm.delivery_date.$error.required, 'has-success': !editForm.delivery_date.$error.required}">-->
                     <!--<label class='control-label'>Delivery date</label>-->
@@ -182,41 +182,41 @@
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.disposal_category.$dirty && editForm.disposal_category.$error.required, 'has-success': !editForm.disposal_category.$error.required}">
-                    <label class='control-label' translate>DISPOSAL_CATEGORY</label>
+                    <label class='control-label' translate>disposal_category</label>
                     <select name="disposal_category" class="input-sm form-control" ng-model='item.disposal_category'>
                         <option value="-"></option>
-                        <option value="Return_to_Sponsor" translate>CAT_RETURN_TO_SPONSOR</option>
-                        <option value="Return_to_Supplier" translate>CAT_RETURN_TO_SUPPLIER</option>
-                        <option value="Sale_at_venue" translate>CAT_SALE_AT_VENUE</option>
-                        <option value="Post_event_sale" translate>CAT_POST_EVENT_SALE</option>
-                        <option value="Capital Fund" translate>CAT_CAPITAL_FUND</option>
-                        <option value="Dispose" translate>CAT_DISPOSE</option>
-                        <option value="Donate" translate>CAT_DONATE</option>
-                        <option value="Donate" translate>CAT_RETAIN</option>
+                        <option value="Return_to_Sponsor" translate>cat_return_to_sponsor</option>
+                        <option value="Return_to_Supplier" translate>cat_return_to_supplier</option>
+                        <option value="Sale_at_venue" translate>cat_sale_at_venue</option>
+                        <option value="Post_event_sale" translate>cat_post_event_sale</option>
+                        <option value="Capital Fund" translate>cat_capital_fund</option>
+                        <option value="Dispose" translate>cat_dispose</option>
+                        <option value="Donate" translate>cat_donate</option>
+                        <option value="Donate" translate>cat_retain</option>
                     </select>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.category.$dirty && editForm.category.$error.required, 'has-success': !editForm.category.$error.required}">
-                    <label class='control-label' translate>LOCATION</label>
+                    <label class='control-label' translate>location</label>
                     <select name="location" class="input-sm form-control" ng-model='item.location'>
                       <option value="-"></option>
-                      <option value="Warehouse" translate>LOC_WAREHOUSE</option>
-                      <option value="Venue" translate>LOC_VENUE</option>
-                      <option value="Other" translate>LOC_OTHER</option>
+                      <option value="Warehouse" translate>loc_warehouse</option>
+                      <option value="Venue" translate>loc_venue</option>
+                      <option value="Other" translate>loc_other</option>
                     </select>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.lead_time.$dirty && editForm.lead_time.$error.required, 'has-success': !editForm.lead_time.$error.required}">
-                    <label class='control-label' translate>LEAD_TIME</label>
+                    <label class='control-label' translate>lead_time</label>
                     <select name="lead_time" class="input-sm form-control" ng-model='item.lead_time'>
-                        <option value="> 10 weeks"translate>LEAD_10_WEEKS</option>
-                        <option value="8 - 10 weeks" translate>LEAD_8-10_WEEKS</option>
-                        <option value="6 - 8 weeks" translate>LEAD_6-8_WEEKS</option>
-                        <option value="4 - 6 weeks" translate>LEAD_4-6_WEEKS</option>
-                        <option value="2 - 4 weeks" translate>LEAD_2-4_WEEKS</option>
-                        <option value="< 2 weeks" translate>LEAD_2_WEEKS</option>
+                        <option value="> 10 weeks"translate>lead_10_weeks</option>
+                        <option value="8 - 10 weeks" translate>lead_8-10_weeks</option>
+                        <option value="6 - 8 weeks" translate>lead_6-8_weeks</option>
+                        <option value="4 - 6 weeks" translate>lead_4-6_weeks</option>
+                        <option value="2 - 4 weeks" translate>lead_2-4_weeks</option>
+                        <option value="< 2 weeks" translate>lead_2_weeks</option>
                     </select>
                   </div>
                 </div>
@@ -224,34 +224,34 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="3" heading="{{'SUPPLIED_ITEM_TAB.INSTALLATION' | translate}}">
+          <uib-tab index="3" heading="{{'supplied_item_tab.installation' | translate}}">
             <div class='well'>
               <fieldset>
-                <legend class="aside" translate>SERVICES_UTILITIES_INSTALLATION</legend>
+                <legend class="aside" translate>services_utilities_installation</legend>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.electricity.$dirty && editForm.electricity.$error.required, 'has-success': !editForm.electricity.$error.required}">
-                    <label class='control-label' translate>ELECTRICITY</label>
-                    <input type="checkbox" name="electricity" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY' | translate }}" ng-model='item.electricity'/>
+                    <label class='control-label' translate>electricity</label>
+                    <input type="checkbox" name="electricity" class="input-sm form-control" placeholder="{{ 'placeholder.electricity' | translate }}" ng-model='item.electricity'/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_volts.$dirty && editForm.electricity_volts.$error.required, 'has-success': !editForm.electricity_volts.$error.required}">
-                    <label class='control-label' translate>REQ_ELECTRICITY_V</label>
-                    <input type="number" name="electricity_volts" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_VOLTS' | translate }}" ng-model='item.electricity_volts'>
+                    <label class='control-label' translate>req_electricity_v</label>
+                    <input type="number" name="electricity_volts" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_volts' | translate }}" ng-model='item.electricity_volts'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_amps.$dirty && editForm.electricity_amps.$error.required, 'has-success': !editForm.electricity_amps.$error.required}">
-                    <label class='control-label' translate>REQ_ELECTRICITY_A</label>
-                    <input type="number" name="electricity_amps" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_AMPS' | translate }}" ng-model='item.electricity_amps'>
+                    <label class='control-label' translate>req_electricity_a</label>
+                    <input type="number" name="electricity_amps" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_amps' | translate }}" ng-model='item.electricity_amps'>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.electricity_phase.$dirty && editForm.electricity_phase.$error.required, 'has-success': !editForm.electricity_phase.$error.required}">
-                    <label class='control-label' translate>ELECTRICITY_PHASE</label>
-                    <input type="text" name="electricity_phase" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ELECTRICITY_PHASE' | translate }}" ng-model='item.electricity_phase'>
+                    <label class='control-label' translate>electricity_phase</label>
+                    <input type="text" name="electricity_phase" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_phase' | translate }}" ng-model='item.electricity_phase'>
                   </div>
                 </div>
 
@@ -259,37 +259,37 @@
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.water_supply.$dirty && editForm.water_supply.$error.required, 'has-success': !editForm.water_supply.$error.required}">
-                    <label class='control-label' translate>WATER_SUPPLY</label>
-                    <input type="checkbox" name="water_supply" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_SUPPLY' | translate }}" ng-model='item.water_supply'/>
+                    <label class='control-label' translate>water_supply</label>
+                    <input type="checkbox" name="water_supply" class="input-sm form-control" placeholder="{{ 'placeholder.water_supply' | translate }}" ng-model='item.water_supply'/>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.water_drainage.$dirty && editForm.water_drainage.$error.required, 'has-success': !editForm.water_drainage.$error.required}">
-                    <label class='control-label' translate>WATER_DRAINAGE</label>
-                    <input type="checkbox" name="water_drainage" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.WATER_DRAINAGE' | translate }}" ng-model='item.water_drainage'/>
+                    <label class='control-label' translate>water_drainage</label>
+                    <input type="checkbox" name="water_drainage" class="input-sm form-control" placeholder="{{ 'placeholder.water_drainage' | translate }}" ng-model='item.water_drainage'/>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.compressed_air.$dirty && editForm.compressed_air.$error.required, 'has-success': !editForm.compressed_air.$error.required}">
-                    <label class='control-label' translate>COMPRESSED_AIR</label>
-                    <input type="checkbox" name="compressed_air" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.COMPRESSED_AIR' | translate }}" ng-model='item.compressed_air'/>
+                    <label class='control-label' translate>compressed_air</label>
+                    <input type="checkbox" name="compressed_air" class="input-sm form-control" placeholder="{{ 'placeholder.compressed_air' | translate }}" ng-model='item.compressed_air'/>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.gas_requirements.$dirty && editForm.gas_requirements.$error.required, 'has-success': !editForm.gas_requirements.$error.required}">
-                    <label class='control-label' translate>VENTILATION_FUME_EXTRACTION</label>
-                    <input type="checkbox" name="ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.VENTILATION_FUME_EXTRACTION' | translate }}" ng-model='item.ventilation_fume_extraction'>
+                    <label class='control-label' translate>ventilation_fume_extraction</label>
+                    <input type="checkbox" name="ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'placeholder.ventilation_fume_extraction' | translate }}" ng-model='item.ventilation_fume_extraction'>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.gas_requirements.$dirty && editForm.gas_requirements.$error.required, 'has-success': !editForm.gas_requirements.$error.required}">
-                    <label class='control-label' translate>GAS_REQUIREMENTS</label>
-                    <input type="text" name="gas_requirements" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.GAS_REQUIREMENTS' | translate }}" ng-model='item.gas_requirements'>
+                    <label class='control-label' translate>gas_requirements</label>
+                    <input type="text" name="gas_requirements" class="input-sm form-control" placeholder="{{ 'placeholder.gas_requirements' | translate }}" ng-model='item.gas_requirements'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.anchor_fixing_base_requirements.$dirty && editForm.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.anchor_fixing_base_requirements.$error.required}">
-                    <label class='control-label' translate>ANCHOR_FIXING_BASE_REQUIREMENTS</label>
-                    <input type="text" name="anchor_fixing_base_requirements" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.ANCHOR_FIXING_BASE_REQUIREMENTS' | translate }}" ng-model='item.anchor_fixing_base_requirements'>
+                    <label class='control-label' translate>anchor_fixing_base_requirements</label>
+                    <input type="text" name="anchor_fixing_base_requirements" class="input-sm form-control" placeholder="{{ 'placeholder.anchor_fixing_base_requirements' | translate }}" ng-model='item.anchor_fixing_base_requirements'>
                   </div>
                 </div>
               </fieldset>
@@ -297,18 +297,18 @@
           </uib-tab>
 
 
-          <uib-tab index="4" heading="{{'SUPPLIED_ITEM_TAB.FILES' | translate}}" ng-if="suppliedItemAsideFiles">
+          <uib-tab index="4" heading="{{'supplied_item_tab.files' | translate}}" ng-if="suppliedItemAsideFiles">
             <div class='well'>
               <fieldset>
-                <legend class="aside" translate>FILES_AND_PICTURES</legend>
+                <legend class="aside" translate>files_and_pictures</legend>
 
                 <div ng-show="item.files.length > 0">
                   <table class="table">
                     <thead>
                     <tr>
-                      <th width="50%" translate>TH_NAME</th>
+                      <th width="50%" translate>th_name</th>
                       <th>Size</th>
-                      <th style="text-align: right;" translate>TH_ACTIONS</th>
+                      <th style="text-align: right;" translate>th_actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -317,7 +317,7 @@
                         <td>{{file.file.size}}</td>
                         <td style="text-align: right;">
                           <button type="button" class="btn btn-danger btn-xs" ng-click="removeFile(file, $index)">
-                            <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
+                            <span class="glyphicon glyphicon-trash"></span> <span translate>button_remove</span>
                           </button>
                         </td>
                       </tr>
@@ -335,7 +335,7 @@
                   <div>
                     <label nv-file-drop="" uploader="uploader" style="display: block;">
                       <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone" translate>
-                        DROP_FILES_HERE_TO_UPLOAD
+                        drop_files_here_to_upload
                       </div>
                       <input class="hidden" type="file" nv-file-select="" uploader="uploader" multiple  />
                     </label>
@@ -344,15 +344,15 @@
 
                   <!-- queue -->
                   <div class="well" style='background-color: #fff;' ng-show="uploader.queue.length > 0">
-                    <h4><span translate>UPLOAD_QUEUE</span>&nbsp;<small><span translate>QUEUE_LENGTH:</span> {{ uploader.queue.length }}</small></h4>
+                    <h4><span translate>upload_queue</span>&nbsp;<small><span translate>queue_length:</span> {{ uploader.queue.length }}</small></h4>
 
                     <table class="table upload-table">
                       <thead>
                       <tr >
-                        <th translate>TH_NAME</th>
-                        <th ng-show="uploader.isHTML5" translate>TH_SIZE</th>
-                        <th ng-show="uploader.isHTML5" translate>TH_PROGRESS</th>
-                        <th translate>TH_ACTIONS</th>
+                        <th translate>th_name</th>
+                        <th ng-show="uploader.isHTML5" translate>th_size</th>
+                        <th ng-show="uploader.isHTML5" translate>th_progress</th>
+                        <th translate>th_actions</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -375,7 +375,7 @@
                             <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
                           <!--</button>-->
                           <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                            <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE</span>
+                            <span class="glyphicon glyphicon-trash"></span> <span translate>button_remove</span>
                           </button>
                         </td>
                       </tr>
@@ -387,19 +387,19 @@
                   <!-- progress -->
                    <div ng-show="uploader.queue.length > 0">
                         <div>
-                            <span translate>QUEUE_PROGRESS:</span>
+                            <span translate>queue_progress:</span>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                             </div>
                         </div>
                         <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                            <span class="glyphicon glyphicon-upload"></span> <span translate>BUTTON_UPLOAD_ALL</span>
+                            <span class="glyphicon glyphicon-upload"></span> <span translate>button_upload_all</span>
                         </button>
                         <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                            <span class="glyphicon glyphicon-ban-circle"></span> <span translate>BUTTON_CANCEL_ALL</span>
+                            <span class="glyphicon glyphicon-ban-circle"></span> <span translate>button_cancel_all</span>
                         </button>
                         <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                            <span class="glyphicon glyphicon-trash"></span> <span translate>BUTTON_REMOVE_ALL</span>
+                            <span class="glyphicon glyphicon-trash"></span> <span translate>button_remove_all</span>
                         </button>
                     </div>
 
@@ -410,12 +410,12 @@
             </div>
           </uib-tab>
 
-          <uib-tab index="5" heading="{{'SUPPLIED_ITEM_TAB.EXTRA' | translate}}">
+          <uib-tab index="5" heading="{{'supplied_item_tab.extra' | translate}}">
             <div class='well'>
               <fieldset>
                 <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
-                  <label class='control-label' translate>EXTRA_DETAILS_COMMENTS</label>
-                  <textarea rows="20" name="extra_details" class="input-sm form-control" placeholder="{{ 'PLACEHOLDER.EXTRA_DETAILS_COMMENTS' | translate }}" ng-model='item.extra_details'></textarea>
+                  <label class='control-label' translate>extra_details_comments</label>
+                  <textarea rows="20" name="extra_details" class="input-sm form-control" placeholder="{{ 'placeholder.extra_details_comments' | translate }}" ng-model='item.extra_details'></textarea>
                 </div>
               </fieldset>
             </div>
@@ -423,10 +423,10 @@
 
         </uib-tabset>
 
-      <button ng-disabled="editForm.$error.required" ng-if="suppliedItemAsideAdd" ng-click="addItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_ADD_ITEM</button>
+      <button ng-disabled="editForm.$error.required" ng-if="suppliedItemAsideAdd" ng-click="addItemDetails();" class='btn btn-sm btn-success' translate>button_add_item</button>
 
-      <button ng-disabled="editForm.$error.required" ng-if="!suppliedItemAsideAdd" ng-click="saveItemDetails();" class='btn btn-sm btn-success' translate>BUTTON_SAVE_ITEM</button>
-      <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>BUTTON_CANCEL</button>
+      <button ng-disabled="editForm.$error.required" ng-if="!suppliedItemAsideAdd" ng-click="saveItemDetails();" class='btn btn-sm btn-success' translate>button_save_item</button>
+      <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>button_cancel</button>
     </form>
 
   </fieldset>

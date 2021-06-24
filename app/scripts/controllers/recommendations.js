@@ -87,7 +87,7 @@ angular.module('ilApp')
     $scope.openRecommendationReviewModal = function(item){
       WSAlert.clear();
       var inst = $confirm({
-          title: $translate.instant("JSTEXT_REVIEW_ITEMS.TITLE"),
+          title: $translate.instant("jstext_review_items.title"),
           item: item,
           split: $scope.split,
           tiers: $scope.tiers,
@@ -98,9 +98,9 @@ angular.module('ilApp')
           },
           acceptRecommendation: $scope.accept,
           rejectRecommendation: $scope.reject,
-          close: $translate.instant("JSTEXT_REVIEW_ITEMS.CLOSE"),
-          accept: $translate.instant("JSTEXT_REVIEW_ITEMS.ACCEPT"),
-          reject: $translate.instant("JSTEXT_REVIEW_ITEMS.REJECT")
+          close: $translate.instant("jstext_review_items.close"),
+          accept: $translate.instant("jstext_review_items.accept"),
+          reject: $translate.instant("jstext_review_items.reject")
         },
         {
           templateUrl: 'views/recommendationReviewConfirm.html',
@@ -130,7 +130,7 @@ angular.module('ilApp')
           }
         }
         confirmInstance.ok();
-        WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_ACCEPT'), '', true, false);
+        WSAlert.success($translate.instant('wsalert.success.recommend_accept'), '', true, false);
       },
       function (error) {
         WSAlert.danger(error);
@@ -153,7 +153,7 @@ angular.module('ilApp')
           //close confirm dialog
           $scope.recommendedItems.splice(index, 1);
           confirmInstance.ok();
-          WSAlert.success($translate.instant('WSALERT.SUCCESS.RECOMMEND_REJECT'), '', true, false);
+          WSAlert.success($translate.instant('wsalert.success.recommend_reject'), '', true, false);
         }, function (error) {
           WSAlert.danger(error);
         });

@@ -2,14 +2,14 @@
     <button type="button" class="close" ng-click="closeRecommendationsModal()"><span>&times;</span></button>
     <button ng-show="!subscription.subscribed" type="button" class="btn btn-sm btn-success pull-right" style="margin-right: 16px;" ng-click="updateSubscription(true)"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;Subscribe</button>
     <button ng-show="subscription.subscribed" type="button" class="btn btn-sm btn-danger pull-right" style="margin-right: 16px;" ng-click="updateSubscription(false)"><span class="glyphicon glyphicon-eye-close"></span>&nbsp;&nbsp;Unsubscribe</button>
-    <h3 class="modal-title" translate>RECOMMENDATIONS</h3>
+    <h3 class="modal-title" translate>recommendations</h3>
 </div>
 <div class="modal-body">
 
 <ws-spinner ng-if="loadingRecommendations"></ws-spinner>
 
 <div ng-if="recommendedItems.length == 0">
-  <div class="alert alert-warning" translate>RECOMMENDATIONS_NO_ITEM</div>
+  <div class="alert alert-warning" translate>recommendations_no_item</div>
 </div>
 
 <div ng-repeat="item in recommendedItems">
@@ -20,12 +20,12 @@
     <div class="col-md-10">
       {{item.person.first_name}} {{item.person.last_name}}
       <span class="text-muted">
-        recommended 
-        <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>TD_ITEM_REPLACE_WITH</span>
-        <span ng-if="!item.requestedItem" translate>TD_ITEM_ADDITION</span>
-        <span ng-if="item.deletionSuggestion" translate>TD_ITEM_DELETION</span>
+        recommended
+        <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>td_item_replace_with</span>
+        <span ng-if="!item.requestedItem" translate>td_item_addition</span>
+        <span ng-if="item.deletionSuggestion" translate>td_item_deletion</span>
         <span ng-if="item.recommendedItemSupplied">
-          (<span translate>SUPPLIED_ITEM_CHANGED</span>)
+          (<span translate>supplied_item_changed</span>)
         </span>
       </span>
       <span ng-if="item.requestedItem && !item.deletionSuggestion">

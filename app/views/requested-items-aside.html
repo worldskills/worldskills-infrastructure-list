@@ -1,26 +1,26 @@
 <div class="aside">
   <fieldset>
-    <legend translate>REQUESTED_ITEMS_PROPERTIES</legend>
+    <legend translate>requested_items_properties</legend>
     <form name="editForm">
 
       <div class="tab-content">
         <div class="tab-pane active" id="tabItems">
           <div class="well">
             <fieldset>
-              <legend translate>GENERAL_INFORMATION</legend>
+              <legend translate>general_information</legend>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label class="control-label" translate>STATUS</label>
+                    <label class="control-label" translate>status</label>
                     <ui-select
                       name="status"
                       ng-model="editedItem.status"
                       theme="bootstrap"
                       ng-disabled="!canEditItemStatus"
                       tooltip-enable="!canEditItemStatus"
-                      uib-tooltip="{{'NO_PERMISSION_EDIT_STATUS' | translate}}"
+                      uib-tooltip="{{'no_permission_edit_status' | translate}}"
                       >
-                      <ui-select-match allow-clear="canEditItemStatus" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.ALL_STATUSES' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                      <ui-select-match allow-clear="canEditItemStatus" placeholder="{{  multipleStatus ? 'multiple_values_detected' : 'placeholder.all_statuses' | translate }}">{{$select.selected.name.text}}</ui-select-match>
                       <ui-select-choices repeat="status in statuses | orderBy:'name.text'">
                         <div ng-bind-html="status.name.text | highlight: $select.selected.name.text"></div>
                       </ui-select-choices>
@@ -29,11 +29,11 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label class='control-label' translate>POTENTIAL_SUPPLIER</label>
+                    <label class='control-label' translate>potential_supplier</label>
                     <angucomplete-alt
                       input-name="supplier"
                       id="supplier"
-                      placeholder="{{ 'PLACEHOLDER.POTENTIAL_SUPPLIER' | translate }}"
+                      placeholder="{{ 'placeholder.potential_supplier' | translate }}"
                       pause="400"
                       selected-object="editedItem.supplier"
                       remote-url="{{searchSupplierAPI}}"
@@ -47,7 +47,7 @@
                       override-suggestions="true"
                       field-required="false"
                       text-searching="false"
-                      text-no-results="{{ 'TEXT_NO_RESULTS.NO_EXISTING_SUPPLIERS_FOUND' | translate }}"
+                      text-no-results="{{ 'text_no_results.no_existing_suppliers_found' | translate }}"
                       initial-value="editedItem.supplier"
                       input-class="form-control angucomplete-overflow"/>
                   </div>
@@ -57,14 +57,14 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label class="control-label" translate>ESTIMATED_PRICE</label>
-                    <input type="number" name="price" class="form-control" ng-model="editedItem.price" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'ESTIMATED_PRICE' | translate }}">
+                    <label class="control-label" translate>estimated_price</label>
+                    <input type="number" name="price" class="form-control" ng-model="editedItem.price" placeholder="{{  multipleStatus ? 'multiple_values_detected' : 'estimated_price' | translate }}">
                   </div>
                 </div>
                 <div class="col-sm-6">
-                  <label class="control-label" translate>CATEGORY</label>
-                  <ui-select name="category" ng-model="editedItem.category" theme="bootstrap" title="{{ 'TITLE.CHOOSE_CATEGORY' | translate }}">
-                    <ui-select-match allow-clear="true" placeholder="{{  multipleStatus ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.ALL_CATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                  <label class="control-label" translate>category</label>
+                  <ui-select name="category" ng-model="editedItem.category" theme="bootstrap" title="{{ 'title.choose_category' | translate }}">
+                    <ui-select-match allow-clear="true" placeholder="{{  multipleStatus ? 'multiple_values_detected' : 'placeholder.all_category' | translate }}">{{$select.selected.name.text}}</ui-select-match>
                     <ui-select-choices repeat="category in categories | orderBy:'name.text'">
                       <div ng-bind-html="category.name.text | highlight: $select.selected.name.text"></div>
                     </ui-select-choices>
@@ -75,9 +75,9 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <label class="control-label" translate>TIER</label>
+                    <label class="control-label" translate>tier</label>
                     <ui-select name="tier" ng-model="editedItem.tier" theme="bootstrap">
-                      <ui-select-match allow-clear="true" placeholder="{{  multipleTier ? 'MULTIPLE_VALUES_DETECTED' : 'PLACEHOLDER.ALL_TIERS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+                      <ui-select-match allow-clear="true" placeholder="{{  multipleTier ? 'multiple_values_detected' : 'placeholder.all_tiers' | translate }}">{{$select.selected.name.text}}</ui-select-match>
                       <ui-select-choices repeat="tier.id as tier in tiers track by tier.id">
                         <div ng-bind-html="tier.name.text | highlight: $select.selected.name.text"></div>
                       </ui-select-choices>
@@ -89,8 +89,8 @@
           </div>
         </div>
       </div>
-      <button ng-disabled="!editForm.$dirty || !isFormValid() || isSubmitting" class="btn btn-sm btn-success" ng-click="saveItems()" translate>UPDATE_REQUESTED_ITEMS</button>
-      <button class="btn btn-sm btn-warning" ng-click="cancel()" translate>CANCEL</button>
+      <button ng-disabled="!editForm.$dirty || !isFormValid() || isSubmitting" class="btn btn-sm btn-success" ng-click="saveItems()" translate>update_requested_items</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()" translate>cancel</button>
     </form>
   </fieldset>
 </div>

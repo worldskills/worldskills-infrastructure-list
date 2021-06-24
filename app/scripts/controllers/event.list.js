@@ -11,10 +11,10 @@ angular.module('ilApp').controller('EventListCtrl', function ($scope, $state, $q
   $scope.init = function(){
 
     Events.getEventsWithILs().then(function(e){
-      $scope.events = e.events;      
+      $scope.events = e.events;
       $scope.loading = false;
     }, function(error){
-      WSAlert.danger($translate.instant('WSALERT.DANGER.NO_ACCESSS_PUBLIC_VIEW'));
+      WSAlert.danger($translate.instant('wsalert.danger.no_accesss_public_view'));
     });
 
   };

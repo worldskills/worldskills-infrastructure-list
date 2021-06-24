@@ -1,24 +1,24 @@
 <div class="container-fluid">
 
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="eventList" translate>events</a></li>
     <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
-    <li class="active" translate>REQUESTED_ITEMS</li>
+    <li class="active" translate>requested_items</li>
 </ol>
 
-<h1 class="h2" ng-show="!hideFooter" class="ng-binding ng-scope" aria-hidden="false" translate>REQUESTED_ITEMS</h1>
+<h1 class="h2" ng-show="!hideFooter" class="ng-binding ng-scope" aria-hidden="false" translate>requested_items</h1>
 <hr class="cb">
 <div class="alert alert-info text-center" ng-if="loading.download">
-  <span translate>DOWNLOADING_FILE</span>
+  <span translate>downloading_file</span>
   <ws-spinner></ws-spinner>
 </div>
 <div class="well">
   <div class="row">
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class='control-label' translate>SKILL_SECTOR</label>
-        <ui-select ui-disable-choice="value.status == 'inactive'" ng-model="filters.sector" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL_SECTOR' | translate }}">
-          <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_SKILL_SECTORS' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+        <label class='control-label' translate>skill_sector</label>
+        <ui-select ui-disable-choice="value.status == 'inactive'" ng-model="filters.sector" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_skill_sector' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_skill_sectors' | translate }}">{{$select.selected.name.text}}</ui-select-match>
           <ui-select-choices repeat="sector in sectors | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="sector.name.text"></div>
           </ui-select-choices>
@@ -27,9 +27,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class='control-label' translate>SKILL</label>
-        <ui-select ui-disable-choice="value.status == 'inactive'" ng-model="filters.skill" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_SKILL' | translate }}">
-          <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_SKILL' | translate }}">{{$select.selected.skill_number}} {{$select.selected.name.text}}</ui-select-match>
+        <label class='control-label' translate>skill</label>
+        <ui-select ui-disable-choice="value.status == 'inactive'" ng-model="filters.skill" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_skill' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_skill' | translate }}">{{$select.selected.skill_number}} {{$select.selected.name.text}}</ui-select-match>
           <ui-select-choices repeat="skill in skills | customWSFilter: {objPath: 'name.text', 'query': $select.search}">
             <div>{{skill.skill_number}} {{skill.name.text}}</div>
           </ui-select-choices>
@@ -38,9 +38,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>ITEM_CATEGORY</label>
-        <ui-select ng-model="filters.item_category" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_ITEM_CATEGORY' | translate }}">
-          <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_ITEM_CATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+        <label class="control-label" translate>item_category</label>
+        <ui-select ng-model="filters.item_category" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_item_category' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_item_category' | translate }}">{{$select.selected.name.text}}</ui-select-match>
           <ui-select-choices repeat="category in itemCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="category.name.text"></div>
           </ui-select-choices>
@@ -50,9 +50,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>ITEM_SUB_CATEGORY</label>
-        <ui-select ng-model="filters.item_subcategory" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_ITEM_SUBCATEGORY' | translate }}">
-          <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_ITEM_SUBCATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+        <label class="control-label" translate>item_sub_category</label>
+        <ui-select ng-model="filters.item_subcategory" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_item_subcategory' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_item_subcategory' | translate }}">{{$select.selected.name.text}}</ui-select-match>
           <ui-select-choices repeat="subcategory in subcategories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="subcategory.name.text"></div>
           </ui-select-choices>
@@ -61,7 +61,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>DESCRIPTION</label>
+        <label class="control-label" translate>description</label>
         <div class="input-group">
           <input
             type="text"
@@ -69,7 +69,7 @@
             ng-model="filters.description"
             ng-model-options='{ debounce: 300 }'
             ng-change="changeFilters()"
-            placeholder="{{ 'PLACEHOLDER.DESCRIPTION' | translate }}"
+            placeholder="{{ 'placeholder.description' | translate }}"
             >
           <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
         </div>
@@ -77,9 +77,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>CATEGORY</label>
-        <ui-select ng-model="filters.category" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_CATEGORY' | translate }}">
-          <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_CATEGORY' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+        <label class="control-label" translate>category</label>
+        <ui-select ng-model="filters.category" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_category' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_category' | translate }}">{{$select.selected.name.text}}</ui-select-match>
           <ui-select-choices repeat="category in categories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="category.name.text"></div>
           </ui-select-choices>
@@ -88,9 +88,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>STATUS</label>
-        <ui-select ng-model="filters.status" theme="bootstrap" on-select="changeFilters()" title="{{ 'TITLE.CHOOSE_STATUS' | translate }}">
-          <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.ALL_STATUSES' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+        <label class="control-label" translate>status</label>
+        <ui-select ng-model="filters.status" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_status' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_statuses' | translate }}">{{$select.selected.name.text}}</ui-select-match>
           <ui-select-choices repeat="status in statuses | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
             <div ng-bind-html="status.name.text"></div>
           </ui-select-choices>
@@ -99,15 +99,15 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>SUPPLIER</label>
+        <label class="control-label" translate>supplier</label>
         <div class="input-group">
           <input
             type="text"
             class="form-control"
             ng-model="filters.supplier"
             ng-change="changeFilters()"
-            title="{{'TITLE.CHOOSE_SUPPLIER' | translate}}"
-            placeholder="{{ 'PLACEHOLDER.SUPPLIER' | translate }}"
+            title="{{'title.choose_supplier' | translate}}"
+            placeholder="{{ 'placeholder.supplier' | translate }}"
             >
           <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
         </div>
@@ -117,7 +117,7 @@
   <div class="row mt-2">
     <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
-        <label for="swElectricity" class="control-label" translate>ELECTRICITY_NEEDED</label>
+        <label for="swElectricity" class="control-label" translate>electricity_needed</label>
         <div class="material-switch">
           <input id="swElectricity" type="checkbox" ng-change="changeFilters()" ng-model="filters.electricity">
           <label for="swElectricity" class="label-success"></label>
@@ -126,7 +126,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
-        <label for="swAir" class="control-label" translate>AIR_NEEDED</label>
+        <label for="swAir" class="control-label" translate>air_needed</label>
         <div class="material-switch">
           <input id="swAir" type="checkbox" ng-change="changeFilters()" ng-model="filters.air">
           <label for="swAir" class="label-success"></label>
@@ -135,7 +135,7 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
-        <label for="swWater" class="control-label" translate>WATER_NEEDED</label>
+        <label for="swWater" class="control-label" translate>water_needed</label>
         <div class="material-switch">
           <input id="swWater" type="checkbox" ng-change="changeFilters()" ng-model="filters.water">
           <label for="swWater" class="label-success"></label>
@@ -150,37 +150,37 @@
         Columns <span class="caret"></span>
       </button>
       <ul id="myDropdown" class="dropdown-menu dropdown-menu-right" role="menu">
-        <li><a href ng-click="toggleColumn('sector')"><i ng-style="{'visibility' : columns.sector ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SKILL_SECTOR</span></a></li>
-        <li><a href ng-click="toggleColumn('list')"><i ng-style="{'visibility' : columns.list ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_LIST</span></a></li>
-        <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_CATEGORY</span></a></li>
-        <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY</span></a></li>
-        <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_QUANTITY_CALCULATED</span></a></li>
-        <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_UNIT</span></a></li>
-        <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER_POTENTIAL</span></a></li>
-        <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>SKILL_AREA</span></a></li>
-        <li><a href ng-click="toggleColumn('supplied')"><i ng-style="{'visibility' : columns.supplied ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIED_ITEM</span></a></li>
-        <li><a href ng-click="toggleColumn('manufacturer')"><i ng-style="{'visibility' : columns.manufacturer ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MANUFACTURER</span></a></li>
-        <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_MODEL</span></a></li>
-        <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SIZE</span></a></li>
-        <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_PART_NUM</span></a></li>
-        <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_SUPPLIER</span></a></li>
-        <li><a href ng-click="toggleColumn('electricity')"><i ng-style="{'visibility' : columns.electricity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_ELECTRICITY</span></a></li>
-        <li><a href ng-click="toggleColumn('water_supply')"><i ng-style="{'visibility' : columns.water_supply ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_WATER_SUPPLY</span></a></li>
-        <li><a href ng-click="toggleColumn('compressed_air')"><i ng-style="{'visibility' : columns.compressed_air ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_COMPRESSED_AIR</span></a></li>
-        <li><a href ng-click="toggleColumn('price')"><i ng-style="{'visibility' : columns.price ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>ESTIMATED_PRICE</span></a></li>
-        <li><a href ng-click="toggleColumn('tier')"><i ng-style="{'visibility' : columns.tier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TIER</span></a></li>
-        <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_EXTRA_DETAILS</span></a></li>
-        <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_FILES</span></a></li>
-        <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>TH_STATUS</span></a></li>
+        <li><a href ng-click="toggleColumn('sector')"><i ng-style="{'visibility' : columns.sector ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_skill_sector</span></a></li>
+        <li><a href ng-click="toggleColumn('list')"><i ng-style="{'visibility' : columns.list ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_list</span></a></li>
+        <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_category</span></a></li>
+        <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity</span></a></li>
+        <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity_calculated</span></a></li>
+        <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_unit</span></a></li>
+        <li><a href ng-click="toggleColumn('supplier_potential')"><i ng-style="{'visibility' : columns.supplier_potential ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supplier_potential</span></a></li>
+        <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>skill_area</span></a></li>
+        <li><a href ng-click="toggleColumn('supplied')"><i ng-style="{'visibility' : columns.supplied ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supplied_item</span></a></li>
+        <li><a href ng-click="toggleColumn('manufacturer')"><i ng-style="{'visibility' : columns.manufacturer ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_manufacturer</span></a></li>
+        <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_model</span></a></li>
+        <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_size</span></a></li>
+        <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_part_num</span></a></li>
+        <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supplier</span></a></li>
+        <li><a href ng-click="toggleColumn('electricity')"><i ng-style="{'visibility' : columns.electricity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_electricity</span></a></li>
+        <li><a href ng-click="toggleColumn('water_supply')"><i ng-style="{'visibility' : columns.water_supply ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_water_supply</span></a></li>
+        <li><a href ng-click="toggleColumn('compressed_air')"><i ng-style="{'visibility' : columns.compressed_air ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_compressed_air</span></a></li>
+        <li><a href ng-click="toggleColumn('price')"><i ng-style="{'visibility' : columns.price ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>estimated_price</span></a></li>
+        <li><a href ng-click="toggleColumn('tier')"><i ng-style="{'visibility' : columns.tier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>tier</span></a></li>
+        <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_extra_details</span></a></li>
+        <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_files</span></a></li>
+        <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_status</span></a></li>
       </ul>
     </div>
-    <button class="btn btn-sm btn-default" ng-click="clear()" translate>CLEAR</button>
-    <button class="btn btn-sm btn-primary" ng-click="downloadCsv()"><span class="glyphicon glyphicon-save"></span>&nbsp;<span translate>EXTRACT_RESULTS</span></button>
+    <button class="btn btn-sm btn-default" ng-click="clear()" translate>clear</button>
+    <button class="btn btn-sm btn-primary" ng-click="downloadCsv()"><span class="glyphicon glyphicon-save"></span>&nbsp;<span translate>extract_results</span></button>
   </div>
 
   <div class="mt-2">
     <button class="btn btn-sm btn-primary" ng-disabled="selectedItemsCount() < 1" ng-click="openMultipleItemEditor()">
-      <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate>MULTIPLE_EDITION</span>
+      <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate>multiple_edition</span>
     </button>
   </div>
 
@@ -195,29 +195,29 @@
         <th class="select">
           <input type="checkbox" ng-model="allSelected" ng-click="selectAll()">
         </th>
-        <th ng-if="columns.sector" translate>TH_SKILL_SECTOR</th>
-        <th ng-if="columns.list" translate>TH_LIST</th>
-        <th ng-if="columns.category" translate>TH_CATEGORY</th>
-        <th ng-if="columns.quantity" translate>TH_QUANTITY</th>
-        <th ng-if="columns.calculated_quantity" translate>TH_QUANTITY_CALCULATED</th>
-        <th ng-if="columns.unit" translate>TH_UNIT</th>
-        <th ng-if="columns.description" translate>TH_DESCRIPTION</th>
-        <th ng-if="columns.supplier_potential" translate>TH_SUPPLIER_POTENTIAL</th>
-        <th ng-if="columns.area" translate>SKILL_AREA</th>
-        <th ng-if="columns.supplied" translate>TH_SUPPLIED_ITEM</th>
-        <th ng-if="columns.manufacturer" translate>TH_MANUFACTURER</th>
-        <th ng-if="columns.model" translate>TH_MODEL</th>
-        <th ng-if="columns.size" translate>TH_SIZE</th>
-        <th ng-if="columns.part_number" translate>TH_PART_NUM</th>
-        <th ng-if="columns.supplier" translate>TH_SUPPLIER</th>
-        <th ng-if="columns.electricity" translate>TH_ELECTRICITY</th>
-        <th ng-if="columns.water_supply" translate>TH_WATER_SUPPLY</th>
-        <th ng-if="columns.compressed_air" translate>TH_COMPRESSED_AIR</th>
-        <th ng-if="columns.price" translate>ESTIMATED_PRICE</th>
-        <th ng-if="columns.tier" translate>TIER</th>
-        <th ng-if="columns.extra_details" translate>TH_EXTRA_DETAILS</th>
-        <th ng-if="columns.files" translate>TH_FILES</th>
-        <th ng-if="columns.status" translate>TH_STATUS</th>
+        <th ng-if="columns.sector" translate>th_skill_sector</th>
+        <th ng-if="columns.list" translate>th_list</th>
+        <th ng-if="columns.category" translate>th_category</th>
+        <th ng-if="columns.quantity" translate>th_quantity</th>
+        <th ng-if="columns.calculated_quantity" translate>th_quantity_calculated</th>
+        <th ng-if="columns.unit" translate>th_unit</th>
+        <th ng-if="columns.description" translate>th_description</th>
+        <th ng-if="columns.supplier_potential" translate>th_supplier_potential</th>
+        <th ng-if="columns.area" translate>skill_area</th>
+        <th ng-if="columns.supplied" translate>th_supplied_item</th>
+        <th ng-if="columns.manufacturer" translate>th_manufacturer</th>
+        <th ng-if="columns.model" translate>th_model</th>
+        <th ng-if="columns.size" translate>th_size</th>
+        <th ng-if="columns.part_number" translate>th_part_num</th>
+        <th ng-if="columns.supplier" translate>th_supplier</th>
+        <th ng-if="columns.electricity" translate>th_electricity</th>
+        <th ng-if="columns.water_supply" translate>th_water_supply</th>
+        <th ng-if="columns.compressed_air" translate>th_compressed_air</th>
+        <th ng-if="columns.price" translate>estimated_price</th>
+        <th ng-if="columns.tier" translate>tier</th>
+        <th ng-if="columns.extra_details" translate>th_extra_details</th>
+        <th ng-if="columns.files" translate>th_files</th>
+        <th ng-if="columns.status" translate>th_status</th>
       </tr>
     </thead>
     <tbody ng-show="items.length && !loading.items">
@@ -231,8 +231,8 @@
             {{ item.category.name.text }}
         </td>
         <td ng-if="columns.quantity">
-            <span ng-if="item.multiplier">{{'ITEM_READABLE_QUANTITY_' + item.multiplier | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
-            <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>ADDITIONAL</span></span>
+            <span ng-if="item.multiplier">{{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
+            <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>additional</span></span>
         </td>
         <td ng-if="columns.calculated_quantity">{{item.calculated_quantity}}</td>
         <td ng-if="columns.unit">{{UNITS[item.unit] | translate}}</td>
@@ -266,7 +266,7 @@
     <tbody ng-show="!items.length || loading.items">
       <tr>
         <td ng-if="loading.items" colspan="{{columnLength}}"><ws-spinner></ws-spinner></td>
-        <td ng-if="!loading.items" colspan="{{columnLength}}" class="text-center" translate>NO_ITEMS</td>
+        <td ng-if="!loading.items" colspan="{{columnLength}}" class="text-center" translate>no_items</td>
       </tr>
     </tbody>
     <tfoot ng-if="items.length && !loading.items">
@@ -281,10 +281,10 @@
             rotate="false"
             max-size="5"
             ng-change="changePage(current_page)"
-            first-text="{{'PAGER.FIRST' | translate}}"
-            previous-text="{{'PAGER.PREVIOUS' | translate}}"
-            next-text="{{'PAGER.NEXT' | translate}}"
-            last-text="{{'PAGER.LAST' | translate}}"
+            first-text="{{'pager.first' | translate}}"
+            previous-text="{{'pager.previous' | translate}}"
+            next-text="{{'pager.next' | translate}}"
+            last-text="{{'pager.last' | translate}}"
             >
           </uib-pagination>
         </td>

@@ -1,27 +1,27 @@
 <div class="container-fluid" style="margin-top: -15px;">
 
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="eventList" translate>events</a></li>
     <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
-    <li class="active" translate>CATALOGUE_EDITOR</li>
+    <li class="active" translate>catalogue_editor</li>
 </ol>
 
   <div class="actions" ng-show="!loading.catalogue">
     <div ng-show="showGrid">
       <div class="pull-left">
         <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)">
-          <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>ADD_CATALOGUE_ITEM</span>
+          <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_catalogue_item</span>
         </button>
 
         <div class="btn-group" uib-dropdown="actionsDropdown">
           <button id="actionsButton" type="button" uib-dropdown-toggle="actionsDropdown" class="btn btn-info btn-sm">
-            <span translate>ITEM_ACTIONS</span>&nbsp;<span class="caret"></span>
+            <span translate>item_actions</span>&nbsp;<span class="caret"></span>
           </button>
           <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
-            <li role="menuitem"><a ng-click="editItems($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>EDIT_SELECTED_ITEM</span></a></li>
-            <li role="menuitem"><a ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;<span translate>REMOVE_SELECTED_ITEMS</span></a></li>
-            <li role="menuitem"><a ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span translate>SEE_LINKED_ITEMS</span></a></li>
-            <li role="menuitem"><a ng-click="combineItems($event)"><span class="glyphicon glyphicon-compressed"></span>&nbsp;<span translate>COMBINE_ITEMS</span></a></li>
+            <li role="menuitem"><a ng-click="editItems($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>edit_selected_item</span></a></li>
+            <li role="menuitem"><a ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;<span translate>remove_selected_items</span></a></li>
+            <li role="menuitem"><a ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span translate>see_linked_items</span></a></li>
+            <li role="menuitem"><a ng-click="combineItems($event)"><span class="glyphicon glyphicon-compressed"></span>&nbsp;<span translate>combine_items</span></a></li>
           </ul>
         </div>
 
@@ -30,7 +30,7 @@
       <div class="pull-right">
         <div class="btn-group dropdown" ng-controller="TranslateCtrl">
           <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="languageSelect" data-toggle="dropdown">
-            <span translate>LANGUAGE</span><small class='label'>{{available_languages[selectedLanguage]}}</small>
+            <span translate>language</span><small class='label'>{{available_languages[selectedLanguage]}}</small>
             <span class="caret"></span>
           </button>
 
@@ -46,14 +46,14 @@
         <button class="btn btn-sm"
                 ng-click="showFilters = !showFilters"
                 ng-class="{'btn-primary': !selectedFilters.active, 'btn-warning': selectedFilters.active}"
-        ><i class="glyphicon glyphicon-filter"></i>&nbsp;<span translate>FILTERS</span><small ng-show="selectedFilters.active">&nbsp;[{{ 'LIST_COLON' | translate }} {{selectedFilters.list.name.text}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.name.text}}</span>]</small></button>
+        ><i class="glyphicon glyphicon-filter"></i>&nbsp;<span translate>filters</span><small ng-show="selectedFilters.active">&nbsp;[{{ 'list_colon' | translate }} {{selectedFilters.list.name.text}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.name.text}}</span>]</small></button>
 
         <button class="btn btn-sm" ng-click="toggleEditing()"
                 ng-class="{'btn-primary': !allowEditing, 'btn-danger': allowEditing}"><span class="glyphicon glyphicon-edit"></span>&nbsp;
-          <span ng-if="!allowEditing" translate>ALLOW_INLINE_EDIT</span>
-          <span ng-if="allowEditing" translate>DISABLE_INLINE_EDIT</span>
+          <span ng-if="!allowEditing" translate>allow_inline_edit</span>
+          <span ng-if="allowEditing" translate>disable_inline_edit</span>
         </button>
-        <button ng-class="{'btnFullscreen': fullscreen}" class="btn btn-sm btn-primary" ng-click="toggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;<span ng-show="fullscreen" translate>EXIT_FULLSCREEN</span><span translate>FULLSCREEN</span></button>
+        <button ng-class="{'btnFullscreen': fullscreen}" class="btn btn-sm btn-primary" ng-click="toggleFullScreen()"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;<span ng-show="fullscreen" translate>exit_fullscreen</span><span translate>fullscreen</span></button>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -63,31 +63,31 @@
   <br>
   <div ng-show="!loading.catalogue && showFilters">
     <div class="well" ng-if="lists !== false">
-      <h4><span translate>WHICH_DATA</span><br><small translate>CHANGE_FILTERS</small></h4>
+      <h4><span translate>which_data</span><br><small translate>change_filters</small></h4>
       <div class="row">
         <div class="col col-xs-6">
-          <ui-select ng-model="filters.list" theme="bootstrap" title="{{ 'TITLE.CHOOSE_LIST' | translate }}">
-            <ui-select-match placeholder="{{ 'TITLE.CHOOSE_LIST' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+          <ui-select ng-model="filters.list" theme="bootstrap" title="{{ 'title.choose_list' | translate }}">
+            <ui-select-match placeholder="{{ 'title.choose_list' | translate }}">{{$select.selected.name.text}}</ui-select-match>
             <ui-select-choices repeat="list as list in (lists | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
               <div ng-bind-html="list.name.text"></div>
             </ui-select-choices>
           </ui-select>
         </div>
         <div class="col col-xs-4">
-          <ui-select ng-model="filters.category" theme="bootstrap" title="{{ 'TITLE.CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL' | translate }}">
-            <ui-select-match allow-clear="true" placeholder="{{ 'PLACEHOLDER.CHOOSE_AN_INSTALLATION_TYPE_OPTIONAL' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+          <ui-select ng-model="filters.category" theme="bootstrap" title="{{ 'title.choose_an_installation_type_optional' | translate }}">
+            <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.choose_an_installation_type_optional' | translate }}">{{$select.selected.name.text}}</ui-select-match>
             <ui-select-choices repeat="cat as cat in (categories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
               <div ng-bind-html="cat.name.text"></div>
             </ui-select-choices>
           </ui-select>
         </div>
         <div class="col col-xs-2">
-          <button ng-disabled="filters.list == null" ng-click="filtersActivate()" class="btn btn-md btn-success" translate>LOAD</button>
+          <button ng-disabled="filters.list == null" ng-click="filtersActivate()" class="btn btn-md btn-success" translate>load</button>
         </div>
 
       </div>
       <hr>
-      <button class="btn btn-md btn-primary" ng-click="loadFullCatalogue()" translate>ALL_DATA</button>
+      <button class="btn btn-md btn-primary" ng-click="loadFullCatalogue()" translate>all_data</button>
     </div>
   </div>
 

@@ -5,11 +5,11 @@
     <span class='pull-right'>
       <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
         <i class="glyphicon glyphicon-plus">
-        </i> <span translate>ADD_ITEM</span>
+        </i> <span translate>add_item</span>
       </button>
 
       <div class='searchContainer pull-right'>
-        <input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="{{ 'PLACEHOLDER.SEARCH' | translate }}" ng-model="filterValue" ng-change="filter()">
+        <input ng-model-options="{ debounce: 500 }" type="text" class="form-control searchControl" placeholder="{{ 'placeholder.search' | translate }}" ng-model="filterValue" ng-change="filter()">
         <span class='searchIcon glyphicon glyphicon-search' aria-hidden='true'></span>
       </div>
     </span>
@@ -25,10 +25,10 @@
       <div class="col-sm-12" ng-show="items.length == 0 && !loading.init">
         <div class='alert alert-warning'>
           <p ng-if="filterValue.length > 0">
-            <span class='glyphicon glyphicon-info-sign'></span> <span translate>SEARCH_NO_RESULTS</span><br />
-            <a ng-click="clearSearchTerms();"><span translate>CLEAR_SEARCH_TERMS</span></a>
+            <span class='glyphicon glyphicon-info-sign'></span> <span translate>search_no_results</span><br />
+            <a ng-click="clearSearchTerms();"><span translate>clear_search_terms</span></a>
           </p>
-          <p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> <span translate>CATEGORY_NO_ITEMS</span></p>
+          <p ng-if="!filterValue || filterValue.length == 0"><span class='glyphicon glyphicon-info-sign'></span> <span translate>category_no_items</span></p>
         </div>
       </div>
 
@@ -45,23 +45,23 @@
             </colgroup>
             <tr>
               <th class="text-right" ng-class="{dropup: reverse}">
-                <span ng-click="sortBy('readable_quantity');" translate>QUANTITY</span>
+                <span ng-click="sortBy('readable_quantity');" translate>quantity</span>
                 <span class="caret" ng-show="orderProperty === 'readable_quantity'"></span>
               </th>
               <th ng-class="{dropup: reverse}">
-                <span ng-click="sortBy('description.text');" translate>DESCRIPTION</span>
+                <span ng-click="sortBy('description.text');" translate>description</span>
                 <span class="caret" ng-show="orderProperty === 'description.text'"></span>
               </th>
               <th ng-class="{dropup: reverse}">
-                <span ng-click="sortBy('area.name');" translate>SKILL_AREA</span>
+                <span ng-click="sortBy('area.name');" translate>skill_area</span>
                 <span class="caret" ng-show="orderProperty === 'area.name'"></span>
               </th>
               <th ng-class="{dropup: reverse}">
-                <span ng-click="sortBy('status.id');" translate>STATUS</span>
+                <span ng-click="sortBy('status.id');" translate>status</span>
                 <span class="caret" ng-show="orderProperty === 'status.id'"></span>
               </th>
               <th>
-                <span translate>ACTIONS</span>
+                <span translate>actions</span>
               </th>
             </tr>
             <tr ng-repeat="item in items | orderBy:orderProperty:reverse track by $id(item)" ng-include="'views/item_render.html'"></tr>
@@ -70,10 +70,10 @@
       </div>
       <div style="top: 30px;" class="col-sm-12" ng-if="additionRecommendationsCount > 0">
         <span class="fa fa-plus icon-circled"></span>
-        <span style="color: #7c9eb2;">{{'X_ADDITIONS_FOR_CATEGORY' | translate:{ count: additionRecommendationsCount } }}</span>
+        <span style="color: #7c9eb2;">{{'x_additions_for_category' | translate:{ count: additionRecommendationsCount } }}</span>
       </div>
       <div style="top: 60px;" class="col-sm-12" ng-if="canHandleRecommend">
-        <a ui-sref="recommendations({eventId: event.id, list: list.id})" translate>HANDLE_RECOMMENDATIONS</a>
+        <a ui-sref="recommendations({eventId: event.id, list: list.id})" translate>handle_recommendations</a>
       </div>
     </div>
   </div>

@@ -1,23 +1,23 @@
 <ol class="breadcrumb">
-    <li><a ui-sref="eventList" translate>EVENTS</a></li>
+    <li><a ui-sref="eventList" translate>events</a></li>
     <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
-    <li class="active" translate>SKILL_PARTICIPANTS_OVERRIDE</li>
+    <li class="active" translate>skill_participants_override</li>
 </ol>
 
 <div class="row">
   <div class="col-md-offset-2 col-md-8">
 
-    <h1 class="h2" translate>SKILL_PARTICIPANTS_OVERRIDE</h1>
+    <h1 class="h2" translate>skill_participants_override</h1>
 
-    <p class="text-muted" translate>SKILL_PARTICIPANTS_OVERRIDE_EMPTY_HINT</p>
+    <p class="text-muted" translate>skill_participants_override_empty_hint</p>
 
     <hr/>
 
     <div class="row">
-        <label class="col-sm-6" translate>SKILL</label>
-        <label class="col-sm-2" translate>TH_COMPETITORS</label>
-        <label class="col-sm-2" translate>TH_EXPERTS</label>
-        <label class="col-sm-2" translate>TH_INTERPRETERS</label>
+        <label class="col-sm-6" translate>skill</label>
+        <label class="col-sm-2" translate>th_competitors</label>
+        <label class="col-sm-2" translate>th_experts</label>
+        <label class="col-sm-2" translate>th_interpreters</label>
     </div>
 
     <br/>
@@ -31,20 +31,20 @@
                   {{skill.skill_number}} {{ skill.name.text }}
               </div>
               <div class="col-sm-2">
-                <input class="form-control input-sm" ng-model="skill.numbers.num_competitors" placeholder="{{ 'TH_COMPETITORS' | translate }}">
+                <input class="form-control input-sm" ng-model="skill.numbers.num_competitors" placeholder="{{ 'th_competitors' | translate }}">
               </div>
               <div class="col-sm-2">
-                <input class="form-control input-sm" ng-model="skill.numbers.num_experts" placeholder="{{ 'TH_EXPERTS' | translate }}">
+                <input class="form-control input-sm" ng-model="skill.numbers.num_experts" placeholder="{{ 'th_experts' | translate }}">
               </div>
               <div class="col-sm-2">
-                <input class="form-control input-sm" ng-model="skill.numbers.num_interpreters" placeholder="{{ 'TH_INTERPRETERS' | translate }}">
+                <input class="form-control input-sm" ng-model="skill.numbers.num_interpreters" placeholder="{{ 'th_interpreters' | translate }}">
               </div>
             </div>
             <hr/>
             <div class="form-group">
               <div class="col-sm-offset-6 col-sm-6">
-                <button type="submit" class="btn btn-success"><span translate>SKILL_PARTICIPANTS_OVERRIDE_SAVE</span><ws-text-spinner ng-show="loading.saveSkillParticipantsOverride" class="ng-hide"></ws-text-spinner></button>
-                <a ui-sref="event({eventId: event.id})" class="btn btn-default" translate>CANCEL</a>
+                <button type="submit" class="btn btn-success"><span translate>skill_participants_override_save</span><ws-text-spinner ng-show="loading.saveSkillParticipantsOverride" class="ng-hide"></ws-text-spinner></button>
+                <a ui-sref="event({eventId: event.id})" class="btn btn-default" translate>cancel</a>
               </div>
             </div>
         </fieldset>
