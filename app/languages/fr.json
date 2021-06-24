@@ -26,7 +26,7 @@
     "allow_inline_edit": "Activer l'édition directe",
     "all_data": "Toutes les données (patienter)",
     "anchor_fixing_base_requirements": "Ancrage, fixation, autres besoins",
-    "app_name": "Infrastructure Lists",
+    "il_app_name": "Infrastructure Lists",
     "approver_information": "Informations pour l'approbateur",
     "are_you_sure": {
         "ok": "Supprimer l'item",

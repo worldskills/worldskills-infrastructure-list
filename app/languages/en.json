@@ -26,7 +26,7 @@
     "allow_inline_edit": "Allow inline editing",
     "all_data": "All data (this can take a while)",
     "anchor_fixing_base_requirements": "Anchor / Fixing / Base requirements",
-    "app_name": "Infrastructure Lists",
+    "il_app_name": "Infrastructure Lists",
     "approver_information": "Approver information",
     "are_you_sure": {
         "ok": "Remove item",
