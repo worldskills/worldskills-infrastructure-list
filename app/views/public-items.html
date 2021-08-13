@@ -151,7 +151,9 @@
                     <td ng-if="columns.model">&nbsp;</td>
                     <td ng-if="columns.size">&nbsp;</td>
                     <td ng-if="columns.part_number">&nbsp;</td>
-                    <td ng-if="columns.supplier">&nbsp;</td>
+                    <td ng-if="columns.supplier">
+                        <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.supplier.name" />
+                    </td>
                     <td ng-if="columns.item_category">&nbsp;</td>
                     <td ng-if="columns.item_subcategory">&nbsp;</td>
                     <td ng-if="columns.extra_details">&nbsp;</td>
