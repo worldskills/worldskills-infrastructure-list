@@ -138,7 +138,9 @@
                     <td ng-if="columns.description">
                         <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.description.text" />
                     </td>
-                    <td ng-if="columns.supplier_potential">&nbsp;</td>
+                    <td ng-if="columns.supplier_potential">
+                        <input type="text" class="form-control input-sm" ng-model="filter.supplier.name" />
+                    </td>
                     <td ng-if="columns.area">
                         <select class="form-control input-sm" ng-model="filter.area.id">
                             <option value=""></option>
