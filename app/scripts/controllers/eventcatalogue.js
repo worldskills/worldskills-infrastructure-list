@@ -291,9 +291,10 @@ angular.module('ilApp')
       // (else several request attempt to do that and fail)
       var firstRow = rowEntities[0];
 
-      SuppliedItem
-        .saveItem(firstRow, updateRequested)
-        .then(function(){
+      var firstRowPromise = SuppliedItem.saveItem(firstRow, updateRequested);
+      promises.push(firstRowPromise);
+
+      firstRowPromise.then(function(){
 
           //go through fields and update them
           angular.forEach(rowEntities, function(rowEntity, index){
