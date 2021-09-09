@@ -89,7 +89,6 @@
                             <th class="col-10" translate>quantity</th>
                             <th class="col-10" translate>additional_quantity</th>
                             <th class="col-10" translate>unit</th>
-                            <th class="col-15" translate>potential_supplier</th>
                             <th class="col-10 text-center" translate>wrong_supplied_item</th>
                             <th class="col-5" translate>comment</th>
                         </tr>
@@ -111,9 +110,6 @@
                             </td>
                             <td ng-class="{'change': item.unit != item.requestedItem.unit}">
                                 {{item.requestedItem.unit}}
-                            </td>
-                            <td ng-class="{'change': item.potentialSupplier != item.requestedItem.supplier}">
-                                {{item.requestedItem.supplier.name}}
                             </td>
                             <td rowspan="2" class="text-center" translate>
                                 {{item.wrongSuppliedItem+"Label"}}
@@ -148,9 +144,6 @@
                             </td>
                             <td ng-class="{'change-warning': item.unit != item.requestedItem.unit}">
                                 {{item.unit}}
-                            </td>
-                            <td ng-class="{'change-warning': item.potentialSupplier != item.requestedItem.supplier}">
-                                {{item.potentialSupplier.name}}
                             </td>
                             <td class="text-center" ng-if="!item.requestedItem" translate>
                                 {{item.wrongSuppliedItem}}

@@ -14,7 +14,6 @@
       <th translate>th_list</th>
       <th translate>th_category</th>
       <th translate>th_qty</th>
-      <th translate>th_supplier_potential</th>
       <th translate>th_status</th>
       <th translate>th_actions</th>
     </tr>
@@ -30,7 +29,6 @@
       <td>{{item.category.name.text}}</td>
       <td>{{'item_readable_quantity_' + item.multiplier.toLowerCase() |
           translate: {quantity: item.quantity, factor: item.multiply_factor} }}</td>
-      <td>{{item.supplier.name}}</td>
       <td>{{item.status.name.text}}</td>
       <td>
         <div style="width: 55px;">

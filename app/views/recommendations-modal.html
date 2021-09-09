@@ -63,7 +63,6 @@
         <span ng-if="item.requestedItem.readable_quantity != item.readable_quantity"><br><span class="text-muted">Change Quantity from {{item.requestedItem.readable_quantity || 'None'}} to</span> {{item.readable_quantity || 'None'}}</span>
         <span ng-if="item.requestedItem.additional_quantity != item.additional_quantity"><br><span class="text-muted">Change Additional Quantity from {{item.requestedItem.additional_quantity || 'None'}} to</span> {{item.additional_quantity || 'None'}}</span>
         <span ng-if="item.requestedItem.unit != item.unit"><br><span class="text-muted">Change Unit from {{item.requestedItem.unit || 'None'}} to</span> {{item.unit || 'None'}}</span>
-        <span ng-if="item.requestedItem.supplier.id != item.potentialSupplier.id"><br><span class="text-muted">Change Potential Supplier from {{item.requestedItem.supplier.name || 'None'}} to</span> {{item.potentialSupplier.name || 'None'}}</span>
         <span ng-if="item.requestedItem.price != item.price"><br><span class="text-muted">Change Price from {{item.requestedItem.price || 'None'}} to</span> {{item.price || 'None'}}</span>
         <span ng-if="item.recommendedItemSupplied && item.suppliedItem.id != item.recommendedItemSupplied.supplied_item.id"><br><span class="text-muted">Change Supplied Item from {{item.suppliedItem.description.text || 'None'}} to</span> {{item.recommendedItemSupplied.description.text || 'None'}}</span>
         <span ng-if="item.requestedItem.category_id != item.category.id"><br><span class="text-muted">Change Category to</span> {{item.category.name.text || 'None'}}</span>
@@ -77,7 +76,6 @@
         <span ng-if="item.readable_quantity"><br><span class="text-muted">Quantity:</span> {{item.readable_quantity}}</span>
         <span ng-if="item.additional_quantity"><br><span class="text-muted">Additional Quantity:</span> {{item.additional_quantity}}</span>
         <span ng-if="item.unit"><br><span class="text-muted">Unit:</span> {{item.unit}}</span>
-        <span ng-if="item.potentialSupplier.id"><br><span class="text-muted">Potential Supplier:</span> {{item.potentialSupplier.name}}</span>
         <span ng-if="item.price"><br><span class="text-muted">Price:</span> {{item.price}}</span>
         <span ng-if="item.recommendedItemSupplied.id"><br><span class="text-muted">Supplied Item:</span> {{item.recommendedItemSupplied.description.text}}</span>
         <span ng-if="item.category.id"><br><span class="text-muted">Category:</span> {{item.category.name.text}}</span>

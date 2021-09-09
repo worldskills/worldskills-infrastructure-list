@@ -79,31 +79,6 @@
               <option value="m3" translate="{{UNITS['m3']}}"></option>
           </select>
         </div>
-        <div class="form-group editForm has-feedback" ng-class="{'has-error': editForm.supplier.$error.required, 'has-success': !editForm.supplier.$error.required}">
-          <label class='control-label' translate>potential_supplier</label>
-          <!-- <input name="supplier" type="text" class="input-sm form-control" placeholder="{{ 'placeholder.potential_supplier' | translate }}" ng-model='item.supplier' ng-trim="true"> -->
-          <angucomplete-alt
-            id="id"
-            placeholder="{{ 'placeholder.potential_supplier' | translate }}"
-            pause="400"
-            selected-object="item.selectedSupplier"
-            remote-url="{{searchSupplierAPI}}"
-            remote-url-request-with-credentials="true"
-            remote-url-data-field="suppliers"
-            title-field="name"
-            minlength="1"
-            search-fields="name"
-            disable-input="disableInputSupplier"
-            focus-first="true"
-            input-changed="supplierChanged"
-            override-suggestions="true"
-            field-required="false"
-            text-searching="false"
-            text-no-results="{{ 'text_no_results.no_existing_suppliers_found' | translate }}"
-            initial-value="item.supplier"
-            input-class="input-sm form-control"/>
-          <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span> -->
-        </div>
         <div class="form-group editForm has-feedback has-success">
           <label class='control-label' translate>estimated_price</label>
           <input name='price' type="number" class="input-sm form-control" ng-model="item.price" placeholder="{{ 'placeholder.estimated_price' | translate }}">

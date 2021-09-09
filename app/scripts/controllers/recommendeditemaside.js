@@ -66,9 +66,6 @@ angular.module('ilApp')
             unit: $scope.item.unit,
             multiplier : $scope.item.multiplier,
             multiplyFactor : $scope.item.multiply_factor,
-            potentialSupplier : {
-              name: $scope.item.supplier
-            },
             price: $scope.item.price,
             secret: $scope.item.secret,
             area: $scope.item.area,
@@ -89,16 +86,7 @@ angular.module('ilApp')
 
     $scope.refreshView();
 
-    $scope.potentialSupplierValue = null;
     $scope.supplierValue = null;
-
-    $scope.potentialSupplierChanged = function (val) {
-      if(val == "") {
-        $scope.potentialSupplierValue = null;
-      } else {
-        $scope.potentialSupplierValue = val;
-      }
-    };
 
     $scope.supplierChanged = function (val) {
       if(val == "") {
@@ -119,28 +107,6 @@ angular.module('ilApp')
     };
 
     $scope.saveItem = function () {
-
-      //Set potential supplier from autocomplete
-      //First case : supplier chosen by clicking a suggestion
-      if ($scope.recommendedItem.potentialSupplier != void 0
-        && $scope.recommendedItem.potentialSupplier.originalObject != void 0) {
-          if($scope.recommendedItem.potentialSupplier.originalObject.name != void 0){
-            $scope.recommendedItem.potentialSupplier = {
-              name: $scope.recommendedItem.potentialSupplier.originalObject.name
-            };
-          }
-          else{
-            $scope.recommendedItem.potentialSupplier = {
-              name: $scope.recommendedItem.potentialSupplier.originalObject
-            };
-          }
-        }
-      //Second case : supplier set from text written in field
-      else if ($scope.potentialSupplierValue != null) {
-        $scope.recommendedItem.potentialSupplier =  {
-          name: $scope.potentialSupplierValue
-        };
-      }
 
       //do the same for supplied item supplier - this is dirty, perhaps find a cleaner way
       //Set potential supplier from autocomplete

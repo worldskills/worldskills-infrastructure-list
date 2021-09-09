@@ -35,12 +35,6 @@
           <td><b translate>Additional quantity</b><br>{{data.item.additional_quantity}}</td>
         </tr>
         <tr
-        ng-class="{'warning': data.item.potentialSupplier.name != data.item.requestedItem.supplier.name}"
-        ng-if='data.item.potentialSupplier'>
-          <td><b translate>Potential Supplier</b><br>{{data.item.requestedItem.supplier.name}}</td>
-          <td><b translate>Potential Supplier</b><br>{{data.item.potentialSupplier.name}}</td>
-        </tr>
-        <tr
         ng-class="{'warning': data.item.price != data.item.requestedItem.price}"
         ng-if='data.item.price'>
           <td><b translate>Estimated Price</b><br>{{data.item.requestedItem.price}}</td>

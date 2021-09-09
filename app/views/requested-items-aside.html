@@ -27,31 +27,6 @@
                     </ui-select>
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label class='control-label' translate>potential_supplier</label>
-                    <angucomplete-alt
-                      input-name="supplier"
-                      id="supplier"
-                      placeholder="{{ 'placeholder.potential_supplier' | translate }}"
-                      pause="400"
-                      selected-object="editedItem.supplier"
-                      remote-url="{{searchSupplierAPI}}"
-                      remote-url-request-with-credentials="true"
-                      remote-url-data-field="suppliers"
-                      title-field="name"
-                      minlength="1"
-                      disable-input="disableInputSupplier"
-                      focus-first="true"
-                      input-changed="supplierChanged"
-                      override-suggestions="true"
-                      field-required="false"
-                      text-searching="false"
-                      text-no-results="{{ 'text_no_results.no_existing_suppliers_found' | translate }}"
-                      initial-value="editedItem.supplier"
-                      input-class="form-control angucomplete-overflow"/>
-                  </div>
-                </div>
               </div>
 
               <div class="row">
