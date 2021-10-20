@@ -39,7 +39,8 @@
             <colgroup>
               <col width="20%" />
               <col width="30%" />
-              <col width="30%" />
+              <col width="20%" />
+              <col width="10%" />
               <col width="10%" />
               <col width="10%" />
             </colgroup>
@@ -55,6 +56,10 @@
               <th ng-class="{dropup: reverse}">
                 <span ng-click="sortBy('area.name');" translate>skill_area</span>
                 <span class="caret" ng-show="orderProperty === 'area.name'"></span>
+              </th>
+              <th ng-class="{dropup: reverse}">
+                <span ng-click="sortBy('supplied_item.supplier.name');" translate>supplier</span>
+                <span class="caret" ng-show="orderProperty === 'supplied_item.supplier.name'"></span>
               </th>
               <th ng-class="{dropup: reverse}">
                 <span ng-click="sortBy('status.id');" translate>status</span>

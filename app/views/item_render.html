@@ -17,6 +17,9 @@
   <span class='skill-area'>{{item.area.name}}</span>
 </td>
 <td>
+  {{item.supplied_item.supplier.name}}
+</td>
+<td>
   <small ng-if='item.status && item.id != statusEditionItemId' class='status'>
     <span class='label' ng-style="{'background-color': item.status.color_code}" translate>{{item.status.name.text}}</span>
   </small>
