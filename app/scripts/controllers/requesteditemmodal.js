@@ -54,7 +54,6 @@ angular.module('ilApp')
     //We can consider the first element of the array as a reference
     $scope.editedItem = {};
     $scope.editedItem.status = $scope.itemsSelected[0].status;
-    $scope.editedItem.supplier = $scope.itemsSelected[0].supplier;
     $scope.editedItem.price = $scope.itemsSelected[0].price;
     $scope.editedItem.category = $scope.itemsSelected[0].category;
     $scope.editedItem.tier = $scope.itemsSelected[0].tier_id;
@@ -77,21 +76,12 @@ angular.module('ilApp')
         $scope.editedItem.category = null;
         $scope.multipleCategory = true;
       }
-      if(!$scope.editedItem.supplier || !v.supplier || $scope.editedItem.supplier.name !== v.supplier.name)
-      {
-        $scope.editedItem.supplier = null;
-        $scope.multipleSupplier = true;
-      }
       if($scope.editedItem.tier && $scope.editedItem.tier !== v.tier_id)
       {
         $scope.editedItem.tier = null;
         $scope.multipleTier = true;
       }
     });
-
-    $scope.supplierChanged = function (val) {
-      $scope.editedItem.supplier = val;
-    };
 
     $scope.saveItems = function(){
       if($scope.isSubmitting === true){
@@ -150,16 +140,6 @@ angular.module('ilApp')
 
           if($scope.editForm.price.$dirty) {
             modifiedItem.price = $scope.editedItem.price;
-          }
-
-          if($scope.editForm.supplier.$dirty) {
-            if ($scope.editedItem.supplier != void 0) {
-              modifiedItem.supplier = $scope.editedItem.supplier.originalObject;
-            } else {
-              modifiedItem.supplier = {
-                name : $scope.editForm.supplier.$modelValue
-              }
-            }
           }
 
           extendedCategory = modifiedItem.category;
