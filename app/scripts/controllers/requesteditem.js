@@ -24,6 +24,7 @@ angular.module('ilApp')
 
     $scope.resetColumns = function () {
       $scope.columns = {
+        id: false,
         sector: true,
         list: true,
         category: false,

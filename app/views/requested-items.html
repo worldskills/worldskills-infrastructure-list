@@ -150,6 +150,7 @@
         Columns <span class="caret"></span>
       </button>
       <ul id="myDropdown" class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><a href ng-click="toggleColumn('id')"><i ng-style="{'visibility' : columns.id ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_id</span></a></li>
         <li><a href ng-click="toggleColumn('sector')"><i ng-style="{'visibility' : columns.sector ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_skill_sector</span></a></li>
         <li><a href ng-click="toggleColumn('list')"><i ng-style="{'visibility' : columns.list ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_list</span></a></li>
         <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_category</span></a></li>
@@ -194,6 +195,7 @@
         <th class="select">
           <input type="checkbox" ng-model="allSelected" ng-click="selectAll()">
         </th>
+        <th ng-if="columns.id" translate>th_id</th>
         <th ng-if="columns.sector" translate>th_skill_sector</th>
         <th ng-if="columns.list" translate>th_list</th>
         <th ng-if="columns.category" translate>th_category</th>
@@ -223,6 +225,7 @@
         <td class="select">
           <input type="checkbox" ng-checked="item.selected"/>
         </td>
+        <td ng-if="columns.id">{{item.id}}</td>
         <td ng-if="columns.sector"><span ng-if="item.list.skill.sector">{{item.list.skill.sector.name.text}}</span></td>
         <td ng-if="columns.list">{{item.list.skill.skill_number}} {{item.list.skill.name.text}}</td>
         <td ng-if="columns.category">
