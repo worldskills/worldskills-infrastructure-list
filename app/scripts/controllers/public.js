@@ -14,6 +14,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
   $scope.filter = {category_id: '', status: {id: ''}};
   $scope.columns = {
+    id: false,
     category: true,
     quantity: true,
     calculated_quantity: false,

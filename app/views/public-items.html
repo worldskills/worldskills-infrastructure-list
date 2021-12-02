@@ -36,6 +36,7 @@
           Columns <span class="caret"></span>
         </button>
         <ul id="myDropdown" class="dropdown-menu dropdown-menu-right" role="menu">
+          <li><a href ng-click="toggleColumn('id')"><i ng-style="{'visibility' : columns.id ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_id</span></a></li>
           <li><a href ng-click="toggleColumn('category')"><i ng-style="{'visibility' : columns.category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_category</span></a></li>
           <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity</span></a></li>
           <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity_calculated</span></a></li>
@@ -68,6 +69,10 @@
             </colgroup>
             <thead>
                 <tr>
+                    <th ng-if="columns.id" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('id')" translate>th_id</span>
+                      <span class="caret" ng-show="sort === 'id'"></span>
+                    </th>
                     <th ng-if="columns.category" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('category')" translate>th_category</span>
                       <span class="caret" ng-show="sort === 'category'"></span>
@@ -121,6 +126,9 @@
                     <th ng-if="columns.actions" class="canRecommend" translate>th_actions</th>
                 </tr>
                 <tr class="active">
+                    <td ng-if="columns.id">
+                        <input type="text" class="form-control input-sm" ng-model="filter.id" />
+                    </td>
                     <td ng-if="columns.category">
                         <select class="form-control input-sm" ng-model="filter.category_id">
                             <option value=""></option>
@@ -165,6 +173,7 @@
             </tfoot>
             <tbody>
                 <tr ng-repeat="item in filteredItems = (items.requested_items | filter:filter) | orderBy:sort:reverse track by item.id">
+                  <td ng-if="columns.id">{{ item.id }}</td>
                   <td ng-if="columns.category">
                       {{ item.category.name.text }}
                   </td>
