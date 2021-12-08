@@ -124,7 +124,7 @@ angular.module('ilApp')
       scope.rowItem = angular.copy($scope.item.supplied_item);
       scope.item = angular.copy(scope.rowItem);
 
-      $scope.saveRow = function (rowEntity, updateRequested){
+      $scope.saveRow = function (rowEntity){
         rowEntity.description.lang_code = $translate.use();
         $scope.item.supplied_item = rowEntity;
         return $q.resolve();

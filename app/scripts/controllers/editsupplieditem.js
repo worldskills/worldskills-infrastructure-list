@@ -22,7 +22,6 @@ angular.module('ilApp')
       initDate: '2017-08-01' //TODO configure from event
     };
 
-    $scope.item.updateRequested = false;
     if ($scope.item == undefined) {
       $scope.item = {};
     }
@@ -59,7 +58,7 @@ angular.module('ilApp')
       //copy modified data back to rowItem for saving - rowItem contains promise for saving rows, which reflects changes in grid
       angular.extend($scope.rowItem, $scope.item);
 
-      $scope.saveRow($scope.rowItem, $scope.item.updateRequested).then(function(res){
+      $scope.saveRow($scope.rowItem).then(function(res){
         //copying to grid already done in saveRow in eventcatalogue.js
         //  angular.extend($scope.rowItem, res);
         //$scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);

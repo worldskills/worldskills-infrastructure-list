@@ -107,7 +107,7 @@ angular.module('ilApp')
               return;
             }
 
-            var task = $scope.saveItem(rowEntity, false);
+            var task = $scope.saveItem(rowEntity);
             tasks.push(task);
           });
           return $q.all(tasks);

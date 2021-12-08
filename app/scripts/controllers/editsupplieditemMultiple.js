@@ -25,7 +25,6 @@ angular.module('ilApp')
       initDate: '2017-08-01' //TODO configure from event
     };
 
-    var updateRequested = false;
     if ($scope.items == undefined || $scope.items.length < 2) {
       alert($translate.instant("alert.you_need_to_select_at_least_one_item"));
       return;

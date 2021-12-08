@@ -244,7 +244,7 @@ angular.module('ilApp')
         WSAlert.danger(error);
       });
 
-    $scope.saveRow = function(rowEntity, updateRequested){
+    $scope.saveRow = function(rowEntity){
 
       var promise = $q.defer();
       $scope.gridApi.rowEdit.setSavePromise(rowEntity, promise.promise);
@@ -265,7 +265,7 @@ angular.module('ilApp')
       $scope.loading.catalogue = true;
       //actually save row
       rowEntity.description.lang_code = $translate.use();
-      SuppliedItem.saveItem(rowEntity, updateRequested).then(function(res){
+      SuppliedItem.saveItem(rowEntity).then(function(res){
           //copy back data from request's response
           angular.extend(rowEntity, res);
           $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.ROW);
@@ -281,7 +281,7 @@ angular.module('ilApp')
       return promise.promise;
     };
 
-    $scope.saveRows = function(rowEntities, updateRequested){
+    $scope.saveRows = function(rowEntities){
 
       var promise = $q.defer();
       var promises = [];
@@ -291,7 +291,7 @@ angular.module('ilApp')
       // (else several request attempt to do that and fail)
       var firstRow = rowEntities[0];
 
-      var firstRowPromise = SuppliedItem.saveItem(firstRow, updateRequested);
+      var firstRowPromise = SuppliedItem.saveItem(firstRow);
       promises.push(firstRowPromise);
 
       firstRowPromise.then(function(){
@@ -309,7 +309,7 @@ angular.module('ilApp')
             //actually save row
             $scope.gridApi.rowEdit.setSavePromise(rowEntities[index], promise.promise);
 
-            promises.push(SuppliedItem.saveItem(rowEntities[index], updateRequested));
+            promises.push(SuppliedItem.saveItem(rowEntities[index]));
           });
 
           //go through promises

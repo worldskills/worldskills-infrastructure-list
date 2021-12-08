@@ -261,13 +261,13 @@ angular.module('ilApp')
       scope.rowItem = item.supplied_item;
       scope.rowItem.event = {id: $scope.event_id};
 
-      $scope.saveRow = function (rowEntity, updateRequested){
+      $scope.saveRow = function (rowEntity){
 
         var promise = $q.defer();
 
         rowEntity.description.lang_code = $translate.use();
 
-        SuppliedItem.saveItem(rowEntity, updateRequested).then(function(res){
+        SuppliedItem.saveItem(rowEntity).then(function(res){
           // copy back data from request's response
           angular.extend(rowEntity, res);
           item.supplied_item = res;
