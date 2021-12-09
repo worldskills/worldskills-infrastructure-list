@@ -64,16 +64,10 @@ angular.module('ilApp')
 
       //if supplied item selected - use link together
       if($scope.suppliedItem.force === true) { //catalogue view
-        $scope.item.description.lang_code = $scope.selectedLanguage;
         $scope.item.supplied_item = $scope.suppliedItem;
       }
       else {
         //get description from supplied item
-        $scope.item.description = {
-          lang_code: $scope.selectedLanguage,
-          text: '',
-        };
-        
         if (!$scope.item.supplied_item.id) {
           createSuppliedItem = true;
         }
@@ -125,7 +119,6 @@ angular.module('ilApp')
       scope.item = angular.copy(scope.rowItem);
 
       $scope.saveRow = function (rowEntity){
-        rowEntity.description.lang_code = $translate.use();
         $scope.item.supplied_item = rowEntity;
         return $q.resolve();
       };

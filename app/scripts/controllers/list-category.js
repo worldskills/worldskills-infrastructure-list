@@ -101,8 +101,6 @@ angular.module('ilApp')
         }
       }
 
-      item.description.lang_code = $translate.use(); // Ensure lang_code are the same as the user
-
       Items.saveItem(item, $scope.event_id).then(function (result) {
         $scope.activeItem = false;
 

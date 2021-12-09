@@ -40,9 +40,6 @@ angular.module('ilApp')
         extended = true;
       }
 
-      //Ensure local of description is sync with selectedLanguage
-      item.description.lang_code = $translate.use();
-
       //set supplier from autocomplete
       if (item.selectedSupplier != void 0
         && item.selectedSupplier.originalObject.id != void 0) {
