@@ -92,7 +92,7 @@ angular.module('ilApp')
 
     $scope.removeSelectedItems = function (status) {
         $confirm({
-            title: 'Delete selected item(s)',
+            title: 'Remove selected item(s)',
             text: 'Are you sure?',
         }).then(function () {
             angular.forEach($scope.items, function (item) {
