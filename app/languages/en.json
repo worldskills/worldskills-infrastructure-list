@@ -90,6 +90,7 @@
     "close_text": {
         "close": "Close"
     },
+    "edit_selected_item_status": "Change status of selected item(s)",
     "create_new_supplied_item": "Create new Supplied Item",
     "combine_items": "Combine items",
     "comment": "Comment",

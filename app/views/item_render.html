@@ -1,3 +1,6 @@
+<td>
+  <input ng-if="item.canEdit || canEditItemStatus" type="checkbox" ng-model="item.selected" />
+</td>
 <td class="text-right">
   <span>
     {{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
@@ -31,15 +34,4 @@
       </ui-select-choices>
     </ui-select>
   </small>
-</td>
-<td>
-  <span class='actions'>
-    <span ng-if="canEditItemStatus && !item.canEdit">
-        <a class="btn btn-warning btn-xs" ng-click="editItemStatus(item);" style="margin-right: 8px;" title="Edit item status"><span class="glyphicon glyphicon-edit"></span></a>
-    </span>
-    <div style='width: 32px;' ng-if="!item.canEdit">&nbsp;</div>
-    <span ng-if="item.canEdit">
-      <a class="btn btn-danger btn-xs" ng-click="removeItem(item, $index);" style="margin-right: 8px;" title="Delete item"><span class="glyphicon glyphicon-remove"></span></a>
-    </span>
-  </span>
 </td>

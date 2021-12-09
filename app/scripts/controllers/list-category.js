@@ -81,6 +81,33 @@ angular.module('ilApp')
       $scope.statusEditionItemId = item.id;
     }
 
+    $scope.editSelectedItemStatus = function (status) {
+        angular.forEach($scope.items, function (item) {
+            if (item.selected) {
+                item.status = status;
+                $scope.saveItem(item);
+            }
+        });
+    };
+
+    $scope.removeSelectedItems = function (status) {
+        $confirm({
+            title: 'Delete selected item(s)',
+            text: 'Are you sure?',
+        }).then(function () {
+            angular.forEach($scope.items, function (item) {
+                if (item.selected && item.canEdit) {
+                    Items.removeItem(item, $scope.event_id).then(function (result) {
+                        //remove from list
+                        $scope.items.splice($scope.items.indexOf(item), 1);
+                    }), function (error) {
+                        WSAlert.danger(error);
+                    };
+                }
+            });
+        });
+    };
+
     $scope.saveStatus = function (item, itemIndex)
     {
       $scope.saveItem(item, itemIndex);
