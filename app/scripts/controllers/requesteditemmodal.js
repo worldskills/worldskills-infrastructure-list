@@ -76,7 +76,7 @@ angular.module('ilApp')
         $scope.editedItem.category = null;
         $scope.multipleCategory = true;
       }
-      if($scope.editedItem.tier && $scope.editedItem.tier !== v.tier_id)
+      if($scope.editedItem.tier !== v.tier_id)
       {
         $scope.editedItem.tier = null;
         $scope.multipleTier = true;
