@@ -1,7 +1,10 @@
 <td>
   <input ng-if="item.canEdit || canEditItemStatus" type="checkbox" ng-model="item.selected" />
 </td>
-<td class="text-right">
+<td>
+  {{item.id}}
+</td>
+<td>
   <span>
     {{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
   </span>

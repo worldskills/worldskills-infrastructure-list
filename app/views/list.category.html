@@ -50,15 +50,17 @@
           <table class="table table-striped">
             <colgroup>
               <col width="1%" />
+              <col width="4%" />
               <col width="20%" />
-              <col width="29%" />
+              <col width="25%" />
               <col width="20%" />
               <col width="10%" />
               <col width="10%" />
             </colgroup>
             <tr>
               <th>&nbsp;</th>
-              <th class="text-right" ng-class="{dropup: reverse}">
+              <th translate>th_id</th>
+              <th ng-class="{dropup: reverse}">
                 <span ng-click="sortBy('readable_quantity');" translate>quantity</span>
                 <span class="caret" ng-show="orderProperty === 'readable_quantity'"></span>
               </th>
