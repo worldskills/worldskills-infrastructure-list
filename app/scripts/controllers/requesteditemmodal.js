@@ -145,7 +145,10 @@ angular.module('ilApp')
           extendedCategory = modifiedItem.category;
           extendedCategory.list = list;
           modifiedItem.category_id = modifiedItem.category.id;
-          modifiedItem.tier_id = $scope.editedItem.tier;
+
+          if($scope.editForm.tier.$dirty) {
+            modifiedItem.tier_id = $scope.editedItem.tier;
+          }
 
           return Items.saveItem(modifiedItem, $state.params.eventId);
         })
