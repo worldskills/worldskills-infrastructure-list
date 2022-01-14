@@ -88,7 +88,7 @@
     "change_filters": "Vous pourrez appliquer des filtres une fois le catalogue chargé",
     "change_to_another_item": "Remplacer par un autre item",
     "change_to_another_item_help": "In order to create a new item with this description, hit enter<br><br><b>OR</b> if you'd like to search for another item, keep typing",
-    "clear": "Réinitialiser",
+    "clear": "Supprimer",
     "clear_search_terms": "Réinitialiser la recherche",
     "clear_sorting": "Réinitialiser le tri",
     "clone_item_help": "Creating a new copy of the supplied item, please select the subcategory for the item",
@@ -266,7 +266,7 @@
     "no_tier": "No Tier",
     "normal": "Normal",
     "number:": "Numéro :",
-    "overview": "Vue d'ensemble",
+    "overview": "Aperçu",
     "pager": {
         "first": "Premier",
         "last": "Dernier",
