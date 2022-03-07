@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, ItemTier, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, MULTIPLIER_DEFAULT, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, ItemTier, RecommendedSubscription, Downloader, WSAlert, UNITS, API_IL, Auth, APP_ROLES, APP_ID, MULTIPLIER_DEFAULT, $aside, $confirm, $translate, auth, RecommendedItems) {
 
   $scope.eventId = $state.params.eventId;
   $scope.listId = $state.params.listId;
-  $scope.UPLOADS_URL = UPLOADS_URL;
+  $scope.UPLOADS_URL = API_IL;
   $scope.UNITS = UNITS;
   $scope.participantNumbers = {};
   $scope.skillManagement = {};
@@ -254,7 +254,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   };
 });
 
-angular.module('ilApp').controller('PublicItemsSkillCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsSkillCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, RecommendedSubscription, Downloader, WSAlert, UNITS, Auth, APP_ROLES, APP_ID, $aside, $confirm, $translate, auth, RecommendedItems) {
 
    Events.getSkill($state.params.skillId).then(function(skill) {
      $state.go('publicItems', {eventId: $state.params.eventId, listId: skill.list_id});
