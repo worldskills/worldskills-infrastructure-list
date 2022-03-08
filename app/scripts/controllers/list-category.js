@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('ilApp')
-  .controller('ListCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, auth, APP_ID, APP_ROLES, UNITS, $translate, Status) {
+  .controller('ListCategoryCtrl', function ($scope, $state, $q, $aside, $timeout, MULTIPLIERS, Items, SuppliedItem, $confirm, WSAlert, API_IL, Auth, auth, APP_ID, APP_ROLES, UNITS, UPLOADS_URL, $translate, Status) {
 
     $scope.UNITS = UNITS;
-    $scope.UPLOADS_URL = API_IL;
+    $scope.UPLOADS_URL = UPLOADS_URL;
     $scope.categoryId = $state.params.categoryId;
     $scope.selectedCategory = $scope.categories[$scope.categoryId];
     $scope.loading.init = true;

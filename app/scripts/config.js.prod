@@ -10,6 +10,7 @@
     ilApp.constant('API_AUTH', 'https://api.worldskills.org/auth');
     ilApp.constant('AUTHORIZE_URL', 'https://auth.worldskills.org/oauth/authorize');
     ilApp.constant('LOGOUT_URL', 'https://auth.worldskills.org/logout');
+    ilApp.constant('UPLOADS_URL', 'https://il.worldskillsusercontent.org');
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
     ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');

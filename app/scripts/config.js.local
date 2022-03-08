@@ -10,6 +10,7 @@
     ilApp.constant('API_AUTH', 'http://localhost:8080/auth');
     ilApp.constant('AUTHORIZE_URL', 'http://worldskills-auth.localhost/oauth/authorize');
     ilApp.constant('LOGOUT_URL', 'http://worldskills-auth.localhost/logout');
+    ilApp.constant('UPLOADS_URL', 'http://localhost/worldskills-il');
 
     ilApp.constant('DATE_FORMAT', 'yyyy-MM-ddThh:mm:ssZ');
     ilApp.constant('WORLDSKILLS_CLIENT_ID', 'bc9cf785283f');

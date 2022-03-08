@@ -8,11 +8,11 @@
  * Controller handling recommendations validation
  */
 angular.module('ilApp')
-  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, auth, ItemTier, RecommendedItems, Events, WSAlert, APP_ID, APP_ROLES, API_IL) {
+  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, auth, ItemTier, RecommendedItems, Events, WSAlert, APP_ID, APP_ROLES, UPLOADS_URL) {
 
     $scope.event = false;
     $scope.data = {};
-    $scope.UPLOADS_URL = API_IL;
+    $scope.UPLOADS_URL = UPLOADS_URL;
     $scope.split = false;
     $scope.loading.recommendations = true;
 

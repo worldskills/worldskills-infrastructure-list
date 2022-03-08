@@ -12,13 +12,13 @@ angular.module('ilApp')
     $timeout, uiGridConstants, $confirm,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
     Status, Auth, auth, APP_ID, APP_ROLES,
-    UNITS
+    UNITS, UPLOADS_URL
   ) {
 
     var supplierValue = "";
     var supplied_item_priorities = [];
     $scope.UNITS = UNITS;
-    $scope.UPLOADS_URL = API_IL;
+    $scope.UPLOADS_URL = UPLOADS_URL;
     $scope.fullscreen = false;
     $scope.item = {};
     $scope.items = [];
