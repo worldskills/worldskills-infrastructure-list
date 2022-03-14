@@ -16,6 +16,7 @@
     "add_new_linked_item": "Add new linked item",
     "add_standard_set": "Add standard set",
     "add_sub_category": "Add subcategory",
+    "add_skill_area": "Add Skill Area",
     "admin_views": "Admin views",
     "advanced_actions": "Advanced actions",
     "air_needed": "Air required",
@@ -121,6 +122,7 @@
         "today": "Today"
     },
     "date_time_at": "{{date}} at {{time}}",
+    "delete": "Delete",
     "delete_item_category": {
         "text": "Are you sure you want to delete the item category: {{text}}?",
         "title": "Delete item category"
@@ -361,6 +363,7 @@
     "skill": "Skill",
     "infrastructure_lists": "Infrastructure Lists",
     "skill_area": "Skill Area",
+    "skill_areas": "Skill Areas",
     "list_colon": "List:",
     "skill_information": "Skill Information",
     "skill_management": "Skill Management",

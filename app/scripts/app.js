@@ -217,6 +217,19 @@
         }
     })
 
+    .state('eventBase.skillAreas', {
+      url: '/skill-areas',
+      templateUrl: 'views/event-skill-areas.html',
+      controller: 'EventSkillAreasCtrl',
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.EDIT_CONFIG }
+          ]
+        }
+    })
+
     // lists
     .state('eventBase.list', {
       url: '/lists/{listId}',

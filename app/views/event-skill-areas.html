@@ -1,0 +1,58 @@
+<div class="container">
+
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>events</a></li>
+    <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
+    <li class="active" translate>skill_areas</li>
+</ol>
+
+<div class="row">
+<div class="col-md-offset-3 col-md-6">
+
+<p class="pull-right">
+  <button class="btn btn-sm btn-success" ng-click="create()"><span translate>add_skill_area</span></button>
+</p>
+
+<h1 class="h2 align-top" translate>skill_areas</h1>
+
+<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>no_access_role</div>
+
+<div class="table-responsive" ng-show="auth.accessToken">
+    <table class="table table-striped">
+        <colgroup>
+            <col width="10%" />
+            <col width="60%" />
+            <col width="30%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="area in skillAreas track by area.id">
+                <td>{{area.id}}</td>
+                <td>
+                    <a href ng-click="edit(area)">{{area.name}}</a>
+                </td>
+                <td class="text-right">
+                    <a href class="btn btn-danger btn-xs" ng-click="delete(area)" translate>delete</a>
+                </td>
+            </tr>
+            <tr ng-show="skillAreas.length == 0">
+                <td colspan="3">No Skill Areas found.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<br/>
+
+</div>
+</div>
+
+</div>
