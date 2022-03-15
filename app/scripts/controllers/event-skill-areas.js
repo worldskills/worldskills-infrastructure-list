@@ -32,8 +32,12 @@
          SkillArea.delete({eventId: $stateParams.eventId, id: area.id}, function () {
              WSAlert.success('The Skill Area has been deleted.');
              $state.go('.', {}, {reload: true});
-         }, function (httpResponse) {
-             window.alert('An error has occured: ' + JSON.stringify(httpResponse.data));
+         }, function (error) {
+             if (error.status == 409) {
+               WSAlert.danger(error.data.user_msg);
+             } else {
+               window.alert('An error has occured: ' + JSON.stringify(error.data));
+             }
          });
       }
     };
