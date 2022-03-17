@@ -230,6 +230,19 @@
         }
     })
 
+    .state('eventBase.categories', {
+      url: '/categories',
+      templateUrl: 'views/event-categories.html',
+      controller: 'EventCategoriesCtrl',
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.EDIT_CONFIG }
+          ]
+        }
+    })
+
     // lists
     .state('eventBase.list', {
       url: '/lists/{listId}',

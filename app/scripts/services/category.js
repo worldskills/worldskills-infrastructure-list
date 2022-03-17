@@ -8,9 +8,23 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('Category', function ($q, $http, API_IL, Language) {
+  .service('Category', function ($q, $http, $resource, API_IL, Language) {
 
-    var Category = {};
+    var Category = $resource(API_IL + '/events/:eventId/categories/:id', {
+      }, {
+          query: {
+              method: 'GET'
+          },
+          save: {
+              method: 'POST',
+          },
+          update: {
+              method: 'PUT'
+          },
+          delete: {
+              method: 'DELETE'
+          }
+      });
 
     Category.getAll = function(eventId){
       var deferred= $q.defer();

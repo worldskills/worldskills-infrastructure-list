@@ -17,6 +17,7 @@
           <li ng-if="event.userCanEditAllRequestedItems"><a ui-sref="requestedItems({eventId: event.id})" translate>requested_items</a></li>
           <li ng-if="userCanEditConfig"><a ui-sref="eventBase.skill-participants-override({eventId: event.id})" translate>skill_participants_override</a></li>
           <li ng-if="userCanEditConfig"><a ui-sref="eventBase.skillAreas({eventId: event.id})" translate>skill_areas</a></li>
+          <li ng-if="userCanEditConfig"><a ui-sref="eventBase.categories({eventId: event.id})" translate>categories</a></li>
           <li ng-if="event.userCanEdit"><a ui-sref="eventBase.catalogue({eventId: event.id})" translate>catalogue_editor</a></li>
           <li ng-if="event.userCanEdit"><a ui-sref="recommendations({eventId: event.id})" translate>recommendations</a></li>
           <li ng-if="event.userCanEditConfig"><a ui-sref="eventBase.tierReport({eventId: event.id})" translate>report_tier</a></li>
