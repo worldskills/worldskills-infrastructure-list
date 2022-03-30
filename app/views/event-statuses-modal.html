@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <button ng-show="status.id" type="button" class="btn btn-sm btn-danger pull-right" ng-click="deleteStatus(status)">Delete Status</button>
+    <h3 class="modal-title" translate>status</h3>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal" name="form" novalidate ng-submit="saveStatus()">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Name</label>
+        <div class="col-sm-7">
+          <input class="form-control" ng-model="status.name.text">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Color</label>
+        <div class="col-sm-7">
+          <input class="form-control" ng-model="status.color_code">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Description</label>
+        <div class="col-sm-7">
+          <textarea class="form-control" rows="3" ng-model="status.description.text"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-7">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="status.allow_editing"> Allow Editing
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-offset-3 col-sm-7">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="status.show_in_public_view"> Show in Public
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-7">
+          <button type="submit" class="btn btn-success"><span translate>save</span></button>
+          <a ng-click="closeModal()" class="btn btn-default" translate>cancel</a>
+        </div>
+      </div>
+  </form>
+</div>

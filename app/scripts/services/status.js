@@ -8,9 +8,22 @@
  * Service in the ilApp.
  */
 angular.module('ilApp')
-  .service('Status', function ($q, $http, API_IL) {
+  .service('Status', function ($q, $http, $resource, API_IL) {
 
-    var Status = {};
+    var Status = $resource(API_IL + '/statuses/:id', {
+        id: '@id'
+      }, {
+          save: {
+              method: 'POST',
+              url: API_IL + '/statuses/event/:eventId',
+          },
+          update: {
+              method: 'PUT'
+          },
+          delete: {
+              method: 'DELETE'
+          }
+      });
 
     Status.getSummaryForList = function(listId){
       var deferred= $q.defer();
@@ -62,7 +75,6 @@ angular.module('ilApp')
 
       return deferred.promise;
     };
-
 
      return Status;
   });
