@@ -1,5 +1,6 @@
 <div class="modal-header">
     <button ng-show="status.id" type="button" class="btn btn-sm btn-danger pull-right" ng-click="deleteStatus(status)">Delete Status</button>
+    <button ng-show="status.id && status.id !== defaultStatus.id" type="button" class="btn btn-sm btn-primary pull-right" ng-click="setDefaultStatus(status)" style="margin-right: .2em;">Make Default</button>
     <h3 class="modal-title" translate>status</h3>
 </div>
 <div class="modal-body">

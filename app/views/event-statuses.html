@@ -23,8 +23,8 @@
     <table class="table table-striped">
         <colgroup>
             <col width="10%" />
-            <col width="25%" />
-            <col width="25%" />
+            <col width="30%" />
+            <col width="20%" />
             <col width="20%" />
             <col width="20%" />
         </colgroup>
@@ -42,6 +42,7 @@
                 <td>{{status.id}}</td>
                 <td>
                     <a href ng-click="edit(status)">{{status.name.text}}</a>
+                    <span ng-show="status.id == defaultStatus.id"> (Default Status)</span>
                 </td>
                 <td>
                     <span class="label" ng-style="{'background-color': status.color_code}">{{status.color_code}}</span>

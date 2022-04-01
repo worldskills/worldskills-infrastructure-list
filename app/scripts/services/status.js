@@ -22,7 +22,11 @@ angular.module('ilApp')
           },
           delete: {
               method: 'DELETE'
-          }
+          },
+          setDefaultStatus: {
+              method: 'PUT',
+              url: API_IL + '/statuses/event/:eventId/default',
+          },
       });
 
     Status.getSummaryForList = function(listId){

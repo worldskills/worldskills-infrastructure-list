@@ -7,6 +7,10 @@
       $scope.statuses = result;
     });
 
+    Status.getDefaultStatus($stateParams.eventId).then(function (defaultStatus) {
+      $scope.defaultStatus = defaultStatus;
+    });
+
     $scope.saveStatus = function () {
       if ($scope.status.id) {
         Status.update($scope.status, function (status) {
@@ -27,6 +31,15 @@
 
     $scope.closeModal = function () {
       $scope.statusModal.dismiss('cancel');
+    };
+
+    $scope.setDefaultStatus = function (status) {
+      Status.setDefaultStatus({eventId: $stateParams.eventId}, status, function (status) {
+        WSAlert.success('Default Status has been changed.');
+        $state.go('.', {}, {reload: true});
+      }, function (error) {
+        window.alert('An error has occured: ' + JSON.stringify(error.data));
+      });
     };
 
     $scope.create = function () {
