@@ -6,8 +6,6 @@
     <li class="active" translate>History</li>
 </ol>
 
-<ws-spinner ng-show="loading" class='bigSpinner'></ws-spinner>
-
 <div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>no_access_role</div>
 
 <div ng-repeat="revision in revisions">
@@ -81,6 +79,8 @@
     </div>
   </div>
 </div>
+
+<ws-spinner ng-show="loading" class='bigSpinner'></ws-spinner>
 
 <br/>
 
