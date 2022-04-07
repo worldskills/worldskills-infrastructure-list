@@ -9,7 +9,7 @@ angular.module('ilApp').controller('EventRevisionsCtrl', function ($scope, $stat
 
   $scope.loadNextRevisions = function () {
     Revision.getRevisionsForEvent($stateParams.eventId, limit, offset).then(function (revisions) {
-      $scope.revisions.concat(revisions);
+      $scope.revisions = $scope.revisions.concat(revisions);
     });
 
     offset += limit;
