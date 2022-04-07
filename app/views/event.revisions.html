@@ -19,8 +19,8 @@
       <span ng-switch on="revision.type">
           <span ng-switch-when="create">
             <span class="text-muted">created</span>
-            <span ng-if="revision.model == 'supplied_item'"><span class="text-muted">supplied item</span> {{revision.supplied_item.description.text}}</span>
-            <span ng-if="revision.model == 'requested_item'"><span class="text-muted">requested item</span> {{revision.requested_item.description.text}}</span>
+            <span ng-if="revision.model == 'supplied_item'"><span class="text-muted">supplied item</span> {{revision.supplied_item.id}} {{revision.supplied_item.description.text}}</span>
+            <span ng-if="revision.model == 'requested_item'"><span class="text-muted">requested item</span> {{revision.requested_item.id}} {{revision.requested_item.description.text}}</span>
           </span>
           <span ng-switch-when="update">
             <span class="text-muted">updated</span>
