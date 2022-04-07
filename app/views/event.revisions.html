@@ -6,7 +6,7 @@
     <li class="active" translate>History</li>
 </ol>
 
-<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+<ws-spinner ng-show="loading" class='bigSpinner'></ws-spinner>
 
 <div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>no_access_role</div>
 
