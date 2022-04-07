@@ -27,7 +27,7 @@
           <span ng-switch-when="update">
             <span class="text-muted">updated</span>
             <span ng-if="revision.model == 'supplied_item'">
-              <span class="text-muted">supplied item</span> {{revision.supplied_item.description.text}}
+              <span class="text-muted">supplied item</span> {{revision.supplied_item.id}} {{revision.supplied_item.description.text}}
               <span ng-if="revision.supplied_item_previous.description.text != revision.supplied_item.description.text"><br><span class="text-muted">Changed Description from {{revision.supplied_item_previous.description.text || 'None'}} to</span> {{revision.supplied_item.description.text || 'None'}}</span>
               <span ng-if="revision.supplied_item_previous.manufacturer != revision.supplied_item.manufacturer"><br><span class="text-muted">Changed Manufacturer from {{revision.supplied_item_previous.manufacturer || 'None'}} to</span> {{revision.supplied_item.manufacturer || 'None'}}</span>
               <span ng-if="revision.supplied_item_previous.model != revision.supplied_item.model"><br><span class="text-muted">Changed Model from {{revision.supplied_item_previous.model || 'None'}} to</span> {{revision.supplied_item.model || 'None'}}</span>
