@@ -134,7 +134,7 @@
 
     $translateProvider.useStaticFilesLoader({
       prefix: 'languages/',
-      suffix: '.json'
+      suffix: '.json?v=20220411154913'
     });
 
     $translateProvider.preferredLanguage('en');
