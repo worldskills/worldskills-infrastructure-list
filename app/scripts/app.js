@@ -402,6 +402,19 @@
       }
     })
 
+    .state('eventBase.reports-status', {
+      url: '/reports/status',
+      templateUrl: 'views/reports-status.html',
+      controller: 'ReportsStatusCtrl',
+      data: {
+        requireLoggedIn: true,
+          requiredRoles: [
+            {code: 2200, role: APP_ROLES.ADMIN },
+            {code: 2200, role: APP_ROLES.EDIT_CONFIG }
+          ]
+        }
+    })
+
     .state('ping', {
       url: '/ping'
     });

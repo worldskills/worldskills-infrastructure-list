@@ -22,6 +22,7 @@
           <li ng-if="event.userCanEdit"><a ui-sref="eventBase.catalogue({eventId: event.id})" translate>catalogue_editor</a></li>
           <li ng-if="event.userCanEdit"><a ui-sref="recommendations({eventId: event.id})" translate>recommendations</a></li>
           <li ng-if="event.userCanEditConfig"><a ui-sref="eventBase.tierReport({eventId: event.id})" translate>report_tier</a></li>
+          <li ng-if="event.userCanEditConfig"><a ui-sref="eventBase.reports-status({eventId: event.id})" translate>report_status</a></li>
           <li ng-if="userCanSeeHistory"><a ui-sref="eventBase.revisions({eventId: event.id})" translate>History</a></li>
           <li ng-if="userCanSeeHistory"><a ui-sref="eventBase.clone({eventId: event.id})" translate>Copy Event</a></li>
           <li ng-if="event.userCanEditConfig" role="separator" class="divider"></li>

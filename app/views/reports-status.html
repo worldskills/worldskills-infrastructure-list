@@ -1,0 +1,40 @@
+<div class="container">
+
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>events</a></li>
+    <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
+    <li class="active" translate>report_status</li>
+</ol>
+
+<h1 class="h2" translate>report_status</h1>
+
+<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>no_access_role</div>
+
+<div class="table-responsive mt-3">
+    <table class="table table-striped table-bordered vmiddle table-tiers table-tiers-aligned test-bar">
+        <thead>
+            <tr>
+                <th style="width: 30%;">List</th>
+                <th ng-style="{width: (70 / (statuses.length + 1)) + '%'}" ng-repeat="status in statuses">{{status.name.text}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="list in lists">
+                <td>{{list.name.text}}</td>
+                <td ng-repeat="status in statuses">
+                    <div class="progress">
+                        <div ng-repeat="summary in list.status_summary.summaries | filter:{status:{id: status.id}}:true" ng-style="{'background-color': statusesIndexed[summary.status.id].color_code, 'border-bottom-color': statusesIndexed[summary.status.id].color_code, 'width': (summary.count / list.status_summary.total * 100) + '%'}" class="progress-bar">
+                            <span uib-tooltip="{{statusesIndexed[summary.status.id].name.text}}: {{summary.count}}" tooltip-placement="top" tooltip-trigger="mouseenter" style="cursor: default;">{{summary.count}}</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<br/>
+
+</div>
