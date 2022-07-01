@@ -136,10 +136,9 @@
               <td><b translate>Priority</b><br>{{data.item.recommendedItemSupplied.priority}}</td>
             </tr>
             <tr
-            ng-class="{'warning': data.item.suppliedItem.supplier.name != data.item.recommendedItemSupplied.supplier.name}"
-            ng-if='data.item.recommendedItemSupplied.supplier.name'>
+            ng-class="{'warning': data.item.suppliedItem.supplier.name != data.item.recommendedItemSupplied.supplier.name}">
               <td><b translate>Supplier</b><br>{{data.item.suppliedItem.supplier.name}}</td>
-              <td><b translate>Supplier</b><br>{{data.item.recommendedItemSupplied.supplier.name}}</td>
+              <td><b translate>Supplier</b><br>{{data.item.recommendedItemSupplied ? data.item.recommendedItemSupplied.supplier.name : data.item.suppliedItem.supplier.name}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.supply_type != data.item.recommendedItemSupplied.supply_type}"
