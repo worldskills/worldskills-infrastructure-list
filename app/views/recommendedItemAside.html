@@ -129,12 +129,6 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.extra_details.$dirty && editForm.extra_details.$error.required, 'has-success': !editForm.extra_details.$error.required}">
-              <label class='control-label' translate>approver_information</label>
-              <textarea rows="10" name="extra_details" class="input-sm form-control" placeholder="{{ 'approver_information' | translate }}" ng-model='recommendedItem.comment'></textarea>
-            </div>
-          </div>
         </uib-tab>
         <uib-tab index="1" heading="{{'supplied_item_tab.detailed' | translate}}">
           <ng-form name="recommendedItemSuppliedForm.DETAILED">
