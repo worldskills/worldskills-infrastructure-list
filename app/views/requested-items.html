@@ -182,6 +182,9 @@
     <button class="btn btn-sm btn-primary" ng-disabled="selectedItemsCount() < 1" ng-click="openMultipleItemEditor()">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate>multiple_edition</span>
     </button>
+    <button class="btn btn-sm btn-danger" ng-disabled="selectedItemsCount() < 1" ng-click="deleteMultipleItem()">
+      <span translate>multiple_delete</span>
+    </button>
   </div>
 
   <div class="clearfix"></div>

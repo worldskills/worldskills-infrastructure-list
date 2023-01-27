@@ -8,7 +8,7 @@
  * Controller of the ilApp
  */
 angular.module('ilApp')
-  .controller('RequestedItemCtrl', function ($q, $scope, $state, $stateParams, Events, WSAlert, APP_ROLES, Items,
+  .controller('RequestedItemCtrl', function ($q, $scope, $state, $stateParams, Events, WSAlert, APP_ROLES, $confirm, Items,
     ItemCategory, Category, Status, API_IL, $aside, ItemTier, Reporting, UNITS) {
 
     $scope.UNITS = UNITS;
@@ -110,6 +110,23 @@ angular.module('ilApp')
         backdrop: true,
         controller: 'RequestedItemModalCtrl',
       }).result.then(postClose, postClose);
+    };
+    $scope.deleteMultipleItem = function () {
+      $confirm({
+        title: 'Delete selected Requested item(s)',
+        text: 'Are you sure you want to delete these items? Deleted requested items cannot be restored.',
+      }).then(function () {
+        angular.forEach($scope.items, function(item) {
+          if (item.selected) {
+              Items.removeItem(item, $state.params.eventId).then(function (result) {
+                  //remove from list
+                  $scope.items.splice($scope.items.indexOf(item), 1);
+              }), function (error) {
+                  WSAlert.danger(error);
+              };
+          }
+        });
+      });
     };
     $scope.changePage = function(page)
     {
