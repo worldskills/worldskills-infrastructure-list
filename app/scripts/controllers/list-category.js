@@ -360,8 +360,8 @@ angular.module('ilApp')
     $scope.splitSuppliedItem = function(item) {
 
       $confirm({
-        title: 'Split Supplied Item',
-        text: 'Create a copy of the supplied item and link it to the requested item?',
+        title: 'Split Product',
+        text: 'Create a copy of the Product and link it to the requested item?',
       }).then(function () {
 
         SuppliedItem.cloneItem(item.supplied_item, $scope.event_id).then(function (res) {

@@ -19,13 +19,13 @@
       <span ng-switch on="revision.type">
           <span ng-switch-when="create">
             <span class="text-muted">created</span>
-            <span ng-if="revision.model == 'supplied_item'"><span class="text-muted">supplied item</span> {{revision.supplied_item.id}} {{revision.supplied_item.description.text}}</span>
+            <span ng-if="revision.model == 'supplied_item'"><span class="text-muted">Product</span> {{revision.supplied_item.id}} {{revision.supplied_item.description.text}}</span>
             <span ng-if="revision.model == 'requested_item'"><span class="text-muted">requested item</span> {{revision.requested_item.id}} {{revision.requested_item.description.text}}</span>
           </span>
           <span ng-switch-when="update">
             <span class="text-muted">updated</span>
             <span ng-if="revision.model == 'supplied_item'">
-              <span class="text-muted">supplied item</span> {{revision.supplied_item.id}} {{revision.supplied_item.description.text}}
+              <span class="text-muted">Product</span> {{revision.supplied_item.id}} {{revision.supplied_item.description.text}}
               <span ng-if="revision.supplied_item_previous.description.text != revision.supplied_item.description.text"><br><span class="text-muted">Changed Description from {{revision.supplied_item_previous.description.text || 'None'}} to</span> {{revision.supplied_item.description.text || 'None'}}</span>
               <span ng-if="revision.supplied_item_previous.manufacturer != revision.supplied_item.manufacturer"><br><span class="text-muted">Changed Manufacturer from {{revision.supplied_item_previous.manufacturer || 'None'}} to</span> {{revision.supplied_item.manufacturer || 'None'}}</span>
               <span ng-if="revision.supplied_item_previous.model != revision.supplied_item.model"><br><span class="text-muted">Changed Model from {{revision.supplied_item_previous.model || 'None'}} to</span> {{revision.supplied_item.model || 'None'}}</span>
@@ -63,7 +63,7 @@
               <span ng-if="revision.requested_item_previous.supplier.id != revision.requested_item.supplier.id"><br><span class="text-muted">Changed Supplier from {{revision.requested_item_previous.supplier.name || 'None'}} to</span> {{revision.requested_item.supplier.name || 'None'}}</span>
               <span ng-if="revision.requested_item_previous.price != revision.requested_item.price"><br><span class="text-muted">Changed Price from {{revision.requested_item_previous.price || 'None'}} to</span> {{revision.requested_item.price || 'None'}}</span>
               <span ng-if="revision.requested_item_previous.vat_refund != revision.requested_item.vat_refund"><br><span class="text-muted">Changed VAT refund from {{revision.requested_item_previous.vat_refund || 'None'}} to</span> {{revision.requested_item.vat_refund || 'None'}}</span>
-              <span ng-if="revision.requested_item_previous.supplied_item.id != revision.requested_item.supplied_item.id"><br><span class="text-muted">Changed Supplied Item from {{revision.requested_item_previous.supplied_item.description.text || 'None'}} to</span> {{revision.requested_item.supplied_item.description.text || 'None'}}</span>
+              <span ng-if="revision.requested_item_previous.supplied_item.id != revision.requested_item.supplied_item.id"><br><span class="text-muted">Changed Product from {{revision.requested_item_previous.supplied_item.description.text || 'None'}} to</span> {{revision.requested_item.supplied_item.description.text || 'None'}}</span>
               <span ng-if="revision.requested_item_previous.status.id != revision.requested_item.status.id"><br><span class="text-muted">Changed Status from {{revision.requested_item_previous.status.name.text || 'None'}} to</span> {{revision.requested_item.status.name.text || 'None'}}</span>
               <span ng-if="revision.requested_item_previous.area.id != revision.requested_item.area.id"><br><span class="text-muted">Changed Area from {{revision.requested_item_previous.area.name || 'None'}} to</span> {{revision.requested_item.area.name || 'None'}}</span>
               <span ng-if="revision.requested_item_previous.secret != revision.requested_item.secret"><br><span class="text-muted">Changed Secret from {{revision.requested_item_previous.secret || 'None'}} to</span> {{revision.requested_item.secret || 'None'}}</span>
@@ -72,7 +72,7 @@
           </span>
           <span ng-switch-when="delete">
             <span class="text-muted">deleted</span>
-            <span ng-if="revision.model == 'supplied_item'"><span class="text-muted">supplied item</span> {{revision.supplied_item_previous.description.text}}</span>
+            <span ng-if="revision.model == 'supplied_item'"><span class="text-muted">Product</span> {{revision.supplied_item_previous.description.text}}</span>
             <span ng-if="revision.model == 'requested_item'"><span class="text-muted">requested item</span> {{revision.requested_item_previous.description.text}}</span>
           </span>
       </span>

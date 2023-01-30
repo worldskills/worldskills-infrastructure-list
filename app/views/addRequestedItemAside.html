@@ -134,7 +134,7 @@
         <div class="col col-sm-12 col-md-6">
           <div class="form-group addForm" ng-if="item.supplied_item">
             <div class="well">
-              <h5 translate>supplied_item</h5>
+              <h5 translate>product</h5>
               <div class="row">
                 <div class="col col-xs col-xs-4" translate>th_description</div>
                 <div class="col col-xs col-xs-8">{{ item.supplied_item.description.text }}</div>
@@ -161,8 +161,8 @@
               </div>
               <br>
               <div class="form-group">
-                <a data-nodrag ng-if="event.userCanCreate" class='btn btn-sm btn-primary' ng-click="editSuppliedItem()" translate>edit_supplied_item</a>
-                <a data-nodrag class='btn btn-sm btn-info' ng-click="switchSuppliedItem(item)" translate>switch_supplied_item</a>
+                <a data-nodrag ng-if="event.userCanCreate" class='btn btn-sm btn-primary' ng-click="editSuppliedItem()" translate>edit_product</a>
+                <a data-nodrag class='btn btn-sm btn-info' ng-click="switchSuppliedItem(item)" translate>switch_product</a>
               </div>
               <div ng-if="item.supplied_item.multiple_linked_lists" class="alert alert-warning" data-nodrag><span translate>item_attached_to_multiple_skills</span></div>
             </div>

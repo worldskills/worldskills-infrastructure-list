@@ -116,7 +116,7 @@
     </div>
     <div class="col col-sm-12 col-md-6">
       <div class='well'>
-        <h5 translate>supplied_item</h5>
+        <h5 translate>product</h5>
         <div class="row">
           <div class="col col-xs col-xs-4" translate>th_description</div>
           <div class="col col-xs col-xs-8">{{ item.supplied_item.description.text }}</div>
@@ -152,9 +152,9 @@
         </div>
         <br>
         <div class="form-group">
-          <a data-nodrag class='btn btn-sm btn-primary' ng-if="canEditSuppliedItem" ng-click="editSuppliedItem(item)" translate>edit_supplied_item</a>
-          <a data-nodrag class='btn btn-sm btn-info' ng-click="switchSuppliedItem(item)" translate>switch_supplied_item</a>
-          <br><br><a data-nodrag class='btn btn-sm btn-warning' ng-if="canEditSuppliedItem && item.supplied_item.multiple_linked_items" ng-click="splitSuppliedItem(item)" translate>split_supplied_item</a>
+          <a data-nodrag class='btn btn-sm btn-primary' ng-if="canEditSuppliedItem" ng-click="editSuppliedItem(item)" translate>edit_product</a>
+          <a data-nodrag class='btn btn-sm btn-info' ng-click="switchSuppliedItem(item)" translate>switch_product</a>
+          <br><br><a data-nodrag class='btn btn-sm btn-warning' ng-if="canEditSuppliedItem && item.supplied_item.multiple_linked_items" ng-click="splitSuppliedItem(item)" translate>split_product</a>
         </div>
         <div ng-if="item.supplied_item.multiple_linked_lists" class="alert alert-warning" data-nodrag><span translate>item_attached_to_multiple_skills</span></div>
       </div>

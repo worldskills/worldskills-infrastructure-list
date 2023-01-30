@@ -25,7 +25,7 @@
         <span ng-if="!item.requestedItem" translate>td_item_addition</span>
         <span ng-if="item.deletionSuggestion" translate>td_item_deletion</span>
         <span ng-if="item.recommendedItemSupplied">
-          (<span translate>supplied_item_changed</span>)
+          (<span translate>product_changed</span>)
         </span>
       </span>
       <span ng-if="item.requestedItem && !item.deletionSuggestion">
@@ -64,7 +64,7 @@
         <span ng-if="item.requestedItem.additional_quantity != item.additional_quantity"><br><span class="text-muted">Change Additional Quantity from {{item.requestedItem.additional_quantity || 'None'}} to</span> {{item.additional_quantity || 'None'}}</span>
         <span ng-if="item.requestedItem.unit != item.unit"><br><span class="text-muted">Change Unit from {{item.requestedItem.unit || 'None'}} to</span> {{item.unit || 'None'}}</span>
         <span ng-if="item.requestedItem.price != item.price"><br><span class="text-muted">Change Price from {{item.requestedItem.price || 'None'}} to</span> {{item.price || 'None'}}</span>
-        <span ng-if="item.recommendedItemSupplied && item.suppliedItem.id != item.recommendedItemSupplied.supplied_item.id"><br><span class="text-muted">Change Supplied Item from {{item.suppliedItem.description.text || 'None'}} to</span> {{item.recommendedItemSupplied.description.text || 'None'}}</span>
+        <span ng-if="item.recommendedItemSupplied && item.suppliedItem.id != item.recommendedItemSupplied.supplied_item.id"><br><span class="text-muted">Change Product from {{item.suppliedItem.description.text || 'None'}} to</span> {{item.recommendedItemSupplied.description.text || 'None'}}</span>
         <span ng-if="item.requestedItem.category_id != item.category.id"><br><span class="text-muted">Change Category to</span> {{item.category.name.text || 'None'}}</span>
         <span ng-if="item.requestedItem.area.id != item.area.id"><br><span class="text-muted">Change Skill Area to</span> {{item.area.name || 'None'}}</span>
         <span ng-if="item.requestedItem.tier_id != item.tier.id"><br><span class="text-muted">Change Tier to</span> {{item.tier.name.text || 'None'}}</span>
@@ -77,7 +77,7 @@
         <span ng-if="item.additional_quantity"><br><span class="text-muted">Additional Quantity:</span> {{item.additional_quantity}}</span>
         <span ng-if="item.unit"><br><span class="text-muted">Unit:</span> {{item.unit}}</span>
         <span ng-if="item.price"><br><span class="text-muted">Price:</span> {{item.price}}</span>
-        <span ng-if="item.recommendedItemSupplied.id"><br><span class="text-muted">Supplied Item:</span> {{item.recommendedItemSupplied.description.text}}</span>
+        <span ng-if="item.recommendedItemSupplied.id"><br><span class="text-muted">Product:</span> {{item.recommendedItemSupplied.description.text}}</span>
         <span ng-if="item.category.id"><br><span class="text-muted">Category:</span> {{item.category.name.text}}</span>
       </span>
 

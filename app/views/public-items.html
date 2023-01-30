@@ -41,7 +41,7 @@
           <li><a href ng-click="toggleColumn('quantity')"><i ng-style="{'visibility' : columns.quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity</span></a></li>
           <li><a href ng-click="toggleColumn('calculated_quantity')"><i ng-style="{'visibility' : columns.calculated_quantity ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_quantity_calculated</span></a></li>
           <li><a href ng-click="toggleColumn('unit')"><i ng-style="{'visibility' : columns.unit ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_unit</span></a></li>
-          <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_description</span></a></li>
+          <li><a href ng-click="toggleColumn('description')"><i ng-style="{'visibility' : columns.description ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_product</span></a></li>
           <li><a href ng-click="toggleColumn('area')"><i ng-style="{'visibility' : columns.area ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>skill_area</span></a></li>
           <li><a href ng-click="toggleColumn('manufacturer')"><i ng-style="{'visibility' : columns.manufacturer ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_manufacturer</span></a></li>
           <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_model</span></a></li>
@@ -87,7 +87,7 @@
                     </th>
                     <th ng-if="columns.unit" translate>th_unit</th>
                     <th ng-if="columns.description" ng-class="{dropup: !reverse}">
-                      <span ng-click="sortBy('supplied_item.description.text')" translate>th_description</span>
+                      <span ng-click="sortBy('supplied_item.description.text')" translate>th_product</span>
                       <span class="caret" ng-show="sort === 'supplied_item.description.text'"></span>
                     </th>
                     <th ng-if="columns.area" ng-class="{dropup: !reverse}">

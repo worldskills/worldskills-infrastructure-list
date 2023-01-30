@@ -11,7 +11,7 @@
         <tr>
           <th translate>Original</th>
           <th translate>Recommended
-            <span class='label label-warning' ng-if="data.item.wrongSuppliedItem" translate>wrong_supplied_item</span>
+            <span class='label label-warning' ng-if="data.item.wrongSuppliedItem" translate>wrong_product</span>
             <span class='label label-danger' ng-if="data.item.deletionSuggestion" translate>Deletion suggested</span>
           </th>
         </tr>
@@ -75,15 +75,15 @@
 
 
     <div ng-if='data.item.suppliedItem.id || data.item.recommendedItemSupplied.id'>
-      <fieldset><legend>Supplied Item</legend>
+      <fieldset><legend>Product</legend>
         <div class='alert alert-warning' ng-if="(data.item.recommendedItemSupplied.id && (data.item.suppliedItem.multiple_linked_lists === true || data.item.suppliedItem.multiple_linked_items === true || (!data.item.requestedItem && data.item.suppliedItem.linkedItems === true))) && !data.item.deletionSuggestion" >
           <p class="lead" translate ng-show="!data.split && data.item.suppliedItem.multiple_linked_lists">item_attached_to_multiple_skills</p>
           <p class="lead" translate ng-show="!data.split && (!data.item.requestedItem && data.item.suppliedItem.linkedItems === true)">item_attached_to_skill</p>
           <p class="lead" translate ng-show="!data.split && !data.item.suppliedItem.multiple_linked_lists && data.item.suppliedItem.multiple_linked_items">item_attached_to_multiple_items</p>
           <br>
           <button ng-click="data.split = !data.split" class='btn btn-xs btn-warning'>
-            <span translate ng-show="!data.split">split_supplied_item</span>
-            <span translate ng-show="data.split">dont_split_supplied_item</span>
+            <span translate ng-show="!data.split">split_product</span>
+            <span translate ng-show="data.split">dont_split_product</span>
           </button>
         </div>
         <table class="table table-striped" ng-if="data.item.id">

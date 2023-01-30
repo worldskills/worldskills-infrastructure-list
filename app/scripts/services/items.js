@@ -120,7 +120,7 @@ angular.module('ilApp')
               });
           },
           function(error){
-            deferred.reject("Could not create a supplied item: " + error.data.user_msg);
+            deferred.reject("Could not create a Product: " + error.data.user_msg);
           });
         }
         else if(split_supplied_item){
@@ -138,7 +138,7 @@ angular.module('ilApp')
               });
           },
           function(error){
-            deferred.reject("Could not create a copy of supplied item: " + error.data.user_msg);
+            deferred.reject("Could not create a copy of Product: " + error.data.user_msg);
           });
         }
         else {

@@ -94,7 +94,7 @@ angular.module('ilApp')
             deferred.resolve(res.data);
           },
           function(error){
-            deferred.reject("Could not get supplied item: " + error.data.user_msg);
+            deferred.reject("Could not get Product: " + error.data.user_msg);
           });
 
         return deferred.promise;
@@ -109,7 +109,7 @@ angular.module('ilApp')
             deferred.resolve(res.data);
           },
           function(error){
-            deferred.reject("Could not get supplied item: " + error.data.user_msg);
+            deferred.reject("Could not get Product: " + error.data.user_msg);
           });
 
         return deferred.promise;
