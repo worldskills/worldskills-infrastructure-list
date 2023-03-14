@@ -30,6 +30,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     supplier: true,
     item_subcategory: false,
     item_category: false,
+    tier: false,
     extra_details: false,
     files: false,
     status: true,
@@ -42,6 +43,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
 
   var promises = [];
   var categoriesIndexed = {};
+  var tiersIndexed = {};
 
   promises.push(Events.getEvent($scope.eventId).then(function (event) {
     $scope.event = event;
@@ -82,9 +84,12 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.statuses = result;
   });
 
-  ItemTier.getTiersForEvent($state.params.eventId).then(function (tiers) {
+  promises.push(ItemTier.getTiersForEvent($state.params.eventId).then(function (tiers) {
     $scope.tiers = tiers;
-  });
+    angular.forEach($scope.tiers, function (tier) {
+      tiersIndexed[tier.id] = tier;
+    });
+  }));
 
   $q.all(promises).then(function () {
     Items.getPublicItems($scope.eventId, $scope.listId)
@@ -92,6 +97,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         angular.forEach(result.requested_items, function (item) {
           if (typeof categoriesIndexed[item.category_id] !== 'undefined') {
             item.category = categoriesIndexed[item.category_id];
+          }
+          if (typeof tiersIndexed[item.tier_id] !== 'undefined') {
+            item.tier = tiersIndexed[item.tier_id];
           }
         });
         $scope.items = result;
