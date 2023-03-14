@@ -432,6 +432,12 @@ module.exports = function (grunt) {
           cwd: 'bower_components/angular-ui-grid',
           src: '*.{ttf,svg,woff,eot}',
           dest: '<%= yeoman.dist %>/styles'
+        },
+        { // angular-i18n locale files
+          expand: true,
+          cwd: 'bower_components/angular-i18n/',
+          src: 'angular-locale_*.js',
+          dest: '<%= yeoman.dist %>/bower_components/angular-i18n/'
         }
         ]
       },
