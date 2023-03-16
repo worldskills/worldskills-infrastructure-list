@@ -255,6 +255,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       $scope.recommendedItem.comment = modalScope.comment;
       RecommendedItems.suggestDeletion($scope.recommendedItem, $scope.eventId, $scope.listId).then(function(result) {
         WSAlert.success($translate.instant('wsalert.success.recommend_delete'));
+        if (item) {
+          item.deletionSuggestions++;
+        }
       }, function(error) {
         WSAlert.danger(error);
       });
