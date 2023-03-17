@@ -167,7 +167,7 @@ angular.module('ilApp')
           else{
             $uibModalInstance.dismiss();
             $scope.successType = "EDIT";
-            WSAlert.success($translate.instant('wsalert.success.recommend_edit'));
+            WSAlert.success($translate.instant('wsalert.success.recommend_edit'), '', false, false);
           }
         }, function(error) {
           WSAlert.danger(error);
@@ -236,7 +236,7 @@ angular.module('ilApp')
           //close modal window and show alert
           $uibModalInstance.dismiss();
           if($scope.successType === "EDIT")
-            WSAlert.success($translate.instant('wsalert.success.recommend_edit'));
+            WSAlert.success($translate.instant('wsalert.success.recommend_edit'), '', false, false);
           else
             WSAlert.success($translate.instant('wsalert.success.recommend_add'));
         }, 1000)
