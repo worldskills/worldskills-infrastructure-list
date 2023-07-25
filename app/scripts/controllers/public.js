@@ -139,6 +139,27 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
     $scope.sort = sort;
   };
 
+  $scope.simplifiedObjectComparator = function (actual, expected) {
+    if (typeof actual === 'undefined' || actual === null) {
+      actual = '';
+    }
+    if (expected === null) {
+      expected = '';
+    }
+    if (typeof expected === 'object') {
+      var expectedVal = '';
+      var key;
+      for (key in expected) {
+        expectedVal += expected[key];
+      }
+      expected = expectedVal;
+    }
+
+    actual = ('' + actual).toLowerCase();
+    expected = ('' + expected).toLowerCase();
+    return actual.indexOf(expected) !== -1;
+  };
+
   $scope.showRecommendations = function (requestedItemId) {
     $scope.loadingRecommendations = true;
     $scope.recommendedItems = [];

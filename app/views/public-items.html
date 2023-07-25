@@ -177,7 +177,7 @@
                 <tr><td colspan="{{columnLength}}"></td></tr>
             </tfoot>
             <tbody>
-                <tr ng-repeat="item in filteredItems = (items.requested_items | filter:filter) | orderBy:sort:reverse track by item.id">
+                <tr ng-repeat="item in filteredItems = (items.requested_items | filter:filter:simplifiedObjectComparator) | orderBy:sort:reverse track by item.id">
                   <td ng-if="columns.id">{{ item.id }}</td>
                   <td ng-if="columns.category">
                       {{ item.category.name.text }}
