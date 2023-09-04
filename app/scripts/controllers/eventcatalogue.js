@@ -732,7 +732,7 @@ angular.module('ilApp')
       // $scope.loadCatalogue();
     };
 
-    $scope.editRequestedItem = function(item) {
+    $scope.editRequestedItem = function(item, itemIndex) {
 
       auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
         $scope.canEditItemStatus = hasUserRole;
@@ -740,6 +740,7 @@ angular.module('ilApp')
 
       //copy item
       $scope.item = angular.copy(item);
+      $scope.itemIndex = itemIndex;
 
       $scope.editModal = $aside.open({
         templateUrl: 'views/editRequestedItemAside.html',

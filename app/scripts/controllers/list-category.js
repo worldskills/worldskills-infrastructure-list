@@ -30,12 +30,13 @@ angular.module('ilApp')
     $scope.supplierValue = false;
     $scope.statusEditionItemId = -1; // starting at -1 as no item should be considered in edition mode on page start
 
-    $scope.editRequestedItem = function(item) {
+    $scope.editRequestedItem = function(item, itemIndex) {
 
       $scope.supplierValue = false;
 
       //copy item
       $scope.item = angular.copy(item);
+      $scope.itemIndex = itemIndex;
 
       $scope.editModal = $aside.open({
         templateUrl: 'views/editRequestedItemAside.html',

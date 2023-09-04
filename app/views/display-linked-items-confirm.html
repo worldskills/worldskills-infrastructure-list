@@ -32,7 +32,7 @@
       <td>{{item.status.name.text}}</td>
       <td>
         <div style="width: 55px;">
-          <button ng-click="data.editRequestedItem(item)" style="margin-right: .2em" class="pull-right btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
+          <button ng-click="data.editRequestedItem(item, $index)" style="margin-right: .2em" class="pull-right btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
           <button ng-click="data.unlinkRequestedItem(item, data.items, $index)" style="margin-right: .2em" class="pull-right btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
         </div>
       </td>
