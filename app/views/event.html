@@ -60,11 +60,12 @@
                 <tr ng-show="!loading.lists"><td colspan="4"></td></tr>
             </tfoot>
             <tbody>
-                <tr ng-repeat="list in lists track by list.id">
+                <tr ng-repeat="list in lists track by list.id" ng-if="list.userCanEdit || list.skill.status !== 'removed'">
                     <td>{{list.id}}</td>
                     <td style="white-space: nowrap;">
                         <a ng-if="list.userCanView" ui-sref="publicItems({eventId: event.id, listId: list.id})">{{list.name.text}}</a>
                         <span ng-if="!list.userCanView">{{list.name.text}}</span>
+                        <span ng-if="list.skill.status === 'removed'">(Removed)</span>
                     </td>
                     <td>
                       <div class="progress" style="margin-bottom: 0;">
