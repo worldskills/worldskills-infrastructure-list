@@ -393,6 +393,7 @@ module.exports = function (grunt) {
             'styles/fonts/{,*/}*.*',
             'template/{,*/}*.html',
             'styles/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            'files/*.xlsx',
             'fonts/*',
             'webfonts/*'
           ]
@@ -426,14 +427,6 @@ module.exports = function (grunt) {
           cwd: 'bower_components/components-font-awesome',
           src: 'webfonts/*',
           dest: '<%= yeoman.dist %>'
-        },
-        { // static files
-          expand: true,
-          src: '<%= yeoman.app %>/files/',
-          dest: '<%= yeoman.dist %>/files/',
-          src: [
-            '*.xlsx',
-          ]
         },
         { //fonts for ui-grid
           expand: true,
