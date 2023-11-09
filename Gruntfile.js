@@ -427,6 +427,14 @@ module.exports = function (grunt) {
           src: 'webfonts/*',
           dest: '<%= yeoman.dist %>'
         },
+        { // static files
+          expand: true,
+          src: '<%= yeoman.app %>/files/',
+          dest: '<%= yeoman.dist %>/files/',
+          src: [
+            '*.xlsx',
+          ]
+        },
         { //fonts for ui-grid
           expand: true,
           cwd: 'bower_components/angular-ui-grid',

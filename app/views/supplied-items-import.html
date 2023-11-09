@@ -1,0 +1,42 @@
+<div class="container">
+
+<ol class="breadcrumb">
+    <li><a ui-sref="eventList" translate>events</a></li>
+    <li><a ui-sref="event({eventId: event.id})">{{event.name.text}}</a></li>
+    <li class="active" translate>import_products</li>
+</ol>
+
+<ws-spinner ng-show="!auth.accessToken" class='bigSpinner'></ws-spinner>
+
+<div class='alert alert-danger' ng-show="auth.accessToken != null && activeRole == false" translate>no_access_role</div>
+
+<div ng-show="auth.accessToken">
+
+<h1 class="h2">{{ event.name.text || " "}}</h1>
+<hr>
+
+<h3 translate>import_products</h3>
+
+<hr>
+
+<form ng-submit="importSuppliedItems()">
+
+<div class="row">
+  <div class="col-md-6">
+    <p>The Excel file needs to match the Excel template. <a href="files/import.xlsx">Download Excel template</a>.</p>
+    <div class="well">
+      <div class="form-group">
+        <label>Excel file</label>
+        <input type="file" class="form-control" nv-file-select uploader="uploader">
+      </div>
+      <button class="btn btn-success" type="submit" ng-disabled="importing">Import</button>
+      <span ng-show="importing">Importing, please wait...</span>
+    </div>
+  </div>
+</div>
+
+</form>
+
+<br/><br/><br/>
+</div>
+

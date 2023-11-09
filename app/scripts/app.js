@@ -387,6 +387,19 @@
       }
     })
 
+    .state('eventBase.importSuppliedItems', {
+      url: '/catalogue/import',
+      templateUrl: 'views/supplied-items-import.html',
+      controller: 'SuppliedItemImportCtrl',
+      data: {
+        requireLoggedIn: true,
+        requiredRoles: [
+          {code: 2200, role: APP_ROLES.ADMIN },
+          {code: 2200, role: APP_ROLES.CREATE_SUPPLIED_ITEMS }
+        ]
+      }
+    })
+
     .state('recommendations', {
       url: '/events/{eventId}/recommendations?list',
       templateUrl: 'views/recommendations.html',

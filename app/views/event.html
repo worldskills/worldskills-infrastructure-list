@@ -26,6 +26,7 @@
           <li ng-if="userCanSeeHistory"><a ui-sref="eventBase.revisions({eventId: event.id})" translate>History</a></li>
           <li ng-if="userCanSeeHistory"><a ui-sref="eventBase.clone({eventId: event.id})" translate>Copy Event</a></li>
           <li ng-if="event.userCanEditConfig" role="separator" class="divider"></li>
+          <li ng-if="event.userCanEditConfig && event.userCanEdit"><a ui-sref="eventBase.importSuppliedItems({eventId: event.id})" translate>import_products</a></li>
           <li ng-if="event.userCanEditConfig && !loading.requested"><a href="#" ng-click="exportAllRequested($event)" translate>export_requested_items</a></li>
           <li ng-if="event.userCanEditConfig && !loading.catalogue"><a href="#" ng-click="exportAllCatalogue($event)" translate>export_all_items</a></li>
           <li ng-if="event.userCanEditConfig" role="separator" class="divider"></li>
