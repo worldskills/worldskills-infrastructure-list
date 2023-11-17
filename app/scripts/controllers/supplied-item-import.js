@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('ilApp').controller('SuppliedItemImportCtrl', function ($scope, $state, FileUploader, WSAlert, auth, API_IL) {
+angular.module('ilApp').controller('SuppliedItemImportCtrl', function ($scope, $state, FileUploader, Language, WSAlert, auth, API_IL) {
 
   $scope.importing = false;
 
   $scope.uploader = new FileUploader({
-    url: API_IL + '/items/' + $state.params.eventId + '/supplied_items_import',
+    url: API_IL + '/items/' + $state.params.eventId + '/supplied_items_import?l=' + Language.selectedLanguage,
     headers: {
       Authorization: 'Bearer ' + auth.accessToken
     }
