@@ -28,8 +28,11 @@ angular.module('ilApp').controller('EventCtrl', function ($scope, $state, $state
       $scope.event = res[0];
       $scope.skills = res[1];
       $scope.lists = res[2];
-      auth.hasUserRole(APP_ID, ['Admin', 'EditItemCategories'], $scope.event.entity_id).then(function (hasUserRole) {
-          $scope.userCanEditItemCategories = hasUserRole;
+      auth.hasUserRole(APP_ID, ['Admin', 'ExportSuppliedItems'], $scope.event.entity_id).then(function (hasUserRole) {
+          $scope.userCanExportSuppliedItems = hasUserRole;
+      });
+      auth.hasUserRole(APP_ID, ['Admin', 'EditConfig'], $scope.event.entity_id).then(function (hasUserRole) {
+          $scope.userCanEditConfig = hasUserRole;
       });
       auth.hasUserRole(APP_ID, ['Admin', 'EditConfig'], $scope.event.entity_id).then(function (hasUserRole) {
           $scope.userCanEditConfig = hasUserRole;
