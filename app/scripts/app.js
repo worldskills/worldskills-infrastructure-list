@@ -41,6 +41,7 @@
     ADMIN: 'Admin',
     EDIT_REQUESTED_ITEMS: 'EditRequestedItems',
     EDIT_REQUESTED_ITEMS_ALWAYS: 'EditRequestedAlways',
+    EXPORT_REQUESTED_ITEMS: 'ExportRequestedItems',
     EXPORT_SUPPLIED_ITEMS: 'ExportSuppliedItems',
     CREATE_SUPPLIED_ITEMS: 'CreateSuppliedItems',
     EDIT_SUPPLIED_ITEMS: 'EditSuppliedItems',

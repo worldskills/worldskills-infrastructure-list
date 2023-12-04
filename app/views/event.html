@@ -9,7 +9,7 @@
 
 <hr>
 
-<div class="pull-right" ng-show="event.userCanEdit || userCanEditItemCategories || userCanEditConfig || event.userCanExportSuppliedItems">
+<div class="pull-right" ng-show="event.userCanEdit || userCanEditItemCategories || userCanEditConfig || event.userCanExportRequestedItems || event.userCanExportSuppliedItems">
     <div class="btn-group" uib-dropdown>
         <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled"><span translate>Tools</span> <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
@@ -27,8 +27,8 @@
           <li ng-if="userCanSeeHistory"><a ui-sref="eventBase.clone({eventId: event.id})" translate>Copy Event</a></li>
           <li ng-if="event.userCanEditConfig" role="separator" class="divider"></li>
           <li ng-if="event.userCanEditConfig && event.userCanEdit"><a ui-sref="eventBase.importSuppliedItems({eventId: event.id})" translate>import_products</a></li>
-          <li ng-if="event.userCanEditConfig && !loading.requested"><a href="#" ng-click="exportAllRequested($event)" translate>export_requested_items</a></li>
-          <li ng-if="event.userCanExportSuppliedItems && !loading.catalogue"><a href="#" ng-click="exportAllCatalogue($event)" translate>export_all_items</a></li>
+          <li ng-if="(event.userCanEditConfig || event.userCanExportRequestedItems) && !loading.requested"><a href="#" ng-click="exportAllRequested($event)" translate>export_requested_items</a></li>
+          <li ng-if="(event.userCanEditConfig || event.userCanExportSuppliedItems) && !loading.catalogue"><a href="#" ng-click="exportAllCatalogue($event)" translate>export_all_items</a></li>
           <li ng-if="event.userCanEditConfig" role="separator" class="divider"></li>
           <li ng-if="event.userCanEditConfig"><a href ng-click="createList()" translate>Create new list</a></li>
         </ul>
