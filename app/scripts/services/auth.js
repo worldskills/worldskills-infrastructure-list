@@ -21,6 +21,9 @@ angular.module('ilApp')
       auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EXPORT_SUPPLIED_ITEMS], event.entity_id).then(function (hasUserRole) {
         event.userCanExportSuppliedItems = hasUserRole;
       });
+      auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EXPORT_REQUESTED_ITEMS], event.entity_id).then(function (hasUserRole) {
+        event.userCanExportRequestedItems = hasUserRole;
+      });
     };
 
     Auth.setUserListPermissions = function (list) {
