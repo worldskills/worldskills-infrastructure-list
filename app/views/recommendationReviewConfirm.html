@@ -11,8 +11,6 @@
         <tr>
           <th translate>Original</th>
           <th translate>Recommended
-            <span class='label label-warning' ng-if="data.item.wrongSuppliedItem" translate>wrong_product</span>
-            <span class='label label-danger' ng-if="data.item.deletionSuggestion" translate>Deletion suggested</span>
           </th>
         </tr>
       </thead>
@@ -76,6 +74,12 @@
 
     <div ng-if='data.item.suppliedItem.id || data.item.recommendedItemSupplied.id'>
       <fieldset><legend>Product</legend>
+
+        <div>
+          <span class="label label-warning" ng-show="data.item.wrongSuppliedItem" translate>wrong_product</span>
+          <span class="label label-danger" ng-show="data.item.deletionSuggestion" translate>Deletion suggested</span>
+        </div>
+
         <div class='alert alert-warning' ng-if="(data.item.recommendedItemSupplied.id && (data.item.suppliedItem.multiple_linked_lists === true || data.item.suppliedItem.multiple_linked_items === true || (!data.item.requestedItem && data.item.suppliedItem.linkedItems === true))) && !data.item.deletionSuggestion" >
           <p class="lead" translate ng-show="!data.split && data.item.suppliedItem.multiple_linked_lists">item_attached_to_multiple_skills</p>
           <p class="lead" translate ng-show="!data.split && (!data.item.requestedItem && data.item.suppliedItem.linkedItems === true)">item_attached_to_skill</p>

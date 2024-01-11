@@ -22,6 +22,7 @@
       <span class="text-muted">
         recommended
         <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>td_item_replace_with</span>
+        <span ng-if="item.wrongSuppliedItem" translate>wrong_product</span>
         <span ng-if="!item.requestedItem" translate>td_item_addition</span>
         <span ng-if="item.deletionSuggestion" translate>td_item_deletion</span>
         <span ng-if="item.recommendedItemSupplied">
