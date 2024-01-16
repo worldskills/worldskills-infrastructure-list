@@ -47,6 +47,7 @@
           <li><a href ng-click="toggleColumn('model')"><i ng-style="{'visibility' : columns.model ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_model</span></a></li>
           <li><a href ng-click="toggleColumn('size')"><i ng-style="{'visibility' : columns.size ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_size</span></a></li>
           <li><a href ng-click="toggleColumn('part_number')"><i ng-style="{'visibility' : columns.part_number ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_part_num</span></a></li>
+          <li><a href ng-click="toggleColumn('unit_cost')"><i ng-style="{'visibility' : columns.unit_cost ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_unit_cost</span></a></li>
           <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supplier</span></a></li>
           <li><a href ng-click="toggleColumn('item_category')"><i ng-style="{'visibility' : columns.item_category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_item_category</span></a></li>
           <li><a href ng-click="toggleColumn('item_subcategory')"><i ng-style="{'visibility' : columns.item_subcategory ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_item_subcategory</span></a></li>
@@ -111,6 +112,10 @@
                       <span ng-click="sortBy('supplied_item.part_number')" translate>th_part_num</span>
                       <span class="caret" ng-show="sort === 'supplied_item.part_number'"></span>
                     </th>
+                    <th ng-if="columns.unit_cost" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('supplied_item.unit_cost')" translate>th_unit_cost</span>
+                      <span class="caret" ng-show="sort === 'supplied_item.unit_cost'"></span>
+                    </th>
                     <th ng-if="columns.supplier" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('supplied_item.supplier.name')" translate>th_supplier</span>
                       <span class="caret" ng-show="sort === 'supplied_item.supplier.name'"></span>
@@ -153,6 +158,7 @@
                     <td ng-if="columns.model">&nbsp;</td>
                     <td ng-if="columns.size">&nbsp;</td>
                     <td ng-if="columns.part_number">&nbsp;</td>
+                    <td ng-if="columns.unit_cost">&nbsp;</td>
                     <td ng-if="columns.supplier">
                         <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.supplier.name" />
                     </td>
@@ -198,6 +204,7 @@
                   <td ng-if="columns.model">{{item.supplied_item.model}}</td>
                   <td ng-if="columns.size">{{item.supplied_item.size}}</td>
                   <td ng-if="columns.part_number">{{item.supplied_item.part_number}}</td>
+                  <td ng-if="columns.unit_cost">{{item.supplied_item.unit_cost}}</td>
                   <td ng-if="columns.supplier">{{item.supplied_item.supplier.name}}</td>
                   <td ng-if="columns.item_category">{{item.supplied_item.item_category.parent.name.text}}</td>
                   <td ng-if="columns.item_subcategory">{{item.supplied_item.item_category.name.text}}</td>
