@@ -278,6 +278,8 @@ angular.module('ilApp')
         $scope.loading.catalogue = false;
       });
 
+      $scope.gridApi.selection.clearSelectedRows();
+
       return promise.promise;
     };
 
@@ -331,6 +333,7 @@ angular.module('ilApp')
         });
 
 
+        $scope.gridApi.selection.clearSelectedRows();
 
       return promise.promise;
     };
@@ -533,6 +536,7 @@ angular.module('ilApp')
             });
             WSAlert.success($translate.instant("wsalert.success.items_combined"));
             $scope.loading.catalogue = false;
+            $scope.gridApi.selection.clearSelectedRows();
         },
         function(error){
           WSAlert.danger(error);
