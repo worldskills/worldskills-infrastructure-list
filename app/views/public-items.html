@@ -122,7 +122,10 @@
                     </th>
                     <th ng-if="columns.item_category" translate>th_item_category</th>
                     <th ng-if="columns.item_subcategory" translate>th_item_subcategory</th>
-                    <th ng-if="columns.tier" translate>th_tier</th>
+                    <th ng-if="columns.tier" ng-class="{dropup: !reverse}">
+                      <span ng-click="sortBy('tier_id')" translate>th_tier</span>
+                      <span class="caret" ng-show="sort === 'tier_id'"></span>
+                    </th>
                     <th ng-if="columns.extra_details" translate>th_extra_details</th>
                     <th ng-if="columns.files" translate>th_files</th>
                     <th ng-if="columns.status" ng-class="{dropup: !reverse}">
