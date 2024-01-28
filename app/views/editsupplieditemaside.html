@@ -423,9 +423,9 @@
 
         </uib-tabset>
 
-      <button ng-disabled="editForm.$error.required" ng-if="suppliedItemAsideAdd" ng-click="addItemDetails();" class='btn btn-sm btn-success' translate>button_add_item</button>
+      <button ng-disabled="editForm.$error.required" ng-if="suppliedItemAsideAdd" ng-click="addItemDetails();" ng-disabled="event.locked" class='btn btn-sm btn-success' translate>button_add_item</button>
 
-      <button ng-disabled="editForm.$error.required" ng-if="!suppliedItemAsideAdd" ng-click="saveItemDetails();" class='btn btn-sm btn-success' translate>button_save_item</button>
+      <button ng-disabled="editForm.$error.required" ng-if="!suppliedItemAsideAdd" ng-click="saveItemDetails();" ng-disabled="event.locked" class='btn btn-sm btn-success' translate>button_save_item</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>button_cancel</button>
     </form>
 

@@ -30,7 +30,7 @@
           <li ng-if="(event.userCanEditConfig || event.userCanExportRequestedItems) && !loading.requested"><a href="#" ng-click="exportAllRequested($event)" translate>export_requested_items</a></li>
           <li ng-if="(event.userCanEditConfig || event.userCanExportSuppliedItems) && !loading.catalogue"><a href="#" ng-click="exportAllCatalogue($event)" translate>export_all_items</a></li>
           <li ng-if="event.userCanEditConfig" role="separator" class="divider"></li>
-          <li ng-if="event.userCanEditConfig"><a href ng-click="createList()" translate>Create new list</a></li>
+          <li ng-if="event.userCanEditConfig"><a href ng-click="createList()" ng-hide="event.locked" translate>Create new list</a></li>
         </ul>
     </div>
 </div>

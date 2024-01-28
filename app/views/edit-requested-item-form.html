@@ -109,7 +109,7 @@
         </div>
 
         <div class='form-group editForm'>
-          <a data-nodrag ng-disabled="editForm.$error.required" ng-click="saveItem(item, itemIndex);" class='btn btn-sm btn-success' translate>button_save_changes</a>
+          <a data-nodrag ng-disabled="editForm.$error.required" ng-click="saveItem(item, itemIndex);" ng-disabled="event.locked" class='btn btn-sm btn-success' translate>button_save_changes</a>
           <a data-nodrag ng-click="editItem(item, itemIndex);" class='btn btn-sm btn-default' translate>button_cancel</a>
         </div>
       </div>

@@ -37,7 +37,8 @@
             <tr ng-repeat="category in categories.categories track by category.id">
                 <td>{{category.id}}</td>
                 <td>
-                    <a href ng-click="edit(category)">{{category.name.text}}</a>
+                    <a href ng-click="edit(category)" ng-hide="event.locked">{{category.name.text}}</a>
+                    <span ng-show="event.locked">{{category.name.text}}</span>
                 </td>
                 <td class="text-right">
                     <a href class="btn btn-danger btn-xs" ng-click="delete(category)" ng-hide="event.locked" translate>delete</a>

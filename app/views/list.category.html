@@ -3,7 +3,7 @@
   <div ng-hide="loading.init">
 
     <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      <button type="button" class="btn btn-default dropdown-toggle" ng-disabled="event.locked" data-toggle="dropdown">
         Actions <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
@@ -15,7 +15,7 @@
     </div>
 
     <span class='pull-right'>
-      <button type="button" ng-click="addItem();" class="pull-right btn btn-sm btn-success">
+      <button type="button" ng-click="addItem();" ng-disabled="event.locked" class="pull-right btn btn-sm btn-success">
         <i class="glyphicon glyphicon-plus">
         </i> <span translate>add_item</span>
       </button>

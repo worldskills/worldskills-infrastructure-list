@@ -13,7 +13,7 @@
     <div class="actions">
       <div>
         <div class="pull-left">
-          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, false)">
+          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, false)" ng-disabled="event.locked">
             <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_sub_category</span>
           </button>
         </div>
@@ -67,7 +67,7 @@
     <div class="actions">
       <div>
         <div class="pull-left">
-          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, true)">
+          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, true)" ng-disabled="event.locked">
             <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_category</span>
           </button>
         </div>
