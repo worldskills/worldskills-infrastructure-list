@@ -1,10 +1,11 @@
 <div class="modal-header">
-    <button ng-show="status.id" type="button" class="btn btn-sm btn-danger pull-right" ng-click="deleteStatus(status)">Delete Status</button>
-    <button ng-show="status.id && status.id !== defaultStatus.id" type="button" class="btn btn-sm btn-primary pull-right" ng-click="setDefaultStatus(status)" style="margin-right: .2em;">Make Default</button>
+    <button ng-show="status.id" type="button" class="btn btn-sm btn-danger pull-right" ng-click="deleteStatus(status)" ng-disabled="event.locked">Delete Status</button>
+    <button ng-show="status.id && status.id !== defaultStatus.id" type="button" class="btn btn-sm btn-primary pull-right" ng-click="setDefaultStatus(status)" ng-disabled="event.locked" style="margin-right: .2em;">Make Default</button>
     <h3 class="modal-title" translate>status</h3>
 </div>
 <div class="modal-body">
   <form class="form-horizontal" name="form" novalidate ng-submit="saveStatus()">
+    <fieldset ng-disabled="event.locked">
       <div class="form-group">
         <label class="col-sm-3 control-label">Name</label>
         <div class="col-sm-7">
@@ -46,5 +47,6 @@
           <a ng-click="closeModal()" class="btn btn-default" translate>cancel</a>
         </div>
       </div>
+    </fieldset>
   </form>
 </div>

@@ -80,7 +80,7 @@
                       </div>
                     </td>
                     <td style="white-space: nowrap;">
-                      <a ng-show="list.userCanEdit" ui-sref="eventBase.list.overview({eventId: event.id, listId: list.id})" class="btn btn-xs btn-warning">
+                      <a ng-show="list.userCanEdit && !event.locked" ui-sref="eventBase.list.overview({eventId: event.id, listId: list.id})" class="btn btn-xs btn-warning">
                         <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
                       </a>
                     </td>

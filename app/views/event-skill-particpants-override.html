@@ -27,7 +27,7 @@
     <ws-spinner ng-if="loading.participants" class="bigSpinner"></ws-spinner>
 
     <form class="form-horizontal" name="form" novalidate ng-submit="save()" ng-show="!loading.participants">
-        <fieldset>
+        <fieldset ng-disabled="event.locked">
             <div ng-repeat="skill in skills track by skill.id" class="form-group form-group-sm">
               <div class="col-sm-6">
                   {{skill.skill_number}} {{ skill.name.text }}

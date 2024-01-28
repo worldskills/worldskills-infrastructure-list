@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h3 class="modal-title pull-left">{{data.title}}</h3>
-  <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>add_new_linked_item</span></button></span>
+  <span class="pull-right"><button ng-click="data.newLinkedItem(data.suppliedItem, data.items)" ng-disabled="data.event.locked" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;<span translate>add_new_linked_item</span></button></span>
   <br class="clearfix">
 </div>
 <div class="modal-body">
@@ -32,8 +32,8 @@
       <td>{{item.status.name.text}}</td>
       <td>
         <div style="width: 55px;">
-          <button ng-click="data.editRequestedItem(item, $index)" style="margin-right: .2em" class="pull-right btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
-          <button ng-click="data.unlinkRequestedItem(item, data.items, $index)" style="margin-right: .2em" class="pull-right btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+          <button ng-click="data.editRequestedItem(item, $index)" ng-disabled="data.event.locked" style="margin-right: .2em" class="pull-right btn btn-xs btn-warning"><i class="glyphicon glyphicon-edit"></i></button>
+          <button ng-click="data.unlinkRequestedItem(item, data.items, $index)" ng-disabled="data.event.locked" style="margin-right: .2em" class="pull-right btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
         </div>
       </td>
     </tr>

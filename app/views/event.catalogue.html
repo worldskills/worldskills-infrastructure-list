@@ -9,7 +9,7 @@
   <div class="actions" ng-show="!loading.catalogue">
     <div ng-show="showGrid">
       <div class="pull-left">
-        <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)">
+        <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, $event)" ng-disabled="event.locked">
           <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_catalogue_item</span>
         </button>
 
@@ -18,10 +18,10 @@
             <span translate>item_actions</span>&nbsp;<span class="caret"></span>
           </button>
           <ul class="dropdown-menu" uib-dropdown-menu="actionsDropdown" role="menu" aria-labelledby="actionsButton">
-            <li role="menuitem"><a ng-click="editItems($event)"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>edit_selected_item</span></a></li>
-            <li role="menuitem"><a ng-click="removeItem($event)"><span class="glyphicon glyphicon-remove"></span>&nbsp;<span translate>remove_selected_items</span></a></li>
+            <li role="menuitem"><a ng-click="editItems($event)" ng-hide="event.locked"><span class="glyphicon glyphicon-edit"></span>&nbsp;<span translate>edit_selected_item</span></a></li>
+            <li role="menuitem"><a ng-click="removeItem($event)" ng-hide="event.locked"><span class="glyphicon glyphicon-remove"></span>&nbsp;<span translate>remove_selected_items</span></a></li>
             <li role="menuitem"><a ng-click="getLinkedItems($event)"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;<span translate>see_linked_items</span></a></li>
-            <li role="menuitem"><a ng-click="combineItems($event)"><span class="glyphicon glyphicon-compressed"></span>&nbsp;<span translate>combine_items</span></a></li>
+            <li role="menuitem"><a ng-click="combineItems($event)" ng-hide="event.locked"><span class="glyphicon glyphicon-compressed"></span>&nbsp;<span translate>combine_items</span></a></li>
           </ul>
         </div>
 
@@ -48,7 +48,7 @@
                 ng-class="{'btn-primary': !selectedFilters.active, 'btn-warning': selectedFilters.active}"
         ><i class="glyphicon glyphicon-filter"></i>&nbsp;<span translate>filters</span><small ng-show="selectedFilters.active">&nbsp;[{{ 'list_colon' | translate }} {{selectedFilters.list.name.text}}<span ng-show="selectedFilters.category">, {{selectedFilters.category.name.text}}</span>]</small></button>
 
-        <button class="btn btn-sm" ng-click="toggleEditing()"
+        <button class="btn btn-sm" ng-click="toggleEditing()" ng-disabled="event.locked"
                 ng-class="{'btn-primary': !allowEditing, 'btn-danger': allowEditing}"><span class="glyphicon glyphicon-edit"></span>&nbsp;
           <span ng-if="!allowEditing" translate>allow_inline_edit</span>
           <span ng-if="allowEditing" translate>disable_inline_edit</span>

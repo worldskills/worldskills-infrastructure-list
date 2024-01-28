@@ -14,7 +14,7 @@
     <a ng-show="userCanRecommend" ng-click="showRecommendations()" class="btn btn-link">
       <span translate>recommendations</span>
     </a>
-    <a ng-show="list.userCanEdit" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" class="btn btn-sm btn-warning">
+    <a ng-show="list.userCanEdit && !event.locked" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" class="btn btn-sm btn-warning">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
     </a>
 </p>
@@ -28,7 +28,7 @@
 <div ng-hide="loading || error">
 
     <div class="pull-right">
-      <button type="button" ng-if="userCanRecommend" ng-click="openSuggestModalAside();" data-target="" class="btn btn-sm btn-success">
+      <button type="button" ng-if="userCanRecommend && !event.locked" ng-click="openSuggestModalAside();" data-target="" class="btn btn-sm btn-success">
         <span translate>suggest_addition</span>
       </button>
       <div class="btn-group">

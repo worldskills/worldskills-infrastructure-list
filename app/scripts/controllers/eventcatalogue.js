@@ -388,6 +388,7 @@ angular.module('ilApp')
             items: res.requested_items,
             editRequestedItem: $scope.editRequestedItem,
             unlinkRequestedItem: $scope.unlinkRequestedItem,
+            event: $scope.event,
             ok: $translate.instant("linked_items.ok"),
           },
           {
