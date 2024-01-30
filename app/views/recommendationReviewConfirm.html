@@ -152,7 +152,7 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.unit_cost != data.item.recommendedItemSupplied.unit_cost}"
-            ng-if='data.item.recommendedItemSupplied.unit_cost'>
+            ng-if='data.item.recommendedItemSupplied.unit_cost != null'>
               <td><b translate>Unit Cost</b><br>{{data.item.suppliedItem.unit_cost}}</td>
               <td><b translate>Unit Cost</b><br>{{data.item.recommendedItemSupplied.unit_cost}}</td>
             </tr>
@@ -188,19 +188,19 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.electricity != data.item.recommendedItemSupplied.electricity}"
-            ng-if='data.item.recommendedItemSupplied.electricity'>
+            ng-if='data.item.recommendedItemSupplied.electricity != null'>
               <td><b translate>Electricity</b><br>{{data.item.suppliedItem.electricity}}</td>
               <td><b translate>Electricity</b><br>{{data.item.recommendedItemSupplied.electricity}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.electricity_volts != data.item.recommendedItemSupplied.electricity_volts}"
-            ng-if='data.item.recommendedItemSupplied.electricity_volts'>
+            ng-if='data.item.recommendedItemSupplied.electricity_volts != null'>
               <td><b translate>Volts</b><br>{{data.item.suppliedItem.electricity_volts}}</td>
               <td><b translate>Volts</b><br>{{data.item.recommendedItemSupplied.electricity_volts}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.electricity_amps != data.item.recommendedItemSupplied.electricity_amps}"
-            ng-if='data.item.recommendedItemSupplied.electricity_amps'>
+            ng-if='data.item.recommendedItemSupplied.electricity_amps != null'>
               <td><b translate>Amps</b><br>{{data.item.suppliedItem.electricity_amps}}</td>
               <td><b translate>Amps</b><br>{{data.item.recommendedItemSupplied.electricity_amps}}</td>
             </tr>
@@ -212,25 +212,25 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.water_supply != data.item.recommendedItemSupplied.water_supply}"
-            ng-if='data.item.recommendedItemSupplied.water_supply'>
+            ng-if='data.item.recommendedItemSupplied.water_supply != null'>
               <td><b translate>Water Supply</b><br>{{data.item.suppliedItem.water_supply}}</td>
               <td><b translate>Water Supply</b><br>{{data.item.recommendedItemSupplied.water_supply}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.water_drainage != data.item.recommendedItemSupplied.water_drainage}"
-            ng-if='data.item.recommendedItemSupplied.water_drainage'>
+            ng-if='data.item.recommendedItemSupplied.water_drainage != null'>
               <td><b translate>Water Drainage</b><br>{{data.item.suppliedItem.water_drainage}}</td>
               <td><b translate>Water Drainage</b><br>{{data.item.recommendedItemSupplied.water_drainage}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.compressed_air != data.item.recommendedItemSupplied.compressed_air}"
-            ng-if='data.item.recommendedItemSupplied.compressed_air'>
+            ng-if='data.item.recommendedItemSupplied.compressed_air != null'>
               <td><b translate>Compressed Air</b><br>{{data.item.suppliedItem.compressed_air}}</td>
               <td><b translate>Compressed Air</b><br>{{data.item.recommendedItemSupplied.compressed_air}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.ventilation_fume_extraction != data.item.recommendedItemSupplied.ventilation_fume_extraction}"
-            ng-if='data.item.recommendedItemSupplied.ventilation_fume_extraction'>
+            ng-if='data.item.recommendedItemSupplied.ventilation_fume_extraction != null'>
               <td><b translate>Ventilation / Fume Extraction</b><br>{{data.item.suppliedItem.ventilation_fume_extraction}}</td>
               <td><b translate>Ventilation / Fume Extraction</b><br>{{data.item.recommendedItemSupplied.ventilation_fume_extraction}}</td>
             </tr>
