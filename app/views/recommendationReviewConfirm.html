@@ -105,37 +105,37 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.manufacturer != data.item.recommendedItemSupplied.manufacturer}"
-            ng-if='data.item.recommendedItemSupplied.manufacturer'>
+            ng-if='data.item.recommendedItemSupplied.manufacturer != null'>
               <td><b translate>th_manufacturer</b><br>{{data.item.suppliedItem.manufacturer}}</td>
               <td><b translate>th_manufacturer</b><br>{{data.item.recommendedItemSupplied.manufacturer}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.model != data.item.recommendedItemSupplied.model}"
-            ng-if='data.item.recommendedItemSupplied.model'>
+            ng-if='data.item.recommendedItemSupplied.model != null'>
               <td><b translate>Model</b><br>{{data.item.suppliedItem.model}}</td>
               <td><b translate>Model</b><br>{{data.item.recommendedItemSupplied.model}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.size != data.item.recommendedItemSupplied.size}"
-            ng-if='data.item.recommendedItemSupplied.size'>
+            ng-if='data.item.recommendedItemSupplied.size != null'>
               <td><b translate>Size</b><br>{{data.item.suppliedItem.size}}</td>
               <td><b translate>Size</b><br>{{data.item.recommendedItemSupplied.size}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.part_number != data.item.recommendedItemSupplied.part_number}"
-            ng-if='data.item.recommendedItemSupplied.part_number'>
+            ng-if='data.item.recommendedItemSupplied.part_number != null'>
               <td><b translate>Part number</b><br>{{data.item.suppliedItem.part_number}}</td>
               <td><b translate>Part number</b><br>{{data.item.recommendedItemSupplied.part_number}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.item_category.name.text != data.item.recommendedItemSupplied.item_category.name.text}"
-            ng-if='data.item.recommendedItemSupplied.item_category.name'>
+            ng-if='data.item.recommendedItemSupplied.item_category.name != null'>
               <td><b translate>Sub category</b><br>{{data.item.suppliedItem.item_category.name.text}}</td>
               <td><b translate>Sub category</b><br>{{data.item.recommendedItemSupplied.item_category.name.text}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.priority != data.item.recommendedItemSupplied.priority}"
-            ng-if='data.item.recommendedItemSupplied.priority'>
+            ng-if='data.item.recommendedItemSupplied.priority != null'>
               <td><b translate>Priority</b><br>{{data.item.suppliedItem.priority}}</td>
               <td><b translate>Priority</b><br>{{data.item.recommendedItemSupplied.priority}}</td>
             </tr>
@@ -146,7 +146,7 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.supply_type != data.item.recommendedItemSupplied.supply_type}"
-            ng-if='data.item.recommendedItemSupplied.supply_type'>
+            ng-if='data.item.recommendedItemSupplied.supply_type != null'>
               <td><b translate>Supply Type</b><br>{{data.item.suppliedItem.supply_type}}</td>
               <td><b translate>Supply Type</b><br>{{data.item.recommendedItemSupplied.supply_type}}</td>
             </tr>
@@ -158,31 +158,31 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.po_number != data.item.recommendedItemSupplied.po_number}"
-            ng-if='data.item.recommendedItemSupplied.po_number'>
+            ng-if='data.item.recommendedItemSupplied.po_number != null'>
               <td><b translate>PO Number</b><br>{{data.item.suppliedItem.po_number}}</td>
               <td><b translate>PO Number</b><br>{{data.item.recommendedItemSupplied.po_number}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.delivery != data.item.recommendedItemSupplied.delivery}"
-            ng-if='data.item.recommendedItemSupplied.delivery'>
+            ng-if='data.item.recommendedItemSupplied.delivery != null'>
               <td><b translate>Delivery</b><br>{{data.item.suppliedItem.delivery | date:'medium'}}</td>
               <td><b translate>Delivery</b><br>{{data.item.recommendedItemSupplied.delivery | date:'medium'}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.disposal_category != data.item.recommendedItemSupplied.disposal_category}"
-            ng-if='data.item.recommendedItemSupplied.disposal_category'>
+            ng-if='data.item.recommendedItemSupplied.disposal_category != null'>
               <td><b translate>Disposal Category</b><br>{{data.item.suppliedItem.disposal_category}}</td>
               <td><b translate>Disposal Category</b><br>{{data.item.recommendedItemSupplied.disposal_category}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.location != data.item.recommendedItemSupplied.location}"
-            ng-if='data.item.recommendedItemSupplied.location'>
+            ng-if='data.item.recommendedItemSupplied.location != null'>
               <td><b translate>Location</b><br>{{data.item.suppliedItem.location}}</td>
               <td><b translate>Location</b><br>{{data.item.recommendedItemSupplied.location}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.lead_time != data.item.recommendedItemSupplied.lead_time}"
-            ng-if='data.item.recommendedItemSupplied.lead_time'>
+            ng-if='data.item.recommendedItemSupplied.lead_time != null'>
               <td><b translate>Lead Time</b><br>{{data.item.suppliedItem.lead_time}}</td>
               <td><b translate>Lead Time</b><br>{{data.item.recommendedItemSupplied.lead_time}}</td>
             </tr>
@@ -206,7 +206,7 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.electricity_phase != data.item.recommendedItemSupplied.electricity_phase}"
-            ng-if='data.item.recommendedItemSupplied.electricity_phase'>
+            ng-if='data.item.recommendedItemSupplied.electricity_phase != null'>
               <td><b translate>Phase</b><br>{{data.item.suppliedItem.electricity_phase}}</td>
               <td><b translate>Phase</b><br>{{data.item.recommendedItemSupplied.electricity_phase}}</td>
             </tr>
@@ -236,19 +236,19 @@
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.gas_requirements != data.item.recommendedItemSupplied.gas_requirements}"
-            ng-if='data.item.recommendedItemSupplied.gas_requirements'>
+            ng-if='data.item.recommendedItemSupplied.gas_requirements != null'>
               <td><b translate>Gas Requirements</b><br>{{data.item.suppliedItem.gas_requirements}}</td>
               <td><b translate>Gas Requirements</b><br>{{data.item.recommendedItemSupplied.gas_requirements}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.anchor_fixing_base_requirements != data.item.recommendedItemSupplied.anchor_fixing_base_requirements}"
-            ng-if='data.item.recommendedItemSupplied.anchor_fixing_base_requirements'>
+            ng-if='data.item.recommendedItemSupplied.anchor_fixing_base_requirements != null'>
               <td><b translate>Anchor Fixing / Base Requirements</b><br>{{data.item.suppliedItem.anchor_fixing_base_requirements}}</td>
               <td><b translate>Anchor Fixing / Base Requirements</b><br>{{data.item.recommendedItemSupplied.anchor_fixing_base_requirements}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.extra_details != data.item.recommendedItemSupplied.extra_details}"
-            ng-if='data.item.recommendedItemSupplied.extra_details'>
+            ng-if='data.item.recommendedItemSupplied.extra_details != null'>
               <td class="break-all"><b translate>Extra Details</b><br>{{data.item.suppliedItem.extra_details}}</td>
               <td class="break-all"><b translate>Extra Details</b><br>{{data.item.recommendedItemSupplied.extra_details}}</td>
             </tr>
