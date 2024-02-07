@@ -18,7 +18,7 @@
             <tr>
                 <th style="width: 30%;">List</th>
                 <th ng-style="{width: (70 / (report.tiers.length + 1)) + '%'}" translate>no_tier</th>
-                <th ng-style="{width: (70 / (report.tiers.length + 1)) + '%'}" ng-repeat="tier in report.tiers">{{tier.name.text}}</th>
+                <th ng-style="{width: (70 / (report.tiers.length + 1)) + '%'}" ng-repeat="tier in report.tiers">{{tier.name.text}} <a ng-if="userCanEditConfig" href ng-click="editTier(tier)" class="btn btn-link btn-xs">Edit</a></th>
             </tr>
         </thead>
         <tbody>
@@ -42,6 +42,8 @@
         </tbody>
     </table>
 </div>
+
+<p><button ng-if="userCanEditConfig" ng-click="createTier()" class="btn btn-success">Add Tier</button></p>
 
 <br/>
 
