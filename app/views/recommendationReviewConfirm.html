@@ -18,7 +18,7 @@
         <tr
         ng-class="{'warning': data.item.category.id != data.item.requestedItem.category_id}"
         ng-if='data.item.category.id != data.item.requestedItem.category_id'>
-          <td><b translate>Category</b><br>{{data.item.requestedItem.category.name.text}}</td>
+          <td><b translate>Category</b><br>{{data.categoriesIndexed[data.item.requestedItem.category_id].name.text}}</td>
           <td><b translate>Category</b><br>{{data.item.category.name.text}}</td>
         </tr>
         <tr

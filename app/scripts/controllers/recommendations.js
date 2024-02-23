@@ -8,10 +8,11 @@
  * Controller handling recommendations validation
  */
 angular.module('ilApp')
-  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, auth, ItemTier, RecommendedItems, Events, WSAlert, APP_ID, APP_ROLES, UPLOADS_URL) {
+  .controller('RecommendationsCtrl', function ($q, $scope, $state, $stateParams, $location, $uibModal, $rootScope, $confirm, $translate, $aside, auth, ItemTier, RecommendedItems, Events, Category, WSAlert, APP_ID, APP_ROLES, UPLOADS_URL) {
 
     $scope.event = false;
     $scope.data = {};
+    $scope.categoriesIndexed = {};
     $scope.UPLOADS_URL = UPLOADS_URL;
     $scope.split = false;
     $scope.loading.recommendations = true;
@@ -31,6 +32,13 @@ angular.module('ilApp')
 
     ItemTier.getTiersForEvent($stateParams.eventId).then(function (tiers) {
       $scope.tiers = tiers;
+    });
+
+    Category.getAll($stateParams.eventId).then(function (result) {
+        $scope.categories = result;
+        angular.forEach($scope.categories, function (category) {
+            $scope.categoriesIndexed[category.id] = category;
+        });
     });
 
     $scope.updateListId = function () {
@@ -91,6 +99,7 @@ angular.module('ilApp')
           item: item,
           split: $scope.split,
           tiers: $scope.tiers,
+          categoriesIndexed: $scope.categoriesIndexed,
           userCanAcceptReject: $scope.userCanAcceptReject,
           UPLOADS_URL: $scope.UPLOADS_URL,
           modifyRecommendation: function(itemRef){
