@@ -229,7 +229,7 @@
 <div class="row">
   <div class="col-md-2 form-inline">
     <div class="form-group">
-      <p class="form-control-static">6. Check Item Categories</p>
+      <p class="form-control-static">6. Check Product Categories</p>
     </div>
   </div>
   <div class="col-md-10">
@@ -242,7 +242,7 @@
       </div>
     </div>
     <p ng-if="itemCategories.length === 0">
-      <em>No item categories found</em>
+      <em>No product categories found</em>
     </p>
     <div class="row" ng-repeat="itemCategory in itemCategories">
       <div class="col-md-5">
@@ -264,7 +264,7 @@
         <span ng-repeat="itemCategory in filteredItemCategories = (itemCategories | filter:{name: {text: targetItemCategory.name.text}}:true)">
         </span>
         <p ng-if="filteredItemCategories.length === 0">
-          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused item categories found: {{targetItemCategory.name.text}}
+          <span class="glyphicon glyphicon-info-sign text-primary"></span> Additional, unused product categories found: {{targetItemCategory.name.text}}
         </p>
       </div>
     </div>

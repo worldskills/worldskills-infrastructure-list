@@ -116,7 +116,7 @@
         }
     },
     "copy_description_to_requested_item_s": "Copy description to requested item(s)",
-    "could_not_fetch_item_categories": "Could not fetch item categories",
+    "could_not_fetch_item_categories": "Could not fetch product categories",
     "could_not_remove_item_category": "Cannot delete category: {{error}}",
     "could_not_remove_item_category_in_use": "Cannot delete category as it is used by at least one subcategory",
     "could_not_remove_item_sub_category": "Cannot delete subcategory: {{error}}",
@@ -130,16 +130,16 @@
     "date_time_at": "{{date}} at {{time}}",
     "delete": "Delete",
     "delete_item_category": {
-        "text": "Are you sure you want to delete the item category: {{text}}?",
-        "title": "Delete item category"
+        "text": "Are you sure you want to delete the product category: {{text}}?",
+        "title": "Delete product category"
     },
     "delete_item_from_set": {
         "text": "Are you sure?",
         "title": "Delete item from set"
     },
     "delete_item_sub_category": {
-        "text": "Are you sure you want to delete the item subcategory: {{text}}?",
-        "title": "Delete item subcategory"
+        "text": "Are you sure you want to delete the product subcategory: {{text}}?",
+        "title": "Delete product subcategory"
     },
     "deletion_requests": "Deletion requests",
     "description": "Description",
@@ -197,7 +197,7 @@
     "item_attached_to_skill": "One or more of these items is attached to a skill, please note that this action will also overwrite the description of these items.",
     "item_attached_to_multiple_items": "This Product is used more than once. Changes to the Product will apply to all uses.",
     "item_category": "Category",
-    "item_category_and_subcategory": "Item categories and subcategories",
+    "item_category_and_subcategory": "Product categories and subcategories",
     "item_category_description": "Category description",
     "item_category_name": "Category name",
     "item_category_property": "Category properties",
@@ -448,7 +448,7 @@
     "th_interpreters": "Interpreters",
     "th_item": "Item",
     "th_item_applicant": "Applicant",
-    "th_item_category": "Item Category",
+    "th_item_category": "Product Category",
     "th_item_date_and_time": "Date and time",
     "th_item_subcategory": "Subcategory",
     "th_keep": "Keep",
@@ -490,8 +490,8 @@
     "title": {
         "choose_an_installation_type_optional": "Choose an Installation Type (optional)",
         "choose_category": "Choose a category",
-        "choose_item_category": "Choose an item category",
-        "choose_item_subcategory": "Choose an item subcategory",
+        "choose_item_category": "Choose an product category",
+        "choose_item_subcategory": "Choose an product subcategory",
         "choose_name_of_the_item": "Type a name",
         "choose_list": "Choose a list",
         "choose_skill": "Choose a skill",
@@ -505,7 +505,7 @@
     "borrow": "Borrow",
     "inventory": "Inventory",
     "uib_tooltip": {
-        "category_contains_subcategory": "This item category contains subcategories",
+        "category_contains_subcategory": "This product category contains subcategories",
         "subcategory_contains_items": "This subcategory contains items",
         "warning_update_description": "Warning! This will update the description in every skill this item is used!"
     },
