@@ -75,10 +75,10 @@ angular.module('ilApp')
         return deferred.promise;
       },
 
-      getItems: function (eventId, search) {
+      getItems: function (eventId, search, itemCategoryId) {
         var deferred = $q.defer();
 
-        $http.get(API_IL + '/items/' + eventId + '/supplied_items', {params: {search: search, limit: 100}}).then(function (res) {
+        $http.get(API_IL + '/items/' + eventId + '/supplied_items', {params: {search: search, item_category: itemCategoryId, limit: 1000}}).then(function (res) {
           deferred.resolve(res.data);
         }, function (error) {
           deferred.reject('Could not get items: ' + error.data.user_msg);
