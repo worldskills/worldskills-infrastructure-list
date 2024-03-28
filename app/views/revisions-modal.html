@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="closeRevisionsModal()"><span>&times;</span></button>
+  <h3 class="modal-title" translate>history</h3>
+</div>
+<div class="modal-body">
+
+<div ng-if="!loadingRevisions && revisions.length == 0">
+<div class="alert alert-warning" translate>revisions_no_items</div>
+</div>
+
+<div ng-repeat="revision in revisions">
+  <div class="row">
+    <div class="col-md-2">
+      <span class="text-muted">{{revision.created | amDateFormat:'DD.MM.YYYY HH:mm'}}</span>
+    </div>
+    <div class="col-md-10">
+      <div ng-include="'views/revision-diff.html'"></div>
+    </div>
+  </div>
+  <hr/>
+</div>
+
+<ws-spinner ng-show="loadingRevisions" class='bigSpinner'></ws-spinner>
+
+<br/>
+
+<p><button class="btn btn-primary" ng-click="loadNextRevisions()">Load more...</button></p>
+
+<br/>
+
+</div>

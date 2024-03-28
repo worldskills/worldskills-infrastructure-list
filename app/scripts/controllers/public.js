@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, Events, Items, List, Category, Status, ItemTier, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, MULTIPLIER_DEFAULT, $aside, $confirm, $translate, auth, RecommendedItems) {
+angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, $q, $uibModal, $sce, htmldiff, Events, Items, List, Category, Status, ItemTier, RecommendedSubscription, Downloader, WSAlert, UNITS, UPLOADS_URL, Auth, APP_ROLES, APP_ID, MULTIPLIER_DEFAULT, $aside, $confirm, $translate, auth, RecommendedItems, Revision) {
 
   $scope.eventId = $state.params.eventId;
   $scope.listId = $state.params.listId;
@@ -59,6 +59,9 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         Auth.setUserListPermissions($scope.list);
         auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.RECOMMEND], $scope.list.entity_id).then(function (hasUserRole) {
             $scope.userCanRecommend = hasUserRole;
+        });
+        auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.VIEW_ALWAYS], $scope.list.entity_id).then(function (hasUserRole) {
+            $scope.userCanViewAlways = hasUserRole;
         });
         auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.list.entity_id).then(function (hasUserRole) {
           $scope.canEditItemStatus = hasUserRole;
@@ -285,6 +288,42 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         WSAlert.danger(error);
       });
     });
+  };
+
+  $scope.showRevisions = function () {
+
+    var limit = 100;
+    var offset = 0;
+    $scope.revisions = [];
+  
+    $scope.loadNextRevisions = function () {
+  
+      $scope.loadingRevisions = true;
+  
+      Revision.getRevisionsForList($scope.listId, limit, offset).then(function (revisions) {
+        $scope.loadingRevisions = false;
+        $scope.revisions = $scope.revisions.concat(revisions);
+      });
+  
+      offset += limit;
+    };
+
+    $scope.loadNextRevisions();
+
+    $scope.revisionsModal = $uibModal.open({
+      animation: false,
+      size: 'lg',
+      templateUrl: 'views/revisions-modal.html',
+      scope: $scope
+    });
+  };
+
+  $scope.revisionDiff = function (a, b) {
+    return $sce.trustAsHtml(htmldiff(a || '', b || ''));
+  };
+
+  $scope.closeRevisionsModal = function () {
+    $scope.revisionsModal.dismiss('cancel');
   };
 });
 

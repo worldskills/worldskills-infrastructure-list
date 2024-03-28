@@ -14,6 +14,9 @@
     <a ng-show="userCanRecommend" ng-click="showRecommendations()" class="btn btn-link">
       <span translate>recommendations</span>
     </a>
+    <a ng-show="userCanViewAlways" ng-click="showRevisions()" class="btn btn-link">
+      <span translate>history</span>
+    </a>
     <a ng-show="list.userCanEdit && !event.locked" ui-sref="eventBase.list.overview({eventId: eventId, listId: list.id})" class="btn btn-sm btn-warning">
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>Edit</span>
     </a>

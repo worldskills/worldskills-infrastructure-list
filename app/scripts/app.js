@@ -24,6 +24,7 @@
       'ui.bootstrap',
       'daterangepicker',
       'pascalprecht.translate',
+      'htmldiff',
       'worldskills.utils',
       'angularFileUpload',
       'ui.tree',

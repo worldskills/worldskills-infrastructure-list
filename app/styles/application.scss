@@ -700,3 +700,11 @@ $spacer-3: 15px;
 footer {
   padding-bottom: 70px;
 }
+
+.worldskills-document-diff ins {
+  background-color: lightgreen;
+}
+
+.worldskills-document-diff del {
+  background-color: pink;
+}
