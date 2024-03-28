@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ilApp').controller('EventRevisionsCtrl', function ($scope, $stateParams, Revision) {
+angular.module('ilApp').controller('EventRevisionsCtrl', function ($scope, $stateParams, $sce, Revision, htmldiff) {
 
   var limit = 100;
   var offset = 0;
@@ -21,5 +21,9 @@ angular.module('ilApp').controller('EventRevisionsCtrl', function ($scope, $stat
   };
 
   $scope.loadNextRevisions();
+
+  $scope.revisionDiff = function (a, b) {
+    return $sce.trustAsHtml(htmldiff(a || '', b || ''));
+  };
 
 });
