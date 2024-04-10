@@ -165,10 +165,16 @@
                             <option ng-repeat="area in skillAreas" value="{{area.id}}">{{area.name}}</option>
                         </select>
                     </td>
-                    <td ng-if="columns.manufacturer">&nbsp;</td>
-                    <td ng-if="columns.model">&nbsp;</td>
+                    <td ng-if="columns.manufacturer">
+                        <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.manufacturer" />
+                    </td>
+                    <td ng-if="columns.model">
+                        <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.model" />
+                    </td>
                     <td ng-if="columns.size">&nbsp;</td>
-                    <td ng-if="columns.part_number">&nbsp;</td>
+                    <td ng-if="columns.part_number">
+                        <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.part_number" />
+                    </td>
                     <td ng-if="columns.unit_cost">&nbsp;</td>
                     <td ng-if="columns.supplier">
                         <input type="text" class="form-control input-sm" ng-model="filter.supplied_item.supplier.name" />
