@@ -144,9 +144,10 @@
     $translateProvider.fallbackLanguage('en');
     $translateProvider.useLocalStorage();
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
-    $translateProvider.registerAvailableLanguageKeys(['en', 'fr'], {
+    $translateProvider.registerAvailableLanguageKeys(['en', 'fr', 'fi'], {
       'en_*': 'en',
       'fr_*': 'fr',
+      'fi_*': 'fi',
       '*': 'en'
     });
 
