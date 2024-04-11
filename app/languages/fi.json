@@ -35,7 +35,7 @@
     "approver_information": "Hyväksyjän tiedot",
     "are_you_sure": {
         "ok": "Poista asia/tuote",
-        "text": "Oletko varma, että haluat poistaa ryhmän {{text}}? Toimintoa ei voi peruuttaa.",
+        "text": "Oletko varma, että haluat poistaa ryhmän {{text}}? Toimintoa ei voi peruuttaa!",
         "title": "Oletko varma?"
     },
     "are_you_sure_add": "Oletko varma, että haluat lisätä",
@@ -151,6 +151,7 @@
     "drop_files_here_to_upload": "Pudota tiedostot tähän tai valitse Lataa",
     "edit_details": "muokkaa",
     "edit_product": "Muokkaa tuotetta",
+    "edit_recommendation": "Muokkaa suositusta",
     "edit_requests": "Muokkaa pyyntöjä",
     "edit_selected_item": "Muokkaa valittua kohdetta/kohteita",
     "edit_selected_item_status": "Muuta valinnan status",
@@ -169,6 +170,7 @@
     "export_requested_items": "Vie kaikki pyydetyt kohteet",
     "extra_details_comments": "Lisäyksityiskohdat",
     "extract_results": "Lataa tulokset",
+    "falseLabel": "Väärin",
     "files_and_pictures": "Tiedostot ja kuvat",
     "filters": "Suodattimet",
     "find_product": "Etsi tuote",
@@ -246,6 +248,7 @@
     "list": "Lista",
     "list_colon": "Lista:",
     "load": "Lataa",
+    "loading": "Lataa...",
     "loan_lease_hire": "Lainaa / Leasaa / Vuokraa",
     "loc_other": "Muu",
     "loc_venue": "Tapahtumapaikka",
@@ -259,7 +262,7 @@
     "multiple_edition": "Muokkaa valintaa",
     "multiple_values_detected": "Useita arvoja havaittu",
     "multiplier": "Kerroin",
-    "multiply_factor": "Kerro tekijä",
+    "multiply_factor": "Moninkertaista tekijä",
     "must_select_category": "Valitse kohteelle kategoria",
     "name": "Nimi",
     "new": "uusi",
@@ -269,6 +272,7 @@
     "no_items_found_please_retype": "Kohteita ei löydetty, kirjoita hakusana kenttään ja napsauta hakua.",
     "no_permission_edit_status": "Sinulla ei ole oikeuksia muokata statusta",
     "no_subcategories": "Alakategorioita ei löydetty",
+    "no_tier": "Ei tasoa",
     "normal": "Normaali",
     "number:": "Numero:",
     "overview": "Yleiskatsaus",
@@ -333,10 +337,11 @@
         "x_number": "X lukumäärä"
     },
     "please_type_search_term": "Kirjoita hakutermi ja napsauta hakua.",
-    "po_number": "PO-numero",
+    "po_number": "Tilausnumero",
     "position_event_name_text": "sijainti {{position}}",
     "price": "Hinta",
     "product": "Tuote",
+    "product_changed": "Tuote muutettu",
     "product_details": "Tuotteen yksityiskohdat",
     "product_tab": {
         "detailed": "Tuote",
@@ -364,6 +369,7 @@
     "remove_selected_items": "Poista valitut kohteet",
     "reorder_disabled_sort": "Kohteiden uudelleenjärjestäminen ei ole käytössä, kun lajittelu on aktiivinen. Lajittelu voidaan tyhjentää <b>Lisätoiminnot</b>-valikosta.",
     "report_status": "Tilanneraportti",
+    "report_tier": "Tasoraportti",
     "reports": "Raportit",
     "req_electricity_a": "Sähkö - Ampeeria",
     "req_electricity_v": "Sähkö - Volttia",
@@ -375,8 +381,9 @@
         "multiply_factor_required": "Kerroin puuttuu",
         "quantity_is_missing": "Määrä puuttuu"
     },
+    "review": "Tarkista",
     "save": "Tallenna",
-    "scroll_more": "Vieritä alas nähdäksesi lisää",
+    "scroll_more": "Vieritä alas nähdäksesi lisää...",
     "search_no_results": "Haku ei tuottanut tuloksia",
     "secret_item": "Salainen kohde",
     "see_linked_items": "Katso linkitetyt kohteet",
@@ -405,6 +412,7 @@
     "suggest_addition": "Suosittele lisäystä",
     "suggest_delete": "Suosittele kohteen poistoa",
     "suggest_modification": "Suosittele muokkausta",
+    "supplied_multi_edit_description": "Muokkaat useita katalogin tuotteita kerralla: kaikki näille tuotteille yhteiset kentät näytetään.Vain kentät, joihin teit muutoksia, päivitetään kaikkiin valitsemiisi tuotteisiin.",
     "supplier": "Tavarantoimittaja",
     "supply_host_info": "Toimittajan / Järjestäjän tiedot",
     "supply_type": "Tarjonnan tyyppi",
@@ -412,7 +420,7 @@
     "switch_product": "Vaihda tuotetta",
     "switch_role": "Vaihda roolia",
     "td_item_addition": "Lisäys",
-    "td_item_current": "Nykyinen kohde",
+    "td_item_current": "Lista kohteista",
     "td_item_deletion": "Poisto",
     "td_item_replace_with": "Vaihda",
     "text": {
@@ -490,6 +498,7 @@
     "th_ventilation_fume_extraction": "Tuuletus / savunpoisto",
     "th_water_drainage": "Veden tyhjennys",
     "th_water_supply": "Vesihuolto",
+    "tier": "Taso",
     "title": {
         "choose_an_installation_type_optional": "Valitse asennustyyppi (vapaavalinnainen)",
         "choose_category": "Valitse kategoria",
@@ -502,9 +511,11 @@
         "choose_status": "Valitse status",
         "choose_supplier": "Valitse tavarantoimittaja"
     },
+    "title_public_items": "Julkiset kohteet",
     "to_edit_items": "Muokkaa kohteita valitsemalla kategoria vasemmalla olevasta valikosta.",
     "to_purchase": "Ostoihin",
     "to_the_list": "listalle?",
+    "trueLabel": "Totta",
     "uib_tooltip": {
         "category_contains_subcategory": "Tämä tuoteluokka sisältää alakategorioita",
         "subcategory_contains_items": "Tämä alakategoria sisältää kohteita",
@@ -536,5 +547,36 @@
     "view_all_list": "Näytä kaikki luettelossa olevat henkilöt",
     "water_drainage": "Veden tyhjennys",
     "water_needed": "Vaatii vettä",
-    "water_supply": "Vesihuolto"
+    "water_supply": "Vesihuolto",
+    "which_data": "Valitse tiedot, jotka haluat ladata",
+    "wrong_product": "Väärä tuote",
+    "wsalert": {
+        "danger": {
+            "file_upload_failed": "Tiedostojen lataaminen epäonnistui",
+            "item_could_not_be_removed_from_set": "Kohdetta ei pystytty poistamaan ryhmästä, yritä uudelleen!",
+            "item_could_not_be_saved": "Kohdetta {{itemName}} ei voitu tallentaa: {{error}}",
+            "no_accesss_public_view": "Sinulla ei ole pääsyä tämän tapahtuman julkiseen näkymään",
+            "view_public_items_list": "Julkisia kohteita ei voitu ladata"
+        },
+        "success": {
+            "item_s_removed": "Kohde/kohteet poistettu!",
+            "item_saved": "Kohde/kohteet tallennettu",
+            "items_combined": "Kohteet yhdistetty!",
+            "quantities_updated": "Määrät päivitetty!",
+            "recommend_accept": "Suositus on hyväksytty.",
+            "recommend_add": "Lisäyssuosituksesi on lähetetty onnistuneesti, ja se tarkistetaan pian.",
+            "recommend_delete": "Poistosuosituksesi on lähetetty onnistuneesti, ja se tarkistetaan pian.",
+            "recommend_edit": "Muutossuosituksesi on lähetetty onnistuneesti, ja se tarkistetaan pian.",
+            "recommend_reject": "Suositus on hylätty.",
+            "set_removed_successfully": "Ryhmä poistettu onnistuneesti!"
+        },
+        "warning": {
+            "error_refreshing_item": "Virhe päivitettäessä kohdetta, kokeile painaa selaimen päivityspainiketta: {{error}}",
+            "please_select_only_one_row": "Valitse vain yksi rivi.",
+            "you_have_to_select_at_least_skill_first": "Sinun tulee valita laji ensin"
+        }
+    },
+    "x_additions_for_category": "Kategoriaan on {{count}} lisäkohdepyyntöä.",
+    "yes": "Kyllä",
+    "you_have_multiple_positions": "Sinulla on useita positioita, valitse rooli, jolla haluat käyttää sovellusta"
 }
