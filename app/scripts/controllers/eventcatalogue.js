@@ -151,6 +151,16 @@ angular.module('ilApp')
         {field: 'disposal_category', name: $translate.instant('th_disposal_category'), width: '100'},
         {field: 'location', name: $translate.instant('th_location'), width: '100'},
         {field: 'lead_time', name: $translate.instant('th_lead_time'), width: '100'},
+        {field: 'electricity', name: $translate.instant('th_electricity'), width: '100',
+          cellTemplate: "<div translate>{{row.entity.electricity + 'Label' }}</div>",
+          filter: {
+            type: uiGridConstants.filter.SELECT,
+            selectOptions: [
+              { value: 'true', label: $translate.instant('trueLabel')},
+              { value: 'false', label: $translate.instant('falseLabel')},
+            ]
+          }
+        },
         {field: 'electricity_volts', name: $translate.instant('th_electricity_volts'), width: '100'},//int
         {field: 'electricity_amps', name: $translate.instant('th_electricity_amps'), width: '100'},//int
         {field: 'electricity_phase', name: $translate.instant('th_electricity_phase'), width: '100'},
