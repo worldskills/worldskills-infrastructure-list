@@ -439,7 +439,7 @@
 
   ilApp.run(function($rootScope, $state,$timeout, $stateParams, auth, WSAlert, $templateCache, $translate, $http, amMoment, tmhDynamicLocale, uibDatepickerPopupConfig){
 
-    $rootScope.available_languages = {"en":"English", "fr":"Français"};
+    $rootScope.available_languages = {"en":"English", "fr":"Français", "fi":"Suomi"};
 
     var activeLanguage = $translate.use() ||
       $translate.storage().get($translate.storageKey()) ||
