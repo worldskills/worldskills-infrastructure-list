@@ -41,7 +41,7 @@
             <tr ng-repeat="status in statuses track by status.id">
                 <td>{{status.id}}</td>
                 <td>
-                    <a href ng-click="edit(status)">{{status.name.text}}</a>
+                    <a href ng-click="edit(status)">{{status.name.text || "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}}</a>
                     <span ng-show="status.id == defaultStatus.id"> (Default Status)</span>
                 </td>
                 <td>
