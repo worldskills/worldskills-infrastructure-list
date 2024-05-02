@@ -5,6 +5,18 @@
 </div>
 <div class="modal-body">
   <alerts></alerts>
+
+  <table class="table table-striped" ng-if="data.item.comment && data.item.comment.length > 0">
+    <tbody>
+      <tr class="info">
+        <td>
+          <b translate>Comment</b><br>
+          {{data.item.comment}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
   <fieldset><legend>Requested Item</legend>
     <table class="table table-striped" ng-if="data.item.id">
       <thead>
@@ -61,12 +73,6 @@
         ng-if='data.item.secret != data.item.requestedItem.secret'>
           <td><b translate>Secret</b><br>{{data.item.requestedItem.secret}}</td>
           <td><b translate>Secret</b><br>{{data.item.secret}}</td>
-        </tr>
-        <tr ng-if='data.item.comment && data.item.comment.length > 0'>
-          <td colspan="2">
-            <b translate>Comment:</b><br>
-            {{data.item.comment}}
-          </td>
         </tr>
       </tbody>
     </table>
