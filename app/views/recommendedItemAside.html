@@ -7,6 +7,7 @@
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>
     <form class="addForm" name='addForm'>
+
         <uib-tabset active="recommended01">
           <uib-tab index="0" heading="{{'requested_item' | translate}}">
             <div class="row">
@@ -113,7 +114,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin-bottom: 10px;">
             <div ng-if="item.id" class="col col-xs-12 col-md-4">
               <div data-nodrag class="checkbox addForm form-group">
                 <label>
@@ -521,6 +522,15 @@
           </ng-form>
         </uib-tab>
       </uib-tabset>
+
+      <div class="row">
+        <div class="col col-xs-12 col-md-8">
+          <div class="form-group addForm has-feedback has-success">
+            <label class="control-label" translate>comment</label>
+            <textarea ng-model="recommendedItem.comment" rows="3" name="comment" class="form-control" placeholder="{{ 'approver_information' | translate }}"></textarea>
+          </div>
+        </div>
+      </div>
 
       <button ng-disabled="addForm.$error.required || !addForm.$dirty" ng-click="saveItem();" class='btn btn-sm btn-success' translate>button_save_item</button>
       <button ng-click="cancel();" class='btn btn-sm btn-warning' translate>button_cancel</button>
