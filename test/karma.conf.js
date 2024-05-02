@@ -64,6 +64,7 @@ module.exports = function(config) {
       'bower_components/lodash/dist/lodash.compat.js',
       'bower_components/jszip/dist/jszip.js',
       'bower_components/excel-builder-js/dist/excel-builder.dist.js',
+      'bower_components/angular-htmldiff/src/angular-htmldiff.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
