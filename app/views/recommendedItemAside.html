@@ -23,7 +23,7 @@
             </div>
             <div class='row'>
                 <div class='col col-sm-12 col-md-4'>
-                  <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
+                  <div class="form-group has-feedback"  ng-class="{'has-error': addForm.quantity.$dirty && addForm.quantity.$error.required, 'has-success': !addForm.quantity.$error.required}">
                     <label class='control-label' translate>quantity</label>
                     <input name="quantity" type="number" class="input-sm form-control" placeholder="{{ 'placeholder.quantity' | translate }}" ng-model='recommendedItem.quantity' required="{{ 'required.quantity_is_missing' | translate }}" ng-required="true">
                     <span ng-if="!addForm.quantity.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
@@ -31,7 +31,7 @@
                   </div>
                 </div>
                 <div class='col col-sm-12 col-md-4'>
-                  <div class="form-group addForm has-feedback has-success">
+                  <div class="form-group">
                     <label class='control-label' translate>multiplier</label>
                     <select
                       class="form-control input-sm"
@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class='col col-sm-12 col-md-4' ng-if="factorNeeded(recommendedItem.multiplier)">
-                  <div class="form-group addForm has-feedback"  ng-class="{'has-error': addForm.multiply_factor.$error.required, 'has-success': !addForm.multiply_factor.$error.required}">
+                  <div class="form-group has-feedback"  ng-class="{'has-error': addForm.multiply_factor.$error.required, 'has-success': !addForm.multiply_factor.$error.required}">
                     <label class='control-label' translate>multiply_factor</label>
                     <input name='multiply_factor' type="number" class="input-sm form-control" placeholder="{{ 'placeholder.x_number' | translate }}" ng-model='recommendedItem.multiplyFactor' required="{{ 'required.multiply_factor_required' | translate }}" ng-required="true">
                     <span ng-if="!addForm.multiply_factor.$error.required" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
@@ -53,25 +53,23 @@
 
           <div class='row'>
             <div class='col col-xs-12 col-md-4 form-group'>
-                <div class="form-group addForm has-feedback has-success">
+                <div class="form-group">
                   <label class='control-label' translate>estimated_price</label>
                   <input name='price' type="number" class="input-sm form-control" ng-model="recommendedItem.price" placeholder="{{ 'placeholder.estimated_price' | translate }}">
-                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 </div>
             </div>
           </div>
 
           <div class='row'>
             <div class='col col-xs-12 col-md-4'>
-              <div class="form-group addForm has-feedback has-success">
+              <div class="form-group">
                 <label class='control-label' translate>additional_quantity</label>
                 <input name='additional_quantity' type="number" class="input-sm form-control" ng-model="recommendedItem.additional_quantity" placeholder="{{ 'placeholder.additional_quantity' | translate }}">
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
               </div>
             </div>
 
             <div class='col col-xs-12 col-md-4'>
-                <div class="form-group addForm has-feedback has-success">
+                <div class="form-group">
 
                   <label class='control-label' translate>unit</label>
                   <select name="unit" class="input-sm form-control" ng-model="recommendedItem.unit">
@@ -91,14 +89,13 @@
                       <option value="m2" translate="{{UNITS['m2']}}"></option>
                       <option value="m3" translate="{{UNITS['m3']}}"></option>
                   </select>
-                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                 </div>
             </div>
             <div class='col col-md-4'></div>
           </div>
           <div class="row">
             <div class="col col-xs-12 col-md-4">
-              <div class="form-group addForm has-feedback has-success">
+              <div class="form-group">
                 <label class='control-label' translate>skill_area</label>
                 <select class="form-control input-sm" ng-model="recommendedItem.area" ng-options="area.name for area in skillAreas track by area.id">
                   <option></option>
@@ -106,7 +103,7 @@
               </div>
             </div>
             <div class="col col-xs-12 col-md-4">
-              <div class="form-group addForm has-feedback has-success">
+              <div class="form-group">
                 <label class='control-label' translate>tier</label>
                 <select class="form-control input-sm" ng-model="recommendedItem.tier.id" ng-options="tier.id as tier.name.text for tier in tiers">
                   <option></option>
@@ -525,7 +522,7 @@
 
       <div class="row">
         <div class="col col-xs-12 col-md-8">
-          <div class="form-group addForm has-feedback has-success">
+          <div class="form-group">
             <label class="control-label" translate>comment</label>
             <textarea ng-model="recommendedItem.comment" rows="3" name="comment" class="form-control" placeholder="{{ 'approver_information' | translate }}"></textarea>
           </div>
