@@ -21,7 +21,7 @@
     "angular-translate-loader-url": "~2.7.2",
     "angular-translate-storage-local": "~2.7.2",
     "angular-translate-loader-static-files": "~2.7.2",
-    "angular-worldskills-utils": "~0.1.5",
+    "angular-worldskills-utils": "~0.3.0",
     "angular-ui-select": "~0.12.0",
     "angular-daterangepicker": "0.2.2",
     "xdomain": "~0.6.17",
