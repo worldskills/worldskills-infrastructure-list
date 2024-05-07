@@ -18,7 +18,7 @@ angular.module('ilApp')
 
     $scope.multipliers = MULTIPLIERS;
     $scope.tmp_item = {};
-    $scope.items = {};
+    $scope.items = [];
     $scope.activeItem = false;
     $scope.suppliedItem = {};
     $scope.searchAPI = false;
