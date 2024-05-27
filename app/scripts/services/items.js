@@ -187,6 +187,7 @@ angular.module('ilApp')
         l: Language.selectedLanguage,
         limit: itemPerPage,
         offset: itemPerPage * (page-1),
+        id: filters.id || null,
         status: filters.status ? filters.status.id : null,
         description: filters.description || null,
         skill: filters.skill ? filters.skill.id : null,
@@ -195,6 +196,7 @@ angular.module('ilApp')
         item_subcategory: filters.item_subcategory ? filters.item_subcategory.id : null,
         category: filters.category ? filters.category.id : null,
         supplier: filters.supplier || null,
+        manufacturer: filters.manufacturer || null,
         air: filters.air || null,
         water: filters.water || null,
         electricity: filters.electricity || null

@@ -113,6 +113,28 @@
         </div>
       </div>
     </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="form-group addForm">
+        <label class="control-label" translate>requested_item_id</label>
+        <input
+          type="text"
+          class="form-control"
+          ng-model="filters.id"
+          ng-change="changeFilters()"
+        >
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="form-group addForm">
+        <label class="control-label" translate>th_manufacturer</label>
+        <input
+          type="text"
+          class="form-control"
+          ng-model="filters.manufacturer"
+          ng-change="changeFilters()"
+        >
+      </div>
+    </div>
   </div>
   <div class="row mt-2">
     <div class="col-md-3 col-sm-6">

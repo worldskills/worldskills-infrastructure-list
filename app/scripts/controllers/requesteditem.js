@@ -172,7 +172,7 @@ angular.module('ilApp')
         $scope.loading.items = false;
       })
       .catch(function (error) {
-        WSAlert.danger(error);
+        WSAlert.danger(error.user_msg);
         $scope.loading.items = false;
       });
 
