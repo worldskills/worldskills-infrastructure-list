@@ -264,6 +264,11 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 /*.editForm .nav > li > a{ padding: 10px; }*/
 .editForm .nav-tabs > li > a { font-size: 100%; }
 
+@media screen and (min-width: 768px) {
+  .table-responsive {
+    overflow-x: visible !important;
+  }
+}
 
 /** COLORING FOR TABLE CELLS **/
 .table tbody tr.success > td{
@@ -306,6 +311,21 @@ legend.aside{ padding: 0; font-size: 100%; margin-bottom: 1em; }
 
 .il-public-items-table {
     font-size: 12px;
+}
+
+.il-public-items-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
+
+.il-public-items-table thead th:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: -1px;
+  border-bottom: 1px solid #ddd;
 }
 
 @media print {
