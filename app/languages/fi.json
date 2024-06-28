@@ -149,6 +149,7 @@
     "dont_split_product": "Tuotteesta luodaan kopio, klikkaa peruuttaaksesi toiminto",
     "downloading_file": "Tiedostoa ladataan",
     "drop_files_here_to_upload": "Pudota tiedostot tähän tai valitse Lataa",
+    "edit": "Muokkaa",
     "edit_details": "muokkaa",
     "edit_product": "Muokkaa tuotetta",
     "edit_recommendation": "Muokkaa suositusta",
@@ -192,6 +193,7 @@
         "toggle_filters_dialog": "Vaihda suodattimien valintaikkuna",
         "toggle_inline_editing": "Ota upotettu muokkaus käyttöön"
     },
+    "id": "ID",
     "il_app_name": "Infrastruktuurilistat",
     "import_products": "Tuo tuotteet/tavarat",
     "important!": "Tärkeä!",
@@ -516,6 +518,7 @@
     "to_edit_items": "Muokkaa kohteita valitsemalla kategoria vasemmalla olevasta valikosta.",
     "to_purchase": "Ostoihin",
     "to_the_list": "listalle?",
+    "tools": "Toiminnot",
     "trueLabel": "Totta",
     "uib_tooltip": {
         "category_contains_subcategory": "Tämä tuoteluokka sisältää alakategorioita",
