@@ -374,6 +374,7 @@
     "req_electricity_a": "Sähkö - Ampeeria",
     "req_electricity_v": "Sähkö - Volttia",
     "requested_item": "Pyydetty kohde",
+    "requested_item_id": "Pyydetty asian/esineen ID",
     "requested_items": "Pyydetyt kohteet",
     "requested_items_properties": "Pyydetyt kohteiden ominaisuudet",
     "required": {
