@@ -1,4 +1,7 @@
 {
+    "id": "ID",
+    "tools": "Tools",
+    "edit": "Edit",
     "requested_item_id": "Requested Item ID",
     "history": "History",
     "import_products": "Import Products",

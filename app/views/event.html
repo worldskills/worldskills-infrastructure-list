@@ -11,7 +11,7 @@
 
 <div class="pull-right" ng-show="event.userCanEdit || userCanEditItemCategories || userCanEditConfig || event.userCanExportRequestedItems || event.userCanExportSuppliedItems">
     <div class="btn-group" uib-dropdown>
-        <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled"><span translate>Tools</span> <span class="caret"></span></button>
+        <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled"><span translate>tools</span> <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
           <li ng-if="userCanEditItemCategories"><a ui-sref="itemCategory({eventId: event.id})" translate>item_category_and_subcategory</a></li>
           <li ng-if="event.userCanEditAllRequestedItems"><a ui-sref="requestedItems({eventId: event.id})" translate>requested_items</a></li>
@@ -51,10 +51,10 @@
             </colgroup>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Items</th>
-                    <th>Actions</th>
+                    <th translate>id</th>
+                    <th translate>name</th>
+                    <th translate>items</th>
+                    <th translate>actions</th>
                 </tr>
             </thead>
             <tfoot>
