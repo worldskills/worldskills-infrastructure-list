@@ -17,7 +17,7 @@ angular.module('ilApp')
     $scope.filters = {};
 
     $scope.current_page = 1;
-    $scope.items_per_page = 50;
+    $scope.items_per_page = 100;
 
     // used to manage concurrent search requests
     $scope.loadPromise = null;
