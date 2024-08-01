@@ -40,7 +40,7 @@
         </tr>
         <tr
         ng-class="{'warning': data.item.additional_quantity != data.item.requestedItem.additional_quantity}"
-        ng-if='data.item.additional_quantity'>
+        ng-if='data.item.additional_quantity != data.item.requestedItem.additional_quantity'>
           <td><b translate>Additional quantity</b><br>{{data.item.requestedItem.additional_quantity}}</td>
           <td><b translate>Additional quantity</b><br>{{data.item.additional_quantity}}</td>
         </tr>
