@@ -21,7 +21,7 @@
       {{item.person.first_name}} {{item.person.last_name}}
       <span class="text-muted">
         recommended
-        <span ng-if="item.requestedItem && !item.deletionSuggestion" translate>td_item_replace_with</span>
+        <span ng-if="item.confirmed" translate>item_confirmed</span>
         <span ng-if="item.wrongSuppliedItem" translate>wrong_product</span>
         <span ng-if="!item.requestedItem" translate>td_item_addition</span>
         <span ng-if="item.deletionSuggestion" translate>td_item_deletion</span>

@@ -126,6 +126,13 @@
                 </label>
               </div>
             </div>
+            <div ng-if="item.id" class="col col-xs-12 col-md-4">
+              <div data-nodrag class="checkbox addForm form-group">
+                <label>
+                  <input type="checkbox" ng-model="recommendedItem.confirmed"></input> <span translate>item_confirmed</span>
+                </label>
+              </div>
+            </div>
           </div>
         </uib-tab>
         <uib-tab index="1" heading="{{'product_tab.detailed' | translate}}">

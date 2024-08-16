@@ -82,6 +82,7 @@
       <fieldset><legend>Product</legend>
 
         <div>
+          <span class="label label-success" ng-show="data.item.confirmed" translate>item_confirmed</span>
           <span class="label label-warning" ng-show="data.item.wrongSuppliedItem" translate>wrong_product</span>
           <span class="label label-danger" ng-show="data.item.deletionSuggestion" translate>Deletion suggested</span>
         </div>
