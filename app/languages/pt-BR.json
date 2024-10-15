@@ -1,1 +1,24 @@
-{}
+{
+    "action": "Ação",
+    "actions": "Ações",
+    "cancel": "Cancelar",
+    "clear": "Limpar",
+    "delete": "Excluir",
+    "description": "Descrição",
+    "edit": "Editar",
+    "history": "Histórico",
+    "id": "ID",
+    "login": "Entrar",
+    "logout": "Sair",
+    "name": "Nome",
+    "overview": "Visão geral",
+    "permissions": "Permissões",
+    "profile": "Perfil",
+    "reports": "Relatórios",
+    "save": "Salvar",
+    "skill": "Ocupação",
+    "th_id": "ID",
+    "th_name": "Nome",
+    "th_position": "Posição",
+    "yes": "Sim"
+}
