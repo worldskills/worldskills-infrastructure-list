@@ -51,12 +51,6 @@
           <td><b translate>Estimated Price</b><br>{{data.item.price}}</td>
         </tr>
         <tr
-        ng-class="{'warning': data.item.unit != data.item.requestedItem.unit}"
-        ng-if='data.item.unit'>
-          <td><b translate>Unit</b><br>{{data.item.requestedItem.unit}}</td>
-          <td><b translate>Unit</b><br>{{data.item.unit}}</td>
-        </tr>
-        <tr
         ng-class="{'warning': data.item.area.id != data.item.requestedItem.area.id}"
         ng-if='data.item.area.id != data.item.requestedItem.area.id'>
           <td><b translate>skill_area</b><br>{{data.item.requestedItem.area.name}}</td>
@@ -162,6 +156,12 @@
             ng-if='data.item.recommendedItemSupplied.unit_cost != null'>
               <td><b translate>Unit Cost</b><br>{{data.item.suppliedItem.unit_cost}}</td>
               <td><b translate>Unit Cost</b><br>{{data.item.recommendedItemSupplied.unit_cost}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.unit != data.item.recommendedItemSupplied.unit}"
+            ng-if='data.item.recommendedItemSupplied.unit != null'>
+              <td><b translate>Unit</b><br>{{data.item.suppliedItem.unit}}</td>
+              <td><b translate>Unit</b><br>{{data.item.recommendedItemSupplied.unit}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.po_number != data.item.recommendedItemSupplied.po_number}"

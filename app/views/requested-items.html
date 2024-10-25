@@ -257,11 +257,11 @@
             {{ item.category.name.text }}
         </td>
         <td ng-if="columns.quantity">
-            <span ng-if="item.multiplier">{{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}</span>
-            <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>additional</span></span>
+            <span ng-if="item.multiplier">{{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.supplied_item.unit ? item.quantity + ' ' + item.supplied_item.unit : item.quantity, factor: item.multiply_factor} }}</span>
+            <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.supplied_item.unit }} <span translate>additional</span></span>
         </td>
         <td ng-if="columns.calculated_quantity">{{item.calculated_quantity}}</td>
-        <td ng-if="columns.unit">{{UNITS[item.unit] | translate}}</td>
+        <td ng-if="columns.unit">{{UNITS[item.supplied_item.unit] | translate}}</td>
         <td ng-if="columns.description">{{ item.description.text }}</td>
         <td ng-if="columns.area">{{item.area.name}}</td>
         <td ng-if="columns.supplied">{{item.supplied_item.description.text}}</td>

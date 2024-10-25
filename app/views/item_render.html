@@ -6,8 +6,8 @@
 </td>
 <td>
   <span>
-    {{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.unit ? item.quantity + ' ' + item.unit : item.quantity, factor: item.multiply_factor} }}
-    <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.unit }} <span translate>additional</span></span>
+    {{'item_readable_quantity_' + item.multiplier.toLowerCase() | translate: {quantity: item.supplied_item.unit ? item.quantity + ' ' + item.supplied_item.unit : item.quantity, factor: item.multiply_factor} }}
+    <span ng-if="item.additional_quantity > 0"><br> + {{item.additional_quantity}} {{ item.supplied_item.unit }} <span translate>additional</span></span>
   </span>
 </td>
 <td>
