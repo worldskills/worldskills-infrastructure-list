@@ -82,6 +82,10 @@
         <span ng-if="item.category.id"><br><span class="text-muted">Category:</span> {{item.category.name.text}}</span>
       </span>
 
+      <span ng-if="item.deletionSuggestion">
+        <span class="text-muted">of</span> {{item.suppliedItem.description.text}}
+      </span>
+
     </div>
   </div>
   <hr/>
