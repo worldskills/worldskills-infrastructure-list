@@ -12,21 +12,11 @@ angular.module('ilApp')
 
     $scope.event = false;
     $scope.data = {};
-    $scope.loading.subCategories = true;
 
     Events.getEvent($stateParams.eventId).then( function (event) {
       $scope.event = event;
     });
 
-    //load item sub categories
-    ItemCategory.getAllSubCategory($state.params.eventId).then(function (res) {
-      $scope.data.subCategories = res.categories;
-      $scope.loading.subCategories = false;
-    },
-    function (error) {
-      WSAlert.danger(error);
-      $scope.loading.subCategories = false;
-    });
     //load item categories
     ItemCategory.getAllCategory($state.params.eventId).then(function (res) {
       $scope.data.categories = res.categories;
@@ -39,6 +29,27 @@ angular.module('ilApp')
       open: true,
     };
 
+    $scope.showItem = function (item, collapsed) {
+      if ($scope.searchCategory && $scope.searchCategory.length > 0) {
+        if (item.name.text.toLowerCase().indexOf($scope.searchCategory.toLowerCase()) > -1) {
+          return true;
+        }
+        // check children
+        var found = false;
+        angular.forEach(item.children, function(subItem) {
+          if (subItem.name.text.toLowerCase().indexOf($scope.searchCategory.toLowerCase()) > -1) {
+            found = true;
+          }
+        });
+        return found;
+      } else {
+        if (collapsed) {
+          return false;
+        }
+      }
+      return true;
+    };
+
     function postClose() {
       $scope.asideState.open = false;
     }
@@ -48,18 +59,20 @@ angular.module('ilApp')
       $scope.sortPropertyName = sortPropertyName;
     };
 
-    $scope.openItemEditor = function (item, isCategory, index) {
+    $scope.openItemEditor = function (item, parent, index) {
       if (item == undefined || !item.id) {
         $scope.item = {
           name: {text: '', lang_code: Language.selectedLanguage},
         };
+        if (parent) {
+          $scope.item.parent_id = parent.id;
+          $scope.parent = parent;
+        }
       } else {
-        $scope.item = {};
-        angular.copy(item, $scope.item);
-        $scope.rowItem = item;
+        $scope.item = item;
+        $scope.parent = parent;
       }
 
-      $scope.isCategory = isCategory;
       $scope.index = index;
 
       $aside.open({
@@ -72,41 +85,23 @@ angular.module('ilApp')
       }).result.then(postClose, postClose);
     };
 
-    $scope.removeItemCategory = function (itemCategory, isCategory) {
-      var entityCode = isCategory ? 'category' : 'sub_category';
+    $scope.removeItemCategory = function (itemCategory, parent) {
 
       if(!itemCategory.used){
         $confirm({
-          title: $translate.instant('delete_item_'+entityCode+'.title'),
-          text: $translate.instant('delete_item_'+entityCode+'.text', {text: itemCategory.name.text}),
+          title: $translate.instant('delete_item_category.title'),
+          text: $translate.instant('delete_item_category.text', {text: itemCategory.name.text}),
           ok: $translate.instant('ok'),
           cancel: $translate.instant('cancel')
         }).then(function () {
           return ItemCategory.removeItemCategory(itemCategory);
         }).then(function (result) {
-          var entities = isCategory ? $scope.data.categories : $scope.data.subCategories;
+          var entities = parent ? parent.children : $scope.data.categories;
           var index = entities.indexOf(itemCategory);
           entities.splice(index, 1);
           // If we delete a subcategory
-          if(!isCategory){
-            // Get the parent
-            var parent = itemCategory.parent;
-            var used = false;
-            // Check if the parent is still used by another subcategory
-            for(var i=0;i<entities.length;i++) {
-              if(entities[i].parent.id == parent.id){
-                used = true;
-                break;
-              }
-            }
-            // Reset used state to the parent if category is not used by any subcategory
-            if(!used){
-              for(var i=0;i<$scope.data.categories.length;i++) {
-                if(parent.id === $scope.data.categories[i].id) {
-                  $scope.data.categories[i].used = used;
-                }
-              }
-            }
+          if (parent && parent.children.length === 0) {
+            parent.used = false;
           }
         }).catch(function (error) {
           if(error != 'cancel') {

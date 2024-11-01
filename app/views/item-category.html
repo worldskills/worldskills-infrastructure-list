@@ -1,3 +1,24 @@
+<script type="text/ng-template" id="nodes_renderer.html">
+  <div class="tree-node">
+    <div class="tree-node-content">
+      <a class="btn btn-success btn-xs" ng-if="item.children.length > 0" data-nodrag ng-click="this.toggle()"><span
+        class="glyphicon"
+        ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed
+        }"></span></a>
+      {{item.name.text}}
+      <div class="pull-right">
+        <a class="btn btn-success btn-xs" ng-click="openItemEditor({}, item)"><span class="glyphicon glyphicon-plus"></span></a>
+        <a class="btn btn-danger btn-xs" ng-disabled="item.children.length > 0" uib-tooltip="{{ 'uib_tooltip.category_contains_subcategory' | translate}}" tooltip-enable="{{item.children.length > 0}}" ng-click="removeItemCategory(item, $parentNodeScope.item)"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, null, $index)"><span class="glyphicon glyphicon-edit"></span></a>
+      </div>
+    </div>
+  </div>
+  <ol ui-tree-nodes ng-model="item.children" ng-show="showItem(item, collapsed)">
+    <li ng-repeat="item in item.children" ui-tree-node data-collapsed="true" ng-include="'nodes_renderer.html'"></li>
+  </ol>
+</script>  
 <div class="container">
 
 <ol class="breadcrumb">
@@ -6,111 +27,32 @@
     <li class="active" translate>item_category_and_subcategory</li>
 </ol>
 
-<h2 translate>item_category_and_subcategory</h2>
+<div class="col-md-8 col-md-offset-2">
 
-<uib-tabset>
-  <uib-tab index="0" heading="{{ 'item_sub_category' | translate }}">
-    <div class="actions">
-      <div>
-        <div class="pull-left">
-          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, false)" ng-disabled="event.locked">
-            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_sub_category</span>
-          </button>
-        </div>
-        <div class="pull-right searchContainer">
-          <div class="form-group addForm">
-              <div class="input-group">
-                  <input type="text" class="form-control input-sm has-feedback" placeholder="{{ 'placeholder.search' | translate }}" ng-model="searchText">
-                  <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-              </div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
+  <h2 translate>item_category_and_subcategory</h2>
+  <div class="actions">
+    <div>
+      <div class="pull-left">
+        <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, null)" ng-disabled="event.locked">
+          <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_category</span>
+        </button>
       </div>
-    </div>
-    <div class="table-responsive mt-3">
-      <table class="table table-striped vmiddle">
-        <thead>
-          <tr>
-            <th ng-click="sortBy('name.text')">
-              <span translate>th_name</span>
-              <i class="glyphicon" ng-class="{'glyphicon-chevron-down': sortReverse, 'glyphicon-chevron-up': !sortReverse}" ng-show="sortPropertyName === 'name.text'"></i>
-            </th>
-            <th ng-click="sortBy('parent.name.text')">
-              <span translate>th_item_category</span>
-              <i class="glyphicon" ng-class="{'glyphicon-chevron-down': sortReverse, 'glyphicon-chevron-up': !sortReverse}" ng-show="sortPropertyName === 'parent.name.text'"></i>
-            </th>
-            <th class="actions" translate>th_actions</th>
-          </tr>
-        </thead>
-        <tfoot><tr ng-show="!loading.subCategories"><td colspan="4"></td></tr></tfoot>
-        <tbody>
-          <tr ng-repeat="item in data.subCategories | filter:searchText | orderBy:sortPropertyName:sortReverse">
-            <td>{{item.name.text}}</td>
-            <td>{{item.parent.name.text}}</td>
-            <td class="actions">
-              <a class="btn btn-danger btn-xs" ng-disabled="item.used" uib-tooltip="{{ 'uib_tooltip.subcategory_contains_items' | translate}}" tooltip-enable="{{item.used}}" ng-click="removeItemCategory(item, false)"><span class="glyphicon glyphicon-remove"></span></a>
-              <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, false, $index)"><span class="glyphicon glyphicon-edit"></span></a>
-            </td>
-          </tr>
-          <tr ng-show="!loading.subCategories && !data.subCategories.length">
-            <td colspan="4" translate>no_subcategories</td>
-          </tr>
-          <tr ng-show="loading.subCategories">
-            <td colspan="4"><ws-spinner></ws-spinner></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </uib-tab>
-  <uib-tab index="1" heading="{{ 'item_category' | translate }}">
-    <div class="actions">
-      <div>
-        <div class="pull-left">
-          <button class="btn btn-sm btn-success" ng-click="openItemEditor({}, true)" ng-disabled="event.locked">
-            <span class="glyphicon glyphicon-plus"></span>&nbsp;<span translate>add_category</span>
-          </button>
+      <div class="pull-right searchContainer">
+        <div class="form-group addForm">
+            <div class="input-group">
+                <input type="text" class="form-control input-sm has-feedback" placeholder="{{ 'placeholder.search' | translate }}" ng-model="searchCategory">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            </div>
         </div>
-        <div class="pull-right searchContainer">
-          <div class="form-group addForm">
-              <div class="input-group">
-                  <input type="text" class="form-control input-sm has-feedback" placeholder="{{ 'placeholder.search' | translate }}" ng-model="searchCategory">
-                  <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-              </div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
       </div>
+      <div class="clearfix"></div>
     </div>
-    <div class="table-responsive mt-3">
-      <table class="table table-striped vmiddle">
-        <thead>
-          <tr>
-            <th ng-click="sortBy('name.text')">
-              <span translate>th_name</span>
-              <i class="glyphicon" ng-class="{'glyphicon-chevron-up': sortReverse, 'glyphicon-chevron-down': !sortReverse}" ng-show="sortPropertyName === 'name.text'"></i>
-            </th>
-            <th class="actions" translate ng-click="sortBy('name')">th_actions</th>
-          </tr>
-        </thead>
-        <tfoot><tr><td colspan="3"></td></tr></tfoot>
-        <tbody ng-show="data.categories.length">
-          <tr ng-repeat="item in data.categories | filter:searchCategory | orderBy:sortPropertyName:sortReverse">
-            <td>{{item.name.text}}</td>
-            <td class="actions">
-                <a class="btn btn-danger btn-xs" ng-disabled="item.used" uib-tooltip="{{ 'uib_tooltip.category_contains_subcategory' | translate}}" tooltip-enable="{{item.used}}" ng-click="removeItemCategory(item, true)"><span class="glyphicon glyphicon-remove"></span></a>
-                <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, true, $index)"><span class="glyphicon glyphicon-edit"></span></a>
-            </td>
-          </tr>
-        </tbody>
-        <tbody ng-show="!data.categories.length">
-          <tr>
-            <td colspan="3" translate>no_categories</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </uib-tab>
-</uib-tabset>
+  </div>
+  <div ui-tree data-drag-enabled="false">
+    <ol ui-tree-nodes ng-model="data.categories">
+      <li ng-repeat="item in data.categories" ui-tree-node data-collapsed="true" ng-include="'nodes_renderer.html'"></li>
+    </ol>
+  </div>
+</div>
 
 </div>

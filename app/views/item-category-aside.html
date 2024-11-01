@@ -1,29 +1,21 @@
 <div class="aside ng-scope">
   <fieldset>
-    <legend class="ng-scope" ng-if="isCategory" translate>item_category_property</legend>
-    <legend class="ng-scope" ng-if="!isCategory" translate>item_subcategory_property</legend>
+    <legend class="ng-scope" translate>item_category_property</legend>
     <alerts></alerts>
     <ws-spinner ng-if="loading.aside"></ws-spinner>
     <form name="addForm">
       <div class="well">
         <div class="form-group addForm">
-          <label class="control-label" ng-if="isCategory" translate>item_category_name</label>
-          <label class="control-label" ng-if="!isCategory" translate>item_subcategory_name</label>
-          <input type="text" class="form-control form-control-small has-feedback" autofocus="autofocus" placeholder="{{'placeholder.item_category_name' | translate}}"
-            ng-if="isCategory" ng-required="true" ng-model="item.name.text">
-          <input type="text" class="form-control form-control-small has-feedback" autofocus="autofocus" placeholder="{{'placeholder.item_subcategory_name' | translate}}"
-            ng-if="!isCategory" ng-required="true" ng-model="item.name.text">
+          <label class="control-label" translate>item_category_name</label>
+          <input type="text" class="form-control form-control-small has-feedback" autofocus="autofocus" placeholder="{{'placeholder.item_category_name' | translate}}" ng-required="true" ng-model="item.name.text">
         </div>
 
-        <div class="form-group addForm" ng-if="!isCategory">
-          <label class="control-label" translate>item_category</label>
-          <ui-select ng-required="true" ng-model="item.parent" theme="bootstrap">
-            <ui-select-match placeholder="{{ 'placeholder.choose_item_category' | translate }}">{{item.parent.name.text}}</ui-select-match>
-            <ui-select-choices repeat="category as category in (categories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
-              <div ng-bind-html="category.name.text"></div>
-              <small>
-                {{category.description.text}}
-              </small>
+        <div class="form-group addForm">
+          <label class="control-label" translate>item_category_parent</label>
+          <ui-select ng-model="item.parent_id" theme="bootstrap">
+            <ui-select-match allow-clear="true" placeholder="{{ 'item_category_parent_none' | translate }}">{{$select.selected.path}} {{$select.selected.name.text}}</ui-select-match>
+            <ui-select-choices repeat="category.id as category in (categoriesFlat | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by category.id">
+              <div>{{category.path}} {{category.name.text}}</div>
             </ui-select-choices>
           </ui-select>
         </div>

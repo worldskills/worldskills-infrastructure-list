@@ -17,14 +17,27 @@ angular.module('ilApp')
       open: true,
     };
 
+    var previousParentId = $scope.item.parent_id;
+
     //close modal aside
     $scope.cancel = function () {
       $uibModalInstance.dismiss();
     };
 
-    if (!$scope.isCategory) {
-      $scope.categories = $scope.$parent.data.categories;
+
+    $scope.categories = $scope.$parent.data.categories;
+    $scope.categoriesFlat = [];
+    // flatten categories
+    function flattenCategories(categories, path) {
+      angular.forEach(categories, function (category) {
+        category.path = path;
+        $scope.categoriesFlat.push(category);
+        if (category.children) {
+          flattenCategories(category.children, category.name.text + ' / ' + path);
+        }
+      });
     }
+    flattenCategories($scope.categories, '');
 
     $scope.saveItemCategory = function (index) {
       $scope.loading.aside = true;
@@ -33,15 +46,10 @@ angular.module('ilApp')
       if ($scope.item.id == null) {
         ItemCategory.createItem($scope.item, $state.params.eventId)
           .then(function (res) {
-            if (res.parent == null) {
+            if (res.parent_id == null) {
               $scope.$parent.data.categories.push(res);
             } else {
-              $scope.$parent.data.subCategories.push(res);
-              for(var i=0;i<$scope.$parent.data.categories.length;i++) {
-                if(res.parent.id === $scope.$parent.data.categories[i].id) {
-                  $scope.$parent.data.categories[i].used = true;
-                }
-              }
+              $scope.parent.children.push(res);
             }
             $scope.loading.aside = false;
             $uibModalInstance.dismiss();
@@ -53,16 +61,9 @@ angular.module('ilApp')
       } else {
         ItemCategory.saveItem($scope.item, $state.params.eventId)
           .then(function (res) {
-            if (res.parent == null) {
-              $scope.$parent.data.categories[index] = res;
-              var linkedSubCategories = $filter('filter')($scope.$parent.data.subCategories, function (item) {
-                return item.parent.id === res.id;
-              });
-              for(var i=0;i<linkedSubCategories.length;i++) {
-                linkedSubCategories[i].parent = res;
-              }
-            } else {
-              $scope.$parent.data.subCategories[index] = res;
+            if (previousParentId !== $scope.item.parent_id) {
+              // parent changed, reload page to refresh tree
+              $state.reload();
             }
             $scope.loading.aside = false;
             $uibModalInstance.dismiss();

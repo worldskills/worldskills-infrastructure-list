@@ -207,6 +207,8 @@
     "item_category_description": "Category description",
     "item_category_name": "Category name",
     "item_category_property": "Category properties",
+    "item_category_parent": "Parent category",
+    "item_category_parent_none": "None",
     "item_doesnt_match": "If this doesn't match your needs, please use one of the options below.",
     "item_information_published": "Product information",
     "item_no_skills": "This item is not yet used in any skills.",
