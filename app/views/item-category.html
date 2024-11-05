@@ -9,7 +9,7 @@
         }"></span></a>
       {{item.name.text}}
       <div class="pull-right">
-        <a class="btn btn-success btn-xs" ng-click="openItemEditor({}, item)"><span class="glyphicon glyphicon-plus"></span></a>
+        <a class="btn btn-success btn-xs" ng-click="openItemEditor({}, item)" uib-tooltip="{{ 'add_sub_category' | translate}}"><span class="glyphicon glyphicon-plus"></span></a>
         <a class="btn btn-danger btn-xs" ng-disabled="item.children.length > 0" uib-tooltip="{{ 'uib_tooltip.category_contains_subcategory' | translate}}" tooltip-enable="{{item.children.length > 0}}" ng-click="removeItemCategory(item, $parentNodeScope.item)"><span class="glyphicon glyphicon-remove"></span></a>
         <a class="btn btn-warning btn-xs" ng-click="openItemEditor(item, null, $index)"><span class="glyphicon glyphicon-edit"></span></a>
       </div>
