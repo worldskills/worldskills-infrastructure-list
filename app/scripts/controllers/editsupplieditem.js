@@ -39,8 +39,18 @@ angular.module('ilApp')
 
     $scope.supplierValueAdd = false;
 
-    ItemCategory.getAllSubCategory($scope.event.id).then(function (res) {
-      $scope.subCategories = res.categories;
+    $scope.categories = [];
+    $scope.flattenCategories = function (categories, path) {
+      angular.forEach(categories, function (category) {
+        category.path = path;
+        $scope.categories.push(category);
+        if (category.children) {
+          $scope.flattenCategories(category.children, category.name.text + ' / ' + path);
+        }
+      });
+    }
+    ItemCategory.getAllCategory($scope.event.id).then(function (res) {
+      $scope.flattenCategories(res.categories, '');
     },
     function (error) {
       WSAlert.danger(error);
