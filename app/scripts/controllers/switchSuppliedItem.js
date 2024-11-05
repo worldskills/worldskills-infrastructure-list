@@ -6,13 +6,8 @@
     $scope.selectedLanguage = $translate.use();
     $scope.searchActive = false;
 
-    //load item sub categories
-    ItemCategory.getAllSubCategory($scope.event_id).then(function (res) {
-      $scope.subCategories = res.categories;
-    },
-    function (error) {
-      WSAlert.danger(error);
-    });
+    $scope.categoryStack = [];
+
     //load item categories
     ItemCategory.getAllCategory($scope.event_id).then(function (res) {
       $scope.categories = res.categories;
@@ -21,21 +16,31 @@
       WSAlert.danger(error);
     });
 
-    $scope.selectCategory = function (category) {
+    $scope.selectParentCategory = function (category, index) {
+      while ($scope.categoryStack.length > index) {
+        $scope.categoryStack.pop();
+      }
       $scope.selectedCategory = category;
-      $scope.selectedSubCategory = null;
-      $scope.searchResults = null;
-      $scope.searchTerm = null;
-      $scope.searchActive = false;
+      $scope.updateCategories();
     };
-    $scope.selectSubCategory = function (subCategory) {
-      $scope.selectedSubCategory = subCategory;
+
+    $scope.selectCategory = function (category) {
+      if ($scope.selectedCategory) {
+        $scope.categoryStack.push($scope.selectedCategory);
+      }
+      $scope.selectedCategory = category;
+      $scope.updateCategories();
+    };
+
+    $scope.updateCategories = function () {
       $scope.searchResults = null;
       $scope.searchTerm = null;
       $scope.searchActive = false;
-      SuppliedItem.getItems($scope.event_id, $scope.searchTerm, $scope.selectedSubCategory.id).then(function (result) {
-        $scope.searchResults = result;
-      });
+      if ($scope.selectedCategory !== null) {
+        SuppliedItem.getItems($scope.event_id, $scope.searchTerm, $scope.selectedCategory.id).then(function (result) {
+          $scope.searchResults = result;
+        });
+      }
     };
 
     $scope.search = function () {

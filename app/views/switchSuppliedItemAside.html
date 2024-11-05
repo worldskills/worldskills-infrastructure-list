@@ -16,23 +16,19 @@
       <li class="active">Search</li>
     </ol>
 
-    <ol class="breadcrumb" ng-show="selectedCategory && !selectedSubCategory">
-      <li><a href ng-click="selectCategory(null)">Categories</a></li>
-      <li class="active">{{selectedCategory.name.text}}</li>
-    </ol>
     <div class="list-group" ng-hide="selectedCategory || searchActive">
       <a href ng-click="selectCategory(category)" class="list-group-item" ng-repeat="category in categories">
         {{ category.name.text }}
       </a>
     </div>
 
-    <ol class="breadcrumb" ng-show="selectedCategory && selectedSubCategory">
-      <li><a href ng-click="selectCategory(null)">Categories</a></li>
-      <li><a href ng-click="selectCategory(selectedCategory)">{{selectedCategory.name.text}}</a></li>
-      <li class="active">{{selectedSubCategory.name.text}}</li>
+    <ol class="breadcrumb" ng-show="selectedCategory">
+      <li><a href ng-click="selectParentCategory(null, 0)">Categories</a></li>
+      <li ng-repeat="cat in categoryStack"><a href ng-click="selectParentCategory(cat, $index)">{{cat.name.text}}</a></li>
+      <li class="active">{{selectedCategory.name.text}}</li>
     </ol>
     <div class="list-group" ng-show="selectedCategory && !selectedSubCategory && !searchActive">
-      <a href ng-click="selectSubCategory(subCategory)" class="list-group-item" ng-repeat="subCategory in subCategories|filter:{parent:{id: selectedCategory.id}}:true">
+      <a href ng-click="selectCategory(subCategory)" class="list-group-item" ng-repeat="subCategory in selectedCategory.children">
         {{ subCategory.name.text }}
       </a>
     </div>
