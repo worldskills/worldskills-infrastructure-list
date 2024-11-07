@@ -54,7 +54,6 @@
           <li><a href ng-click="toggleColumn('supplier')"><i ng-style="{'visibility' : columns.supplier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supplier</span></a></li>
           <li><a href ng-click="toggleColumn('supply_type')"><i ng-style="{'visibility' : columns.supply_type ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_supply_type</span></a></li>
           <li><a href ng-click="toggleColumn('item_category')"><i ng-style="{'visibility' : columns.item_category ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_item_category</span></a></li>
-          <li><a href ng-click="toggleColumn('item_subcategory')"><i ng-style="{'visibility' : columns.item_subcategory ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_item_subcategory</span></a></li>
           <li><a href ng-click="toggleColumn('tier')"><i ng-style="{'visibility' : columns.tier ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_tier</span></a></li>
           <li><a href ng-click="toggleColumn('extra_details')"><i ng-style="{'visibility' : columns.extra_details ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_extra_details</span></a></li>
           <li><a href ng-click="toggleColumn('files')"><i ng-style="{'visibility' : columns.files ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_files</span></a></li>
@@ -129,7 +128,6 @@
                       <span class="caret" ng-show="sort === 'supplied_item.supply_type'"></span>
                     </th>
                     <th ng-if="columns.item_category" translate>th_item_category</th>
-                    <th ng-if="columns.item_subcategory" translate>th_item_subcategory</th>
                     <th ng-if="columns.tier" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('tier_id')" translate>th_tier</span>
                       <span class="caret" ng-show="sort === 'tier_id'"></span>
@@ -227,8 +225,7 @@
                   <td ng-if="columns.unit_cost">{{item.supplied_item.unit_cost}}</td>
                   <td ng-if="columns.supplier">{{item.supplied_item.supplier.name}}</td>
                   <td ng-if="columns.supply_type">{{item.supplied_item.supply_type | translate}}</td>
-                  <td ng-if="columns.item_category">{{item.supplied_item.item_category.parent.name.text}}</td>
-                  <td ng-if="columns.item_subcategory">{{item.supplied_item.item_category.name.text}}</td>
+                  <td ng-if="columns.item_category">{{item.supplied_item.item_category.name.text}}</td>
                   <td ng-if="columns.tier">{{item.tier.name.text}}</td>
                   <td ng-if="columns.extra_details">{{item.supplied_item.extra_details}}</td>
                   <td ng-if="columns.files">
