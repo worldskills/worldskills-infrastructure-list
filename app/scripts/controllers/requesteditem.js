@@ -224,12 +224,18 @@ angular.module('ilApp')
         return ItemCategory.getAllCategory($state.params.eventId);
       })
       .then(function(res){
-        $scope.itemCategories = res.categories;
         //Load item subcategory
-        return ItemCategory.getAllSubCategory($state.params.eventId);
-      })
-      .then(function (res) {
-        $scope.subcategories = res.categories;
+        $scope.itemCategories = [];
+        $scope.flattenCategories = function (categories, path) {
+          angular.forEach(categories, function (category) {
+            category.path = path;
+            $scope.itemCategories.push(category);
+            if (category.children) {
+              $scope.flattenCategories(category.children, category.name.text + ' / ' + path);
+            }
+          });
+        }
+        $scope.flattenCategories(res.categories, '');
         //Load requested items
         return Items.getItemsByEvent(
           $state.params.eventId,

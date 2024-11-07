@@ -38,27 +38,17 @@
     </div>
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
-        <label class="control-label" translate>item_category</label>
-        <ui-select ng-model="filters.item_category" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_item_category' | translate }}">
+        <label class="control-label" translate>th_item_category</label>
+        <ui-select ng-model="filters.item_category.id" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_item_category' | translate }}">
           <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_item_category' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices repeat="category in itemCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
-            <div ng-bind-html="category.name.text"></div>
-          </ui-select-choices>
-        </ui-select>
-
-      </div>
-    </div>
-    <div class="col-md-3 col-sm-6">
-      <div class="form-group addForm">
-        <label class="control-label" translate>item_sub_category</label>
-        <ui-select ng-model="filters.item_subcategory" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_item_subcategory' | translate }}">
-          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_item_subcategory' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-          <ui-select-choices repeat="subcategory in subcategories | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
-            <div ng-bind-html="subcategory.name.text"></div>
+          <ui-select-choices repeat="category.id as category in (itemCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+            {{category.path}} {{category.name.text}}
           </ui-select-choices>
         </ui-select>
       </div>
     </div>
+  </div>
+  <div class="row">
     <div class="col-md-3 col-sm-6">
       <div class="form-group addForm">
         <label class="control-label" translate>description</label>
