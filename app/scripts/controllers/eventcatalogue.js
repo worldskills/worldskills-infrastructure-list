@@ -26,6 +26,7 @@ angular.module('ilApp')
     $scope.allowEditing = false;
     $scope.showFilters = true;
     $scope.showGrid = false;
+    $scope.categories = {};
     $scope.filters = {
       active: false,
       list: null,
@@ -233,11 +234,15 @@ angular.module('ilApp')
       exporterMenuPdf: false,
     };
 
-    $scope.categories = [];
+    Category.getAll($state.params.eventId).then(function (res) {
+      $scope.categories = res
+    });
+
+    $scope.subCategories = [];
     $scope.flattenCategories = function (categories, path) {
       angular.forEach(categories, function (category) {
         category.path = path;
-        $scope.categories.push(category);
+        $scope.subCategories.push(category);
         if (category.children) {
           $scope.flattenCategories(category.children, category.name.text + ' / ' + path);
         }

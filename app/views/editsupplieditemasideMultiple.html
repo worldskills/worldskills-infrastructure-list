@@ -44,7 +44,7 @@
                     <label class="control-label" translate>item_sub_category</label>
                     <ui-select ng-required="false" ng-model="item.item_category.id" theme="bootstrap">
                       <ui-select-match placeholder="{{ 'item_sub_category' | translate }}">{{$select.selected.name.text}}</ui-select-match>
-                      <ui-select-choices repeat="category.id as category in (categories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
+                      <ui-select-choices repeat="category.id as category in (subCategories | customWSFilter: {objPath: 'name.text', 'query': $select.search}) track by $index">
                         {{category.path}} {{category.name.text}}
                       </ui-select-choices>
                     </ui-select>
