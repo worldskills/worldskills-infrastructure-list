@@ -26,7 +26,6 @@ angular.module('ilApp')
     $scope.allowEditing = false;
     $scope.showFilters = true;
     $scope.showGrid = false;
-    $scope.categories = {};
     $scope.filters = {
       active: false,
       list: null,
@@ -120,15 +119,9 @@ angular.module('ilApp')
         {field: 'part_number', name: $translate.instant("th_part_num"), width: '160', cellEditableCondition: $scope.canEdit},
         {
           field: 'item_category.name.text',
-          name: $translate.instant('th_item_subcategory'),
-          width: '160',
-          cellEditableCondition: false,
-        },
-        {
-          field: 'item_category.parent.name.text',
           name: $translate.instant('th_item_category'),
           width: '160',
-          cellEditableCondition: false
+          cellEditableCondition: false,
         },
         {field: 'supplier.name', name: $translate.instant('th_supplier'), width: '100', cellEditableCondition: false},
         {field: 'supply_type', name: $translate.instant('th_supply_type'), width: '100'},
@@ -240,19 +233,22 @@ angular.module('ilApp')
       exporterMenuPdf: false,
     };
 
-    Category.getAll($state.params.eventId).then(function (res) {
-      $scope.categories = res
+    $scope.categories = [];
+    $scope.flattenCategories = function (categories, path) {
+      angular.forEach(categories, function (category) {
+        category.path = path;
+        $scope.categories.push(category);
+        if (category.children) {
+          $scope.flattenCategories(category.children, category.name.text + ' / ' + path);
+        }
+      });
+    }
+    ItemCategory.getAllCategory($state.params.eventId).then(function (res) {
+      $scope.flattenCategories(res.categories, '');
     },
-    function(error){
+    function (error) {
       WSAlert.danger(error);
     });
-
-    ItemCategory.getAllSubCategory($state.params.eventId)
-      .then(function(res){
-        $scope.subCategories = res.categories;
-      }).catch(function(error){
-        WSAlert.danger(error);
-      });
 
     $scope.saveRow = function(rowEntity){
 
