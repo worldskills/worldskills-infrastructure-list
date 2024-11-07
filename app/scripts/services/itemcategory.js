@@ -65,11 +65,6 @@ angular.module('ilApp')
       return ItemCategory.getAll(eventId, 2);
     };
 
-
-    ItemCategory.getAllSubCategory = function(eventId){
-      return ItemCategory.getAll(eventId, 1);
-    };
-
     ItemCategory.removeItemCategory = function(item){
       var deferred = $q.defer();
 
