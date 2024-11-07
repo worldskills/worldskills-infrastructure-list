@@ -21,7 +21,7 @@ angular.module('ilApp')
           deferred.resolve(res.data);
         })
         .catch(function(error){
-          deferred.reject("Could not save item: " + error.data.user_msg);
+          deferred.reject("Could not save category: " + error.data.user_msg);
         });
 
       return deferred.promise;
@@ -34,7 +34,7 @@ angular.module('ilApp')
         deferred.resolve(res.data);
       },
       function(error){
-        deferred.reject("Could not save item: " + error.data.user_msg);
+        deferred.reject("Could not save category: " + error.data.user_msg);
       });
 
       return deferred.promise;
