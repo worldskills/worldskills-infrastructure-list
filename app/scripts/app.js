@@ -1,6 +1,11 @@
 (function() {
   'use strict';
 
+  Sentry.init({
+    dsn: 'https://bd653e10f0ef524ffbe5488e35d435cc@o200076.ingest.us.sentry.io/4508263037403136',
+    integrations: [new Sentry.Integrations.Angular()]
+  });
+
   /**
    * @ngdoc overview
    * @name ilApp
@@ -11,6 +16,7 @@
    */
   var ilApp = angular
     .module('ilApp', [
+      'ngSentry',  
       'ngAnimate',
       'ngAria',
       'ngCookies',
@@ -92,7 +98,13 @@
     "m3": "unit_cubic_metres",
   });
 
-  ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, tmhDynamicLocaleProvider) {
+  ilApp.config(function ($routeProvider, APP_ROLES, $translateProvider, $stateProvider, $urlRouterProvider, $httpProvider, tmhDynamicLocaleProvider, SENTRY_ENVIRONMENT) {
+
+    if (SENTRY_ENVIRONMENT) {
+      Sentry.getCurrentHub().getClient().getOptions().environment = SENTRY_ENVIRONMENT;
+    } else {
+      Sentry.getCurrentHub().getClient().getOptions().enabled = false;    
+    }
 
     $urlRouterProvider.otherwise(function ($injector, $location) {
       // check for existing redirect

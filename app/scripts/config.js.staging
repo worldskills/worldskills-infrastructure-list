@@ -20,5 +20,6 @@
     ilApp.constant('LOAD_CHILD_ENTITY_ROLES', true);
     ilApp.constant('FILTER_AUTH_ROLES', [2200]);
     ilApp.constant('ENVIRONMENT_WARNING', 'This is the staging environment. Changes in this environment might get overwritten.');
+    ilApp.constant('SENTRY_ENVIRONMENT', 'staging');
 
 })();
