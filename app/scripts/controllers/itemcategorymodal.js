@@ -49,7 +49,8 @@ angular.module('ilApp')
             if (res.parent_id == null) {
               $scope.$parent.data.categories.push(res);
             } else {
-              $scope.parent.children.push(res);
+              // child item, reload page to refresh tree
+              $state.reload();
             }
             $scope.loading.aside = false;
             $uibModalInstance.dismiss();
