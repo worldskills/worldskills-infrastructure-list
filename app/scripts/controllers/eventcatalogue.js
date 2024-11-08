@@ -128,6 +128,7 @@ angular.module('ilApp')
         {field: 'supply_type', name: $translate.instant('th_supply_type'), width: '100'},
         {field: 'unit_cost', name: $translate.instant('th_unit_cost'), width: '100'}, //double
         {field: 'unit', name: $translate.instant('th_unit'), width: '100'},
+        {field: 'calculated_quantity', name: $translate.instant('th_quantity_calculated'), width: '100'},
         {field: 'po_number', name: $translate.instant('th_po_number'), width: '100'},
         {field: 'priority', name: $translate.instant('th_priority'), width: '100',
           enableCellEdit: false,
