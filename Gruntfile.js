@@ -51,10 +51,6 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -64,8 +60,8 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.app %>/styles/{,*/}*.{css}'
         ]
       }
     },
@@ -205,39 +201,6 @@ module.exports = function (grunt) {
               }
             }
           }
-      },
-      sass: {
-        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: /(\.\.\/){1,2}bower_components\//
-      }
-    },
-
-    // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%= yeoman.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
-        importPath: './bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false,
-        raw: 'Sass::Script::Number.precision = 10\n'
-      },
-      dist: {
-        options: {
-          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-        }
-      },
-      server: {
-        options: {
-          sourcemap: true
-        }
       }
     },
 
@@ -467,21 +430,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Run some tasks in parallel to speed up the build process
-    concurrent: {
-      server: [
-        'compass:server'
-      ],
-      test: [
-        'compass'
-      ],
-      dist: [
-        'compass:dist',
-        'imagemin',
-        'svgmin'
-      ]
-    },
-
     // Test settings
     karma: {
       unit: {
@@ -500,8 +448,6 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'concurrent:server',
-      'autoprefixer:server',
       'connect:livereload',
       'watch'
     ]);
@@ -515,8 +461,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
-    'concurrent:test',
-    'autoprefixer',
     'connect:test',
     'karma'
   ]);
@@ -526,8 +470,8 @@ module.exports = function (grunt) {
     'copy:config',
     'wiredep',
     'useminPrepare',
-    'concurrent:dist',
-    'autoprefixer',
+    'imagemin',
+    'svgmin',
     'htmlmin',
     'ngtemplates',
     'concat',
