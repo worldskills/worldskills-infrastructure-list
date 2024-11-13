@@ -152,32 +152,6 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    // Add vendor prefixed styles
-    autoprefixer: {
-      options: {
-        browsers: ['last 1 version']
-      },
-      server: {
-        options: {
-          map: true,
-        },
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      }
-    },
-
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
@@ -264,8 +238,12 @@ module.exports = function (grunt) {
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
     cssmin: {
-      options: {
-        root: '<%= yeoman.app %>'
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css'
+          ]
+        }
       }
     },
     uglify: {
@@ -464,6 +442,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'copy:config',
+    'copy:styles',
     'wiredep',
     'useminPrepare',
     'imagemin',
