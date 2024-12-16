@@ -26,11 +26,11 @@ angular.module('ilApp')
     $scope.searchSupplierAPI = API_IL + '/suppliers/' + $scope.event_id + '/search?q=';
     $scope.searchAPI = API_IL + '/items/' + $scope.event_id + '/supplied_items/?limit=100&search=';
 
-    $scope.categories = [];
+    $scope.itemCategories = [];
     $scope.flattenCategories = function (categories, path) {
       angular.forEach(categories, function (category) {
         category.path = path;
-        $scope.categories.push(category);
+        $scope.itemCategories.push(category);
         if (category.children) {
           $scope.flattenCategories(category.children, category.name.text + ' / ' + path);
         }
