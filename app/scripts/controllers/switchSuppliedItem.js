@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('ilApp').controller('switchSuppliedItemCtrl', function ($scope, $translate, $uibModalInstance, ItemCategory, SuppliedItem) {
+  angular.module('ilApp').controller('switchSuppliedItemCtrl', function ($scope, $translate, $uibModalInstance, WSAlert, ItemCategory, SuppliedItem) {
 
     $scope.selectedLanguage = $translate.use();
     $scope.searchActive = false;
