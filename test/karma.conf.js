@@ -79,21 +79,8 @@ module.exports = function(config) {
     // web server port
     port: 8080,
 
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
-    browsers: [
-      "PhantomJS"
-    ],
-
     // Which plugins to enable
     plugins: [
-      "karma-phantomjs-launcher",
       "karma-jasmine"
     ],
 
