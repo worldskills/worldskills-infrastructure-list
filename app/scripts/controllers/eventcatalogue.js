@@ -9,7 +9,7 @@
  */
 angular.module('ilApp')
   .controller('EventCatalogueCtrl', function ($scope, $q, $aside, Items, Category, $state, $stateParams, WSAlert, API_IL,
-    $timeout, uiGridConstants, $confirm,
+    $timeout, uiGridConstants, $confirm, $filter,
     SuppliedItem, Events, hotkeys, $translate, ItemCategory, i18nService, SUPPLIED_ITEM_PRIORITIES,
     Status, Auth, auth, APP_ID, APP_ROLES,
     UNITS, UPLOADS_URL
@@ -119,10 +119,19 @@ angular.module('ilApp')
         {field: 'size', name: $translate.instant("th_size"), width: '160', cellEditableCondition: $scope.canEdit},
         {field: 'part_number', name: $translate.instant("th_part_num"), width: '160', cellEditableCondition: $scope.canEdit},
         {
-          field: 'item_category.name.text',
+          field: 'item_category',
           name: $translate.instant('th_item_category'),
-          width: '160',
+          width: '250',
+          cellTemplate: "<div class='ui-grid-cell-contents' style='white-space: nowrap'><span ng-repeat='breadcrumb in row.entity.item_category.breadcrumb'>{{breadcrumb}} / </span>{{row.entity.item_category.name.text}}</div>",
           cellEditableCondition: false,
+          filter: {
+            condition: function(searchTerm, cellValue) {
+              if (cellValue != null) {
+                return $filter('filter')([cellValue], {$: searchTerm}).length > 0;
+              }
+              return false;
+            }
+          }
         },
         {field: 'supplier.name', name: $translate.instant('th_supplier'), width: '100', cellEditableCondition: false},
         {field: 'supply_type', name: $translate.instant('th_supply_type'), width: '100'},
@@ -132,7 +141,7 @@ angular.module('ilApp')
         {field: 'po_number', name: $translate.instant('th_po_number'), width: '100'},
         {field: 'priority', name: $translate.instant('th_priority'), width: '100',
           enableCellEdit: false,
-          cellTemplate: "<div translate ng-show='row.entity.priority'>{{row.entity.priority}}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate ng-show='row.entity.priority'>{{row.entity.priority}}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: supplied_item_priorities
@@ -147,7 +156,7 @@ angular.module('ilApp')
         {field: 'location', name: $translate.instant('th_location'), width: '100'},
         {field: 'lead_time', name: $translate.instant('th_lead_time'), width: '100'},
         {field: 'electricity', name: $translate.instant('th_electricity'), width: '100',
-          cellTemplate: "<div translate>{{row.entity.electricity + 'Label' }}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.electricity + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -160,7 +169,7 @@ angular.module('ilApp')
         {field: 'electricity_amps', name: $translate.instant('th_electricity_amps'), width: '100'},//int
         {field: 'electricity_phase', name: $translate.instant('th_electricity_phase'), width: '100'},
         {field: 'water_supply', name: $translate.instant('th_water_supply'), width: '100',
-          cellTemplate: "<div translate>{{row.entity.water_supply + 'Label' }}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.water_supply + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -170,7 +179,7 @@ angular.module('ilApp')
           }
         },
         {field: 'water_drainage', name: $translate.instant('th_water_drainage'), width: '100',
-          cellTemplate: "<div translate>{{row.entity.water_drainage + 'Label' }}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.water_drainage + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -180,7 +189,7 @@ angular.module('ilApp')
           }
         },
         {field: 'compressed_air', name: $translate.instant('th_compressed_air'), width: '100',
-          cellTemplate: "<div translate>{{row.entity.compressed_air + 'Label' }}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.compressed_air + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -190,7 +199,7 @@ angular.module('ilApp')
           }
         },
         {field: 'ventilation_fume_extraction', name: $translate.instant('th_ventilation_fume_extraction'), width: '100', type: 'boolean',
-          cellTemplate: "<div translate>{{row.entity.ventilation_fume_extraction + 'Label' }}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.ventilation_fume_extraction + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -206,7 +215,7 @@ angular.module('ilApp')
         {field: 'modified', name: $translate.instant("th_modified"), width: '95', type: 'date', enableCellEdit: false},
         {field: 'user_generated', name: $translate.instant("th_user_generated"), width: '125', type: 'boolean',
           enableCellEdit: false,
-          cellTemplate: "<div translate>{{row.entity.user_generated + 'Label'}}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.user_generated + 'Label'}}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [
@@ -217,7 +226,7 @@ angular.module('ilApp')
         },
         {field: 'linkedItems', name: $translate.instant("th_linked"), width: '95', type: 'boolean',
           enableCellEdit: false,
-          cellTemplate: "<div translate>{{row.entity.linkedItems + 'Label' }}</div>",
+          cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.linkedItems + 'Label' }}</div>",
           filter: {
             type: uiGridConstants.filter.SELECT,
             selectOptions: [

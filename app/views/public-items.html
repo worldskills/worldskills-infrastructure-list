@@ -225,7 +225,7 @@
                   <td ng-if="columns.unit_cost">{{item.supplied_item.unit_cost}}</td>
                   <td ng-if="columns.supplier">{{item.supplied_item.supplier.name}}</td>
                   <td ng-if="columns.supply_type">{{item.supplied_item.supply_type | translate}}</td>
-                  <td ng-if="columns.item_category">{{item.supplied_item.item_category.name.text}}</td>
+                  <td ng-if="columns.item_category" style="white-space: nowrap;"><span ng-repeat='breadcrumb in item.supplied_item.item_category.breadcrumb'>{{breadcrumb}} / </span>{{item.supplied_item.item_category.name.text}}</td>
                   <td ng-if="columns.tier">{{item.tier.name.text}}</td>
                   <td ng-if="columns.extra_details">{{item.supplied_item.extra_details}}</td>
                   <td ng-if="columns.files">
