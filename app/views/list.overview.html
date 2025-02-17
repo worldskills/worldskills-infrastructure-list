@@ -1,5 +1,9 @@
 <ws-spinner class="bigSpinner" ng-if="loading.overview"></ws-spinner>
-<fieldset ng-show="!loading.overview"><legend translate>overview</legend>
+
+<div ng-show="!loading.overview">
+
+<fieldset>
+<legend translate>overview</legend>
 
 <p translate>to_edit_items</p>
 <p>&nbsp;</p>
@@ -53,3 +57,13 @@
 </div>
 
 </fieldset>
+
+<div class="row" ng-show="canEditConfig">
+	<div class="col-xs-12">
+		<div class="pull-right">
+			<button type="button" class="btn btn-sm btn-default" ng-click="renameList()"><i class="glyphicon glyphicon-pencil"></i> <span translate>button_rename_list</span></button>
+		</div>
+	</div>
+</div>
+
+</div>

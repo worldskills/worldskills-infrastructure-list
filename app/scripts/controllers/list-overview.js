@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ilApp')
-  .controller('ListOverviewCtrl', function ($scope, $q, $state, $stateParams, Status, Events, WSAlert, MULTIPLIERS, Reporting) {
+  .controller('ListOverviewCtrl', function ($scope, $q, $state, $stateParams, auth, Status, Events, List, WSAlert, APP_ID, APP_ROLES, MULTIPLIERS, Reporting) {
 
     $scope.loading.overview = true;
 
@@ -38,6 +38,18 @@ angular.module('ilApp')
 
     });
 
+
+    $scope.renameList = function() {
+      var name = window.prompt('New name for new list?', $scope.list.name.text);
+      if (name !== null) {
+        $scope.list.name.text = name;
+        List.update($scope.list, function (list) {
+          WSAlert.success('The list has been successfully updated.');
+        }, function (error) {
+          WSAlert.danger(error.data.user_msg);
+        });
+      }
+    };
 
     /*
     FROM people - to be used to move the item editor in place

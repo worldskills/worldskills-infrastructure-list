@@ -36,6 +36,9 @@ angular.module('ilApp')
           auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_ITEM_STATUS], $scope.event.entity_id).then(function (hasUserRole) {
             $scope.canEditItemStatus = hasUserRole;
           });
+          auth.hasUserRole(APP_ID, [APP_ROLES.ADMIN, APP_ROLES.EDIT_CONFIG], $scope.event.entity_id).then(function (hasUserRole) {
+            $scope.canEditConfig = hasUserRole;
+          });
         });
     };
 
