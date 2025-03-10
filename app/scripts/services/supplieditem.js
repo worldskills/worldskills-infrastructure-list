@@ -121,9 +121,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
 
         $http.get(API_IL + "/items/" + eventId + "/supplied_items/" + itemId + "/recommendation").then(function(res){
-            //fix dates
-            if(res.data.delivery != void 0) res.data.delivery = new Date(res.data.delivery);
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
           },
           function(error){
             deferred.reject("Could not get Product: " + error.data.user_msg);
