@@ -682,8 +682,10 @@ angular.module('ilApp')
         $scope.rowItem = item;
       }
 
-      //fix date object
-      $scope.item.delivery = ($scope.item.delivery == null) ? new Date("2017-08-01") : new Date($scope.item.delivery);
+      //fix date object - this is now handled by the SuppliedItem service
+      if($scope.item.delivery == null) {
+        $scope.item.delivery = new Date("2017-08-01");
+      }
 
       $aside.open({
         templateUrl: 'views/editsupplieditemaside.html',

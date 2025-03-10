@@ -41,12 +41,8 @@ angular.module('ilApp')
         //go through all the fields and find where values are the same between every field
         angular.forEach(val, function(itemVal, itemKey){
 
-          //fix delivery date field
-          if(itemKey === 'delivery')
-            $scope.item[itemKey] = ($scope.item[itemKey] != void 0 && $scope.item[itemKey] !== '')
-            ? new Date($scope.item[itemKey])
-            : "";
-
+          //special handling for delivery field is no longer needed as dates are properly converted in the service
+          
           if(EXCLUDED_FIELDS.indexOf(itemKey) === -1){
             if(itemVal === "" || itemVal === null
             || (typeof $scope.item[itemKey] === 'object' && JSON.stringify($scope.item[itemKey]) !== JSON.stringify(itemVal)) //object comparison, a bit dirty but works nicely
