@@ -682,11 +682,6 @@ angular.module('ilApp')
         $scope.rowItem = item;
       }
 
-      //fix date object - this is now handled by the SuppliedItem service
-      if($scope.item.delivery == null) {
-        $scope.item.delivery = new Date("2017-08-01");
-      }
-
       $aside.open({
         templateUrl: 'views/editsupplieditemaside.html',
         placement: 'right',
@@ -709,11 +704,6 @@ angular.module('ilApp')
         angular.copy(items[0], $scope.item);
         $scope.rowItems = items;
       }
-
-      //fix date objects
-      angular.forEach($scope.items, function(val, key){
-        $scope.items[key].delivery = ($scope.items[key].delivery == null) ? new Date("2017-08-01") : new Date($scope.items[key].delivery);
-      });
 
       $aside.open({
         templateUrl: 'views/editsupplieditemasideMultiple.html',
