@@ -171,7 +171,7 @@ angular.module('ilApp')
         queryParams += "&category=" + filters.category.id;
 
       $http.get(API_IL + "/items/" + eventId + "/catalogue/" + queryParams).then(function(res){
-        deferred.resolve(res.data);
+        deferred.resolve(SuppliedItem.transformDateFields(res.data));
       },
       function(error){
         deferred.reject("Could not get catalogue items: " + error.data.user_msg);

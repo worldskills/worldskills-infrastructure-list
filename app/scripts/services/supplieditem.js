@@ -22,8 +22,11 @@ angular.module('ilApp')
       }
       return data;
     }
-    
+
     return {
+
+      transformDateFields: transformDateFields,
+
       saveItem: function(item){
         var deferred = $q.defer();
 
