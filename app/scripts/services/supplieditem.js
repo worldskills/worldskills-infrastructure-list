@@ -9,12 +9,26 @@
  */
 angular.module('ilApp')
   .service('SuppliedItem', function ($q, $http, API_IL) {
+    
+    function transformDateFields(data) {
+      if (!data) return data;
+      if (data.delivery !== undefined && data.delivery !== null && !(data.delivery instanceof Date)) {
+        data.delivery = new Date(data.delivery);
+      }
+      if (data.supplied_items && Array.isArray(data.supplied_items)) {
+        data.supplied_items.forEach(function(item) {
+          transformDateFields(item);
+        });
+      }
+      return data;
+    }
+    
     return {
       saveItem: function(item){
         var deferred = $q.defer();
 
         $http.put(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id, item).then(function(res){
-          deferred.resolve(res.data);
+          deferred.resolve(transformDateFields(res.data));
         },
         function(error){
           deferred.reject("Could not save item: " + error.data.user_msg);
@@ -27,7 +41,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
 
         $http.post(API_IL + "/items/" + eventId + "/supplied_items/", item).then(function(res){
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
           },
           function(error){
             deferred.reject("Could not save item: " + error.data.user_msg);
@@ -79,7 +93,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
 
         $http.get(API_IL + '/items/' + eventId + '/supplied_items', {params: {search: search, item_category: itemCategoryId, limit: 1000}}).then(function (res) {
-          deferred.resolve(res.data);
+          deferred.resolve(transformDateFields(res.data));
         }, function (error) {
           deferred.reject('Could not get items: ' + error.data.user_msg);
         });
@@ -91,7 +105,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
 
         $http.get(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id).then(function(res){
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
           },
           function(error){
             deferred.reject("Could not get Product: " + error.data.user_msg);
@@ -120,7 +134,7 @@ angular.module('ilApp')
         var update = _update || false;
 
         $http.post(API_IL + '/items/' + eventId + '/supplied_items/' + item.id + '/clone?update=' + update, item).then(function(res){
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
         }, function(error){
             deferred.reject("Could not clone item: " + error.data.user_msg);
         });
@@ -139,7 +153,7 @@ angular.module('ilApp')
         });
 
         $http.post(API_IL + "/items/" + masterItem.event.id + "/supplied_items/" + masterItem.id + "/combine" + combineStr, {}).then(function(res){
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
           },
           function(error){
             deferred.reject("Could not combine items: " + error.data.user_msg);
