@@ -9,12 +9,21 @@
  */
 angular.module('ilApp')
   .service('SuppliedItem', function ($q, $http, API_IL) {
+    
+    // Utility function to transform date fields
+    function transformDateFields(data) {
+      if (data && data.delivery !== undefined && data.delivery !== null) {
+        data.delivery = new Date(data.delivery);
+      }
+      return data;
+    }
+    
     return {
       saveItem: function(item){
         var deferred = $q.defer();
 
         $http.put(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id, item).then(function(res){
-          deferred.resolve(res.data);
+          deferred.resolve(transformDateFields(res.data));
         },
         function(error){
           deferred.reject("Could not save item: " + error.data.user_msg);
@@ -27,7 +36,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
 
         $http.post(API_IL + "/items/" + eventId + "/supplied_items/", item).then(function(res){
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
           },
           function(error){
             deferred.reject("Could not save item: " + error.data.user_msg);
@@ -91,7 +100,7 @@ angular.module('ilApp')
         var deferred = $q.defer();
 
         $http.get(API_IL + "/items/" + item.event.id + "/supplied_items/" + item.id).then(function(res){
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
           },
           function(error){
             deferred.reject("Could not get Product: " + error.data.user_msg);
@@ -120,7 +129,7 @@ angular.module('ilApp')
         var update = _update || false;
 
         $http.post(API_IL + '/items/' + eventId + '/supplied_items/' + item.id + '/clone?update=' + update, item).then(function(res){
-            deferred.resolve(res.data);
+            deferred.resolve(transformDateFields(res.data));
         }, function(error){
             deferred.reject("Could not clone item: " + error.data.user_msg);
         });
