@@ -60,6 +60,8 @@
           <li><a href ng-click="toggleColumn('status')"><i ng-style="{'visibility' : columns.status ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_status</span></a></li>
           <li><a href ng-click="toggleColumn('modified')"><i ng-style="{'visibility' : columns.modified ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_last_modified</span></a></li>
           <li><a href ng-click="toggleColumn('actions')"><i ng-style="{'visibility' : columns.actions ? 'visible' : 'hidden'}" class="fa fa-check"></i> <span translate>th_actions</span></a></li>
+          <li class="divider"></li>
+          <li><a href ng-click="resetColumns(true)"><i class="fa fa-refresh"></i> <span translate>reset_columns</span></a></li>
         </ul>
       </div>
     </div>
