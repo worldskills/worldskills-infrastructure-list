@@ -687,7 +687,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'md',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'editSuppliedItemCtrl',
       }).result.then(postClose, postClose);
 
@@ -710,7 +710,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'md',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'editSuppliedItemMultipleCtrl',
       }).result.then(postClose, postClose);
 
@@ -765,7 +765,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'lg',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'editRequestedItemAsideCtrl'
       });
 
@@ -830,7 +830,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'lg',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'addRequestedItemCtrl'
       });
 

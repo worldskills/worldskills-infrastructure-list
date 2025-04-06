@@ -43,7 +43,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'lg',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'editRequestedItemAsideCtrl'
       });
 
@@ -184,7 +184,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'lg',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'addRequestedItemCtrl',
       });
       requestedItemAside.result.then(postClose, postClose);
@@ -315,7 +315,7 @@ angular.module('ilApp')
           placement: 'right',
           size: 'md',
           scope: scope,
-          backdrop: true,
+          backdrop: 'static',
           controller: 'editSuppliedItemCtrl',
         });
       });
@@ -334,7 +334,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'md',
         scope: scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'switchSuppliedItemCtrl',
       });
 

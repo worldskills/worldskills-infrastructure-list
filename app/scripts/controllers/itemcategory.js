@@ -80,7 +80,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'md',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'ItemCategoryModalCtrl',
       }).result.then(postClose, postClose);
     };

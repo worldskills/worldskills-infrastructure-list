@@ -78,7 +78,7 @@ angular.module('ilApp')
         placement: 'right',
         size: 'lg',
         scope: $scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'recommendedItemAsideCtrl',
       }).result.then(function(res){
         //copy back to the view and scope

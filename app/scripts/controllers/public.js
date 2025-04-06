@@ -230,7 +230,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
       placement: 'right',
       size: 'lg',
       scope: $scope,
-      backdrop: true,
+      backdrop: 'static',
       controller: 'recommendedItemAsideCtrl',
     });
     requestedItemAside.result.then(postClose, postClose);
@@ -254,7 +254,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
         placement: 'right',
         size: 'md',
         scope: scope,
-        backdrop: true,
+        backdrop: 'static',
         controller: 'switchSuppliedItemCtrl',
       });
       // update supplied item on aside close
