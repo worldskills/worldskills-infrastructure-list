@@ -49,7 +49,7 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   initColumns();
 
   // get columns values from localStorage
-  var storedColumns = localStorage.getItem('columns');
+  var storedColumns = localStorage.getItem('WORLDSKILLS_IL_COLUMNS');
   if (storedColumns) {
     $scope.columns = angular.fromJson(storedColumns);
   }
@@ -144,13 +144,13 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $scope.toggleColumn = function (column) {
     $scope.columns[column] = !$scope.columns[column];
     updateColumnLength();
-    localStorage.setItem('columns', angular.toJson($scope.columns));
+    localStorage.setItem('WORLDSKILLS_IL_COLUMNS', angular.toJson($scope.columns));
   };
 
   $scope.resetColumns = function () {
     initColumns();
     updateColumnLength();
-    localStorage.removeItem('columns');
+    localStorage.removeItem('WORLDSKILLS_IL_COLUMNS');
   };
 
   $scope.downloadFile = function(file){
