@@ -13,35 +13,46 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $scope.error = false;
 
   $scope.filter = {category_id: '', status: {id: ''}};
-  $scope.columns = {
-    id: false,
-    category: true,
-    quantity: true,
-    calculated_quantity: false,
-    unit: false,
-    description: true,
-    requested: false,
-    area: true,
-    supplied: false,
-    manufacturer: true,
-    model: true,
-    size: false,
-    part_number: false,
-    unit_cost: false,
-    supplier: true,
-    supply_type: false,
-    item_subcategory: false,
-    item_category: false,
-    tier: false,
-    extra_details: false,
-    files: false,
-    status: true,
-    modified: false,
-    actions: true,
-  };
+  $scope.columns = {};
   $scope.columnLength = 0;
   $scope.sort = null;
   $scope.reverse = false;
+
+  var initColumns = function () {
+    $scope.columns = {
+      id: false,
+      category: true,
+      quantity: true,
+      calculated_quantity: false,
+      unit: false,
+      description: true,
+      requested: false,
+      area: true,
+      supplied: false,
+      manufacturer: true,
+      model: true,
+      size: false,
+      part_number: false,
+      unit_cost: false,
+      supplier: true,
+      supply_type: false,
+      item_subcategory: false,
+      item_category: false,
+      tier: false,
+      extra_details: false,
+      files: false,
+      status: true,
+      modified: false,
+      actions: true,
+    };
+  };
+  initColumns();
+
+  // get columns values from localStorage
+  var storedColumns = localStorage.getItem('WORLDSKILLS_IL_COLUMNS');
+  if (storedColumns) {
+    $scope.columns = angular.fromJson(storedColumns);
+  }
 
   var promises = [];
   var categoriesIndexed = {};
@@ -133,6 +144,13 @@ angular.module('ilApp').controller('PublicItemsCtrl', function ($scope, $state, 
   $scope.toggleColumn = function (column) {
     $scope.columns[column] = !$scope.columns[column];
     updateColumnLength();
+    localStorage.setItem('WORLDSKILLS_IL_COLUMNS', angular.toJson($scope.columns));
+  };
+
+  $scope.resetColumns = function () {
+    initColumns();
+    updateColumnLength();
+    localStorage.removeItem('WORLDSKILLS_IL_COLUMNS');
   };
 
   $scope.downloadFile = function(file){
