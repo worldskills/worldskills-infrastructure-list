@@ -126,7 +126,7 @@
 
                 <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.model.$error.required, 'has-success': !editForm.recommendedItemSupplied.model.$error.required}">
                   <label class='control-label' translate>th_model</label>
-                  <input type="text" name="recommendedItemSupplied.model" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.model' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.model'>
+                  <input type="text" name="recommendedItemSupplied.model" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.model' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.model' maxlength="255">
                 </div>
               </div>
 

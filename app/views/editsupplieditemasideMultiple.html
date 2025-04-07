@@ -23,7 +23,7 @@
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-warning': editForm.model.$dirty && item.model, 'has-success': item.model}">
                     <label class='control-label' translate>th_model</label>
-                    <input type="text" name="model" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.model' | translate }}" ng-model='item.model'>
+                    <input type="text" name="model" class="input-sm form-control" ng-required="false" placeholder="{{ 'placeholder.model' | translate }}" ng-model='item.model' maxlength="255">
                   </div>
                 </div>
 
