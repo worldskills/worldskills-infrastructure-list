@@ -34,6 +34,10 @@ angular.module('ilApp')
       $scope.tiers = tiers;
     });
 
+    Events.getSkillAreas($stateParams.eventId).then(function (skillAreas) {
+      $scope.skillAreas = skillAreas;
+    });
+
     Category.getAll($stateParams.eventId).then(function (result) {
         $scope.categories = result;
         angular.forEach($scope.categories, function (category) {
