@@ -1,4 +1,6 @@
 {
+    "filter_by_skill": "Filter by Skill",
+    "filter_by_sector": "Filter by Sector",
     "reset_columns": "Reset columns",
     "button_rename_list": "Rename list",
     "create_new_list": "Create new list",

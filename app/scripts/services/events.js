@@ -114,6 +114,20 @@ angular.module('ilApp')
         return deferred.promise;
     };
 
+    Events.getSectors = function(eventId) {
+      var deferred = $q.defer();
+
+      $http.get(API_IL + "/events/" + eventId + "/sectors").then(function(result){
+          Events.sectors = result.data.sectors;
+          deferred.resolve(Events.sectors);
+        },
+        function(error){
+          deferred.reject("Could not fetch sectors: " + error);
+        });
+
+      return deferred.promise;
+    };
+
     Events.getSkillAreas = function(eventId){
       var deferred = $q.defer();
 

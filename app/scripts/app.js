@@ -417,7 +417,7 @@
     })
 
     .state('recommendations', {
-      url: '/events/{eventId}/recommendations?list',
+      url: '/events/{eventId}/recommendations?list&sector',
       templateUrl: 'views/recommendations.html',
       controller: 'RecommendationsCtrl',
       data: {

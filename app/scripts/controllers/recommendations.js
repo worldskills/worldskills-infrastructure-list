@@ -18,6 +18,7 @@ angular.module('ilApp')
     $scope.loading.recommendations = true;
 
     $scope.listId = $state.params.list || '';
+    $scope.sectorId = $state.params.sector || '';
 
     Events.getEvent($stateParams.eventId).then( function (event) {
       $scope.event = event;
@@ -32,6 +33,10 @@ angular.module('ilApp')
 
     ItemTier.getTiersForEvent($stateParams.eventId).then(function (tiers) {
       $scope.tiers = tiers;
+    });
+
+    Events.getSectors($stateParams.eventId).then(function (sectors) {
+      $scope.sectors = sectors;
     });
 
     Events.getSkillAreas($stateParams.eventId).then(function (skillAreas) {
@@ -50,10 +55,15 @@ angular.module('ilApp')
       $scope.refreshRecommendations();
     };
 
+    $scope.updateSectorId = function () {
+      $location.search('sector', $scope.sectorId);
+      $scope.refreshRecommendations();
+    };
+
     $scope.refreshRecommendations = function(){
       //Load recommendations
       $scope.loading.recommendations = true;
-      RecommendedItems.getRecommendations($state.params.eventId, $scope.listId).then(function (res) {
+      RecommendedItems.getRecommendations($state.params.eventId, $scope.listId, $scope.sectorId).then(function (res) {
         $scope.recommendedItems = res.recommendedItems;
         $scope.loading.recommendations = false;
       },

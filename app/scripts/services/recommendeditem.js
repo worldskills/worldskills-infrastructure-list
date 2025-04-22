@@ -63,13 +63,16 @@ angular.module('ilApp')
       return this.suggestOnItem(item, eventId, listId);
     };
 
-    RecommendedItems.getRecommendations = function(eventId, listId, requestedItemId) {
+    RecommendedItems.getRecommendations = function(eventId, listId, sectorId, requestedItemId) {
 
       var deferred = $q.defer();
 
       var config = {params: {}};
       if (listId) {
         config.params.list_id = listId;
+      }
+      if (sectorId) {
+        config.params.sector_id = sectorId;
       }
       if (requestedItemId) {
         config.params.requested_item_id = requestedItemId;

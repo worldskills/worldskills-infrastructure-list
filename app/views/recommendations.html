@@ -11,8 +11,14 @@
 <form class="form-inline">
   <div class="form-group">
     <select class="form-control input-sm" ng-model="listId" ng-change="updateListId()">
-        <option value=""></option>
+        <option value="" translate>filter_by_skill</option>
         <option ng-repeat="list in lists" value="{{list.id}}">{{list.name.text}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <select class="form-control input-sm" ng-model="sectorId" ng-change="updateSectorId()">
+      <option value="" translate>filter_by_sector</option>
+      <option ng-repeat="sector in sectors" value="{{sector.id}}">{{sector.name.text}}</option>
     </select>
   </div>
 </form>
