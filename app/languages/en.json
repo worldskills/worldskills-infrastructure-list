@@ -113,6 +113,7 @@
     "combine_items": "Combine items",
     "comment": "Comment",
     "compressed_air": "Compressed air",
+    "compressed_air_flow_rate": "Compressed air - Flow rate (l/min)",
     "confirm": {
         "are_you_sure_you_want_to_leave_this_page": "Are you sure you want to leave this page?"
     },
@@ -168,6 +169,7 @@
     "electricity": "Electricity",
     "electricity_needed": "Electricity required",
     "electricity_phase": "Electricity Phase",
+    "electricity_wattage": "Electricity - Wattage (W)",
     "error": {
         "could_not_get_active_positions_for_user": "Could not get active positions for user: {{error}}"
     },
@@ -306,9 +308,10 @@
         "delivery": "Delivery",
         "description": "Description",
         "description_of_the_item": "Description of the item",
-        "electricity_amps": "Electricity - Amps",
+        "electricity_amps": "Electricity - Amps (A)",
         "electricity_phase": "Electricity Phase",
-        "electricity_volts": "Electricity - Volts",
+        "electricity_volts": "Electricity - Volts (V)",
+        "electricity_wattage": "Electricity - Watts (W)",
         "estimated_price": "Estimated price",
         "extra_details_comments": "Extra details",
         "filter": "Filter…",
@@ -367,8 +370,8 @@
         "multiply_factor_required": "Multiply factor required",
         "quantity_is_missing": "Quantity is missing"
     },
-    "req_electricity_a": "Electricity - Amps",
-    "req_electricity_v": "Electricity - Volts",
+    "req_electricity_a": "Electricity - Amps (A)",
+    "req_electricity_v": "Electricity - Volts (V)",
     "save": "Save",
     "secret_item": "Secret item",
     "scroll_more": "Scroll down to load more...",

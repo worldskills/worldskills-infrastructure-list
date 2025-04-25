@@ -364,19 +364,24 @@
               <div class="row">
                 <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_volts.$dirty && editForm.recommendedItemSupplied.electricity_volts.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_volts.$error.required}">
                   <label class='control-label' translate>req_electricity_v</label>
-                  <input type="text" name="recommendedItemSupplied.electricity_volts" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_volts' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.electricity_volts'>
+                  <input type="text" name="recommendedItemSupplied.electricity_volts" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.electricity_volts'>
                 </div>
 
                 <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_amps.$dirty && editForm.recommendedItemSupplied.electricity_amps.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_amps.$error.required}">
                   <label class='control-label' translate>req_electricity_a</label>
-                  <input type="text" name="recommendedItemSupplied.electricity_amps" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_amps' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.electricity_amps'>
+                  <input type="text" name="recommendedItemSupplied.electricity_amps" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.electricity_amps'>
                 </div>
               </div>
 
               <div class="row">
-                <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_phase.$dirty && editForm.recommendedItemSupplied.electricity_phase.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_phase.$error.required}">
+                <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_wattage.$dirty && editForm.recommendedItemSupplied.electricity_wattage.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_wattage.$error.required}">
+                  <label class='control-label' translate>electricity_wattage</label>
+                  <input type="number" name="recommendedItemSupplied.electricity_wattage" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.electricity_wattage'>
+                </div>
+
+                <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.electricity_phase.$dirty && editForm.recommendedItemSupplied.electricity_phase.$error.required, 'has-success': !editForm.recommendedItemSupplied.electricity_phase.$error.required}">
                   <label class='control-label' translate>electricity_phase</label>
-                  <input type="text" name="recommendedItemSupplied.electricity_phase" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_phase' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.electricity_phase'>
+                  <input type="text" name="recommendedItemSupplied.electricity_phase" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.electricity_phase'>
                 </div>
               </div>
 
@@ -400,19 +405,26 @@
                   <input type="checkbox" name="recommendedItemSupplied.compressed_air" class="input-sm form-control" placeholder="{{ 'placeholder.compressed_air' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.compressed_air'/>
                 </div>
 
-                <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.gas_requirements.$dirty && editForm.recommendedItemSupplied.gas_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.gas_requirements.$error.required}">
-                  <label class='control-label' translate>ventilation_fume_extraction</label>
-                  <input type="checkbox" name="recommendedItemSupplied.ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'placeholder.ventilation_fume_extraction' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.ventilation_fume_extraction'>
+                <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.compressed_air_flow_rate.$dirty && editForm.recommendedItemSupplied.compressed_air_flow_rate.$error.required, 'has-success': !editForm.recommendedItemSupplied.compressed_air_flow_rate.$error.required}">
+                  <label class='control-label' translate>compressed_air_flow_rate</label>
+                  <input type="number" name="recommendedItemSupplied.compressed_air_flow_rate" class="input-sm form-control" ng-model='recommendedItem.recommendedItemSupplied.compressed_air_flow_rate'>
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.gas_requirements.$dirty && editForm.recommendedItemSupplied.gas_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.gas_requirements.$error.required}">
+                  <label class='control-label' translate>ventilation_fume_extraction</label>
+                  <input type="checkbox" name="recommendedItemSupplied.ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'placeholder.ventilation_fume_extraction' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.ventilation_fume_extraction'>
+                </div>
+
+                <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.gas_requirements.$dirty && editForm.recommendedItemSupplied.gas_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.gas_requirements.$error.required}">
                   <label class='control-label' translate>gas_requirements</label>
                   <input type="text" name="recommendedItemSupplied.gas_requirements" class="input-sm form-control" placeholder="{{ 'placeholder.gas_requirements' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.gas_requirements'>
                 </div>
+              </div>
 
-                <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$dirty && editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$error.required}">
+              <div class="row">
+                <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$dirty && editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.recommendedItemSupplied.anchor_fixing_base_requirements.$error.required}">
                   <label class='control-label' translate>anchor_fixing_base_requirements</label>
                   <input type="text" name="recommendedItemSupplied.anchor_fixing_base_requirements" class="input-sm form-control" placeholder="{{ 'placeholder.anchor_fixing_base_requirements' | translate }}" ng-model='recommendedItem.recommendedItemSupplied.anchor_fixing_base_requirements'>
                 </div>
