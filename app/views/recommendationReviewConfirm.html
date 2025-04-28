@@ -212,6 +212,12 @@
               <td><b translate>Amps</b><br>{{data.item.recommendedItemSupplied.electricity_amps}}</td>
             </tr>
             <tr
+            ng-class="{'warning': data.item.suppliedItem.electricity_wattage != data.item.recommendedItemSupplied.electricity_wattage}"
+            ng-if='data.item.recommendedItemSupplied.electricity_wattage != null'>
+              <td><b translate>Wattage</b><br>{{data.item.suppliedItem.electricity_wattage}}</td>
+              <td><b translate>Wattage</b><br>{{data.item.recommendedItemSupplied.electricity_wattage}}</td>
+            </tr>
+            <tr
             ng-class="{'warning': data.item.suppliedItem.electricity_phase != data.item.recommendedItemSupplied.electricity_phase}"
             ng-if='data.item.recommendedItemSupplied.electricity_phase != null'>
               <td><b translate>Phase</b><br>{{data.item.suppliedItem.electricity_phase}}</td>
@@ -234,6 +240,12 @@
             ng-if='data.item.recommendedItemSupplied.compressed_air != null'>
               <td><b translate>Compressed Air</b><br>{{data.item.suppliedItem.compressed_air}}</td>
               <td><b translate>Compressed Air</b><br>{{data.item.recommendedItemSupplied.compressed_air}}</td>
+            </tr>
+            <tr
+            ng-class="{'warning': data.item.suppliedItem.compressed_air_flow_rate != data.item.recommendedItemSupplied.compressed_air_flow_rate}"
+            ng-if='data.item.recommendedItemSupplied.compressed_air_flow_rate != null'>
+              <td><b translate>Compressed Air Flow Rate</b><br>{{data.item.suppliedItem.compressed_air_flow_rate}}</td>
+              <td><b translate>Compressed Air Flow Rate</b><br>{{data.item.recommendedItemSupplied.compressed_air_flow_rate}}</td>
             </tr>
             <tr
             ng-class="{'warning': data.item.suppliedItem.ventilation_fume_extraction != data.item.recommendedItemSupplied.ventilation_fume_extraction}"
