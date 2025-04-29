@@ -161,6 +161,30 @@
   </div>
   <div class="row mt-2">
     <div class="col-md-3 col-sm-6">
+      <div class="form-group addForm">
+        <label class="control-label" translate>th_part_num</label>
+        <input
+          type="text"
+          class="form-control"
+          ng-model="filters.part_number"
+          ng-change="changeFilters()"
+        >
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="form-group addForm">
+        <label class="control-label" translate>po_number</label>
+        <input
+          type="text"
+          class="form-control"
+          ng-model="filters.po_number"
+          ng-change="changeFilters()"
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-3 col-sm-6">
       <div class="material-switch-label form-group addForm">
         <label for="swElectricity" class="control-label" translate>electricity_needed</label>
         <div class="material-switch">

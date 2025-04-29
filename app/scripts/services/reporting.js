@@ -64,6 +64,8 @@ angular.module('ilApp')
         params.manufacturer = filters.manufacturer || null;
         params.model = filters.model || null;
         params.size = filters.size || null;
+        params.part_number = filters.part_number || null;
+        params.po_number = filters.po_number || null;
         params.air = filters.air || null;
         params.water = filters.water || null;
         params.electricity = filters.electricity || null;

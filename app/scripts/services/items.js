@@ -200,6 +200,8 @@ angular.module('ilApp')
         manufacturer: filters.manufacturer || null,
         model: filters.model || null,
         size: filters.size || null,
+        part_number: filters.part_number || null,
+        po_number: filters.po_number || null,
         air: filters.air || null,
         water: filters.water || null,
         electricity: filters.electricity || null
