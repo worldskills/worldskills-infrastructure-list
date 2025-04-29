@@ -198,6 +198,8 @@ angular.module('ilApp')
         category: filters.category ? filters.category.id : null,
         supplier: filters.supplier || null,
         manufacturer: filters.manufacturer || null,
+        model: filters.model || null,
+        size: filters.size || null,
         air: filters.air || null,
         water: filters.water || null,
         electricity: filters.electricity || null
