@@ -260,19 +260,24 @@
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_volts.$dirty && editForm.electricity_volts.$error.required, 'has-success': !editForm.electricity_volts.$error.required}">
                     <label class='control-label' translate>req_electricity_v</label>
-                    <input type="number" name="electricity_volts" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_volts' | translate }}" ng-model='item.electricity_volts'>
+                    <input type="number" name="electricity_volts" class="input-sm form-control" ng-model='item.electricity_volts'>
                   </div>
 
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_amps.$dirty && editForm.electricity_amps.$error.required, 'has-success': !editForm.electricity_amps.$error.required}">
                     <label class='control-label' translate>req_electricity_a</label>
-                    <input type="number" name="electricity_amps" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_amps' | translate }}" ng-model='item.electricity_amps'>
+                    <input type="number" name="electricity_amps" class="input-sm form-control" ng-model='item.electricity_amps'>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.electricity_phase.$dirty && editForm.electricity_phase.$error.required, 'has-success': !editForm.electricity_phase.$error.required}">
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_wattage.$dirty && editForm.electricity_wattage.$error.required, 'has-success': !editForm.electricity_wattage.$error.required}">
+                    <label class='control-label' translate>electricity_wattage</label>
+                    <input type="number" name="electricity_wattage" class="input-sm form-control" ng-model='item.electricity_wattage'>
+                  </div>
+
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.electricity_phase.$dirty && editForm.electricity_phase.$error.required, 'has-success': !editForm.electricity_phase.$error.required}">
                     <label class='control-label' translate>electricity_phase</label>
-                    <input type="text" name="electricity_phase" class="input-sm form-control" placeholder="{{ 'placeholder.electricity_phase' | translate }}" ng-model='item.electricity_phase'>
+                    <input type="text" name="electricity_phase" class="input-sm form-control" ng-model='item.electricity_phase'>
                   </div>
                 </div>
 
@@ -296,19 +301,26 @@
                     <input type="checkbox" name="compressed_air" class="input-sm form-control" placeholder="{{ 'placeholder.compressed_air' | translate }}" ng-model='item.compressed_air'/>
                   </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.gas_requirements.$dirty && editForm.gas_requirements.$error.required, 'has-success': !editForm.gas_requirements.$error.required}">
-                    <label class='control-label' translate>ventilation_fume_extraction</label>
-                    <input type="checkbox" name="ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'placeholder.ventilation_fume_extraction' | translate }}" ng-model='item.ventilation_fume_extraction'>
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.compressed_air_flow_rate.$dirty && editForm.compressed_air_flow_rate.$error.required, 'has-success': !editForm.compressed_air_flow_rate.$error.required}">
+                    <label class='control-label' translate>compressed_air_flow_rate</label>
+                    <input type="number" name="compressed_air_flow_rate" class="input-sm form-control" ng-model='item.compressed_air_flow_rate'>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.gas_requirements.$dirty && editForm.gas_requirements.$error.required, 'has-success': !editForm.gas_requirements.$error.required}">
+                    <label class='control-label' translate>ventilation_fume_extraction</label>
+                    <input type="checkbox" name="ventilation_fume_extraction" class="input-sm form-control" placeholder="{{ 'placeholder.ventilation_fume_extraction' | translate }}" ng-model='item.ventilation_fume_extraction'>
+                  </div>
+
+                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.gas_requirements.$dirty && editForm.gas_requirements.$error.required, 'has-success': !editForm.gas_requirements.$error.required}">
                     <label class='control-label' translate>gas_requirements</label>
                     <input type="text" name="gas_requirements" class="input-sm form-control" placeholder="{{ 'placeholder.gas_requirements' | translate }}" ng-model='item.gas_requirements'>
                   </div>
+                </div>
 
-                  <div class="form-group col col-xs-12 col-sm-6 has-feedback" ng-class="{'has-error': editForm.anchor_fixing_base_requirements.$dirty && editForm.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.anchor_fixing_base_requirements.$error.required}">
+                <div class="row">
+                  <div class="form-group col col-xs-12 has-feedback" ng-class="{'has-error': editForm.anchor_fixing_base_requirements.$dirty && editForm.anchor_fixing_base_requirements.$error.required, 'has-success': !editForm.anchor_fixing_base_requirements.$error.required}">
                     <label class='control-label' translate>anchor_fixing_base_requirements</label>
                     <input type="text" name="anchor_fixing_base_requirements" class="input-sm form-control" placeholder="{{ 'placeholder.anchor_fixing_base_requirements' | translate }}" ng-model='item.anchor_fixing_base_requirements'>
                   </div>

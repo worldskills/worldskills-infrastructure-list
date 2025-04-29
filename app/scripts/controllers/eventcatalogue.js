@@ -167,6 +167,7 @@ angular.module('ilApp')
         },
         {field: 'electricity_volts', name: $translate.instant('th_electricity_volts'), width: '100'},//int
         {field: 'electricity_amps', name: $translate.instant('th_electricity_amps'), width: '100'},//int
+        {field: 'electricity_wattage', name: $translate.instant('th_electricity_wattage'), width: '100'},//int
         {field: 'electricity_phase', name: $translate.instant('th_electricity_phase'), width: '100'},
         {field: 'water_supply', name: $translate.instant('th_water_supply'), width: '100',
           cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.water_supply + 'Label' }}</div>",
@@ -198,6 +199,7 @@ angular.module('ilApp')
             ]
           }
         },
+        {field: 'compressed_air_flow_rate', name: $translate.instant('th_compressed_air_flow_rate'), width: '100'},//int
         {field: 'ventilation_fume_extraction', name: $translate.instant('th_ventilation_fume_extraction'), width: '100', type: 'boolean',
           cellTemplate: "<div class='ui-grid-cell-contents' translate>{{row.entity.ventilation_fume_extraction + 'Label' }}</div>",
           filter: {
