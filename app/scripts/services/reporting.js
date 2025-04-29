@@ -51,6 +51,7 @@ angular.module('ilApp')
       };
 
       if(filters){
+        params.tier = filters.tier ? filters.tier.id : null;
         params.status = filters.status ? filters.status.id : null;
         params.description = filters.description || null;
         params.skill = filters.skill ? filters.skill.id : null;

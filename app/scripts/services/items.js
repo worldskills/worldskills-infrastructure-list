@@ -188,6 +188,7 @@ angular.module('ilApp')
         limit: itemPerPage,
         offset: itemPerPage * (page-1),
         id: filters.id || null,
+        tier: filters.tier ? filters.tier.id : null,
         status: filters.status ? filters.status.id : null,
         description: filters.description || null,
         skill: filters.skill ? filters.skill.id : null,

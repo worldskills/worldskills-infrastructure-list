@@ -47,6 +47,17 @@
         </ui-select>
       </div>
     </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="form-group addForm">
+        <label class="control-label" translate>tier</label>
+        <ui-select ng-model="filters.tier" theme="bootstrap" on-select="changeFilters()" title="{{ 'title.choose_tier' | translate }}">
+          <ui-select-match allow-clear="true" placeholder="{{ 'placeholder.all_tiers' | translate }}">{{$select.selected.name.text}}</ui-select-match>
+          <ui-select-choices repeat="tier in tiers | customWSFilter: {objPath: 'name.text', 'query': $select.search} | orderBy:'name.text'">
+            <div ng-bind-html="tier.name.text"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-3 col-sm-6">
