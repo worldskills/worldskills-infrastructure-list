@@ -1,0 +1,43 @@
+name: Build
+
+on: [ push ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Setup
+        run: |
+          npm ci
+          bower install
+        env:
+          CI: true
+
+      - name: Build for staging
+        if: github.ref == 'refs/heads/staging'
+        run: grunt build --env=staging
+      - name: Configure AWS credentials for staging
+        if: github.ref == 'refs/heads/staging'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Deploy to staging
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          aws s3 sync dist/ s3://il.worldskills.show --exclude index.html --cache-control max-age=31536000
+          aws s3 cp dist/index.html s3://il.worldskills.show/index.html --metadata-directive REPLACE --cache-control max-age=60
+          aws s3 cp dist/languages/ s3://il.worldskills.show/languages/ --recursive --metadata-directive REPLACE --cache-control max-age=3600
+      - name: Invalidate staging
+        if: github.ref == 'refs/heads/staging'
+        run: aws cloudfront create-invalidation --distribution-id E3JVPI0JFLBPOP --paths /index.html /languages/*
