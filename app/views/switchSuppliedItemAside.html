@@ -60,7 +60,7 @@
       </tbody>
     </table>
     <hr>
-    <button ng-disabled="!searchResults" ng-show="!item.id" ng-click="createNewSuppliedItem(item)" class="btn btn-sm btn-primary" ng-if="event.userCanCreate" translate>create_new_product</button>
+    <button ng-disabled="!searchResults || !searchTerm" ng-show="!item.id" ng-click="createNewSuppliedItem(item)" class="btn btn-sm btn-primary" ng-if="event.userCanCreate" translate>create_new_product</button>
     <button ng-click="cancel()" class="btn btn-sm btn-warning" translate>button_cancel</button>
   </fieldset>
 </div>
