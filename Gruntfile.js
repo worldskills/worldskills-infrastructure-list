@@ -85,6 +85,10 @@ module.exports = function (grunt) {
                 serveStatic('./bower_components')
               ),
               connect().use(
+                '/sentry',
+                serveStatic('./sentry')
+              ),
+              connect().use(
                 '/app/styles',
                 serveStatic('./app/styles')
               ),
