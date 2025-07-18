@@ -11,6 +11,16 @@
 </ol>
 
 <p class="pull-right">
+    <span>
+      <strong>Status legend:</strong>
+      &nbsp;
+      <span ng-repeat="status in statuses">
+        <span class="label" style="cursor: help;" ng-style="{'background-color': status.color_code}" uib-popover-html="'<strong>' + status.name.text + '</strong><br>' + status.description.text" popover-placement="bottom" popover-trigger="mouseenter">&nbsp;</span>
+      </span>
+      &nbsp;
+      <a href="https://api.worldskills.org/resources/download/27088/29318/30368?l=en" target="_blank" style="padding-left: 0;">(Tiers and status PDF)</a>
+      &nbsp;
+    </span>
     <a ng-show="userCanRecommend" ng-click="showRecommendations()" class="btn btn-link">
       <span translate>recommendations</span>
     </a>
@@ -21,10 +31,10 @@
       <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span translate>edit</span>
     </a>
 </p>
-
 <h1 class="h2">{{ list.name.text }} <small>{{ event.name.text }}</small></h1>
 
-<hr class="clear" />
+<div class="clearfix"></div>
+<hr />
 
 <ws-spinner class="bigSpinner" ng-if="loading"></ws-spinner>
 
