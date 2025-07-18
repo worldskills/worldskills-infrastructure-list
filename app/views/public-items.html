@@ -142,12 +142,14 @@
                     <th ng-if="columns.item_category" translate>th_item_category</th>
                     <th ng-if="columns.tier" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('tier_id')" translate>th_tier</span>
+                      <a href="https://api.worldskills.org/resources/download/27088/29318/30368?l=en" target="_blank" class="text-primary" title="Tiers and status PDF"><i class="glyphicon glyphicon-question-sign"></i></a>
                       <span class="caret" ng-show="sort === 'tier_id'"></span>
                     </th>
                     <th ng-if="columns.extra_details" translate>th_extra_details</th>
                     <th ng-if="columns.files" translate>th_files</th>
                     <th ng-if="columns.status" ng-class="{dropup: !reverse}">
                       <span ng-click="sortBy('status.id')" translate>th_status</span>
+                      <a href="https://api.worldskills.org/resources/download/27088/29318/30368?l=en" target="_blank" class="text-primary" title="Tiers and status PDF"><i class="glyphicon glyphicon-question-sign"></i></a>
                       <span class="caret" ng-show="sort === 'status.id'"></span>
                     </th>
                     <th ng-if="columns.modified" translate>th_last_modified</th>
