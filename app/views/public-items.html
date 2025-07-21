@@ -11,7 +11,7 @@
 </ol>
 
 <p class="pull-right">
-    <span>
+    <span ng-if="statuses.length == 3 && statuses[2].name.text == 'Confirmed' && statuses[2].color_code == '#5cb85c'" class="text-muted">
       <strong>Status legend:</strong>
       &nbsp;
       <span ng-repeat="status in statuses">
