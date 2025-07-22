@@ -29,8 +29,19 @@ angular.module('ilApp')
     $scope.list.$promise.then(function () {
 
       if ($scope.list.skill) {
+        var basePositionIds = [
+            26, // Skill Competition Manager
+            2, // Chief Expert
+            3, // Deputy Chief Expert
+            7, // Workshop Manager
+            8, // Workshop Sector Manager
+        ];
         Events.getSkillManagement($scope.list.skill.id).then(function(res){
           $scope.skillManagement = res.data.person_positions;
+          // sort by base position ID
+          $scope.skillManagement.sort(function (a, b) {
+              return basePositionIds.indexOf(a.position.base_position_id) - basePositionIds.indexOf(b.position.base_position_id);
+          });
         }, function(error){
           WSAlert.warning("Could not get skill management information");
         });
